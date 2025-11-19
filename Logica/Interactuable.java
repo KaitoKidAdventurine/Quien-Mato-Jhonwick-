@@ -44,4 +44,4 @@ public abstract class Interactuable {
     public abstract void interactuar();
     public abstract String obtenerInformacion();
 }
-}
+

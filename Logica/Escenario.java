@@ -24,11 +24,11 @@ public class Escenario {
     public boolean isInvestigado() { return investigado; }
     public void setInvestigado(boolean investigado) { this.investigado = investigado; }
 
-    public ArrayList<Intercambiable> getInteractuables() { return interactuables; }
-    public void setInteractuables(ArrayList<Intercambiable> interactuables) { this.interactuables = interactuables; }
+    public ArrayList<Interactuable> getInteractuables() { return interactuables; }
+    public void setInteractuables(ArrayList<Interactuable> interactuables) { this.interactuables = interactuables; }
 
     public void investigar() {}
-    public void agregarInteractuable(Intercambiable i) {
+    public void agregarInteractuable(Interactuable i) {
         interactuables.add(i);
     }
 }

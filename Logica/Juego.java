@@ -1,4 +1,4 @@
-package Quien-Mato-Jhonwick-.Logica;
+package Logica;
 
 public class Juego {
     private String titulo;

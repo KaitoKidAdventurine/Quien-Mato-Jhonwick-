@@ -1,6 +1,10 @@
 package Main;
 
 import java.util.LinkedHashSet;
+
+import Logica.Diario;
+import Logica.Mapa;
+import Logica.Telefono;
 import cu.edu.cujae.ceis.tree.binary.BinaryTree;
 
 public class Jugador 
@@ -15,7 +19,7 @@ public class Jugador
     {
         this.nombre = nombre;
         this.elecciones = new BinaryTree<>();
-        this.mapa = new Mapa(null, new LinkedHashSet<>());
+        this.mapa = new Mapa();
         this.telefono = new Telefono();
         this.diario = new Diario();
     }
