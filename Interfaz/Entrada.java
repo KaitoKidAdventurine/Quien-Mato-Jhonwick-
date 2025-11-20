@@ -110,14 +110,26 @@ public void ponerDialogo() {
     public void crearDialogos(){
 
     ImageIcon policia = new ImageIcon("DatosAuxiliares/NPC/Policia.png");
+        ImageIcon dueno = new ImageIcon("DatosAuxiliares/NPC/Dueño.png");
+        ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/NPC/Secretaria.png");
     Dialogo d1= new Dialogo("Hola. Como estas.", "Policia", policia );
     Dialogo d2= new Dialogo("Espero que hayas dormido bien.", "Policia", policia );
     Dialogo d3= new Dialogo("Tenemos trabajo que hacer.", "Policia", policia );
     Dialogo d4= new Dialogo("Este parece ser un caso bastante serio.", "Policia", policia );
+    Dialogo d5= new Dialogo("No se alarme oficial. El caso esta practicamente resuelto.", "Dueño", dueno );
+    Dialogo d6= new Dialogo("Simplemente no pudo aguantar el estres laboral.", "Dueño", dueno );
+    Dialogo d7= new Dialogo("Por favor señor, hasta que el detective diga lo contrario el caso seguira abierto.", "Policia", policia );
+    Dialogo d8= new Dialogo("Como diga.", "Dueño", dueno );
+    Dialogo d9= new Dialogo("Buenas.", "Secretaria", secretaria );
     dialogosTuto.add(d1);
     dialogosTuto.add(d2);
     dialogosTuto.add(d3);
     dialogosTuto.add(d4);
+        dialogosTuto.add(d5);
+        dialogosTuto.add(d6);
+        dialogosTuto.add(d7);
+        dialogosTuto.add(d8);
+        dialogosTuto.add(d9);
 }
     /**
      * @param args the command line arguments
