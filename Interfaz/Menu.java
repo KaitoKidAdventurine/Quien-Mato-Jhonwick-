@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import Logica.Reproductor;
 
 /**
  *
@@ -24,13 +25,15 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu1
      */
-    public Menu() {
-         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
-           largoBot = (int) (tamPant.getWidth()*0.2);
-           anchoBot = (int) (tamPant.getHeight()*0.07);
-           xBot = (int) (tamPant.getWidth()*0.07);
-         
+    public Menu() 
+    {
+        Reproductor reproductor = new Reproductor();
+        tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+        largoBot = (int) (tamPant.getWidth()*0.2);
+        anchoBot = (int) (tamPant.getHeight()*0.07);
+        xBot = (int) (tamPant.getWidth()*0.07);
         initComponents();
+        
     }
 
 
