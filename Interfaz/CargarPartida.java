@@ -137,13 +137,16 @@ public class CargarPartida extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonAtrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAtrasMouseEntered
+    private void otonAtrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAtrasMouseEntered
         botonAtras.setForeground(Color.red);
     }//GEN-LAST:event_botonAtrasMouseEntered
 
     private void botonAtrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAtrasMouseExited
         botonAtras.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_botonAtrasMouseExited
+    private void botonAtrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAtrasMouseEntered
+        botonAtras.setForeground(Color.red);
+    }//GEN-LAST:event_botonAtrasMouseEntered
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         dispose();

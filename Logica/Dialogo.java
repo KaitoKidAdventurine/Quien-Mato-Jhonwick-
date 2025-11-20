@@ -1,5 +1,6 @@
 package Logica;
 
+import javax.swing.*;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -7,16 +8,17 @@ import java.util.Queue;
 public class Dialogo 
 {
     private String texto;
-    private String tipo;
+    private String personaje;
     private LinkedHashSet<String> opciones;
     private Queue<String> respuestas;
-
-    public Dialogo(String texto, String tipo) 
+    private ImageIcon icono;
+    public Dialogo(String texto, String personaje, ImageIcon imagenPersonaje )
     {
         this.texto = texto;
-        this.tipo = tipo;
+        this.personaje = personaje;
         this.opciones = new LinkedHashSet<>();
         this.respuestas = new LinkedList<>();
+        this.icono= imagenPersonaje;
     }
 
     public String getTexto() 
@@ -28,26 +30,34 @@ public class Dialogo
         this.texto = texto; 
     }
 
-    public String getTipo() 
+    public String getPersonaje()
     { 
-        return tipo; 
+        return personaje;
     }
-    public void setTipo(String tipo) 
+    public void setPersonaje(String tipo)
     {
-        this.tipo = tipo; 
+        this.personaje = tipo;
     }
 
-    public LinkedHashSet<String> getOpciones() 
-    { 
-        return opciones; 
+    public LinkedHashSet<String> getOpciones()
+    {
+        return opciones;
     }
-    public Queue<String> getRespuestas() 
-    { 
-        return respuestas; 
+    public Queue<String> getRespuestas()
+    {
+        return respuestas;
     }
 
-    public void elegirOpcion(String opcion) 
+    public void elegirOpcion(String opcion)
     {
         respuestas.offer(opcion);
+    }
+
+    public ImageIcon getIcono() {
+        return icono;
+    }
+
+    public void setIcono(ImageIcon icono) {
+        this.icono = icono;
     }
 }
