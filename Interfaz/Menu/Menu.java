@@ -30,14 +30,15 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() 
     {
-       timer = new Timer();
+        Reproductor reproductor = new Reproductor();
+        timer = new Timer();
         tarea = new TimerTask() {
             @Override
             public void run() {
                 dispose();
             }
         };
-        Reproductor reproductor = new Reproductor();
+        
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         largoBot = (int) (tamPant.getWidth()*0.2);
         anchoBot = (int) (tamPant.getHeight()*0.07);

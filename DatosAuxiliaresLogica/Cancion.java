@@ -2,7 +2,7 @@ package DatosAuxiliaresLogica;
 
 import java.io.File;
 
-public class Cancion 
+public class Cancion
 {
     private String nombre;
     private File file;
@@ -12,12 +12,12 @@ public class Cancion
         this.nombre = nombre;
         this.file = file;
     }
-    /*public String getNombre()
+    public String getNombre()
     {
         return nombre;
     }
 
-    public String setNombre(String nombre)
+    public void setNombre(String nombre)
     {
         this.nombre = nombre;
     }
@@ -30,5 +30,5 @@ public class Cancion
     public void setFile(File file)
     {
         this.file = file;
-    }*/
+    }
 }

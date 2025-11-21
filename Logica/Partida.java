@@ -2,7 +2,7 @@ package Logica;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Partida 
+public class Partida
 {
     private String idPartida;
     private LocalDate fechaInicio;
@@ -59,7 +59,5 @@ public class Partida
     {}
     public void cargarPartida() 
     {}
-    
-
 }
 

@@ -3,23 +3,20 @@ package Logica;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
-
 import DatosAuxiliaresLogica.Cancion;
 import javazoom.jl.player.Player;
 
 public class Reproductor {
-    //private Player reproductorMP3;
+    private Player reproductorMP3;
     private Thread hiloReproduccion;
     private ArrayList<Cancion> canciones;
     private int indiceActual;
     private boolean enReproduccion;
-    private Player reproductorMP3;
 
     public Reproductor() {
         this.canciones = new ArrayList<Cancion>();
         this.indiceActual = 0;
         this.enReproduccion = false;
-        this.reproductorMP3= new Player();
 
         // Cargar canción específica
         File archivoMusica = new File("Musica/Canciones/CancMenu.mp3");
@@ -27,40 +24,36 @@ public class Reproductor {
             Cancion cancion = new Cancion("CancMenu", archivoMusica);
             canciones.add(cancion);
             iniciarMusica();
-        } else {
+        }
+
+        else {
             System.err.println("No se encontró el archivo de música: " + archivoMusica.getAbsolutePath());
         }
     }
 
     // Getters
-    public Player getReproductorMP3() 
-    {
+    public Player getReproductorMP3() {
         return reproductorMP3;
     }
 
-    public Thread getHiloReproduccion() 
-    {
+    public Thread getHiloReproduccion() {
         return hiloReproduccion;
     }
 
-    public ArrayList<Cancion> getCanciones() 
-    {
+    public ArrayList<Cancion> getCanciones() {
         return canciones;
     }
 
-    public int getIndiceActual() 
-    {
+    public int getIndiceActual() {
         return indiceActual;
     }
 
-    public boolean isEnReproduccion() 
-    {
+    public boolean isEnReproduccion() {
         return enReproduccion;
     }
 
     // Setters
-    public void setReproductorMP3(Player reproductorMP3)
-    {
+    public void setReproductorMP3(Player reproductorMP3) {
         this.reproductorMP3 = reproductorMP3;
     }
 
@@ -80,105 +73,85 @@ public class Reproductor {
         this.enReproduccion = enReproduccion;
     }
 
-    public void iniciarMusica()
+    public void iniciarMusica() 
     {
-        try 
-        {
-            // Guardo el valor del primer archivo d musica de la lista.
-            Cancion c = canciones.get(0);
-            indiceActual = 0;
-        
-            // Convierto el File en un FileInput... para poder despues convertirlo en un Player
-            FileInputStream stream = new FileInputStream(c.getFile());
-            reproductorMP3 = new Player(stream);
-        
-            // Se usa el Thread para dejar reproduciendo la musica en segundo plano 
-            // y asi seguir con el programa. 
+        enReproduccion = true;
+        try {
+            // Se usa el Thread para dejar reproduciendo la musica en segundo plano
+            // y asi seguir con el programa.
             hiloReproduccion = new Thread(() -> {
-                try 
-                {
-                    reproductorMP3.play(); 
-                } catch (Exception e) 
-                {
-                System.err.println("Error reproduciendo: " + e.getMessage());
+                try {
+                    while (enReproduccion) 
+                    {
+                        // Guardo el valor del primer archivo d musica de la lista.
+                        Cancion c = canciones.get(0);
+                        indiceActual = 0;
+                        // Convierto el File en un FileInput... para poder despues convertirlo en un
+                        // Player
+                        FileInputStream stream = new FileInputStream(c.getFile());
+                        reproductorMP3 = new Player(stream);
+                        reproductorMP3.play();
+                    }
+                } catch (Exception e) {
+                    System.err.println("Error reproduciendo: " + e.getMessage());
                 }
             });
-        
             hiloReproduccion.start();
-            enReproduccion = true;
-        
-        } catch (Exception e) 
-        {
+        } catch (Exception e) {
             System.err.println("Error iniciando música: " + e.getMessage());
         }
     }
 
     // Se cambia a la cancion que se quiera en especifico por indice
-    public void cambiarMusicaIndice(int i)
-    {
-        try 
-        {
+    public void cambiarMusicaIndice(int i) {
+        try {
             Cancion c = canciones.get(i);
             indiceActual = i;
-        
             FileInputStream stream = new FileInputStream(c.getFile());
             reproductorMP3 = new Player(stream);
-        
- 
             hiloReproduccion = new Thread(() -> {
-                try 
-                {
-                   reproductorMP3.play(); 
-                } catch (Exception e) 
-                {
-                System.err.println("Error reproduciendo: " + e.getMessage());
+                try {
+                    reproductorMP3.play();
+                } catch (Exception e) {
+                    System.err.println("Error reproduciendo: " + e.getMessage());
                 }
             });
-        
+
             hiloReproduccion.start();
             enReproduccion = true;
-        
-        } catch (Exception e) 
-        {
+
+        } catch (Exception e) {
             System.err.println("Error iniciando música: " + e.getMessage());
         }
     }
 
-    public void cambiarMusicaNombre(String nombre)
-    {
-        try
-        {
+    public void cambiarMusicaNombre(String nombre) {
+        try {
             boolean encontrado = false;
-            for (int i = 0; i < canciones.size() && !encontrado; i++)
-            {
-                if (canciones.get(i).getNombre().equals(nombre))
-                {
+            for (int i = 0; i < canciones.size() && !encontrado; i++) {
+                if (canciones.get(i).getNombre().equals(nombre)) {
                     encontrado = true;
                     indiceActual = i;
                 }
             }
 
-            if (encontrado)
-            {
+            if (encontrado) {
                 cambiarMusicaIndice(indiceActual);
             }
 
-            else
-            {
+            else {
                 throw new IllegalArgumentException("La canción '" + nombre + "' no fue encontrada");
             }
-        } catch(IllegalArgumentException e)
-        {
+        } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
-    public void cambiarMusicaSiguiente()
-    {
-        if(indiceActual == canciones.size() -1)
-        {
+
+    public void cambiarMusicaSiguiente() {
+        if (indiceActual == canciones.size() - 1) {
             cambiarMusicaIndice(0);
         }
-        cambiarMusicaIndice(indiceActual+1);
+        cambiarMusicaIndice(indiceActual + 1);
     }
 
     public void detenerCancion()
@@ -189,12 +162,10 @@ public class Reproductor {
         {
             reproductorMP3.close();
         }
-        
         if (hiloReproduccion != null && hiloReproduccion.isAlive()) 
         {
             hiloReproduccion.interrupt();
         }
 
-    }*/
     }
 }
