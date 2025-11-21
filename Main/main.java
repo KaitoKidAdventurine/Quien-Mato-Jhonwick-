@@ -1,11 +1,6 @@
 package Main;
 
-import Interfaz.Menu;
-import Logica.Reproductor;
-import Logica.Dialogo;
-
-import javax.swing.*;
-import java.util.ArrayList;
+import Interfaz.Menu.Menu;
 
 public class main {
     public static void main(String[] args) 

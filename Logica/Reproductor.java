@@ -5,24 +5,22 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 
 import DatosAuxiliaresLogica.Cancion;
-import javazoom.jl.player.Player;
+//import javazoom.jl.player.Player;
 
-public class Reproductor 
-{
-    private Player reproductorMP3;
+public class Reproductor {
+    //private Player reproductorMP3;
     private Thread hiloReproduccion;
     private ArrayList<Cancion> canciones;
     private int indiceActual;
     private boolean enReproduccion;
 
-    public Reproductor() 
-    {
+    public Reproductor() {
         this.canciones = new ArrayList<Cancion>();
         this.indiceActual = 0;
         this.enReproduccion = false;
-        
+
         // Cargar canción específica
-        File archivoMusica = new File("Musica/Canciones/CancMenu.mp3");
+        /*File archivoMusica = new File("Musica/Canciones/CancMenu.mp3");
         if (archivoMusica.exists()) {
             Cancion cancion = new Cancion("CancMenu", archivoMusica);
             canciones.add(cancion);
@@ -195,5 +193,6 @@ public class Reproductor
             hiloReproduccion.interrupt();
         }
 
+    }*/
     }
 }

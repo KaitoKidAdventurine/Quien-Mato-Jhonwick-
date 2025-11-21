@@ -12,7 +12,7 @@ public class Cancion
         this.nombre = nombre;
         this.file = file;
     }
-    public String getNombre() 
+    /*public String getNombre()
     {
         return nombre;
     }
@@ -30,5 +30,5 @@ public class Cancion
     public void setFile(File file)
     {
         this.file = file;
-    }
+    }*/
 }
