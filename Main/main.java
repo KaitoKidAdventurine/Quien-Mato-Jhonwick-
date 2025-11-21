@@ -8,7 +8,7 @@ import Logica.Dialogo;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import javazoom.jl.player.Player;
+import Utiles.*;
 
 
 public class main {

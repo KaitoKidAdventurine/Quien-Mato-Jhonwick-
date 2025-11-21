@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 
 import DatosAuxiliaresLogica.Cancion;
-//import javazoom.jl.player.Player;
+import javazoom.jl.player.Player;
 
 public class Reproductor {
     //private Player reproductorMP3;
@@ -13,14 +13,16 @@ public class Reproductor {
     private ArrayList<Cancion> canciones;
     private int indiceActual;
     private boolean enReproduccion;
+    private Player reproductorMP3;
 
     public Reproductor() {
         this.canciones = new ArrayList<Cancion>();
         this.indiceActual = 0;
         this.enReproduccion = false;
+        this.reproductorMP3= new Player();
 
         // Cargar canción específica
-        /*File archivoMusica = new File("Musica/Canciones/CancMenu.mp3");
+        File archivoMusica = new File("Musica/Canciones/CancMenu.mp3");
         if (archivoMusica.exists()) {
             Cancion cancion = new Cancion("CancMenu", archivoMusica);
             canciones.add(cancion);
