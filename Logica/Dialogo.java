@@ -9,16 +9,14 @@ public class Dialogo
 {
     private String texto;
     private String personaje;
-    private LinkedHashSet<String> opciones;
-    private Queue<String> respuestas;
+    private LinkedList<String> opciones;
     private ImageIcon icono;
     public Dialogo(String texto, String personaje, ImageIcon imagenPersonaje )
     {
         this.texto = texto;
         this.personaje = personaje;
-        this.opciones = new LinkedHashSet<>();
-        this.respuestas = new LinkedList<>();
-        this.icono= imagenPersonaje;
+        this.opciones = new LinkedList<>();
+        this.icono = imagenPersonaje;
     }
 
     public String getTexto() 
@@ -39,19 +37,11 @@ public class Dialogo
         this.personaje = tipo;
     }
 
-    public LinkedHashSet<String> getOpciones()
+    public LinkedList<String> getOpciones()
     {
         return opciones;
     }
-    public Queue<String> getRespuestas()
-    {
-        return respuestas;
-    }
-
-    public void elegirOpcion(String opcion)
-    {
-        respuestas.offer(opcion);
-    }
+    public void setOpciones(LinkedList<String> opciones) { this.opciones = opciones; }
 
     public ImageIcon getIcono() {
         return icono;
