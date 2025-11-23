@@ -1,6 +1,7 @@
 package Logica;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class Partida
 {
@@ -8,6 +9,7 @@ public class Partida
     private LocalDate fechaInicio;
     private String estado;
     private int finalizadoMarcador;
+    private LinkedList<Escenario> escenarios;
 
     public Partida(String idPartida, LocalDate fechaInicio, String estado, int finalizadoMarcador) 
     {
@@ -15,6 +17,7 @@ public class Partida
         this.fechaInicio = fechaInicio;
         this.estado = estado;
         this.finalizadoMarcador = finalizadoMarcador;
+        escenarios = new LinkedList<>();
     }
 
     public String getIdPartida() 
@@ -59,5 +62,8 @@ public class Partida
     {}
     public void cargarPartida() 
     {}
+
+    public LinkedList<Escenario> getEscenarios() { return escenarios; }
+    public void setEscenarios(LinkedList<Escenario> escenarios) { this.escenarios = escenarios; }
 }
 
