@@ -3,15 +3,20 @@ package Interfaz.Escenarios;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SalaDeCamaras extends JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SalaDeCamaras.class.getName());
     private Dimension tamPant;
     private int dialogoActual;
+    private Timer timer;
+    private TimerTask tarea;
 
     /**
      * Creates new form Entrada
@@ -19,18 +24,25 @@ public class SalaDeCamaras extends JFrame {
     public SalaDeCamaras() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         initComponents();
-
+        timer = new Timer();
+        tarea = new TimerTask() {
+            @Override
+            public void run() {
+                dispose();
+            }
+        };
     }
 
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
         cajaTexto  = new JPanel();
+        flechaPasillo1 = new JButton();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/sala de camaras.jpg"));
 
             jLabel1 = new JLabel();
-            setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
             setMinimumSize(tamPant);
             setUndecorated(true);
             setPreferredSize(tamPant);
@@ -47,13 +59,32 @@ public class SalaDeCamaras extends JFrame {
             cajaTexto.setBounds(220, 280, 1200, 800);
             cajaTexto.setLayout(null);
             getContentPane().add(cajaTexto);
-            getContentPane().add(jLabel1);
+
+            BufferedImage imagen2 = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha abajo.png"));
+            ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+            flechaPasillo1.setIcon(icono2);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
+        flechaPasillo1.setBounds((int) (tamPant.width*0.47), (int) (tamPant.height*0.84), (int) (tamPant.width*0.048), (int) (tamPant.height*0.124));
+        flechaPasillo1.setBackground(Color.red);
+        flechaPasillo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                flechaPasillo1ActionPerformed(evt);
+            }
+
+        });
+        flechaPasillo1.setOpaque(true);
+        flechaPasillo1.setContentAreaFilled(false);
+        flechaPasillo1.setBorderPainted(false);
+        flechaPasillo1.setFocusPainted(false);
+
+        getContentPane().add(flechaPasillo1);
 
 
+        getContentPane().add(jLabel1);
         pack();
     }
     public void ponerDialogo() {
@@ -64,7 +95,12 @@ public class SalaDeCamaras extends JFrame {
         getContentPane().revalidate();
         getContentPane().repaint();
     }
+    private void flechaPasillo1ActionPerformed(ActionEvent evt) {
+        Pasillo1 pasillo1 = new Pasillo1();
+        pasillo1.setVisible(true);
+        timer.schedule(tarea, 1000);
 
+    }
 
     /**
      * @param args the command line arguments
@@ -90,5 +126,6 @@ public class SalaDeCamaras extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel cajaTexto;
+    private javax.swing.JButton flechaPasillo1;
     // End of variables declaration//GEN-END:variables
 }

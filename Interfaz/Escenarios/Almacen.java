@@ -3,22 +3,36 @@ package Interfaz.Escenarios;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class OficinaDueño extends JFrame {
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OficinaDueño.class.getName());
+public class Almacen extends JFrame {
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Almacen.class.getName());
     private Dimension tamPant;
     private int dialogoActual;
+    private Timer timer;
+    private TimerTask tarea;
+
 
     /**
      * Creates new form Entrada
      */
-    public OficinaDueño() {
+    public Almacen() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         initComponents();
+        timer = new Timer();
+        tarea = new TimerTask() {
+            @Override
+            public void run() {
+                dispose();
+            }
+        };
 
     }
 
@@ -26,11 +40,12 @@ public class OficinaDueño extends JFrame {
     @SuppressWarnings("unchecked")
     private void initComponents() {
         cajaTexto  = new JPanel();
+        flechaPasilloAlmacen = new JButton();
         try {
-            BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/oficina del dueño.jpg"));
+            BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/puerta del lmacen.jpg"));
 
             jLabel1 = new JLabel();
-            setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setMinimumSize(tamPant);
             setUndecorated(true);
             setPreferredSize(tamPant);
@@ -46,19 +61,39 @@ public class OficinaDueño extends JFrame {
             cajaTexto.setOpaque(false);
             cajaTexto.setBounds(220, 280, 1200, 800);
             cajaTexto.setLayout(null);
-            getContentPane().add(cajaTexto);
-            getContentPane().add(jLabel1);
+            BufferedImage imagen2 = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha arriba.png"));
+            ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+            flechaPasilloAlmacen.setIcon(icono2);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        flechaPasilloAlmacen.setBounds((int) (tamPant.width*0.45), (int) (tamPant.height*0.5), (int) (tamPant.width*0.04), (int) (tamPant.height*0.11));
+        flechaPasilloAlmacen.setBackground(Color.red);
+        flechaPasilloAlmacen.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                flechaPasilloAlmacenActionPerformed(evt);
+            }
+        });
 
+        flechaPasilloAlmacen.setOpaque(true);
+        flechaPasilloAlmacen.setContentAreaFilled(false);
+        flechaPasilloAlmacen.setBorderPainted(false);
+        flechaPasilloAlmacen.setFocusPainted(false);
 
-
+        getContentPane().add(flechaPasilloAlmacen);
+        getContentPane().add(cajaTexto);
+        getContentPane().add(jLabel1);
         pack();
     }
     public void ponerDialogo() {
     }
 
+    private void flechaPasilloAlmacenActionPerformed(ActionEvent evt) {
+        PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
+        pasilloAlmacen.setVisible(true);
+        timer.schedule(tarea, 1000);
+    }
     private void cTMouseClicked(MouseEvent evt) {
         ponerDialogo();
         getContentPane().revalidate();
@@ -83,12 +118,13 @@ public class OficinaDueño extends JFrame {
 
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new OficinaDueño().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Almacen().setVisible(true));
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel cajaTexto;
+    private javax.swing.JButton flechaPasilloAlmacen;
     // End of variables declaration//GEN-END:variables
 }

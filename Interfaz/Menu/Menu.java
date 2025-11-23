@@ -203,14 +203,9 @@ public class Menu extends javax.swing.JFrame {
     private void botonNuevPartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevPartActionPerformed
 
         NuevaPartida nP = new NuevaPartida();
-
         nP.setVisible(true);
        timer.schedule(tarea, 1000);
-
-
-
-
-    }//GEN-LAST:event_botonNuevPartActionPerformed
+    }
 
     private void botonCargParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargParActionPerformed
        CargarPartida cP = new CargarPartida();

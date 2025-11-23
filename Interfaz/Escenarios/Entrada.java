@@ -4,6 +4,7 @@
  */
 package Interfaz.Escenarios;
 
+import Interfaz.InterfazJugador.CuadroTexto;
 import Logica.Dialogo;
 
 import javax.imageio.ImageIO;
@@ -53,14 +54,18 @@ private int dialogoActual;
         cajaTexto  = new JPanel();
         fondo = new JLabel();
         flecha = new JButton();
+        lugar = new JLabel();
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por afuera.jpg"));
-            setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
             setMinimumSize(tamPant);
             setUndecorated(true);
             setPreferredSize(tamPant);
             getContentPane().setLayout(null);
             ImageIcon icono = new ImageIcon(imagen.getScaledInstance(tamPant.width, tamPant.height, Image.SCALE_SMOOTH));
+
+
             fondo.setIcon(icono); // NOI18N
             fondo.setFocusable(false);
             fondo.setMaximumSize(tamPant);
@@ -69,30 +74,49 @@ private int dialogoActual;
             fondo.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cajaTexto.setOpaque(false);
-            cajaTexto.setBounds(220, 280, 1200, 800);
+            cajaTexto.setBounds((int) (tamPant.width*0.17), (int) (tamPant.height* 0.34), (int) (tamPant.width*0.72), (int) (tamPant.height*0.6));
             cajaTexto.setLayout(null);
+
+            BufferedImage imagen2 = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha arriba.png"));
+            ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+            flecha.setIcon(icono2);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        flecha.setBounds((int) (tamPant.width*0.48), (int) (tamPant.height*0.8), (int) (tamPant.width*0.04), (int) (tamPant.height*0.06));
-        flecha.setBackground(Color.red);
+        flecha.setBounds((int) (tamPant.width*0.484), (int) (tamPant.height*0.77), (int) (tamPant.width*0.048), (int) (tamPant.height*0.124));
+        flecha.setOpaque(true);
+        flecha.setContentAreaFilled(false);
+        flecha.setBorderPainted(false);
+        flecha.setFocusPainted(false);
         flecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 flechaActionPerformed(evt);
             }
         });
+
+        ponerDialogo();
         getContentPane().add(cajaTexto);
         getContentPane().add(flecha);
-        ponerDialogo();
-        getContentPane().add(fondo);
+
+        lugar.setText("Entrada");
+        lugar.setOpaque(false);
+        lugar.setForeground(Color.white);
+        lugar.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.05)));
+        lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.2), (int) (tamPant.height*0.1));
+       getContentPane().add(lugar);
+        getContentPane().add(fondo );
+
+
+
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void flechaActionPerformed(ActionEvent evt) {
-        EntradaDentro entradaDentro = new EntradaDentro();
-        entradaDentro.setVisible(true);
+        Recepcion recepcion = new Recepcion();
+        recepcion.setVisible(true);
         timer.schedule(tarea, 1000);
     }
 
@@ -100,7 +124,7 @@ private int dialogoActual;
         if(dialogoActual < dialogosTuto.size()) {
              Dialogo aux = dialogosTuto.get(dialogoActual);
              CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
-            cT.setBounds(0, 0, 1100, 700);
+            cT.setBounds(0, 0, (int) (tamPant.width* 0.7), (int) (tamPant.height* 0.6));
 
             cT.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -123,7 +147,7 @@ private int dialogoActual;
     }
 
     public void crearDialogos(){
-
+/*
     ImageIcon policia = new ImageIcon("DatosAuxiliares/NPC/Policia.png");
     ImageIcon dueno = new ImageIcon("DatosAuxiliares/NPC/Dueño.png");
     ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/NPC/Secretaria.png");
@@ -135,16 +159,18 @@ private int dialogoActual;
     Dialogo d6= new Dialogo("Simplemente no pudo aguantar el estres laboral.", "Dueño", dueno );
     Dialogo d7= new Dialogo("Por favor señor, hasta que el detective diga lo contrario el caso seguira abierto.", "Policia", policia );
     Dialogo d8= new Dialogo("Como diga.", "Dueño", dueno );
-    Dialogo d9= new Dialogo("Buenas.", "Secretaria", secretaria );
+    Dialogo d9= new Dialogo("Buenas. Soy la secretaria del dueño del museo, sere la encargada de guiarte por el museo y de llevarte hasta la escena del crimen. Por favor, venga por este camino", "Secretaria", secretaria );
     dialogosTuto.add(d1);
     dialogosTuto.add(d2);
     dialogosTuto.add(d3);
     dialogosTuto.add(d4);
-        dialogosTuto.add(d5);
-        dialogosTuto.add(d6);
-        dialogosTuto.add(d7);
-        dialogosTuto.add(d8);
-        dialogosTuto.add(d9);
+    dialogosTuto.add(d5);
+    dialogosTuto.add(d6);
+    dialogosTuto.add(d7);
+    dialogosTuto.add(d8);
+    dialogosTuto.add(d9);
+    */
+
 }
     /**
      * @param args the command line arguments
@@ -176,5 +202,6 @@ private int dialogoActual;
     private javax.swing.JLabel fondo;
     private javax.swing.JPanel cajaTexto;
     private javax.swing.JButton flecha;
+    private javax.swing.JLabel lugar;
     // End of variables declaration//GEN-END:variables
 }

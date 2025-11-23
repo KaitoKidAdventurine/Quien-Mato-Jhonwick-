@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,16 +12,17 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class EntradaDentro extends JFrame{
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EntradaDentro.class.getName());
+public class Sala2  extends JFrame {
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Sala2.class.getName());
     private Dimension tamPant;
-    private Timer timer;
+    private int dialogoActual;
+    private java.util.Timer timer;
     private TimerTask tarea;
-    /**
+
     /**
      * Creates new form Entrada
      */
-    public EntradaDentro() {
+    public Sala2() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         initComponents();
         timer = new Timer();
@@ -30,49 +32,60 @@ public class EntradaDentro extends JFrame{
                 dispose();
             }
         };
+
     }
 
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
         cajaTexto  = new JPanel();
-        fondo = new JLabel();
-        flecha = new JButton();
+        flechaSala = new JButton();
         try {
-            BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por dentro.jpg"));
+            BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/sala 2.jpg"));
 
-
-            setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            jLabel1 = new JLabel();
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setMinimumSize(tamPant);
             setUndecorated(true);
             setPreferredSize(tamPant);
             getContentPane().setLayout(null);
             ImageIcon icono = new ImageIcon(imagen.getScaledInstance(tamPant.width, tamPant.height, Image.SCALE_SMOOTH));
-            fondo.setIcon(icono); // NOI18N
-            fondo.setFocusable(false);
-            fondo.setMaximumSize(tamPant);
-            fondo.setMinimumSize(tamPant);
-            fondo.setPreferredSize(tamPant);
-            fondo.setBounds(0, 0, tamPant.width, tamPant.height);
+            jLabel1.setIcon(icono); // NOI18N
+            jLabel1.setFocusable(false);
+            jLabel1.setMaximumSize(tamPant);
+            jLabel1.setMinimumSize(tamPant);
+            jLabel1.setPreferredSize(tamPant);
+            jLabel1.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cajaTexto.setOpaque(false);
             cajaTexto.setBounds(220, 280, 1200, 800);
             cajaTexto.setLayout(null);
 
+            BufferedImage imagen2 = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha abajo.png"));
+            ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+            flechaSala.setIcon(icono2);
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        flecha.setBounds((int) (tamPant.width*0.48), (int) (tamPant.height*0.8), (int) (tamPant.width*0.04), (int) (tamPant.height*0.06));
-        flecha.setBackground(Color.red);
-        flecha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                flechaActionPerformed(evt);
+
+        flechaSala.setBounds((int) (tamPant.width*0.48), (int) (tamPant.height*0.84), (int) (tamPant.width*0.048), (int) (tamPant.height*0.124));
+        flechaSala.setBackground(Color.red);
+        flechaSala.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                flechaSalidaActionPerformed(evt);
             }
         });
+        flechaSala.setOpaque(true);
+        flechaSala.setContentAreaFilled(false);
+        flechaSala.setBorderPainted(false);
+        flechaSala.setFocusPainted(false);
 
+        getContentPane().add(flechaSala);
         getContentPane().add(cajaTexto);
-        getContentPane().add(flecha);
-        getContentPane().add(fondo);
+        getContentPane().add(jLabel1);
+
         pack();
     }
     public void ponerDialogo() {
@@ -83,9 +96,9 @@ public class EntradaDentro extends JFrame{
         getContentPane().revalidate();
         getContentPane().repaint();
     }
-    private void flechaActionPerformed(ActionEvent evt) {
-        Entrada entrada = new Entrada();
-        entrada.setVisible(true);
+    private void flechaSalidaActionPerformed(ActionEvent evt) {
+        Sala sala = new Sala();
+        sala.setVisible(true);
         timer.schedule(tarea, 1000);
     }
 
@@ -106,13 +119,13 @@ public class EntradaDentro extends JFrame{
 
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new EntradaDentro().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Sala2().setVisible(true));
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel fondo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel cajaTexto;
-    private javax.swing.JButton flecha;
+    private javax.swing.JButton flechaSala;
     // End of variables declaration//GEN-END:variables
 }

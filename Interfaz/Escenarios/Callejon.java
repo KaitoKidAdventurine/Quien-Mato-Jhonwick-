@@ -3,22 +3,35 @@ package Interfaz.Escenarios;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class PuertaDelAlmacen extends JFrame {
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PuertaDelAlmacen.class.getName());
+public class Callejon extends JFrame {
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Callejon.class.getName());
     private Dimension tamPant;
     private int dialogoActual;
+    private Timer timer;
+    private TimerTask tarea;
+
 
     /**
      * Creates new form Entrada
      */
-    public PuertaDelAlmacen() {
+    public Callejon() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         initComponents();
+        timer = new Timer();
+        tarea = new TimerTask() {
+            @Override
+            public void run() {
+                dispose();
+            }
+        };
 
     }
 
@@ -26,11 +39,12 @@ public class PuertaDelAlmacen extends JFrame {
     @SuppressWarnings("unchecked")
     private void initComponents() {
         cajaTexto  = new JPanel();
+        flechaPasilloAlmacen = new JButton();
         try {
-            BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/puerta del lmacen.jpg"));
+            BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/callejon 1.jpg"));
 
             jLabel1 = new JLabel();
-            setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
             setMinimumSize(tamPant);
             setUndecorated(true);
             setPreferredSize(tamPant);
@@ -46,19 +60,41 @@ public class PuertaDelAlmacen extends JFrame {
             cajaTexto.setOpaque(false);
             cajaTexto.setBounds(220, 280, 1200, 800);
             cajaTexto.setLayout(null);
-            getContentPane().add(cajaTexto);
-            getContentPane().add(jLabel1);
+
+            BufferedImage imagen2 = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha abajo.png"));
+            ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+            flechaPasilloAlmacen.setIcon(icono2);
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        flechaPasilloAlmacen.setBounds((int) (tamPant.width*0.4), (int) (tamPant.height*0.84), (int) (tamPant.width*0.048), (int) (tamPant.height*0.124));
+        flechaPasilloAlmacen.setBackground(Color.red);
+        flechaPasilloAlmacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                flechaPasilloAlmacenActionPerformed(evt);
+            }
+        });
+        flechaPasilloAlmacen.setOpaque(true);
+        flechaPasilloAlmacen.setContentAreaFilled(false);
+        flechaPasilloAlmacen.setBorderPainted(false);
+        flechaPasilloAlmacen.setFocusPainted(false);
+
+        getContentPane().add(flechaPasilloAlmacen);
 
 
-
+        getContentPane().add(cajaTexto);
+        getContentPane().add(jLabel1);
         pack();
     }
     public void ponerDialogo() {
     }
-
+    private void flechaPasilloAlmacenActionPerformed(ActionEvent evt) {
+        PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
+        pasilloAlmacen.setVisible(true);
+        timer.schedule(tarea, 1000);
+    }
     private void cTMouseClicked(MouseEvent evt) {
         ponerDialogo();
         getContentPane().revalidate();
@@ -83,12 +119,13 @@ public class PuertaDelAlmacen extends JFrame {
 
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new PuertaDelAlmacen().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Callejon().setVisible(true));
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel cajaTexto;
+    private javax.swing.JButton flechaPasilloAlmacen;
     // End of variables declaration//GEN-END:variables
 }
