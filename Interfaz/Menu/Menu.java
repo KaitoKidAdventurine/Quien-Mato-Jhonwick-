@@ -25,12 +25,18 @@ public class Menu extends javax.swing.JFrame {
     int largoBot;
     int anchoBot;
     int xBot;
+    private static boolean  evitarRepetir = false;
     /**
      * Creates new form Menu1
      */
     public Menu() 
     {
-        Reproductor reproductor = new Reproductor();
+        if(!evitarRepetir)
+        {
+            Reproductor reproductor = Reproductor.getInstancia();
+            reproductor.iniciarMusica();
+            evitarRepetir = true;
+        }
         timer = new Timer();
         tarea = new TimerTask() {
             @Override

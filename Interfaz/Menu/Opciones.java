@@ -4,6 +4,7 @@
  */
 package Interfaz.Menu;
 
+import Logica.Reproductor;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -15,32 +16,70 @@ import java.util.TimerTask;
  * @author ROBERTO
  */
 public class Opciones extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Opciones.class.getName());
-private Dimension tamPant;
+    private Dimension tamPant;
     int largoBot;
     int anchoBot;
     int xBot;
     int yBot;
     private Timer timer;
     private TimerTask tarea;
+    private Reproductor reproductor;
 
     public Opciones() {
-         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
-           largoBot = (int) (tamPant.getWidth()*0.1);
-           anchoBot = (int) (tamPant.getHeight()*0.05);
-           xBot = (int) (tamPant.getWidth()*0.2);
-           yBot = (int) tamPant.getWidth();
+        tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+        largoBot = (int) (tamPant.getWidth()*0.1);
+        anchoBot = (int) (tamPant.getHeight()*0.05);
+        xBot = (int) (tamPant.getWidth()*0.2);
+        yBot = (int) tamPant.getWidth();
 
-           initComponents(); timer = new Timer();
+        reproductor = Reproductor.getInstancia();
+        initComponents();
+        configurarSlider();
 
+        timer = new Timer();
         tarea = new TimerTask() {
             @Override
             public void run() {
                 dispose();
             }
         };
+    }
 
+    private void configurarSlider() {
+        jSlider.setMinimum(0);
+        jSlider.setMaximum(100);
+        jSlider.setValue(reproductor.getVolumenPorcentaje());
+        jSlider.setPaintTicks(true);
+        jSlider.setPaintTrack(true);
+        jSlider.setMajorTickSpacing(25);
+        jSlider.setMinorTickSpacing(5);
+
+        jSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSliderStateChanged(evt);
+            }
+        });
+    }
+
+    private void actualizarVolumen(int porcentaje) {
+        float volumenNormalizado = porcentaje / 100.0f;
+        reproductor.cambiarVolumen(volumenNormalizado);
+        volumen.setText("Volumen: " + porcentaje + "%");
+        System.out.println(" Volumen actualizado a: " + porcentaje + "%");
+    }
+
+    private void controlarMusica(boolean activar) {
+        if (activar) {
+            reproductor.activarMusica();
+            cajaMusica.setSelected(true);
+            jSlider.setEnabled(true);
+        } else {
+            reproductor.desactivarMusica();
+            cajaMusica.setSelected(false);
+            jSlider.setEnabled(false);
+        }
     }
 
     /**
@@ -92,7 +131,7 @@ private Dimension tamPant;
 
         volumen.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.20)));
         volumen.setForeground(new java.awt.Color(255, 255, 255));
-        volumen.setText("Volumen de la Musica");
+        volumen.setText("Volumen: " + reproductor.getVolumenPorcentaje() + "%");
         volumen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 volumenMouseEntered(evt);
@@ -131,6 +170,11 @@ private Dimension tamPant;
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 cajaMusicaMouseExited(evt);
+            }
+        });
+        cajaMusica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaMusicaActionPerformed(evt);
             }
         });
         cajaMusica.setBounds((int)(xBot*2.6), (int)(yBot *0.2), (int)(largoBot*0.8), anchoBot);
@@ -198,7 +242,7 @@ private Dimension tamPant;
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void musicaPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicaPanelMouseEntered
-       musica.setForeground(Color.red);
+        musica.setForeground(Color.red);
     }//GEN-LAST:event_musicaPanelMouseEntered
 
     private void musicaPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicaPanelMouseExited
@@ -207,7 +251,7 @@ private Dimension tamPant;
 
     private void volumenPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volumenPanelMouseEntered
         volumen.setForeground(Color.red);
-    }//GEN-LAST:event_volumenPanelMouseEntered
+    }//GEN-LAST:event_volumenPanelMouseExited
 
     private void volumenPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volumenPanelMouseExited
         volumen.setForeground(new java.awt.Color(255, 255, 255));
@@ -218,7 +262,7 @@ private Dimension tamPant;
     }//GEN-LAST:event_musicaMouseEntered
 
     private void musicaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicaMouseExited
-          musica.setForeground(new java.awt.Color(255, 255, 255));
+        musica.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_musicaMouseExited
 
     private void volumenMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volumenMouseEntered
@@ -230,7 +274,7 @@ private Dimension tamPant;
     }//GEN-LAST:event_volumenMouseExited
 
     private void cajaMusicaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cajaMusicaMouseEntered
-         musica.setForeground(Color.red);
+        musica.setForeground(Color.red);
     }//GEN-LAST:event_cajaMusicaMouseEntered
 
     private void cajaMusicaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cajaMusicaMouseExited
@@ -238,13 +282,23 @@ private Dimension tamPant;
     }//GEN-LAST:event_cajaMusicaMouseExited
 
     private void jSliderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderMouseEntered
-         volumen.setForeground(Color.red);
+        volumen.setForeground(Color.red);
     }//GEN-LAST:event_jSliderMouseEntered
 
     private void jSliderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderMouseExited
-          volumen.setForeground(new java.awt.Color(255, 255, 255));
+        volumen.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_jSliderMouseExited
 
+    private void jSliderStateChanged(javax.swing.event.ChangeEvent evt) {
+        if (!jSlider.getValueIsAdjusting()) {
+            int porcentaje = jSlider.getValue();
+            actualizarVolumen(porcentaje);
+        }
+    }
+
+    private void cajaMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaMusicaActionPerformed
+        controlarMusica(cajaMusica.isSelected());
+    }//GEN-LAST:event_cajaMusicaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,7 +307,7 @@ private Dimension tamPant;
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
