@@ -4,8 +4,12 @@
  */
 package Interfaz.InterfazJugador;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  *
@@ -38,17 +42,26 @@ public class CuadroTexto extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jPanel1.setLayout(null);
 
+
         jLabel3.setText(personaje);
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        if(personaje.equals("Detective")) {
+            jLabel3.setBounds((int) (tamPant.width*0.5), 0, (int) (tamPant.width*0.2), (int) (tamPant.height*0.05));
+
+        }else{
+            jLabel3.setBounds((int) (tamPant.width*0.1), 0, (int) (tamPant.width*0.2), (int) (tamPant.height*0.05));
+        }
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.025)));
-        jLabel3.setBounds((int) (tamPant.width*0.1), 0, (int) (tamPant.width*0.13), (int) (tamPant.height*0.05));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jLabel3);
 
         jTextArea1.setEditable(false);
         jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setColumns(10);
+        jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.020)));
         jTextArea1.setRows(5);
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setWrapStyleWord(true);
         jTextArea1.setText(texto);
         jTextArea1.setOpaque(false);
         jTextArea1.setBounds(0,  (int) (tamPant.height*0.053), (int) (tamPant.width*0.64), (int) (tamPant.height*0.25));
@@ -65,8 +78,21 @@ public class CuadroTexto extends javax.swing.JPanel {
 
         add(jPanel1);
 
-        jLabel2.setBounds((int) (tamPant.width*0.4), 0,  (int) (tamPant.width*0.42), (int) (tamPant.height*1.1));
-        jLabel2.setIcon(imagen);
+        if(personaje.equals("Detective")){
+
+            jLabel2.setBounds((int) (tamPant.width*0.04), 0,  (int) (tamPant.width*0.5), (int) (tamPant.height*1.1));
+        }else{
+            jLabel2.setBounds((int) (tamPant.width*0.4), 0,  (int) (tamPant.width*0.5), (int) (tamPant.height*1.1));
+        }
+            BufferedImage imagen2 = null;
+            try {
+                imagen2 = ImageIO.read(new File(String.valueOf(imagen)));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.2), (int) (tamPant.height*0.9), Image.SCALE_SMOOTH));
+            jLabel2.setIcon(icono2);
+
         add(jLabel2);
     }
 

@@ -40,6 +40,7 @@ public class Bano extends JFrame {
     private void initComponents() {
         cajaTexto  = new JPanel();
         flechaEntradaDentro = new JButton();
+        lugar = new JLabel();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/baño 1.jpg"));
 
@@ -86,6 +87,15 @@ public class Bano extends JFrame {
 
         getContentPane().add(cajaTexto);
         getContentPane().add(flechaEntradaDentro);
+
+        lugar.setText("Baño Planta Baja");
+        lugar.setOpaque(false);
+        lugar.setForeground(Color.white);
+        lugar.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
+        lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.35), (int) (tamPant.height*0.1));
+        getContentPane().add(lugar);
+
+
         getContentPane().add(jLabel1);
         pack();
     }
@@ -128,5 +138,6 @@ public class Bano extends JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel cajaTexto;
     private javax.swing.JButton flechaEntradaDentro;
+    private javax.swing.JLabel lugar;
     // End of variables declaration//GEN-END:variables
 }

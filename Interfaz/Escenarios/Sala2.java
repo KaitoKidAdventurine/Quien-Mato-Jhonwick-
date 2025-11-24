@@ -40,6 +40,7 @@ public class Sala2  extends JFrame {
     private void initComponents() {
         cajaTexto  = new JPanel();
         flechaSala = new JButton();
+        lugar = new JLabel();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/sala 2.jpg"));
 
@@ -84,6 +85,14 @@ public class Sala2  extends JFrame {
 
         getContentPane().add(flechaSala);
         getContentPane().add(cajaTexto);
+
+        lugar.setText("Exposicion de Antiguedades");
+        lugar.setOpaque(false);
+        lugar.setForeground(Color.white);
+        lugar.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
+        lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.45), (int) (tamPant.height*0.1));
+        getContentPane().add(lugar);
+
         getContentPane().add(jLabel1);
 
         pack();
@@ -127,5 +136,6 @@ public class Sala2  extends JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel cajaTexto;
     private javax.swing.JButton flechaSala;
+    private javax.swing.JLabel lugar;
     // End of variables declaration//GEN-END:variables
 }

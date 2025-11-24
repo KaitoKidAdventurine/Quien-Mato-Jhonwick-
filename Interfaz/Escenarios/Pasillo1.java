@@ -41,6 +41,7 @@ public class Pasillo1 extends JFrame {
         flechaEntradaDentro = new JButton();
         flechaCamara = new JButton();
         flechaPasillo3 = new JButton();
+        lugar = new JLabel();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/pasillo 1.jpg"));
 
@@ -121,6 +122,13 @@ public class Pasillo1 extends JFrame {
         flechaPasillo3.setFocusPainted(false);
         getContentPane().add(flechaPasillo3);
 
+        lugar.setText("Ala este");
+        lugar.setOpaque(false);
+        lugar.setForeground(Color.white);
+        lugar.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
+        lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.3), (int) (tamPant.height*0.1));
+        getContentPane().add(lugar);
+
 
         getContentPane().add(jLabel1);
         pack();
@@ -179,5 +187,6 @@ public class Pasillo1 extends JFrame {
     private javax.swing.JButton flechaEntradaDentro;
     private javax.swing.JButton flechaCamara;
     private javax.swing.JButton flechaPasillo3;
+    private javax.swing.JLabel lugar;
     // End of variables declaration//GEN-END:variables
 }

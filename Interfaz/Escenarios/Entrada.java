@@ -27,8 +27,6 @@ public class Entrada extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Entrada.class.getName());
 private Dimension tamPant;
-private  ArrayList<Dialogo> dialogosTuto;
-private int dialogoActual;
     private Timer timer;
     private TimerTask tarea;
     /**
@@ -36,9 +34,7 @@ private int dialogoActual;
      */
     public Entrada() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
-        dialogosTuto= new ArrayList<Dialogo>();
-        dialogoActual=0;
-        crearDialogos();
+
         initComponents();
         timer = new Timer();
         tarea = new TimerTask() {
@@ -103,13 +99,12 @@ private int dialogoActual;
         lugar.setText("Entrada");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
-        lugar.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.05)));
-        lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.2), (int) (tamPant.height*0.1));
-       getContentPane().add(lugar);
+        lugar.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
+        lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.3), (int) (tamPant.height*0.1));
+        getContentPane().add(lugar);
+
+
         getContentPane().add(fondo );
-
-
-
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -121,22 +116,6 @@ private int dialogoActual;
     }
 
     public void ponerDialogo() {
-        if(dialogoActual < dialogosTuto.size()) {
-             Dialogo aux = dialogosTuto.get(dialogoActual);
-             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
-            cT.setBounds(0, 0, (int) (tamPant.width* 0.7), (int) (tamPant.height* 0.6));
-
-            cT.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    cTMouseClicked(evt);
-                }
-            });
-            dialogoActual++;
-            cajaTexto.removeAll();
-            cajaTexto.add(cT);
-        }else {
-            cajaTexto.removeAll();
-        }
 
     }
 
@@ -146,32 +125,7 @@ private int dialogoActual;
         getContentPane().repaint();
     }
 
-    public void crearDialogos(){
-/*
-    ImageIcon policia = new ImageIcon("DatosAuxiliares/NPC/Policia.png");
-    ImageIcon dueno = new ImageIcon("DatosAuxiliares/NPC/Dueño.png");
-    ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/NPC/Secretaria.png");
-    Dialogo d1= new Dialogo("Hola. Como estas.", "Policia", policia );
-    Dialogo d2= new Dialogo("Espero que hayas dormido bien.", "Policia", policia );
-    Dialogo d3= new Dialogo("Tenemos trabajo que hacer.", "Policia", policia );
-    Dialogo d4= new Dialogo("Este parece ser un caso bastante serio.", "Policia", policia );
-    Dialogo d5= new Dialogo("No se alarme oficial. El caso esta practicamente resuelto.", "Dueño", dueno );
-    Dialogo d6= new Dialogo("Simplemente no pudo aguantar el estres laboral.", "Dueño", dueno );
-    Dialogo d7= new Dialogo("Por favor señor, hasta que el detective diga lo contrario el caso seguira abierto.", "Policia", policia );
-    Dialogo d8= new Dialogo("Como diga.", "Dueño", dueno );
-    Dialogo d9= new Dialogo("Buenas. Soy la secretaria del dueño del museo, sere la encargada de guiarte por el museo y de llevarte hasta la escena del crimen. Por favor, venga por este camino", "Secretaria", secretaria );
-    dialogosTuto.add(d1);
-    dialogosTuto.add(d2);
-    dialogosTuto.add(d3);
-    dialogosTuto.add(d4);
-    dialogosTuto.add(d5);
-    dialogosTuto.add(d6);
-    dialogosTuto.add(d7);
-    dialogosTuto.add(d8);
-    dialogosTuto.add(d9);
-    */
 
-}
     /**
      * @param args the command line arguments
      */

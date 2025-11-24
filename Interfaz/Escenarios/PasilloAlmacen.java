@@ -41,6 +41,7 @@ public class PasilloAlmacen extends JFrame {
         flechaPasillo3 = new JButton();
         flechaAlmacen = new JButton();
         flechaCallejon = new JButton();
+        lugar = new JLabel();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/pasillo almacen - callejon.jpg"));
 
@@ -127,6 +128,15 @@ public class PasilloAlmacen extends JFrame {
 
 
         getContentPane().add(cajaTexto);
+
+        lugar.setText("Ala Sur");
+        lugar.setOpaque(false);
+        lugar.setForeground(Color.white);
+        lugar.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
+        lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.35), (int) (tamPant.height*0.1));
+        getContentPane().add(lugar);
+
+
         getContentPane().add(jLabel1);
         pack();
     }
@@ -181,5 +191,6 @@ public class PasilloAlmacen extends JFrame {
     private javax.swing.JButton flechaPasillo3;
     private javax.swing.JButton flechaAlmacen;
     private javax.swing.JButton flechaCallejon;
+    private javax.swing.JLabel lugar;
     // End of variables declaration//GEN-END:variables
 }

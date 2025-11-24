@@ -42,6 +42,7 @@ public class Recepcion extends JFrame{
         flechaBano = new JButton();
         flechaSala1 = new JButton();
         flechaPasillo1 = new JButton();
+        lugar = new JLabel();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por dentro.jpg"));
 
@@ -141,6 +142,14 @@ public class Recepcion extends JFrame{
         getContentPane().add(flechaBano);
         getContentPane().add(flechaSala1);
         getContentPane().add(flechaPasillo1);
+
+        lugar.setText("Recepcion");
+        lugar.setOpaque(false);
+        lugar.setForeground(Color.white);
+        lugar.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
+        lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.3), (int) (tamPant.height*0.1));
+        getContentPane().add(lugar);
+
         getContentPane().add(fondo);
         pack();
     }
@@ -203,5 +212,6 @@ public class Recepcion extends JFrame{
     private javax.swing.JButton flechaSalida;
     private javax.swing.JButton flechaBano;
     private javax.swing.JButton flechaSala1;
-    private javax.swing.JButton flechaPasillo1;// End of variables declaration//GEN-END:variables
+    private javax.swing.JButton flechaPasillo1;
+    private javax.swing.JLabel lugar;// End of variables declaration//GEN-END:variables
 }

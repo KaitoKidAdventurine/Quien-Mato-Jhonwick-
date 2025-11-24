@@ -41,7 +41,7 @@ public class Pasillo2 extends JFrame {
         flechaSala = new JButton();
         flechaOficiaJefe = new JButton();
         flechaBano2 = new JButton();
-
+        lugar = new JLabel();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/pasillo 2.jpg"));
 
@@ -125,6 +125,14 @@ public class Pasillo2 extends JFrame {
 
 
         getContentPane().add(cajaTexto);
+
+        lugar.setText("Ala norte");
+        lugar.setOpaque(false);
+        lugar.setForeground(Color.white);
+        lugar.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
+        lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.3), (int) (tamPant.height*0.1));
+        getContentPane().add(lugar);
+
         getContentPane().add(jLabel1);
         pack();
     }
@@ -179,5 +187,6 @@ public class Pasillo2 extends JFrame {
     private javax.swing.JButton flechaSala;
     private javax.swing.JButton flechaOficiaJefe;
     private javax.swing.JButton flechaBano2;
+    private javax.swing.JLabel lugar;
     // End of variables declaration//GEN-END:variables
 }
