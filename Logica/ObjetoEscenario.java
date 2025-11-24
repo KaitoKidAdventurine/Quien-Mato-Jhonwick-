@@ -13,10 +13,11 @@ public class ObjetoEscenario extends Interactuable
     private boolean encontrado;
     private boolean importante;
 
-    public ObjetoEscenario(ImageIcon imagen, float posX,
+    public ObjetoEscenario(String nom, boolean clikleable ,ImageIcon imagen, float posX,
                            float posY, float tamAncho, float tamLargo,
                            boolean encontrado, boolean importante)
     {
+        super(nom, clikleable);
         this.imagen = imagen;
         this.posX = posX;
         this.posY = posY;

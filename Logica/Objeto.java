@@ -9,9 +9,9 @@ public class Objeto extends Interactuable
     private boolean recogible;
     private Deque<String> historia;
 
-    public Objeto(String nombre, String descripcion, boolean intercambiable, String tipo,
+    public Objeto(String nombre, boolean intercambiable, String tipo,
                   boolean recogible) {
-        super(nombre, descripcion, intercambiable);
+        super(nombre, intercambiable);
         this.tipo = tipo;
         this.recogible = recogible;
         this.historia = new ArrayDeque<>();
@@ -40,9 +40,4 @@ public class Objeto extends Interactuable
     }
 
     public void recoger() {}
-
-    @Override
-    public void interactuar() {}
-    @Override
-    public String obtenerInformacion() { return descripcion; }
 }

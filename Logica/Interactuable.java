@@ -23,7 +23,7 @@ public abstract class Interactuable {
 
     public boolean getClikleable()
     { 
-        return interactuable;
+        return clikleable;
     }
     public void setClikleable(boolean clikleable)
     { 

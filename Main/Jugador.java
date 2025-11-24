@@ -21,7 +21,7 @@ public class Jugador
         this.elecciones = new BinaryTree<>();
         this.mapa = new Mapa();
         this.telefono = new Telefono();
-        this.diario = new Diario();
+       // this.diario = new Diario();
     }
 
     public String getNombre() 

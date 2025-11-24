@@ -9,7 +9,7 @@ public class Jugador
     private BinaryTree<String> elecciones;
     private Mapa mapa;
     private Telefono telefono;
-    private Diario diario;
+    //private Diario diario;
 
     public Jugador(String nombre) 
     {
@@ -17,7 +17,7 @@ public class Jugador
         this.elecciones = new BinaryTree<>();
         this.mapa = new Mapa();
         this.telefono = new Telefono();
-        this.diario = new Diario();
+        //this.diario = new Diario();
     }
 
     public String getNombre() 
@@ -56,14 +56,18 @@ public class Jugador
         this.telefono = telefono; 
     }
 
-    public Diario getDiario() 
-    { 
-        return diario; 
+    /**
+     *
+    /
+    public Diario getDiario()
+    {
+        return diario;
     }
-    public void setDiario(Diario diario) 
-    { 
-        this.diario = diario; 
+    public void setDiario(Diario diario)
+    {
+        this.diario = diario;
     }
+     */
 
     public void interactuar() {}
     public void tomarDecision() {}
