@@ -3,14 +3,12 @@ package Logica;
 public abstract class Interactuable {
      
     protected String nombre;
-    protected String descripcion;
-    protected boolean Interactuable;
+    protected boolean clikleable;
 
-    public Interactuable(String nombre, String descripcion, boolean Interactuable) 
+    public Interactuable(String nombre, boolean clikleable)
     {
         this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.Interactuable = Interactuable;
+        this.clikleable = clikleable;
     }
 
     public String getNombre() 
@@ -23,25 +21,14 @@ public abstract class Interactuable {
         this.nombre = nombre; 
     }
 
-    public String getDescripcion() 
+    public boolean getClikleable()
     { 
-        return descripcion; 
+        return interactuable;
     }
-    public void setDescripcion(String descripcion) 
+    public void setClikleable(boolean clikleable)
     { 
-        this.descripcion = descripcion; 
-    }
-
-    public boolean getInteractuable() 
-    { 
-        return Interactuable; 
-    }
-    public void setInteractuable(boolean Interactuable) 
-    { 
-        this.Interactuable = Interactuable; 
+        this.clikleable = clikleable;
     }
 
-    public abstract void interactuar();
-    public abstract String obtenerInformacion();
 }
 

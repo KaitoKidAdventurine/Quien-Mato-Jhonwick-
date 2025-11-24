@@ -65,7 +65,8 @@ public class Jugador
         this.diario = diario; 
     }
 
-    public void mover() {}
     public void interactuar() {}
     public void tomarDecision() {}
+
+
 }

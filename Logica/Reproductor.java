@@ -21,9 +21,9 @@ public class Reproductor {
     private int indiceActual;
     private boolean enReproduccion;
     private int volumenSistema = 10;
-//  private long posicionActual = 0;
-//  private long tiempoInicioReproduccion = 0;
-// los atributos de arriba los usare para colocar la posicion exacta de una cancion o algo asi.
+    private long posicionActual = 0;
+    private long tiempoInicioReproduccion = 0;
+
 
     private Reproductor()
     {
