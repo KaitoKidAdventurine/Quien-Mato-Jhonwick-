@@ -7,7 +7,9 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import DatosAuxiliaresLogica.Cancion;
+import DatosAuxiliaresLogica.ControlVolumen;
 import javazoom.jl.player.Player;
+import DatosAuxiliaresLogica.ControlVolumen;
 
 public class Reproductor {
 
@@ -18,7 +20,7 @@ public class Reproductor {
     private ArrayList<Cancion> canciones;
     private int indiceActual;
     private boolean enReproduccion;
-    private float volumen = 1.0f;
+    private int volumenSistema = 10;
 //  private long posicionActual = 0;
 //  private long tiempoInicioReproduccion = 0;
 // los atributos de arriba los usare para colocar la posicion exacta de una cancion o algo asi.
@@ -56,48 +58,47 @@ public class Reproductor {
     }
 
 
-    public static boolean existeInstancia() {
+    public static boolean existeInstancia()
+    {
         return instancia != null;
     }
 
 
-
-
     public void cambiarVolumen(float vol) {
-        setVolumen(vol);
+        int porcentaje = (int)(vol * 100);
+        this.volumenSistema = Math.max(0, Math.min(100, porcentaje));
+        ControlVolumen.setVolumenSistema(volumenSistema);
     }
 
     public void subirVolumen() {
-        float nuevoVolumen = volumen + 0.1f;
-        if (nuevoVolumen > 1.0f) {
-            nuevoVolumen = 1.0f;
+        int nuevoVolumen = volumenSistema + 10;
+        if (nuevoVolumen > 100) {
+            nuevoVolumen = 100;
         }
-        setVolumen(nuevoVolumen);
-        aplicarVolumenActual();
-        System.out.println(" Volumen: " + (int)(volumen * 100) + "%");
+        cambiarVolumen(nuevoVolumen / 100.0f);
+        System.out.println(" Volumen: " + volumenSistema + "%");
     }
 
     public void bajarVolumen() {
-        float nuevoVolumen = volumen - 0.1f;
-        if (nuevoVolumen < 0.0f) {
-            nuevoVolumen = 0.0f;
+        int nuevoVolumen = volumenSistema - 10;
+        if (nuevoVolumen < 0) {
+            nuevoVolumen = 0;
         }
-        setVolumen(nuevoVolumen);
-        aplicarVolumenActual();
-        System.out.println(" Volumen: " + (int)(volumen * 100) + "%");
+        cambiarVolumen(nuevoVolumen / 100.0f);
+        System.out.println(" Volumen: " + volumenSistema + "%");
     }
 
     public void setVolumen(float nuevoVolumen) {
-        this.volumen = Math.max(0.0f, Math.min(1.0f, nuevoVolumen));
+        cambiarVolumen(nuevoVolumen);
     }
 
     public float getVolumen() {
-        return volumen;
+        return volumenSistema / 100.0f;
     }
 
-    public int getVolumenPorcentaje() {
-        return (int)(volumen * 100);
-    }
+
+
+
 
     // Getters
     public Player getReproductorMP3() {
@@ -142,68 +143,66 @@ public class Reproductor {
     }
 
 
-    public void iniciarMusica()
-    {
-        if(enReproduccion)
+    public void iniciarMusica() {
+        if(enReproduccion) {
             try {
-                // Se usa el Thread para dejar reproduciendo la musica en segundo plano
-                // y asi seguir con el programa.
+                // Detener hilo anterior si existe
+                if (hiloReproduccion != null && hiloReproduccion.isAlive()) {
+                    hiloReproduccion.interrupt();
+                }
+
                 hiloReproduccion = new Thread(() -> {
                     try {
+                        while (enReproduccion && !Thread.currentThread().isInterrupted()) {
+                            Cancion c = canciones.get(indiceActual);
+                            FileInputStream stream = new FileInputStream(c.getFile());
 
-                        Cancion c = canciones.get(indiceActual);
 
-                        // Convierto el File en un FileInput... para poder despues convertirlo en un
-                        // Player
-                        FileInputStream stream = new FileInputStream(c.getFile());
+                            reproductorMP3 = new Player(stream);
+                            reproductorMP3.play();
+                            stream.close();
 
-                        VolumeControlledInputStream volumeStream = new VolumeControlledInputStream(stream);
-
-                        reproductorMP3 = new Player(volumeStream);
-                        reproductorMP3.play();
-
+                            // Pequeña pausa antes de repetir
+                            if (enReproduccion) {
+                                Thread.sleep(500);
+                            }
+                        }
                     } catch (Exception e) {
-                        System.err.println("Error reproduciendo: " + e.getMessage());
+                        if (enReproduccion) {
+                            System.err.println("Error reproduciendo: " + e.getMessage());
+                        }
                     }
                 });
                 hiloReproduccion.start();
+                System.out.println("Música iniciada");
+
             } catch (Exception e) {
                 System.err.println("Error iniciando música: " + e.getMessage());
             }
+        }
     }
 
 
     // Se cambia a la cancion que se quiera en especifico por indice
     public void cambiarMusicaIndice(int i) {
         try {
-            // Detener la reproducción actual
+            // Detener el reproductor
             if (reproductorMP3 != null) {
                 reproductorMP3.close();
             }
 
-            if(enReproduccion)
-            {
-                Cancion c = canciones.get(i);
+            if(enReproduccion) {
                 indiceActual = i;
-                FileInputStream fileStream = new FileInputStream(c.getFile());
 
-                VolumeControlledInputStream volumeStream = new VolumeControlledInputStream(fileStream);
-                reproductorMP3 = new Player(volumeStream);
+                // Reiniciar la reproduccion
+                if (hiloReproduccion != null && hiloReproduccion.isAlive()) {
+                    hiloReproduccion.interrupt();
+                }
 
-                hiloReproduccion = new Thread(() -> {
-                    try {
-                        reproductorMP3.play();
-                    } catch (Exception e) {
-                        System.err.println("Error reproduciendo: , " +
-                                "esto no deberia aparecer pero por si acaso linea " +
-                                "201 de la reproductora" + e.getMessage());
-                    }
-                });
-
-                hiloReproduccion.start();
+                iniciarMusica();
             }
         } catch (Exception e) {
-            System.err.println("Error iniciando música: Linea 209 de el codigo de la reproductora" + e.getMessage());
+            System.err.println("Error cambiando música: " + e.getMessage());
         }
     }
 
@@ -231,58 +230,12 @@ public class Reproductor {
     }
 
 
-    private class VolumeControlledInputStream extends FilterInputStream {
-        public VolumeControlledInputStream(InputStream in) {
-            super(in);
-        }
-
-        @Override
-        public int read(byte[] b, int off, int len) throws IOException {
-            int bytesRead = super.read(b, off, len);
-
-
-            if (bytesRead > 0) {
-                for (int i = off; i < off + bytesRead - 1; i += 2) {
-                    // Convertir 2 bytes a short (16-bit PCM)
-                    short sample = (short) ((b[i] & 0xFF) | (b[i + 1] << 8));
-
-                    // Aplicar volumen
-                    int sampleConVolumen = (int) (sample * volumen);
-
-                    // Limitar para evitar overflow
-                    if (sampleConVolumen > 32767) sampleConVolumen = 32767;
-                    if (sampleConVolumen < -32768) sampleConVolumen = -32768;
-
-                    sample = (short) sampleConVolumen;
-
-                    // Volver a escribir los bytes
-                    b[i] = (byte) (sample & 0xFF);
-                    b[i + 1] = (byte) ((sample >> 8) & 0xFF);
-                }
-            }
-            return bytesRead;
-        }
-    }
 
     public void cambiarMusicaSiguiente() {
         if (indiceActual == canciones.size() - 1) {
             cambiarMusicaIndice(0);
         }
         cambiarMusicaIndice(indiceActual + 1);
-    }
-    public void aplicarVolumenActual() {
-        // Simplemente reinicia la reproducción actual
-        if (enReproduccion) {
-            try {
-                if (reproductorMP3 != null) {
-                    reproductorMP3.close();
-                }
-                Thread.sleep(100);
-                iniciarMusica();
-            } catch (Exception e) {
-                System.err.println("Error en aplicarVolumenActual: " + e.getMessage());
-            }
-        }
     }
 
     public void detenerCancion()
@@ -314,7 +267,6 @@ public class Reproductor {
     // prueba para ver si funciona: Lo dejare para futuras comprobaciones.
     public void diagnosticar() {
         System.out.println("=== DIAGNÓSTICO REPRODUCTOR ===");
-        System.out.println("Volumen: " + getVolumenPorcentaje() + "%");
         System.out.println(" Canciones cargadas: " + canciones.size());
         System.out.println(" En reproducción: " + enReproduccion);
         System.out.println(" Hilo activo: " + (hiloReproduccion != null && hiloReproduccion.isAlive()));
@@ -353,7 +305,7 @@ public class Reproductor {
                     try {
                         Thread.sleep(3000);
                         playerTest.close();
-                        System.out.println("⏹Prueba detenida");
+                        System.out.println("Prueba detenida");
                     } catch (Exception e) {}
                 }).start();
             }

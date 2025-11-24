@@ -50,7 +50,7 @@ public class Opciones extends javax.swing.JFrame {
     private void configurarSlider() {
         jSlider.setMinimum(0);
         jSlider.setMaximum(100);
-        jSlider.setValue(reproductor.getVolumenPorcentaje());
+        jSlider.setValue((int)(reproductor.getVolumen() * 100));
         jSlider.setPaintTicks(true);
         jSlider.setPaintTrack(true);
         jSlider.setMajorTickSpacing(25);
@@ -65,7 +65,7 @@ public class Opciones extends javax.swing.JFrame {
 
     private void actualizarVolumen(int porcentaje) {
         float volumenNormalizado = porcentaje / 100.0f;
-        reproductor.cambiarVolumen(volumenNormalizado);
+        reproductor.setVolumen(volumenNormalizado);
         volumen.setText("Volumen: " + porcentaje + "%");
         System.out.println(" Volumen actualizado a: " + porcentaje + "%");
     }
@@ -131,7 +131,7 @@ public class Opciones extends javax.swing.JFrame {
 
         volumen.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.20)));
         volumen.setForeground(new java.awt.Color(255, 255, 255));
-        volumen.setText("Volumen: " + reproductor.getVolumenPorcentaje() + "%");
+        volumen.setText("Volumen: " + (int)(reproductor.getVolumen() * 100) + "%");
         volumen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 volumenMouseEntered(evt);
