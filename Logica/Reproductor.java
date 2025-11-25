@@ -2,14 +2,10 @@ package Logica;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FilterInputStream;
-import java.io.InputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import DatosAuxiliaresLogica.Cancion;
 import DatosAuxiliaresLogica.ControlVolumen;
 import javazoom.jl.player.Player;
-import DatosAuxiliaresLogica.ControlVolumen;
 
 public class Reproductor {
 
@@ -21,8 +17,10 @@ public class Reproductor {
     private int indiceActual;
     private boolean enReproduccion;
     private int volumenSistema = 10;
-    private long posicionActual = 0;
-    private long tiempoInicioReproduccion = 0;
+
+    // estos atributos seran para mover la cancion para mas adelante
+    //private long posicionActual = 0;
+    //private long tiempoInicioReproduccion = 0;
 
 
     private Reproductor()
@@ -32,10 +30,22 @@ public class Reproductor {
         this.enReproduccion = true;
 
         // Cargar canción específica
-        File archivoMusica = new File("Musica/Canciones/CancMenu.mp3");
+        File archivoMusica = new File("Musica/Canciones/Menu.mp3");
+        File musicaUno = new File("Musica/Canciones/Galería Silenciosa.mp3");
+        File musicaDos = new File("Musica/Canciones/Misterio Electronico.mp3");
+        File musicaTres = new File("Musica/Canciones/Sombras en el Viento.mp3");
         if (archivoMusica.exists()) {
-            Cancion cancion = new Cancion("CancMenu", archivoMusica);
+
+            Cancion cancion = new Cancion("Menu", archivoMusica);
+            Cancion cancionUno = new Cancion("Galería Silenciosa", musicaUno);
+            Cancion cancionDos = new Cancion("Misterio Electronico", musicaDos);
+            Cancion cancionTres = new Cancion("Sombras en el Viento", musicaTres);
+
             canciones.add(cancion);
+            canciones.add(cancionUno);
+            canciones.add(cancionDos);
+            canciones.add(cancionTres);
+
         } else {
             System.err.println("No se encontró el archivo de música: " + archivoMusica.getAbsolutePath());
         }

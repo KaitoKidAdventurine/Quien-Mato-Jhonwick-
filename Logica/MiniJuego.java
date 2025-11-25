@@ -1,5 +1,6 @@
 package Logica;
 
+import javax.swing.*;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -8,11 +9,21 @@ public class MiniJuego
 {
     private Deque<ObjetoEscenario> cola;
     private LinkedList<ObjetoEscenario> listaObjetos;
+    private ImageIcon foto;
 
-    public MiniJuego(Deque<ObjetoEscenario> cola, LinkedList<ObjetoEscenario> listaObjetos)
-    {
+
+    public MiniJuego(Deque<ObjetoEscenario> cola, LinkedList<ObjetoEscenario> listaObjetos, ImageIcon foto) {
         this.cola = cola;
         this.listaObjetos = listaObjetos;
+        this.foto = foto;
+    }
+
+    public ImageIcon getFoto() {
+        return foto;
+    }
+
+    public void setFoto(ImageIcon foto) {
+        this.foto = foto;
     }
 
     public Deque<ObjetoEscenario> getCola() {

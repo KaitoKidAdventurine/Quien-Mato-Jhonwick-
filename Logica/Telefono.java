@@ -39,5 +39,6 @@ public class Telefono {
         mensajesRecibidos.offer(mensaje);
     }
 
+
     public void revisarMensaje() {}
 }
