@@ -1,10 +1,13 @@
 package Interfaz.Escenarios;
 
+import Interfaz.InterfazJugador.InterfazUsuario;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -18,7 +21,7 @@ public class OficinaEconomico extends JFrame {
     private int dialogoActual;
     private java.util.Timer timer;
     private TimerTask tarea;
-
+    private InterfazUsuario interfazUsuario;
     /**
      * Creates new form Entrada
      */
@@ -41,6 +44,7 @@ public class OficinaEconomico extends JFrame {
         cajaTexto  = new JPanel();
         flechaPasillo3 = new JButton();
         lugar = new JLabel();
+        interfazUsuario= new InterfazUsuario();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/oficin economico.jpg"));
 
@@ -82,15 +86,26 @@ public class OficinaEconomico extends JFrame {
         flechaPasillo3.setContentAreaFilled(false);
         flechaPasillo3.setBorderPainted(false);
         flechaPasillo3.setFocusPainted(false);
-
+        flechaPasillo3.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                flechaMouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                flechaMouseExited(evt);
+            }
+        });
         getContentPane().add(flechaPasillo3);
 
         lugar.setText("Oficina de la Victima");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
-        lugar.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
+        lugar.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
         lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.38), (int) (tamPant.height*0.1));
         getContentPane().add(lugar);
+
+
+        interfazUsuario.setBounds((int) (tamPant.width*0.55), (int) (tamPant.height*0.05), (int) (tamPant.width*0.45), (int) (tamPant.height*0.15));
+        getContentPane().add(interfazUsuario);
 
         getContentPane().add(jLabel1);
 
@@ -108,6 +123,31 @@ public class OficinaEconomico extends JFrame {
         Pasillo3 pasillo3 = new Pasillo3();
         pasillo3.setVisible(true);
         timer.schedule(tarea, 1000);
+    }
+    private void flechaMouseExited(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha derecha.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.073), (int) (tamPant.height*0.063), Image.SCALE_SMOOTH));
+        flechaPasillo3.setIcon(icono);
+    }
+
+    private void flechaMouseEntered(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/Flecha derecha BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.073), (int) (tamPant.height*0.063), Image.SCALE_SMOOTH));
+        flechaPasillo3.setIcon(icono);
     }
 
     /**

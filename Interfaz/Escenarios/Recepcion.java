@@ -1,10 +1,13 @@
 package Interfaz.Escenarios;
 
+import Interfaz.InterfazJugador.InterfazUsuario;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,6 +20,7 @@ public class Recepcion extends JFrame{
     private Dimension tamPant;
     private Timer timer;
     private TimerTask tarea;
+    private InterfazUsuario interfazUsuario;
     /**
     /**
      * Creates new form Entrada
@@ -43,6 +47,7 @@ public class Recepcion extends JFrame{
         flechaSala1 = new JButton();
         flechaPasillo1 = new JButton();
         lugar = new JLabel();
+        interfazUsuario= new InterfazUsuario();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por dentro.jpg"));
 
@@ -92,6 +97,14 @@ public class Recepcion extends JFrame{
                 flechaSalidaActionPerformed(evt);
             }
         });
+        flechaSalida.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                flechaSalidaMouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                flechaSalidaMouseExited(evt);
+            }
+        });
         flechaSalida.setOpaque(true);
         flechaSalida.setContentAreaFilled(false);
         flechaSalida.setBorderPainted(false);
@@ -101,6 +114,14 @@ public class Recepcion extends JFrame{
         flechaBano.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 flechaBanoActionPerformed(evt);
+            }
+        });
+        flechaBano.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                flechaBanoMouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                flechaBanoMouseExited(evt);
             }
         });
 
@@ -117,6 +138,14 @@ public class Recepcion extends JFrame{
                 flechaSala1ActionPerformed(evt);
             }
         });
+        flechaSala1.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                flechaSala1MouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                flechaSala1MouseExited(evt);
+            }
+        });
         flechaSala1.setOpaque(true);
         flechaSala1.setContentAreaFilled(false);
         flechaSala1.setBorderPainted(false);
@@ -130,6 +159,14 @@ public class Recepcion extends JFrame{
                 flechaPasillo1ActionPerformed(evt);
             }
 
+        });
+        flechaPasillo1.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                flechaPasillo1MouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                flechaPasillo1MouseExited(evt);
+            }
         });
         flechaPasillo1.setOpaque(true);
         flechaPasillo1.setContentAreaFilled(false);
@@ -146,9 +183,12 @@ public class Recepcion extends JFrame{
         lugar.setText("Recepcion");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
-        lugar.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
+        lugar.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
         lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.3), (int) (tamPant.height*0.1));
         getContentPane().add(lugar);
+
+        interfazUsuario.setBounds((int) (tamPant.width*0.55), (int) (tamPant.height*0.05), (int) (tamPant.width*0.45), (int) (tamPant.height*0.15));
+        getContentPane().add(interfazUsuario);
 
         getContentPane().add(fondo);
         pack();
@@ -183,6 +223,106 @@ public class Recepcion extends JFrame{
         timer.schedule(tarea, 1000);
 
 
+    }
+    private void flechaSalidaMouseExited(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha arriba.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        flechaSalida.setIcon(icono);
+    }
+
+    private void flechaSalidaMouseEntered(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/Flecha arriba BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        flechaSalida.setIcon(icono);
+    }
+    private void flechaSala1MouseExited(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha izquierda.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int)  (tamPant.width*0.073), (int) (tamPant.height*0.063), Image.SCALE_SMOOTH));
+        flechaSala1.setIcon(icono);
+    }
+
+    private void flechaSala1MouseEntered(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/Flecha izquierda BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int)  (tamPant.width*0.073), (int) (tamPant.height*0.063), Image.SCALE_SMOOTH));
+        flechaSala1.setIcon(icono);
+    }
+
+
+    private void flechaBanoMouseExited(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha derecha.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.073), (int) (tamPant.height*0.063), Image.SCALE_SMOOTH));
+        flechaBano.setIcon(icono);
+    }
+    private void flechaBanoMouseEntered(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/Flecha derecha BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.073), (int) (tamPant.height*0.063), Image.SCALE_SMOOTH));
+        flechaBano.setIcon(icono);
+    }
+    private void flechaPasillo1MouseExited(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha abajo.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        flechaPasillo1.setIcon(icono);
+    }
+    private void flechaPasillo1MouseEntered(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/Flecha abajo BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        flechaPasillo1.setIcon(icono);
     }
 
     /**

@@ -6,6 +6,7 @@ package Interfaz.InterfazJugador;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -65,24 +66,24 @@ public class CuadroTexto extends javax.swing.JPanel {
         jTextArea1.setText(texto);
         jTextArea1.setOpaque(false);
         jTextArea1.setBounds(0,  (int) (tamPant.height*0.053), (int) (tamPant.width*0.64), (int) (tamPant.height*0.25));
-        jTextArea1.setBorder(null);
+        jTextArea1.setBorder(null );
         jTextArea1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextArea1.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
-        jScrollPane1.setBounds(0,  (int) (tamPant.height*0.053), (int) (tamPant.width*0.64), (int) (tamPant.height*0.25));
+        jScrollPane1.setBounds(0,  (int) (tamPant.height*0.053), (int) (tamPant.width*0.7), (int) (tamPant.height*0.25));
 
         jScrollPane1.setOpaque(true);
         jPanel1.add(jScrollPane1);
         jPanel1.setOpaque(false);
-        jPanel1.setBounds((int) (tamPant.width*0.01), (int) (tamPant.height*0.3), (int) (tamPant.width*0.64), (int) (tamPant.height*0.27));
+        jPanel1.setBounds((int) (tamPant.width*0.15), (int) (tamPant.height*0.7), (int) (tamPant.width*0.7), (int) (tamPant.height*0.27));
 
         add(jPanel1);
 
         if(personaje.equals("Detective")){
 
-            jLabel2.setBounds((int) (tamPant.width*0.04), 0,  (int) (tamPant.width*0.5), (int) (tamPant.height*1.1));
+            jLabel2.setBounds((int) (tamPant.width*0.04), (int) (tamPant.width*0.14),  (int) (tamPant.width*0.5), (int) (tamPant.height*1.1));
         }else{
-            jLabel2.setBounds((int) (tamPant.width*0.4), 0,  (int) (tamPant.width*0.5), (int) (tamPant.height*1.1));
+            jLabel2.setBounds((int) (tamPant.width*0.74), (int) (tamPant.width*0.14),  (int) (tamPant.width*0.5), (int) (tamPant.height*1.1));
         }
             BufferedImage imagen2 = null;
             try {

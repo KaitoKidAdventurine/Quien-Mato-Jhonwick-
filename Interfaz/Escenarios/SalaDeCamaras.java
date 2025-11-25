@@ -1,9 +1,13 @@
 package Interfaz.Escenarios;
 
+import Interfaz.InterfazJugador.InterfazUsuario;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,7 +21,7 @@ public class SalaDeCamaras extends JFrame {
     private int dialogoActual;
     private Timer timer;
     private TimerTask tarea;
-
+    private InterfazUsuario interfazUsuario;
     /**
      * Creates new form Entrada
      */
@@ -39,11 +43,12 @@ public class SalaDeCamaras extends JFrame {
         cajaTexto  = new JPanel();
         flechaPasillo1 = new JButton();
         lugar = new JLabel();
+        interfazUsuario= new InterfazUsuario();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/sala de camaras.jpg"));
 
             jLabel1 = new JLabel();
-            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setMinimumSize(tamPant);
             setUndecorated(true);
             setPreferredSize(tamPant);
@@ -71,11 +76,19 @@ public class SalaDeCamaras extends JFrame {
 
         flechaPasillo1.setBounds((int) (tamPant.width*0.47), (int) (tamPant.height*0.84), (int) (tamPant.width*0.048), (int) (tamPant.height*0.124));
         flechaPasillo1.setBackground(Color.red);
-        flechaPasillo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        flechaPasillo1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 flechaPasillo1ActionPerformed(evt);
             }
 
+        });
+        flechaPasillo1.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                flechaPasillo1MouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                flechaPasillo1MouseExited(evt);
+            }
         });
         flechaPasillo1.setOpaque(true);
         flechaPasillo1.setContentAreaFilled(false);
@@ -87,9 +100,14 @@ public class SalaDeCamaras extends JFrame {
         lugar.setText("Sala de Vigilancia");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
-        lugar.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
+        lugar.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
         lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.35), (int) (tamPant.height*0.1));
         getContentPane().add(lugar);
+
+        interfazUsuario.setBounds((int) (tamPant.width*0.55), (int) (tamPant.height*0.05), (int) (tamPant.width*0.45), (int) (tamPant.height*0.15));
+        getContentPane().add(interfazUsuario);
+
+
 
         getContentPane().add(jLabel1);
         pack();
@@ -107,6 +125,31 @@ public class SalaDeCamaras extends JFrame {
         pasillo1.setVisible(true);
         timer.schedule(tarea, 1000);
 
+    }
+    private void flechaPasillo1MouseExited(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha abajo.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        flechaPasillo1.setIcon(icono);
+    }
+
+    private void flechaPasillo1MouseEntered(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/Flecha abajo BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        flechaPasillo1.setIcon(icono);
     }
 
     /**

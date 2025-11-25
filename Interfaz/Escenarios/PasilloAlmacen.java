@@ -1,10 +1,13 @@
 package Interfaz.Escenarios;
 
+import Interfaz.InterfazJugador.InterfazUsuario;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -18,7 +21,7 @@ public class PasilloAlmacen extends JFrame {
     private int dialogoActual;
     private java.util.Timer timer;
     private TimerTask tarea;
-
+    private InterfazUsuario interfazUsuario;
     /**
      * Creates new form Entrada
      */
@@ -42,6 +45,7 @@ public class PasilloAlmacen extends JFrame {
         flechaAlmacen = new JButton();
         flechaCallejon = new JButton();
         lugar = new JLabel();
+        interfazUsuario= new InterfazUsuario();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/pasillo almacen - callejon.jpg"));
 
@@ -88,6 +92,14 @@ public class PasilloAlmacen extends JFrame {
                 flechaPasillo3ActionPerformed(evt);
             }
         });
+        flechaPasillo3.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                flechaPasillo3MouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                flechaPasillo3MouseExited(evt);
+            }
+        });
         flechaPasillo3.setOpaque(true);
         flechaPasillo3.setContentAreaFilled(false);
         flechaPasillo3.setBorderPainted(false);
@@ -103,6 +115,14 @@ public class PasilloAlmacen extends JFrame {
                 flechaAlmacenActionPerformed(evt);
             }
         });
+        flechaAlmacen.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                flechaAlmacenMouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                flechaAlmacenMouseExited(evt);
+            }
+        });
         flechaAlmacen.setOpaque(true);
         flechaAlmacen.setContentAreaFilled(false);
         flechaAlmacen.setBorderPainted(false);
@@ -115,6 +135,14 @@ public class PasilloAlmacen extends JFrame {
         flechaCallejon.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 flechaCallejonActionPerformed(evt);
+            }
+        });
+        flechaCallejon.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                flechaCallejonMouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                flechaCallejonMouseExited(evt);
             }
         });
         flechaCallejon.setOpaque(true);
@@ -132,10 +160,13 @@ public class PasilloAlmacen extends JFrame {
         lugar.setText("Ala Sur");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
-        lugar.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
+        lugar.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
         lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.35), (int) (tamPant.height*0.1));
         getContentPane().add(lugar);
 
+
+        interfazUsuario.setBounds((int) (tamPant.width*0.55), (int) (tamPant.height*0.05), (int) (tamPant.width*0.45), (int) (tamPant.height*0.15));
+        getContentPane().add(interfazUsuario);
 
         getContentPane().add(jLabel1);
         pack();
@@ -163,6 +194,82 @@ public class PasilloAlmacen extends JFrame {
         Callejon callejon = new Callejon();
         callejon.setVisible(true);
         timer.schedule(tarea, 1000);
+    }
+    private void flechaPasillo3MouseExited(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha derecha.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.073), (int) (tamPant.height*0.063), Image.SCALE_SMOOTH));
+        flechaPasillo3.setIcon(icono);
+    }
+
+    private void flechaPasillo3MouseEntered(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/Flecha derecha BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.073), (int) (tamPant.height*0.063), Image.SCALE_SMOOTH));
+        flechaPasillo3.setIcon(icono);
+    }
+    private void flechaCallejonMouseExited(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha arriba.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        flechaCallejon.setIcon(icono);
+    }
+
+    private void flechaCallejonMouseEntered(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/Flecha arriba BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        flechaCallejon.setIcon(icono);
+    }
+
+
+    private void flechaAlmacenMouseExited(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha izquierda.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.073), (int) (tamPant.height*0.063), Image.SCALE_SMOOTH));
+        flechaAlmacen.setIcon(icono);
+    }
+    private void flechaAlmacenMouseEntered(MouseEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/Flecha izquierda BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.073), (int) (tamPant.height*0.063), Image.SCALE_SMOOTH));
+        flechaAlmacen.setIcon(icono);
     }
     /**
      * @param args the command line arguments

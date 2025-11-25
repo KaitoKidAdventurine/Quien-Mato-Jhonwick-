@@ -42,15 +42,13 @@ public class Tutorial extends JFrame {
         fondo = new JLabel();
         cajaTexto = new JPanel();
 
-
-
         setMinimumSize(tamPant);
         setUndecorated(true);
         setPreferredSize(tamPant);
         getContentPane().setLayout(null);
 
         cajaTexto.setOpaque(false);
-        cajaTexto.setBounds((int) (tamPant.width * 0.17), (int) (tamPant.height * 0.34), (int) (tamPant.width * 0.9), (int) (tamPant.height * 0.8));
+        cajaTexto.setBounds(0, 0, tamPant.width, tamPant.height);
         cajaTexto.setLayout(null);
 
         getContentPane().add(cajaTexto);
@@ -62,7 +60,7 @@ public class Tutorial extends JFrame {
         if(dialogoActual < dialogosTuto.size()) {
             Dialogo aux = dialogosTuto.get(dialogoActual);
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
-            cT.setBounds(0, 0, (int) (tamPant.width* 0.7), (int) (tamPant.height* 0.6));
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
@@ -82,6 +80,7 @@ public class Tutorial extends JFrame {
             dialogoActual++;
             }else {
             cajaTexto.removeAll();
+
         }
 
 
@@ -96,7 +95,7 @@ public class Tutorial extends JFrame {
                     imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Escena 1.jpg"));
                     break;
                 case 1:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Escena 2.jpg"));
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/1763958158881.jpg"));
                     break;
                 case 3:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Escena 3.jpg"));
