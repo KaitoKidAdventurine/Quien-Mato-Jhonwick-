@@ -5,6 +5,7 @@
 package Interfaz.Menu;
 
 import Interfaz.Escenarios.Entrada;
+import Logica.Reproductor;
 
 import java.awt.Color;
 import java.awt.Dimension;

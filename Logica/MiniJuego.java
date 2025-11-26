@@ -1,9 +1,11 @@
 package Logica;
 
 import javax.swing.*;
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
+import Logica.ObjetoEscenario;
 
 public class MiniJuego
 {
@@ -12,9 +14,9 @@ public class MiniJuego
     private ImageIcon foto;
 
 
-    public MiniJuego(Deque<ObjetoEscenario> cola, LinkedList<ObjetoEscenario> listaObjetos, ImageIcon foto) {
-        this.cola = cola;
-        this.listaObjetos = listaObjetos;
+    public MiniJuego( ImageIcon foto) {
+        this.cola = new ArrayDeque<ObjetoEscenario>();
+        this.listaObjetos = new LinkedList<ObjetoEscenario>();
         this.foto = foto;
     }
 
@@ -42,22 +44,22 @@ public class MiniJuego
         this.listaObjetos = listaObjetos;
     }
 
-    public void agregarObjetoLista(ObjetoEscenario o)
-    {
-        listaObjetos.add(o);
-    }
     public ObjetoEscenario pedirSiguienteObjeCola()
     {
         return cola.pop();
     }
 
-    // No lo he creado porque no se que datos tendra los objetos de la mochila
-    // Pero como tal solo seria conseguir la informacion y transformarlo que eso
-    // es sencillo
-    public void agregarObjetoMochila(ObjetoEscenario o)
+    public void agregarObjetoCola(ObjetoEscenario o)
     {
-
+        cola.offer(o);
     }
+    public void agregarObjetoLista(ObjetoEscenario o)
+    {
+        listaObjetos.add(o);
+    }
+
+
+    /*
     public void objetoEncontrado(ObjetoEscenario o)
     {
         boolean salida = false;
@@ -68,15 +70,15 @@ public class MiniJuego
             if (o == objeto)
             {
                 objeto.setEncontrado(true);
-                if(objeto.getImportante())
+                if(objeto.getImportante() == true)
                 {
-                    agregarObjetoMochila(objeto);
+                    agregarAlMaletin(objeto);
                 }
                 salida = true;
             }
         }
     }
-
+     */
 }
 
 

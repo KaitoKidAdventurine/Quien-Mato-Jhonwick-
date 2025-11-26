@@ -2,34 +2,53 @@ package Logica;
 
 import DatosAuxiliaresLogica.Informacion;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.TreeSet;
 import DatosAuxiliaresLogica.Informacion;
 
 public class Diario 
 {
-    private LinkedList<Informacion> entradas;
+    private LinkedList<Informacion> dialogosImportantes;
 
-    public Diario(LinkedList<Informacion> entradas) {
-        this.entradas = entradas;
-    }
-
-    public LinkedList<Informacion> getEntradas() {
-        return entradas;
-    }
-
-    public void setEntradas(LinkedList<Informacion> entradas) {
-        this.entradas = entradas;
-    }
-
-    /*
-    public String dialogoImportante()
+    public Diario()
     {
+        this.dialogosImportantes = new LinkedList<Informacion>();
+    }
+
+    public void setDialogosImportantes(LinkedList<Informacion> dialogosImportantes) {
+        this.dialogosImportantes = dialogosImportantes;
+    }
+
+    public LinkedList<Informacion> getDialogosImportantes()
+    {
+        return dialogosImportantes;
+    }
+
+
+    // Para guardar los dialogos mas importantes para cada NPC
+    public void agregarDialogoImportante(String nombreNPC, String informacion)
+    {
+        try
+        {
+            boolean salida = false;
+            Iterator<Informacion> II = dialogosImportantes.iterator();
+            while(!salida && II.hasNext())
+            {
+               Informacion i = II.next();
+                if (i.getNombreNPC().equals(nombreNPC))
+                {
+                    salida = true;
+                    i.getListaDeDialogos().add(informacion);
+                }
+            }
+        }
+
+        catch (Exception e)
+        {
+            System.err.println("Error No se encontro: " + e.getMessage());
+        }
 
     }
-    public void agregarPartida() {}
-    public void mostrarProgreso() {}
-    * */
+
+
 }

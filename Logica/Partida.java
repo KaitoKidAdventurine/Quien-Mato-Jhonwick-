@@ -7,20 +7,20 @@ public class Partida
 {
     private String idPartida;
     private LocalDate fechaInicio;
+    // El estado asumo que es en que Acto esta el jugador
     private String estado;
-    private int finalizadoMarcador;
     private LinkedList<Escenario> escenarios;
+    private Jugador jugador;
 
-    public Partida(String idPartida, LocalDate fechaInicio, String estado, int finalizadoMarcador) 
-    {
+    public Partida(String idPartida, LocalDate fechaInicio, String estado, LinkedList<Escenario> escenarios, Jugador jugador) {
         this.idPartida = idPartida;
         this.fechaInicio = fechaInicio;
         this.estado = estado;
-        this.finalizadoMarcador = finalizadoMarcador;
-        escenarios = new LinkedList<>();
+        this.escenarios = escenarios;
+        this.jugador = jugador;
     }
 
-    public String getIdPartida() 
+    public String getIdPartida()
     { 
         return idPartida; 
     }
@@ -47,23 +47,24 @@ public class Partida
         this.estado = estado; 
     }
 
-    public int getFinalizadoMarcador() 
-    { 
-        return finalizadoMarcador; 
-    }
-    public void setFinalizadoMarcador(int marcador) 
-    { 
-        this.finalizadoMarcador = marcador; 
+
+
+    public Jugador getJugador() {
+        return jugador;
     }
 
-    public void iniciarPartida() 
-    {}
-    public void cargarProgreso() 
-    {}
-    public void cargarPartida() 
-    {}
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
 
     public LinkedList<Escenario> getEscenarios() { return escenarios; }
     public void setEscenarios(LinkedList<Escenario> escenarios) { this.escenarios = escenarios; }
+
+    /*
+    public void iniciarPartida()
+    {}
+    public void cargarPartida()
+    {}
+     */
 }
 

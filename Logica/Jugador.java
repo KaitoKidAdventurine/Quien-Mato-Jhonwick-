@@ -1,26 +1,29 @@
 package Logica;
 
-import java.util.LinkedHashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+
 import cu.edu.cujae.ceis.tree.binary.BinaryTree;
 
 public class Jugador 
 {
     private String nombre;
     private BinaryTree<String> elecciones;
-    private Mapa mapa;
     private Telefono telefono;
-    //private Diario diario;
+    private Diario diario;
+    private LinkedList<ObjetoEscenario> maletin;
 
-    public Jugador(String nombre) 
+
+    public Jugador(String nombre)
     {
         this.nombre = nombre;
         this.elecciones = new BinaryTree<>();
-        this.mapa = new Mapa();
         this.telefono = new Telefono();
-        //this.diario = new Diario();
+        this.diario = new Diario();
+        this.maletin = new LinkedList<ObjetoEscenario>();
     }
 
-    public String getNombre() 
+    public String getNombre()
     { 
         return nombre; 
     }
@@ -38,15 +41,6 @@ public class Jugador
         this.elecciones = elecciones; 
     }
 
-    public Mapa getMapa() 
-    { 
-        return mapa; 
-    }
-    public void setMapa(Mapa mapa) 
-    { 
-        this.mapa = mapa; 
-    }
-
     public Telefono getTelefono() 
     { 
         return telefono; 
@@ -56,9 +50,6 @@ public class Jugador
         this.telefono = telefono; 
     }
 
-    /**
-     *
-    /
     public Diario getDiario()
     {
         return diario;
@@ -67,10 +58,10 @@ public class Jugador
     {
         this.diario = diario;
     }
-     */
 
-    public void interactuar() {}
-    public void tomarDecision() {}
-
+    public void agregarAlMaletin(ObjetoEscenario o)
+    {
+        maletin.add(o);
+    }
 
 }

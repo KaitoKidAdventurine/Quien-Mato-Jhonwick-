@@ -2,9 +2,7 @@ package Logica;
 
 import javax.swing.*;
 
-public class ObjetoEscenario extends Interactuable
-{
-
+public class ObjetoEscenario extends Interactuable {
     private ImageIcon imagen;
     private float posX;
     private float posY;
@@ -12,20 +10,22 @@ public class ObjetoEscenario extends Interactuable
     private float tamLargo;
     private boolean encontrado;
     private boolean importante;
+    private String descripcion;
 
-    public ObjetoEscenario(String nom, boolean clikleable ,ImageIcon imagen, float posX,
+    public ObjetoEscenario(String nom, boolean clikleable, ImageIcon imagen, float posX,
                            float posY, float tamAncho, float tamLargo,
-                           boolean encontrado, boolean importante)
-    {
+                           boolean importante, String descripcion) {
         super(nom, clikleable);
         this.imagen = imagen;
         this.posX = posX;
         this.posY = posY;
         this.tamAncho = tamAncho;
         this.tamLargo = tamLargo;
-        this.encontrado = false;
+        this.encontrado = false;  // Siempre empieza como no encontrado
         this.importante = importante;
+        this.descripcion = descripcion;
     }
+
 
     public ImageIcon getImagen() {
         return imagen;
@@ -34,8 +34,6 @@ public class ObjetoEscenario extends Interactuable
     public void setImagen(ImageIcon imagen) {
         this.imagen = imagen;
     }
-
-
 
     public float getPosX() {
         return posX;
@@ -85,8 +83,16 @@ public class ObjetoEscenario extends Interactuable
         this.importante = importante;
     }
 
-    public void encontradoObjec()
-    {
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    // Metodo para cambiar a encontrado
+    public void encontradoObjec() {
         encontrado = true;
     }
 
