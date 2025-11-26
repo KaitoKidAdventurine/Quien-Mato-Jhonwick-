@@ -40,11 +40,16 @@ public class Escenario {
         interactuables.add(i);
     }
 
-    public Dialogo getSiguienteDialogo(int opcionElegida) {
-        LinkedList<String> opciones;
+    public GeneralTree<Dialogo> getArbolDial() { return arbolDial; }
+    public void setArbolDial(GeneralTree<Dialogo> arbolDial) { this.arbolDial = arbolDial; }
+
+    public Dialogo getDialogoActual() { return nodoDialActual.getInfo(); }
+    public BinaryTreeNode<Dialogo> getNodoDialActual() { return nodoDialActual; }
+
+    public Dialogo getDialogoSiguiente(int opcionElegida) {
         int cantOpciones;
 
-        if (nodoDialActual != null && !arbolDial.nodeIsLeaf(nodoDialActual)) {
+        if (nodoDialActual != null && !(arbolDial.nodeIsLeaf(nodoDialActual))) {
             cantOpciones = arbolDial.nodeDegree(nodoDialActual);
             nodoDialActual = nodoDialActual.getLeft();
 
@@ -55,6 +60,14 @@ public class Escenario {
             //opcionElegida también es representado como la cantidad de llamadas getRight() para hallar el diálogoo que debe mostrarse.
             for ( ; opcionElegida >= 2; opcionElegida--) {
                 nodoDialActual = nodoDialActual.getRight();
+            }
+
+            /*
+             * La opcion elegida intenta escoger un diálogo que, por ahora, no puede mostrarse. Rebobinar al último diálogo.
+             * Es posible mostrar un diálogo o mensaje de error antes de volver a mostrar el último diálogo para permitir otra oportunidad.
+             */
+            if (!(nodoDialActual.getInfo().isRevelable())) {
+                nodoDialActual = arbolDial.getFather(nodoDialActual);
             }
         }
         else if (nodoDialActual == null) {
