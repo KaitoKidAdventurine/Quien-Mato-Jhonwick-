@@ -16,9 +16,9 @@ import Logica.Reproductor;
  *
  * @author ROBERTO
  */
-public class Menu extends javax.swing.JFrame {
+public class MenuPrincipal extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Menu.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuPrincipal.class.getName());
     private Dimension tamPant;
     private Timer timer;
     private TimerTask tarea;
@@ -29,7 +29,7 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu1
      */
-    public Menu() 
+    public MenuPrincipal()
     {
         if(!evitarRepetir)
         {
@@ -74,7 +74,7 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detective");
-        setMinimumSize(new java.awt.Dimension(1600, 930));
+        setMinimumSize(new java.awt.Dimension(tamPant));
         setUndecorated(true);
         getContentPane().setLayout(null);
 
@@ -295,7 +295,7 @@ public class Menu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Menu().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new MenuPrincipal().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

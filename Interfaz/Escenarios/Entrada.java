@@ -138,7 +138,9 @@ private Dimension tamPant;
     public void ponerDialogo() {
 
     }
-
+public JPanel darCuadroTexto(){
+        return cajaTexto;
+}
     private void cTMouseClicked(MouseEvent evt) {
         ponerDialogo();
         getContentPane().revalidate();

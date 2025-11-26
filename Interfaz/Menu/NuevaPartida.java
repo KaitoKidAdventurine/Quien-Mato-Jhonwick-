@@ -188,8 +188,8 @@ public class NuevaPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_boton1ActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-        Menu menu = new Menu();
-        menu.setVisible(true);
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
         timer.schedule(tarea,1000);
     }//GEN-LAST:event_botonAtrasActionPerformed
 

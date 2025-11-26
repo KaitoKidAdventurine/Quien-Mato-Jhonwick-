@@ -246,7 +246,14 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         telefono.setIcon(icono);
     }
     private void MenuActionPerformed(ActionEvent evt) {
-        JOptionPane.showMessageDialog(null, "1");
+
+
+        MenuInterno dialog = new MenuInterno(new javax.swing.JFrame(), true);
+
+        dialog.setBounds((int) (tamPant.width*0.3), (int) (tamPant.height*0.2),(int) (tamPant.width*0.4), (int) (tamPant.height*0.65));
+        dialog.setVisible(true);
+        getParent().revalidate();
+        getParent().repaint();
     }
 
     private void MenuMouseExited(MouseEvent evt) {
