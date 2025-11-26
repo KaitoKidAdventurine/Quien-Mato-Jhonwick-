@@ -11,6 +11,7 @@ public class ObjetoEscenario extends Interactuable {
     private boolean encontrado;
     private boolean importante;
     private String descripcion;
+    private int posList;
 
     public ObjetoEscenario(String nom, boolean clikleable, ImageIcon imagen, float posX,
                            float posY, float tamAncho, float tamLargo,
@@ -26,6 +27,13 @@ public class ObjetoEscenario extends Interactuable {
         this.descripcion = descripcion;
     }
 
+    public int getPosList() {
+        return posList;
+    }
+
+    public void setPosList(int posList) {
+        this.posList = posList;
+    }
 
     public ImageIcon getImagen() {
         return imagen;

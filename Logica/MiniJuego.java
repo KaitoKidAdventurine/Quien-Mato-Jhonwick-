@@ -1,23 +1,26 @@
 package Logica;
 
 import javax.swing.*;
-import java.util.Deque;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 public class MiniJuego
 {
+    private String nomEscenario;
     private Deque<ObjetoEscenario> cola;
-    private LinkedList<ObjetoEscenario> listaObjetos;
+    private ArrayList<ObjetoEscenario> listaObjetos;
     private ImageIcon foto;
+    private int indice;
 
 
-    public MiniJuego(Deque<ObjetoEscenario> cola, LinkedList<ObjetoEscenario> listaObjetos, ImageIcon foto) {
-        this.cola = cola;
-        this.listaObjetos = listaObjetos;
+    public MiniJuego(String nomEscenario, ImageIcon foto) {
+        this.nomEscenario = nomEscenario;
+        this.cola = new ArrayDeque<ObjetoEscenario>();
+        this.listaObjetos = new ArrayList<ObjetoEscenario>();
         this.foto = foto;
+        indice = 0;
     }
 
+    //Get y Set
     public ImageIcon getFoto() {
         return foto;
     }
@@ -34,47 +37,39 @@ public class MiniJuego
         this.cola = cola;
     }
 
-    public LinkedList<ObjetoEscenario> getListaObjetos() {
+    public ArrayList<ObjetoEscenario> getListaObjetos() {
         return listaObjetos;
     }
 
-    public void setListaObjetos(LinkedList<ObjetoEscenario> listaObjetos) {
+    public void setListaObjetos(ArrayList<ObjetoEscenario> listaObjetos) {
         this.listaObjetos = listaObjetos;
     }
 
+
+
+    // Metodos
     public void agregarObjetoLista(ObjetoEscenario o)
     {
+        o.setPosList(indice);
+        indice++;
         listaObjetos.add(o);
     }
-    public ObjetoEscenario pedirSiguienteObjeCola()
+    public void pedirSiguienteObjeCola()
     {
-        return cola.pop();
+        agregarObjetoLista(cola.pop());
     }
 
-    // No lo he creado porque no se que datos tendra los objetos de la mochila
-    // Pero como tal solo seria conseguir la informacion y transformarlo que eso
-    // es sencillo
-    public void agregarObjetoMochila(ObjetoEscenario o)
-    {
 
+    public void agregarObjetoMaletin(ObjetoEscenario o)
+    {
+        Jugador jugador = Jugador.getInstancia();
+        jugador.agregarAlMaletin(o);
     }
+
+
     public void objetoEncontrado(ObjetoEscenario o)
     {
-        boolean salida = false;
-        Iterator<ObjetoEscenario> II = listaObjetos.iterator();
-        while (II.hasNext() && !salida)
-        {
-            ObjetoEscenario objeto = II.next();
-            if (o == objeto)
-            {
-                objeto.setEncontrado(true);
-                if(objeto.getImportante())
-                {
-                    agregarObjetoMochila(objeto);
-                }
-                salida = true;
-            }
-        }
+        listaObjetos.remove(o.getPosList());
     }
 
 }

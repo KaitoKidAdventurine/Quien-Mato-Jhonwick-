@@ -1,5 +1,6 @@
 package Logica;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -9,14 +10,14 @@ public class Partida
     private LocalDate fechaInicio;
     // El estado asumo que es en que Acto esta el jugador
     private String estado;
-    private LinkedList<Escenario> escenarios;
+    private ArrayList<Escenario> escenarios;
     private Jugador jugador;
 
-    public Partida(String idPartida, LocalDate fechaInicio, String estado, LinkedList<Escenario> escenarios, Jugador jugador) {
+    public Partida(String idPartida, LocalDate fechaInicio, String estado, Jugador jugador) {
         this.idPartida = idPartida;
-        this.fechaInicio = fechaInicio;
+        this.fechaInicio = LocalDate.now();
         this.estado = estado;
-        this.escenarios = escenarios;
+        this.escenarios = new ArrayList<Escenario>();
         this.jugador = jugador;
     }
 
@@ -57,9 +58,17 @@ public class Partida
         this.jugador = jugador;
     }
 
+    /*
     public LinkedList<Escenario> getEscenarios() { return escenarios; }
     public void setEscenarios(LinkedList<Escenario> escenarios) { this.escenarios = escenarios; }
 
+     */
+    // ando trabajando en este metodo
+    public void buscarEscenarioNombre(String nom)
+    {
+        boolean salida = false;
+
+    }
     /*
     public void iniciarPartida()
     {}

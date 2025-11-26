@@ -7,20 +7,30 @@ import cu.edu.cujae.ceis.tree.binary.BinaryTree;
 
 public class Jugador 
 {
+    private static Jugador instancia;
     private String nombre;
     private BinaryTree<String> elecciones;
     private Telefono telefono;
     private Diario diario;
     private LinkedList<ObjetoEscenario> maletin;
+    private Escenario escenarioActual;
 
-
-    public Jugador(String nombre)
+    private Jugador()
     {
-        this.nombre = nombre;
+        this.nombre = "";
         this.elecciones = new BinaryTree<>();
         this.telefono = new Telefono();
         this.diario = new Diario();
         this.maletin = new LinkedList<ObjetoEscenario>();
+    }
+
+    public static Jugador getInstancia()
+    {
+        if(instancia == null)
+        {
+            instancia = new Jugador();
+        }
+        return instancia;
     }
 
     public String getNombre()
@@ -59,6 +69,16 @@ public class Jugador
         this.diario = diario;
     }
 
+    public Escenario getEscenarioActual() {
+        return escenarioActual;
+    }
+
+    public void setEscenarioActual(Escenario escenarioActual) {
+        this.escenarioActual = escenarioActual;
+    }
+
+
+    // Metodos
     public void agregarAlMaletin(ObjetoEscenario o)
     {
         maletin.add(o);

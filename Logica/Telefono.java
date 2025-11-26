@@ -1,44 +1,16 @@
 package Logica;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+// Consultar que ideas hay para hacer el telefono y que hay que poner de atributos y demas...
 public class Telefono {
-    private LinkedList<String> contactos;
-    private Queue<String> mensajesRecibidos;
-    private Stack<String> llamadasRealizadas;
 
-    public Telefono() 
-    {
-        this.contactos = new LinkedList<String>();
-        this.mensajesRecibidos = new LinkedList<>();
-        this.llamadasRealizadas = new Stack<>();
-    }
-
-    public LinkedList<String> getContactos() 
-    { 
-        return contactos; 
-    }
-    public Queue<String> getMensajesRecibidos() 
-    { 
-        return mensajesRecibidos; 
-    }
-    public Stack<String> getLlamadasRealizadas() 
-    {
-        return llamadasRealizadas; 
-    }
-
-    public void llamar(String contacto) 
-    {
-        llamadasRealizadas.push(contacto);
-    }
-
-    public void enviarMensaje(String mensaje) 
-    {
-        mensajesRecibidos.offer(mensaje);
-    }
+    private ImageIcon fondoDePantalla;
+    private ArrayList<ImageIcon> fondos;
 
 
-    public void revisarMensaje() {}
 }

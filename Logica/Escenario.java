@@ -13,14 +13,23 @@ public class Escenario {
     private ArrayList<Interactuable> interactuables;
     private GeneralTree<Dialogo> arbolDial;
     private BinaryTreeNode<Dialogo> nodoDialActual;
+    private int posList;
 
     public Escenario(String nombre, String descripcion, boolean investigado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.investigado = investigado;
-        this.interactuables = new ArrayList<>();
+        this.interactuables = new ArrayList<Interactuable>();
         arbolDial = new GeneralTree<>();
         nodoDialActual = null;
+    }
+
+    public int getPosList() {
+        return posList;
+    }
+
+    public void setPosList(int posList) {
+        this.posList = posList;
     }
 
     public String getNombre() { return nombre; }
