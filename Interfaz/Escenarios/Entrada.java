@@ -232,6 +232,7 @@ public JPanel darCuadroTexto(){
         BinaryTreeNode<Dialogo> node9 = new BinaryTreeNode<>(d9);
 
         GeneralTree<Dialogo> auxTree = new GeneralTree<>();
+
         auxTree.insertNode(node1, null);
         auxTree.insertNode(node2, node1);
         auxTree.insertNode(node3, node2);
