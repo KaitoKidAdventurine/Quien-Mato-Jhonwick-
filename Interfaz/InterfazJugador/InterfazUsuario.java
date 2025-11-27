@@ -51,15 +51,15 @@ public class InterfazUsuario  extends javax.swing.JPanel {
                 MochilaActionPerformed(evt);
             }
         });
-        mochila.setBounds((int) (tamPant.width*0.23), (int) (tamPant.height*0.03), (int) (tamPant.width*0.05), (int) (tamPant.height*0.05));
+        mochila.setBounds((int) (tamPant.width*0.23), (int) (tamPant.height*0.03), (int) (tamPant.width*0.1), (int) (tamPant.height*0.09));
 
         BufferedImage imagen4 = null;
         try {
-            imagen4 = ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Mochila.png"));
+            imagen4 = ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Maleta.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ImageIcon icono4 = new ImageIcon(imagen4.getScaledInstance((int) (tamPant.width*0.08), (int) (tamPant.height*0.1), Image.SCALE_SMOOTH));
+        ImageIcon icono4 = new ImageIcon(imagen4.getScaledInstance((int) (tamPant.width*0.07), (int) (tamPant.height*0.15), Image.SCALE_SMOOTH));
         mochila.setIcon(icono4);
 
 
@@ -148,9 +148,10 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         diario.setIcon(icono3);
 
 
-        add(mochila);
+
         add(diario);
         add(telefono);
+        add(mochila);
         add(menu);
 
     }
@@ -163,12 +164,12 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         BufferedImage imagen = null;
 
         try {
-            imagen = ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Mochila.png"));
+            imagen = ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Maleta.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.08), (int) (tamPant.height*0.1), Image.SCALE_SMOOTH));
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.07), (int) (tamPant.height*0.15), Image.SCALE_SMOOTH));
         mochila.setIcon(icono);
     }
 
@@ -177,12 +178,12 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         BufferedImage imagen = null;
 
         try {
-            imagen = ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Mochila.png"));
+            imagen = ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Maleta BR.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.08), (int) (tamPant.height*0.1), Image.SCALE_SMOOTH));
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.07), (int) (tamPant.height*0.15), Image.SCALE_SMOOTH));
         mochila.setIcon(icono);
     }
     private void DiarioActionPerformed(ActionEvent evt) {

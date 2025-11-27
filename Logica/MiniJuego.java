@@ -50,6 +50,7 @@ public class MiniJuego
     // Metodos
     public void agregarObjetoLista(ObjetoEscenario o)
     {
+
         o.setPosList(indice);
         indice++;
         listaObjetos.add(o);
@@ -58,7 +59,9 @@ public class MiniJuego
     {
         agregarObjetoLista(cola.pop());
     }
-
+public void agregarObjetoCola(ObjetoEscenario o){
+        cola.offer(o);
+}
 
     public void agregarObjetoMaletin(ObjetoEscenario o)
     {

@@ -2,6 +2,8 @@ package Interfaz.InterfazJugador;
 
 
 import Logica.Dialogo;
+import Logica.MiniJuego;
+import Logica.ObjetoEscenario;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -80,6 +82,7 @@ public class Tutorial extends JFrame {
             dialogoActual++;
             }else {
             cajaTexto.removeAll();
+            crearMinijuego();
 
         }
 
@@ -343,6 +346,44 @@ public class Tutorial extends JFrame {
 
     }
 
+    public void crearMinijuego(){
+        ImageIcon prueba = new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Cadaver.jpg");
+        MiniJuego minijuego = new MiniJuego("Prueba", prueba);
+        ImageIcon foto = new ImageIcon("DatosAuxiliares/OjetosInterfaz/Maleta.png");
+        ObjetoEscenario ob1 = new ObjetoEscenario("Anillo", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/anillo.png"), 0.3F, 0.5F, 0.1F, 0.1F, true, "nada");
+        ObjetoEscenario ob2 = new ObjetoEscenario("Carnet", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/carnet.png"), 0.4F, 0.1F, 0.1F, 0.1F, false, "nada");
+        ObjetoEscenario ob3 = new ObjetoEscenario("Memoria USB", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/memoria.png"), 0.1F, 0.2F, 0.1F, 0.1F, false, "nada");
+        ObjetoEscenario ob4 = new ObjetoEscenario("Mancha de sangre", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Mancha de sangre.png"), 0.7F, 0.7F, 0.1F, 0.1F, false, "nada");
+        ObjetoEscenario ob5 = new ObjetoEscenario("Pluma", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/pluma.png"), 0.2F, 0.4F, 0.1F, 0.1F, false, "nada");
+        ObjetoEscenario ob6 = new ObjetoEscenario("Tarjeta", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/tarjeta.png"), 0.3F, 0.2F, 0.1F, 0.1F, false, "nada");
+        ObjetoEscenario ob7 = new ObjetoEscenario("Periodico", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/periodico.png"), 0.5F, 0.2F, 0.1F, 0.1F, true, "nada");
+        ObjetoEscenario ob8 = new ObjetoEscenario("Telefono", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/telefono de la victima.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "nada");
+        ObjetoEscenario ob9 = new ObjetoEscenario("Herida Grande", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida grande.png"), 0.55F, 0.9F, 0.1F, 0.1F, false, "nada");
+        ObjetoEscenario ob10 = new ObjetoEscenario("Laptop", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Laptop.png"), 0.27F, 0.33F, 0.18F, 0.1F, false, "nada");
+        ObjetoEscenario ob11 = new ObjetoEscenario("Cigarros", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/cigarros.png"), 0.62F, 0.2F, 0.19F, 0.1F, false, "nada");
+        ObjetoEscenario ob12 = new ObjetoEscenario("Herida pequeña", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida pequeña.png"), 012.F, 0.27F, 0.1F, 0.1F, true, "nada");
+
+        minijuego.agregarObjetoCola(ob1);
+        minijuego.agregarObjetoCola(ob2);
+        minijuego.agregarObjetoCola(ob3);
+        minijuego.agregarObjetoCola(ob4);
+        minijuego.agregarObjetoCola(ob5);
+        minijuego.agregarObjetoCola(ob6);
+        minijuego.agregarObjetoCola(ob7);
+        minijuego.agregarObjetoCola(ob8);
+        minijuego.agregarObjetoCola(ob9);
+        minijuego.agregarObjetoCola(ob10);
+        minijuego.agregarObjetoCola(ob11);
+        minijuego.agregarObjetoCola(ob12);
+
+        MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(minijuego);
+
+        minijuegoInterfaz.setBounds(0, 0, tamPant.width, tamPant.height);
+        getContentPane().add(minijuegoInterfaz, 0);
+        getContentPane().revalidate();
+        getContentPane().repaint();
+
+    }
     private void cTMouseClicked(MouseEvent evt) {
         ponerDialogo();
         getContentPane().revalidate();

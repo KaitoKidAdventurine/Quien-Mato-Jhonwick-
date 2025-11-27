@@ -93,6 +93,7 @@ private Dimension tamPant;
 
         flecha.setBounds((int) (tamPant.width*0.484), (int) (tamPant.height*0.77), (int) (tamPant.width*0.048), (int) (tamPant.height*0.124));
         flecha.setOpaque(true);
+        flecha.setToolTipText("Recepcion");
         flecha.setContentAreaFilled(false);
         flecha.setBorderPainted(false);
         flecha.setFocusPainted(false);
@@ -121,7 +122,7 @@ private Dimension tamPant;
         lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.3), (int) (tamPant.height*0.1));
         getContentPane().add(lugar);
 
-        interfazUsuario.setBounds((int) (tamPant.width*0.55), (int) (tamPant.height*0.05), (int) (tamPant.width*0.45), (int) (tamPant.height*0.15));
+        interfazUsuario.setBounds((int) (tamPant.width*0.55), (int) (tamPant.height*0.05), (int) (tamPant.width*0.5), (int) (tamPant.height*0.15));
         getContentPane().add(interfazUsuario);
 
         getContentPane().add(fondo );
