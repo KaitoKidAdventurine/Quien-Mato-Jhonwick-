@@ -59,16 +59,16 @@ public class MiniJuego
     {
         agregarObjetoLista(cola.pop());
     }
-public void agregarObjetoCola(ObjetoEscenario o){
+
+    public void agregarObjetoCola(ObjetoEscenario o){
         cola.offer(o);
-}
+    }
 
     public void agregarObjetoMaletin(ObjetoEscenario o)
     {
         Jugador jugador = Jugador.getInstancia();
         jugador.agregarAlMaletin(o);
     }
-
 
     public void objetoEncontrado(ObjetoEscenario o)
     {

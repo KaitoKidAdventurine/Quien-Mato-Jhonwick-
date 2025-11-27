@@ -152,6 +152,7 @@ public class Reproductor {
         this.enReproduccion = enReproduccion;
     }
 
+    // Metodos
 
     public void iniciarMusica() {
         if(enReproduccion) {

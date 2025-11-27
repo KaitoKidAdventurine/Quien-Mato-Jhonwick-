@@ -2,6 +2,7 @@ package Logica;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Partida
@@ -58,22 +59,29 @@ public class Partida
         this.jugador = jugador;
     }
 
-    /*
-    public LinkedList<Escenario> getEscenarios() { return escenarios; }
-    public void setEscenarios(LinkedList<Escenario> escenarios) { this.escenarios = escenarios; }
+    public ArrayList<Escenario> getEscenarios() { return escenarios; }
 
-     */
-    // ando trabajando en este metodo
+    public void setEscenarios(ArrayList<Escenario> escenarios) { this.escenarios = escenarios; }
+
+    // Metodos:
+
     public void buscarEscenarioNombre(String nom)
     {
         boolean salida = false;
-
+        for(int i = 0; i < escenarios.size() && !salida; i++)
+        {
+            if(nom.equals(escenarios.get(i).getNombre()))
+            {
+                Jugador.getInstancia().setEscenarioActual(escenarios.get(i));
+                salida = true;
+            }
+        }
     }
-    /*
+
+
     public void iniciarPartida()
     {}
     public void cargarPartida()
     {}
-     */
 }
 
