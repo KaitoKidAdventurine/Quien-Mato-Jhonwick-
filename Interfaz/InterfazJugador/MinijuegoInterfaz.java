@@ -67,7 +67,7 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
             });
             objetosEscenarios.add(boton);
         }
-        panelEncontrables.setBounds((int) (tamPant.width * 0.8), 0, (int) (tamPant.width * 0.2), tamPant.height);
+        panelEncontrables.setBounds((int) (tamPant.width * 0.75), 0, (int) (tamPant.width * 0.25), tamPant.height);
         for (int i = 0; i < 5; i++) {
             miniJuego.pedirSiguienteObjeCola();
         }
@@ -78,7 +78,7 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
         ponerObjetos(miniJuego);
         add(panelEncontrables);
 
-        fondo.setBounds(0, 0, (int) (tamPant.width * 0.8), tamPant.height);
+        fondo.setBounds(0, 0, (int) (tamPant.width * 0.75), tamPant.height);
 
         BufferedImage imagen2 = null;
         try {
@@ -86,7 +86,7 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width * 0.8), tamPant.height, Image.SCALE_SMOOTH));
+        ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width * 0.75), tamPant.height, Image.SCALE_SMOOTH));
         fondo.setIcon(icono2);
 
         BufferedImage imagen3 = null;
@@ -95,8 +95,10 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width * 0.2), tamPant.height, Image.SCALE_SMOOTH));
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width * 0.25), tamPant.height, Image.SCALE_SMOOTH));
         labelLista.setIcon(icono3);
+        labelLista.setBounds(0, 0,(int) (tamPant.width * 0.25), tamPant.height );
+        panelEncontrables.add(labelLista);
         add(fondo);
 
     }
@@ -108,18 +110,30 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
 
             if (accionador.getNombreObjeto().equals(objetosEnc.get(i).getNombre())) {
                 objetosEnc.remove(i);
-                accionador.setIcon(new javax.swing.ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"));
+               remove(accionador);
+               objetosEscenarios.remove(accionador);
 
                 if(!mini.getCola().isEmpty())
                     mini.pedirSiguienteObjeCola();
 
                 actualizarObjetosEncontrables();
 
+             if(!objetosEscenarios.isEmpty()){
+                 revalidate();
+                 repaint();
+             }else{
+                 getParent().getComponent(0).setVisible(false);
+                 getParent().revalidate();
+                 getParent().repaint();
+                 getParent().remove(0);
+
+
+             }
+
             }
         }
 
-        revalidate();
-        repaint();
+
 
     }
 

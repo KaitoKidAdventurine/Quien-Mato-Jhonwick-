@@ -57,21 +57,22 @@ public class CuadroTexto extends javax.swing.JPanel {
         jPanel1.add(jLabel3);
 
         jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setBackground(new java.awt.Color(255, 255, 255, 128));
         jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.020)));
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 2, (int) (tamPant.width*0.020)));
         jTextArea1.setRows(5);
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setText(texto);
-        jTextArea1.setOpaque(false);
-        jTextArea1.setBounds(0,  (int) (tamPant.height*0.053), (int) (tamPant.width*0.64), (int) (tamPant.height*0.25));
-        jTextArea1.setBorder(null );
+        jTextArea1.setOpaque(true);
+
+        jTextArea1.setBorder(null);
         jTextArea1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextArea1.setEnabled(false);
-        jScrollPane1.setViewportView(jTextArea1);
-        jScrollPane1.setBounds(0,  (int) (tamPant.height*0.053), (int) (tamPant.width*0.7), (int) (tamPant.height*0.25));
 
+        jScrollPane1.setViewportView(jTextArea1);
+        jScrollPane1.setBounds(0,  (int) (tamPant.height*0.052), (int) (tamPant.width*0.7), (int) (tamPant.height*0.25));
+        jScrollPane1.setBackground(Color.black);
         jScrollPane1.setOpaque(true);
         jPanel1.add(jScrollPane1);
         jPanel1.setOpaque(false);
