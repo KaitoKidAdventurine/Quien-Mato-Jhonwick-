@@ -16,7 +16,7 @@ public class Reproductor {
     private ArrayList<Cancion> canciones;
     private int indiceActual;
     private boolean enReproduccion;
-    private int volumenSistema = 10;
+    private int volumenSistema = 15;
 
     // estos atributos seran para mover la cancion para mas adelante
     //private long posicionActual = 0;
@@ -37,7 +37,7 @@ public class Reproductor {
         if (archivoMusica.exists()) {
 
             Cancion cancion = new Cancion("Menu", archivoMusica);
-            Cancion cancionUno = new Cancion("Galería Silenciosa", musicaUno);
+            Cancion cancionUno = new Cancion("Galeria Silenciosa", musicaUno);
             Cancion cancionDos = new Cancion("Misterio Electronico", musicaDos);
             Cancion cancionTres = new Cancion("Sombras en el Viento", musicaTres);
 

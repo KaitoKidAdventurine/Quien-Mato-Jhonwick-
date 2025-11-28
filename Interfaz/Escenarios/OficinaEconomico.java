@@ -1,6 +1,7 @@
 package Interfaz.Escenarios;
 
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Logica.Partida;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -47,6 +48,10 @@ public class OficinaEconomico extends JFrame {
         interfazUsuario= new InterfazUsuario();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/oficin economico.jpg"));
+
+            // Actualizacion de donde esta el Jugador
+            Partida p = Partida.getInstance();
+            p.buscarEscenarioNombre("Oficina de la Victima");
 
             jLabel1 = new JLabel();
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

@@ -1,10 +1,7 @@
 package Interfaz.InterfazJugador;
 
 
-import Logica.Dialogo;
-import Logica.Escenario;
-import Logica.MiniJuego;
-import Logica.ObjetoEscenario;
+import Logica.*;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 
@@ -29,6 +26,7 @@ public class Tutorial extends JFrame {
      * Creates new form Entrada
      */
     public Tutorial() {
+
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
 
         escenario = new Escenario("OficinaDetective", "Punto inicial de partida", true);
@@ -41,6 +39,10 @@ public class Tutorial extends JFrame {
 
 
     private void initComponents() {
+        // Reproductor
+        Reproductor reproductor = Reproductor.getInstancia();
+        reproductor.cambiarMusicaNombre("Galeria Silenciosa");
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         fondo = new JLabel();
         cajaTexto = new JPanel();
