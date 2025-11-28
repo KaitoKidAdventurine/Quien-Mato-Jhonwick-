@@ -55,6 +55,9 @@ public class Tutorial extends JFrame {
 
 
     private void initComponents() {
+        // Reproductor
+        Reproductor reproductor = Reproductor.getInstancia();
+        reproductor.cambiarMusicaNombre("Galeria Silenciosa");
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         fondo = new JLabel();
@@ -99,6 +102,7 @@ public class Tutorial extends JFrame {
         }
 
         else {
+            Dialogo aux = escenario.getNodoDialActual().getInfo();
            cajaTexto.removeAll();
            crearMinijuego();
            timer.schedule(tarea, 5000);
@@ -783,7 +787,7 @@ public class Tutorial extends JFrame {
         auxTree.insertNode(node90, node89);
         auxTree.insertNode(node91, node90);
 
-        tutorialParte2.setArbolDial(auxTree);
+        escenario.setArbolDial(auxTree);
     }
 
     public void crearMinijuego(){
@@ -801,7 +805,7 @@ public class Tutorial extends JFrame {
         ObjetoEscenario ob9 = new ObjetoEscenario("Herida Grande", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida grande.png"), 0.55F, 0.9F, 0.1F, 0.1F, false, "nada");
         ObjetoEscenario ob10 = new ObjetoEscenario("Laptop", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Laptop.png"), 0.27F, 0.33F, 0.18F, 0.1F, false, "nada");
         ObjetoEscenario ob11 = new ObjetoEscenario("Cigarros", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/cigarros.png"), 0.62F, 0.2F, 0.19F, 0.1F, false, "nada");
-        ObjetoEscenario ob12 = new ObjetoEscenario("Herida pequeña", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida pequeña.png"), 0.12F, 0.77F, 0.1F, 0.1F, true, "nada");
+        ObjetoEscenario ob12 = new ObjetoEscenario("Herida pequeña", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida pequeña.png"), 012.F, 0.27F, 0.1F, 0.1F, true, "nada");
 
         minijuego.agregarObjetoCola(ob1);
         minijuego.agregarObjetoCola(ob2);

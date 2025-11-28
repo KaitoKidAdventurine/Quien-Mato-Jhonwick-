@@ -1,6 +1,7 @@
 package Interfaz.Escenarios;
 
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Logica.Partida;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -48,6 +49,11 @@ public class Pasillo3 extends JFrame {
         interfazUsuario= new InterfazUsuario();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/pasillo 3.jpg"));
+
+            // Actualizacion de donde esta el Jugador
+            Partida p = Partida.getInstance();
+            p.buscarEscenarioNombre("Oficinas Planta Baja");
+
 
             jLabel1 = new JLabel();
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
