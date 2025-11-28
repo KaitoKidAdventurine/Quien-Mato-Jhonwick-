@@ -81,9 +81,12 @@ public class Tutorial extends JFrame {
                 getContentPane().revalidate();
                 getContentPane().repaint();
             }
-        } else {
-            cajaTexto.removeAll();
-            crearMinijuego();
+        }
+
+        else {
+            Dialogo aux = escenario.getNodoDialActual().getInfo();
+           cajaTexto.removeAll();
+           crearMinijuego();
 
         }
 
@@ -366,7 +369,7 @@ public class Tutorial extends JFrame {
         auxTree.insertNode(node18, node17);
         auxTree.insertNode(node19, node18);
         auxTree.insertNode(node20, node19);
-        auxTree.insertNode(node21, node10);
+        auxTree.insertNode(node21, node20);
         auxTree.insertNode(node22, node21);
         auxTree.insertNode(node23, node22);
         auxTree.insertNode(node24, node23);
