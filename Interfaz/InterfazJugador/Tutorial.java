@@ -1,10 +1,7 @@
 package Interfaz.InterfazJugador;
 
 
-import Logica.Dialogo;
-import Logica.Escenario;
-import Logica.MiniJuego;
-import Logica.ObjetoEscenario;
+import Logica.*;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 
@@ -102,7 +99,7 @@ public class Tutorial extends JFrame {
         }
 
         else {
-            Dialogo aux = escenario.getNodoDialActual().getInfo();
+            Dialogo aux = tutorialParte1.getNodoDialActual().getInfo();
            cajaTexto.removeAll();
            crearMinijuego();
            timer.schedule(tarea, 5000);
@@ -787,7 +784,7 @@ public class Tutorial extends JFrame {
         auxTree.insertNode(node90, node89);
         auxTree.insertNode(node91, node90);
 
-        escenario.setArbolDial(auxTree);
+        tutorialParte2.setArbolDial(auxTree);
     }
 
     public void crearMinijuego(){
