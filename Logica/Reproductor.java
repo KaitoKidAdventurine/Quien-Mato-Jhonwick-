@@ -10,7 +10,7 @@ import javazoom.jl.player.Player;
 public class Reproductor {
 
     private static Reproductor instancia;
-
+    private int indiceDeAntesDeCambio;
     private Player reproductorMP3;
     private Thread hiloReproduccion;
     private ArrayList<Cancion> canciones;
@@ -31,20 +31,23 @@ public class Reproductor {
 
         // Cargar canción específica
         File archivoMusica = new File("Musica/Canciones/Menu.mp3");
-        File musicaUno = new File("Musica/Canciones/Galería Silenciosa.mp3");
+        File musicaUno = new File("Musica/Canciones/Galeria Silenciosa.mp3");
         File musicaDos = new File("Musica/Canciones/Misterio Electronico.mp3");
         File musicaTres = new File("Musica/Canciones/Sombras en el Viento.mp3");
+        File musicaTension = new File("Musica/Canciones/Tension.mp3");
         if (archivoMusica.exists()) {
 
             Cancion cancion = new Cancion("Menu", archivoMusica);
             Cancion cancionUno = new Cancion("Galeria Silenciosa", musicaUno);
             Cancion cancionDos = new Cancion("Misterio Electronico", musicaDos);
             Cancion cancionTres = new Cancion("Sombras en el Viento", musicaTres);
+            Cancion cancionTension = new Cancion("Tension", musicaTension);
 
             canciones.add(cancion);
             canciones.add(cancionUno);
             canciones.add(cancionDos);
             canciones.add(cancionTres);
+            canciones.add(cancionTension);
 
         } else {
             System.err.println("No se encontró el archivo de música: " + archivoMusica.getAbsolutePath());
@@ -66,6 +69,8 @@ public class Reproductor {
         }
         instancia = new Reproductor();
     }
+
+
 
 
     public static boolean existeInstancia()
@@ -129,6 +134,14 @@ public class Reproductor {
 
     public boolean isEnReproduccion() {
         return enReproduccion;
+    }
+
+    public int getIndiceDeAntesDeCambio() {
+        return indiceDeAntesDeCambio;
+    }
+
+    public void setIndiceDeAntesDeCambio(int indiceDeAntesDeCambio) {
+        this.indiceDeAntesDeCambio = indiceDeAntesDeCambio;
     }
 
     // Setters
@@ -220,6 +233,7 @@ public class Reproductor {
 
     public void cambiarMusicaNombre(String nombre) {
         try {
+            indiceDeAntesDeCambio = indiceActual;
             boolean encontrado = false;
             for (int i = 0; i < canciones.size() && !encontrado; i++) {
                 if (canciones.get(i).getNombre().equals(nombre)) {
@@ -323,5 +337,21 @@ public class Reproductor {
         } catch (Exception e) {
             System.err.println(" No se pudo realizar la prueba: " + e.getMessage());
         }
+    }
+
+    public void musicaTension()
+    {
+        indiceDeAntesDeCambio = indiceActual;
+        cambiarMusicaNombre("Tension");
+    }
+
+    public void musicaDeBusqueda()
+    {
+        indiceDeAntesDeCambio = indiceActual;
+        cambiarMusicaNombre("Sombras en el Viento");
+    }
+    public void cambiarMusicaAnterior()
+    {
+        cambiarMusicaIndice(indiceDeAntesDeCambio);
     }
 }
