@@ -10,6 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.*;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Logica.Reproductor;
 
 /**
@@ -31,6 +32,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal()
     {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeTelefonoResiviendoLlamda();
         if(!evitarRepetir)
         {
             Reproductor reproductor = Reproductor.getInstancia();
