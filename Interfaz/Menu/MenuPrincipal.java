@@ -32,8 +32,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal()
     {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDeTelefonoResiviendoLlamda();
         if(!evitarRepetir)
         {
             Reproductor reproductor = Reproductor.getInstancia();
