@@ -1,6 +1,8 @@
-package Interfaz.InterfazJugador;
+package Interfaz;
 
 
+import Interfaz.InterfazJugador.CuadroTexto;
+import Interfaz.MiniJuego.MinijuegoInterfaz;
 import Logica.*;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
@@ -103,6 +105,7 @@ public class Tutorial extends JFrame {
            cajaTexto.removeAll();
            crearMinijuego();
            timer.schedule(tarea, 5000);
+           cajaTexto.setVisible(false);
 
         }
 
@@ -110,6 +113,7 @@ public class Tutorial extends JFrame {
     }
 
     public void ponerDialogoParte2() {
+
         if(tutorialParte2.getNodoDialActual() == null || !(tutorialParte2.getArbolDial().nodeIsLeaf(tutorialParte2.getNodoDialActual()))) {
             Dialogo aux = tutorialParte2.getDialogoSiguiente(1);
             nivelActualDial = tutorialParte2.getArbolDial().nodeLevel(tutorialParte2.getNodoDialActual());
@@ -134,14 +138,6 @@ public class Tutorial extends JFrame {
                 getContentPane().repaint();
             }
         }
-
-
-
-
-
-
-
-
     public void ponerFondoParte1(){
         try {
             BufferedImage imagen = null;
@@ -802,7 +798,7 @@ public class Tutorial extends JFrame {
         ObjetoEscenario ob9 = new ObjetoEscenario("Herida Grande", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida grande.png"), 0.55F, 0.9F, 0.1F, 0.1F, false, "nada");
         ObjetoEscenario ob10 = new ObjetoEscenario("Laptop", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Laptop.png"), 0.27F, 0.33F, 0.18F, 0.1F, false, "nada");
         ObjetoEscenario ob11 = new ObjetoEscenario("Cigarros", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/cigarros.png"), 0.62F, 0.2F, 0.19F, 0.1F, false, "nada");
-        ObjetoEscenario ob12 = new ObjetoEscenario("Herida pequeña", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida pequeña.png"), 012.F, 0.27F, 0.1F, 0.1F, true, "nada");
+        ObjetoEscenario ob12 = new ObjetoEscenario("Herida pequeña", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida pequeña.png"), 0.12F, 0.77F, 0.1F, 0.1F, true, "nada");
 
         minijuego.agregarObjetoCola(ob1);
         minijuego.agregarObjetoCola(ob2);

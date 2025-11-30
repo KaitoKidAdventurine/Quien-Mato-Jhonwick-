@@ -5,6 +5,8 @@ import java.util.LinkedList;
 
 import cu.edu.cujae.ceis.tree.binary.BinaryTree;
 
+import javax.swing.*;
+
 public class Jugador 
 {
     private static Jugador instancia;
@@ -81,7 +83,15 @@ public class Jugador
     // Metodos
     public void agregarAlMaletin(ObjetoEscenario o)
     {
+
         maletin.add(o);
     }
 
+    public LinkedList<ObjetoEscenario> getMaletin() {
+        return maletin;
+    }
+
+    public void setMaletin(LinkedList<ObjetoEscenario> maletin) {
+        this.maletin = maletin;
+    }
 }

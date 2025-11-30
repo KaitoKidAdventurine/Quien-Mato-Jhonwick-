@@ -31,7 +31,7 @@ public class Reproductor {
 
         // Cargar canción específica
         File archivoMusica = new File("Musica/Canciones/Menu.mp3");
-        File musicaUno = new File("Musica/Canciones/Galería Silenciosa.mp3");
+        File musicaUno = new File("Musica/Canciones/Galeria Silenciosa.mp3");
         File musicaDos = new File("Musica/Canciones/Misterio Electronico.mp3");
         File musicaTres = new File("Musica/Canciones/Sombras en el Viento.mp3");
         if (archivoMusica.exists()) {
