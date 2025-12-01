@@ -10,6 +10,7 @@ public class Telefono {
     private ImageIcon fondoDePantalla;
     private ArrayList<Fondos> fondos;
     private int fondoActual;
+    private int indiceDeCambio;
 
 
     // Constructor
@@ -110,6 +111,7 @@ public class Telefono {
     public void cambiarFondoIndice(int i) {
         try {
             fondoActual = i;
+            indiceDeCambio = fondoActual;
             fondoDePantalla = fondos.get(fondoActual).getImagen();
         } catch (Exception e) {
             System.err.println("Error cambiando la imagen del telefono: " + e.getMessage());
@@ -129,5 +131,44 @@ public class Telefono {
             cambiarFondoIndice(fondos.size()-1);
         }
         cambiarFondoIndice(fondoActual - 1);
+    }
+
+    public ImageIcon enviarSiguienteFondo()
+    {
+        ImageIcon imagen = new ImageIcon();
+
+        if(indiceDeCambio == fondos.size()-1)
+        {
+            indiceDeCambio = 0;
+            imagen = fondos.get(indiceDeCambio).getImagen();
+        }
+        else
+        {
+            indiceDeCambio++;
+            imagen = fondos.get(indiceDeCambio).getImagen();
+        }
+        return imagen;
+    }
+
+    public ImageIcon enviarAnteriorFondo()
+    {
+        ImageIcon imagen = new ImageIcon();
+        if(indiceDeCambio == 0)
+        {
+            indiceDeCambio = fondos.size()-1;
+            imagen = fondos.get(indiceDeCambio).getImagen();
+        }
+
+        else
+        {
+            indiceDeCambio--;
+            imagen = fondos.get(indiceDeCambio).getImagen();
+        }
+        return imagen;
+    }
+
+    public void colocarFondoActual()
+    {
+        cambiarFondoIndice(indiceDeCambio);
     }
 }
