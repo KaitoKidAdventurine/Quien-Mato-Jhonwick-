@@ -111,7 +111,6 @@ public class Tutorial extends JFrame {
 
         }
 
-
     }
 
     public void ponerDialogoParte2() {
