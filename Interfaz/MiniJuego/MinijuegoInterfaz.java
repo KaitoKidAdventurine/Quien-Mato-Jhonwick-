@@ -2,6 +2,7 @@ package Interfaz.MiniJuego;
 
 import Logica.MiniJuego;
 import Logica.ObjetoEscenario;
+import Logica.Reproductor;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -43,6 +44,9 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
         setBackground(Color.blue);
         Deque<ObjetoEscenario> objetos = miniJuego.getCola();
         Iterator<ObjetoEscenario> II = objetos.iterator();
+
+        Reproductor reproductor = Reproductor.getInstancia();
+        reproductor.musicaDeBusqueda();
 
         while (II.hasNext()) {
             ObjetoEscenario objeto = II.next();

@@ -1,8 +1,9 @@
-package Interfaz;
+package Interfaz.InterfazJugador;
 
 
 import Interfaz.InterfazJugador.CuadroTexto;
 import Interfaz.MiniJuego.MinijuegoInterfaz;
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Logica.*;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
@@ -57,6 +58,8 @@ public class Tutorial extends JFrame {
         // Reproductor
         Reproductor reproductor = Reproductor.getInstancia();
         reproductor.cambiarMusicaNombre("Galeria Silenciosa");
+        // Efectos especiales
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         fondo = new JLabel();
@@ -113,7 +116,6 @@ public class Tutorial extends JFrame {
     }
 
     public void ponerDialogoParte2() {
-
         if(tutorialParte2.getNodoDialActual() == null || !(tutorialParte2.getArbolDial().nodeIsLeaf(tutorialParte2.getNodoDialActual()))) {
             Dialogo aux = tutorialParte2.getDialogoSiguiente(1);
             nivelActualDial = tutorialParte2.getArbolDial().nodeLevel(tutorialParte2.getNodoDialActual());
@@ -138,6 +140,14 @@ public class Tutorial extends JFrame {
                 getContentPane().repaint();
             }
         }
+
+
+
+
+
+
+
+
     public void ponerFondoParte1(){
         try {
             BufferedImage imagen = null;
@@ -163,12 +173,18 @@ public class Tutorial extends JFrame {
                     break;
                 case 34:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Escena Auto.jpg"));
+                    EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                    e.efectoDeLluvia();
                     break;
                 case 43:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por afuera.jpg"));
+                    EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                    e.detenerEfecto();
                     break;
                 case 61:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por dentro.jpg"));
+                    EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                    e.detenerEfecto();
                     break;
                 case 76:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/pasillo 1.jpg"));

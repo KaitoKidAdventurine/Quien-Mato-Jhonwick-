@@ -15,8 +15,8 @@ public class Diario
         this.dialogosImportantes = new LinkedList<Informacion>();
     }
 
-    public void setDialogosImportantes(LinkedList<Informacion> dialogosImportantes) {
-        this.dialogosImportantes = dialogosImportantes;
+    public void setDialogosImportantes() {
+        this.dialogosImportantes = new LinkedList<Informacion>();
     }
 
     public LinkedList<Informacion> getDialogosImportantes()
