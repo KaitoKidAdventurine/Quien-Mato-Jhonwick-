@@ -83,14 +83,16 @@ public class Telefono {
         agregarFondos(new Fondos("Carretera",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Carretera.jpg")));
         agregarFondos(new Fondos("Cielo Estrellado",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Cielo Estrellado.jpeg")));
         agregarFondos(new Fondos("Gatos",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Gatos.jpg")));
-        agregarFondos(new Fondos("Luna",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Luna")));
-        agregarFondos(new Fondos("Luna LLena",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Luna LLena.jpeg")));
+        agregarFondos(new Fondos("Luna",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Luna.jpeg")));
         agregarFondos(new Fondos("Luna Rompiendo El Cielo",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Luna Rompiendo El Cielo.jpeg")));
         agregarFondos(new Fondos("Montannas",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Montannas.jpg")));
         agregarFondos(new Fondos("Naruto",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Naruto.jpg")));
-        agregarFondos(new Fondos("Noche Montannas",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Noche Montannas")));
-        agregarFondos(new Fondos("Nubes y Montannas",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Nubes y Montannas.jpg")));
+        agregarFondos(new Fondos("Noche Montannas",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Noche Montannas.jpg")));
+        agregarFondos(new Fondos("Nubes y Montannas",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Nubes y Montanna.jpeg")));
         agregarFondos(new Fondos("Torre Eiffel",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Torre Eiffel.jpg")));
+        agregarFondos(new Fondos("Fondo Simple",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Fondo Simple.png")));
+        agregarFondos(new Fondos("Bosque Misitico",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Fondo Mistico.png")));
+
     }
 
     public void buscarPorNombre(String nom)

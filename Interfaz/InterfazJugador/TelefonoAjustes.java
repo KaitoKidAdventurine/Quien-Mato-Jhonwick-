@@ -1,6 +1,6 @@
 package Interfaz.InterfazJugador;
 
-import Logica.Reproductor;
+import Logica.Telefono;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -22,9 +22,14 @@ public class TelefonoAjustes extends JPanel{
     private JButton salir;
     private JLabel fondo;
     private JLabel muestra;
+    private JLabel nombreM;
+    private Telefono telefonoL;
+    private JLabel fondoTelefono;
 
-    public TelefonoAjustes() {
+    public TelefonoAjustes(Telefono telefonoLogica, JLabel fondoT) {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+        this.telefonoL = telefonoLogica;
+        this.fondoTelefono = fondoT;
         initComponents();
 
     }
@@ -35,14 +40,14 @@ private void initComponents() {
     muestra = new JLabel();
     fondoSiguiente = new JButton();
     ponerFondo = new JButton();
-
+    nombreM = new JLabel();
 
 
     setBackground(new Color(0, 0, 0, 0));
     setLayout(null);
 
     fondoAnterior.setBorderPainted(false);
-    fondoAnterior.setContentAreaFilled(true);
+    fondoAnterior.setContentAreaFilled(false);
     fondoAnterior.setFocusPainted(false);
     fondoAnterior.addMouseListener(new MouseAdapter() {
         public void mouseEntered(MouseEvent evt) {
@@ -57,13 +62,24 @@ private void initComponents() {
             jButton1ActionPerformed(evt);
         }
     });
-    fondoAnterior.setBounds((int) (tamPant.width*0.025), (int) (tamPant.height*0.235),(int) (tamPant.width*0.035), (int) (tamPant.height*0.04));
-    fondoAnterior.setBackground(Color.blue);
+    fondoAnterior.setBounds((int) (tamPant.width*0.02), (int) (tamPant.height*0.355),(int) (tamPant.width*0.05), (int) (tamPant.height*0.06));
+
+    BufferedImage imagen = null;
+
+    try {
+        imagen = ImageIO.read(new File("DatosAuxiliares/Telefono/izquierda triangulo.png"));
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+    ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.06), Image.SCALE_SMOOTH));
+    fondoAnterior.setIcon(icono);
+
     add(fondoAnterior);
 
 
     fondoSiguiente.setBorderPainted(false);
-    fondoSiguiente.setContentAreaFilled(true);
+    fondoSiguiente.setContentAreaFilled(false);
     fondoSiguiente.setFocusPainted(false);
     fondoSiguiente.addMouseListener(new MouseAdapter() {
         public void mouseEntered(MouseEvent evt) {
@@ -78,27 +94,37 @@ private void initComponents() {
             jButton3ActionPerformed(evt);
         }
     });
-    fondoSiguiente.setBounds((int) (tamPant.width*0.205), (int) (tamPant.height*0.235),(int) (tamPant.width*0.035), (int) (tamPant.height*0.04));
-    fondoSiguiente.setBackground(Color.blue);
+    fondoSiguiente.setBounds((int) (tamPant.width*0.19), (int) (tamPant.height*0.355),(int) (tamPant.width*0.05), (int) (tamPant.height*0.06));
+    BufferedImage imagen1 = null;
+
+    try {
+        imagen1 = ImageIO.read(new File("DatosAuxiliares/Telefono/reproducir triangulo.png"));
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+    ImageIcon icono1 = new ImageIcon(imagen1.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.06), Image.SCALE_SMOOTH));
+    fondoSiguiente.setIcon(icono1);
+
     add(fondoSiguiente);
 
     ponerFondo.setBorderPainted(false);
-    ponerFondo.setContentAreaFilled(true);
+    ponerFondo.setContentAreaFilled(false);
     ponerFondo.setFocusPainted(false);
     ponerFondo.addMouseListener(new MouseAdapter() {
         public void mouseEntered(MouseEvent evt) {
-            jButton3MouseEntered(evt);
+            jButton4MouseEntered(evt);
         }
         public void mouseExited(MouseEvent evt) {
-            jButton3MouseExited(evt);
+            jButton4MouseExited(evt);
         }
     });
     ponerFondo.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent evt) {
-            jButton3ActionPerformed(evt);
+            jButton4ActionPerformed(evt);
         }
     });
-    ponerFondo.setBounds((int) (tamPant.width*0.055), (int) (tamPant.height*0.5),(int) (tamPant.width*0.155), (int) (tamPant.height*0.04));
+    ponerFondo.setBounds((int) (tamPant.width*0.055), (int) (tamPant.height*0.62),(int) (tamPant.width*0.155), (int) (tamPant.height*0.04));
     ponerFondo.setBackground(Color.blue);
     ponerFondo.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.014)));
     ponerFondo.setForeground(Color.WHITE);
@@ -119,57 +145,127 @@ private void initComponents() {
         }
     });
 
-    salir.setText("X");
-    salir.setForeground(Color.black);
-    salir.setFont(new Font("Segoe UI", 0, 24));
+    BufferedImage imagen3 = null;
+
+    try {
+        imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/atras.png"));
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+    ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+    salir.setIcon(icono3);
+    salir.setBounds((int) (tamPant.height*0.11), (int) (tamPant.height*0.66),(int) (tamPant.width*0.05), (int) (tamPant.height*0.07));
+
     salir.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent evt) {
             jButton2ActionPerformed(evt);
         }
     });
-    salir.setBounds((int) (tamPant.height*0.13), (int) (tamPant.height*0.65),(int) (tamPant.width*0.05), (int) (tamPant.height*0.1));
+
 
     add(salir);
-
-    BufferedImage imagen = null;
-
-    try {
-        imagen = ImageIO.read(new File("DatosAuxiliares/Telefono/Fondo Simple.png"));
-    } catch (IOException e) {
-        throw new RuntimeException(e);
-    }
-
-    ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.255), (int) (tamPant.height*0.72), Image.SCALE_SMOOTH));
-    fondo.setIcon(icono);
-    fondo.setBounds((int) (tamPant.width*0.005),0, (int) (tamPant.width*0.255), (int) (tamPant.height*0.72));
-
-
 
     BufferedImage imagen2 = null;
 
     try {
-        imagen2 = ImageIO.read(new File("DatosAuxiliares/Telefono/Fondo Mistico.png"));
+        imagen2 = ImageIO.read(new File("DatosAuxiliares/Telefono/Configuracion.png"));
     } catch (IOException e) {
         throw new RuntimeException(e);
     }
 
-    ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.13), (int) (tamPant.height*0.40), Image.SCALE_SMOOTH));
-    muestra.setIcon(icono2);
-    muestra.setBounds((int) (tamPant.width*0.0675),(int) (tamPant.height*0.07),  (int) (tamPant.width*0.13), (int) (tamPant.height*0.4));
-add(muestra);
+    ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.255), (int) (tamPant.height*0.72), Image.SCALE_SMOOTH));
+    fondo.setIcon(icono2);
+    fondo.setBounds((int) (tamPant.width*0.005),0, (int) (tamPant.width*0.255), (int) (tamPant.height*0.72));
+
+
+
+    BufferedImage imagen4 = null;
+
+    try {
+        imagen4 = ImageIO.read(new File(String.valueOf(telefonoL.getFondoDePantalla())));
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+    ImageIcon icono4 = new ImageIcon(imagen4.getScaledInstance((int) (tamPant.width*0.13), (int) (tamPant.height*0.40), Image.SCALE_SMOOTH));
+    muestra.setIcon(icono4);
+    muestra.setBounds((int) (tamPant.width*0.0675),(int) (tamPant.height*0.19),  (int) (tamPant.width*0.13), (int) (tamPant.height*0.4));
+    add(muestra);
+
+    nombreM.setText("Actual");
+    nombreM.setBounds((int) (tamPant.width*0.02),(int) (tamPant.height*0.1), (int) (tamPant.width*0.228), (int) (tamPant.height*0.1));
+    nombreM.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.014)));
+    nombreM.setForeground(Color.WHITE);
+    nombreM.setHorizontalAlignment(SwingConstants.CENTER);
+    add(nombreM);
+
 
     add(fondo);
 }
 
-private void jButton3ActionPerformed(ActionEvent evt) {
-    Reproductor.getInstancia().cambiarMusicaSiguiente();
+    private void jButton4ActionPerformed(ActionEvent evt) {
+         telefonoL.colocarFondoActual();
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File(String.valueOf(telefonoL.getFondoDePantalla())));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.255), (int) (tamPant.height*0.72), Image.SCALE_SMOOTH));
+        fondoTelefono.setIcon(icono);
+    }
+
+    private void jButton4MouseExited(MouseEvent evt) {
+        ponerFondo.setForeground(Color.WHITE);
+    }
+
+    private void jButton4MouseEntered(MouseEvent evt) {
+        ponerFondo.setForeground(Color.red);
+
+    }
+
+    private void jButton3ActionPerformed(ActionEvent evt) {
+        BufferedImage imagen = null;
+
+        try {
+            imagen = ImageIO.read(new File(String.valueOf(telefonoL.enviarSiguienteFondo())));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.13), (int) (tamPant.height*0.40), Image.SCALE_SMOOTH));
+        muestra.setIcon(icono);
+        revalidate();
+        repaint();
 }
 
 private void jButton3MouseExited(MouseEvent evt) {
+    BufferedImage imagen1 = null;
 
+    try {
+        imagen1 = ImageIO.read(new File("DatosAuxiliares/Telefono/reproducir triangulo.png"));
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+    ImageIcon icono1 = new ImageIcon(imagen1.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.06), Image.SCALE_SMOOTH));
+    fondoSiguiente.setIcon(icono1);
 }
 
 private void jButton3MouseEntered(MouseEvent evt) {
+    BufferedImage imagen1 = null;
+
+    try {
+        imagen1 = ImageIO.read(new File("DatosAuxiliares/Telefono/reproducir  triangulo R.png"));
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+    ImageIcon icono1 = new ImageIcon(imagen1.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.06), Image.SCALE_SMOOTH));
+    fondoSiguiente.setIcon(icono1);
 }
 
 private void jButton2ActionPerformed(ActionEvent evt) {
@@ -182,20 +278,71 @@ private void jButton2ActionPerformed(ActionEvent evt) {
 }
 
 private void jButton2MouseExited(MouseEvent evt) {
+    BufferedImage imagen3 = null;
+
+    try {
+        imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/atras.png"));
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+    ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+    salir.setIcon(icono3);
 }
 
 private void jButton2MouseEntered(MouseEvent evt) {
+    BufferedImage imagen3 = null;
+
+    try {
+        imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/atras r.png"));
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+    ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+    salir.setIcon(icono3);
 }
 
 private void jButton1ActionPerformed(ActionEvent evt) {
-    JOptionPane.showMessageDialog(null, "Cancion anterior");
+    BufferedImage imagen = null;
+
+    try {
+        imagen = ImageIO.read(new File(String.valueOf(telefonoL.enviarAnteriorFondo())));
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+    ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.13), (int) (tamPant.height*0.40), Image.SCALE_SMOOTH));
+    muestra.setIcon(icono);
+    revalidate();
+    repaint();
 }
 
 void jButton1MouseExited(MouseEvent evt) {
+    BufferedImage imagen = null;
+
+    try {
+        imagen = ImageIO.read(new File("DatosAuxiliares/Telefono/izquierda triangulo.png"));
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+    ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.06), Image.SCALE_SMOOTH));
+    fondoAnterior.setIcon(icono);
 }
 
 
 private void jButton1MouseEntered(MouseEvent evt) {
+    BufferedImage imagen = null;
+
+    try {
+        imagen = ImageIO.read(new File("DatosAuxiliares/Telefono/izquierda trinagulo R.png"));
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+    ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.06), Image.SCALE_SMOOTH));
+    fondoAnterior.setIcon(icono);
 }
 
 }

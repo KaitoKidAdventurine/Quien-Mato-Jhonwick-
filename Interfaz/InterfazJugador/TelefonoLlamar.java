@@ -84,15 +84,23 @@ public class TelefonoLlamar extends JPanel {
             }
         });
 
-        salir.setText("X");
-        salir.setForeground(Color.black);
-        salir.setFont(new Font("Segoe UI", 0, 24));
+        BufferedImage imagen3 = null;
+
+        try {
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/atras.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        salir.setIcon(icono3);
+
         salir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        salir.setBounds((int) (tamPant.height*0.13), (int) (tamPant.height*0.65),(int) (tamPant.width*0.05), (int) (tamPant.height*0.1));
+        salir.setBounds((int) (tamPant.height*0.11), (int) (tamPant.height*0.66),(int) (tamPant.width*0.05), (int) (tamPant.height*0.07));
 
         add(salir);
 
@@ -133,9 +141,31 @@ public class TelefonoLlamar extends JPanel {
     }
 
     private void jButton2MouseExited(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+
+        try {
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/atras.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        salir.setIcon(icono3);
+
     }
 
     private void jButton2MouseEntered(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+
+        try {
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/atras r.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        salir.setIcon(icono3);
+
     }
 
     private void jButton1ActionPerformed(ActionEvent evt) {

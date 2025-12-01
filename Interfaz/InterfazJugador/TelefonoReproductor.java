@@ -1,6 +1,7 @@
 package Interfaz.InterfazJugador;
 
 import Logica.Reproductor;
+import Logica.Telefono;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -21,8 +22,10 @@ public class TelefonoReproductor extends JPanel {
     private JButton salir;
     private JLabel fondo;
     private JLabel nombreCancion;
-    public TelefonoReproductor(){
+    private Telefono telefonoL;
+    public TelefonoReproductor(Telefono telefonoLogica){
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+        this.telefonoL= telefonoLogica;
         initComponents();
     }
 
@@ -39,64 +42,101 @@ public class TelefonoReproductor extends JPanel {
         setLayout(null);
 
         cancionAnterior.setBorderPainted(false);
-        cancionAnterior.setContentAreaFilled(true);
+        cancionAnterior.setContentAreaFilled(false);
         cancionAnterior.setFocusPainted(false);
         cancionAnterior.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                jButton1MouseEntered(evt);
+                botonAnteriorMouseEntered(evt);
             }
             public void mouseExited(MouseEvent evt) {
-                jButton1MouseExited(evt);
+                botonAnteriorMouseExited(evt);
             }
         });
         cancionAnterior.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonAnteriorActionPerformed(evt);
             }
         });
-        cancionAnterior.setBounds((int) (tamPant.width*0.05), (int) (tamPant.height*0.53),(int) (tamPant.width*0.035), (int) (tamPant.height*0.04));
-        cancionAnterior.setBackground(Color.blue);
+        cancionAnterior.setBounds((int) (tamPant.width*0.045), (int) (tamPant.height*0.53),(int) (tamPant.width*0.045), (int) (tamPant.height*0.05));
+
+        BufferedImage imagen1 = null;
+
+        try {
+            imagen1 = ImageIO.read(new File("DatosAuxiliares/Telefono/anterior.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono1 = new ImageIcon(imagen1.getScaledInstance((int) (tamPant.width*0.045), (int) (tamPant.height*0.05), Image.SCALE_SMOOTH));
+        cancionAnterior.setIcon(icono1);
+
         add(cancionAnterior);
 
 
         cancionSiguiente.setBorderPainted(false);
-        cancionSiguiente.setContentAreaFilled(true);
+        cancionSiguiente.setContentAreaFilled(false);
         cancionSiguiente.setFocusPainted(false);
         cancionSiguiente.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                jButton3MouseEntered(evt);
+                botonSiguienteMouseEntered(evt);
             }
             public void mouseExited(MouseEvent evt) {
-                jButton3MouseExited(evt);
+                botonSiguienteMouseExited(evt);
             }
         });
         cancionSiguiente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                botonSiguienteActionPerformed(evt);
             }
         });
-        cancionSiguiente.setBounds((int) (tamPant.width*0.18), (int) (tamPant.height*0.53),(int) (tamPant.width*0.035), (int) (tamPant.height*0.04));
-        cancionSiguiente.setBackground(Color.blue);
+        cancionSiguiente.setBounds((int) (tamPant.width*0.175), (int) (tamPant.height*0.53),(int) (tamPant.width*0.045), (int) (tamPant.height*0.05));
+
+        BufferedImage imagen2 = null;
+
+        try {
+            imagen2 = ImageIO.read(new File("DatosAuxiliares/Telefono/siguiente.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.045), (int) (tamPant.height*0.05), Image.SCALE_SMOOTH));
+        cancionSiguiente.setIcon(icono2);
+
         add(cancionSiguiente);
 
         pausa.setBorderPainted(false);
-        pausa.setContentAreaFilled(true);
+        pausa.setContentAreaFilled(false);
         pausa.setFocusPainted(false);
         pausa.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                jButton3MouseEntered(evt);
+                botonPausaMouseEntered(evt);
             }
             public void mouseExited(MouseEvent evt) {
-                jButton3MouseExited(evt);
+                botonPausaMouseExited(evt);
             }
         });
         pausa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                botonPausaActionPerformed(evt);
             }
         });
-        pausa.setBounds((int) (tamPant.width*0.115), (int) (tamPant.height*0.53),(int) (tamPant.width*0.035), (int) (tamPant.height*0.04));
-        pausa.setBackground(Color.blue);
+        pausa.setBounds((int) (tamPant.width*0.11), (int) (tamPant.height*0.53),(int) (tamPant.width*0.045), (int) (tamPant.height*0.05));
+
+        BufferedImage imagen3 = null;
+
+        try {
+            if(Reproductor.getInstancia().isEnReproduccion()) {
+                imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/pausa.png"));
+            }else{
+                imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/reproducir triangulo.png"));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.045), (int) (tamPant.height*0.05), Image.SCALE_SMOOTH));
+        pausa.setIcon(icono3);
+
         add(pausa);
 
         salir.setBorderPainted(false);
@@ -104,29 +144,36 @@ public class TelefonoReproductor extends JPanel {
         salir.setFocusPainted(false);
         salir.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                jButton2MouseEntered(evt);
+                botonSalirMouseEntered(evt);
             }
             public void mouseExited(MouseEvent evt) {
-                jButton2MouseExited(evt);
+                botonSalirMouseExited(evt);
             }
         });
 
-        salir.setText("X");
-        salir.setForeground(Color.black);
-        salir.setFont(new Font("Segoe UI", 0, 24));
+        BufferedImage imagen6 = null;
+
+        try {
+            imagen6 = ImageIO.read(new File("DatosAuxiliares/Telefono/atras.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono6 = new ImageIcon(imagen6.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        salir.setIcon(icono6);
         salir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonSalirActionPerformed(evt);
             }
         });
-        salir.setBounds((int) (tamPant.height*0.13), (int) (tamPant.height*0.65),(int) (tamPant.width*0.05), (int) (tamPant.height*0.1));
+        salir.setBounds((int) (tamPant.height*0.11), (int) (tamPant.height*0.66),(int) (tamPant.width*0.05), (int) (tamPant.height*0.07));
 
         add(salir);
 
         BufferedImage imagen = null;
 
         try {
-            imagen = ImageIO.read(new File("DatosAuxiliares/Telefono/Fondo Simple.png"));
+            imagen = ImageIO.read(new File("DatosAuxiliares/Telefono/reproductor.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -135,8 +182,8 @@ public class TelefonoReproductor extends JPanel {
         fondo.setIcon(icono);
         fondo.setBounds((int) (tamPant.width*0.005),0, (int) (tamPant.width*0.255), (int) (tamPant.height*0.72));
 
-        nombreCancion.setText("Nombre de la Cancion verdadera");
-        nombreCancion.setBounds((int) (tamPant.width*0.02),(int) (tamPant.height*0.27), (int) (tamPant.width*0.228), (int) (tamPant.height*0.1));
+        nombreCancion.setText(Reproductor.getInstancia().nombreDeLaCancionActual());
+        nombreCancion.setBounds((int) (tamPant.width*0.02),(int) (tamPant.height*0.42), (int) (tamPant.width*0.228), (int) (tamPant.height*0.1));
         nombreCancion.setFont(new java.awt.Font("Segoe UI", 0, (int)(tamPant.width*0.014)));
         nombreCancion.setForeground(Color.WHITE);
         nombreCancion.setHorizontalAlignment(SwingConstants.CENTER);
@@ -145,18 +192,67 @@ public class TelefonoReproductor extends JPanel {
 
     }
 
-    private void jButton3ActionPerformed(ActionEvent evt) {
-        Reproductor.getInstancia().cambiarMusicaSiguiente();
+    private void botonPausaActionPerformed(ActionEvent evt) {
+       boolean activo = Reproductor.getInstancia().isEnReproduccion();
+
+        BufferedImage imagen3 = null;
+        try {
+            if(activo==true) {
+                imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/reproducir triangulo.png"));
+                Reproductor.getInstancia().desactivarMusica();
+            }else{
+                imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/pausa.png"));
+                Reproductor.getInstancia().activarMusica();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.045), (int) (tamPant.height*0.05), Image.SCALE_SMOOTH));
+        pausa.setIcon(icono3);
+        revalidate();
+        repaint();
+
     }
 
-    private void jButton3MouseExited(MouseEvent evt) {
+    private void botonPausaMouseEntered(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+
+        try {
+            if(Reproductor.getInstancia().isEnReproduccion()) {
+                imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/pausa r.png"));
+            }else{
+                imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/reproducir  triangulo R.png"));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.045), (int) (tamPant.height*0.05), Image.SCALE_SMOOTH));
+        pausa.setIcon(icono3);
 
     }
 
-    private void jButton3MouseEntered(MouseEvent evt) {
+    private void botonPausaMouseExited(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+
+        try {
+            if(Reproductor.getInstancia().isEnReproduccion()) {
+                imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/pausa.png"));
+            }else{
+                imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/reproducir triangulo.png"));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.045), (int) (tamPant.height*0.05), Image.SCALE_SMOOTH));
+        pausa.setIcon(icono3);
     }
 
-    private void jButton2ActionPerformed(ActionEvent evt) {
+
+
+    private void botonSalirActionPerformed(ActionEvent evt) {
         getParent().getComponent(0).setVisible(true);
         getParent().getComponent(1).setVisible(false);
         getParent().revalidate();
@@ -165,21 +261,102 @@ public class TelefonoReproductor extends JPanel {
 
     }
 
-    private void jButton2MouseExited(MouseEvent evt) {
+    private void botonSalirMouseEntered(MouseEvent evt) {
+        BufferedImage imagen6 = null;
+
+        try {
+            imagen6 = ImageIO.read(new File("DatosAuxiliares/Telefono/atras r.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono6 = new ImageIcon(imagen6.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        salir.setIcon(icono6);
     }
 
-    private void jButton2MouseEntered(MouseEvent evt) {
+    private void botonSalirMouseExited(MouseEvent evt) {
+        BufferedImage imagen6 = null;
+
+        try {
+            imagen6 = ImageIO.read(new File("DatosAuxiliares/Telefono/atras.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono6 = new ImageIcon(imagen6.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        salir.setIcon(icono6);
     }
 
-    private void jButton1ActionPerformed(ActionEvent evt) {
-        JOptionPane.showMessageDialog(null, "Cancion anterior");
+    private void botonSiguienteActionPerformed(ActionEvent evt) {
+        Reproductor.getInstancia().cambiarMusicaSiguiente();
+        nombreCancion.setText(Reproductor.getInstancia().nombreDeLaCancionActual());
+        revalidate();
+        repaint();
     }
 
-    void jButton1MouseExited(MouseEvent evt) {
+
+    private void botonSiguienteMouseEntered(MouseEvent evt) {
+        BufferedImage imagen2 = null;
+
+        try {
+            imagen2 = ImageIO.read(new File("DatosAuxiliares/Telefono/siguiente r.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.045), (int) (tamPant.height*0.05), Image.SCALE_SMOOTH));
+        cancionSiguiente.setIcon(icono2);
+    }
+
+    private void botonSiguienteMouseExited(MouseEvent evt) {
+        BufferedImage imagen2 = null;
+
+        try {
+            imagen2 = ImageIO.read(new File("DatosAuxiliares/Telefono/siguiente.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.045), (int) (tamPant.height*0.05), Image.SCALE_SMOOTH));
+        cancionSiguiente.setIcon(icono2);
+
     }
 
 
-    private void jButton1MouseEntered(MouseEvent evt) {
+    private void botonAnteriorActionPerformed(ActionEvent evt) {
+        Reproductor.getInstancia().cambiarMusicaAnterioPorIndice();
+        nombreCancion.setText(Reproductor.getInstancia().nombreDeLaCancionActual());
+        revalidate();
+        repaint();
     }
+
+    private void botonAnteriorMouseEntered(MouseEvent evt) {
+        BufferedImage imagen1 = null;
+
+        try {
+            imagen1 = ImageIO.read(new File("DatosAuxiliares/Telefono/anterior r.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono1 = new ImageIcon(imagen1.getScaledInstance((int) (tamPant.width*0.045), (int) (tamPant.height*0.05), Image.SCALE_SMOOTH));
+        cancionAnterior.setIcon(icono1);
+    }
+
+    void botonAnteriorMouseExited(MouseEvent evt) {
+        BufferedImage imagen1 = null;
+
+        try {
+            imagen1 = ImageIO.read(new File("DatosAuxiliares/Telefono/anterior.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono1 = new ImageIcon(imagen1.getScaledInstance((int) (tamPant.width*0.045), (int) (tamPant.height*0.05), Image.SCALE_SMOOTH));
+        cancionAnterior.setIcon(icono1);
+    }
+
+
+
 
 }

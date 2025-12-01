@@ -1,5 +1,8 @@
 package Interfaz.InterfazJugador;
 
+import Logica.Jugador;
+import Logica.Telefono;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +23,8 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
 
     private Timer timer;
     private TimerTask tarea;
+    private Telefono telefonoLogica;
+    private JButton apagar;
 
     /**
      * Creates new form MenuInterno
@@ -27,6 +32,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
     public TelefonoInterfaz(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+        telefonoLogica = Jugador.getInstancia().getTelefono();
         initComponents();
 
         timer = new Timer();
@@ -49,6 +55,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         salir = new JButton();
         telefono = new JLabel();
         fondo = new JLabel();
+        apagar = new JButton();
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -104,7 +111,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         });
         ajustes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton2ActionPerformed(evt, telefonoLogica, fondo);
             }
         });
         BufferedImage imagen2 = null;
@@ -134,7 +141,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         });
         canciones.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton3ActionPerformed(evt, telefonoLogica);
             }
         });
 
@@ -154,7 +161,28 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         salir.setBorderPainted(false);
         salir.setContentAreaFilled(false);
         salir.setFocusPainted(false);
-       salir.addMouseListener(new MouseAdapter() {
+        pantalla.add(salir);
+
+        BufferedImage imagen6 = null;
+
+        try {
+            imagen6 = ImageIO.read(new File("DatosAuxiliares/Telefono/atras.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono6 = new ImageIcon(imagen6.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        salir.setIcon(icono6);
+        salir.setBounds((int) (tamPant.height*0.11), (int) (tamPant.height*0.66),(int) (tamPant.width*0.05), (int) (tamPant.height*0.07));
+
+        pantalla.add(salir);
+
+
+
+        apagar.setBorderPainted(false);
+        apagar.setContentAreaFilled(false);
+        apagar.setFocusPainted(false);
+        apagar.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 jButton4MouseEntered(evt);
             }
@@ -162,16 +190,26 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
                 jButton4MouseExited(evt);
             }
         });
-        salir.addActionListener(new ActionListener() {
+        apagar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        salir.setBounds((int) (tamPant.width*0.05), (int) (tamPant.height*0.44),(int) (tamPant.width*0.3), (int) (tamPant.height*0.065));
-        pantalla.add(salir);
+        apagar.setBounds((int) (tamPant.width*0.16), (int) (tamPant.height*0.66),(int) (tamPant.width*0.05), (int) (tamPant.height*0.07));
 
 
 
+        BufferedImage imagen7 = null;
+
+        try {
+            imagen7 = ImageIO.read(new File("DatosAuxiliares/Telefono/apagar.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono7 = new ImageIcon(imagen7.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        apagar.setIcon(icono7);
+        pantalla.add(apagar);
 
         BufferedImage imagen = null;
 
@@ -188,7 +226,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         BufferedImage imagen5 = null;
 
         try {
-            imagen5 = ImageIO.read(new File("DatosAuxiliares/Telefono/Fondo Simple.png"));
+            imagen5 = ImageIO.read(new File(String.valueOf(telefonoLogica.getFondoDePantalla())));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -242,8 +280,8 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
     }
 
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        TelefonoAjustes ajustesT = new TelefonoAjustes();
+    private void jButton2ActionPerformed(ActionEvent evt, Telefono telefonoLogica, JLabel fondo) {
+        TelefonoAjustes ajustesT = new TelefonoAjustes(telefonoLogica, fondo);
         ajustesT.setBounds((int) (tamPant.width*0.16), (int) (tamPant.height*0.03), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
         add(ajustesT, 1);
         pantalla.setVisible(false);
@@ -279,8 +317,8 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
     }
 
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
-        TelefonoReproductor reproductorT = new TelefonoReproductor();
+    private void jButton3ActionPerformed(ActionEvent evt, Telefono telefonoLogica) {
+        TelefonoReproductor reproductorT = new TelefonoReproductor(telefonoLogica);
         reproductorT.setBounds((int) (tamPant.width*0.16), (int) (tamPant.height*0.03), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
         add(reproductorT, 1);
         pantalla.setVisible(false);
@@ -314,15 +352,33 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
     }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-
+       this.dispose();
     }
 
     private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {
+        BufferedImage imagen7 = null;
 
+        try {
+            imagen7 = ImageIO.read(new File("DatosAuxiliares/Telefono/apagrar r.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono7 = new ImageIcon(imagen7.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        apagar.setIcon(icono7);
     }
 
     private void jButton4MouseExited(java.awt.event.MouseEvent evt) {
+        BufferedImage imagen7 = null;
 
+        try {
+            imagen7 = ImageIO.read(new File("DatosAuxiliares/Telefono/apagar.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono7 = new ImageIcon(imagen7.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        apagar.setIcon(icono7);
     }
 
 
