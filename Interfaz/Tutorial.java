@@ -1,6 +1,7 @@
-package Interfaz.InterfazJugador;
+package Interfaz;
 
-
+import Interfaz.InterfazJugador.CuadroTexto;
+import Interfaz.MiniJuego.MinijuegoInterfaz;
 import DatosAuxiliaresLogica.EfectosEspeciales;
 import Logica.*;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
@@ -106,6 +107,7 @@ public class Tutorial extends JFrame {
            cajaTexto.removeAll();
            crearMinijuego();
            timer.schedule(tarea, 5000);
+           cajaTexto.setVisible(false);
 
         }
 
@@ -148,6 +150,7 @@ public class Tutorial extends JFrame {
     public void ponerFondoParte1(){
         try {
             BufferedImage imagen = null;
+
             switch (nivelActualDial) {
                 case 0:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Escena 1.jpg"));
@@ -164,28 +167,24 @@ public class Tutorial extends JFrame {
                 case 9:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Escena 5.png"));
                     break;
-                case 17: {
+                case 17:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Escena 6.jpg"));
                     break;
-                }
-                case 34: {
+                case 34:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Escena Auto.jpg"));
                     EfectosEspeciales e = EfectosEspeciales.getInstancia();
                     e.efectoDeLluvia();
                     break;
-                }
-                case 43: {
+                case 43:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por afuera.jpg"));
-                    EfectosEspeciales e = EfectosEspeciales.getInstancia();
-                    e.detenerEfecto();
+                    EfectosEspeciales e1 = EfectosEspeciales.getInstancia();
+                    e1.detenerEfecto();
                     break;
-                }
-                case 61: {
+                case 61:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por dentro.jpg"));
-                    EfectosEspeciales e = EfectosEspeciales.getInstancia();
-                    e.detenerEfecto();
+                    EfectosEspeciales e2 = EfectosEspeciales.getInstancia();
+                    e2.detenerEfecto();
                     break;
-                }
                 case 76:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/pasillo 1.jpg"));
                     break;
@@ -814,7 +813,7 @@ public class Tutorial extends JFrame {
         ObjetoEscenario ob9 = new ObjetoEscenario("Herida Grande", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida grande.png"), 0.55F, 0.9F, 0.1F, 0.1F, false, "nada");
         ObjetoEscenario ob10 = new ObjetoEscenario("Laptop", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Laptop.png"), 0.27F, 0.33F, 0.18F, 0.1F, false, "nada");
         ObjetoEscenario ob11 = new ObjetoEscenario("Cigarros", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/cigarros.png"), 0.62F, 0.2F, 0.19F, 0.1F, false, "nada");
-        ObjetoEscenario ob12 = new ObjetoEscenario("Herida pequeña", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida pequeña.png"), 012.F, 0.27F, 0.1F, 0.1F, true, "nada");
+        ObjetoEscenario ob12 = new ObjetoEscenario("Herida pequeña", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida pequeña.png"), 0.12F, 0.77F, 0.1F, 0.1F, true, "nada");
 
         minijuego.agregarObjetoCola(ob1);
         minijuego.agregarObjetoCola(ob2);
@@ -876,4 +875,5 @@ public class Tutorial extends JFrame {
 
     // End of variables declaration//GEN-END:variables
 }
+
 

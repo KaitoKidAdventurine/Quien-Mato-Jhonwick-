@@ -1,4 +1,4 @@
-package Interfaz.InterfazJugador;
+package Interfaz.MiniJuego;
 
 import Logica.MiniJuego;
 import Logica.ObjetoEscenario;
@@ -127,8 +127,10 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
                  repaint();
              }else{
                  getParent().getComponent(0).setVisible(false);
+                 getParent().getComponent(1).setVisible(true);
                  getParent().revalidate();
                  getParent().repaint();
+
                  getParent().remove(0);
 
 

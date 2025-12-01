@@ -179,7 +179,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(botonCreditos);
 
-        fondo.setFont(new java.awt.Font("Script MT Bold", 1, 12)); // NOI18N
         fondo.setIcon(new javax.swing.ImageIcon("DatosAuxiliares/Fondo presentacion.jpeg")); // NOI18N
         fondo.setText("jLabel1");
         fondo.setMaximumSize(tamPant);

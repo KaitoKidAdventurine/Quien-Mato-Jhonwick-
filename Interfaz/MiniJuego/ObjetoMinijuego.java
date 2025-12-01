@@ -1,4 +1,4 @@
-package Interfaz.InterfazJugador;
+package Interfaz.MiniJuego;
 
 public class ObjetoMinijuego extends javax.swing.JButton{
     private String nombreObjeto;
