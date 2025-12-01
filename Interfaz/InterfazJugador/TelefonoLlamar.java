@@ -15,6 +15,7 @@ public class TelefonoLlamar extends JPanel {
     private Dimension tamPant;
     private JButton llamarJefe;
     private JButton llamarOtro;
+    private JButton apagar;
     private JButton salir;
     private JLabel contactos;
     public TelefonoLlamar(){
@@ -27,6 +28,7 @@ public class TelefonoLlamar extends JPanel {
         salir = new JButton();
         contactos = new JLabel();
         llamarOtro = new JButton();
+        apagar= new JButton();
         setBackground(new Color(0, 0, 0, 0));
         setLayout(null);
 
@@ -116,9 +118,28 @@ public class TelefonoLlamar extends JPanel {
         contactos.setIcon(icono);
         contactos.setBounds((int) (tamPant.width*0.005),0, (int) (tamPant.width*0.255), (int) (tamPant.height*0.72));
 
+        apagar.setBorderPainted(false);
+        apagar.setContentAreaFilled(false);
+        apagar.setFocusPainted(false);
+        apagar.setBounds((int) (tamPant.width*0.16), (int) (tamPant.height*0.66),(int) (tamPant.width*0.05), (int) (tamPant.height*0.07));
+
+        BufferedImage imagen7 = null;
+
+        try {
+            imagen7 = ImageIO.read(new File("DatosAuxiliares/Telefono/apagar.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono7 = new ImageIcon(imagen7.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        apagar.setIcon(icono7);
+        add(apagar);
+
         add(contactos);
 
     }
+
+
 
     private void jButton3ActionPerformed(ActionEvent evt) {
         JOptionPane.showMessageDialog(null, "No creo que sea buena idea llamarlo a esta hora");

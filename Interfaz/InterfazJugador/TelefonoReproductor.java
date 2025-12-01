@@ -22,10 +22,10 @@ public class TelefonoReproductor extends JPanel {
     private JButton salir;
     private JLabel fondo;
     private JLabel nombreCancion;
-    private Telefono telefonoL;
+    private JButton apagar;
     public TelefonoReproductor(Telefono telefonoLogica){
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
-        this.telefonoL= telefonoLogica;
+
         initComponents();
     }
 
@@ -36,7 +36,7 @@ public class TelefonoReproductor extends JPanel {
         nombreCancion = new JLabel();
         cancionSiguiente = new JButton();
         pausa = new JButton();
-
+        apagar = new JButton();
 
         setBackground(new Color(0, 0, 0, 0));
         setLayout(null);
@@ -188,6 +188,24 @@ public class TelefonoReproductor extends JPanel {
         nombreCancion.setForeground(Color.WHITE);
         nombreCancion.setHorizontalAlignment(SwingConstants.CENTER);
         add(nombreCancion);
+
+        apagar.setBorderPainted(false);
+        apagar.setContentAreaFilled(false);
+        apagar.setFocusPainted(false);
+        apagar.setBounds((int) (tamPant.width*0.16), (int) (tamPant.height*0.66),(int) (tamPant.width*0.05), (int) (tamPant.height*0.07));
+
+        BufferedImage imagen7 = null;
+
+        try {
+            imagen7 = ImageIO.read(new File("DatosAuxiliares/Telefono/apagar.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ImageIcon icono7 = new ImageIcon(imagen7.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        apagar.setIcon(icono7);
+        add(apagar);
+
         add(fondo);
 
     }

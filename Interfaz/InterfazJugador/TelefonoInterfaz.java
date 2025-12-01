@@ -197,8 +197,6 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         });
         apagar.setBounds((int) (tamPant.width*0.16), (int) (tamPant.height*0.66),(int) (tamPant.width*0.05), (int) (tamPant.height*0.07));
 
-
-
         BufferedImage imagen7 = null;
 
         try {

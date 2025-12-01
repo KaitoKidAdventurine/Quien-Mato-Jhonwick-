@@ -25,11 +25,13 @@ public class TelefonoAjustes extends JPanel{
     private JLabel nombreM;
     private Telefono telefonoL;
     private JLabel fondoTelefono;
+    private JButton apagar;
 
     public TelefonoAjustes(Telefono telefonoLogica, JLabel fondoT) {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         this.telefonoL = telefonoLogica;
         this.fondoTelefono = fondoT;
+
         initComponents();
 
     }
@@ -41,7 +43,7 @@ private void initComponents() {
     fondoSiguiente = new JButton();
     ponerFondo = new JButton();
     nombreM = new JLabel();
-
+apagar = new JButton();
 
     setBackground(new Color(0, 0, 0, 0));
     setLayout(null);
@@ -193,13 +195,29 @@ private void initComponents() {
     muestra.setBounds((int) (tamPant.width*0.0675),(int) (tamPant.height*0.19),  (int) (tamPant.width*0.13), (int) (tamPant.height*0.4));
     add(muestra);
 
-    nombreM.setText("Actual");
+    nombreM.setText(telefonoL.getNomFondoActual());
     nombreM.setBounds((int) (tamPant.width*0.02),(int) (tamPant.height*0.1), (int) (tamPant.width*0.228), (int) (tamPant.height*0.1));
     nombreM.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.014)));
     nombreM.setForeground(Color.WHITE);
     nombreM.setHorizontalAlignment(SwingConstants.CENTER);
     add(nombreM);
 
+    apagar.setBorderPainted(false);
+    apagar.setContentAreaFilled(false);
+    apagar.setFocusPainted(false);
+    apagar.setBounds((int) (tamPant.width*0.16), (int) (tamPant.height*0.66),(int) (tamPant.width*0.05), (int) (tamPant.height*0.07));
+
+    BufferedImage imagen7 = null;
+
+    try {
+        imagen7 = ImageIO.read(new File("DatosAuxiliares/Telefono/apagar.png"));
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+    ImageIcon icono7 = new ImageIcon(imagen7.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+    apagar.setIcon(icono7);
+    add(apagar);
 
     add(fondo);
 }
@@ -238,6 +256,7 @@ private void initComponents() {
 
         ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.13), (int) (tamPant.height*0.40), Image.SCALE_SMOOTH));
         muestra.setIcon(icono);
+        nombreM.setText(telefonoL.getNomFondoActual());
         revalidate();
         repaint();
 }
