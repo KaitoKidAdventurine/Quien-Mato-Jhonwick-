@@ -11,6 +11,8 @@ public class Telefono {
     private ArrayList<Fondos> fondos;
     private int fondoActual;
     private int indiceDeCambio;
+    private String nomFondoActual;
+    private String nomFondoIndice;
 
 
     // Constructor
@@ -23,6 +25,40 @@ public class Telefono {
 
 
     // Get y Set
+
+
+    public int getFondoActual() {
+        return fondoActual;
+    }
+
+    public void setFondoActual(int fondoActual) {
+        this.fondoActual = fondoActual;
+    }
+
+    public int getIndiceDeCambio() {
+        return indiceDeCambio;
+    }
+
+    public void setIndiceDeCambio(int indiceDeCambio) {
+        this.indiceDeCambio = indiceDeCambio;
+    }
+
+    public String getNomFondoActual() {
+        return nomFondoActual;
+    }
+
+    public void setNomFondoActual(String nomFondoActual) {
+        this.nomFondoActual = nomFondoActual;
+    }
+
+    public String getNomFondoIndice() {
+        return nomFondoIndice;
+    }
+
+    public void setNomFondoIndice(String nomFondoIndice) {
+        this.nomFondoIndice = nomFondoIndice;
+    }
+
     public ImageIcon getFondoDePantalla() {
         return fondoDePantalla;
     }
@@ -113,6 +149,8 @@ public class Telefono {
             fondoActual = i;
             indiceDeCambio = fondoActual;
             fondoDePantalla = fondos.get(fondoActual).getImagen();
+            nomFondoIndice = fondos.get(fondoActual).getNombre();
+            nomFondoActual = nomFondoIndice;
         } catch (Exception e) {
             System.err.println("Error cambiando la imagen del telefono: " + e.getMessage());
         }
@@ -135,36 +173,32 @@ public class Telefono {
 
     public ImageIcon enviarSiguienteFondo()
     {
-        ImageIcon imagen = new ImageIcon();
-
         if(indiceDeCambio == fondos.size()-1)
         {
             indiceDeCambio = 0;
-            imagen = fondos.get(indiceDeCambio).getImagen();
         }
+
         else
         {
             indiceDeCambio++;
-            imagen = fondos.get(indiceDeCambio).getImagen();
         }
-        return imagen;
+        nomFondoIndice = fondos.get(indiceDeCambio).getNombre();
+        return fondos.get(indiceDeCambio).getImagen();
     }
 
     public ImageIcon enviarAnteriorFondo()
     {
-        ImageIcon imagen = new ImageIcon();
         if(indiceDeCambio == 0)
         {
             indiceDeCambio = fondos.size()-1;
-            imagen = fondos.get(indiceDeCambio).getImagen();
         }
 
         else
         {
             indiceDeCambio--;
-            imagen = fondos.get(indiceDeCambio).getImagen();
         }
-        return imagen;
+        nomFondoIndice = fondos.get(indiceDeCambio).getNombre();
+        return fondos.get(indiceDeCambio).getImagen();
     }
 
     public void colocarFondoActual()
