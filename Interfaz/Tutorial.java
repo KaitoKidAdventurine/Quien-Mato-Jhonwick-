@@ -1,5 +1,4 @@
-package Interfaz.InterfazJugador;
-
+package Interfaz;
 
 import Interfaz.InterfazJugador.CuadroTexto;
 import Interfaz.MiniJuego.MinijuegoInterfaz;
@@ -178,13 +177,13 @@ public class Tutorial extends JFrame {
                     break;
                 case 43:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por afuera.jpg"));
-                    EfectosEspeciales e = EfectosEspeciales.getInstancia();
-                    e.detenerEfecto();
+                    EfectosEspeciales e1 = EfectosEspeciales.getInstancia();
+                    e1.detenerEfecto();
                     break;
                 case 61:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por dentro.jpg"));
-                    EfectosEspeciales e = EfectosEspeciales.getInstancia();
-                    e.detenerEfecto();
+                    EfectosEspeciales e2 = EfectosEspeciales.getInstancia();
+                    e2.detenerEfecto();
                     break;
                 case 76:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/pasillo 1.jpg"));
@@ -876,4 +875,5 @@ public class Tutorial extends JFrame {
 
     // End of variables declaration//GEN-END:variables
 }
+
 
