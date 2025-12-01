@@ -32,60 +32,32 @@ public class Escenario {
         this.posList = posList;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public boolean isInvestigado() { return investigado; }
+    public void setInvestigado(boolean investigado) { this.investigado = investigado; }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+    public ArrayList<Interactuable> getInteractuables() { return interactuables; }
+    public void setInteractuables(ArrayList<Interactuable> interactuables) { this.interactuables = interactuables; }
 
-    public boolean isInvestigado() {
-        return investigado;
-    }
-
-    public void setInvestigado(boolean investigado) {
-        this.investigado = investigado;
-    }
-
-    public ArrayList<Interactuable> getInteractuables() {
-        return interactuables;
-    }
-
-    public void setInteractuables(ArrayList<Interactuable> interactuables) {
-        this.interactuables = interactuables;
-    }
-
-    public void investigar() {
-    }
-
+    public void investigar() {}
     public void agregarInteractuable(Interactuable i) {
         interactuables.add(i);
     }
 
-    public GeneralTree<Dialogo> getArbolDial() {
-        return arbolDial;
-    }
+    public GeneralTree<Dialogo> getArbolDial() { return arbolDial; }
 
     public void setArbolDial(GeneralTree<Dialogo> arbolDial) {
         this.arbolDial = arbolDial;
+        this.nodoDialActual = null;    //Para restaurar arbol original o tomar otro arbol para un escenario, evitando complejidad de la estructura jerárquica.
     }
 
-    public Dialogo getDialogoActual() {
-        return nodoDialActual.getInfo();
-    }
-
-    public BinaryTreeNode<Dialogo> getNodoDialActual() {
-        return nodoDialActual;
-    }
+    public Dialogo getDialogoActual() { return nodoDialActual.getInfo(); }
+    public BinaryTreeNode<Dialogo> getNodoDialActual() { return nodoDialActual; }
 
     public Dialogo getDialogoSiguiente(int opcionElegida) {
         int cantOpciones;
@@ -99,7 +71,7 @@ public class Escenario {
             }
 
             //opcionElegida también es representado como la cantidad de llamadas getRight() para hallar el diálogoo que debe mostrarse.
-            for (; opcionElegida >= 2; opcionElegida--) {
+            for ( ; opcionElegida >= 2; opcionElegida--) {
                 nodoDialActual = nodoDialActual.getRight();
             }
 
@@ -110,8 +82,9 @@ public class Escenario {
             if (!(nodoDialActual.getInfo().isRevelable())) {
                 nodoDialActual = arbolDial.getFather(nodoDialActual);
             }
-        } else if (nodoDialActual == null) {
-            nodoDialActual = (BinaryTreeNode<Dialogo>) arbolDial.getRoot();
+        }
+        else if (nodoDialActual == null) {
+            nodoDialActual = (BinaryTreeNode<Dialogo>)arbolDial.getRoot();
         }
 
         return nodoDialActual.getInfo();

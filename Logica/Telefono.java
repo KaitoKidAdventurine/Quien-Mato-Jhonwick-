@@ -1,19 +1,62 @@
 package Logica;
 
+import DatosAuxiliaresLogica.Fondos;
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
 
-// Falta lo de poder llamar al jefe. Que asumo que sera un arbol
+
 public class Telefono {
 
     private ImageIcon fondoDePantalla;
-    private ArrayList<ImageIcon> fondos;
+    private ArrayList<Fondos> fondos;
+    private int fondoActual;
+    private int indiceDeCambio;
+    private String nomFondoActual;
+    private String nomFondoIndice;
 
+
+    // Constructor
     public Telefono() {
-        this.fondos = new ArrayList<ImageIcon>();
+        this.fondos = new ArrayList<Fondos>();
+        inicializarFondos();
+        fondoActual = 0;
+        fondoDePantalla = fondos.get(fondoActual).getImagen();
+    }
+
+
+    // Get y Set
+
+
+    public int getFondoActual() {
+        return fondoActual;
+    }
+
+    public void setFondoActual(int fondoActual) {
+        this.fondoActual = fondoActual;
+    }
+
+    public int getIndiceDeCambio() {
+        return indiceDeCambio;
+    }
+
+    public void setIndiceDeCambio(int indiceDeCambio) {
+        this.indiceDeCambio = indiceDeCambio;
+    }
+
+    public String getNomFondoActual() {
+        return nomFondoActual;
+    }
+
+    public void setNomFondoActual(String nomFondoActual) {
+        this.nomFondoActual = nomFondoActual;
+    }
+
+    public String getNomFondoIndice() {
+        return nomFondoIndice;
+    }
+
+    public void setNomFondoIndice(String nomFondoIndice) {
+        this.nomFondoIndice = nomFondoIndice;
     }
 
     public ImageIcon getFondoDePantalla() {
@@ -24,20 +67,20 @@ public class Telefono {
         this.fondoDePantalla = fondoDePantalla;
     }
 
-    public ArrayList<ImageIcon> getFondos() {
+    public ArrayList<Fondos> getFondos() {
         return fondos;
     }
 
-    public void setFondos(ArrayList<ImageIcon> fondos) {
+    public void setFondos(ArrayList<Fondos> fondos) {
         this.fondos = fondos;
     }
 
 
 
-
-    public void agregarFondos(ImageIcon i)
+    // Metodos
+    public void agregarFondos(Fondos f)
     {
-        fondos.add(i);
+        fondos.add(f);
     }
 
     public void bajarVolumen()
@@ -57,17 +100,111 @@ public class Telefono {
         Reproductor reproductor = Reproductor.getInstancia();
         reproductor.cambiarMusicaNombre(nombre);
     }
+
     public void desactivarMusica()
     {
         Reproductor reproductor = Reproductor.getInstancia();
         reproductor.desactivarMusica();
     }
+
     public void activarMusica()
     {
         Reproductor reproductor = Reproductor.getInstancia();
         reproductor.activarMusica();
     }
 
+    public void inicializarFondos()
+    {
+        agregarFondos(new Fondos("Auto",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Auto.jpg")));
+        agregarFondos(new Fondos("Carretera",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Carretera.jpg")));
+        agregarFondos(new Fondos("Cielo Estrellado",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Cielo Estrellado.jpeg")));
+        agregarFondos(new Fondos("Gatos",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Gatos.jpg")));
+        agregarFondos(new Fondos("Luna",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Luna.jpeg")));
+        agregarFondos(new Fondos("Luna Rompiendo El Cielo",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Luna Rompiendo El Cielo.jpeg")));
+        agregarFondos(new Fondos("Montannas",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Montannas.jpg")));
+        agregarFondos(new Fondos("Naruto",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Naruto.jpg")));
+        agregarFondos(new Fondos("Noche Montannas",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Noche Montannas.jpg")));
+        agregarFondos(new Fondos("Nubes y Montannas",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Nubes y Montanna.jpeg")));
+        agregarFondos(new Fondos("Torre Eiffel",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Torre Eiffel.jpg")));
+        agregarFondos(new Fondos("Fondo Simple",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Fondo Simple.png")));
+        agregarFondos(new Fondos("Bosque Misitico",new ImageIcon("DatosAuxiliares/Fondos De Pantalla Telefono/Fondo Mistico.png")));
 
+    }
 
+    public void buscarPorNombre(String nom)
+    {
+        try {
+            boolean encontrado = false;
+            for (int i = 0; i < fondos.size() && !encontrado; i++) {
+                if (fondos.get(i).getNombre().equals(nom)) {
+                    encontrado = true;
+                    fondoDePantalla = fondos.get(i).getImagen();
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public void cambiarFondoIndice(int i) {
+        try {
+            fondoActual = i;
+            indiceDeCambio = fondoActual;
+            fondoDePantalla = fondos.get(fondoActual).getImagen();
+            nomFondoIndice = fondos.get(fondoActual).getNombre();
+            nomFondoActual = nomFondoIndice;
+        } catch (Exception e) {
+            System.err.println("Error cambiando la imagen del telefono: " + e.getMessage());
+        }
+    }
+
+    public void cambiarSiguienteFondo()
+    {
+        if (fondoActual == fondos.size() - 1) {
+            cambiarFondoIndice(0);
+        }
+        cambiarFondoIndice(fondoActual + 1);
+    }
+
+    public void cambiarFondoAnterioPorIndice() {
+        if (fondoActual == 0 ) {
+            cambiarFondoIndice(fondos.size()-1);
+        }
+        cambiarFondoIndice(fondoActual - 1);
+    }
+
+    public ImageIcon enviarSiguienteFondo()
+    {
+        if(indiceDeCambio == fondos.size()-1)
+        {
+            indiceDeCambio = 0;
+        }
+
+        else
+        {
+            indiceDeCambio++;
+        }
+        nomFondoIndice = fondos.get(indiceDeCambio).getNombre();
+        return fondos.get(indiceDeCambio).getImagen();
+    }
+
+    public ImageIcon enviarAnteriorFondo()
+    {
+        if(indiceDeCambio == 0)
+        {
+            indiceDeCambio = fondos.size()-1;
+        }
+
+        else
+        {
+            indiceDeCambio--;
+        }
+        nomFondoIndice = fondos.get(indiceDeCambio).getNombre();
+        return fondos.get(indiceDeCambio).getImagen();
+    }
+
+    public void colocarFondoActual()
+    {
+        cambiarFondoIndice(indiceDeCambio);
+    }
 }

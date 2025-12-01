@@ -1,6 +1,7 @@
 package Logica;
 import Interfaz.Escenarios.Almacen;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +24,7 @@ public class Partida
         {
             instancia = new Partida();
         }
+
         return instancia;
     }
 
@@ -128,5 +130,14 @@ public class Partida
     {}
     public void cargarPartida()
     {}
+
+    public Jugador getJugador() {
+
+        return jugador;
+    }
+
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
 }
 

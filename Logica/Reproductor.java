@@ -257,6 +257,7 @@ public class Reproductor {
 
 
     public void cambiarMusicaSiguiente() {
+        indiceDeAntesDeCambio = indiceActual;
         if (indiceActual == canciones.size() - 1) {
             cambiarMusicaIndice(0);
         }
@@ -353,5 +354,18 @@ public class Reproductor {
     public void cambiarMusicaAnterior()
     {
         cambiarMusicaIndice(indiceDeAntesDeCambio);
+    }
+
+    public String nombreDeLaCancionActual()
+    {
+        return canciones.get(indiceActual).getNombre();
+    }
+
+    public void cambiarMusicaAnterioPorIndice() {
+        indiceDeAntesDeCambio = indiceActual;
+        if (indiceActual == 0 ) {
+            cambiarMusicaIndice(canciones.size()-1);
+        }
+        cambiarMusicaIndice(indiceActual - 1);
     }
 }
