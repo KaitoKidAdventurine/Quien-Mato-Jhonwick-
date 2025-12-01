@@ -1,7 +1,11 @@
 package Interfaz.Escenarios;
 
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Logica.Dialogo;
+import Logica.Escenario;
 import Logica.Partida;
+import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
+import cu.edu.cujae.ceis.tree.general.GeneralTree;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -22,6 +26,11 @@ public class Recepcion extends JFrame{
     private Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
+    private Escenario escenario;
+    private GeneralTree<Dialogo> arbolOriginal;
+    private GeneralTree<Dialogo> arbolSecretaria;
+    private boolean secretariaActivada;    //Ya se mostró?
+    private boolean hablandoConPolicia;    //Estado inicial
     /**
     /**
      * Creates new form Entrada
@@ -36,6 +45,10 @@ public class Recepcion extends JFrame{
                 dispose();
             }
         };
+
+        arbolOriginal = construirArbolPolicia();
+        arbolSecretaria = construirArbolSecretaria();
+        escenario.setArbolDial(arbolOriginal);
     }
 
 
@@ -329,6 +342,27 @@ public class Recepcion extends JFrame{
 
         ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
         flechaPasillo1.setIcon(icono);
+    }
+
+    public void activarSecretaria() {    //Llama esto cuando el jugador decide terminar con el policía o cuando intenta hablar con la secretaria.
+        if (!secretariaActivada) {
+            secretariaActivada = true;
+            hablandoConPolicia = false;
+            escenario.setArbolDial(arbolSecretaria);   // cambio de árbol
+        }
+    }
+
+    public void restaurarPolicia() {    //Si más adelante quieres volver a hablar con el policía (No se vuelve hablar con la secretaria)
+        hablandoConPolicia = true;
+        escenario.setArbolDial(arbolOriginal);
+    }
+
+    private void construirArbolPolicia() {
+
+    }
+
+    private void construirArbolSecretaria() {
+
     }
 
     /**

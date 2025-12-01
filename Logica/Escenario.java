@@ -50,7 +50,11 @@ public class Escenario {
     }
 
     public GeneralTree<Dialogo> getArbolDial() { return arbolDial; }
-    public void setArbolDial(GeneralTree<Dialogo> arbolDial) { this.arbolDial = arbolDial; }
+
+    public void setArbolDial(GeneralTree<Dialogo> arbolDial) {
+        this.arbolDial = arbolDial;
+        this.nodoDialActual = null;    //Para restaurar arbol original o tomar otro arbol para un escenario, evitando complejidad de la estructura jerárquica.
+    }
 
     public Dialogo getDialogoActual() { return nodoDialActual.getInfo(); }
     public BinaryTreeNode<Dialogo> getNodoDialActual() { return nodoDialActual; }
