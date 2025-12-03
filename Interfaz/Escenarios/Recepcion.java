@@ -1,5 +1,6 @@
 package Interfaz.Escenarios;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Logica.Dialogo;
 import Logica.Escenario;
@@ -223,21 +224,32 @@ public class Recepcion extends JFrame{
         getContentPane().repaint();
     }
     private void flechaSalidaActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Entrada entrada = new Entrada();
         entrada.setVisible(true);
         timer.schedule(tarea, 1000);
     }
     private void flechaBanoActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Bano bano = new Bano();
         bano.setVisible(true);
         timer.schedule(tarea, 1000);
     }
     private void flechaSala1ActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Sala sala1 = new Sala();
         sala1.setVisible(true);
         timer.schedule(tarea, 1000);
     }
     private void flechaPasillo1ActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
 
         Pasillo1 pasillo1 = new Pasillo1();
         pasillo1.setVisible(true);

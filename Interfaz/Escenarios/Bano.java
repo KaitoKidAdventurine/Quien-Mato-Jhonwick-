@@ -1,5 +1,6 @@
 package Interfaz.Escenarios;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Logica.Jugador;
 import Logica.Partida;
@@ -157,6 +158,9 @@ public class Bano extends JFrame {
         getContentPane().repaint();
     }
     private void flechaSalidaActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Recepcion entradaD = new Recepcion();
         entradaD.setVisible(true);
         timer.schedule(tarea, 1000);

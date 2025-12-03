@@ -191,12 +191,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+
         int salir= JOptionPane.showConfirmDialog(null,"Estas seguro de queres salir del juego", "", JOptionPane.YES_NO_OPTION);
         if(salir==0)
             System.exit(0);
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonNuevPartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevPartActionPerformed
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
 
         NuevaPartida nP = new NuevaPartida();
         nP.setVisible(true);
@@ -204,7 +209,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     private void botonCargParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargParActionPerformed
-       CargarPartida cP = new CargarPartida();
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+
+        CargarPartida cP = new CargarPartida();
 
        cP.setVisible(true);
         timer.schedule(tarea, 1000);
@@ -212,7 +220,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCargParActionPerformed
 
     private void botonOpcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOpcActionPerformed
-      Opciones opc = new Opciones();
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+
+        Opciones opc = new Opciones();
 
       opc.setVisible(true);
         timer.schedule(tarea, 1000);
@@ -259,6 +270,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCreditosMouseExited
 
     private void botonCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCreditosActionPerformed
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+        
         Creditos cre = new Creditos();
         cre.setVisible(true);
         timer.schedule(tarea, 1000);

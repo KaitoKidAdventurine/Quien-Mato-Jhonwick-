@@ -1,7 +1,11 @@
 package Interfaz.Escenarios;
 
+//import Interfaz.InterfazJugador.InterfazUsuario;
+import DatosAuxiliaresLogica.EfectosEspeciales;
+
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Interfaz.InterfazJugador.InterfazUsuario;
-import Logica.Partida;
+import Logica.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -125,6 +129,9 @@ public class OficinaEconomico extends JFrame {
         getContentPane().repaint();
     }
     private void flechaPasillo3ActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Pasillo3 pasillo3 = new Pasillo3();
         pasillo3.setVisible(true);
         timer.schedule(tarea, 1000);

@@ -1,7 +1,6 @@
 package Interfaz.InterfazJugador;
 
-import Logica.Jugador;
-import Logica.ObjetoEscenario;
+import Logica.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

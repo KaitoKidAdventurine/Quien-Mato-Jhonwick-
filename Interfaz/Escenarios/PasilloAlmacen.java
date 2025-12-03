@@ -1,5 +1,6 @@
 package Interfaz.Escenarios;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Logica.Partida;
 
@@ -187,16 +188,25 @@ public class PasilloAlmacen extends JFrame {
     }
 
     private void flechaPasillo3ActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Pasillo3 pasillo3 = new Pasillo3();
         pasillo3.setVisible(true);
         timer.schedule(tarea, 1000);
     }
     private void flechaAlmacenActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Almacen almacen= new Almacen();
         almacen.setVisible(true);
         timer.schedule(tarea, 1000);
     }
     private void flechaCallejonActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Callejon callejon = new Callejon();
         callejon.setVisible(true);
         timer.schedule(tarea, 1000);

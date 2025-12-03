@@ -4,6 +4,7 @@
  */
 package Interfaz.Menu;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Interfaz.Escenarios.Entrada;
 import Logica.Reproductor;
 
@@ -170,24 +171,36 @@ public class NuevaPartida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+
         Entrada entr3 = new Entrada();
        timer.schedule(tarea,1000);
         entr3.setVisible(true);
     }//GEN-LAST:event_boton3ActionPerformed
 
     private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+
         Entrada entr2 = new Entrada();
         timer.schedule(tarea,1000);
         entr2.setVisible(true);
     }//GEN-LAST:event_boton2ActionPerformed
 
     private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+
         Entrada entr1 = new Entrada();
         timer.schedule(tarea,1000);
         entr1.setVisible(true);
     }//GEN-LAST:event_boton1ActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+
         MenuPrincipal menuPrincipal = new MenuPrincipal();
         menuPrincipal.setVisible(true);
         timer.schedule(tarea,1000);
