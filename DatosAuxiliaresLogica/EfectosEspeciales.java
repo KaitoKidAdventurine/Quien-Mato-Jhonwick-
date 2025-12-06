@@ -35,13 +35,24 @@ public class EfectosEspeciales
             File archivoMusica = new File("Musica/Efectos de Sonido/Lluvia.mp3");
             File archivoMusicaDos = new File("Musica/Efectos de Sonido/Telefono Sonando.mp3");
             File archivoMusicaTre = new File("Musica/Efectos de Sonido/Pasos.mp3");
+            File archivo = new File("Musica/Efectos de Sonido/Abrir Diario.mp3");
+            File archivoDos = new File("Musica/Efectos de Sonido/Escribir Diario.mp3");
+            File archivoTres = new File("Musica/Efectos de Sonido/Boton.mp3");
+
             if (archivoMusica.exists()) {
                 Cancion cancion = new Cancion("Lluvia", archivoMusica);
                 Cancion cancion1 = new Cancion("Telefono Sonando", archivoMusicaDos);
                 Cancion cancion2 = new Cancion("Pasos", archivoMusicaTre);
+                Cancion cancion3 = new Cancion("Abrir Diario", archivo);
+                Cancion cancion4 = new Cancion("Escribir Diario", archivoDos);
+                Cancion cancion5 = new Cancion("Boton", archivoTres);
+
                 efectosSonido.add(cancion);
                 efectosSonido.add(cancion1);
                 efectosSonido.add(cancion2);
+                efectosSonido.add(cancion3);
+                efectosSonido.add(cancion4);
+                efectosSonido.add(cancion5);
 
             }
 
@@ -94,6 +105,8 @@ public class EfectosEspeciales
     }
 
 
+
+    // Metodos
     public void iniciarEfecto() {
         try{
             enReproduccion= true;
@@ -125,6 +138,8 @@ public class EfectosEspeciales
         }
     }
 
+        // Metodos de para buscar Efecto.
+
         // Se cambia a la cancion que se quiera en especifico por indice
         public void cambiarEfectoIndice(int i) {
             try {
@@ -141,7 +156,6 @@ public class EfectosEspeciales
                         if (hiloReproduccion != null && hiloReproduccion.isAlive()) {
                             hiloReproduccion.interrupt();
                         }
-
                         iniciarEfecto();
                     }
                 } catch (Exception e) {
@@ -177,21 +191,62 @@ public class EfectosEspeciales
 
 
 
+    public void cambiarEfectoNombreUsarSoloUnaVez(String nombre) {
+        try {
+            boolean encontrado = false;
+            for (int i = 0; i < efectosSonido.size() && !encontrado; i++) {
+                if (efectosSonido.get(i).getNombre().equals(nombre)) {
+                    encontrado = true;
+                    indiceActual = i;
+                }
+            }
 
-    public void efectoDePasos()
-    {
-        cambiarEfectoNombre("Pasos");
+            if (encontrado)
+            {
+                sonarUnaVez();
+            }
+
+            else {
+                throw new IllegalArgumentException("La canción '" + nombre + "' no fue encontrada");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
-    public void efectoDeLluvia()
+
+    public void sonarUnaVez()
     {
-        cambiarEfectoNombre("Lluvia");
+        try{
+            enReproduccion= true;
+            // Detener hilo anterior si existe
+            if (hiloReproduccion != null && hiloReproduccion.isAlive()) {
+                hiloReproduccion.interrupt();
+            }
+
+            hiloReproduccion = new Thread(() -> {
+                try {
+                    Cancion c = efectosSonido.get(indiceActual);
+                    FileInputStream stream = new FileInputStream(c.getFile());
+                    reproductorMP3 = new Player(stream);
+                    reproductorMP3.play();
+                    stream.close();
+
+                } catch (Exception e) {
+                    if (enReproduccion) {
+                        System.err.println("Error reproduciendo: " + e.getMessage());
+                    }
+                }
+            });
+            hiloReproduccion.start();
+            System.out.println("Música iniciada");
+
+        } catch (Exception e) {
+            System.err.println("Error iniciando música: " + e.getMessage());
+        }
     }
 
-    public void efectoDeTelefonoResiviendoLlamda()
-    {
-        cambiarEfectoNombre("Telefono Sonando");
-    }
+
 
 
     // Cambiar Volumen del Efecto
@@ -225,6 +280,54 @@ public class EfectosEspeciales
         enReproduccion = false;
         reproductorMP3.close();
     }
+
+
+
+
+
+    // Metodos para buscar rapido el sonido
+    public void efectoDePasos()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("Pasos");
+    }
+
+    public void efectoDeLluvia()
+    {
+        cambiarEfectoNombre("Lluvia");
+    }
+
+    public void efectoDeTelefonoResiviendoLlamda()
+    {
+        cambiarEfectoNombre("Telefono Sonando");
+    }
+
+    public void efectoDeAbrirDiario()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("Abrir Diario");
+    }
+
+    public void efectoDeEscribirDiario()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("Escribir Diario");
+    }
+
+    public void efectoDeBoton()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("Boton");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+// Metodo para comprobar que funciona
 
     public void diagnosticar() {
         System.out.println("=== DIAGNÓSTICO EFECTOS ESPECIALES ===");

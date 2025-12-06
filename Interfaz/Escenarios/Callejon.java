@@ -1,5 +1,6 @@
 package Interfaz.Escenarios;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Logica.Jugador;
 import Logica.Partida;
@@ -150,6 +151,9 @@ public class Callejon extends JFrame {
     }
 
     private void flechaPasilloAlmacenActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
         pasilloAlmacen.setVisible(true);
         timer.schedule(tarea, 1000);

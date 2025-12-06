@@ -1,5 +1,6 @@
 package Interfaz.Escenarios;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Logica.Dialogo;
 import Logica.Escenario;
@@ -22,17 +23,16 @@ import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-@SuppressWarnings("ALL")
 public class Recepcion extends JFrame{
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Recepcion.class.getName());
     private Dimension tamPant;
     private Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
-    //private Escenario escenario;
-   // private GeneralTree<Dialogo> arbolOriginal;
-   // private GeneralTree<Dialogo> arbolSecretaria;
-   // private boolean secretariaActivada;    //Ya se mostró?
+    private Escenario escenario;
+    private GeneralTree<Dialogo> arbolOriginal;
+    private GeneralTree<Dialogo> arbolSecretaria;
+    private boolean secretariaActivada;    //Ya se mostró?
     private boolean hablandoConPolicia;    //Estado inicial
     /**
     /**
@@ -49,9 +49,11 @@ public class Recepcion extends JFrame{
             }
         };
 
-      //  arbolOriginal = construirArbolPolicia();
-       // arbolSecretaria = construirArbolSecretaria();
-        //escenario.setArbolDial(arbolOriginal);
+        arbolOriginal = construirArbolPolicia();
+        arbolSecretaria = construirArbolSecretaria();
+
+        escenario = new Escenario("Recepción", "Primer sitio dentro del museo", true);
+        escenario.setArbolDial(arbolOriginal);
     }
 
 
@@ -224,21 +226,32 @@ public class Recepcion extends JFrame{
         getContentPane().repaint();
     }
     private void flechaSalidaActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Entrada entrada = new Entrada();
         entrada.setVisible(true);
         timer.schedule(tarea, 1000);
     }
     private void flechaBanoActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Bano bano = new Bano();
         bano.setVisible(true);
         timer.schedule(tarea, 1000);
     }
     private void flechaSala1ActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Sala sala1 = new Sala();
         sala1.setVisible(true);
         timer.schedule(tarea, 1000);
     }
     private void flechaPasillo1ActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
 
         Pasillo1 pasillo1 = new Pasillo1();
         pasillo1.setVisible(true);
@@ -347,7 +360,7 @@ public class Recepcion extends JFrame{
         flechaPasillo1.setIcon(icono);
     }
 
-   /* public void activarSecretaria() {    //Llama esto cuando el jugador decide terminar con el policía o cuando intenta hablar con la secretaria.
+    public void activarSecretaria() {    //Llama esto cuando el jugador decide terminar con el policía o cuando intenta hablar con la secretaria.
         if (!secretariaActivada) {
             secretariaActivada = true;
             hablandoConPolicia = false;
@@ -358,7 +371,7 @@ public class Recepcion extends JFrame{
     public void restaurarPolicia() {    //Si más adelante quieres volver a hablar con el policía (No se vuelve hablar con la secretaria)
         hablandoConPolicia = true;
         escenario.setArbolDial(arbolOriginal);
-    }*/
+    }
 
     private GeneralTree<Dialogo> construirArbolPolicia() {
         ImageIcon policia = new ImageIcon("DatosAuxiliares/Personajes/Policia.png");

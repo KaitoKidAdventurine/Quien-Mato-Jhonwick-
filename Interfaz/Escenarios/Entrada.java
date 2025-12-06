@@ -4,6 +4,7 @@
  */
 package Interfaz.Escenarios;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Logica.Dialogo;
 import Logica.Escenario;
@@ -134,6 +135,9 @@ private Dimension tamPant;
     }// </editor-fold>//GEN-END:initComponents
 
     private void flechaActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Recepcion recepcion = new Recepcion();
         recepcion.setVisible(true);
         timer.schedule(tarea, 1000);

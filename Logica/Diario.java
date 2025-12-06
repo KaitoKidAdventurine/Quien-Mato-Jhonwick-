@@ -1,5 +1,6 @@
 package Logica;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.Informacion;
 
 import java.util.Iterator;
@@ -37,6 +38,12 @@ public class Diario
                Informacion i = II.next();
                 if (i.getNombreNPC().equals(nombreNPC))
                 {
+                    // Lo comento para evitar que se escuche lo de que se escribe porque
+                    // ahora se anda trabajando en la interfaz del diario.
+
+                    //EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                    //e.efectoDeEscribirDiario();
+
                     salida = true;
                     i.getListaDeDialogos().add(informacion);
                 }

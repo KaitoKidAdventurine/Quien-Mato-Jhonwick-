@@ -1,5 +1,6 @@
 package Interfaz.Escenarios;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Logica.Jugador;
 import Logica.Partida;
@@ -146,6 +147,9 @@ public class Bano2  extends JFrame {
         flechaPasillo2.setIcon(icono);
     }
     private void flechaPasillo2ActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Pasillo2 p2 = new Pasillo2();
         p2.setVisible(true);
         timer.schedule(tarea, 1000);

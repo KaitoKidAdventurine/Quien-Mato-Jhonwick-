@@ -1,5 +1,6 @@
 package Interfaz.Escenarios;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Logica.Partida;
 
@@ -129,6 +130,9 @@ public class Sala2  extends JFrame {
         getContentPane().repaint();
     }
     private void flechaSalidaActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
+
         Sala sala = new Sala();
         sala.setVisible(true);
         timer.schedule(tarea, 1000);

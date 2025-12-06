@@ -30,7 +30,6 @@ public abstract class Interactuable {
         this.clikleable = clikleable;
     }
 
-    public class Inventario {
-    }
+    
 }
 

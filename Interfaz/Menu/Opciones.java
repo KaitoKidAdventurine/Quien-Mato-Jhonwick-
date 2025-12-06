@@ -4,6 +4,7 @@
  */
 package Interfaz.Menu;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Logica.Reproductor;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -236,6 +237,9 @@ public class Opciones extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAtrasMouseExited
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+
         MenuPrincipal menuPrincipal = new MenuPrincipal();
         menuPrincipal.setVisible(true);
         timer.schedule(tarea, 1000);
