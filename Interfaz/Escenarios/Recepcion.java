@@ -51,6 +51,8 @@ public class Recepcion extends JFrame{
 
         arbolOriginal = construirArbolPolicia();
         arbolSecretaria = construirArbolSecretaria();
+
+        escenario = new Escenario("Recepción", "Primer sitio dentro del museo", true);
         escenario.setArbolDial(arbolOriginal);
     }
 

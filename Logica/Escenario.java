@@ -2,6 +2,7 @@ package Logica;
 
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
+import cu.edu.cujae.ceis.tree.iterators.general.InDepthIterator;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -97,6 +98,20 @@ public class Escenario {
 
         nodoDialActual = arbolDial.getFather(nodoDialActual);
         return nodoDialActual.getInfo();
+    }
+
+    public BinaryTreeNode<Dialogo> buscarNodo(String texto) {
+        BinaryTreeNode<Dialogo> node = null;
+        InDepthIterator<Dialogo> it = arbolDial.inDepthIterator();
+        boolean found = false;
+
+        while(it.hasNext() && !found) {
+            node = it.nextNode();
+            if (node.getInfo().getTexto().equals(texto)) {
+                found = true;
+            }
+        }
+        return found ? node : null;
     }
 
     public LinkedList<String> getOpcionesDialActual() {
