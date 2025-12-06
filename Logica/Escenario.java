@@ -5,7 +5,7 @@ import cu.edu.cujae.ceis.tree.general.GeneralTree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-
+import Logica.*;
 public class Escenario {
     private String nombre;
     private String descripcion;

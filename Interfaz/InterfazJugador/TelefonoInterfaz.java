@@ -61,11 +61,11 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         setUndecorated(true);
         getContentPane().setLayout(null);
         getContentPane().setPreferredSize(new Dimension((int) (tamPant.width*0.4), (int) (tamPant.height*0.6)));
-        setBackground(new Color(0,0, 0, 0));
+        setBackground(new Color(0,0, 0, 75));
 
         pantalla.setBackground(Color.white );
         pantalla.setLayout(null);
-        pantalla.setBounds((int) (tamPant.width*0.16), (int) (tamPant.height*0.03), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
+        pantalla.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
         pantalla.setOpaque(false);
         llamar.setBorderPainted(false);
         llamar.setContentAreaFilled(false);
@@ -219,7 +219,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
 
         ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.6), (int) (tamPant.height*0.9), Image.SCALE_SMOOTH));
         telefono.setIcon(icono);
-        telefono.setBounds((int) (tamPant.width*0.08), 0, (int) (tamPant.width*0.6), (int) (tamPant.height*0.9));
+        telefono.setBounds((int) (tamPant.width*0.26), (int) (tamPant.height*0.09), (int) (tamPant.width*0.6), (int) (tamPant.height*0.9));
 
         BufferedImage imagen5 = null;
 
@@ -242,7 +242,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 
         TelefonoLlamar llamada = new TelefonoLlamar();
-        llamada.setBounds((int) (tamPant.width*0.16), (int) (tamPant.height*0.03), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));add(llamada, 1);
+        llamada.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));add(llamada, 1);
         pantalla.setVisible(false);
         llamada.setVisible(true);
         revalidate();
@@ -280,7 +280,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(ActionEvent evt, Telefono telefonoLogica, JLabel fondo) {
         TelefonoAjustes ajustesT = new TelefonoAjustes(telefonoLogica, fondo);
-        ajustesT.setBounds((int) (tamPant.width*0.16), (int) (tamPant.height*0.03), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
+        ajustesT.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
         add(ajustesT, 1);
         pantalla.setVisible(false);
         ajustesT.setVisible(true);
@@ -317,7 +317,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(ActionEvent evt, Telefono telefonoLogica) {
         TelefonoReproductor reproductorT = new TelefonoReproductor(telefonoLogica);
-        reproductorT.setBounds((int) (tamPant.width*0.16), (int) (tamPant.height*0.03), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
+        reproductorT.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
         add(reproductorT, 1);
         pantalla.setVisible(false);
         reproductorT.setVisible(true);

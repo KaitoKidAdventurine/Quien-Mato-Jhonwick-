@@ -216,10 +216,10 @@ public class TelefonoReproductor extends JPanel {
         BufferedImage imagen3 = null;
         try {
             if(activo==true) {
-                imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/reproducir triangulo.png"));
+                imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/reproducir  triangulo R.png"));
                 Reproductor.getInstancia().desactivarMusica();
             }else{
-                imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/pausa.png"));
+                imagen3 = ImageIO.read(new File("DatosAuxiliares/Telefono/pausa r.png"));
                 Reproductor.getInstancia().activarMusica();
             }
         } catch (IOException e) {

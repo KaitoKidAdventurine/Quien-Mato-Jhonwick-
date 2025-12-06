@@ -7,7 +7,10 @@ package Interfaz.InterfazJugador;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.text.DefaultCaret;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,53 +33,46 @@ public class CuadroTexto extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents(String texto, String personaje, ImageIcon imagen) {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
-
+        jPanel1 = new JPanel();
+        jLabel3 = new JLabel();
+        jLabel2 = new JLabel();
+        parrafo = new JLabel();
         setLayout(null);
 
-        setOpaque(false);
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+
+        jPanel1.setBackground(new Color(0, 0, 0, 100));
+        jPanel1.setFocusable(false);
+
         jPanel1.setLayout(null);
+
 
 
         jLabel3.setText(personaje);
         if(personaje.equals("Detective")) {
-            jLabel3.setBounds((int) (tamPant.width*0.5), 0, (int) (tamPant.width*0.2), (int) (tamPant.height*0.05));
+            jLabel3.setBounds((int) (tamPant.width*0.7), (int) (tamPant.height*0.7), (int) (tamPant.width*0.2), (int) (tamPant.height*0.05));
 
         }else{
-            jLabel3.setBounds((int) (tamPant.width*0.1), 0, (int) (tamPant.width*0.2), (int) (tamPant.height*0.05));
+            jLabel3.setBounds((int) (tamPant.width*0.252), (int) (tamPant.height*0.7), (int) (tamPant.width*0.2), (int) (tamPant.height*0.05));
         }
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.025)));
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jLabel3);
+        jLabel3.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.025)));
+        jLabel3.setForeground(new Color(255, 255, 255));
+        add(jLabel3);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255, 128));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 2, (int) (tamPant.width*0.020)));
-        jTextArea1.setRows(5);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea1.setText(texto);
-        jTextArea1.setOpaque(true);
 
-        jTextArea1.setBorder(null);
-        jTextArea1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextArea1.setEnabled(false);
+       parrafo.setText("<html>" + texto + "</html>");
 
-        jScrollPane1.setViewportView(jTextArea1);
-        jScrollPane1.setBounds(0,  (int) (tamPant.height*0.052), (int) (tamPant.width*0.7), (int) (tamPant.height*0.25));
-        jScrollPane1.setBackground(Color.black);
-        jScrollPane1.setOpaque(true);
-        jPanel1.add(jScrollPane1);
-        jPanel1.setOpaque(false);
-        jPanel1.setBounds((int) (tamPant.width*0.15), (int) (tamPant.height*0.7), (int) (tamPant.width*0.7), (int) (tamPant.height*0.27));
+        parrafo.setBounds((int) (tamPant.height*0.32),  (int) (tamPant.height*0.015), (int) (tamPant.width*0.68), (int) (tamPant.height*0.25));
+        parrafo.setForeground(new Color(255, 255, 255, 200));
+        parrafo.setOpaque(true);
+        parrafo.setVerticalAlignment(SwingConstants.TOP);
+        parrafo.setBackground(new Color(0, 0, 0, 0));
+
+        parrafo.setFont(new Font("Segoe UI", 2, (int) (tamPant.width*0.020)));
+        jPanel1.add(parrafo);
+
+
+        jPanel1.setBounds( 0, (int) (tamPant.height*0.75), tamPant.width, (int) (tamPant.height*0.27));
 
         add(jPanel1);
 
@@ -96,6 +92,8 @@ public class CuadroTexto extends javax.swing.JPanel {
             jLabel2.setIcon(icono2);
 
         add(jLabel2);
+
+
     }
 
 
@@ -103,7 +101,6 @@ public class CuadroTexto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private JLabel parrafo;
 
 }

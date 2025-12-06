@@ -22,16 +22,17 @@ import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+@SuppressWarnings("ALL")
 public class Recepcion extends JFrame{
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Recepcion.class.getName());
     private Dimension tamPant;
     private Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
-    private Escenario escenario;
-    private GeneralTree<Dialogo> arbolOriginal;
-    private GeneralTree<Dialogo> arbolSecretaria;
-    private boolean secretariaActivada;    //Ya se mostró?
+    //private Escenario escenario;
+   // private GeneralTree<Dialogo> arbolOriginal;
+   // private GeneralTree<Dialogo> arbolSecretaria;
+   // private boolean secretariaActivada;    //Ya se mostró?
     private boolean hablandoConPolicia;    //Estado inicial
     /**
     /**
@@ -48,9 +49,9 @@ public class Recepcion extends JFrame{
             }
         };
 
-        arbolOriginal = construirArbolPolicia();
-        arbolSecretaria = construirArbolSecretaria();
-        escenario.setArbolDial(arbolOriginal);
+      //  arbolOriginal = construirArbolPolicia();
+       // arbolSecretaria = construirArbolSecretaria();
+        //escenario.setArbolDial(arbolOriginal);
     }
 
 
@@ -346,7 +347,7 @@ public class Recepcion extends JFrame{
         flechaPasillo1.setIcon(icono);
     }
 
-    public void activarSecretaria() {    //Llama esto cuando el jugador decide terminar con el policía o cuando intenta hablar con la secretaria.
+   /* public void activarSecretaria() {    //Llama esto cuando el jugador decide terminar con el policía o cuando intenta hablar con la secretaria.
         if (!secretariaActivada) {
             secretariaActivada = true;
             hablandoConPolicia = false;
@@ -357,7 +358,7 @@ public class Recepcion extends JFrame{
     public void restaurarPolicia() {    //Si más adelante quieres volver a hablar con el policía (No se vuelve hablar con la secretaria)
         hablandoConPolicia = true;
         escenario.setArbolDial(arbolOriginal);
-    }
+    }*/
 
     private GeneralTree<Dialogo> construirArbolPolicia() {
         ImageIcon policia = new ImageIcon("DatosAuxiliares/Personajes/Policia.png");
