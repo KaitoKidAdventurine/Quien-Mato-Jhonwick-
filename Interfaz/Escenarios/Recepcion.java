@@ -32,8 +32,10 @@ public class Recepcion extends JFrame{
     private Escenario escenario;
     private GeneralTree<Dialogo> arbolOriginal;
     private GeneralTree<Dialogo> arbolSecretaria;
-    private boolean secretariaActivada;    //Ya se mostró?
-    private boolean hablandoConPolicia;    //Estado inicial
+    private GeneralTree<Dialogo> arbolGuardia;
+    private boolean secretariaActivada;
+    private boolean hablandoConPolicia;
+    private boolean apareceGuardia;
     /**
     /**
      * Creates new form Entrada
@@ -51,6 +53,11 @@ public class Recepcion extends JFrame{
 
         arbolOriginal = construirArbolPolicia();
         arbolSecretaria = construirArbolSecretaria();
+        arbolGuardia = construirArbolGuardia();
+
+        secretariaActivada = false;
+        hablandoConPolicia = true;
+        apareceGuardia =false;
 
         escenario = new Escenario("Recepción", "Primer sitio dentro del museo", true);
         escenario.setArbolDial(arbolOriginal);
@@ -361,61 +368,43 @@ public class Recepcion extends JFrame{
     }
 
     public void activarSecretaria() {    //Llama esto cuando el jugador decide terminar con el policía o cuando intenta hablar con la secretaria.
-        if (!secretariaActivada) {
-            secretariaActivada = true;
-            hablandoConPolicia = false;
-            escenario.setArbolDial(arbolSecretaria);   // cambio de árbol
-        }
+        secretariaActivada = true;
+        hablandoConPolicia = false;
+        apareceGuardia = false;
+        escenario.setArbolDial(arbolSecretaria);   // cambio de árbol
     }
 
-    public void restaurarPolicia() {    //Si más adelante quieres volver a hablar con el policía (No se vuelve hablar con la secretaria)
+    public void restaurarPolicia() {    //Si más adelante quieres volver a hablar con el policía
+        secretariaActivada = false;
         hablandoConPolicia = true;
+        apareceGuardia = false;
         escenario.setArbolDial(arbolOriginal);
+    }
+
+    public void consultarGuardia() {
+        secretariaActivada = false;
+        hablandoConPolicia = false;
+        apareceGuardia = true;
+        escenario.setArbolDial(arbolGuardia);
     }
 
     private GeneralTree<Dialogo> construirArbolPolicia() {
         ImageIcon policia = new ImageIcon("DatosAuxiliares/Personajes/Policia.png");
         ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
 
-        Dialogo d1 = new Dialogo("Buenos días. Soy el oficial encargado. Anoche murió uno de sus empleados. Por ahora todo parece un suicidio… pero hay detalles que no encajan. ¿Va a colaborar?", "Policía", policia, true);
-        d1.setOpciones(new LinkedList<>(Arrays.asList("Qué ocurrió anoche?", "Necesito hablar con los empleados", "¿Puedo inspeccionar la entrada?", "¿Has revisado el libro de visitas?", "Gracias, seguiré solo")));
+        Dialogo d1 = new Dialogo("Buenos días. Un empleado apareció muerto en su oficina. Por ahora todo parece suicidio… pero hay detalles que no encajan. ¿Qué quiere saber?", "Policía", policia, true);
+        d1.setOpciones(new LinkedList<String>(Arrays.asList("¿Qué ocurrió?", "¿Pruebas?", "¿Puedo hablar con los empleados?")));
 
-        Dialogo d2 = new Dialogo("El cuerpo está en la oficina del economista, puerta entreabierta, sangre seca. Hay un cuchillo y una nota.", "Policía", policia, true);
-        d2.setOpciones(new LinkedList<>(Arrays.asList("¿Quién lo encontró?", "¿Qué pruebas hay?")));
-
-        Dialogo d3 = new Dialogo("Fue el guardia nocturno, Jaime. Hace su ronda a las 6:00 y la encontró.", "Policía", policia, true);
-        d3.setOpciones(new LinkedList<>(Arrays.asList("¿A qué hora?", "¿Dónde estaba el guardia?")));
-
-        Dialogo d4 = new Dialogo("Entre 6:05 y 6:10. Llama al 112 a las 6:12.", "Policía", policia, true);
-
-        Dialogo d5 = new Dialogo("En el pasillo del ala este; su recorrido pasa frente a esa oficina justo al final del turno.", "Policía", policia, true);
-
-        Dialogo d6 = new Dialogo("Cuchillo de cocina pequeño, hoja de 10 cm. La carta es un ‘adiós’… pero la letra no es suya.", "Policía", policia, true);
-        d6.setOpciones(new LinkedList<>(Arrays.asList("¿El cuchillo coincide?", "¿La carta es auténtica?")));
-
-        Dialogo d7 = new Dialogo("No coincide: la herida es más ancha y limpia. Algo como una hoja de esgrima encajaría mejor.", "Policía", policia, true);
-
-        Dialogo d8 = new Dialogo("Autenticidad cero. Comparé la firma: la nota está forzada.", "Policía", policia, true);
-
-        Dialogo d9 = new Dialogo("Todos están dentro. Pregunte por ellos cuando quiera.", "Policía", policia, true);
-        d9.setOpciones(new LinkedList<>(Arrays.asList("¿Dónde está la secretaria?", "¿Y el guardia de seguridad?")));
-
-        Dialogo d10 = new Dialogo("En su mesa de recepción, al fondo a la izquierda.", "Policía", policia, true);
-
-        Dialogo d11 = new Dialogo("Revisando las cámaras en la sala de vigilancia; suba las escaleras, primera puerta.", "Policía", policia, true);
-
-        Dialogo d12 = new Dialogo("Claro. La entrada principal tiene el detector apagado por las obras; cualquiera podría haberse colado.", "Policía", policia, true);
-
-        Dialogo d13 = new Dialogo("Encarguen la lista de visitantes si cree que alguien externo entró.", "Policía", policia, true);
-
-        Dialogo d14 = new Dialogo("Sí, pero anoche no consta nadie después de las 20:00… sospechoso, ¿no?", "Policía", policia, true);
-        d14.setOpciones(new LinkedList<>(Arrays.asList("¿Algún nombre raro?", "¿Horarios anómalos?")));
-
-        Dialogo d15 = new Dialogo("Un tal ‘Mario L.’ firmó a las 19:50 y no registró salida. Estoy investigando quién es.", "Policía", policia, true);
-
-        Dialogo d16 = new Dialogo("La última firma de salida es 19:30. A partir de ahí, nada… huele a intruso.", "Policía", policia, true);
-
-        Dialogo d17 = new Dialogo("Gracias, oficial. Revisaré todo por mi cuenta.", "Jugador", detective, true);
+        Dialogo d2 = new Dialogo("El cuerpo está en la oficina del economista, puerta entreabierta, sangre seca.", "Policía", policia, true);
+        Dialogo d3 = new Dialogo("Lo encontró el guardia al hacer su ronda de las 6.", "Policía", policia, true);
+        Dialogo d4 = new Dialogo("Hay un cuchillo y una carta de despedida… pero la letra no coincide.", "Policía", policia, true);
+        Dialogo d5 = new Dialogo("Por eso dudo del suicidio. Cuando quiera, hable con los empleados.", "Policía", policia, true);
+        Dialogo d6 = new Dialogo("Cuchillo de cocina pequeño; la herida es más ancha y limpia – no encaja.", "Policía", policia, true);
+        Dialogo d7 = new Dialogo("La carta está forzada; la firma no es suya.", "Policía", policia, true);
+        Dialogo d8 = new Dialogo("Dos indicios de encubrimiento. Necesitamos hablar con todos.", "Policía", policia, true);
+        Dialogo d9 = new Dialogo("Claro. La secretaria está en la mesa de recepción; el guardia, revisando cámaras. Pregúnteles.", "Policía", policia, true);
+        Dialogo d10 = new Dialogo("Yo me quedaré por aquí si necesita algo más.", "Policía", policia, true);
+        Dialogo d11 = new Dialogo("Está bien. Mantenme informado.", "Detective", detective, true);
 
         BinaryTreeNode<Dialogo> n1 = new BinaryTreeNode<>(d1);
         BinaryTreeNode<Dialogo> n2 = new BinaryTreeNode<>(d2);
@@ -428,68 +417,101 @@ public class Recepcion extends JFrame{
         BinaryTreeNode<Dialogo> n9 = new BinaryTreeNode<>(d9);
         BinaryTreeNode<Dialogo> n10 = new BinaryTreeNode<>(d10);
         BinaryTreeNode<Dialogo> n11 = new BinaryTreeNode<>(d11);
+
+        GeneralTree<Dialogo> aux = new GeneralTree<>();
+
+        aux.insertNode(n1, null);
+           aux.insertNode(n2, n1);
+              aux.insertNode(n3, n2);
+                 aux.insertNode(n4, n3);
+                    aux.insertNode(n5, n4);
+           aux.insertNode(n6, n1);
+              aux.insertNode(n7, n6);
+                 aux.insertNode(n8, n7);
+           aux.insertNode(n9, n1);
+              aux.insertNode(n10, n9);
+                 aux.insertNode(n11, n10);
+
+        return aux;
+    }
+
+    private GeneralTree<Dialogo> construirArbolSecretaria() {    //Aparece tras el diálogo 11 o evento
+        ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/Personajes/Secretaria.png");
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+
+        Dialogo d12 = new Dialogo("Así que usted es la secretaria. ¿Que tal si hago un par de preguntas si no le molesta?", "Detective", secretaria, true);
+        Dialogo d13 = new Dialogo("Vale, no hay problema. Estoy dispuesta a colaborar.", "Secretaria", secretaria, true);
+        Dialogo d14 = new Dialogo("Muy bien. Quisiera saber si usted y la víctima eran muy cercanos.", "Detective", detective, true);
+        Dialogo d15 = new Dialogo("Sí, detective. Yo… yo era pareja de él en secreto.", "Secretaria", secretaria, true);
+        Dialogo d16 = new Dialogo("Estaba aterrado: dijo que alguien desviaba fondos del museo.", "Secretaria", secretaria, true);
+        Dialogo d17 = new Dialogo("Me dio parte de la contraseña de su PC – el resto está en su libro favorito.", "Secretaria", secretaria, true);
+        Dialogo d18 = new Dialogo("Por favor, descubra la verdad.", "Secretaria", secretaria, true);
+        Dialogo d19 = new Dialogo("No se preocupe. De eso me encargo yo.", "Detective", detective, true);
+        Dialogo d25 = new Dialogo("Si necesita el libro, está en la estantería trasera, tercer estante.", "Secretaria", secretaria, true);
+        Dialogo d26 = new Dialogo("Por favor, cuídelo… es el último recuerdo que tengo de él.", "Secretaria", secretaria, true);
+        Dialogo d27 = new Dialogo("Lo haré. Gracias por la confianza.", "Detective", detective, true);
+
         BinaryTreeNode<Dialogo> n12 = new BinaryTreeNode<>(d12);
         BinaryTreeNode<Dialogo> n13 = new BinaryTreeNode<>(d13);
         BinaryTreeNode<Dialogo> n14 = new BinaryTreeNode<>(d14);
         BinaryTreeNode<Dialogo> n15 = new BinaryTreeNode<>(d15);
         BinaryTreeNode<Dialogo> n16 = new BinaryTreeNode<>(d16);
         BinaryTreeNode<Dialogo> n17 = new BinaryTreeNode<>(d17);
+        BinaryTreeNode<Dialogo> n18 = new BinaryTreeNode<>(d18);
+        BinaryTreeNode<Dialogo> n19 = new BinaryTreeNode<>(d19);
+        BinaryTreeNode<Dialogo> n25 = new BinaryTreeNode<>(d25);
+        BinaryTreeNode<Dialogo> n26 = new BinaryTreeNode<>(d26);
+        BinaryTreeNode<Dialogo> n27 = new BinaryTreeNode<>(d27);
 
         GeneralTree<Dialogo> aux = new GeneralTree<>();
 
-        aux.insertNode(n1, null);    //Cada nivel de bloque de código representa el nivel del arbol y, antes de volver al nivel actual de un nodo, se tienen todos sus hijos.
-           aux.insertNode(n2, n1);
-              aux.insertNode(n3, n2);
-                 aux.insertNode(n4, n3);
-                 aux.insertNode(n5, n3);
-              aux.insertNode(n6, n2);
-                 aux.insertNode(n7, n6);
-                 aux.insertNode(n8, n6);
-           aux.insertNode(n9, n1);
-              aux.insertNode(n10, n9);
-              aux.insertNode(n11, n9);
-           aux.insertNode(n12, n1);
-              aux.insertNode(n13, n12);
-           aux.insertNode(n14, n1);
-              aux.insertNode(n15, n14);
-              aux.insertNode(n16, n14);
-           aux.insertNode(n17, n1);
+        aux.insertNode(n12, null);
+           aux.insertNode(n13, n12);
+              aux.insertNode(n14, n13);
+                 aux.insertNode(n15, n14);
+                    aux.insertNode(n16, n15);
+                       aux.insertNode(n17, n16);
+                          aux.insertNode(n18, n17);
+                             aux.insertNode(n19, n18);
+                                aux.insertNode(n25, n19);
+                                   aux.insertNode(n26, n25);
+                                      aux.insertNode(n27, n26);
 
         return aux;
     }
 
-    private GeneralTree<Dialogo> construirArbolSecretaria() {
-        ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/Personajes/Secretaria.png");
+    private GeneralTree<Dialogo> construirArbolGuardia() {    //Aparece tras el diálogo 11 o evento
+        ImageIcon guardia = new ImageIcon("DatosAuxiliares/Personajes/Seguridad.jpg");
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
 
-        Dialogo d18 = new Dialogo("¿Busca algo? Yo ya dije lo que sabía… aunque…", "Secretaria", secretaria, true);
-        d18.setOpciones(new LinkedList<>(Arrays.asList("¿Cómo conocías al Económico?", "¿Viste algo anoche?")));
+        Dialogo d20 = new Dialogo("Veamos, ¿puede decirme que hacía anoche durante su guardia?", "Detective", detective, true);
+        Dialogo d21 = new Dialogo("Sí señor. Mi ronda de anoche fue normal… salvo la cámara 2-B.", "Guardia de Seguridad", guardia, true);
+        Dialogo d22 = new Dialogo("Falló de 1:00 a 3:00, justo el pasillo este.", "Guardia de Seguridad", guardia, true);
+        Dialogo d23 = new Dialogo("Oí un silbido agudo, pero cuando llegué no había nadie.", "Guardia de Seguridad", guardia, true);
+        Dialogo d24 = new Dialogo("Si recuerdo algo más, le aviso.", "Guardia de Seguridad", guardia, true);
+        Dialogo d28 = new Dialogo("Ok, gracias por la información...", "Detective", detective, true);
+        Dialogo d29 = new Dialogo("Ah, y anoté la matrícula de un coche blanco que se detuvo en la puerta trasera a la 1:20.", "Guardia de seguridad", guardia, true);
+        Dialogo d30 = new Dialogo("No vi al conductor, pero las luces quedaron encendidas diez minutos.", "Guardia de seguridad", guardia, true);
 
-        Dialogo d19 = new Dialogo("Éramos pareja en secreto. Estaba petrificado: decía que alguien robaba del fondo de exposiciones.", "Secretaria", secretaria, true);
-
-        Dialogo d20 = new Dialogo("Por eso guardaba los papeles en su PC… y me dio parte de la contraseña por si le pasaba algo.", "Secretaria", secretaria, true);
-
-        Dialogo d21 = new Dialogo("Anoche volví por un informe olvidado. Pasaban las 23:30 cuando oí voces en la escalera de incendios.", "Secretaria", secretaria, true);
-        d21.setOpciones(new LinkedList<>(Arrays.asList("¿A quién viste?", "¿Qué hora era?")));
-
-        Dialogo d22 = new Dialogo("Solo vi una silueta masculina, traje oscuro… podría ser el jefe o el guardia, no me atreví a mirar.", "Secretaria", secretaria, true);
-
-        Dialogo d23 = new Dialogo("23:35 más o menos. Salí por la puerta lateral y me fui. Ahora lo lamento…", "Secretaria", secretaria, true);
-
-        BinaryTreeNode<Dialogo> n18 = new BinaryTreeNode<>(d18);
-        BinaryTreeNode<Dialogo> n19 = new BinaryTreeNode<>(d19);
         BinaryTreeNode<Dialogo> n20 = new BinaryTreeNode<>(d20);
         BinaryTreeNode<Dialogo> n21 = new BinaryTreeNode<>(d21);
         BinaryTreeNode<Dialogo> n22 = new BinaryTreeNode<>(d22);
         BinaryTreeNode<Dialogo> n23 = new BinaryTreeNode<>(d23);
+        BinaryTreeNode<Dialogo> n24 = new BinaryTreeNode<>(d24);
+        BinaryTreeNode<Dialogo> n28 = new BinaryTreeNode<>(d28);
+        BinaryTreeNode<Dialogo> n29 = new BinaryTreeNode<>(d29);
+        BinaryTreeNode<Dialogo> n30 = new BinaryTreeNode<>(d30);
 
         GeneralTree<Dialogo> aux = new GeneralTree<>();
 
-        aux.insertNode(n18, null);    //Cada nivel de bloque de código representa el nivel del arbol y, antes de volver al nivel actual de un nodo, se tienen todos sus hijos.
-           aux.insertNode(n19, n18);
-              aux.insertNode(n20, n19);
-           aux.insertNode(n21, n18);
+        aux.insertNode(n20, null);
+           aux.insertNode(n21, n20);
               aux.insertNode(n22, n21);
-              aux.insertNode(n23, n21);
+                 aux.insertNode(n23, n22);
+                    aux.insertNode(n24, n23);
+                       aux.insertNode(n28, n24);
+                          aux.insertNode(n29, n28);
+                             aux.insertNode(n30, n29);
 
         return aux;
     }
