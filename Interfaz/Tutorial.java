@@ -68,12 +68,19 @@ public class Tutorial extends JFrame {
         setUndecorated(true);
         setPreferredSize(tamPant);
         getContentPane().setLayout(null);
-
+        setBackground(new Color(0, 0, 0, 00));
         cajaTexto.setOpaque(false);
         cajaTexto.setBounds(0, 0, tamPant.width, tamPant.height);
         cajaTexto.setLayout(null);
 
         getContentPane().add(cajaTexto);
+        fondo.setFocusable(false);
+        fondo.setMaximumSize(tamPant);
+        fondo.setMinimumSize(tamPant);
+        fondo.setPreferredSize(tamPant);
+        fondo.setBounds(0, 0, tamPant.width, tamPant.height);
+        fondo.setBackground(new Color(0, 0, 0, 60));
+
         ponerFondoParte1();
         ponerDialogoParte1();
         pack();
@@ -84,13 +91,12 @@ public class Tutorial extends JFrame {
             nivelActualDial = tutorialParte1.getArbolDial().nodeLevel(tutorialParte1.getNodoDialActual());
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
-
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
                     cTParte1MouseClicked(evt);
                 }
             });
-
+            cT.setBackground(new Color(0, 0, 0, 0));
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
@@ -191,11 +197,7 @@ public class Tutorial extends JFrame {
 
             ImageIcon icono = new ImageIcon(imagen.getScaledInstance(tamPant.width, tamPant.height, Image.SCALE_SMOOTH));
             fondo.setIcon(icono); // NOI18N
-            fondo.setFocusable(false);
-            fondo.setMaximumSize(tamPant);
-            fondo.setMinimumSize(tamPant);
-            fondo.setPreferredSize(tamPant);
-            fondo.setBounds(0, 0, tamPant.width, tamPant.height);
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -65,7 +65,7 @@ public class MenuInterno extends javax.swing.JDialog {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(null);
-
+        setBackground(new Color(0, 0,0,75 ));
         getContentPane().setPreferredSize(new Dimension((int) (tamPant.width*0.4), (int) (tamPant.height*0.6)));
         jPanel1.setBackground(Color.black);
         jPanel1.setLayout(null);
@@ -180,7 +180,7 @@ public class MenuInterno extends javax.swing.JDialog {
         });
         jButton5.setBounds((int) (tamPant.width*0.05), (int) (tamPant.height*0.52),(int) (tamPant.width*0.3), (int) (tamPant.height*0.065));
         jPanel1.add(jButton5);
-        jPanel1.setBounds(0, 0, (int) (tamPant.width*0.4), (int) (tamPant.height*0.65));
+        jPanel1.setBounds((int) (tamPant.width*0.3), (int) (tamPant.height*0.2), (int) (tamPant.width*0.4), (int) (tamPant.height*0.65));
 
         BufferedImage imagen = null;
 

@@ -5,11 +5,11 @@ import java.util.LinkedList;
 public class Informacion
 {
     private String nombreNPC;
-    private LinkedList<String> ListaDeDialogos;
+    private LinkedList<String> listaDeDialogos;
 
     public Informacion(String nombreNPC) {
         this.nombreNPC = nombreNPC;
-        ListaDeDialogos = new LinkedList<String>();
+        listaDeDialogos = new LinkedList<String>();
     }
 
     public String getNombreNPC() {
@@ -21,10 +21,13 @@ public class Informacion
     }
 
     public LinkedList<String> getListaDeDialogos() {
-        return ListaDeDialogos;
+        return listaDeDialogos;
     }
 
     public void setListaDeDialogos(LinkedList<String> listaDeDialogos) {
-        ListaDeDialogos = listaDeDialogos;
+        this.listaDeDialogos = listaDeDialogos;
+    }
+    public void agregarDialogo(String dialogo){
+        listaDeDialogos.add(dialogo);
     }
 }

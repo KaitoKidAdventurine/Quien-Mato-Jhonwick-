@@ -161,7 +161,7 @@ crearObjetosMochila();
     private void MochilaActionPerformed(ActionEvent evt) {
 
         Maletin maletin = new Maletin(new JFrame(), true);
-        maletin.setBounds((int) (tamPant.width*0.3), (int) (tamPant.height*0.2),(int) (tamPant.width*0.4), (int) (tamPant.height*0.65));
+        maletin.setBounds(0, 0,tamPant.width, tamPant.height);
         maletin.setVisible(true);
 
     }
@@ -193,7 +193,9 @@ crearObjetosMochila();
         mochila.setIcon(icono);
     }
     private void DiarioActionPerformed(ActionEvent evt) {
-
+        DiarioInterfaz diarioInterfaz = new DiarioInterfaz(new JFrame(), true);
+        diarioInterfaz.setBounds(0, 0,tamPant.width, tamPant.height);
+        diarioInterfaz.setVisible(true);
     }
 
     private void DiarioMouseExited(MouseEvent evt) {
@@ -224,7 +226,7 @@ crearObjetosMochila();
     }
     private void TelefonoActionPerformed(ActionEvent evt) {
         TelefonoInterfaz telefono = new TelefonoInterfaz(new JFrame(), true);
-        telefono.setBounds((int) (tamPant.width*0.19), (int) (tamPant.height*0.1),(int) (tamPant.width*0.85), (int) (tamPant.height*0.9));
+        telefono.setBounds(0, 0,tamPant.width, tamPant.height);
         telefono.setVisible(true);
     }
 
@@ -257,7 +259,7 @@ crearObjetosMochila();
     private void MenuActionPerformed(ActionEvent evt) {
 
         MenuInterno dialog = new MenuInterno(new javax.swing.JFrame(), true);
-        dialog.setBounds((int) (tamPant.width*0.3), (int) (tamPant.height*0.2),(int) (tamPant.width*0.4), (int) (tamPant.height*0.65));
+        dialog.setBounds(0, 0,tamPant.width, tamPant.height);
         dialog.setVisible(true);
 
     }

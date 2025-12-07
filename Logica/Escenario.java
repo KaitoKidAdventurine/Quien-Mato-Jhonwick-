@@ -6,7 +6,7 @@ import cu.edu.cujae.ceis.tree.iterators.general.InDepthIterator;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-
+import Logica.*;
 public class Escenario {
     private String nombre;
     private String descripcion;

@@ -56,4 +56,7 @@ public class Diario
         }
 
     }
+    public void agregarInformacion(Informacion informacion){
+        dialogosImportantes.add(informacion);
+    }
 }

@@ -44,8 +44,6 @@ private Dimension tamPant;
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
 
         escenario = new Escenario("Entrada", "Punto inicial de partida", true);
-        crearDialogos();
-
         initComponents();
         timer = new Timer();
         tarea = new TimerTask() {
@@ -215,43 +213,5 @@ public JPanel darCuadroTexto(){
     private javax.swing.JLabel lugar;
     // End of variables declaration//GEN-END:variables
 
-    public void crearDialogos(){
-        ImageIcon policia = new ImageIcon("DatosAuxiliares/NPC/Policia.png");
-        ImageIcon dueno = new ImageIcon("DatosAuxiliares/NPC/Dueño.png");
-        ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/NPC/Secretaria.png");
 
-        Dialogo d1= new Dialogo("Hola. Como estas.", "Policia", policia, true);
-        Dialogo d2= new Dialogo("Espero que hayas dormido bien.", "Policia", policia, true);
-        Dialogo d3= new Dialogo("Tenemos trabajo que hacer.", "Policia", policia, true);
-        Dialogo d4= new Dialogo("Este parece ser un caso bastante serio.", "Policia", policia, true);
-        Dialogo d5= new Dialogo("No se alarme oficial. El caso esta practicamente resuelto.", "Dueño", dueno, true);
-        Dialogo d6= new Dialogo("Simplemente no pudo aguantar el estres laboral.", "Dueño", dueno, true);
-        Dialogo d7= new Dialogo("Por favor señor, hasta que el detective diga lo contrario el caso seguira abierto.", "Policia", policia, true);
-        Dialogo d8= new Dialogo("Como diga.", "Dueño", dueno, true);
-        Dialogo d9= new Dialogo("Buenas. Soy la secretaria del dueño del museo, sere la encargada de guiarte por el museo y de llevarte hasta la escena del crimen. Por favor, venga por este camino", "Secretaria", secretaria, true);
-
-        BinaryTreeNode<Dialogo> node1 = new BinaryTreeNode<>(d1);
-        BinaryTreeNode<Dialogo> node2 = new BinaryTreeNode<>(d2);
-        BinaryTreeNode<Dialogo> node3 = new BinaryTreeNode<>(d3);
-        BinaryTreeNode<Dialogo> node4 = new BinaryTreeNode<>(d4);
-        BinaryTreeNode<Dialogo> node5 = new BinaryTreeNode<>(d5);
-        BinaryTreeNode<Dialogo> node6 = new BinaryTreeNode<>(d6);
-        BinaryTreeNode<Dialogo> node7 = new BinaryTreeNode<>(d7);
-        BinaryTreeNode<Dialogo> node8 = new BinaryTreeNode<>(d8);
-        BinaryTreeNode<Dialogo> node9 = new BinaryTreeNode<>(d9);
-
-        GeneralTree<Dialogo> auxTree = new GeneralTree<>();
-
-        auxTree.insertNode(node1, null);
-        auxTree.insertNode(node2, node1);
-        auxTree.insertNode(node3, node2);
-        auxTree.insertNode(node4, node3);
-        auxTree.insertNode(node5, node4);
-        auxTree.insertNode(node6, node5);
-        auxTree.insertNode(node7, node6);
-        auxTree.insertNode(node8, node7);
-        auxTree.insertNode(node9, node8);
-
-        escenario.setArbolDial(auxTree);
-    }
 }
