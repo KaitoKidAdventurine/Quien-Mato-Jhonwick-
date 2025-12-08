@@ -66,7 +66,7 @@ public class MenuInterno extends javax.swing.JDialog {
         setUndecorated(true);
         getContentPane().setLayout(null);
         setBackground(new Color(0, 0,0,75 ));
-        getContentPane().setPreferredSize(new Dimension((int) (tamPant.width*0.4), (int) (tamPant.height*0.6)));
+
         jPanel1.setBackground(Color.black);
         jPanel1.setLayout(null);
 

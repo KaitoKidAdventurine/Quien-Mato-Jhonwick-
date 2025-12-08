@@ -6,9 +6,12 @@ package Interfaz.Menu;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -141,7 +144,16 @@ public class CargarPartida extends javax.swing.JFrame {
         boton3.setBounds((int) (tamPant.width*0.1), (int) (tamPant.height*0.70), (int) (tamPant.width*0.67), (int) (tamPant.height*0.19)); ;
         getContentPane().add(boton3);
 
-        fondo.setIcon(new javax.swing.ImageIcon("DatosAuxiliares/Fondo presentacion.jpeg\\"));
+        BufferedImage imagen = null;
+        try {
+            imagen = ImageIO.read(new File(("DatosAuxiliares/Fondo presentacion.jpeg")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance(tamPant.width, tamPant.height , Image.SCALE_SMOOTH));
+
+
+        fondo.setIcon(icono);
         fondo.setPreferredSize(tamPant);
         fondo.setBounds(0,0, tamPant.width, tamPant.height );
         getContentPane().add(fondo);

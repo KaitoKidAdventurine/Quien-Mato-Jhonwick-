@@ -39,7 +39,7 @@ public class CuadroTexto extends javax.swing.JPanel {
         parrafo = new JLabel();
         setLayout(null);
 
-
+        setBackground(new Color(0, 0, 0, 0));
         jPanel1.setBackground(new Color(0, 0, 0, 100));
         jPanel1.setFocusable(false);
 

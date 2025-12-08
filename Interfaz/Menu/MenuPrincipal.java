@@ -3,11 +3,13 @@ package Interfaz.Menu;
 
 
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
@@ -64,7 +66,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Detective");
         setMinimumSize(new java.awt.Dimension(tamPant));
         setUndecorated(true);
         getContentPane().setLayout(null);
@@ -179,7 +180,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(botonCreditos);
 
-        fondo.setIcon(new javax.swing.ImageIcon("DatosAuxiliares/Fondo presentacion.jpeg")); // NOI18N
+        BufferedImage imagen = null;
+        try {
+            imagen = ImageIO.read(new File(("DatosAuxiliares/Fondo presentacion.jpeg")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance(tamPant.width, tamPant.height , Image.SCALE_SMOOTH));
+
+
+        fondo.setIcon(icono); // NOI18N
         fondo.setText("jLabel1");
         fondo.setMaximumSize(tamPant);
         fondo.setMinimumSize(tamPant);
