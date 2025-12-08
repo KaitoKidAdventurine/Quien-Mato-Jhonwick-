@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class OficinaJefe extends JFrame {
+public class OficinaJefe extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OficinaJefe.class.getName());
     private Dimension tamPant;
     private int dialogoActual;

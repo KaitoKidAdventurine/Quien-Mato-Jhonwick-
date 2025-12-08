@@ -4,6 +4,7 @@
  */
 package Interfaz.InterfazJugador;
 
+import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.Menu.MenuPrincipal;
 
 import javax.imageio.ImageIO;
@@ -40,6 +41,7 @@ public class MenuInterno extends javax.swing.JDialog {
         tarea = new TimerTask() {
             @Override
             public void run() {
+                UnionInterfaces.getInstance().setCerrarVentana(true);
                 dispose();
             }
         };
@@ -240,11 +242,10 @@ public class MenuInterno extends javax.swing.JDialog {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
         int salir= JOptionPane.showConfirmDialog(null,"Estas seguro de querer salir al menu principal", "", JOptionPane.YES_NO_OPTION);
         if(salir==0) {
+
             MenuPrincipal menu = new MenuPrincipal();
             menu.setVisible(true);
-           dispose();
-
-
+           timer.schedule(tarea, 10);
         }
 
     }

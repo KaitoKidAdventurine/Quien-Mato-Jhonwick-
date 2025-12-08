@@ -1,5 +1,7 @@
 package Interfaz.InterfazJugador;
 
+import DatosAuxiliaresLogica.UnionInterfaces;
+import Interfaz.Escenarios.ModeloEscenario;
 import Logica.*;
 
 import javax.imageio.ImageIO;
@@ -258,9 +260,10 @@ crearObjetosMochila();
     }
     private void MenuActionPerformed(ActionEvent evt) {
 
-        MenuInterno dialog = new MenuInterno(new javax.swing.JFrame(), true);
-        dialog.setBounds(0, 0,tamPant.width, tamPant.height);
-        dialog.setVisible(true);
+        MenuInterno menuInterno = new MenuInterno(new JFrame(), true);
+        menuInterno.setBounds(0, 0,tamPant.width, tamPant.height);
+        menuInterno.setVisible(true);
+
 
     }
 

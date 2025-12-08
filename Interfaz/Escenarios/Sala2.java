@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Sala2  extends JFrame {
+public class Sala2  extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Sala2.class.getName());
     private Dimension tamPant;
     private int dialogoActual;

@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Callejon extends JFrame {
+public class Callejon extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Callejon.class.getName());
     private Dimension tamPant;
     private int dialogoActual;

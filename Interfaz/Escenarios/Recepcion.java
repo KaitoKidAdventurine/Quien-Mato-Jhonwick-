@@ -23,7 +23,7 @@ import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Recepcion extends JFrame{
+public class Recepcion extends ModeloEscenario{
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Recepcion.class.getName());
     private Dimension tamPant;
     private Timer timer;

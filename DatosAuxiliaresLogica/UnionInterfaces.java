@@ -1,7 +1,5 @@
 package DatosAuxiliaresLogica;
 
-import Logica.Jugador;
-
 public class UnionInterfaces {
 
     private int opcionDialogo;
@@ -17,7 +15,7 @@ public class UnionInterfaces {
         return opcionDialogo;
     }
 
-    public boolean isCerrarVentana() {
+    public boolean getCerrarVentana() {
         return cerrarVentana;
     }
 

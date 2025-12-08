@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class PasilloAlmacen extends JFrame {
+public class PasilloAlmacen extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PasilloAlmacen.class.getName());
     private Dimension tamPant;
     private int dialogoActual;

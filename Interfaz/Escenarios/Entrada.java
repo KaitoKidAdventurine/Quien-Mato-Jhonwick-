@@ -5,6 +5,7 @@
 package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Logica.Dialogo;
 import Logica.Escenario;
@@ -29,12 +30,14 @@ import java.util.TimerTask;
  *
  * @author ROBERTO
  */
-public class Entrada extends javax.swing.JFrame {
+public class Entrada extends ModeloEscenario {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Entrada.class.getName());
 private Dimension tamPant;
     private Timer timer;
+    private Timer timer2;
     private TimerTask tarea;
+    private TimerTask tarea2;
     private InterfazUsuario interfazUsuario;
     private Escenario escenario;
     /**
@@ -44,15 +47,31 @@ private Dimension tamPant;
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
 
         escenario = new Escenario("Entrada", "Punto inicial de partida", true);
-        initComponents();
+
         timer = new Timer();
+
         tarea = new TimerTask() {
             @Override
             public void run() {
                 dispose();
             }
         };
+        timer2 = new Timer();
+        tarea2 = new TimerTask() {
+            @Override
+            public void run() {
+
+                if(UnionInterfaces.getInstance().getCerrarVentana()){
+                    UnionInterfaces.getInstance().setCerrarVentana(false);
+                    cerrarEscenario();
+                    tarea2.cancel();
+                }
+            }
+        };
+        initComponents();
     }
+
+
 
 
     private void initComponents() {
@@ -132,6 +151,7 @@ private Dimension tamPant;
         getContentPane().add(fondo );
 
         pack();
+        timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void flechaActionPerformed(ActionEvent evt) {
@@ -142,6 +162,11 @@ private Dimension tamPant;
         recepcion.setVisible(true);
         timer.schedule(tarea, 1000);
     }
+
+    private void verificarCerrado() {
+
+    }
+
 
     public void ponerDialogo() {
 

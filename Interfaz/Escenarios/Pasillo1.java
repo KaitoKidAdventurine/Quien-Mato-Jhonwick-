@@ -23,7 +23,7 @@ import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Pasillo1 extends JFrame {
+public class Pasillo1 extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Pasillo1.class.getName());
     private Dimension tamPant;
     private int dialogoActual;
