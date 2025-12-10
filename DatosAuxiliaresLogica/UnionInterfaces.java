@@ -4,11 +4,13 @@ public class UnionInterfaces {
 
     private int opcionDialogo;
     private boolean cerrarVentana;
+    private boolean salirJuego;
     private static UnionInterfaces instancia;
 
     public UnionInterfaces(){
         this.opcionDialogo = 1;
         this.cerrarVentana= false;
+        this.salirJuego = false;
     }
 
     public int getOpcionDialogo() {
@@ -31,5 +33,13 @@ public class UnionInterfaces {
             instancia = new UnionInterfaces();
         }
         return instancia;
+    }
+
+    public boolean getSalirJuego() {
+        return salirJuego;
+    }
+
+    public void setSalirJuego(boolean salirJuego) {
+        this.salirJuego = salirJuego;
     }
 }

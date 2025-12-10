@@ -1,7 +1,9 @@
 package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.Menu.MenuPrincipal;
 import Logica.Partida;
 
 import javax.imageio.ImageIO;
@@ -24,11 +26,27 @@ public class Pasillo2 extends ModeloEscenario {
     private java.util.Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
+    private Timer timer2;
+    private TimerTask tarea2;
     /**
      * Creates new form Entrada
      */
     public Pasillo2() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+        timer2 = new Timer();
+        tarea2 = new TimerTask() {
+            @Override
+            public void run() {
+
+                if(UnionInterfaces.getInstance().getCerrarVentana()){
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.setVisible(true);
+                    UnionInterfaces.getInstance().setCerrarVentana(false);
+                    cerrarEscenario();
+                    tarea2.cancel();
+                }
+            }
+        };
         initComponents();
         timer = new Timer();
         tarea = new TimerTask() {
@@ -107,6 +125,7 @@ public class Pasillo2 extends ModeloEscenario {
                 flechaSalaMouseExited(evt);
             }
         });
+        flechaSala.setToolTipText("Sala Planta Alta");
         flechaSala.setOpaque(true);
         flechaSala.setContentAreaFilled(false);
         flechaSala.setBorderPainted(false);
@@ -121,6 +140,7 @@ public class Pasillo2 extends ModeloEscenario {
                 flechaOficinaJefeActionPerformed(evt);
             }
         });
+        flechaOficiaJefe.setToolTipText("Oficina del jefe");
         flechaOficiaJefe.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 flechaOficinaJefeMouseEntered(evt);
@@ -151,6 +171,7 @@ public class Pasillo2 extends ModeloEscenario {
                 flechaBano2MouseExited(evt);
             }
         });
+        flechaBano2.setToolTipText("Baño Planta Alta");
         flechaBano2.setOpaque(true);
         flechaBano2.setContentAreaFilled(false);
         flechaBano2.setBorderPainted(false);
@@ -174,6 +195,7 @@ public class Pasillo2 extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
+        timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
     public void ponerDialogo() {
     }
@@ -190,6 +212,7 @@ public class Pasillo2 extends ModeloEscenario {
 
         Sala sala = new Sala();
         sala.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
     private void flechaOficinaJefeActionPerformed(ActionEvent evt) {
@@ -198,6 +221,7 @@ public class Pasillo2 extends ModeloEscenario {
 
         OficinaJefe oficinaJefe = new OficinaJefe();
         oficinaJefe.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
     private void flechaBano2ActionPerformed(ActionEvent evt) {
@@ -206,6 +230,7 @@ public class Pasillo2 extends ModeloEscenario {
 
         Bano2 bano2 = new Bano2();
         bano2.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
     private void flechaSalaMouseExited(MouseEvent evt) {

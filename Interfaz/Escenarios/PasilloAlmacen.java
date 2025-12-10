@@ -1,7 +1,9 @@
 package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.Menu.MenuPrincipal;
 import Logica.Partida;
 
 import javax.imageio.ImageIO;
@@ -24,11 +26,28 @@ public class PasilloAlmacen extends ModeloEscenario {
     private java.util.Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
+    private Timer timer2;
+    private TimerTask tarea2;
     /**
      * Creates new form Entrada
      */
     public PasilloAlmacen() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+
+        timer2 = new Timer();
+        tarea2 = new TimerTask() {
+            @Override
+            public void run() {
+
+                if(UnionInterfaces.getInstance().getCerrarVentana()){
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.setVisible(true);
+                    UnionInterfaces.getInstance().setCerrarVentana(false);
+                    cerrarEscenario();
+                    tarea2.cancel();
+                }
+            }
+        };
         initComponents();
         timer = new Timer();
         tarea = new TimerTask() {
@@ -107,6 +126,7 @@ public class PasilloAlmacen extends ModeloEscenario {
                 flechaPasillo3MouseExited(evt);
             }
         });
+        flechaPasillo3.setToolTipText("Oficinas Planta Baja");
         flechaPasillo3.setOpaque(true);
         flechaPasillo3.setContentAreaFilled(false);
         flechaPasillo3.setBorderPainted(false);
@@ -130,6 +150,7 @@ public class PasilloAlmacen extends ModeloEscenario {
                 flechaAlmacenMouseExited(evt);
             }
         });
+        flechaAlmacen.setToolTipText("Almacen");
         flechaAlmacen.setOpaque(true);
         flechaAlmacen.setContentAreaFilled(false);
         flechaAlmacen.setBorderPainted(false);
@@ -152,6 +173,7 @@ public class PasilloAlmacen extends ModeloEscenario {
                 flechaCallejonMouseExited(evt);
             }
         });
+        flechaCallejon.setToolTipText("Callejon");
         flechaCallejon.setOpaque(true);
         flechaCallejon.setContentAreaFilled(false);
         flechaCallejon.setBorderPainted(false);
@@ -177,6 +199,7 @@ public class PasilloAlmacen extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
+        timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
     public void ponerDialogo() {
     }
@@ -193,6 +216,7 @@ public class PasilloAlmacen extends ModeloEscenario {
 
         Pasillo3 pasillo3 = new Pasillo3();
         pasillo3.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
     private void flechaAlmacenActionPerformed(ActionEvent evt) {
@@ -201,6 +225,7 @@ public class PasilloAlmacen extends ModeloEscenario {
 
         Almacen almacen= new Almacen();
         almacen.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
     private void flechaCallejonActionPerformed(ActionEvent evt) {
@@ -209,6 +234,7 @@ public class PasilloAlmacen extends ModeloEscenario {
 
         Callejon callejon = new Callejon();
         callejon.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
     private void flechaPasillo3MouseExited(MouseEvent evt) {

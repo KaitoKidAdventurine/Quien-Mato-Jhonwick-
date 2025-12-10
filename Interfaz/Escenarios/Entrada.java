@@ -7,6 +7,7 @@ package Interfaz.Escenarios;
 import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
 import Logica.Escenario;
 import Logica.Partida;
@@ -45,11 +46,8 @@ private Dimension tamPant;
      */
     public Entrada() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
-
         escenario = new Escenario("Entrada", "Punto inicial de partida", true);
-
         timer = new Timer();
-
         tarea = new TimerTask() {
             @Override
             public void run() {
@@ -62,6 +60,8 @@ private Dimension tamPant;
             public void run() {
 
                 if(UnionInterfaces.getInstance().getCerrarVentana()){
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     cerrarEscenario();
                     tarea2.cancel();
@@ -145,7 +145,7 @@ private Dimension tamPant;
         lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.3), (int) (tamPant.height*0.1));
         getContentPane().add(lugar);
 
-        interfazUsuario.setBounds((int) (tamPant.width*0.55), (int) (tamPant.height*0.05), (int) (tamPant.width*0.5), (int) (tamPant.height*0.15));
+        interfazUsuario.setBounds((int) (tamPant.width*0.55), (int) (tamPant.height*0.05), (int) (tamPant.width*0.45), (int) (tamPant.height*0.15));
         getContentPane().add(interfazUsuario);
 
         getContentPane().add(fondo );
@@ -160,6 +160,7 @@ private Dimension tamPant;
 
         Recepcion recepcion = new Recepcion();
         recepcion.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
 

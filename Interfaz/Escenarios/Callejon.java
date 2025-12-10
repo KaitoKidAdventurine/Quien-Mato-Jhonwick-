@@ -1,7 +1,9 @@
 package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.Menu.MenuPrincipal;
 import Logica.Jugador;
 import Logica.Partida;
 
@@ -23,6 +25,8 @@ public class Callejon extends ModeloEscenario {
     private int dialogoActual;
     private Timer timer;
     private TimerTask tarea;
+    private Timer timer2;
+    private TimerTask tarea2;
     private InterfazUsuario interfazUsuario;
 
     /**
@@ -30,6 +34,20 @@ public class Callejon extends ModeloEscenario {
      */
     public Callejon() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+        timer2 = new Timer();
+        tarea2 = new TimerTask() {
+            @Override
+            public void run() {
+
+                if(UnionInterfaces.getInstance().getCerrarVentana()){
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.setVisible(true);
+                    UnionInterfaces.getInstance().setCerrarVentana(false);
+                    cerrarEscenario();
+                    tarea2.cancel();
+                }
+            }
+        };
         initComponents();
         timer = new Timer();
         tarea = new TimerTask() {
@@ -92,7 +110,7 @@ public class Callejon extends ModeloEscenario {
         flechaPasilloAlmacen.setContentAreaFilled(false);
         flechaPasilloAlmacen.setBorderPainted(false);
         flechaPasilloAlmacen.setFocusPainted(false);
-
+        flechaPasilloAlmacen.setToolTipText("Ala sur");
         flechaPasilloAlmacen.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 flechaMouseEntered(evt);
@@ -121,6 +139,7 @@ public class Callejon extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
+        timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
     public void ponerDialogo() {
     }
@@ -156,6 +175,7 @@ public class Callejon extends ModeloEscenario {
 
         PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
         pasilloAlmacen.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
     private void cTMouseClicked(MouseEvent evt) {

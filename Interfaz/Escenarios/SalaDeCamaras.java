@@ -1,7 +1,9 @@
 package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.Menu.MenuPrincipal;
 import Logica.Partida;
 
 import javax.imageio.ImageIO;
@@ -24,11 +26,28 @@ public class SalaDeCamaras extends ModeloEscenario {
     private Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
+    private Timer timer2;
+    private TimerTask tarea2;
     /**
      * Creates new form Entrada
      */
     public SalaDeCamaras() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+        timer2 = new Timer();
+        tarea2 = new TimerTask() {
+            @Override
+            public void run() {
+
+                if(UnionInterfaces.getInstance().getCerrarVentana()){
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.setVisible(true);
+                    UnionInterfaces.getInstance().setCerrarVentana(false);
+                    cerrarEscenario();
+                    tarea2.cancel();
+                }
+            }
+        };
+
         initComponents();
         timer = new Timer();
         tarea = new TimerTask() {
@@ -101,6 +120,7 @@ public class SalaDeCamaras extends ModeloEscenario {
                 flechaPasillo1MouseExited(evt);
             }
         });
+        flechaPasillo1.setToolTipText("Ala este");
         flechaPasillo1.setOpaque(true);
         flechaPasillo1.setContentAreaFilled(false);
         flechaPasillo1.setBorderPainted(false);
@@ -122,6 +142,7 @@ public class SalaDeCamaras extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
+        timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
     public void ponerDialogo() {
     }
@@ -137,6 +158,7 @@ public class SalaDeCamaras extends ModeloEscenario {
 
         Pasillo1 pasillo1 = new Pasillo1();
         pasillo1.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
 
     }

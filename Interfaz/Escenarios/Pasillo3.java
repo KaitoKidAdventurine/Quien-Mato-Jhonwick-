@@ -1,7 +1,9 @@
 package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.Menu.MenuPrincipal;
 import Logica.Partida;
 
 import javax.imageio.ImageIO;
@@ -24,11 +26,28 @@ public class Pasillo3 extends ModeloEscenario {
     private java.util.Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
+    private Timer timer2;
+    private TimerTask tarea2;
     /**
      * Creates new form Entrada
      */
     public Pasillo3() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+
+        timer2 = new Timer();
+        tarea2 = new TimerTask() {
+            @Override
+            public void run() {
+
+                if(UnionInterfaces.getInstance().getCerrarVentana()){
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.setVisible(true);
+                    UnionInterfaces.getInstance().setCerrarVentana(false);
+                    cerrarEscenario();
+                    tarea2.cancel();
+                }
+            }
+        };
         initComponents();
         timer = new Timer();
         tarea = new TimerTask() {
@@ -107,6 +126,7 @@ public class Pasillo3 extends ModeloEscenario {
                 flechaPasillo1MouseExited(evt);
             }
         });
+        flechaPasillo1.setToolTipText("Ala Este");
         flechaPasillo1.setOpaque(true);
         flechaPasillo1.setContentAreaFilled(false);
         flechaPasillo1.setBorderPainted(false);
@@ -129,6 +149,7 @@ public class Pasillo3 extends ModeloEscenario {
                 flechaOfEconoMouseExited(evt);
             }
         });
+        flechaOficinaEcono.setToolTipText("Oficina Victima");
         flechaOficinaEcono.setOpaque(true);
         flechaOficinaEcono.setContentAreaFilled(false);
         flechaOficinaEcono.setBorderPainted(false);
@@ -152,6 +173,7 @@ public class Pasillo3 extends ModeloEscenario {
                 flechaPasilloAlmacenMouseExited(evt);
             }
         });
+        flechaPasilloAlmacen.setToolTipText("Ala Sur");
         flechaPasilloAlmacen.setOpaque(true);
         flechaPasilloAlmacen.setContentAreaFilled(false);
         flechaPasilloAlmacen.setBorderPainted(false);
@@ -171,6 +193,7 @@ public class Pasillo3 extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
+        timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
     public void ponerDialogo() {
     }
@@ -186,6 +209,7 @@ public class Pasillo3 extends ModeloEscenario {
 
         Pasillo1 pasillo1 = new Pasillo1();
         pasillo1.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
 
     }
@@ -195,6 +219,7 @@ public class Pasillo3 extends ModeloEscenario {
 
         OficinaEconomico oficinaEconomico = new OficinaEconomico();
         oficinaEconomico.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
 
     }
@@ -205,6 +230,7 @@ public class Pasillo3 extends ModeloEscenario {
 
         PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
         pasilloAlmacen.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
 
     }

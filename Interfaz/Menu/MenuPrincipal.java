@@ -13,6 +13,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import DatosAuxiliaresLogica.UnionInterfaces;
+import Interfaz.InterfazJugador.ConfirmarSalida;
 import Logica.Reproductor;
 
 /**
@@ -204,10 +206,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
-        int salir= JOptionPane.showConfirmDialog(null,"Estas seguro de queres salir del juego", "", JOptionPane.YES_NO_OPTION);
-        if(salir==0)
+        ConfirmarSalida confirmarSalida = new ConfirmarSalida(new JFrame(), true, "Estas seguro de querer salir del juego", true);
+        confirmarSalida.setVisible(true);
+        if(UnionInterfaces.getInstance().getSalirJuego()){
             System.exit(0);
-    }//GEN-LAST:event_botonSalirActionPerformed
+        }
+    }
 
     private void botonNuevPartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevPartActionPerformed
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
@@ -227,7 +231,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
        cP.setVisible(true);
         timer.schedule(tarea, 1000);
 
-    }//GEN-LAST:event_botonCargParActionPerformed
+    }
 
     private void botonOpcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOpcActionPerformed
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
@@ -237,11 +241,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
       opc.setVisible(true);
         timer.schedule(tarea, 1000);
-    }//GEN-LAST:event_botonOpcActionPerformed
+    }
 
     private void botonNuevPartMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNuevPartMouseEntered
         botonNuevPart.setForeground(Color.red);
-    }//GEN-LAST:event_botonNuevPartMouseEntered
+    }
 
     private void botonNuevPartMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNuevPartMouseExited
           botonNuevPart.setForeground(new java.awt.Color(255, 255, 255));

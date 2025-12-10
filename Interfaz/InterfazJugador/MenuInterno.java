@@ -64,6 +64,7 @@ public class MenuInterno extends javax.swing.JDialog {
         jButton4 = new JButton();
         jButton5 = new JButton();
         fondo = new JLabel();
+
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(null);
@@ -240,11 +241,9 @@ public class MenuInterno extends javax.swing.JDialog {
     }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-        int salir= JOptionPane.showConfirmDialog(null,"Estas seguro de querer salir al menu principal", "", JOptionPane.YES_NO_OPTION);
-        if(salir==0) {
-
-            MenuPrincipal menu = new MenuPrincipal();
-            menu.setVisible(true);
+        ConfirmarSalida confirmarSalida = new ConfirmarSalida(new JFrame(), true, "Estas seguro de querer salir al Menu", false);
+        confirmarSalida.setVisible(true);
+        if(UnionInterfaces.getInstance().getCerrarVentana()){
            timer.schedule(tarea, 10);
         }
 
@@ -260,9 +259,11 @@ public class MenuInterno extends javax.swing.JDialog {
 
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
-        int salir= JOptionPane.showConfirmDialog(null,"Estas seguro de querer salir del juego", "", JOptionPane.YES_NO_OPTION);
-        if(salir==0)
-            System.exit(0);
+        ConfirmarSalida confirmarSalida = new ConfirmarSalida(new JFrame(), true, "Estas seguro de querer salir del juego", true);
+        confirmarSalida.setVisible(true);
+            if(UnionInterfaces.getInstance().getSalirJuego()){
+                System.exit(0);
+            }
     }
 
     private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {

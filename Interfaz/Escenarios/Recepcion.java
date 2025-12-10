@@ -1,7 +1,9 @@
 package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
 import Logica.Escenario;
 import Logica.Partida;
@@ -36,12 +38,30 @@ public class Recepcion extends ModeloEscenario{
     private boolean secretariaActivada;
     private boolean hablandoConPolicia;
     private boolean apareceGuardia;
+    private Timer timer2;
+    private TimerTask tarea2;
     /**
     /**
      * Creates new form Entrada
      */
     public Recepcion() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+
+        timer2 = new Timer();
+        tarea2 = new TimerTask() {
+            @Override
+            public void run() {
+
+                if(UnionInterfaces.getInstance().getCerrarVentana()){
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.setVisible(true);
+                    UnionInterfaces.getInstance().setCerrarVentana(false);
+                    cerrarEscenario();
+                    tarea2.cancel();
+                }
+            }
+        };
+
         initComponents();
         timer = new Timer();
         tarea = new TimerTask() {
@@ -136,6 +156,7 @@ public class Recepcion extends ModeloEscenario{
                 flechaSalidaMouseExited(evt);
             }
         });
+        flechaSalida.setToolTipText("Entrada");
         flechaSalida.setOpaque(true);
         flechaSalida.setContentAreaFilled(false);
         flechaSalida.setBorderPainted(false);
@@ -155,7 +176,7 @@ public class Recepcion extends ModeloEscenario{
                 flechaBanoMouseExited(evt);
             }
         });
-
+        flechaBano.setToolTipText("Baño Planta Baja");
         flechaBano.setOpaque(true);
         flechaBano.setContentAreaFilled(false);
         flechaBano.setBorderPainted(false);
@@ -177,6 +198,7 @@ public class Recepcion extends ModeloEscenario{
                 flechaSala1MouseExited(evt);
             }
         });
+        flechaSala1.setToolTipText("Sala Planta Alta");
         flechaSala1.setOpaque(true);
         flechaSala1.setContentAreaFilled(false);
         flechaSala1.setBorderPainted(false);
@@ -199,6 +221,7 @@ public class Recepcion extends ModeloEscenario{
                 flechaPasillo1MouseExited(evt);
             }
         });
+        flechaPasillo1.setToolTipText("Ala este");
         flechaPasillo1.setOpaque(true);
         flechaPasillo1.setContentAreaFilled(false);
         flechaPasillo1.setBorderPainted(false);
@@ -223,6 +246,7 @@ public class Recepcion extends ModeloEscenario{
 
         getContentPane().add(fondo);
         pack();
+        timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
     public void ponerDialogo() {
     }
@@ -238,6 +262,7 @@ public class Recepcion extends ModeloEscenario{
 
         Entrada entrada = new Entrada();
         entrada.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
     private void flechaBanoActionPerformed(ActionEvent evt) {
@@ -246,6 +271,7 @@ public class Recepcion extends ModeloEscenario{
 
         Bano bano = new Bano();
         bano.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
     private void flechaSala1ActionPerformed(ActionEvent evt) {
@@ -254,6 +280,7 @@ public class Recepcion extends ModeloEscenario{
 
         Sala sala1 = new Sala();
         sala1.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
     private void flechaPasillo1ActionPerformed(ActionEvent evt) {
@@ -262,6 +289,7 @@ public class Recepcion extends ModeloEscenario{
 
         Pasillo1 pasillo1 = new Pasillo1();
         pasillo1.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
 
 

@@ -1,7 +1,9 @@
 package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
 import Logica.Escenario;
 import Logica.Partida;
@@ -34,11 +36,27 @@ public class Pasillo1 extends ModeloEscenario {
     private GeneralTree<Dialogo> arbolOriginal;
     private GeneralTree<Dialogo> arbolLimpiador;
     private int fase;
+    private Timer timer2;
+    private TimerTask tarea2;
     /**
      * Creates new form Entrada
      */
     public Pasillo1() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+        timer2 = new Timer();
+        tarea2 = new TimerTask() {
+            @Override
+            public void run() {
+
+                if(UnionInterfaces.getInstance().getCerrarVentana()){
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.setVisible(true);
+                    UnionInterfaces.getInstance().setCerrarVentana(false);
+                    cerrarEscenario();
+                    tarea2.cancel();
+                }
+            }
+        };
         initComponents();
         timer = new Timer();
         tarea = new TimerTask() {
@@ -116,6 +134,7 @@ public class Pasillo1 extends ModeloEscenario {
                 flechaEntradaActionPerformed(evt);
             }
         });
+        flechaEntradaDentro.setToolTipText("Recepcion");
         flechaEntradaDentro.setOpaque(true);
         flechaEntradaDentro.setContentAreaFilled(false);
         flechaEntradaDentro.setBorderPainted(false);
@@ -140,6 +159,7 @@ public class Pasillo1 extends ModeloEscenario {
                 flechaCamaraActionPerformed(evt);
             }
         });
+        flechaCamara.setToolTipText("Sala de Vigilancia");
         flechaCamara.setOpaque(true);
         flechaCamara.setContentAreaFilled(false);
         flechaCamara.setBorderPainted(false);
@@ -164,6 +184,7 @@ public class Pasillo1 extends ModeloEscenario {
                 flechaPasillo3ActionPerformed(evt);
             }
         });
+        flechaPasillo3.setToolTipText("Oficinas Planta Baja");
         flechaPasillo3.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 flechaMouseEntered(evt);
@@ -191,6 +212,7 @@ public class Pasillo1 extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
+        timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
 
     private void flechaCamaraActionPerformed(ActionEvent evt) {
@@ -199,6 +221,7 @@ public class Pasillo1 extends ModeloEscenario {
 
         SalaDeCamaras sC = new SalaDeCamaras();
         sC.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
 
@@ -239,11 +262,13 @@ public class Pasillo1 extends ModeloEscenario {
     private void flechaEntradaActionPerformed(ActionEvent evt) {
         Recepcion entradaD = new Recepcion();
         entradaD.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
     private void flechaPasillo3ActionPerformed(ActionEvent evt) {
         Pasillo3 pasillo3 = new Pasillo3();
         pasillo3.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
     private void flechaEtradaDentMouseExited(MouseEvent evt) {

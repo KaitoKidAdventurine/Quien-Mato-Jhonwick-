@@ -1,7 +1,9 @@
 package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.Menu.MenuPrincipal;
 import Logica.Partida;
 
 import javax.imageio.ImageIO;
@@ -24,11 +26,28 @@ public class Sala2  extends ModeloEscenario {
     private java.util.Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
+    private Timer timer2;
+    private TimerTask tarea2;
     /**
      * Creates new form Entrada
      */
     public Sala2() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+        timer2 = new Timer();
+        tarea2 = new TimerTask() {
+            @Override
+            public void run() {
+
+                if(UnionInterfaces.getInstance().getCerrarVentana()){
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.setVisible(true);
+                    UnionInterfaces.getInstance().setCerrarVentana(false);
+                    cerrarEscenario();
+                    tarea2.cancel();
+                }
+            }
+        };
+
         initComponents();
         timer = new Timer();
         tarea = new TimerTask() {
@@ -102,7 +121,7 @@ public class Sala2  extends ModeloEscenario {
         flechaSala.setContentAreaFilled(false);
         flechaSala.setBorderPainted(false);
         flechaSala.setFocusPainted(false);
-
+        flechaSala.setToolTipText("Sala Planta Alta");
         getContentPane().add(flechaSala);
         getContentPane().add(cajaTexto);
 
@@ -120,6 +139,7 @@ public class Sala2  extends ModeloEscenario {
         getContentPane().add(jLabel1);
 
         pack();
+        timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
     public void ponerDialogo() {
     }
@@ -135,6 +155,7 @@ public class Sala2  extends ModeloEscenario {
 
         Sala sala = new Sala();
         sala.setVisible(true);
+        tarea2.cancel();
         timer.schedule(tarea, 1000);
     }
     private void flechaSalaMouseExited(MouseEvent evt) {
