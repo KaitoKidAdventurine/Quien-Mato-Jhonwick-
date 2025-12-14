@@ -130,7 +130,10 @@ public class Pasillo1 extends ModeloEscenario {
         flechaEntradaDentro.setBounds((int) (tamPant.width*0.4), (int) (tamPant.height*0.84), (int) (tamPant.width*0.048), (int) (tamPant.height*0.124));
         flechaEntradaDentro.setBackground(Color.red);
         flechaEntradaDentro.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt)
+            {
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoDePasos();
                 flechaEntradaActionPerformed(evt);
             }
         });
@@ -156,6 +159,8 @@ public class Pasillo1 extends ModeloEscenario {
         flechaCamara.setBackground(Color.red);
         flechaCamara.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoDePasos();
                 flechaCamaraActionPerformed(evt);
             }
         });
@@ -181,6 +186,8 @@ public class Pasillo1 extends ModeloEscenario {
         flechaPasillo3.setBackground(Color.red);
         flechaPasillo3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoDePasos();
                 flechaPasillo3ActionPerformed(evt);
             }
         });
@@ -266,6 +273,8 @@ public class Pasillo1 extends ModeloEscenario {
         timer.schedule(tarea, 1000);
     }
     private void flechaPasillo3ActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDePasos();
         Pasillo3 pasillo3 = new Pasillo3();
         pasillo3.setVisible(true);
         tarea2.cancel();

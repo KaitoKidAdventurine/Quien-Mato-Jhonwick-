@@ -1,5 +1,6 @@
 package Interfaz.InterfazJugador;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.Escenarios.ModeloEscenario;
 import Logica.*;
@@ -52,6 +53,8 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         });
         mochila.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoAbrirMochila();
                 MochilaActionPerformed(evt);
             }
         });
@@ -79,7 +82,10 @@ public class InterfazUsuario  extends javax.swing.JPanel {
             }
         });
         menu.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt)
+            {
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoDeBoton();
                 MenuActionPerformed(evt);
             }
         });
@@ -109,6 +115,8 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         });
         telefono.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoAbrirTelefono();
                 TelefonoActionPerformed(evt);
             }
         });
@@ -137,6 +145,8 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         });
         diario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoDeAbrirDiario();
                 DiarioActionPerformed(evt);
             }
         });
@@ -162,10 +172,11 @@ crearObjetosMochila();
 
     private void MochilaActionPerformed(ActionEvent evt) {
 
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoAbrirMochila();
         Maletin maletin = new Maletin(new JFrame(), true);
         maletin.setBounds(0, 0,tamPant.width, tamPant.height);
         maletin.setVisible(true);
-
     }
 
     private void MochilaMouseExited(MouseEvent evt) {
