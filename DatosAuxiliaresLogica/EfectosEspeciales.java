@@ -38,6 +38,9 @@ public class EfectosEspeciales
             File archivo = new File("Musica/Efectos de Sonido/Abrir Diario.mp3");
             File archivoDos = new File("Musica/Efectos de Sonido/Escribir Diario.mp3");
             File archivoTres = new File("Musica/Efectos de Sonido/Boton.mp3");
+            File musicacuatro = new File("Musica/Efectos de Sonido/AbrirTelefono.mp3");
+            File musicacinco = new File("Musica/Efectos de Sonido/Mochila.mp3");
+            File musicaseis = new File("Musica/Efectos de Sonido/SaliendoDelCarro.mp3");
 
             if (archivoMusica.exists()) {
                 Cancion cancion = new Cancion("Lluvia", archivoMusica);
@@ -46,6 +49,9 @@ public class EfectosEspeciales
                 Cancion cancion3 = new Cancion("Abrir Diario", archivo);
                 Cancion cancion4 = new Cancion("Escribir Diario", archivoDos);
                 Cancion cancion5 = new Cancion("Boton", archivoTres);
+                Cancion cancion6 = new Cancion("AbrirTelefono", musicacuatro);
+                Cancion cancion7 = new Cancion("Mochila", musicacinco);
+                Cancion cancion8 = new Cancion("SaliendoDelCarro", musicaseis);
 
                 efectosSonido.add(cancion);
                 efectosSonido.add(cancion1);
@@ -53,7 +59,9 @@ public class EfectosEspeciales
                 efectosSonido.add(cancion3);
                 efectosSonido.add(cancion4);
                 efectosSonido.add(cancion5);
-
+                efectosSonido.add(cancion6);
+                efectosSonido.add(cancion7);
+                efectosSonido.add(cancion8);
             }
 
             else {
@@ -281,10 +289,6 @@ public class EfectosEspeciales
         reproductorMP3.close();
     }
 
-
-
-
-
     // Metodos para buscar rapido el sonido
     public void efectoDePasos()
     {
@@ -316,6 +320,19 @@ public class EfectosEspeciales
         cambiarEfectoNombreUsarSoloUnaVez("Boton");
     }
 
+    public void efectoAbrirTelefono(){
+        cambiarEfectoNombreUsarSoloUnaVez("AbrirTelefono");
+    }
+
+    public void efectoAbrirMochila()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("Mochila");
+    }
+
+    public void efectoSalirDelCarro()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("SaliendoDelCarro");
+    }
 
 
 

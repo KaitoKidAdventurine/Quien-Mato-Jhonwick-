@@ -35,6 +35,8 @@ public class Reproductor {
         File musicaDos = new File("Musica/Canciones/Misterio Electronico.mp3");
         File musicaTres = new File("Musica/Canciones/Sombras en el Viento.mp3");
         File musicaTension = new File("Musica/Canciones/Tension.mp3");
+
+
         if (archivoMusica.exists()) {
 
             Cancion cancion = new Cancion("Menu", archivoMusica);
@@ -43,11 +45,14 @@ public class Reproductor {
             Cancion cancionTres = new Cancion("Sombras en el Viento", musicaTres);
             Cancion cancionTension = new Cancion("Tension", musicaTension);
 
+
+
             canciones.add(cancion);
             canciones.add(cancionUno);
             canciones.add(cancionDos);
             canciones.add(cancionTres);
             canciones.add(cancionTension);
+
 
         } else {
             System.err.println("No se encontró el archivo de música: " + archivoMusica.getAbsolutePath());

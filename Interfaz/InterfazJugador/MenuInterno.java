@@ -4,8 +4,12 @@
  */
 package Interfaz.InterfazJugador;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.Menu.MenuPrincipal;
+import Interfaz.Menu.NuevaPartida;
+import Interfaz.Menu.Opciones;
+import Interfaz.Menu.OpcionesJugador;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -88,7 +92,10 @@ public class MenuInterno extends javax.swing.JDialog {
             }
         });
         jButton1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt)
+            {
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoDeBoton();
                 jButton1ActionPerformed(evt);
             }
         });
@@ -109,11 +116,24 @@ public class MenuInterno extends javax.swing.JDialog {
                 jButton2MouseExited(evt);
             }
         });
+
+
         jButton2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoDeBoton();
+
+                if (timer != null) {
+                    timer.cancel();
+                    timer = new Timer();
+                }
+
+                OpcionesJugador oj = new OpcionesJugador(MenuInterno.this);
+                oj.setVisible(true);
+
             }
         });
+
         jButton2.setBounds((int) (tamPant.width*0.05), (int) (tamPant.height*0.28),(int) (tamPant.width*0.3), (int) (tamPant.height*0.065));
         jPanel1.add(jButton2);
 
@@ -133,6 +153,8 @@ public class MenuInterno extends javax.swing.JDialog {
         });
         jButton3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoDeBoton();
                 jButton3ActionPerformed(evt);
             }
         });
@@ -155,6 +177,8 @@ public class MenuInterno extends javax.swing.JDialog {
         });
         jButton4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoDeBoton();
                 jButton4ActionPerformed(evt);
             }
         });
@@ -178,6 +202,8 @@ public class MenuInterno extends javax.swing.JDialog {
         });
         jButton5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoDeBoton();
                 jButton5ActionPerformed(evt);
             }
         });
