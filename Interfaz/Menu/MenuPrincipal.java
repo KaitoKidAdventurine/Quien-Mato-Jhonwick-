@@ -182,6 +182,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(botonCreditos);
 
+
+
         BufferedImage imagen = null;
         try {
             imagen = ImageIO.read(new File(("DatosAuxiliares/Fondo presentacion.jpeg")));

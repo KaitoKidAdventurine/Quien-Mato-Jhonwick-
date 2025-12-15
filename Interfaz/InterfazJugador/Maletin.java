@@ -8,8 +8,11 @@ import Logica.Partida;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -21,117 +24,101 @@ public class Maletin extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Maletin.class.getName());
     private Dimension tamPant;
-    private JScrollPane scrollObjetos;
-    private JPanel panelInventario;
+    private JLabel fondo;
+   private  ArrayList <JPanel> slotsInventario;
+    private JButton botonSalir;
 
 
     public Maletin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+        slotsInventario = new ArrayList<>();
         initComponents();
     }
 
 
     private void initComponents() {
-        panelGeneral = new JPanel();
+        ponerSlots();
+       // ponerObjetos();
 
-        panelInventario = new JPanel();
-        panelInventario.setLayout(new BoxLayout(panelInventario, BoxLayout.Y_AXIS));
-        panelInventario.setMaximumSize(new Dimension((int) (tamPant.width*0.35), Integer.MAX_VALUE));
+        fondo = new JLabel();
+
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setLayout(null);
+        setBackground(new Color(0, 0, 0, 75));
 
         ponerObjetos();
 
-        scrollObjetos= new JScrollPane();
-        scrollObjetos.setViewportView(panelInventario);
-        scrollObjetos.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollObjetos.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollObjetos.getVerticalScrollBar().setUnitIncrement(16);
-        scrollObjetos.setBounds(0, 0,(int) (tamPant.width*0.34), (int) (tamPant.height*0.56));
+        for(int i = 0; i<8; i++){
+            add(slotsInventario.get(i));
 
-        fondo = new JLabel();
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
-       setLayout(null);
-
-        panelGeneral.setBounds((int) (tamPant.width*0.02), (int) (tamPant.height*0.02),(int) (tamPant.width*0.35), (int) (tamPant.height*0.57));
-
-        panelGeneral.setBackground(Color.black);
-        panelGeneral.setLayout(null);
-
+        }
         BufferedImage imagen = null;
 
         try {
-            imagen = ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/menu 1.jpg"));
+            imagen = ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Maleta interior.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.4), (int) (tamPant.height*0.65), Image.SCALE_SMOOTH));
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.9), tamPant.height, Image.SCALE_SMOOTH));
         fondo.setIcon(icono);
-        fondo.setBounds(0, 0, (int) (tamPant.width*0.4), (int) (tamPant.height*0.65));
+        fondo.setBounds((int) (tamPant.width*0.05), 0,(int) (tamPant.width*0.9),tamPant.height);
 
-        panelGeneral.add(scrollObjetos);
-        add(panelGeneral);
         add(fondo);
 
+        botonSalir = new JButton("Salir");
+        botonSalir.setBounds((int) (tamPant.width*0.88), (int) (tamPant.height*0.06), (int) (tamPant.width*0.1), (int) (tamPant.height*0.06));
+        botonSalir.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.012)));
+        botonSalir.setForeground(Color.white);
+        botonSalir.setBackground(new Color(100, 13, 13));
+        botonSalir.setBorder(new LineBorder(Color.black, 2));
+        botonSalir.setFocusPainted(false);
+        botonSalir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        getContentPane().add(botonSalir);
         pack();
     }// </editor-fold>
 
+    private void ponerSlots() {
+        for(int i =0; i<8; i++){
+            JPanel casilla = new JPanel();
+            casilla.setBackground(new Color( 0, 0, 0, 80));
+            casilla.setLayout(null);
+            casilla.setBorder(new LineBorder(new Color(0, 0, 0,150), 2, true) );
+            slotsInventario.add(casilla);
+        }
+        slotsInventario.getFirst().setBounds((int) (tamPant.width*0.183), (int) (tamPant.height*0.173),(int) (tamPant.width*0.305), (int) (tamPant.height*0.171));
+        slotsInventario.get(1).setBounds((int) (tamPant.width*0.487), (int) (tamPant.height*0.173),(int) (tamPant.width*0.305), (int) (tamPant.height*0.171));
+        slotsInventario.get(2).setBounds((int) (tamPant.width*0.183), (int) (tamPant.height*0.343),(int) (tamPant.width*0.305), (int) (tamPant.height*0.171));
+        slotsInventario.get(3).setBounds((int) (tamPant.width*0.487), (int) (tamPant.height*0.343),(int) (tamPant.width*0.305), (int) (tamPant.height*0.171));
+        slotsInventario.get(4).setBounds((int) (tamPant.width*0.183), (int) (tamPant.height*0.513),(int) (tamPant.width*0.305), (int) (tamPant.height*0.171));
+        slotsInventario.get(5).setBounds((int) (tamPant.width*0.487), (int) (tamPant.height*0.513),(int) (tamPant.width*0.305), (int) (tamPant.height*0.171));
+        slotsInventario.get(6).setBounds((int) (tamPant.width*0.183), (int) (tamPant.height*0.683),(int) (tamPant.width*0.305), (int) (tamPant.height*0.171));
+        slotsInventario.get(7).setBounds((int) (tamPant.width*0.487), (int) (tamPant.height*0.683),(int) (tamPant.width*0.305), (int) (tamPant.height*0.171));
+
+    }
+
     private void ponerObjetos() {
         LinkedList<ObjetoEscenario> listaDeObjetos = Jugador.getInstancia().getMaletin();
-int i =0;
+        int i =0;
         Iterator<ObjetoEscenario> iterator= listaDeObjetos.iterator();
-        while(iterator.hasNext()){
-
+        while(iterator.hasNext() && i<8){
             ObjetoEscenario objetoEscenario = iterator.next();
-            JPanel panel = new JPanel();
-            panel.setLayout(null);
-            panel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.white, 1), BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-            panel.setBounds(0, ((int) (tamPant.height*0.1)*i), (int) (tamPant.width*0.3), (int) (tamPant.height*0.1));
-            JPanel panelIzquierdo = new JPanel();
-            panelIzquierdo.setBounds(0, 0, (int) (tamPant.width*0.1), (int) (tamPant.height*0.15));
-            panelIzquierdo.setBorder(BorderFactory.createLineBorder(Color.black));
-            panelIzquierdo.setLayout(null);
-
-            JLabel nombreObj = new JLabel();
-            nombreObj.setText(objetoEscenario.getNombre());
-            nombreObj.setBounds((int) (tamPant.width*0.11), (int) (tamPant.height*0.01), (int) (tamPant.width*0.3), (int) (tamPant.height*0.05));
-            nombreObj.setForeground(Color.black);
-            JLabel fotoObje= new JLabel();
-
-            BufferedImage imagen = null;
-
-            try {
-                imagen = ImageIO.read(new File(String.valueOf(objetoEscenario.getImagen())));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), Image.SCALE_SMOOTH));
-            fotoObje.setIcon(icono);
-
-            fotoObje.setBounds((int) (tamPant.width*0.005), (int) (tamPant.height*0.005), (int) (tamPant.width*0.09), (int) (tamPant.height*0.15));
-            panelIzquierdo.add(fotoObje);
-
-            JTextArea areaTexto = new JTextArea(objetoEscenario.getDescripcion());
-
-            areaTexto.setEditable(false);
-            areaTexto.setBackground(new Color(0, 0, 0, 0));
-            areaTexto.setColumns(20);
-            areaTexto.setFont(new Font("Segoe UI", 1, (int) (tamPant.width*0.01)));
-            areaTexto.setRows(5);
-            areaTexto.setLineWrap(true);
-            areaTexto.setWrapStyleWord(true);
-            areaTexto.setOpaque(false);
-            areaTexto.setBounds((int) (tamPant.width*0.11), (int) (tamPant.height*0.05), (int) (tamPant.width*0.2), (int) (tamPant.height*0.1));
-            areaTexto.setForeground(Color.black);
-
-            panel.add(nombreObj);
-            panel.add(areaTexto);
-            panel.add(panelIzquierdo);
+            SlotInventario slot = new SlotInventario(objetoEscenario.getImagen(), objetoEscenario.getNombre(), objetoEscenario.getDescripcion());
+            slotsInventario.get(i).add(slot);
             i++;
-            panelInventario.add(panel);
 
+        }
+        if(i<8){
+            for(int j=i; j<8; j++){
+                slotsInventario.get(j).setBackground(new Color(0, 0, 0, 140));
+            }
         }
     }
 
@@ -170,8 +157,7 @@ int i =0;
 
     // Variables declaration - do not modify
 
-    private javax.swing.JPanel panelGeneral;
-    private javax.swing.JLabel fondo;
+
     // End of variables declaration
 }
 

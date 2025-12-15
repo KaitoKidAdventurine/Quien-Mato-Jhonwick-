@@ -294,19 +294,11 @@ crearObjetosMochila();
         menu.setIcon(icono);
     }
     public void crearObjetosMochila(){
-        ObjetoEscenario ob8 = new ObjetoEscenario("Telefono", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/telefono de la victima.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "1");
+        ObjetoEscenario ob8 = new ObjetoEscenario("Telefono", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/telefono de la victima.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "Telefono encontrado en lam escena del crimen, parece de la victima, probablemente tenga informacion valiosa");
         ObjetoEscenario ob9 = new ObjetoEscenario("Herida Grande", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida grande.png"), 0.55F, 0.9F, 0.1F, 0.1F, false, "2");
         ObjetoEscenario ob10 = new ObjetoEscenario("Laptop", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Laptop.png"), 0.27F, 0.33F, 0.18F, 0.1F, false, "nada");
         ObjetoEscenario ob11 = new ObjetoEscenario("Cigarros", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/cigarros.png"), 0.62F, 0.2F, 0.19F, 0.1F, false, "nada");
         ObjetoEscenario ob12 = new ObjetoEscenario("Herida pequeña", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida pequeña.png"), 0.12F, 0.77F, 0.1F, 0.1F, true, "nada");
-        ObjetoEscenario ob4 = new ObjetoEscenario("Mancha de sangre", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Mancha de sangre.png"), 0.7F, 0.7F, 0.1F, 0.1F, false, "nada");
-        ObjetoEscenario ob1 = new ObjetoEscenario("Anillo", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/anillo.png"), 0.3F, 0.5F, 0.1F, 0.1F, true, "nada");
-        ObjetoEscenario ob2 = new ObjetoEscenario("Carnet", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/carnet.png"), 0.4F, 0.1F, 0.1F, 0.1F, false, "nada");
-        ObjetoEscenario ob3 = new ObjetoEscenario("Memoria USB", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/memoria.png"), 0.1F, 0.2F, 0.1F, 0.1F, false, "nada");
-        ObjetoEscenario ob5 = new ObjetoEscenario("Mancha de sangre", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Mancha de sangre.png"), 0.7F, 0.7F, 0.1F, 0.1F, false, "nada");
-        ObjetoEscenario ob6 = new ObjetoEscenario("Anillo", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/anillo.png"), 0.3F, 0.5F, 0.1F, 0.1F, true, "nada");
-        ObjetoEscenario ob7 = new ObjetoEscenario("Carnet", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/carnet.png"), 0.4F, 0.1F, 0.1F, 0.1F, false, "nada");
-        ObjetoEscenario ob14 = new ObjetoEscenario("Memoria USB", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/memoria.png"), 0.1F, 0.2F, 0.1F, 0.1F, false, "nada");
 
         Jugador.getInstancia().agregarAlMaletin(ob8);
         Jugador.getInstancia().agregarAlMaletin(ob9);

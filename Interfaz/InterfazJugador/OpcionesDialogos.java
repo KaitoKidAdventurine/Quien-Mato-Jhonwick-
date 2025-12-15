@@ -39,7 +39,7 @@ public class OpcionesDialogos extends JDialog {
         setBackground(new Color(0, 0, 0, 1));
 
         boton1 = new JButton();
-        boton1.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.012)));
+        boton1.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.015)));
         boton1.setForeground(new Color(255, 255, 255));
         boton1.setHorizontalAlignment(SwingConstants.CENTER);
         boton1.setText(opciones.getFirst());
@@ -64,7 +64,7 @@ public class OpcionesDialogos extends JDialog {
         add(boton1);
 
         boton2 = new JButton();
-        boton2.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.012)));
+        boton2.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.015)));
         boton2.setForeground(new Color(255, 255, 255));
         boton2.setHorizontalAlignment(SwingConstants.CENTER);
         boton2.setText(opciones.get(1));
@@ -90,7 +90,7 @@ public class OpcionesDialogos extends JDialog {
 
         if(opciones.size()>2) {
             boton3 = new JButton();
-            boton3.setFont(new Font("Segoe UI", 0, (int) (tamPant.width * 0.012)));
+            boton3.setFont(new Font("Segoe UI", 0, (int) (tamPant.width * 0.015)));
             boton3.setForeground(new Color(255, 255, 255));
             boton3.setHorizontalAlignment(SwingConstants.CENTER);
             boton3.setText(opciones.get(2));

@@ -48,7 +48,7 @@ public class ConfirmarSalida extends JDialog {
         texto.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.04), (int) (tamPant.width*0.29), (int) (tamPant.height*0.1));
         getContentPane().add(texto);
 
-        yes.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.017)));
+        yes.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.017                                                 )));
         yes.setForeground(new Color(255, 255, 255));
         yes.setOpaque(false);
         yes.setBorderPainted(false);
