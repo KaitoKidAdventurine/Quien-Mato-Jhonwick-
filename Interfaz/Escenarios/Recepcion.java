@@ -467,7 +467,7 @@ public class Recepcion extends ModeloEscenario{
         ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/Personajes/Secretaria.png");
         ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
 
-        Dialogo d12 = new Dialogo("Así que usted es la secretaria. ¿Que tal si hago un par de preguntas si no le molesta?", "Detective", secretaria, true);
+        Dialogo d12 = new Dialogo("Así que usted es la secretaria. ¿Que tal si hago un par de preguntas si no le molesta?", "Secretaria", secretaria, true);
         Dialogo d13 = new Dialogo("Vale, no hay problema. Estoy dispuesta a colaborar.", "Secretaria", secretaria, true);
         Dialogo d14 = new Dialogo("Muy bien. Quisiera saber si usted y la víctima eran muy cercanos.", "Detective", detective, true);
         Dialogo d15 = new Dialogo("Sí, detective. Yo… yo era pareja de él en secreto.", "Secretaria", secretaria, true);

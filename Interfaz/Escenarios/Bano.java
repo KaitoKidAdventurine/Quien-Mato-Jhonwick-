@@ -4,8 +4,12 @@ import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.Menu.MenuPrincipal;
+import Logica.Dialogo;
+import Logica.Escenario;
 import Logica.Jugador;
 import Logica.Partida;
+import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
+import cu.edu.cujae.ceis.tree.general.GeneralTree;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,6 +21,8 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -29,6 +35,11 @@ public class Bano extends ModeloEscenario {
     private Timer timer2;
     private TimerTask tarea2;
     private InterfazUsuario interfazUsuario;
+    private Escenario escenario;
+    private GeneralTree<Dialogo> arbolConserje;
+    private GeneralTree<Dialogo> arbolSecretaria;
+    private boolean conserjeActivo = false;
+    private boolean secretariaActiva = false;
     /**
      * Creates new form Entrada
      */
@@ -57,6 +68,13 @@ public class Bano extends ModeloEscenario {
             }
         };
 
+        arbolConserje = construirArbolConserje();
+        arbolSecretaria = construirArbolSecretaria();
+
+        conserjeActivo = false;
+        secretariaActiva = false;
+
+        escenario = new Escenario("Baño Planta Baja", "Primer área de aseo, contiguo a la entrada", true);
     }
 
 
@@ -184,6 +202,160 @@ public class Bano extends ModeloEscenario {
         entradaD.setVisible(true);
         tarea2.cancel();
         timer.schedule(tarea, 1000);
+    }
+
+    public void activarLimpiador() {
+        conserjeActivo = true;
+        secretariaActiva = false;
+        escenario.setArbolDial(arbolConserje);
+    }
+
+    public void activarSecretaria() {
+        conserjeActivo = false;
+        secretariaActiva = true;
+        escenario.setArbolDial(arbolSecretaria);
+    }
+
+    public GeneralTree<Dialogo> construirArbolConserje() {
+        ImageIcon conserje = new ImageIcon("DatosAuxiliares/Personajes/Conserge.png");
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+
+        Dialogo d1 = new Dialogo("Pero que...?", "Detective", detective, true);
+        d1.setOpciones(new LinkedList<String>(Arrays.asList("¿Qué haces en el baño?", "¿Este olor a cloro es normal?", "¿Viste a alguien más?")));
+
+        Dialogo d2 = new Dialogo("Rebusco entre los basureros; creí que dejé aquí las llaves.", "Conserje", conserje, true);
+        Dialogo d3 = new Dialogo("Si no las encuentro, no puedo abrir el almacén.", "Conserje", conserje, true);
+        Dialogo d4 = new Dialogo("El jefe me va a regañar otra vez.", "Conserje", conserje, true);
+        Dialogo d5 = new Dialogo("¿Podría echarle un vistazo al suelo?", "Conserje", conserje, true);
+        Dialogo d6 = new Dialogo("Claro. Adelante.", "Detective", detective, true);
+        Dialogo d7 = new Dialogo("(Unos minutos más tarde...)", "", null, true);
+        Dialogo d8 = new Dialogo("¡Aquí están! Gracias.", "Conserje", conserje, true);
+        Dialogo d9 = new Dialogo("Noto olor a cloro muy fuerte… alguien limpió antes.", "Conserje", conserje, true);
+        Dialogo d10 = new Dialogo("Esta cinta rota de embalar no es mía… uso cinta azul.", "Conserje", conserje, true);
+        Dialogo d11 = new Dialogo("Guárdela; puede ser útil.", "Conserje", conserje, true);
+        Dialogo d12 = new Dialogo("Vale, si usted lo dice...", "Detective", detective, true);
+        Dialogo d13 = new Dialogo("Ya voy al almacén. Avíseme si necesita algo.", "Conserje", conserje, true);
+        Dialogo d14 = new Dialogo("Y por favor, sea cuidadoso, que el suelo está resbaladizo; agárrese al pasamanos.", "Conserje", conserje, true);
+        Dialogo d15 = new Dialogo("Cierro un momento, así no entra nadie más.", "Conserje", conserje, true);
+        Dialogo d16 = new Dialogo("Si ve al jefe, dígale que ya tengo las llaves.", "Conserje", conserje, true);
+        Dialogo d17 = new Dialogo("Y recuerde: cloro puro es peligroso.", "Conserje", conserje, true);
+        Dialogo d18 = new Dialogo("Hasta luego, detective.", "Conserje", conserje, true);
+        Dialogo d19 = new Dialogo("(Se va, puerta se cierra)", "", null, true);
+        Dialogo d20 = new Dialogo("No; yo uso lejía diluida, este es cloro puro… industrial.", "Conserje", conserje, true);
+        Dialogo d21 = new Dialogo("Significa que alguien ha querido borrar manchas difíciles… o sangre.", "Conserje", conserje, true);
+        Dialogo d22 = new Dialogo("A la secretaria entró antes que yo; salió rápido.", "Conserje", conserje, true);
+        Dialogo d23 = new Dialogo("Parecía nerviosa y se guardó algo en el bolso.", "Conserje", conserje, true);
+
+        BinaryTreeNode<Dialogo> n1 = new BinaryTreeNode<>(d1);
+        BinaryTreeNode<Dialogo> n2 = new BinaryTreeNode<>(d2);
+        BinaryTreeNode<Dialogo> n3 = new BinaryTreeNode<>(d3);
+        BinaryTreeNode<Dialogo> n4 = new BinaryTreeNode<>(d4);
+        BinaryTreeNode<Dialogo> n5 = new BinaryTreeNode<>(d5);
+        BinaryTreeNode<Dialogo> n6 = new BinaryTreeNode<>(d6);
+        BinaryTreeNode<Dialogo> n7 = new BinaryTreeNode<>(d7);
+        BinaryTreeNode<Dialogo> n8 = new BinaryTreeNode<>(d8);
+        BinaryTreeNode<Dialogo> n9 = new BinaryTreeNode<>(d9);
+        BinaryTreeNode<Dialogo> n10 = new BinaryTreeNode<>(d10);
+        BinaryTreeNode<Dialogo> n11 = new BinaryTreeNode<>(d11);
+        BinaryTreeNode<Dialogo> n12 = new BinaryTreeNode<>(d12);
+        BinaryTreeNode<Dialogo> n13 = new BinaryTreeNode<>(d13);
+        BinaryTreeNode<Dialogo> n14 = new BinaryTreeNode<>(d14);
+        BinaryTreeNode<Dialogo> n15 = new BinaryTreeNode<>(d15);
+        BinaryTreeNode<Dialogo> n16 = new BinaryTreeNode<>(d16);
+        BinaryTreeNode<Dialogo> n17 = new BinaryTreeNode<>(d17);
+        BinaryTreeNode<Dialogo> n18 = new BinaryTreeNode<>(d18);
+        BinaryTreeNode<Dialogo> n19 = new BinaryTreeNode<>(d19);
+        BinaryTreeNode<Dialogo> n20 = new BinaryTreeNode<>(d20);
+        BinaryTreeNode<Dialogo> n21 = new BinaryTreeNode<>(d21);
+        BinaryTreeNode<Dialogo> n22 = new BinaryTreeNode<>(d22);
+        BinaryTreeNode<Dialogo> n23 = new BinaryTreeNode<>(d23);
+
+        GeneralTree<Dialogo> aux = new GeneralTree<>();
+
+        aux.insertNode(n1, null);
+           aux.insertNode(n2, n1);
+              aux.insertNode(n3, n2);
+                 aux.insertNode(n4, n3);
+                    aux.insertNode(n5, n4);
+                       aux.insertNode(n6, n5);
+                          aux.insertNode(n7, n6);
+                             aux.insertNode(n8, n7);
+                                aux.insertNode(n9, n8);
+                                   aux.insertNode(n10, n9);
+                                      aux.insertNode(n11, n10);
+                                         aux.insertNode(n12, n11);
+                                            aux.insertNode(n13, n12);
+                                               aux.insertNode(n14, n13);
+                                                  aux.insertNode(n15, n14);
+                                                     aux.insertNode(n16, n15);
+                                                        aux.insertNode(n17, n16);
+                                                           aux.insertNode(n18, n17);
+                                                              aux.insertNode(n19, n18);
+           aux.insertNode(n20, n1);
+              aux.insertNode(n21, n20);
+           aux.insertNode(n22, n1);
+              aux.insertNode(n23, n22);
+
+        return aux;
+    }
+
+    public GeneralTree<Dialogo> construirArbolSecretaria() {
+        ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/Personajes/Secretaria.png");
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+
+        Dialogo d1 = new Dialogo("Espera un momento...", "Detective", detective, true);
+        d1.setOpciones(new LinkedList<String>(Arrays.asList("¿Por qué estás en el baño?", "¿Viste al limpiador?", "¿Estás nerviosa?")));
+
+        Dialogo d2 = new Dialogo("Vengo a retocarme… y a tirar algo.", "Secretaria", secretaria, true);
+        Dialogo d3 = new Dialogo("(Te entrega una nota)", "", null, true);
+        Dialogo d4 = new Dialogo("Es la contraseña completa; no la quiero ver más.", "Secretaria", secretaria, true);
+        Dialogo d5 = new Dialogo("Sí, entró con sus bayetas… y con prisa.", "Secretaria", secretaria, true);
+        Dialogo d6 = new Dialogo("Me pareció que escondía algo debajo del fregadero.", "Secretaria", secretaria, true);
+        Dialogo d7 = new Dialogo("El jefe me pidió que borrara un archivo… y no sé si hacerlo.", "Secretaria", secretaria, true);
+        Dialogo d8 = new Dialogo("Dile que no lo hice… todavía.", "Secretaria", secretaria, true);
+        Dialogo d9 = new Dialogo("Confío en que descubra la verdad.", "Secretaria", secretaria, true);
+        Dialogo d10 = new Dialogo("Debo volver a recepción antes de que me busque.", "Secretaria", secretaria, true);
+        Dialogo d11 = new Dialogo("Cuídese, detective.", "Secretaria", secretaria, true);
+        Dialogo d12 = new Dialogo("Gracias, es lo que hago siempre", "Detective", detective, true);
+        Dialogo d13 = new Dialogo("(Se retoca el lápiz labial)", "", null, true);
+        Dialogo d14 = new Dialogo("Perdón por el momento. Y gracias por escucharme.", "Secretaria", secretaria, true);
+        Dialogo d15 = new Dialogo("(Sale rápido)", "", null, true);
+
+        BinaryTreeNode<Dialogo> n1 = new BinaryTreeNode<>(d1);
+        BinaryTreeNode<Dialogo> n2 = new BinaryTreeNode<>(d2);
+        BinaryTreeNode<Dialogo> n3 = new BinaryTreeNode<>(d3);
+        BinaryTreeNode<Dialogo> n4 = new BinaryTreeNode<>(d4);
+        BinaryTreeNode<Dialogo> n5 = new BinaryTreeNode<>(d5);
+        BinaryTreeNode<Dialogo> n6 = new BinaryTreeNode<>(d6);
+        BinaryTreeNode<Dialogo> n7 = new BinaryTreeNode<>(d7);
+        BinaryTreeNode<Dialogo> n8 = new BinaryTreeNode<>(d8);
+        BinaryTreeNode<Dialogo> n9 = new BinaryTreeNode<>(d9);
+        BinaryTreeNode<Dialogo> n10 = new BinaryTreeNode<>(d10);
+        BinaryTreeNode<Dialogo> n11 = new BinaryTreeNode<>(d11);
+        BinaryTreeNode<Dialogo> n12 = new BinaryTreeNode<>(d12);
+        BinaryTreeNode<Dialogo> n13 = new BinaryTreeNode<>(d13);
+        BinaryTreeNode<Dialogo> n14 = new BinaryTreeNode<>(d14);
+        BinaryTreeNode<Dialogo> n15 = new BinaryTreeNode<>(d15);
+
+        GeneralTree<Dialogo> aux = new GeneralTree<>();
+
+        aux.insertNode(n1, null);
+           aux.insertNode(n2, n1);
+              aux.insertNode(n3, n2);
+           aux.insertNode(n4, n1);
+              aux.insertNode(n5, n4);
+           aux.insertNode(n6, n1);
+              aux.insertNode(n7, n6);
+                 aux.insertNode(n8, n7);
+                    aux.insertNode(n9, n8);
+                       aux.insertNode(n10, n9);
+                          aux.insertNode(n11, n10);
+                             aux.insertNode(n12, n11);
+                                aux.insertNode(n13, n12);
+                                   aux.insertNode(n14, n13);
+                                      aux.insertNode(n15, n14);
+
+        return aux;
     }
 
     /**
