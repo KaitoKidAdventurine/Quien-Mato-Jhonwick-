@@ -45,8 +45,7 @@ public class Reproductor {
             Cancion cancionTres = new Cancion("Sombras en el Viento", musicaTres);
             Cancion cancionTension = new Cancion("Tension", musicaTension);
 
-
-
+            
             canciones.add(cancion);
             canciones.add(cancionUno);
             canciones.add(cancionDos);
@@ -86,8 +85,27 @@ public class Reproductor {
 
     public void cambiarVolumen(float vol) {
         int porcentaje = (int)(vol * 100);
-        this.volumenSistema = Math.max(0, Math.min(100, porcentaje));
-        ControlVolumen.setVolumenSistema(volumenSistema);
+        if(porcentaje == 0)
+        {
+            this.volumenSistema = Math.max(0, Math.min(100, 20));
+            ControlVolumen.setVolumenSistema(volumenSistema);
+            detenerCancion();
+        }
+
+        else if (porcentaje != 0)
+        {
+            if (enReproduccion)
+            {
+                this.volumenSistema = Math.max(0, Math.min(100, porcentaje));
+                ControlVolumen.setVolumenSistema(volumenSistema);
+            }
+            else
+            {
+                activarMusica();
+                this.volumenSistema = Math.max(0, Math.min(100, porcentaje));
+                ControlVolumen.setVolumenSistema(volumenSistema);
+            }
+        }
     }
 
     public void subirVolumen() {
