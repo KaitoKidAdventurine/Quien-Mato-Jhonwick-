@@ -72,7 +72,7 @@ public class Pasillo1 extends ModeloEscenario {
         fase = 0;
 
         escenario = new Escenario("Ala Este", "Sala de exposiciones", true);
-        escenario.setArbolDial(arbolOriginal);
+        //Es posible no asignar ningun dialogo, si primero se quiere investigar el escenario para luego consultar con el guardia.
     }
 
 
