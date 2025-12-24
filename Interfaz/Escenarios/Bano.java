@@ -4,7 +4,6 @@ import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.Menu.MenuPrincipal;
-import Logica.Jugador;
 import Logica.Partida;
 
 import javax.imageio.ImageIO;
@@ -29,6 +28,8 @@ public class Bano extends ModeloEscenario {
     private Timer timer2;
     private TimerTask tarea2;
     private InterfazUsuario interfazUsuario;
+    private JButton conserje;
+
     /**
      * Creates new form Entrada
      */
@@ -66,6 +67,7 @@ public class Bano extends ModeloEscenario {
         flechaEntradaDentro = new JButton();
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
+        conserje = new JButton();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/baño 1.jpg"));
 
@@ -96,6 +98,9 @@ public class Bano extends ModeloEscenario {
             ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
             flechaEntradaDentro.setIcon(icono2);
 
+            BufferedImage imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Conserje.png"));
+            ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.2), (int) (tamPant.height*0.6), Image.SCALE_SMOOTH));
+            conserje.setIcon(icono3);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -127,6 +132,27 @@ public class Bano extends ModeloEscenario {
         getContentPane().add(cajaTexto);
         getContentPane().add(flechaEntradaDentro);
 
+        conserje.setBounds((int) (tamPant.width*0.6), (int) (tamPant.height*0.36), (int) (tamPant.width*0.2), (int) (tamPant.height*0.6));
+        conserje.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                conserjeActionPerformed(evt);
+            }
+
+        });
+        conserje.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                conserjeMouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                conserjeMouseExited(evt);
+            }
+        });
+        conserje.setOpaque(true);
+        conserje.setContentAreaFilled(false);
+        conserje.setBorderPainted(false);
+        conserje.setFocusPainted(false);
+        getContentPane().add(conserje);
+
         lugar.setText("Baño Planta Baja");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
@@ -140,6 +166,32 @@ public class Bano extends ModeloEscenario {
         getContentPane().add(jLabel1);
         pack();
         timer2.scheduleAtFixedRate(tarea2, 0, 20);
+    }
+
+    private void conserjeMouseExited(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+        try {
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Conserje.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.2), (int) (tamPant.height*0.6), Image.SCALE_SMOOTH));
+        conserje.setIcon(icono3);
+    }
+
+    private void conserjeMouseEntered(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+        try {
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Conserje BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.2), (int) (tamPant.height*0.6), Image.SCALE_SMOOTH));
+        conserje.setIcon(icono3);
+    }
+
+    private void conserjeActionPerformed(ActionEvent evt) {
+
     }
 
     private void flechaEntradaDentroMouseExited(MouseEvent evt) {

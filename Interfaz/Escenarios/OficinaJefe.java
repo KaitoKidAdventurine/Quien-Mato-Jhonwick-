@@ -28,6 +28,8 @@ public class OficinaJefe extends ModeloEscenario {
     private Timer timer2;
     private TimerTask tarea2;
     private InterfazUsuario interfazUsuario;
+    private JButton duenno;
+
     /**
      * Creates new form Entrada
      */
@@ -65,6 +67,7 @@ public class OficinaJefe extends ModeloEscenario {
         flechaPasillo2 = new JButton();
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
+        duenno = new JButton();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/oficina del dueño.jpg"));
 
@@ -95,6 +98,10 @@ public class OficinaJefe extends ModeloEscenario {
             ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
             flechaPasillo2.setIcon(icono2);
 
+            BufferedImage imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Dueño.png"));
+            ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.22), (int) (tamPant.height*0.63), Image.SCALE_SMOOTH));
+            duenno.setIcon(icono3);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -120,8 +127,27 @@ public class OficinaJefe extends ModeloEscenario {
         });
 
         getContentPane().add(flechaPasillo2);
+        duenno.setBounds((int) (tamPant.width*0.68), (int) (tamPant.height*0.3), (int) (tamPant.width*0.22), (int) (tamPant.height*0.63));
+        duenno.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                duennoActionPerformed(evt);
+            }
 
+        });
+        duenno.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                duennoMouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                duennoMouseExited(evt);
+            }
+        });
+        duenno.setOpaque(true);
+        duenno.setContentAreaFilled(false);
+        duenno.setBorderPainted(false);
+        duenno.setFocusPainted(false);
 
+        getContentPane().add(duenno);
         getContentPane().add(cajaTexto);
 
         lugar.setText("Oficina del Jefe");
@@ -139,6 +165,33 @@ public class OficinaJefe extends ModeloEscenario {
         pack();
         timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
+
+    private void duennoMouseExited(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+        try {
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Dueño.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.22), (int) (tamPant.height*0.63), Image.SCALE_SMOOTH));
+        duenno.setIcon(icono3);
+    }
+
+    private void duennoMouseEntered(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+        try {
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Dueño BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.22), (int) (tamPant.height*0.63), Image.SCALE_SMOOTH));
+        duenno.setIcon(icono3);
+    }
+
+    private void duennoActionPerformed(ActionEvent evt) {
+
+    }
+
     public void ponerDialogo() {
     }
 

@@ -28,6 +28,7 @@ public class Sala extends ModeloEscenario {
     private InterfazUsuario interfazUsuario;
     private Timer timer2;
     private TimerTask tarea2;
+    private JButton esposa;
     /**
      * Creates new form Entrada
      */
@@ -68,6 +69,7 @@ public class Sala extends ModeloEscenario {
         flechaSala2 = new JButton();
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
+        esposa = new JButton();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/sala.jpg"));
 
@@ -109,6 +111,10 @@ public class Sala extends ModeloEscenario {
             BufferedImage imagen5 = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha derecha.png"));
             ImageIcon icono5 = new ImageIcon(imagen5.getScaledInstance((int) (tamPant.width*0.073), (int) (tamPant.height*0.063), Image.SCALE_SMOOTH));
             flechaSala2.setIcon(icono5);
+
+            BufferedImage imagen6 = ImageIO.read(new File("DatosAuxiliares/Personajes/Esposa.png"));
+            ImageIcon icono6 = new ImageIcon(imagen6.getScaledInstance((int) (tamPant.width*0.125), (int) (tamPant.height*0.5), Image.SCALE_SMOOTH));
+            esposa.setIcon(icono6);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -189,6 +195,27 @@ public class Sala extends ModeloEscenario {
 
         getContentPane().add(cajaTexto);
 
+        esposa.setBounds((int) (tamPant.width*0.33), (int) (tamPant.height*0.4), (int) (tamPant.width*0.125), (int) (tamPant.height*0.5));
+        esposa.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                esposaActionPerformed(evt);
+            }
+
+        });
+        esposa.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                esposaMouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                esposaMouseExited(evt);
+            }
+        });
+        esposa.setOpaque(true);
+        esposa.setContentAreaFilled(false);
+        esposa.setBorderPainted(false);
+        esposa.setFocusPainted(false);
+        getContentPane().add(esposa);
+
         lugar.setText("Sala Planta Alta");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
@@ -204,6 +231,33 @@ public class Sala extends ModeloEscenario {
         pack();
         timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
+
+    private void esposaMouseExited(MouseEvent evt) {
+        BufferedImage imagen6 = null;
+        try {
+            imagen6 = ImageIO.read(new File("DatosAuxiliares/Personajes/Esposa.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono6 = new ImageIcon(imagen6.getScaledInstance((int) (tamPant.width*0.125), (int) (tamPant.height*0.5), Image.SCALE_SMOOTH));
+        esposa.setIcon(icono6);
+    }
+
+    private void esposaMouseEntered(MouseEvent evt) {
+        BufferedImage imagen6 = null;
+        try {
+            imagen6 = ImageIO.read(new File("DatosAuxiliares/Personajes/Esposa BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono6 = new ImageIcon(imagen6.getScaledInstance((int) (tamPant.width*0.125), (int) (tamPant.height*0.5), Image.SCALE_SMOOTH));
+        esposa.setIcon(icono6);
+    }
+
+    private void esposaActionPerformed(ActionEvent evt) {
+
+    }
+
     public void ponerDialogo() {
     }
 

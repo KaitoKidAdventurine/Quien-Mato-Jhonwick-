@@ -3,7 +3,6 @@ package Interfaz.Escenarios;
 //import Interfaz.InterfazJugador.InterfazUsuario;
 import DatosAuxiliaresLogica.EfectosEspeciales;
 
-import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.Menu.MenuPrincipal;
@@ -31,6 +30,7 @@ public class OficinaEconomico extends ModeloEscenario {
     private Timer timer2;
     private TimerTask tarea2;
     private InterfazUsuario interfazUsuario;
+    private JButton victima;
     /**
      * Creates new form Entrada
      */
@@ -68,8 +68,9 @@ public class OficinaEconomico extends ModeloEscenario {
         flechaPasillo3 = new JButton();
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
+        victima = new JButton();
         try {
-            BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/oficin economico.jpg"));
+            BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
 
             // Actualizacion de donde esta el Jugador
             Partida p = Partida.getInstance();
@@ -98,10 +99,12 @@ public class OficinaEconomico extends ModeloEscenario {
             ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.073), (int) (tamPant.height*0.063), Image.SCALE_SMOOTH));
             flechaPasillo3.setIcon(icono2);
 
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        flechaPasillo3.setBounds((int) (tamPant.width*0.8), (int) (tamPant.height*0.74), (int) (tamPant.width*0.08), (int) (tamPant.height*0.07));
+        flechaPasillo3.setBounds((int) (tamPant.width*0.8), (int) (tamPant.height*0.68), (int) (tamPant.width*0.08), (int) (tamPant.height*0.07));
         flechaPasillo3.setBackground(Color.red);
         flechaPasillo3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -124,6 +127,20 @@ public class OficinaEconomico extends ModeloEscenario {
         flechaPasillo3.setToolTipText("Oficina Planta Baja");
         getContentPane().add(flechaPasillo3);
 
+        victima.setBounds((int) (tamPant.width*0.06), (int) (tamPant.height*0.82), (int) (tamPant.width*0.42), (int) (tamPant.height*0.2));
+        victima.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                victimaActionPerformed(evt);
+            }
+
+        });
+
+        victima.setOpaque(true);
+        victima.setContentAreaFilled(false);
+        victima.setBorderPainted(false);
+        victima.setFocusPainted(false);
+
+        getContentPane().add(victima);
         lugar.setText("Oficina de la Victima");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
@@ -140,7 +157,15 @@ public class OficinaEconomico extends ModeloEscenario {
         pack();
         timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
-    public void ponerDialogo() {
+
+
+
+    private void victimaActionPerformed(ActionEvent evt) {
+
+        JOptionPane.showMessageDialog(null, "Esta muerto");
+    }
+
+    private void ponerDialogo() {
     }
 
     private void cTMouseClicked(MouseEvent evt) {

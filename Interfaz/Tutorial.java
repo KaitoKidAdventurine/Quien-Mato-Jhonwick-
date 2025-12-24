@@ -210,11 +210,11 @@ public class Tutorial extends JFrame {
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/pasillo 3.jpg"));
                     break;
                 case 85:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/oficin economico.jpg"));
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
                     break;
             }
 
-            ImageIcon icono = new ImageIcon(imagen.getScaledInstance(tamPant.width, tamPant.height, Image.SCALE_SMOOTH));
+            ImageIcon icono = new ImageIcon(imagen != null ? imagen.getScaledInstance(tamPant.width, tamPant.height, Image.SCALE_SMOOTH) : null);
             fondo.setIcon(icono); // NOI18N
 
 
@@ -230,7 +230,7 @@ public class Tutorial extends JFrame {
 
             switch (nivelActualDial) {
                 case 0:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/sala.jpg"));
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
                     break;
 
             }
@@ -641,7 +641,6 @@ public class Tutorial extends JFrame {
         auxTree.insertNode(node300, node99);
 
         auxTree.insertNode(node302, node300);
-
         auxTree.insertNode(node304, node300);
 
         GeneralTree<Dialogo> auxTree2 = new GeneralTree<>();

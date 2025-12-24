@@ -309,13 +309,12 @@ crearObjetosMochila();
         ObjetoEscenario ob9 = new ObjetoEscenario("Herida Grande", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida grande.png"), 0.55F, 0.9F, 0.1F, 0.1F, false, "2");
         ObjetoEscenario ob10 = new ObjetoEscenario("Laptop", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Laptop.png"), 0.27F, 0.33F, 0.18F, 0.1F, false, "nada");
         ObjetoEscenario ob11 = new ObjetoEscenario("Cigarros", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/cigarros.png"), 0.62F, 0.2F, 0.19F, 0.1F, false, "nada");
-        ObjetoEscenario ob12 = new ObjetoEscenario("Herida pequeña", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida pequeña.png"), 0.12F, 0.77F, 0.1F, 0.1F, true, "nada");
 
         Jugador.getInstancia().agregarAlMaletin(ob8);
         Jugador.getInstancia().agregarAlMaletin(ob9);
         Jugador.getInstancia().agregarAlMaletin(ob10);
         Jugador.getInstancia().agregarAlMaletin(ob11);
-        Jugador.getInstancia().agregarAlMaletin(ob12);
+
 
 
     }

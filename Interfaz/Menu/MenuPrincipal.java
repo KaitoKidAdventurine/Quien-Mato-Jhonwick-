@@ -72,7 +72,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        botonSalir.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.13)));
+        botonSalir.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.14)));
         botonSalir.setForeground(new java.awt.Color(255, 255, 255));
         botonSalir.setText("Salir");
         botonSalir.setBorderPainted(false);
@@ -94,7 +94,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonSalir.setBounds(xBot,(int) (tamPant.getHeight()*0.86), largoBot, anchoBot);
         getContentPane().add(botonSalir);
 
-        botonNuevPart.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.13)));
+        botonNuevPart.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.14)));
         botonNuevPart.setForeground(new java.awt.Color(255, 255, 255));
         botonNuevPart.setText("Nueva Partida");
         botonNuevPart.setBorderPainted(false);
@@ -116,7 +116,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonNuevPart.setBounds(xBot,(int) (tamPant.getHeight()*0.54), largoBot, anchoBot);
         getContentPane().add(botonNuevPart);
 
-        botonCargPar.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.13)));
+        botonCargPar.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.14)));
         botonCargPar.setForeground(new java.awt.Color(255, 255, 255));
         botonCargPar.setText("Cargar Partida");
         botonCargPar.setBorderPainted(false);
@@ -138,7 +138,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonCargPar.setBounds(xBot,(int) (tamPant.getHeight()*0.62), largoBot, anchoBot);
         getContentPane().add(botonCargPar);
 
-        botonOpc.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.13)));
+        botonOpc.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.14)));
         botonOpc.setForeground(new java.awt.Color(255, 255, 255));
         botonOpc.setText("Opciones");
         botonOpc.setBorderPainted(false);
@@ -160,7 +160,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(botonOpc);
 
-        botonCreditos.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.13)));
+        botonCreditos.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.14)));
         botonCreditos.setForeground(new java.awt.Color(255, 255, 255));
         botonCreditos.setText("Creditos");
         botonCreditos.setBorderPainted(false);

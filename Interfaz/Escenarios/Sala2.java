@@ -28,6 +28,8 @@ public class Sala2  extends ModeloEscenario {
     private InterfazUsuario interfazUsuario;
     private Timer timer2;
     private TimerTask tarea2;
+    private JButton guia1;
+    private JButton guia2;
     /**
      * Creates new form Entrada
      */
@@ -66,6 +68,8 @@ public class Sala2  extends ModeloEscenario {
         flechaSala = new JButton();
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
+        guia1 = new JButton();
+        guia2 = new JButton();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/sala 2.jpg"));
 
@@ -84,9 +88,7 @@ public class Sala2  extends ModeloEscenario {
             ImageIcon icono = new ImageIcon(imagen.getScaledInstance(tamPant.width, tamPant.height, Image.SCALE_SMOOTH));
             jLabel1.setIcon(icono); // NOI18N
             jLabel1.setFocusable(false);
-            jLabel1.setMaximumSize(tamPant);
-            jLabel1.setMinimumSize(tamPant);
-            jLabel1.setPreferredSize(tamPant);
+
             jLabel1.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cajaTexto.setOpaque(false);
@@ -97,6 +99,13 @@ public class Sala2  extends ModeloEscenario {
             ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
             flechaSala.setIcon(icono2);
 
+            BufferedImage imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Guia 1.png"));
+            ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.12), (int) (tamPant.height*0.55), Image.SCALE_SMOOTH));
+            guia1.setIcon(icono3);
+
+            BufferedImage imagen4 = ImageIO.read(new File("DatosAuxiliares/Personajes/Guia 2.png"));
+            ImageIcon icono4 = new ImageIcon(imagen4.getScaledInstance((int) (tamPant.width*0.163), (int) (tamPant.height*0.58), Image.SCALE_SMOOTH));
+            guia2.setIcon(icono4);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -125,6 +134,50 @@ public class Sala2  extends ModeloEscenario {
         getContentPane().add(flechaSala);
         getContentPane().add(cajaTexto);
 
+        guia1.setBounds((int) (tamPant.width*0.29), (int) (tamPant.height*0.39), (int) (tamPant.width*0.12), (int) (tamPant.height*0.55));
+        guia1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                guia1ActionPerformed(evt);
+            }
+
+        });
+        guia1.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                guia1MouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                guia1MouseExited(evt);
+            }
+        });
+        guia1.setOpaque(true);
+        guia1.setContentAreaFilled(false);
+        guia1.setBorderPainted(false);
+        guia1.setFocusPainted(false);
+        getContentPane().add(guia1);
+
+
+        guia2.setBounds((int) (tamPant.width*0.6), (int) (tamPant.height*0.38), (int) (tamPant.width*0.163), (int) (tamPant.height*0.58));
+        guia2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                guia2ActionPerformed(evt);
+            }
+
+        });
+        guia2.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                guia2MouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                guia2MouseExited(evt);
+            }
+        });
+        guia2.setOpaque(true);
+        guia2.setContentAreaFilled(false);
+        guia2.setBorderPainted(false);
+        guia2.setFocusPainted(false);
+        getContentPane().add(guia2);
+
+
         lugar.setText("Exposicion de Antiguedades");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
@@ -141,6 +194,59 @@ public class Sala2  extends ModeloEscenario {
         pack();
         timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
+
+    private void guia2MouseExited(MouseEvent evt) {
+        BufferedImage imagen4 = null;
+        try {
+            imagen4 = ImageIO.read(new File("DatosAuxiliares/Personajes/Guia 2.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono4 = new ImageIcon(imagen4.getScaledInstance((int) (tamPant.width*0.163), (int) (tamPant.height*0.58), Image.SCALE_SMOOTH));
+        guia2.setIcon(icono4);
+    }
+
+    private void guia2MouseEntered(MouseEvent evt) {
+        BufferedImage imagen4 = null;
+        try {
+            imagen4 = ImageIO.read(new File("DatosAuxiliares/Personajes/Guia 2 BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono4 = new ImageIcon(imagen4.getScaledInstance((int) (tamPant.width*0.163), (int) (tamPant.height*0.58), Image.SCALE_SMOOTH));
+        guia2.setIcon(icono4);
+    }
+
+    private void guia2ActionPerformed(ActionEvent evt) {
+
+    }
+
+    private void guia1MouseExited(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+        try {
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Guia 1.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.12), (int) (tamPant.height*0.55), Image.SCALE_SMOOTH));
+        guia1.setIcon(icono3);
+    }
+
+    private void guia1MouseEntered(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+        try {
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Guia 1 BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.12), (int) (tamPant.height*0.55), Image.SCALE_SMOOTH));
+        guia1.setIcon(icono3);
+    }
+
+    private void guia1ActionPerformed(ActionEvent evt) {
+
+    }
+
     public void ponerDialogo() {
     }
 

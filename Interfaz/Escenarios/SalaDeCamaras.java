@@ -28,6 +28,7 @@ public class SalaDeCamaras extends ModeloEscenario {
     private InterfazUsuario interfazUsuario;
     private Timer timer2;
     private TimerTask tarea2;
+    private JButton seguridad;
     /**
      * Creates new form Entrada
      */
@@ -65,6 +66,7 @@ public class SalaDeCamaras extends ModeloEscenario {
         flechaPasillo1 = new JButton();
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
+        seguridad = new JButton();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/sala de camaras.jpg"));
 
@@ -100,6 +102,9 @@ public class SalaDeCamaras extends ModeloEscenario {
             ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
             flechaPasillo1.setIcon(icono2);
 
+            BufferedImage imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Seguridad.png"));
+            ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.125), (int) (tamPant.height*0.57), Image.SCALE_SMOOTH));
+            seguridad.setIcon(icono3);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -128,6 +133,28 @@ public class SalaDeCamaras extends ModeloEscenario {
 
         getContentPane().add(flechaPasillo1);
 
+
+        seguridad.setBounds((int) (tamPant.width*0.73), (int) (tamPant.height*0.37), (int) (tamPant.width*0.125), (int) (tamPant.height*0.57));
+        seguridad.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                seguridadActionPerformed(evt);
+            }
+
+        });
+        seguridad.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                seguridadMouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                seguridadMouseExited(evt);
+            }
+        });
+        seguridad.setOpaque(true);
+        seguridad.setContentAreaFilled(false);
+        seguridad.setBorderPainted(false);
+        seguridad.setFocusPainted(false);
+        getContentPane().add(seguridad);
+
         lugar.setText("Sala de Vigilancia");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
@@ -144,6 +171,33 @@ public class SalaDeCamaras extends ModeloEscenario {
         pack();
         timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
+
+    private void seguridadMouseExited(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+        try {
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Seguridad.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.125), (int) (tamPant.height*0.57), Image.SCALE_SMOOTH));
+        seguridad.setIcon(icono3);
+    }
+
+    private void seguridadMouseEntered(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+        try {
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Seguridad BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.125), (int) (tamPant.height*0.57), Image.SCALE_SMOOTH));
+        seguridad.setIcon(icono3);
+    }
+
+    private void seguridadActionPerformed(ActionEvent evt) {
+
+    }
+
     public void ponerDialogo() {
     }
 

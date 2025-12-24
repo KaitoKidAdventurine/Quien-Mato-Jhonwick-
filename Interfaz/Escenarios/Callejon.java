@@ -4,13 +4,13 @@ import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.Menu.MenuPrincipal;
-import Logica.Jugador;
 import Logica.Partida;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -28,6 +28,7 @@ public class Callejon extends ModeloEscenario {
     private Timer timer2;
     private TimerTask tarea2;
     private InterfazUsuario interfazUsuario;
+    private JButton vagabundo;
 
     /**
      * Creates new form Entrada
@@ -66,6 +67,7 @@ public class Callejon extends ModeloEscenario {
         flechaPasilloAlmacen = new JButton();
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
+        vagabundo = new JButton();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/callejon 1.jpg"));
 
@@ -95,6 +97,9 @@ public class Callejon extends ModeloEscenario {
             ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
             flechaPasilloAlmacen.setIcon(icono2);
 
+            BufferedImage imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Vagabundo.png"));
+            ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.139), (int) (tamPant.height*0.29), Image.SCALE_SMOOTH));
+            vagabundo.setIcon(icono3);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -133,6 +138,26 @@ public class Callejon extends ModeloEscenario {
         lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.3), (int) (tamPant.height*0.1));
         getContentPane().add(lugar);
 
+        vagabundo.setBounds((int) (tamPant.width*0.65), (int) (tamPant.height*0.603), (int) (tamPant.width*0.163), (int) (tamPant.height*0.34));
+        vagabundo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                vagabundoActionPerformed(evt);
+            }
+
+        });
+        vagabundo.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                vagabundoMouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                vagabundoMouseExited(evt);
+            }
+        });
+        vagabundo.setOpaque(true);
+        vagabundo.setContentAreaFilled(false);
+        vagabundo.setBorderPainted(false);
+        vagabundo.setFocusPainted(false);
+        getContentPane().add(vagabundo);
 
         interfazUsuario.setBounds((int) (tamPant.width*0.55), (int) (tamPant.height*0.05), (int) (tamPant.width*0.45), (int) (tamPant.height*0.15));
         getContentPane().add(interfazUsuario);
@@ -141,6 +166,33 @@ public class Callejon extends ModeloEscenario {
         pack();
         timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }
+
+    private void vagabundoMouseExited(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+        try {
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Vagabundo.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.139), (int) (tamPant.height*0.29), Image.SCALE_SMOOTH));
+        vagabundo.setIcon(icono3);
+    }
+
+    private void vagabundoMouseEntered(MouseEvent evt) {
+        BufferedImage imagen3 = null;
+        try {
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Vagabundo BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.139), (int) (tamPant.height*0.29), Image.SCALE_SMOOTH));
+        vagabundo.setIcon(icono3);
+    }
+
+    private void vagabundoActionPerformed(ActionEvent evt) {
+        JOptionPane.showMessageDialog(null, "1");
+    }
+
     public void ponerDialogo() {
     }
     private void flechaMouseExited(MouseEvent evt) {
