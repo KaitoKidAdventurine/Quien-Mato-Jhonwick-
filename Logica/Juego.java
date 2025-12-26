@@ -1,5 +1,7 @@
 package Logica;
 
+import javax.swing.*;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class Juego {
@@ -14,11 +16,21 @@ public class Juego {
     }
 
 
-    public String getTitulo() { return titulo; }
-    public void setTitulo(String titulo) { this.titulo = titulo; }
+    public String getTitulo() {
+        return titulo;
+    }
 
-    public String getVersion() { return version; }
-    public void setVersion(String version) { this.version = version; }
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
 
     public LinkedList<Partida> getPartidas() {
         return partidas;
@@ -28,14 +40,18 @@ public class Juego {
         this.partidas = partidas;
     }
 
-    public void agregarPartida(Partida p)
-    {
+    public void agregarPartida(Partida p) {
         partidas.add(p);
     }
 
 
-    public void iniciarJuego() {}
-    public void cargarPartida() {}
-    public void guardarPartida() {}
+    public void iniciarJuego() {
+    }
+
+    public void cargarPartida() {
+    }
+
+    public void guardarPartida() {
+    }
 
 }
