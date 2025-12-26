@@ -211,7 +211,7 @@ public class TelefonoReproductor extends JPanel {
     }
 
     private void botonPausaActionPerformed(ActionEvent evt) {
-       boolean activo = Reproductor.getInstancia().isEnReproduccion();
+        boolean activo = Reproductor.getInstancia().isEnReproduccion();
 
         BufferedImage imagen3 = null;
         try {

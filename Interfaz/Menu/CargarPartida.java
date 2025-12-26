@@ -22,8 +22,8 @@ import java.util.TimerTask;
 public class CargarPartida extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CargarPartida.class.getName());
- private Dimension tamPant;
-   private Timer timer;
+    private Dimension tamPant;
+    private Timer timer;
     private TimerTask tarea;
 
 
@@ -32,7 +32,7 @@ public class CargarPartida extends javax.swing.JFrame {
      */
     public CargarPartida() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
-                  initComponents();
+        initComponents();
         timer = new Timer();
         tarea = new TimerTask() {
             @Override
@@ -177,8 +177,8 @@ public class CargarPartida extends javax.swing.JFrame {
         e.efectoDeBoton();
 
         MenuPrincipal menuPrincipal = new MenuPrincipal();
-       menuPrincipal.setVisible(true);
-       timer.schedule(tarea, 1000);
+        menuPrincipal.setVisible(true);
+        timer.schedule(tarea, 1000);
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void boton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton1MouseEntered
@@ -220,9 +220,9 @@ public class CargarPartida extends javax.swing.JFrame {
     private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boton3ActionPerformed
-public void arreglarBot(){
+    public void arreglarBot(){
 
-}
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -253,4 +253,4 @@ public void arreglarBot(){
     private javax.swing.JButton botonAtras;
     private javax.swing.JLabel fondo;
     // End of variables declaration//GEN-END:variables
-        }
+}

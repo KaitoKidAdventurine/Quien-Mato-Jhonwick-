@@ -162,7 +162,7 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         diario.setIcon(icono3);
 
 
-crearObjetosMochila();
+        crearObjetosMochila();
         add(diario);
         add(telefono);
         add(mochila);

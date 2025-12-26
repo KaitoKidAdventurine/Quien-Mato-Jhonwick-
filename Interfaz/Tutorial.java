@@ -42,8 +42,8 @@ public class Tutorial extends JFrame {
         tarea = new TimerTask() {
             @Override
             public void run() {
-               crearDialogosParte2();
-               ponerDialogoParte2();
+                crearDialogosParte2();
+                ponerDialogoParte2();
             }
         };
 
@@ -109,9 +109,9 @@ public class Tutorial extends JFrame {
 
         else {
             Dialogo aux = tutorialParte1.getNodoDialActual().getInfo();
-          cajaTexto.removeAll();
-           crearMinijuego();
-           timer.schedule(tarea, 5000);
+            cajaTexto.removeAll();
+            crearMinijuego();
+            timer.schedule(tarea, 5000);
 
         }
         getContentPane().revalidate();
@@ -124,14 +124,14 @@ public class Tutorial extends JFrame {
     public void ponerDialogoParte2() {
 
         if(tutorialParte2.getNodoDialActual() == null || !(tutorialParte2.getArbolDial().nodeIsLeaf(tutorialParte2.getNodoDialActual()))) {
-           if(!(tutorialParte2.getNodoDialActual()==null)){
-               Dialogo actual = tutorialParte2.getDialogoActual();
-               if(!actual.getOpciones().isEmpty()){
-                   OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
-                   oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
-                   oD.setVisible(true);
-               }
-           }
+            if(!(tutorialParte2.getNodoDialActual()==null)){
+                Dialogo actual = tutorialParte2.getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
             Dialogo aux = tutorialParte2.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = tutorialParte2.getArbolDial().nodeLevel(tutorialParte2.getNodoDialActual());
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
@@ -149,18 +149,18 @@ public class Tutorial extends JFrame {
             cajaTexto.add(cT);
 
             if(nivelActualDial ==0) {
-             ponerFondoParte2(nivelActualDial);
-             cajaTexto.setVisible(false);
+                ponerFondoParte2(nivelActualDial);
+                cajaTexto.setVisible(false);
 
-             getContentPane().revalidate();
-             getContentPane().repaint();
-             revalidate();
-             repaint();
+                getContentPane().revalidate();
+                getContentPane().repaint();
+                revalidate();
+                repaint();
             }
 
 
-            }
         }
+    }
 
 
 
@@ -441,7 +441,6 @@ public class Tutorial extends JFrame {
         BinaryTreeNode<Dialogo> node91 = new BinaryTreeNode<>(d91);
 
 
-
         GeneralTree<Dialogo> auxTree = new GeneralTree<>();
 
         auxTree.insertNode(node1, null);
@@ -586,11 +585,10 @@ public class Tutorial extends JFrame {
         Dialogo d111 = new Dialogo("Exactamente. Aunque claro, si se pierde, siempre puede llamarme. No es que yo disfrute repetir las cosas, pero alguien tiene que salvarle la investigación.", "Jefe", dueno, true);
 
         Dialogo decisionJefe = new Dialogo("¿Quiere que le repita cómo usar el teléfono, el mapa y las interacciones, o ya se siente listo?", "Jefe", dueno, false);
+        decisionJefe.setOpciones(new LinkedList<>(Arrays.asList("Repítalo, quiero estar seguro.", "No es necesario, ya entendí. Continuemos.")));
 
-        Dialogo opcionJefeA = new Dialogo("Repítalo, quiero estar seguro.", "Detective", detective, true);
         Dialogo respJefeA = new Dialogo("Muy bien, aunque debería haberlo entendido a la primera. Teléfono para llamarme, música y fondos. Flechas para moverse entre escenarios. Y recuerde: pulse objetos o personajes para interactuar. ¿Contento?", "Jefe", dueno, true);
 
-        Dialogo opcionJefeB = new Dialogo("No es necesario, ya entendí. Continuemos.", "Detective", detective, true);
         Dialogo respJefeB = new Dialogo("Excelente. Al menos no tendré que repetirlo. Adelante, detective, el museo es suyo.", "Jefe", dueno, true);
 
         // Conexiones
@@ -607,8 +605,8 @@ public class Tutorial extends JFrame {
 
         BinaryTreeNode<Dialogo> node300 = new BinaryTreeNode<>(decisionInicio);
 
-        BinaryTreeNode<Dialogo> node302 = new BinaryTreeNode<>(respuestaA);
-        BinaryTreeNode<Dialogo> node304 = new BinaryTreeNode<>(respuestaB);
+        BinaryTreeNode<Dialogo> node301 = new BinaryTreeNode<>(respuestaA);
+        BinaryTreeNode<Dialogo> node302 = new BinaryTreeNode<>(respuestaB);
 
         BinaryTreeNode<Dialogo> node101 = new BinaryTreeNode<>(d101);
         BinaryTreeNode<Dialogo> node102 = new BinaryTreeNode<>(d102);
@@ -622,11 +620,10 @@ public class Tutorial extends JFrame {
         BinaryTreeNode<Dialogo> node110 = new BinaryTreeNode<>(d110);
         BinaryTreeNode<Dialogo> node111 = new BinaryTreeNode<>(d111);
 
-        BinaryTreeNode<Dialogo> node305 = new BinaryTreeNode<>(decisionJefe);
-        BinaryTreeNode<Dialogo> node306 = new BinaryTreeNode<>(opcionJefeA);
-        BinaryTreeNode<Dialogo> node307 = new BinaryTreeNode<>(respJefeA);
-        BinaryTreeNode<Dialogo> node308 = new BinaryTreeNode<>(opcionJefeB);
-        BinaryTreeNode<Dialogo> node309 = new BinaryTreeNode<>(respJefeB);
+        BinaryTreeNode<Dialogo> node303 = new BinaryTreeNode<>(decisionJefe);
+
+        BinaryTreeNode<Dialogo> node304 = new BinaryTreeNode<>(respJefeA);
+        BinaryTreeNode<Dialogo> node305 = new BinaryTreeNode<>(respJefeB);
 
         GeneralTree<Dialogo> auxTree = new GeneralTree<>();
 
@@ -640,8 +637,8 @@ public class Tutorial extends JFrame {
         auxTree.insertNode(node99, node98);
         auxTree.insertNode(node300, node99);
 
+        auxTree.insertNode(node301, node300);
         auxTree.insertNode(node302, node300);
-        auxTree.insertNode(node304, node300);
 
         GeneralTree<Dialogo> auxTree2 = new GeneralTree<>();
 
@@ -656,11 +653,9 @@ public class Tutorial extends JFrame {
         auxTree2.insertNode(node109, node108);
         auxTree2.insertNode(node110, node109);
         auxTree2.insertNode(node111, node110);
-        auxTree2.insertNode(node305, node111);
-        auxTree2.insertNode(node306, node305);
-        auxTree2.insertNode(node308, node305);
-        auxTree2.insertNode(node307, node306);
-        auxTree2.insertNode(node309, node308);
+        auxTree2.insertNode(node303, node111);
+        auxTree2.insertNode(node304, node303);
+        auxTree2.insertNode(node305, node303);
 
 
         tutorialParte2.setArbolDial(auxTree);

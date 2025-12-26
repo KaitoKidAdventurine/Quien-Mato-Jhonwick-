@@ -391,25 +391,25 @@ public class Pasillo1 extends ModeloEscenario {
         GeneralTree<Dialogo> aux = new GeneralTree<>();
 
         aux.insertNode(n1, null);
-           aux.insertNode(n2, n1);
-              aux.insertNode(n3, n2);
-                 aux.insertNode(n4, n3);
-                    aux.insertNode(n5, n4);
-                       aux.insertNode(n6, n5);
-                          aux.insertNode(n7, n6);
-                             aux.insertNode(n8, n7);
-                                aux.insertNode(n9, n8);
-                                   aux.insertNode(n10, n9);
-                                      aux.insertNode(n11, n10);
-                                         aux.insertNode(n12, n11);
-                                            aux.insertNode(n13, n12);
-           aux.insertNode(n14, n1);
-              aux.insertNode(n15, n14);
-                 aux.insertNode(n16, n15);
-           aux.insertNode(n17, n1);
-              aux.insertNode(n18, n17);
-                 aux.insertNode(n19, n18);
-                    aux.insertNode(n20, n19);
+        aux.insertNode(n2, n1);
+        aux.insertNode(n3, n2);
+        aux.insertNode(n4, n3);
+        aux.insertNode(n5, n4);
+        aux.insertNode(n6, n5);
+        aux.insertNode(n7, n6);
+        aux.insertNode(n8, n7);
+        aux.insertNode(n9, n8);
+        aux.insertNode(n10, n9);
+        aux.insertNode(n11, n10);
+        aux.insertNode(n12, n11);
+        aux.insertNode(n13, n12);
+        aux.insertNode(n14, n1);
+        aux.insertNode(n15, n14);
+        aux.insertNode(n16, n15);
+        aux.insertNode(n17, n1);
+        aux.insertNode(n18, n17);
+        aux.insertNode(n19, n18);
+        aux.insertNode(n20, n19);
 
         return aux;
     }
@@ -454,20 +454,20 @@ public class Pasillo1 extends ModeloEscenario {
         GeneralTree<Dialogo> aux = new GeneralTree<>();
 
         aux.insertNode(n1, null);
-           aux.insertNode(n2, n1);
-              aux.insertNode(n3, n2);
-                 aux.insertNode(n4, n3);
-                    aux.insertNode(n5, n4);
-                       aux.insertNode(n6, n5);
-                          aux.insertNode(n7, n6);
-                             aux.insertNode(n8, n7);
-                                aux.insertNode(n9, n8);
-                                   aux.insertNode(n10, n9);
-           aux.insertNode(n11, n1);
-              aux.insertNode(n12, n11);
-           aux.insertNode(n13, n1);
-              aux.insertNode(n14, n13);
-                 aux.insertNode(n15, n14);
+        aux.insertNode(n2, n1);
+        aux.insertNode(n3, n2);
+        aux.insertNode(n4, n3);
+        aux.insertNode(n5, n4);
+        aux.insertNode(n6, n5);
+        aux.insertNode(n7, n6);
+        aux.insertNode(n8, n7);
+        aux.insertNode(n9, n8);
+        aux.insertNode(n10, n9);
+        aux.insertNode(n11, n1);
+        aux.insertNode(n12, n11);
+        aux.insertNode(n13, n1);
+        aux.insertNode(n14, n13);
+        aux.insertNode(n15, n14);
 
         return aux;
     }

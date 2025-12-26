@@ -350,7 +350,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
     }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-       this.dispose();
+        this.dispose();
     }
 
     private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {

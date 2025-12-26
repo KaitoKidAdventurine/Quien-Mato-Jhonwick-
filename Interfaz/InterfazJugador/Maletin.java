@@ -25,7 +25,7 @@ public class Maletin extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Maletin.class.getName());
     private Dimension tamPant;
     private JLabel fondo;
-   private  ArrayList <JPanel> slotsInventario;
+    private  ArrayList <JPanel> slotsInventario;
     private JButton botonSalir;
 
 
@@ -39,7 +39,7 @@ public class Maletin extends javax.swing.JDialog {
 
     private void initComponents() {
         ponerSlots();
-       // ponerObjetos();
+        // ponerObjetos();
 
         fondo = new JLabel();
 

@@ -7,7 +7,7 @@ import cu.edu.cujae.ceis.tree.binary.BinaryTree;
 
 import javax.swing.*;
 
-public class Jugador 
+public class Jugador
 {
     private static Jugador instancia;
     private String nombre;
@@ -36,30 +36,30 @@ public class Jugador
     }
 
     public String getNombre()
-    { 
-        return nombre; 
+    {
+        return nombre;
     }
-    public void setNombre(String nombre) 
-    { 
-        this.nombre = nombre; 
-    }
-
-    public BinaryTree<String> getElecciones() 
-    { 
-        return elecciones; 
-    }
-    public void setElecciones(BinaryTree<String> elecciones) 
-    { 
-        this.elecciones = elecciones; 
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
     }
 
-    public Telefono getTelefono() 
-    { 
-        return telefono; 
+    public BinaryTree<String> getElecciones()
+    {
+        return elecciones;
     }
-    public void setTelefono(Telefono telefono) 
-    { 
-        this.telefono = telefono; 
+    public void setElecciones(BinaryTree<String> elecciones)
+    {
+        this.elecciones = elecciones;
+    }
+
+    public Telefono getTelefono()
+    {
+        return telefono;
+    }
+    public void setTelefono(Telefono telefono)
+    {
+        this.telefono = telefono;
     }
 
     public Diario getDiario()

@@ -114,27 +114,27 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
 
             if (accionador.getNombreObjeto().equals(objetosEnc.get(i).getNombre())) {
                 objetosEnc.remove(i);
-               remove(accionador);
-               objetosEscenarios.remove(accionador);
+                remove(accionador);
+                objetosEscenarios.remove(accionador);
 
                 if(!mini.getCola().isEmpty())
                     mini.pedirSiguienteObjeCola();
 
                 actualizarObjetosEncontrables();
 
-             if(!objetosEscenarios.isEmpty()){
-                 revalidate();
-                 repaint();
-             }else{
-                 getParent().getComponent(0).setVisible(false);
-                 getParent().getComponent(1).setVisible(true);
-                 getParent().revalidate();
-                 getParent().repaint();
+                if(!objetosEscenarios.isEmpty()){
+                    revalidate();
+                    repaint();
+                }else{
+                    getParent().getComponent(0).setVisible(false);
+                    getParent().getComponent(1).setVisible(true);
+                    getParent().revalidate();
+                    getParent().repaint();
 
-                 getParent().remove(0);
+                    getParent().remove(0);
 
 
-             }
+                }
 
             }
         }

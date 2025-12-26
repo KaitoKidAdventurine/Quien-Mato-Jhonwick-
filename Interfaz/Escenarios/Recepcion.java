@@ -36,7 +36,7 @@ public class Recepcion extends ModeloEscenario{
     private JButton policia;
     private JButton secretaria;
     /**
-    /**
+     /**
      * Creates new form Entrada
      */
     public Recepcion() {

@@ -229,7 +229,7 @@ public class MenuInterno extends javax.swing.JDialog {
     }// </editor-fold>
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-            this.dispose();
+        this.dispose();
     }
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {
@@ -270,7 +270,7 @@ public class MenuInterno extends javax.swing.JDialog {
         ConfirmarSalida confirmarSalida = new ConfirmarSalida(new JFrame(), true, "Estas seguro de querer salir al Menu", false);
         confirmarSalida.setVisible(true);
         if(UnionInterfaces.getInstance().getCerrarVentana()){
-           timer.schedule(tarea, 10);
+            timer.schedule(tarea, 10);
         }
 
     }
@@ -287,9 +287,9 @@ public class MenuInterno extends javax.swing.JDialog {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
         ConfirmarSalida confirmarSalida = new ConfirmarSalida(new JFrame(), true, "Estas seguro de querer salir del juego", true);
         confirmarSalida.setVisible(true);
-            if(UnionInterfaces.getInstance().getSalirJuego()){
-                System.exit(0);
-            }
+        if(UnionInterfaces.getInstance().getSalirJuego()){
+            System.exit(0);
+        }
     }
 
     private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {
