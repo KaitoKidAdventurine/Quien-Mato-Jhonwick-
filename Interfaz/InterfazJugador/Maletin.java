@@ -105,7 +105,7 @@ public class Maletin extends javax.swing.JDialog {
     }
 
     private void ponerObjetos() {
-        LinkedList<ObjetoEscenario> listaDeObjetos = Jugador.getInstancia().getMaletin();
+        LinkedList<ObjetoEscenario> listaDeObjetos = Juego.getInstance().getPartidaActual().jugador.getMaletin();
         int i =0;
         Iterator<ObjetoEscenario> iterator= listaDeObjetos.iterator();
         while(i<listaDeObjetos.size() && i<8 ){

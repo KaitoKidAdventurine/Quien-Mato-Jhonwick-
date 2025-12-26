@@ -6,6 +6,9 @@ package Interfaz.Menu;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
 import Interfaz.Escenarios.Entrada;
+import Logica.Juego;
+import Logica.Jugador;
+import Logica.Partida;
 import Logica.Reproductor;
 
 import javax.imageio.ImageIO;
@@ -14,6 +17,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Parameter;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -179,27 +183,70 @@ public class NuevaPartida extends javax.swing.JFrame {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
-        Entrada entr3 = new Entrada();
-       timer.schedule(tarea,1000);
-        entr3.setVisible(true);
+        if (!Juego.getInstance().existePartida("3"))
+        {
+            Partida p = new Partida();
+            p.setIdPartida("3");
+            p.setEstado("Acto 1");
+            Juego.getInstance().getPartidas().add(p);
+            Juego.getInstance().setPartidaActual(Juego.getInstance().obtenerPartida("3"));
+            Jugador j = new Jugador();
+            j.setNombre("Jugador 1");
+            Juego.getInstance().getPartidaActual().setJugador(j);
+
+            Entrada entr3 = new Entrada();
+            timer.schedule(tarea,1000);
+            entr3.setVisible(true);
+
+        }
+        // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
+
     }//GEN-LAST:event_boton3ActionPerformed
 
     private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
-        Entrada entr2 = new Entrada();
-        timer.schedule(tarea,1000);
-        entr2.setVisible(true);
+        if (!Juego.getInstance().existePartida("2"))
+        {
+            Partida p = new Partida();
+            p.setIdPartida("2");
+            p.setEstado("Acto 1");
+            Juego.getInstance().getPartidas().add(p);
+            Juego.getInstance().setPartidaActual(Juego.getInstance().obtenerPartida("2"));
+            Jugador j = new Jugador();
+            j.setNombre("Jugador 2");
+            Juego.getInstance().getPartidaActual().setJugador(j);
+
+            Entrada entr2 = new Entrada();
+            timer.schedule(tarea,1000);
+            entr2.setVisible(true);
+        }
+        // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
+
     }//GEN-LAST:event_boton2ActionPerformed
 
     private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
-        Entrada entr1 = new Entrada();
-        timer.schedule(tarea,1000);
-        entr1.setVisible(true);
+        if (!Juego.getInstance().existePartida("1"))
+        {
+            Partida p = new Partida();
+            p.setIdPartida("1");
+            p.setEstado("Acto 1");
+            Juego.getInstance().getPartidas().add(p);
+            Juego.getInstance().setPartidaActual(Juego.getInstance().obtenerPartida("1"));
+            Jugador j = new Jugador();
+            j.setNombre("Jugador 1");
+            Juego.getInstance().getPartidaActual().setJugador(j);
+
+            Entrada entr1 = new Entrada();
+            timer.schedule(tarea,1000);
+            entr1.setVisible(true);
+        }
+        // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
+
     }//GEN-LAST:event_boton1ActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed

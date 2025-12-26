@@ -4,6 +4,7 @@ import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.Menu.MenuPrincipal;
+import Logica.Juego;
 import Logica.Partida;
 
 import javax.imageio.ImageIO;
@@ -72,8 +73,7 @@ public class OficinaJefe extends ModeloEscenario {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/oficina del dueño.jpg"));
 
             // Actualizacion de donde esta el Jugador
-            Partida p = Partida.getInstance();
-            p.buscarEscenarioNombre("Oficina del Jefe");
+            Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Oficina del Jefe");
 
 
             jLabel1 = new JLabel();

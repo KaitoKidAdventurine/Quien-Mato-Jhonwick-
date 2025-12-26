@@ -73,8 +73,7 @@ public class OficinaEconomico extends ModeloEscenario {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
 
             // Actualizacion de donde esta el Jugador
-            Partida p = Partida.getInstance();
-            p.buscarEscenarioNombre("Oficina de la Victima");
+            Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Oficina de la Victima");
 
             jLabel1 = new JLabel();
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

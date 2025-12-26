@@ -72,8 +72,7 @@ public class Almacen extends ModeloEscenario {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/puerta del lmacen.jpg"));
 
             // Actualizacion de donde esta el Jugador
-            Partida p = Partida.getInstance();
-            p.buscarEscenarioNombre("Almacen");
+            Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Almacen");
 
             jLabel1 = new JLabel();
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

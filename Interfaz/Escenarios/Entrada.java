@@ -10,6 +10,7 @@ import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
 import Logica.Escenario;
+import Logica.Juego;
 import Logica.Partida;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
@@ -85,8 +86,7 @@ private Dimension tamPant;
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por afuera.jpg"));
 
             // Actualizacion de donde esta el Jugador
-            Partida p = Partida.getInstance();
-            p.buscarEscenarioNombre("Entrada");
+            Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Entrada");
 
             setMinimumSize(tamPant);
             setUndecorated(true);

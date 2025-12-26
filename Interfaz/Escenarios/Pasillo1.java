@@ -6,6 +6,7 @@ import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
 import Logica.Escenario;
+import Logica.Juego;
 import Logica.Partida;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
@@ -88,8 +89,7 @@ public class Pasillo1 extends ModeloEscenario {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/pasillo 1.jpg"));
 
             // Actualizacion de donde esta el Jugador
-            Partida p = Partida.getInstance();
-            p.buscarEscenarioNombre("Ala este");
+            Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Ala este");
 
 
             jLabel1 = new JLabel();

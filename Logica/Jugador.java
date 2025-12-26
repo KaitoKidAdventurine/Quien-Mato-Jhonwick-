@@ -9,31 +9,23 @@ import javax.swing.*;
 
 public class Jugador 
 {
-    private static Jugador instancia;
-    private String nombre;
-    private BinaryTree<String> elecciones;
-    private Telefono telefono;
-    private Diario diario;
-    private LinkedList<ObjetoEscenario> maletin;
-    private Escenario escenarioActual;
+    public String nombre;
+    public BinaryTree<String> elecciones;
+    public Telefono telefono;
+    public Diario diario;
+    public LinkedList<ObjetoEscenario> maletin;
+    public Escenario escenarioActual;
 
-    private Jugador()
+    public Jugador()
     {
+        // Aqui se le pone el nombre del jugador
         this.nombre = "";
         this.elecciones = new BinaryTree<>();
         this.telefono = new Telefono();
         this.diario = new Diario();
         this.maletin = new LinkedList<ObjetoEscenario>();
     }
-
-    public static Jugador getInstancia()
-    {
-        if(instancia == null)
-        {
-            instancia = new Jugador();
-        }
-        return instancia;
-    }
+    
 
     public String getNombre()
     { 
@@ -83,7 +75,6 @@ public class Jugador
     // Metodos
     public void agregarAlMaletin(ObjetoEscenario o)
     {
-
         maletin.add(o);
     }
 

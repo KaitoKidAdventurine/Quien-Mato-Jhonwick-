@@ -310,10 +310,10 @@ crearObjetosMochila();
         ObjetoEscenario ob10 = new ObjetoEscenario("Laptop", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Laptop.png"), 0.27F, 0.33F, 0.18F, 0.1F, false, "nada");
         ObjetoEscenario ob11 = new ObjetoEscenario("Cigarros", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/cigarros.png"), 0.62F, 0.2F, 0.19F, 0.1F, false, "nada");
 
-        Jugador.getInstancia().agregarAlMaletin(ob8);
-        Jugador.getInstancia().agregarAlMaletin(ob9);
-        Jugador.getInstancia().agregarAlMaletin(ob10);
-        Jugador.getInstancia().agregarAlMaletin(ob11);
+        Juego.getInstance().getPartidaActual().jugador.agregarAlMaletin(ob8);
+        Juego.getInstance().getPartidaActual().jugador.agregarAlMaletin(ob9);
+        Juego.getInstance().getPartidaActual().jugador.agregarAlMaletin(ob10);
+        Juego.getInstance().getPartidaActual().jugador.agregarAlMaletin(ob11);
 
 
 

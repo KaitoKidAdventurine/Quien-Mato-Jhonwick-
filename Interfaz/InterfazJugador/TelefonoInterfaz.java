@@ -1,5 +1,6 @@
 package Interfaz.InterfazJugador;
 
+import Logica.Juego;
 import Logica.Jugador;
 import Logica.Telefono;
 
@@ -32,7 +33,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
     public TelefonoInterfaz(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
-        telefonoLogica = Jugador.getInstancia().getTelefono();
+        telefonoLogica = Juego.getInstance().getPartidaActual().jugador.getTelefono();
         initComponents();
 
         timer = new Timer();

@@ -10,26 +10,15 @@ import java.util.LinkedList;
 
 public class Partida
 {
-    private static Partida instancia;
-    private String idPartida;
-    private LocalDate fechaInicio;
+
+    public String idPartida;
+    public LocalDate fechaInicio;
     // El estado asumo que es en que Acto esta el jugador
-    private String estado;
-    private ArrayList<Escenario> escenarios;
-    private Jugador jugador;
+    public String estado;
+    public ArrayList<Escenario> escenarios;
+    public Jugador jugador;
 
-    public static Partida getInstance()
-    {
-        if(instancia == null)
-        {
-            instancia = new Partida();
-        }
-
-        return instancia;
-    }
-
-
-    private Partida() {
+    public Partida() {
         // Para darle un valor al ID sera la partida que escoja el usuario.
         // O sea que cuando toque Nueva Partida 1, ese 1 sera el ID.
         // Modificar cuando se implemente.
@@ -37,8 +26,9 @@ public class Partida
         this.fechaInicio = LocalDate.now();
         this.estado = "";
         this.escenarios = new ArrayList<Escenario>();
-
+        agregarEscenariosAutomaticamente();
     }
+
 
 
     public String getIdPartida()
@@ -69,9 +59,6 @@ public class Partida
     }
 
 
-
-
-    // Metodos:
     public ArrayList<Escenario> getEscenarios() { return escenarios; }
 
     public void setEscenarios(ArrayList<Escenario> escenarios) { this.escenarios = escenarios; }
@@ -85,7 +72,7 @@ public class Partida
         {
             if(nom.equals(escenarios.get(i).getNombre()))
             {
-                Jugador.getInstancia().setEscenarioActual(escenarios.get(i));
+                Juego.getInstance().getPartidaActual().getJugador().setEscenarioActual(escenarios.get(i));
                 salida = true;
             }
         }

@@ -4,6 +4,7 @@ import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.Menu.MenuPrincipal;
+import Logica.Juego;
 import Logica.Partida;
 
 import javax.imageio.ImageIO;
@@ -71,8 +72,7 @@ public class PasilloAlmacen extends ModeloEscenario {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/pasillo almacen - callejon.jpg"));
 
             // Actualizacion de donde esta el Jugador
-            Partida p = Partida.getInstance();
-            p.buscarEscenarioNombre("Ala Sur");
+            Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Ala Sur");
 
 
             jLabel1 = new JLabel();

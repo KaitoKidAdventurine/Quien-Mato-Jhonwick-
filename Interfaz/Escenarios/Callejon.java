@@ -4,6 +4,7 @@ import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.Menu.MenuPrincipal;
+import Logica.Juego;
 import Logica.Partida;
 
 import javax.imageio.ImageIO;
@@ -72,8 +73,7 @@ public class Callejon extends ModeloEscenario {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/callejon 1.jpg"));
 
             // Actualizacion de donde esta el Jugador
-            Partida p = Partida.getInstance();
-            p.buscarEscenarioNombre("Callejon");
+            Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Callejon");
 
             jLabel1 = new JLabel();
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
