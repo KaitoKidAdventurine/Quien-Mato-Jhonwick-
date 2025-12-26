@@ -195,25 +195,21 @@ public class NuevaPartida extends javax.swing.JFrame {
             j.setNombre("Jugador 1");
             Juego.getInstance().getPartidaActual().setJugador(j);
 
-            Entrada entr3 = new Entrada();
+            Tutorial tuto3 = new Tutorial();
             timer.schedule(tarea,1000);
-            entr3.setVisible(true);
+            tuto3.setVisible(true);
 
         }
         // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
 
-        Tutorial tuto3 = new Tutorial();
-        timer.schedule(tarea,1000);
-        tuto3.setVisible(true);
+
     }//GEN-LAST:event_boton3ActionPerformed
 
     private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
-        Tutorial tuto2 = new Tutorial();
-        timer.schedule(tarea,1000);
-        tuto2.setVisible(true);
+
         if (!Juego.getInstance().existePartida("2"))
         {
             Partida p = new Partida();
@@ -225,9 +221,9 @@ public class NuevaPartida extends javax.swing.JFrame {
             j.setNombre("Jugador 2");
             Juego.getInstance().getPartidaActual().setJugador(j);
 
-            Entrada entr2 = new Entrada();
+            Tutorial tuto2 = new Tutorial();
             timer.schedule(tarea,1000);
-            entr2.setVisible(true);
+            tuto2.setVisible(true);
         }
         // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
 
@@ -237,9 +233,7 @@ public class NuevaPartida extends javax.swing.JFrame {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
-        Tutorial tuto1 = new Tutorial();
-        timer.schedule(tarea,1000);
-        tuto1.setVisible(true);
+
         if (!Juego.getInstance().existePartida("1"))
         {
             Partida p = new Partida();
@@ -251,9 +245,9 @@ public class NuevaPartida extends javax.swing.JFrame {
             j.setNombre("Jugador 1");
             Juego.getInstance().getPartidaActual().setJugador(j);
 
-            Entrada entr1 = new Entrada();
+            Tutorial tuto1 = new Tutorial();
             timer.schedule(tarea,1000);
-            entr1.setVisible(true);
+            tuto1.setVisible(true);
         }
         // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
 

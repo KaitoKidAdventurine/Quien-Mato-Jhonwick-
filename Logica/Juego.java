@@ -35,24 +35,12 @@ public class Juego {
         this.titulo = titulo;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-    public String getVersion() {
-        return version;
-    }
 
     public String getVersion() {
         return version;
     }
 
-    public void setVersion(String version) {
-        this.version = version;
-    }
+
     public void setVersion(String version) {
         this.version = version;
     }
