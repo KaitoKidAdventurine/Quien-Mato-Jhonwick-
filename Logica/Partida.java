@@ -32,30 +32,30 @@ public class Partida
 
 
     public String getIdPartida()
-    { 
-        return idPartida; 
+    {
+        return idPartida;
     }
-    public void setIdPartida(String idPartida) 
-    { 
-        this.idPartida = idPartida; 
-    }
-
-    public LocalDate getFechaInicio() 
-    { 
-        return fechaInicio; 
-    }
-    public void setFechaInicio(LocalDate fechaInicio) 
-    { 
-        this.fechaInicio = fechaInicio; 
+    public void setIdPartida(String idPartida)
+    {
+        this.idPartida = idPartida;
     }
 
-    public String getEstado() 
-    { 
-        return estado; 
+    public LocalDate getFechaInicio()
+    {
+        return fechaInicio;
     }
-    public void setEstado(String estado) 
-    { 
-        this.estado = estado; 
+    public void setFechaInicio(LocalDate fechaInicio)
+    {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public String getEstado()
+    {
+        return estado;
+    }
+    public void setEstado(String estado)
+    {
+        this.estado = estado;
     }
 
 

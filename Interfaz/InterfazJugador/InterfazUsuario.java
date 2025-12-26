@@ -162,7 +162,7 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         diario.setIcon(icono3);
 
 
-crearObjetosMochila();
+        crearObjetosMochila();
         add(diario);
         add(telefono);
         add(mochila);
@@ -306,10 +306,8 @@ crearObjetosMochila();
     }
     public void crearObjetosMochila(){
         ObjetoEscenario ob8 = new ObjetoEscenario("Telefono", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/telefono de la victima.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "Telefono encontrado en lam escena del crimen, parece de la victima, probablemente tenga informacion valiosa");
-        ObjetoEscenario ob9 = new ObjetoEscenario("Herida Grande", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida grande.png"), 0.55F, 0.9F, 0.1F, 0.1F, false, "2");
-        ObjetoEscenario ob10 = new ObjetoEscenario("Laptop", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Laptop.png"), 0.27F, 0.33F, 0.18F, 0.1F, false, "nada");
-        ObjetoEscenario ob11 = new ObjetoEscenario("Cigarros", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/cigarros.png"), 0.62F, 0.2F, 0.19F, 0.1F, false, "nada");
 
+        Jugador.getInstancia().agregarAlMaletin(ob8);
         Juego.getInstance().getPartidaActual().jugador.agregarAlMaletin(ob8);
         Juego.getInstance().getPartidaActual().jugador.agregarAlMaletin(ob9);
         Juego.getInstance().getPartidaActual().jugador.agregarAlMaletin(ob10);

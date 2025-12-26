@@ -22,7 +22,7 @@ import Logica.Reproductor;
  * @author ROBERTO
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuPrincipal.class.getName());
     private Dimension tamPant;
     private Timer timer;
@@ -49,13 +49,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 dispose();
             }
         };
-        
+
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         largoBot = (int) (tamPant.getWidth()*0.2);
         anchoBot = (int) (tamPant.getHeight()*0.07);
         xBot = (int) (tamPant.getWidth()*0.07);
         initComponents();
-        
+
     }
 
     private void initComponents() {
@@ -221,7 +221,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         NuevaPartida nP = new NuevaPartida();
         nP.setVisible(true);
-       timer.schedule(tarea, 1000);
+        timer.schedule(tarea, 1000);
     }
 
     private void botonCargParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargParActionPerformed
@@ -230,7 +230,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         CargarPartida cP = new CargarPartida();
 
-       cP.setVisible(true);
+        cP.setVisible(true);
         timer.schedule(tarea, 1000);
 
     }
@@ -241,7 +241,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         Opciones opc = new Opciones();
 
-      opc.setVisible(true);
+        opc.setVisible(true);
         timer.schedule(tarea, 1000);
     }
 
@@ -250,7 +250,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     private void botonNuevPartMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNuevPartMouseExited
-          botonNuevPart.setForeground(new java.awt.Color(255, 255, 255));
+        botonNuevPart.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_botonNuevPartMouseExited
 
     private void botonCargParMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCargParMouseEntered
@@ -258,15 +258,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCargParMouseEntered
 
     private void botonCargParMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCargParMouseExited
-       botonCargPar.setForeground(new java.awt.Color(255, 255, 255));
+        botonCargPar.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_botonCargParMouseExited
 
     private void botonOpcMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonOpcMouseEntered
-          botonOpc.setForeground(Color.red);
+        botonOpc.setForeground(Color.red);
     }//GEN-LAST:event_botonOpcMouseEntered
 
     private void botonOpcMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonOpcMouseExited
-       botonOpc.setForeground(new java.awt.Color(255, 255, 255));
+        botonOpc.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_botonOpcMouseExited
 
     private void botonSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseEntered
@@ -274,7 +274,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSalirMouseEntered
 
     private void botonSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseExited
-         botonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        botonSalir.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_botonSalirMouseExited
 
     private void botonCreditosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCreditosMouseEntered
@@ -282,25 +282,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCreditosMouseEntered
 
     private void botonCreditosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCreditosMouseExited
-       botonCreditos.setForeground(new java.awt.Color(255, 255, 255));
+        botonCreditos.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_botonCreditosMouseExited
 
     private void botonCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCreditosActionPerformed
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
-        
+
         Creditos cre = new Creditos();
         cre.setVisible(true);
         timer.schedule(tarea, 1000);
     }//GEN-LAST:event_botonCreditosActionPerformed
 
-    
+
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

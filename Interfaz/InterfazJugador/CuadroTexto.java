@@ -60,8 +60,7 @@ public class CuadroTexto extends javax.swing.JPanel {
         add(jLabel3);
 
 
-       parrafo.setText("<html>" + texto + "</html>");
-
+        parrafo.setText("<html>" + texto + "</html>");
         parrafo.setBounds((int) (tamPant.height*0.32),  (int) (tamPant.height*0.015), (int) (tamPant.width*0.68), (int) (tamPant.height*0.25));
         parrafo.setForeground(new Color(255, 255, 255, 200));
         parrafo.setOpaque(true);
@@ -92,31 +91,31 @@ public class CuadroTexto extends javax.swing.JPanel {
                 break;
         }
 
-            BufferedImage imagen2 = null;
-            try {
-                imagen2 = ImageIO.read(new File(String.valueOf(imagen)));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            switch (personaje){
-                case ("Dueño"):
-                    ImageIcon icono = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.3), (int) (tamPant.height*0.9), Image.SCALE_SMOOTH));
-                    jLabel2.setIcon(icono);
-                    break;
+        BufferedImage imagen2 = null;
+        try {
+            imagen2 = ImageIO.read(new File(String.valueOf(imagen)));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        switch (personaje){
+            case ("Dueño"):
+                ImageIcon icono = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.3), (int) (tamPant.height*0.9), Image.SCALE_SMOOTH));
+                jLabel2.setIcon(icono);
+                break;
 
-                case("Guia"):
-                    ImageIcon icono1 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.24), (int) (tamPant.height*0.9), Image.SCALE_SMOOTH));
-                    jLabel2.setIcon(icono1);
-                    break;
-                case("Detective"):
-                    ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.225), (int) (tamPant.height*0.9), Image.SCALE_SMOOTH));
-                    jLabel2.setIcon(icono2);
-                    break;
-                default:
-                    ImageIcon icono3 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.2), (int) (tamPant.height*0.9), Image.SCALE_SMOOTH));
-                    jLabel2.setIcon(icono3);
-                    break;
-            }
+            case("Guia"):
+                ImageIcon icono1 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.24), (int) (tamPant.height*0.9), Image.SCALE_SMOOTH));
+                jLabel2.setIcon(icono1);
+                break;
+            case("Detective"):
+                ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.225), (int) (tamPant.height*0.9), Image.SCALE_SMOOTH));
+                jLabel2.setIcon(icono2);
+                break;
+            default:
+                ImageIcon icono3 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.2), (int) (tamPant.height*0.9), Image.SCALE_SMOOTH));
+                jLabel2.setIcon(icono3);
+                break;
+        }
 
 
 

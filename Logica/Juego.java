@@ -1,6 +1,8 @@
 package Logica;
 
 import java.util.Iterator;
+import javax.swing.*;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class Juego {
@@ -33,10 +35,24 @@ public class Juego {
         this.titulo = titulo;
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
     public String getVersion() {
         return version;
     }
 
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
     public void setVersion(String version) {
         this.version = version;
     }

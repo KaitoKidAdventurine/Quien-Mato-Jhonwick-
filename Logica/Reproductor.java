@@ -45,7 +45,7 @@ public class Reproductor {
             Cancion cancionTres = new Cancion("Sombras en el Viento", musicaTres);
             Cancion cancionTension = new Cancion("Tension", musicaTension);
 
-            
+
             canciones.add(cancion);
             canciones.add(cancionUno);
             canciones.add(cancionDos);

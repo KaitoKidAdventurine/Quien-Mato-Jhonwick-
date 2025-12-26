@@ -11,7 +11,7 @@ public class SlotInventario extends JPanel {
     private Dimension tamPant;
     private JLabel imagenObj;
     private JLabel nombre;
-    private JTextArea descripcion;
+    private JLabel descripcion;
 
     public SlotInventario(ImageIcon imagenObjeto, String nombreObj, String descripcionObj){
         tamPant = new Dimension(Toolkit.getDefaultToolkit().getScreenSize());
@@ -41,21 +41,17 @@ public class SlotInventario extends JPanel {
         nombre.setForeground(new Color(255, 255, 255, 245));
         add(nombre);
 
-        descripcion = new JTextArea();
-        descripcion.setColumns(20);
-        descripcion.setRows(5);
+        descripcion = new JLabel();
+
+        descripcion.setOpaque(true);
         descripcion.setBackground(new Color(0, 0, 0, 0));
-        descripcion.setEnabled(false);
         descripcion.setFocusable(false);
-        descripcion.setHighlighter(null);
-        descripcion.setDisabledTextColor(new Color(255, 255, 255, 245));
-        descripcion.setLineWrap(true);
-        descripcion.setWrapStyleWord(true);
-        descripcion.setEditable(false);
-        descripcion.setText(descripcionObj);
+        descripcion.setText("<html>" +descripcionObj + "</html>");
         descripcion.setBounds((int) (tamPant.width*0.12), (int) (tamPant.height*0.06), (int) (tamPant.width*0.16), (int) (tamPant.height*0.09));
         descripcion.setFont(new Font("Segoe UI", 0, (int)(tamPant.height*0.016)));
-
+        descripcion.setHorizontalAlignment(SwingConstants.LEFT);
+        descripcion.setVerticalAlignment(SwingConstants.TOP);
+        descripcion.setForeground(new Color (240, 240, 240));
         add(descripcion);
 
     }

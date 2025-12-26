@@ -59,7 +59,7 @@ public class OpcionesDialogos extends JDialog {
                 boton1ActionPerformed(evt);
             }
         });
-      
+
         boton1.setBounds((int) (tamPant.width*0.01),(int) (tamPant.getHeight()*0.03), (int) (tamPant.width*0.43),(int) (tamPant.getHeight()*0.05));
         add(boton1);
 

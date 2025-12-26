@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import DatosAuxiliaresLogica.Informacion;
 
-public class Diario 
+public class Diario
 {
     private LinkedList<Informacion> dialogosImportantes;
 
@@ -35,7 +35,7 @@ public class Diario
             Iterator<Informacion> II = dialogosImportantes.iterator();
             while(!salida && II.hasNext())
             {
-               Informacion i = II.next();
+                Informacion i = II.next();
                 if (i.getNombreNPC().equals(nombreNPC))
                 {
                     // Lo comento para evitar que se escuche lo de que se escribe porque

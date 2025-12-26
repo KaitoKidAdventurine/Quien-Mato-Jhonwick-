@@ -9,6 +9,7 @@ import Interfaz.Escenarios.Entrada;
 import Logica.Juego;
 import Logica.Jugador;
 import Logica.Partida;
+import Interfaz.Tutorial;
 import Logica.Reproductor;
 
 import javax.imageio.ImageIO;
@@ -26,7 +27,7 @@ import java.util.TimerTask;
  * @author ROBERTO
  */
 public class NuevaPartida extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NuevaPartida.class.getName());
     private Dimension tamPant;
     int largoBot;
@@ -40,9 +41,9 @@ public class NuevaPartida extends javax.swing.JFrame {
      */
     public NuevaPartida() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
-           largoBot = (int) (tamPant.getWidth()*0.67);
-           anchoBot = (int) (tamPant.getHeight()*0.18);
-           xBot = (int) (tamPant.getWidth()*0.1);
+        largoBot = (int) (tamPant.getWidth()*0.67);
+        anchoBot = (int) (tamPant.getHeight()*0.18);
+        xBot = (int) (tamPant.getWidth()*0.1);
         timer = new Timer();
         tarea = new TimerTask() {
             @Override
@@ -51,7 +52,7 @@ public class NuevaPartida extends javax.swing.JFrame {
             }
         };
         initComponents();
-        
+
     }
 
     private void initComponents() {
@@ -201,12 +202,18 @@ public class NuevaPartida extends javax.swing.JFrame {
         }
         // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
 
+        Tutorial tuto3 = new Tutorial();
+        timer.schedule(tarea,1000);
+        tuto3.setVisible(true);
     }//GEN-LAST:event_boton3ActionPerformed
 
     private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
+        Tutorial tuto2 = new Tutorial();
+        timer.schedule(tarea,1000);
+        tuto2.setVisible(true);
         if (!Juego.getInstance().existePartida("2"))
         {
             Partida p = new Partida();
@@ -230,6 +237,9 @@ public class NuevaPartida extends javax.swing.JFrame {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
+        Tutorial tuto1 = new Tutorial();
+        timer.schedule(tarea,1000);
+        tuto1.setVisible(true);
         if (!Juego.getInstance().existePartida("1"))
         {
             Partida p = new Partida();
@@ -259,7 +269,7 @@ public class NuevaPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void boton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton1MouseEntered
-       boton1.setForeground(Color.red);
+        boton1.setForeground(Color.red);
     }//GEN-LAST:event_boton1MouseEntered
 
     private void boton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton1MouseExited
@@ -275,15 +285,15 @@ public class NuevaPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_boton2MouseExited
 
     private void boton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton3MouseEntered
-      boton3.setForeground(Color.red);
+        boton3.setForeground(Color.red);
     }//GEN-LAST:event_boton3MouseEntered
 
     private void boton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton3MouseExited
-       boton3.setForeground(new java.awt.Color(255, 255, 255));
+        boton3.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_boton3MouseExited
 
     private void botonAtrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAtrasMouseEntered
-         botonAtras.setForeground(Color.red);
+        botonAtras.setForeground(Color.red);
     }//GEN-LAST:event_botonAtrasMouseEntered
 
     private void botonAtrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAtrasMouseExited
@@ -298,7 +308,7 @@ public class NuevaPartida extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

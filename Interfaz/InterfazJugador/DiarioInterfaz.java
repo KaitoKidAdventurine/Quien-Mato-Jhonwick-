@@ -30,7 +30,7 @@ import java.util.TimerTask;
  * @author ROBERTO
  */
 public class DiarioInterfaz extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DiarioInterfaz.class.getName());
     private Dimension tamPant;
     private LinkedList<Informacion> informacion;
@@ -51,8 +51,8 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         tarea = new TimerTask() {
             @Override
             public void run() {
-               revalidate();
-               repaint();
+                revalidate();
+                repaint();
             }
         };
         timer.scheduleAtFixedRate(tarea, 0, 15);
@@ -140,9 +140,9 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
 
 
-       jPanel1.setBackground(new Color(0, 0, 0, 0));
-       jPanel1.setBounds(panel);
-       jPanel1.setLayout(null);
+        jPanel1.setBackground(new Color(0, 0, 0, 0));
+        jPanel1.setBounds(panel);
+        jPanel1.setLayout(null);
 
         jLabel1.setText("Victima");
         jLabel1.setBounds(nombre);
@@ -216,7 +216,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro1.setEditable(false);
         registro1.setBackground(new Color(0, 0, 0, 0));
         registro1.setText("   Datos  Generales: \nEdad:   32       Sexo: Masculino   \n" + "Ocupacion:   Economico \n" + "\n\n\n  Analisis de personalidad: \n"
-        +"Timido, Reservado, Poco amigable, tranquilo");
+                +"Timido, Reservado, Poco amigable, tranquilo");
         registro1.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
         registro1.setBounds(registros);
         jPanel1.add(registro1);
@@ -289,7 +289,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro2.setEditable(false);
         registro2.setBackground(new Color(0, 0, 0, 0));
         registro2.setText("   Datos  Generales: \nEdad:   45       Sexo: Masculino   \n" + "Ocupacion:   Jefe \n" + "\n\n\n  Analisis de personalidad: \n"
-        +"Autoritario, estricto, responsable, serio, lider");
+                +"Autoritario, estricto, responsable, serio, lider");
         registro2.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
         registro2.setBounds(registros);
         jPanel2.add(registro2);
@@ -361,7 +361,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro3.setEditable(false);
         registro3.setBackground(new Color(0, 0, 0, 0));
         registro3.setText("   Datos  Generales: \nEdad:   35       Sexo: Masculino   \n" + "Ocupacion:   Policia \n" + "\n\n\n  Analisis de personalidad: \n"
-        +"Justo, valiente, protector, honesto, disciplinado");
+                +"Justo, valiente, protector, honesto, disciplinado");
         registro3.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
         registro3.setBounds(registros);
         jPanel3.add(registro3);
@@ -433,7 +433,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro4.setEditable(false);
         registro4.setBackground(new Color(0, 0, 0, 0));
         registro4.setText("   Datos  Generales: \nEdad:   50       Sexo: Masculino   \n" + "Ocupacion:   Dueño \n" + "\n\n\n  Analisis de personalidad: \n"
-        +"Ambicioso, calculador, exitoso, dominante, materialista");
+                +"Ambicioso, calculador, exitoso, dominante, materialista");
         registro4.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
         registro4.setBounds(registros);
         jPanel4.add(registro4);
@@ -505,7 +505,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro5.setEditable(false);
         registro5.setBackground(new Color(0, 0, 0, 0));
         registro5.setText("   Datos  Generales: \nEdad:   42       Sexo: Femenino   \n" + "Ocupacion:   Esposa \n" + "\n\n\n  Analisis de personalidad: \n"
-        +"Elegante, sofisticada, celosa, manipuladora, orgullosa");
+                +"Elegante, sofisticada, celosa, manipuladora, orgullosa");
         registro5.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
         registro5.setBounds(registros);
         jPanel5.add(registro5);
@@ -577,7 +577,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro6.setEditable(false);
         registro6.setBackground(new Color(0, 0, 0, 0));
         registro6.setText("   Datos  Generales: \nEdad:   30       Sexo: Femenino   \n" + "Ocupacion:   Secretaria \n" + "\n\n\n  Analisis de personalidad: \n"
-        +"Eficiente, discreta, observadora, leal, organizada");
+                +"Eficiente, discreta, observadora, leal, organizada");
         registro6.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
         registro6.setBounds(registros);
         jPanel6.add(registro6);
@@ -649,7 +649,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro7.setEditable(false);
         registro7.setBackground(new Color(0, 0, 0, 0));
         registro7.setText("   Datos  Generales: \nEdad:   25       Sexo: Masculino   \n" + "Ocupacion:   Guia \n" + "\n\n\n  Analisis de personalidad: \n"
-        +"Amigable, conocedor, paciente, comunicativo, servicial");
+                +"Amigable, conocedor, paciente, comunicativo, servicial");
         registro7.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
         registro7.setBounds(registros);
         jPanel7.add(registro7);
@@ -721,7 +721,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro8.setEditable(false);
         registro8.setBackground(new Color(0, 0, 0, 0));
         registro8.setText("   Datos  Generales: \nEdad:   27       Sexo: Femenino   \n" + "Ocupacion:   Guia \n" + "\n\n\n  Analisis de personalidad: \n"
-        +"Energica, entusiasta, extrovertida, carismática, alegre");
+                +"Energica, entusiasta, extrovertida, carismática, alegre");
         registro8.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
         registro8.setBounds(registros);
         jPanel8.add(registro8);
@@ -793,7 +793,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro9.setEditable(false);
         registro9.setBackground(new Color(0, 0, 0, 0));
         registro9.setText("   Datos  Generales: \nEdad:   40       Sexo: Masculino   \n" + "Ocupacion:   Seguridad \n" + "\n\n\n  Analisis de personalidad: \n"
-        +"Vigilante, fuerte, protector, serio, confiable");
+                +"Vigilante, fuerte, protector, serio, confiable");
         registro9.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
         registro9.setBounds(registros);
         jPanel9.add(registro9);
@@ -865,7 +865,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro10.setEditable(false);
         registro10.setBackground(new Color(0, 0, 0, 0));
         registro10.setText("   Datos  Generales: \nEdad:   55       Sexo: Masculino   \n" + "Ocupacion:   Vagabundo \n" + "\n\n\n  Analisis de personalidad: \n"
-        +"Misterioso, observador, solitario, sabio, marginal");
+                +"Misterioso, observador, solitario, sabio, marginal");
         registro10.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
         registro10.setBounds(registros);
         jPanel10.add(registro10);
@@ -936,13 +936,13 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro11.setEditable(false);
         registro11.setBackground(new Color(0, 0, 0, 0));
         registro11.setText("   Datos  Generales: \nEdad:   32       Sexo: Masculino   \n" + "Ocupacion:   Empresario \n" + "\n\n\n  Analisis de personalidad: \n"
-        +"Carismático, ambicioso, popular, influyente, exitoso");
+                +"Carismático, ambicioso, popular, influyente, exitoso");
         registro11.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
         registro11.setBounds(registros);
         jPanel11.add(registro11);
 
 
-       getContentPane().add(contenedor);
+        getContentPane().add(contenedor);
         botonSalir = new JButton("Salir");
         botonSalir.setBounds((int) (tamPant.width*0.9), (int) (tamPant.height*0.03), (int) (tamPant.width*0.08), (int) (tamPant.height*0.05));
         botonSalir.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.012)));
@@ -1306,7 +1306,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -1381,7 +1381,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-private JPanel contenedor;
+    private JPanel contenedor;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea10;
     private javax.swing.JTextArea jTextArea11;

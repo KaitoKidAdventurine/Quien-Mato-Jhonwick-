@@ -120,12 +120,12 @@ public class ConfirmarSalida extends JDialog {
     }
 
     private void yesActionPerformed(ActionEvent evt) {
-       if(!paraSalir) {
-           UnionInterfaces.getInstance().setCerrarVentana(true);
-       } else {
-           UnionInterfaces.getInstance().setSalirJuego(true);
-       }
-       dispose();
+        if(!paraSalir) {
+            UnionInterfaces.getInstance().setCerrarVentana(true);
+        } else {
+            UnionInterfaces.getInstance().setSalirJuego(true);
+        }
+        dispose();
 
     }
 
