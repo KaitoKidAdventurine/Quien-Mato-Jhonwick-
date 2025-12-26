@@ -199,23 +199,14 @@ public class Tutorial extends JFrame {
             cajaTexto.add(cT);
 
             if(nivelActualDial ==0) {
-                ponerFondoParte2(nivelActualDial);
-                cajaTexto.setVisible(false);
-
+                ponerFondoParte2o(nivelActualDial);
                 getContentPane().revalidate();
                 getContentPane().repaint();
-                revalidate();
-                repaint();
             }
-
-
         }else {
             iniciarMundo();
         }
     }
-
-
-
 
     public void ponerFondoParte1(int nivelActualDial){
         try {
@@ -613,15 +604,13 @@ public class Tutorial extends JFrame {
         ImageIcon dueno = new ImageIcon("DatosAuxiliares/Personajes/Dueño.png");
         ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/Personajes/Secretaria.png");
         ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
-        ImageIcon amante = new ImageIcon("DatosAuxiliares/Personajes/Amante.png");
-        ImageIcon conserge = new ImageIcon("DatosAuxiliares/Personajes/Conserge.png");
         ImageIcon esposa = new ImageIcon("DatosAuxiliares/Personajes/Esposa.png");
-        ImageIcon guia = new ImageIcon("DatosAuxiliares/Personajes/Guia.png");
-        ImageIcon seguridad = new ImageIcon("DatosAuxiliares/Personajes/Seguridad.jpg");
-        ImageIcon vagabundo = new ImageIcon("DatosAuxiliares/Personajes/Vagabundo.jpg");
+        ImageIcon guia = new ImageIcon("DatosAuxiliares/Personajes/Guia 1.png");
+        ImageIcon seguridad = new ImageIcon("DatosAuxiliares/Personajes/Seguridad.png");
+        ImageIcon vagabundo = new ImageIcon("DatosAuxiliares/Personajes/Vagabundo.png");
         ImageIcon nada = new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png");
-        ImageIcon limpieza = new ImageIcon("DatosAuxiliares/Personajes/Limpieza.png");
-        ImageIcon guia2 = new ImageIcon("DatosAuxiliares/Personajes/Guia2.png");
+        ImageIcon limpieza = new ImageIcon("DatosAuxiliares/Personajes/Conserje.png");
+        ImageIcon guia2 = new ImageIcon("DatosAuxiliares/Personajes/Guia 2.png");
 
 
 
