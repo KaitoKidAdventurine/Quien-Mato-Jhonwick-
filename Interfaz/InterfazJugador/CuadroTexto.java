@@ -61,7 +61,6 @@ public class CuadroTexto extends javax.swing.JPanel {
 
 
         parrafo.setText("<html>" + texto + "</html>");
-
         parrafo.setBounds((int) (tamPant.height*0.32),  (int) (tamPant.height*0.015), (int) (tamPant.width*0.68), (int) (tamPant.height*0.25));
         parrafo.setForeground(new Color(255, 255, 255, 200));
         parrafo.setOpaque(true);
