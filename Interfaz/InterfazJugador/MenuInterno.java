@@ -10,6 +10,7 @@ import Interfaz.Menu.MenuPrincipal;
 import Interfaz.Menu.NuevaPartida;
 import Interfaz.Menu.Opciones;
 import Interfaz.Menu.OpcionesJugador;
+import Logica.Reproductor;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -271,6 +272,8 @@ public class MenuInterno extends javax.swing.JDialog {
         confirmarSalida.setVisible(true);
         if(UnionInterfaces.getInstance().getCerrarVentana()){
             timer.schedule(tarea, 10);
+            Reproductor r = Reproductor.getInstancia();
+            r.cambiarMusicaNombre("Menu");
         }
 
     }
