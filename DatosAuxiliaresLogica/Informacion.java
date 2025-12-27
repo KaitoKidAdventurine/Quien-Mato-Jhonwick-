@@ -2,10 +2,13 @@ package DatosAuxiliaresLogica;
 
 import Logica.Sexo;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Informacion
+public class Informacion implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+
     private String nombreNPC;
     private LinkedList<String> listaDeDialogos;
     private String edadNPC;

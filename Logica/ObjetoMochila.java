@@ -1,9 +1,11 @@
 package Logica;
 
 import javax.swing.*;
+import java.io.Serializable;
 
-public class ObjetoMochila
+public class ObjetoMochila implements Serializable
 {
+    private static final long serialVersionUID = 1L;
     private String nombre;
     private String descripcion;
     private ImageIcon foto;

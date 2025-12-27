@@ -1,24 +1,27 @@
 package Logica;
 
+import java.io.*;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
-
 import cu.edu.cujae.ceis.tree.binary.BinaryTree;
 
 import javax.swing.*;
 
-public class Jugador
+public class Jugador implements Serializable, Cloneable
 {
-    private static Jugador instancia;
-    private String nombre;
-    private BinaryTree<String> elecciones;
-    private Telefono telefono;
-    private Diario diario;
-    private LinkedList<ObjetoEscenario> maletin;
-    private Escenario escenarioActual;
+    private static final long serialVersionUID = 1L;
 
-    private Jugador()
+    public String nombre;
+    public BinaryTree<String> elecciones;
+    public Telefono telefono;
+    public Diario diario;
+    public LinkedList<ObjetoEscenario> maletin;
+    public Escenario escenarioActual;
+
+    public Jugador()
     {
+        // Aqui se le pone el nombre del jugador
         this.nombre = "";
         this.elecciones = new BinaryTree<>();
         this.telefono = new Telefono();
@@ -26,14 +29,42 @@ public class Jugador
         this.maletin = new LinkedList<ObjetoEscenario>();
     }
 
-    public static Jugador getInstancia()
+
+    // Razon por la que se usa el patron Clone: Se necesita poder hacer que el usaurio mientras juegue
+    // pueda decidir si guardar o no. Por lo que CLone le permitira esto a la perfeccion porque como son
+    // clones no se modificaran entre ellos cuando se desee mantener la inforamcion antes de guardar.
+    @Override
+    public Jugador clone()
     {
-        if(instancia == null)
-        {
-            instancia = new Jugador();
+        Jugador copia = null;
+        try {
+            // Ver el codigo como una maquina de creacion de objetos
+
+            // Primero se guarda el objeto en bytes ( O sea que se consigue el plano del objeto)
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            // Despues se crea la maquina de creacion de objeto
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+
+            // Se le manda la informacion a la maquina o sea para que la guarde en un plano aparte
+            oos.writeObject(this);
+            oos.close();
+
+            // Despues leemos el objeto ( El plano )
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            // Clonamos la informacion ( se le manda a la maquina )
+            ObjectInputStream ois = new ObjectInputStream(bais);
+
+            // La maquina saca el clon
+            copia =  (Jugador) ois.readObject();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return instancia;
+        return copia;
     }
+
+
 
     public String getNombre()
     {
@@ -83,7 +114,6 @@ public class Jugador
     // Metodos
     public void agregarAlMaletin(ObjetoEscenario o)
     {
-
         maletin.add(o);
     }
 

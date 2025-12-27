@@ -1,5 +1,6 @@
 package Interfaz.InterfazJugador;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Logica.Telefono;
 
 import javax.imageio.ImageIO;
@@ -310,6 +311,8 @@ public class TelefonoAjustes extends JPanel{
     }
 
     private void jButton2ActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBotonesTelefono();
         getParent().getComponent(0).setVisible(true);
         getParent().getComponent(1).setVisible(false);
         getParent().revalidate();

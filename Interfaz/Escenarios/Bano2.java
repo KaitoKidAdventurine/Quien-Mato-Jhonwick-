@@ -4,8 +4,7 @@ import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.Menu.MenuPrincipal;
-import Logica.Jugador;
-import Logica.Partida;
+import Logica.Juego;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -70,8 +69,8 @@ public class Bano2  extends ModeloEscenario {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/baño 2.jpg"));
 
             // Actualizacion de donde esta el Jugador
-            Partida p = Partida.getInstance();
-            p.buscarEscenarioNombre("Banno Planta Alta");
+            Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Banno Planta Alta");
+
 
             jLabel1 = new JLabel();
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

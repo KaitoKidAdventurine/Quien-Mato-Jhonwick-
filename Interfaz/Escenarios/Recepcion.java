@@ -6,6 +6,7 @@ import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
 import Logica.Escenario;
+import Logica.Juego;
 import Logica.Partida;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
@@ -87,8 +88,7 @@ public class Recepcion extends ModeloEscenario{
 
 
             // Actualizacion de donde esta el Jugador
-            Partida p = Partida.getInstance();
-            p.buscarEscenarioNombre("Recepcion");
+            Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Recepcion");
 
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setMinimumSize(tamPant);

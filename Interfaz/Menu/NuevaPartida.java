@@ -5,7 +5,12 @@
 package Interfaz.Menu;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.Escenarios.Entrada;
+import Interfaz.InterfazJugador.ConfirmarSalida;
+import Logica.Juego;
+import Logica.Jugador;
+import Logica.Partida;
 import Interfaz.Tutorial;
 import Logica.Reproductor;
 
@@ -15,6 +20,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Parameter;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -180,28 +186,95 @@ public class NuevaPartida extends javax.swing.JFrame {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
-        Tutorial tuto3 = new Tutorial();
-        timer.schedule(tarea,1000);
-        tuto3.setVisible(true);
+        if (!Juego.getInstance().existePartida("3"))
+        {
+            Juego.getInstance().crearNuevaPartida("3", "Jugador 3");
+            Tutorial tuto1 = new Tutorial();
+            timer.schedule(tarea,1000);
+            tuto1.setVisible(true);
+        }
+        // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
+        else
+        {
+            if(comprobacionActionPerformed(evt));
+            {
+                Juego.getInstance().eliminarPartida("3");
+                Juego.getInstance().crearNuevaPartida("3", "Jugador 3");
+                Tutorial tuto1 = new Tutorial();
+                timer.schedule(tarea,1000);
+                tuto1.setVisible(true);
+            }
+        }
+
+
     }//GEN-LAST:event_boton3ActionPerformed
 
     private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
-        Tutorial tuto2 = new Tutorial();
-        timer.schedule(tarea,1000);
-        tuto2.setVisible(true);
+
+        if (!Juego.getInstance().existePartida("2"))
+        {
+            Juego.getInstance().crearNuevaPartida("2", "Jugador 2");
+            Tutorial tuto1 = new Tutorial();
+            timer.schedule(tarea,1000);
+            tuto1.setVisible(true);
+        }
+        // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
+        else
+        {
+            if(comprobacionActionPerformed(evt));
+            {
+                Juego.getInstance().eliminarPartida("2");
+                Juego.getInstance().crearNuevaPartida("2", "Jugador 2");
+                Tutorial tuto1 = new Tutorial();
+                timer.schedule(tarea,1000);
+                tuto1.setVisible(true);
+            }
+        }
+
     }//GEN-LAST:event_boton2ActionPerformed
 
     private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
-        Tutorial tuto1 = new Tutorial();
-        timer.schedule(tarea,1000);
-        tuto1.setVisible(true);
+
+        if (!Juego.getInstance().existePartida("1"))
+        {
+            Juego.getInstance().crearNuevaPartida("1", "Jugador 1");
+            Tutorial tuto1 = new Tutorial();
+            timer.schedule(tarea,1000);
+            tuto1.setVisible(true);
+        }
+        // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
+        else
+        {
+            if(comprobacionActionPerformed(evt));
+            {
+                Juego.getInstance().eliminarPartida("1");
+                Juego.getInstance().crearNuevaPartida("1", "Jugador 1");
+                Tutorial tuto1 = new Tutorial();
+                timer.schedule(tarea,1000);
+                tuto1.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_boton1ActionPerformed
+
+    private boolean comprobacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+
+        boolean salida = false;
+        ConfirmarSalida confirmar= new ConfirmarSalida(new JFrame(), true, " Ya existe una partida en este lugar. ¿Estas seguro de que quieres eliminar esta partida?", true);
+        confirmar.setVisible(true);
+        if(UnionInterfaces.getInstance().getSalirJuego())
+        {
+            salida = true;
+        }
+        return salida;
+    }
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         EfectosEspeciales e = EfectosEspeciales.getInstancia();

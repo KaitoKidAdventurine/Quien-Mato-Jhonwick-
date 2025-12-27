@@ -1,5 +1,7 @@
 package Logica;
 
+import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 

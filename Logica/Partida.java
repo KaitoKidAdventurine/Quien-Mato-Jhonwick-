@@ -1,6 +1,8 @@
 package Logica;
-import Interfaz.Escenarios.Almacen;
 
+import Interfaz.Escenarios.Almacen;
+import java.io.*;
+import java.io.Serializable;
 import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,9 +10,10 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Partida
+public class Partida implements Serializable, Cloneable
 {
-    private static Partida instancia;
+    private static final long serialVersionUID = 1L;
+
     private String idPartida;
     private LocalDate fechaInicio;
     // El estado asumo que es en que Acto esta el jugador
@@ -18,18 +21,7 @@ public class Partida
     private ArrayList<Escenario> escenarios;
     private Jugador jugador;
 
-    public static Partida getInstance()
-    {
-        if(instancia == null)
-        {
-            instancia = new Partida();
-        }
-
-        return instancia;
-    }
-
-
-    private Partida() {
+    public Partida() {
         // Para darle un valor al ID sera la partida que escoja el usuario.
         // O sea que cuando toque Nueva Partida 1, ese 1 sera el ID.
         // Modificar cuando se implemente.
@@ -37,7 +29,29 @@ public class Partida
         this.fechaInicio = LocalDate.now();
         this.estado = "";
         this.escenarios = new ArrayList<Escenario>();
+        this.jugador = new Jugador();
+        agregarEscenariosAutomaticamente();
+    }
 
+
+    @Override
+    public Partida clone() {
+        Partida copia = null;
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(this);
+            oos.close();
+
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            copia = (Partida) ois.readObject();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return copia;
     }
 
 
@@ -69,9 +83,6 @@ public class Partida
     }
 
 
-
-
-    // Metodos:
     public ArrayList<Escenario> getEscenarios() { return escenarios; }
 
     public void setEscenarios(ArrayList<Escenario> escenarios) { this.escenarios = escenarios; }
@@ -85,7 +96,7 @@ public class Partida
         {
             if(nom.equals(escenarios.get(i).getNombre()))
             {
-                Jugador.getInstancia().setEscenarioActual(escenarios.get(i));
+                Juego.getInstance().getPartidaActual().getJugador().setEscenarioActual(escenarios.get(i));
                 salida = true;
             }
         }

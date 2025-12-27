@@ -4,6 +4,7 @@ import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.Menu.MenuPrincipal;
+import Logica.Juego;
 import Logica.Partida;
 
 import javax.imageio.ImageIO;
@@ -75,8 +76,7 @@ public class Sala extends ModeloEscenario {
 
 
             // Actualizacion de donde esta el Jugador
-            Partida p = Partida.getInstance();
-            p.buscarEscenarioNombre("Sala Planta Alta");
+            Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Sala Planta Alta");
 
 
             jLabel1 = new JLabel();
