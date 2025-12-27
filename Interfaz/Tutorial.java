@@ -743,6 +743,7 @@ public class Tutorial extends JFrame {
         tutorialParte2o.setArbolDial(auxTree2);
 
         //Interaccion del detective con todos los personajes
+        //Guardia de Seguridad
         Dialogo g1 = new Dialogo("Buenas noches, soy el detective asignado al caso. Necesito hablar con usted.", "Detective", detective, true);
         Dialogo g2 = new Dialogo("Buenas noches, detective. Soy el guardia de seguridad del museo.", "Guardia", seguridad, true);
 
@@ -887,11 +888,10 @@ public class Tutorial extends JFrame {
 
         tutorialParte5.setArbolDial(auxTree5);
 
-
-        //Cambio de personaje, Aqui empieza la guia2
+        //Cambio de personaje, Aqui empieza el guia2
         Dialogo guiaM1 = new Dialogo("Buenas noches. Estoy hablando con el personal del museo. ¿Podría decirme su nombre y su función " +
                 "aquí?", "Detective", detective, true);
-        Dialogo guiaM2 = new Dialogo("Soy la segunda guía del museo. Me encargo de apoyar en las visitas... y de resolver los problemas " +
+        Dialogo guiaM2 = new Dialogo("Soy el segundo guía del museo. Me encargo de apoyar en las visitas... y de resolver los problemas " +
                 "que otros prefieren ignorar.", "Guía 2", guia2, true);
 
         // Primera decisión
@@ -911,7 +911,7 @@ public class Tutorial extends JFrame {
                 "Eso sería todo." )));
 
         Dialogo respt2 = new Dialogo("En la sala de esculturas. Estaba revisando unos textos para la próxima muestra. Me gusta trabajar" +
-                " sola... menos distracciones, menos tonterías.", "Guía 2", guia2, true);
+                " solo... menos distracciones, menos tonterías.", "Guía 2", guia2, true);
         Dialogo relleno2 = new Dialogo("Pero bueno, en este museo el silencio nunca es garantía de tranquilidad.", "Guía 2", guia2, true);
 
         Dialogo despd2 = new Dialogo("A usted, detective. Que tenga una noche... tranquila. O lo más cerca que pueda estar de eso.", "Guía 2", guia2, true);
