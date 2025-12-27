@@ -1,6 +1,8 @@
 package Logica;
-import Interfaz.Escenarios.Almacen;
 
+import Interfaz.Escenarios.Almacen;
+import java.io.*;
+import java.io.Serializable;
 import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,15 +10,16 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Partida
+public class Partida implements Serializable, Cloneable
 {
+    private static final long serialVersionUID = 1L;
 
-    public String idPartida;
-    public LocalDate fechaInicio;
+    private String idPartida;
+    private LocalDate fechaInicio;
     // El estado asumo que es en que Acto esta el jugador
-    public String estado;
-    public ArrayList<Escenario> escenarios;
-    public Jugador jugador;
+    private String estado;
+    private ArrayList<Escenario> escenarios;
+    private Jugador jugador;
 
     public Partida() {
         // Para darle un valor al ID sera la partida que escoja el usuario.
@@ -26,9 +29,30 @@ public class Partida
         this.fechaInicio = LocalDate.now();
         this.estado = "";
         this.escenarios = new ArrayList<Escenario>();
+        this.jugador = new Jugador();
         agregarEscenariosAutomaticamente();
     }
 
+
+    @Override
+    public Partida clone() {
+        Partida copia = null;
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(this);
+            oos.close();
+
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            copia = (Partida) ois.readObject();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return copia;
+    }
 
 
     public String getIdPartida()

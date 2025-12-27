@@ -1,5 +1,6 @@
 package Interfaz.InterfazJugador;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Logica.Reproductor;
 import Logica.Telefono;
 
@@ -271,6 +272,8 @@ public class TelefonoReproductor extends JPanel {
 
 
     private void botonSalirActionPerformed(ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBotonesTelefono();
         getParent().getComponent(0).setVisible(true);
         getParent().getComponent(1).setVisible(false);
         getParent().revalidate();

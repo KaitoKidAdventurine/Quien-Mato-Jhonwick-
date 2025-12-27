@@ -66,7 +66,7 @@ public class MiniJuego
 
     public void agregarObjetoMaletin(ObjetoEscenario o)
     {
-        Juego.getInstance().getPartidaActual().jugador.agregarAlMaletin(o);
+        Juego.getInstance().getPartidaActual().getJugador().agregarAlMaletin(o);
     }
 
     public void objetoEncontrado(ObjetoEscenario o)

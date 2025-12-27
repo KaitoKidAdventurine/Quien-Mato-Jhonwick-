@@ -1,14 +1,17 @@
 package Logica;
 
+import java.io.*;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
-
 import cu.edu.cujae.ceis.tree.binary.BinaryTree;
 
 import javax.swing.*;
 
-public class Jugador
+public class Jugador implements Serializable, Cloneable
 {
+    private static final long serialVersionUID = 1L;
+
     public String nombre;
     public BinaryTree<String> elecciones;
     public Telefono telefono;
@@ -25,7 +28,43 @@ public class Jugador
         this.diario = new Diario();
         this.maletin = new LinkedList<ObjetoEscenario>();
     }
-    
+
+
+    // Razon por la que se usa el patron Clone: Se necesita poder hacer que el usaurio mientras juegue
+    // pueda decidir si guardar o no. Por lo que CLone le permitira esto a la perfeccion porque como son
+    // clones no se modificaran entre ellos cuando se desee mantener la inforamcion antes de guardar.
+    @Override
+    public Jugador clone()
+    {
+        Jugador copia = null;
+        try {
+            // Ver el codigo como una maquina de creacion de objetos
+
+            // Primero se guarda el objeto en bytes ( O sea que se consigue el plano del objeto)
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            // Despues se crea la maquina de creacion de objeto
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+
+            // Se le manda la informacion a la maquina o sea para que la guarde en un plano aparte
+            oos.writeObject(this);
+            oos.close();
+
+            // Despues leemos el objeto ( El plano )
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            // Clonamos la informacion ( se le manda a la maquina )
+            ObjectInputStream ois = new ObjectInputStream(bais);
+
+            // La maquina saca el clon
+            copia =  (Jugador) ois.readObject();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return copia;
+    }
+
+
 
     public String getNombre()
     {

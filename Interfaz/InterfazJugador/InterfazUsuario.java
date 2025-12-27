@@ -307,7 +307,7 @@ public class InterfazUsuario  extends javax.swing.JPanel {
     public void crearObjetosMochila(){
         ObjetoEscenario ob8 = new ObjetoEscenario("Telefono", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/telefono de la victima.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "Telefono encontrado en lam escena del crimen, parece de la victima, probablemente tenga informacion valiosa");
 
-        Juego.getInstance().getPartidaActual().jugador.agregarAlMaletin(ob8);
+        Juego.getInstance().getPartidaActual().getJugador().agregarAlMaletin(ob8);
     }
 
 

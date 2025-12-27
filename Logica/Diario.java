@@ -3,12 +3,14 @@ package Logica;
 import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.Informacion;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import DatosAuxiliaresLogica.Informacion;
 
-public class Diario
+public class Diario implements Serializable
 {
+    private static final long serialVersionUID = 1L;
     private LinkedList<Informacion> dialogosImportantes;
 
     public Diario()
@@ -38,11 +40,8 @@ public class Diario
                 Informacion i = II.next();
                 if (i.getNombreNPC().equals(nombreNPC))
                 {
-                    // Lo comento para evitar que se escuche lo de que se escribe porque
-                    // ahora se anda trabajando en la interfaz del diario.
-
-                    //EfectosEspeciales e = EfectosEspeciales.getInstancia();
-                    //e.efectoDeEscribirDiario();
+                    EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                    e.efectoDeEscribirDiario();
 
                     salida = true;
                     i.getListaDeDialogos().add(informacion);

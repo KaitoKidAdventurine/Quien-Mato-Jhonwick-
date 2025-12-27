@@ -4,10 +4,13 @@ import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import cu.edu.cujae.ceis.tree.iterators.general.InDepthIterator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import Logica.*;
-public class Escenario {
+public class Escenario implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String nombre;
     private String descripcion;
     private boolean investigado;

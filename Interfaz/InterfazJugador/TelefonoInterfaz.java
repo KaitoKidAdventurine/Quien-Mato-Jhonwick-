@@ -1,5 +1,6 @@
 package Interfaz.InterfazJugador;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Logica.Juego;
 import Logica.Jugador;
 import Logica.Telefono;
@@ -33,7 +34,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
     public TelefonoInterfaz(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
-        telefonoLogica = Juego.getInstance().getPartidaActual().jugador.getTelefono();
+        telefonoLogica = Juego.getInstance().getPartidaActual().getJugador().getTelefono();
         initComponents();
 
         timer = new Timer();
@@ -242,6 +243,8 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBotonesTelefono();
         TelefonoLlamar llamada = new TelefonoLlamar();
         llamada.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));add(llamada, 1);
         pantalla.setVisible(false);
@@ -280,6 +283,8 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
 
 
     private void jButton2ActionPerformed(ActionEvent evt, Telefono telefonoLogica, JLabel fondo) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBotonesTelefono();
         TelefonoAjustes ajustesT = new TelefonoAjustes(telefonoLogica, fondo);
         ajustesT.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
         add(ajustesT, 1);
@@ -317,6 +322,9 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
 
 
     private void jButton3ActionPerformed(ActionEvent evt, Telefono telefonoLogica) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBotonesTelefono();
+
         TelefonoReproductor reproductorT = new TelefonoReproductor(telefonoLogica);
         reproductorT.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
         add(reproductorT, 1);

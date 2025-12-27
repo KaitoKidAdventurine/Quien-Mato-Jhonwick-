@@ -44,7 +44,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     public DiarioInterfaz(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         crearInfoDiario();
-        informacion= Juego.getInstance().getPartidaActual().jugador.getDiario().getDialogosImportantes();
+        informacion= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes();
 
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         timer = new Timer();
@@ -1296,7 +1296,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     }
 
     public void crearInfoDiario(){
-        Diario diario = Juego.getInstance().getPartidaActual().jugador.getDiario();
+        Diario diario = Juego.getInstance().getPartidaActual().getJugador().getDiario();
         Informacion info = new Informacion("Detective");
         info.agregarDialogo("Esta muerto");
 

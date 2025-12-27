@@ -2,11 +2,13 @@ package Logica;
 
 import DatosAuxiliaresLogica.Fondos;
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Telefono {
+public class Telefono implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private ImageIcon fondoDePantalla;
     private ArrayList<Fondos> fondos;
     private int fondoActual;

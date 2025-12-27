@@ -41,6 +41,7 @@ public class EfectosEspeciales
             File musicacuatro = new File("Musica/Efectos de Sonido/AbrirTelefono.mp3");
             File musicacinco = new File("Musica/Efectos de Sonido/Mochila.mp3");
             File musicaseis = new File("Musica/Efectos de Sonido/SaliendoDelCarro.mp3");
+            File efec = new File("Musica/Efectos de Sonido/NuevoTelefonoAlAbrir.mp3");
 
             if (archivoMusica.exists()) {
                 Cancion cancion = new Cancion("Lluvia", archivoMusica);
@@ -52,6 +53,7 @@ public class EfectosEspeciales
                 Cancion cancion6 = new Cancion("AbrirTelefono", musicacuatro);
                 Cancion cancion7 = new Cancion("Mochila", musicacinco);
                 Cancion cancion8 = new Cancion("SaliendoDelCarro", musicaseis);
+                Cancion cancion9 = new Cancion("NuevoTelefonoAlAbrir", efec);
 
                 efectosSonido.add(cancion);
                 efectosSonido.add(cancion1);
@@ -62,6 +64,7 @@ public class EfectosEspeciales
                 efectosSonido.add(cancion6);
                 efectosSonido.add(cancion7);
                 efectosSonido.add(cancion8);
+                efectosSonido.add(cancion9);
             }
 
             else {
@@ -321,6 +324,11 @@ public class EfectosEspeciales
     }
 
     public void efectoAbrirTelefono(){
+        cambiarEfectoNombreUsarSoloUnaVez("NuevoTelefonoAlAbrir");
+    }
+
+    public void efectoDeBotonesTelefono()
+    {
         cambiarEfectoNombreUsarSoloUnaVez("AbrirTelefono");
     }
 

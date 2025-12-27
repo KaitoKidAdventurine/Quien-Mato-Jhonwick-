@@ -17,7 +17,7 @@ public class Juego {
         this.version = "0.01";
         this.partidas = new LinkedList<Partida>();
         //esto se quita mas adelante
-        this.partidaActual = new Partida();
+        this.partidaActual = null;
     }
 
     public static Juego getInstance() {
@@ -68,10 +68,10 @@ public class Juego {
     public Partida obtenerPartida(String id) {
         Iterator<Partida> IP = partidas.iterator();
         boolean salida = false;
-        Partida p = new Partida();
+        Partida p = null;
         while (IP.hasNext() && !salida) {
             Partida par = IP.next();
-            if (par.idPartida.equals(id)) {
+            if (par.getIdPartida().equals(id)) {
                 salida = true;
                 p = par;
             }
@@ -79,6 +79,51 @@ public class Juego {
         return p;
     }
 
+    public boolean crearNuevaPartida(String idPartida, String nombreJugador) {
+        // Verificar si ya existe una partida con ese ID
+        boolean salida = false;
+        if (existePartida(idPartida)) {
+            System.out.println("Ya existe una partida con ID: " + idPartida);
+        }
+
+        else
+        {
+            //  Creo la nueva partida
+            Partida nuevaPartida = new Partida();
+            nuevaPartida.setIdPartida(idPartida);
+
+            //  Configuro a el jugador
+            nuevaPartida.getJugador().setNombre(nombreJugador);
+
+            // Agregar a la lista de partidas
+            partidas.add(nuevaPartida);
+
+            nuevaPartida.getJugador().setNombre(nombreJugador);
+
+            // Cargar como partida actual (la que esta clonada)
+            setPartidaActual(nuevaPartida.clone());
+
+
+            System.out.println("Nueva partida creada y cargada: " + idPartida);
+            salida = true;
+        }
+        return salida;
+    }
+
+    public void eliminarPartida(String id)
+    {
+        boolean salida = false;
+        Iterator<Partida> IP = partidas.iterator();
+        while (IP.hasNext() && !salida)
+        {
+            Partida p = IP.next();
+            if (p.getIdPartida().equals(id))
+            {
+                IP.remove();
+                salida = true;
+            }
+        }
+    }
     public boolean existePartida(String id)
     {
         boolean salida = false;

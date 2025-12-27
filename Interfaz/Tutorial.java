@@ -33,6 +33,7 @@ public class Tutorial extends JFrame {
     private TimerTask tarea;
     private Timer timer2;
     private TimerTask tarea2;
+    private JButton botonSaltar;
 
     public Tutorial() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
@@ -73,6 +74,7 @@ public class Tutorial extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         fondo = new JLabel();
         cajaTexto = new JPanel();
+        botonSaltar = new JButton("Saltar al Juego");
 
         setMinimumSize(tamPant);
         setUndecorated(true);
@@ -83,14 +85,25 @@ public class Tutorial extends JFrame {
         cajaTexto.setBounds(0, 0, tamPant.width, tamPant.height);
         cajaTexto.setLayout(null);
 
+        // Configurar botón saltar
+        botonSaltar.setBounds((int)(tamPant.width*0.85), (int)(tamPant.height*0.05),
+                (int)(tamPant.width*0.12), (int)(tamPant.height*0.06));
+        botonSaltar.setFont(new Font("Segoe UI", Font.BOLD, (int)(tamPant.width*0.012)));
+        botonSaltar.setBackground(new Color(200, 50, 50));
+        botonSaltar.setForeground(Color.WHITE);
+        botonSaltar.setBorderPainted(false);
+        botonSaltar.setFocusPainted(false);
+        botonSaltar.addActionListener(event -> saltarAlJuego());
+
         fondo.setFocusable(false);
         fondo.setMaximumSize(tamPant);
         fondo.setMinimumSize(tamPant);
         fondo.setPreferredSize(tamPant);
         fondo.setBounds(0, 0, tamPant.width, tamPant.height);
 
-        getContentPane().add(cajaTexto, 0);
-        getContentPane().add(fondo, 1);
+        getContentPane().add(botonSaltar, 0);
+        getContentPane().add(cajaTexto, 1);
+        getContentPane().add(fondo, 2);
         ponerFondoParte1(0);
         ponerDialogoParte1();
         pack();
@@ -895,6 +908,9 @@ public class Tutorial extends JFrame {
     }
 
     public void crearMinijuego(){
+        // Ocultar botón saltar cuando comience el minijuego
+        botonSaltar.setVisible(false);
+        
         ImageIcon prueba = new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Cadaver.jpg");
         MiniJuego minijuego = new MiniJuego("Prueba", prueba);
         ObjetoEscenario ob1 = new ObjetoEscenario("Anillo", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/anillo.png"), 0.3F, 0.5F, 0.1F, 0.1F, true, "nada");
@@ -952,6 +968,13 @@ public class Tutorial extends JFrame {
         ponerDialogoParte2o();
         getContentPane().revalidate();
         getContentPane().repaint();
+    }
+
+    private void saltarAlJuego() {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+        
+        iniciarMundo();
     }
 
 
