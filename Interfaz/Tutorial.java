@@ -1107,6 +1107,23 @@ public class Tutorial extends JFrame {
         Dialogo m7 = new Dialogo("(Esto no fue un suicidio. Fue una puesta en escena.)", "Detective", detective, true);
         Dialogo m8 = new Dialogo("(Y ahora tengo una razón para seguir adelante.)", "Detective", detective, true);
 
+        Dialogo detective2 = new Dialogo("¡Un momento!", "Detective", detective, true);
+        Dialogo d3 = new Dialogo("Acabo de recibir una llamada del laboratorio forense. Las pruebas han sido analizadas.",
+                "Detective", detective, true);
+        Dialogo d4 = new Dialogo("El cuchillo encontrado junto al cuerpo... no coincide con la herida. La forma de la herida y " +
+                "la profundidad no corresponden a un acto autoinfligido y menos por un objeto asi.", "Detective",
+                detective, true);
+        Dialogo d5 = new Dialogo("Y la carta de despedida... no fue escrita por la víctima. La caligrafía no coincide.",
+                "Detective", detective, true);
+
+        Dialogo d6 = new Dialogo("*Un murmullo recorre la sala. Algunos se miran entre sí, otros bajan la mirada.*", "Narrador", narrador, true);
+
+        Dialogo d7 = new Dialogo("Así que no, señores. Esto no fue un suicidio. Fue un montaje. Y alguien aquí sabe exactamente lo que pasó.", "Detective", detective, true);
+        Dialogo d8 = new Dialogo("El caso no ha terminado. El caso apenas comienza.", "Detective",
+                detective, true);
+
+        Dialogo d9 = new Dialogo("¡NADIE SE MUEVE DEL MUSEO!", "Detective", detective, true);
+
 
         BinaryTreeNode<Dialogo> node126= new BinaryTreeNode<>(p1);
         BinaryTreeNode<Dialogo> node127= new BinaryTreeNode<>(p2);
@@ -1134,6 +1151,15 @@ public class Tutorial extends JFrame {
         BinaryTreeNode<Dialogo> node149= new BinaryTreeNode<>(m6);
         BinaryTreeNode<Dialogo> node150= new BinaryTreeNode<>(m7);
         BinaryTreeNode<Dialogo> node151= new BinaryTreeNode<>(m8);
+        BinaryTreeNode<Dialogo> node152= new BinaryTreeNode<>(detective2);
+        BinaryTreeNode<Dialogo> node153= new BinaryTreeNode<>(d3);
+        BinaryTreeNode<Dialogo> node154= new BinaryTreeNode<>(d4);
+        BinaryTreeNode<Dialogo> node155= new BinaryTreeNode<>(d5);
+        BinaryTreeNode<Dialogo> node156= new BinaryTreeNode<>(d6);
+        BinaryTreeNode<Dialogo> node157= new BinaryTreeNode<>(d7);
+        BinaryTreeNode<Dialogo> node158= new BinaryTreeNode<>(d8);
+        BinaryTreeNode<Dialogo> node159= new BinaryTreeNode<>(d9);
+
 
         GeneralTree<Dialogo> auxTree9 = new GeneralTree<>();
 
@@ -1163,6 +1189,14 @@ public class Tutorial extends JFrame {
         auxTree9.insertNode(node149, node148);
         auxTree9.insertNode(node150, node149);
         auxTree9.insertNode(node151, node150);
+        auxTree9.insertNode(node152, node151);
+        auxTree9.insertNode(node153, node152);
+        auxTree9.insertNode(node154, node153);
+        auxTree9.insertNode(node155, node154);
+        auxTree9.insertNode(node156, node155);
+        auxTree9.insertNode(node157, node156);
+        auxTree9.insertNode(node158, node157);
+        auxTree9.insertNode(node159, node158);
 
         tutorialParte9.setArbolDial(auxTree9);
 
