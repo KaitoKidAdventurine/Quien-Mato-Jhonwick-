@@ -122,6 +122,7 @@ public class Tutorial extends JFrame {
         else {
             Dialogo aux = tutorialParte1.getNodoDialActual().getInfo();
             cajaTexto.removeAll();
+            cajaTexto.setVisible(false);
             crearMinijuego();
             timer.schedule(tarea, 5000);
 
@@ -293,7 +294,6 @@ public class Tutorial extends JFrame {
                 case 0:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
                     break;
-
             }
 
             ImageIcon icono = new ImageIcon(Objects.requireNonNull(imagen).getScaledInstance(tamPant.width, tamPant.height, Image.SCALE_SMOOTH));
@@ -895,41 +895,69 @@ public class Tutorial extends JFrame {
     }
 
     public void crearMinijuego(){
-        ImageIcon prueba = new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Cadaver.jpg");
-        MiniJuego minijuego = new MiniJuego("Prueba", prueba);
-        ObjetoEscenario ob1 = new ObjetoEscenario("Anillo", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/anillo.png"), 0.3F, 0.5F, 0.1F, 0.1F, true, "nada");
-        ObjetoEscenario ob2 = new ObjetoEscenario("Carnet", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/carnet.png"), 0.4F, 0.1F, 0.1F, 0.1F, false, "nada");
-        ObjetoEscenario ob3 = new ObjetoEscenario("Memoria USB", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/memoria.png"), 0.1F, 0.2F, 0.1F, 0.1F, false, "nada");
-        ObjetoEscenario ob4 = new ObjetoEscenario("Mancha de sangre", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Mancha de sangre.png"), 0.7F, 0.7F, 0.1F, 0.1F, false, "nada");
-        ObjetoEscenario ob5 = new ObjetoEscenario("Pluma", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/pluma.png"), 0.2F, 0.4F, 0.1F, 0.1F, false, "nada");
-        ObjetoEscenario ob6 = new ObjetoEscenario("Tarjeta", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/tarjeta.png"), 0.3F, 0.2F, 0.1F, 0.1F, false, "nada");
-        ObjetoEscenario ob7 = new ObjetoEscenario("Periodico", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/periodico.png"), 0.5F, 0.2F, 0.1F, 0.1F, true, "nada");
-        ObjetoEscenario ob8 = new ObjetoEscenario("Telefono", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/telefono de la victima.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "nada");
-        ObjetoEscenario ob9 = new ObjetoEscenario("Herida Grande", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida grande.png"), 0.55F, 0.9F, 0.1F, 0.1F, false, "nada");
-        ObjetoEscenario ob10 = new ObjetoEscenario("Laptop", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Laptop.png"), 0.27F, 0.33F, 0.18F, 0.1F, false, "nada");
-        ObjetoEscenario ob11 = new ObjetoEscenario("Cigarros", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/cigarros.png"), 0.62F, 0.2F, 0.19F, 0.1F, false, "nada");
-        ObjetoEscenario ob12 = new ObjetoEscenario("Herida pequeña", true, new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Herida pequeña.png"), 0.12F, 0.77F, 0.1F, 0.1F, true, "nada");
+
+        ImageIcon escCrimen = new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Escena del Crimen.png");
+        MiniJuego minijuego = new MiniJuego("Escena del crimen", escCrimen);
+        ObjetoEscenario ob1 = new ObjetoEscenario("Laptop", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.31F, 0, 0.13F, 0.13F, false, "");
+        ObjetoEscenario ob2 = new ObjetoEscenario("Botella", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.27F, 0, 0.02F, 0.12F, false, "");
+        ObjetoEscenario ob3 = new ObjetoEscenario("Charco de sangre", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.18F, 0.62F, 0.35F, 0.25F, false, "");
+        ObjetoEscenario ob4 = new ObjetoEscenario("Gafas", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.31F, 0.8F, 0.08F, 0.08F, false, "");
+        ObjetoEscenario ob5 = new ObjetoEscenario("Sandwich", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.48F, 0.2F, 0.06F, 0.06F, false, "");
+        ObjetoEscenario ob6 = new ObjetoEscenario("Telefono", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.29F, 0.12F, 0.07F, 0.08F, false, "");
+        ObjetoEscenario ob7 = new ObjetoEscenario("Taza de café", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob8 = new ObjetoEscenario("Copa", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob9 = new ObjetoEscenario("Anillo", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob10 = new ObjetoEscenario("Reloj de bolsillo", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob11 = new ObjetoEscenario("Botella", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob12 = new ObjetoEscenario("Memoria USB", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob13 = new ObjetoEscenario("Grabadora de voz", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob14 = new ObjetoEscenario("Pluma", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob15 = new ObjetoEscenario("Calculadora", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob16 = new ObjetoEscenario("Sombrero", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob17 = new ObjetoEscenario("Planta", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob18 = new ObjetoEscenario("Botella", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob19 =  new ObjetoEscenario("Caja de musica", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob20 = new ObjetoEscenario("Pastillas", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob21 = new ObjetoEscenario("Taza de cafe", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob22 = new ObjetoEscenario("Cigarros", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob23 = new ObjetoEscenario("Cuchillo", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, true, "Supuesta arma usada en la escena del crimen. A pesar de que contiene sangre de la victima, la causa de la muerte no coincide con el tipo de herida del cuchillo. Definitivamente no es el arma del crimen.");
+        ObjetoEscenario ob24 = new ObjetoEscenario("Linterna", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob25 = new ObjetoEscenario("Cámara", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
+        ObjetoEscenario ob26 = new ObjetoEscenario("Carnet", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
 
         minijuego.agregarObjetoCola(ob1);
         minijuego.agregarObjetoCola(ob2);
         minijuego.agregarObjetoCola(ob3);
         minijuego.agregarObjetoCola(ob4);
         minijuego.agregarObjetoCola(ob5);
-        minijuego.agregarObjetoCola(ob6);
+        minijuego.agregarObjetoCola(ob6);/*
         minijuego.agregarObjetoCola(ob7);
         minijuego.agregarObjetoCola(ob8);
         minijuego.agregarObjetoCola(ob9);
         minijuego.agregarObjetoCola(ob10);
         minijuego.agregarObjetoCola(ob11);
         minijuego.agregarObjetoCola(ob12);
+        minijuego.agregarObjetoCola(ob13);
+        minijuego.agregarObjetoCola(ob14);
+        minijuego.agregarObjetoCola(ob15);
+        minijuego.agregarObjetoCola(ob16);
+        minijuego.agregarObjetoCola(ob17);
+        minijuego.agregarObjetoCola(ob18);
+        minijuego.agregarObjetoCola(ob19);
+        minijuego.agregarObjetoCola(ob20);
+        minijuego.agregarObjetoCola(ob21);
+        minijuego.agregarObjetoCola(ob22);
+        minijuego.agregarObjetoCola(ob23);
+        minijuego.agregarObjetoCola(ob24);
+        minijuego.agregarObjetoCola(ob25);
+        minijuego.agregarObjetoCola(ob26);*/
 
         MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(minijuego);
-
         minijuegoInterfaz.setBounds(0, 0, tamPant.width, tamPant.height);
         getContentPane().add(minijuegoInterfaz, 0);
         getContentPane().revalidate();
         getContentPane().repaint();
-
+        JOptionPane.showMessageDialog(null, "5");
     }
     private void iniciarMundo(){
         Entrada entrada =  new Entrada();

@@ -160,9 +160,6 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         }
         ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.08), (int) (tamPant.height*0.1), Image.SCALE_SMOOTH));
         diario.setIcon(icono3);
-
-
-        crearObjetosMochila();
         add(diario);
         add(telefono);
         add(mochila);
@@ -304,12 +301,7 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.08), (int) (tamPant.height*0.1), Image.SCALE_SMOOTH));
         menu.setIcon(icono);
     }
-    public void crearObjetosMochila(){
-        ObjetoEscenario ob8 = new ObjetoEscenario("Telefono", true,new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/telefono de la victima.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "Telefono encontrado en lam escena del crimen, parece de la victima, probablemente tenga informacion valiosa");
 
-        Jugador.getInstancia().agregarAlMaletin(ob8);
-
-    }
 
 
 

@@ -20,7 +20,7 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
     private Dimension tamPant;
     private JLabel fondo;
     private JLabel labelLista;
-    private ArrayList<ObjetoMinijuego> objetosEscenarios;
+    private ArrayList<ObjetoMinijuego> objetosMinijuego;
     private JPanel panelEncontrables;
     private ArrayList<JLabel> objetosEncontrables;
     private ArrayList<ObjetoEscenario> objetosEnc;
@@ -29,7 +29,7 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
     public MinijuegoInterfaz(MiniJuego miniJuego) {
 
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
-        objetosEscenarios = new ArrayList<ObjetoMinijuego>();
+        objetosMinijuego = new ArrayList<ObjetoMinijuego>();
         objetosEncontrables = new ArrayList<>();
         objetosEnc = miniJuego.getListaObjetos();
         mini = miniJuego;
@@ -47,11 +47,11 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
 
         Reproductor reproductor = Reproductor.getInstancia();
         reproductor.musicaDeBusqueda();
-
+        JOptionPane.showMessageDialog(null, "q");
         while (II.hasNext()) {
             ObjetoEscenario objeto = II.next();
             ObjetoMinijuego boton = new ObjetoMinijuego(objeto.getNombre());
-
+            JOptionPane.showMessageDialog(null, objeto.getNombre());
             boton.setBounds((int) (tamPant.width * objeto.getPosX()), (int) (tamPant.height * objeto.getPosY()), (int) (tamPant.width * objeto.getTamLargo()), (int) (tamPant.height * objeto.getTamAncho()));
             BufferedImage imagen = null;
             try {
@@ -60,8 +60,7 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
                 throw new RuntimeException(e);
             }
             ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width * 0.04), (int) (tamPant.height * 0.11), Image.SCALE_SMOOTH));
-            boton.setIcon(icono);
-            boton.setBorderPainted(false);
+            boton.setBorderPainted(true);
             boton.setContentAreaFilled(false);
             boton.setFocusPainted(false);
             boton.addActionListener(new ActionListener() {
@@ -69,16 +68,19 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
                     buscarObjeto(evt);
                 }
             });
-            objetosEscenarios.add(boton);
+            objetosMinijuego.add(boton);
         }
+        JOptionPane.showMessageDialog(null, "w");
         panelEncontrables.setBounds((int) (tamPant.width * 0.75), 0, (int) (tamPant.width * 0.25), tamPant.height);
+        JOptionPane.showMessageDialog(null, miniJuego.getCola().size());
+        JOptionPane.showMessageDialog(null, miniJuego.getListaObjetos().size());
         for (int i = 0; i < 5; i++) {
             miniJuego.pedirSiguienteObjeCola();
         }
         panelEncontrables.setBackground(Color.black);
         panelEncontrables.setLayout(null);
         hacerListaObjetosEncontrables();
-
+        JOptionPane.showMessageDialog(null, "e");
         ponerObjetos(miniJuego);
         add(panelEncontrables);
 
@@ -99,12 +101,13 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        JOptionPane.showMessageDialog(null, "r");
         ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width * 0.25), tamPant.height, Image.SCALE_SMOOTH));
         labelLista.setIcon(icono3);
         labelLista.setBounds(0, 0,(int) (tamPant.width * 0.25), tamPant.height );
         panelEncontrables.add(labelLista);
         add(fondo);
-
+        JOptionPane.showMessageDialog(null, "t");
     }
 
     private void buscarObjeto(ActionEvent evt) {
@@ -115,14 +118,14 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
             if (accionador.getNombreObjeto().equals(objetosEnc.get(i).getNombre())) {
                 objetosEnc.remove(i);
                 remove(accionador);
-                objetosEscenarios.remove(accionador);
+                objetosMinijuego.remove(accionador);
 
                 if(!mini.getCola().isEmpty())
                     mini.pedirSiguienteObjeCola();
 
                 actualizarObjetosEncontrables();
 
-                if(!objetosEscenarios.isEmpty()){
+                if(!objetosMinijuego.isEmpty()){
                     revalidate();
                     repaint();
                 }else{
@@ -144,9 +147,9 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
     }
 
     private void ponerObjetos(MiniJuego miniJuego) {
-        for (int i = 0; i < objetosEscenarios.size(); i++) {
+        for (int i = 0; i < objetosMinijuego.size(); i++) {
 
-            add(objetosEscenarios.get(i), i);
+            add(objetosMinijuego.get(i), i);
         }
     }
 
