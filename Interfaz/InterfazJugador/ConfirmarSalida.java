@@ -19,10 +19,12 @@ public class ConfirmarSalida extends JDialog {
     private JButton no;
     private JLabel texto;
     private boolean paraSalir;
+    private boolean paraPartida;
     private JLabel fondo;
-    public ConfirmarSalida(java.awt.Frame parent, boolean modal, String notificacion, boolean salir) {
+    public ConfirmarSalida(java.awt.Frame parent, boolean modal, String notificacion, boolean salir, boolean partida) {
         super(parent, modal);
         paraSalir = salir;
+        paraPartida = partida;
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         initComponents(notificacion);
     }
@@ -30,14 +32,26 @@ public class ConfirmarSalida extends JDialog {
     public void initComponents(String notificacion){
         yes = new JButton("Si");
         no = new JButton("No");
-        texto = new JLabel(notificacion);
+        texto = new JLabel("<html>" + notificacion + "</html>");
         fondo = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        setBounds((int)(tamPant.width*0.325), (int)(tamPant.height*0.33), (int)(tamPant.width*0.35), (int)(tamPant.height*0.27));
+        if(!(notificacion.equals("Ya existe una partida en este lugar. ¿Estas seguro de que quieres eliminar esta partida?"))) {
+            setBounds((int) (tamPant.width * 0.325), (int) (tamPant.height * 0.33), (int) (tamPant.width * 0.35), (int) (tamPant.height * 0.27));
+            texto.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.04), (int) (tamPant.width*0.29), (int) (tamPant.height*0.1));
+            yes.setBounds((int)(tamPant.width*0.07),(int) (tamPant.getHeight()*0.17), (int)(tamPant.width*0.05), (int) (tamPant.height*0.05));
+            no.setBounds((int)(tamPant.width*0.23),(int) (tamPant.getHeight()*0.17), (int)(tamPant.width*0.05), (int) (tamPant.height*0.05));
+            fondo.setBounds(0,0, (int)(tamPant.width*0.35), (int)(tamPant.height*0.27));
+        }else {
+            setBounds((int) (tamPant.width * 0.3), (int) (tamPant.height * 0.3), (int) (tamPant.width * 0.4), (int) (tamPant.height * 0.33));
+            texto.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.04), (int) (tamPant.width*0.34), (int) (tamPant.height*0.18));
+            yes.setBounds((int)(tamPant.width*0.07),(int) (tamPant.getHeight()*0.23), (int)(tamPant.width*0.05), (int) (tamPant.height*0.05));
+            no.setBounds((int)(tamPant.width*0.27),(int) (tamPant.getHeight()*0.23), (int)(tamPant.width*0.05), (int) (tamPant.height*0.05));
+            fondo.setBounds(0,0, (int)(tamPant.width*0.4), (int)(tamPant.height*0.33));
+        }
         setBackground(new Color(45, 45, 45, 250));
 
 
@@ -45,16 +59,15 @@ public class ConfirmarSalida extends JDialog {
         texto.setForeground(Color.white);
         texto.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.017)));
         texto.setHorizontalAlignment(SwingConstants.CENTER);
-        texto.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.04), (int) (tamPant.width*0.29), (int) (tamPant.height*0.1));
+
         getContentPane().add(texto);
 
-        yes.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.017                                                 )));
+        yes.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.017)));
         yes.setForeground(new Color(255, 255, 255));
         yes.setOpaque(false);
         yes.setBorderPainted(false);
         yes.setContentAreaFilled(false);
         yes.setFocusPainted(false);
-        yes.setBounds((int)(tamPant.width*0.07),(int) (tamPant.getHeight()*0.17), (int)(tamPant.width*0.05), (int) (tamPant.height*0.05));
         yes.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 yesMouseEntered(evt);
@@ -76,7 +89,7 @@ public class ConfirmarSalida extends JDialog {
         no.setBorderPainted(false);
         no.setContentAreaFilled(false);
         no.setFocusPainted(false);
-        no.setBounds((int)(tamPant.width*0.23),(int) (tamPant.getHeight()*0.17), (int)(tamPant.width*0.05), (int) (tamPant.height*0.05));
+
         no.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 noMouseEntered(evt);
@@ -99,10 +112,13 @@ public class ConfirmarSalida extends JDialog {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int)(tamPant.width*0.35), (int)(tamPant.height*0.27), Image.SCALE_SMOOTH));
+        ImageIcon icono = null;
+        if(!(notificacion.equals("Ya existe una partida en este lugar. ¿Estas seguro de que quieres eliminar esta partida?"))) {
+            icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width * 0.35), (int) (tamPant.height * 0.27), Image.SCALE_SMOOTH));
+        }else
+            icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width * 0.4), (int) (tamPant.height * 0.33), Image.SCALE_SMOOTH));
         fondo.setIcon(icono);
-        fondo.setBounds(0,0, (int)(tamPant.width*0.35), (int)(tamPant.height*0.27));
+
         getContentPane().add(fondo);
 
     }
@@ -120,11 +136,12 @@ public class ConfirmarSalida extends JDialog {
     }
 
     private void yesActionPerformed(ActionEvent evt) {
-        if(!paraSalir) {
-            UnionInterfaces.getInstance().setCerrarVentana(true);
-        } else {
+        if(paraSalir) {
             UnionInterfaces.getInstance().setSalirJuego(true);
-        }
+        } else if (paraPartida){
+            UnionInterfaces.getInstance().setConfirmarBorrado(true);
+        }else
+            UnionInterfaces.getInstance().setCerrarVentana(true);
         dispose();
 
     }

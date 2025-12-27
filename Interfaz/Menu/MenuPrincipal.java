@@ -208,7 +208,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
-        ConfirmarSalida confirmarSalida = new ConfirmarSalida(new JFrame(), true, "Estas seguro de querer salir del juego", true);
+        ConfirmarSalida confirmarSalida = new ConfirmarSalida(new JFrame(), true, "Estas seguro de querer salir del juego", true, false);
         confirmarSalida.setVisible(true);
         if(UnionInterfaces.getInstance().getSalirJuego()){
             System.exit(0);

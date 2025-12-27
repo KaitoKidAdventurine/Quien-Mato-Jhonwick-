@@ -196,8 +196,7 @@ public class NuevaPartida extends javax.swing.JFrame {
         // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
         else
         {
-            if(comprobacionActionPerformed(evt));
-            {
+            if(comprobacionActionPerformed()) {
                 Juego.getInstance().eliminarPartida("3");
                 Juego.getInstance().crearNuevaPartida("3", "Jugador 3");
                 Tutorial tuto1 = new Tutorial();
@@ -224,8 +223,7 @@ public class NuevaPartida extends javax.swing.JFrame {
         // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
         else
         {
-            if(comprobacionActionPerformed(evt));
-            {
+            if(comprobacionActionPerformed()) {
                 Juego.getInstance().eliminarPartida("2");
                 Juego.getInstance().crearNuevaPartida("2", "Jugador 2");
                 Tutorial tuto1 = new Tutorial();
@@ -240,7 +238,6 @@ public class NuevaPartida extends javax.swing.JFrame {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
-
         if (!Juego.getInstance().existePartida("1"))
         {
             Juego.getInstance().crearNuevaPartida("1", "Jugador 1");
@@ -251,8 +248,7 @@ public class NuevaPartida extends javax.swing.JFrame {
         // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
         else
         {
-            if(comprobacionActionPerformed(evt));
-            {
+            if(comprobacionActionPerformed()) {
                 Juego.getInstance().eliminarPartida("1");
                 Juego.getInstance().crearNuevaPartida("1", "Jugador 1");
                 Tutorial tuto1 = new Tutorial();
@@ -262,17 +258,19 @@ public class NuevaPartida extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_boton1ActionPerformed
 
-    private boolean comprobacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+    private boolean comprobacionActionPerformed() {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
 
         boolean salida = false;
-        ConfirmarSalida confirmar= new ConfirmarSalida(new JFrame(), true, " Ya existe una partida en este lugar. ¿Estas seguro de que quieres eliminar esta partida?", true);
+        ConfirmarSalida confirmar= new ConfirmarSalida(new JFrame(), true, "Ya existe una partida en este lugar. ¿Estas seguro de que quieres eliminar esta partida?", false, true);
         confirmar.setVisible(true);
-        if(UnionInterfaces.getInstance().getSalirJuego())
+        if(UnionInterfaces.getInstance().getConfirmarBorrado())
         {
             salida = true;
+            UnionInterfaces.getInstance().setConfirmarBorrado(false);
         }
+
         return salida;
     }
 

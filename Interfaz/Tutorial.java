@@ -55,7 +55,7 @@ public class Tutorial extends JFrame {
         tarea = new TimerTask() {
             @Override
             public void run() {
-                crearDialogosParte2();
+
                 ponerDialogoParte2();
             }
         };
@@ -108,11 +108,13 @@ public class Tutorial extends JFrame {
         fondo.setPreferredSize(tamPant);
         fondo.setBounds(0, 0, tamPant.width, tamPant.height);
 
-        getContentPane().add(cajaTexto, 0);
-        getContentPane().add(fondo, 1);
-        getContentPane().add(botonSaltar, 2);
+        getContentPane().add(botonSaltar);
+        getContentPane().add(cajaTexto);
+        getContentPane().add(fondo);
+
         ponerFondoParte1(0);
         ponerDialogoParte1();
+        crearDialogosParte2();
         pack();
     }
     public void ponerDialogoParte1() {
@@ -746,6 +748,7 @@ public class Tutorial extends JFrame {
 
         //Interaccion del detective con todos los personajes
         //Guardia de Seguridad
+        /*
         Dialogo g1 = new Dialogo("Buenas noches, soy el detective asignado al caso. Necesito hablar con usted.", "Detective", detective, true);
         Dialogo g2 = new Dialogo("Buenas noches, detective. Soy el guardia de seguridad del museo.", "Guardia", seguridad, true);
 
@@ -768,6 +771,7 @@ public class Tutorial extends JFrame {
         /* añadirAlDiario("Guardia", "Las cámaras fallaron en la sección medieval justo a la hora del asesinato.");*/
 
         //Pregunta 4: Terminar conversación
+       /*
         Dialogo rD = new Dialogo("Entendido, detective. Si necesita algo más, estaré en mi puesto.", "Guardia", seguridad, true);
 
         BinaryTreeNode<Dialogo> node112 = new BinaryTreeNode<>(g1);
@@ -818,7 +822,7 @@ public class Tutorial extends JFrame {
 
         // Dato clave
         /*añadirAlDiario("Guía", "El guía conoce el museo como la palma de su mano.");*/
-
+/*
         Dialogo despedida2 = new Dialogo("A usted, detective. Que tenga buena noche.", "Guía", guia, true);
 
         BinaryTreeNode<Dialogo> node114 = new BinaryTreeNode<>(dect);
@@ -975,7 +979,7 @@ public class Tutorial extends JFrame {
 
         // Dato clave
         /*añadirAlDiario("Limpieza", "Suele encontrarse con cosas útiles al estar solo limpiando.");*/
-
+/*
         Dialogo des2 = new Dialogo("Que tenga buena noche, jefe.", "Limpieza", limpieza, true);
 
         BinaryTreeNode<Dialogo> node120 = new BinaryTreeNode<>(l1);
@@ -1204,7 +1208,7 @@ public class Tutorial extends JFrame {
         auxTree9.insertNode(node159, node158);
 
         tutorialParte9.setArbolDial(auxTree9);
-
+*/
     }
 
     public void crearMinijuego(){

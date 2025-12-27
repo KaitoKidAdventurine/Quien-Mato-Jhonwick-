@@ -267,7 +267,7 @@ public class MenuInterno extends javax.swing.JDialog {
     }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-        ConfirmarSalida confirmarSalida = new ConfirmarSalida(new JFrame(), true, "Estas seguro de querer salir al Menu", false);
+        ConfirmarSalida confirmarSalida = new ConfirmarSalida(new JFrame(), true, "Estas seguro de querer salir al Menu", false, false);
         confirmarSalida.setVisible(true);
         if(UnionInterfaces.getInstance().getCerrarVentana()){
             timer.schedule(tarea, 10);
@@ -285,7 +285,7 @@ public class MenuInterno extends javax.swing.JDialog {
 
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
-        ConfirmarSalida confirmarSalida = new ConfirmarSalida(new JFrame(), true, "Estas seguro de querer salir del juego", true);
+        ConfirmarSalida confirmarSalida = new ConfirmarSalida(new JFrame(), true, "Estas seguro de querer salir del juego", true, false);
         confirmarSalida.setVisible(true);
         if(UnionInterfaces.getInstance().getSalirJuego()){
             System.exit(0);

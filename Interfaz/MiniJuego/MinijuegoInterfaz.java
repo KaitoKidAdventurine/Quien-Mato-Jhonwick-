@@ -29,7 +29,7 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
     public MinijuegoInterfaz(MiniJuego miniJuego) {
 
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
-        objetosMinijuego = new ArrayList<ObjetoMinijuego>();
+        objetosMinijuego = new ArrayList<>();
         objetosEncontrables = new ArrayList<>();
         objetosEnc = miniJuego.getListaObjetos();
         mini = miniJuego;
@@ -47,11 +47,9 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
 
         Reproductor reproductor = Reproductor.getInstancia();
         reproductor.musicaDeBusqueda();
-        JOptionPane.showMessageDialog(null, "q");
         while (II.hasNext()) {
             ObjetoEscenario objeto = II.next();
             ObjetoMinijuego boton = new ObjetoMinijuego(objeto.getNombre());
-            JOptionPane.showMessageDialog(null, objeto.getNombre());
             boton.setBounds((int) (tamPant.width * objeto.getPosX()), (int) (tamPant.height * objeto.getPosY()), (int) (tamPant.width * objeto.getTamLargo()), (int) (tamPant.height * objeto.getTamAncho()));
             BufferedImage imagen = null;
             try {
@@ -70,17 +68,13 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
             });
             objetosMinijuego.add(boton);
         }
-        JOptionPane.showMessageDialog(null, "w");
         panelEncontrables.setBounds((int) (tamPant.width * 0.75), 0, (int) (tamPant.width * 0.25), tamPant.height);
-        JOptionPane.showMessageDialog(null, miniJuego.getCola().size());
-        JOptionPane.showMessageDialog(null, miniJuego.getListaObjetos().size());
         for (int i = 0; i < 5; i++) {
             miniJuego.pedirSiguienteObjeCola();
         }
         panelEncontrables.setBackground(Color.black);
         panelEncontrables.setLayout(null);
         hacerListaObjetosEncontrables();
-        JOptionPane.showMessageDialog(null, "e");
         ponerObjetos(miniJuego);
         add(panelEncontrables);
 
@@ -101,13 +95,11 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        JOptionPane.showMessageDialog(null, "r");
         ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width * 0.25), tamPant.height, Image.SCALE_SMOOTH));
         labelLista.setIcon(icono3);
         labelLista.setBounds(0, 0,(int) (tamPant.width * 0.25), tamPant.height );
         panelEncontrables.add(labelLista);
         add(fondo);
-        JOptionPane.showMessageDialog(null, "t");
     }
 
     private void buscarObjeto(ActionEvent evt) {
@@ -130,10 +122,9 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
                     repaint();
                 }else{
                     getParent().getComponent(0).setVisible(false);
-                    getParent().getComponent(1).setVisible(true);
+                    getParent().getComponent(2).setVisible(true);
                     getParent().revalidate();
                     getParent().repaint();
-
                     getParent().remove(0);
 
 
