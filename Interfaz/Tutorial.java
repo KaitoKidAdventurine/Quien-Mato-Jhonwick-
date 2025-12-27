@@ -847,7 +847,7 @@ public class Tutorial extends JFrame {
 
         // Primera decisión
         Dialogo decs1= new Dialogo("¿Quiere saber algo más o solo vino a saludar?", "Secretaria", secretaria, true);
-        decs.setOpciones(new LinkedList<>(Arrays.asList("¿Tenía algún tipo de relación con el economista?", "No, eso sería todo por ahora.")));
+        decs1.setOpciones(new LinkedList<>(Arrays.asList("¿Tenía algún tipo de relación con el economista?", "No, eso sería todo por ahora.")));
 
         Dialogo resp1 = new Dialogo("Nada fuera de lo laboral. Era serio, distante... aunque a veces me lanzaba miradas que decían más " +
                 "que sus palabras.", "Secretaria", secretaria, true);
