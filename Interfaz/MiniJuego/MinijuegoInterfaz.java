@@ -38,6 +38,9 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
     }
 
     private void initComponents(MiniJuego miniJuego) {
+        Reproductor r = Reproductor.getInstancia();
+        r.cambiarMusicaNombre("Busqueda");
+
         fondo = new JLabel();
         setLayout(null);
         panelEncontrables = new JPanel();

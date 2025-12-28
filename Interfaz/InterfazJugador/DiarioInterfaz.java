@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package Interfaz.InterfazJugador;
 
 import DatosAuxiliaresLogica.Informacion;
@@ -63,12 +59,12 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
         getContentPane().setBackground(new Color(0, 0, 0, 0));
         setUndecorated(true);
-        Rectangle nombre = new Rectangle((int) (tamPant.width *0.16), (int) (tamPant.height*0.05), (int) (tamPant.width*0.25), (int) (tamPant.height*0.07));
-        Rectangle foto= new Rectangle((int) (tamPant.width *0.01), (int) (tamPant.height*0.03), (int) (tamPant.width*0.12), (int) (tamPant.height*0.12));
-        Rectangle datos = new Rectangle((int) (tamPant.width *0.42), (int) (tamPant.height*0.15), (int) (tamPant.width*0.43), (int) (tamPant.height*0.53));
-        Rectangle registros = new Rectangle((int) (tamPant.width *0.03), (int) (tamPant.height*0.17), (int) (tamPant.width*0.3), (int) (tamPant.height*0.4));
-        Rectangle panel = new Rectangle(0, 0, (int) (tamPant.width*0.8), (int) (tamPant.height*0.78));
-        Rectangle labelDatos = new Rectangle((int) (tamPant.width*0.42), (int) (tamPant.height*0.03), (int) (tamPant.width*0.32), (int) (tamPant.height*0.08));
+        Rectangle nombre = new Rectangle((int) (tamPant.width * 0.16), (int) (tamPant.height * 0.05), (int) (tamPant.width * 0.25), (int) (tamPant.height * 0.07));
+        Rectangle foto = new Rectangle((int) (tamPant.width * 0.01), (int) (tamPant.height * 0.03), (int) (tamPant.width * 0.12), (int) (tamPant.height * 0.12));
+        Rectangle datos = new Rectangle((int) (tamPant.width * 0.42), (int) (tamPant.height * 0.15), (int) (tamPant.width * 0.43), (int) (tamPant.height * 0.53));
+        Rectangle registros = new Rectangle((int) (tamPant.width * 0.03), (int) (tamPant.height * 0.17), (int) (tamPant.width * 0.3), (int) (tamPant.height * 0.4));
+        Rectangle panel = new Rectangle(0, 0, (int) (tamPant.width * 0.8), (int) (tamPant.height * 0.78));
+        Rectangle labelDatos = new Rectangle((int) (tamPant.width * 0.42), (int) (tamPant.height * 0.03), (int) (tamPant.width * 0.32), (int) (tamPant.height * 0.08));
 
         jPanel1 = new JPanel();
         jLabel1 = new JLabel();
@@ -131,14 +127,12 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
         contenedor = new JPanel();
         contenedor.setBackground(new Color(0, 0, 0, 0));
-        contenedor.setBounds((int) (tamPant.width *0.14), (int) (tamPant.height*0.17), (int) (tamPant.width*0.8), (int) (tamPant.height*0.78));
+        contenedor.setBounds((int) (tamPant.width * 0.14), (int) (tamPant.height * 0.17), (int) (tamPant.width * 0.8), (int) (tamPant.height * 0.78));
         contenedor.setLayout(null);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
         setBackground(new Color(0, 0, 0, 75));
-
-
 
         jPanel1.setBackground(new Color(0, 0, 0, 0));
         jPanel1.setBounds(panel);
@@ -146,10 +140,9 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
         jLabel1.setText("Victima");
         jLabel1.setBounds(nombre);
-        jLabel1.setFont(new Font("Viner Hand ITC", Font.PLAIN, (int)(tamPant.width*0.016)));
+        jLabel1.setFont(new Font("Viner Hand ITC", Font.PLAIN, (int) (tamPant.width * 0.016)));
         jLabel1.setForeground(Color.black);
         jPanel1.add(jLabel1);
-
 
         jLabel2.setBounds(foto);
         jLabel2.setOpaque(true);
@@ -161,16 +154,15 @@ public class DiarioInterfaz extends javax.swing.JDialog {
             throw new RuntimeException(e);
         }
 
-        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.11), (int) (tamPant.height*0.13), Image.SCALE_SMOOTH));
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
         jLabel2.setIcon(icono);
         jLabel2.setBorder(new LineBorder(Color.black, 2, true));
         jLabel2.setBackground(new Color(255, 255, 255, 30));
         jPanel1.add(jLabel2);
 
-
         jLabelR1.setText("Datos relacionados con la investigacion");
         jLabelR1.setBounds(labelDatos);
-        jLabelR1.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabelR1.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabelR1.setForeground(Color.black);
         jPanel1.add(jLabelR1);
 
@@ -186,16 +178,16 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea1.setEditable(false);
 
         Informacion info1 = informacion.getFirst();
-        Iterator<String> iterator1= info1.getListaDeDialogos().iterator();
-        while(iterator1.hasNext()){
+        Iterator<String> iterator1 = info1.getListaDeDialogos().iterator();
+        while (iterator1.hasNext()) {
             String contenido = iterator1.next();
-            if(!jTextArea1.getText().isEmpty()) {
+            if (!jTextArea1.getText().isEmpty()) {
 
                 jTextArea1.setText(jTextArea1.getText() + "\n" + "·" + contenido);
-            }else
+            } else
                 jTextArea1.setText("·" + contenido);
         }
-        jTextArea1.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.013)));
+        jTextArea1.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane1.setViewportView(jTextArea1);
         jScrollPane1.setBounds(datos);
@@ -204,7 +196,6 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jScrollPane1.setBorder(null);
 
         jPanel1.add(jScrollPane1);
-
 
         registro1.setColumns(20);
         registro1.setRows(5);
@@ -216,8 +207,8 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro1.setEditable(false);
         registro1.setBackground(new Color(0, 0, 0, 0));
         registro1.setText("   Datos  Generales: \nEdad:   32       Sexo: Masculino   \n" + "Ocupacion:   Economico \n" + "\n\n\n  Analisis de personalidad: \n"
-                +"Timido, Reservado, Poco amigable, tranquilo");
-        registro1.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
+                + "Timido, Reservado, Poco amigable, tranquilo");
+        registro1.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro1.setBounds(registros);
         jPanel1.add(registro1);
 
@@ -229,7 +220,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
         jLabel4.setText("Jefe");
         jLabel4.setBounds(nombre);
-        jLabel4.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabel4.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel4.setForeground(Color.black);
         jPanel2.add(jLabel4);
 
@@ -244,7 +235,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         }
 
         if (imagen3 != null) {
-            ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.11), (int) (tamPant.height*0.13), Image.SCALE_SMOOTH));
+            ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
             jLabel3.setIcon(icono3);
         }
         jLabel3.setBorder(new LineBorder(Color.black, 2, true));
@@ -254,7 +245,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         JLabel jLabelR2 = new JLabel();
         jLabelR2.setText("Datos relacionados con la investigacion");
         jLabelR2.setBounds(labelDatos);
-        jLabelR2.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabelR2.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabelR2.setForeground(Color.black);
         jPanel2.add(jLabelR2);
 
@@ -269,7 +260,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea2.setWrapStyleWord(true);
         jTextArea2.setEditable(false);
         jTextArea2.setText("Información del Jefe");
-        jTextArea2.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.013)));
+        jTextArea2.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane2.setViewportView(jTextArea2);
         jScrollPane2.setBounds(datos);
@@ -289,19 +280,18 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro2.setEditable(false);
         registro2.setBackground(new Color(0, 0, 0, 0));
         registro2.setText("   Datos  Generales: \nEdad:   45       Sexo: Masculino   \n" + "Ocupacion:   Jefe \n" + "\n\n\n  Analisis de personalidad: \n"
-                +"Autoritario, estricto, responsable, serio, lider");
-        registro2.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
+                + "Autoritario, estricto, responsable, serio, lider");
+        registro2.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro2.setBounds(registros);
         jPanel2.add(registro2);
-
-
 
         jPanel3.setBackground(new Color(0, 0, 0, 0));
         jPanel3.setLayout(null);
         jPanel3.setBounds(panel);
+
         jLabel6.setText("Policia");
         jLabel6.setBounds(nombre);
-        jLabel6.setFont(new Font("Viner Hand ITC", Font.PLAIN, (int)(tamPant.width*0.016)));
+        jLabel6.setFont(new Font("Viner Hand ITC", Font.PLAIN, (int) (tamPant.width * 0.016)));
         jLabel6.setForeground(Color.black);
         jPanel3.add(jLabel6);
 
@@ -316,7 +306,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         }
 
         if (imagen5 != null) {
-            ImageIcon icono5 = new ImageIcon(imagen5.getScaledInstance((int) (tamPant.width*0.11), (int) (tamPant.height*0.13), Image.SCALE_SMOOTH));
+            ImageIcon icono5 = new ImageIcon(imagen5.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
             jLabel5.setIcon(icono5);
         }
         jLabel5.setBorder(new LineBorder(Color.black, 2, true));
@@ -326,7 +316,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         JLabel jLabelR3 = new JLabel();
         jLabelR3.setText("Datos relacionados con la investigacion");
         jLabelR3.setBounds(labelDatos);
-        jLabelR3.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabelR3.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabelR3.setForeground(Color.black);
         jPanel3.add(jLabelR3);
 
@@ -341,7 +331,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea3.setWrapStyleWord(true);
         jTextArea3.setEditable(false);
         jTextArea3.setText("Información del Policia");
-        jTextArea3.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.013)));
+        jTextArea3.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane3.setViewportView(jTextArea3);
         jScrollPane3.setBounds(datos);
@@ -361,11 +351,10 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro3.setEditable(false);
         registro3.setBackground(new Color(0, 0, 0, 0));
         registro3.setText("   Datos  Generales: \nEdad:   35       Sexo: Masculino   \n" + "Ocupacion:   Policia \n" + "\n\n\n  Analisis de personalidad: \n"
-                +"Justo, valiente, protector, honesto, disciplinado");
-        registro3.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
+                + "Justo, valiente, protector, honesto, disciplinado");
+        registro3.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro3.setBounds(registros);
         jPanel3.add(registro3);
-
 
         jPanel4.setBackground(new Color(0, 0, 0, 0));
         jPanel4.setLayout(null);
@@ -373,7 +362,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
         jLabel8.setText("Dueño");
         jLabel8.setBounds(nombre);
-        jLabel8.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabel8.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel8.setForeground(Color.black);
         jPanel4.add(jLabel8);
 
@@ -388,7 +377,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         }
 
         if (imagen7 != null) {
-            ImageIcon icono7 = new ImageIcon(imagen7.getScaledInstance((int) (tamPant.width*0.11), (int) (tamPant.height*0.13), Image.SCALE_SMOOTH));
+            ImageIcon icono7 = new ImageIcon(imagen7.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
             jLabel7.setIcon(icono7);
         }
         jLabel7.setBorder(new LineBorder(Color.black, 2, true));
@@ -398,7 +387,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         JLabel jLabelR4 = new JLabel();
         jLabelR4.setText("Datos relacionados con la investigacion");
         jLabelR4.setBounds(labelDatos);
-        jLabelR4.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabelR4.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabelR4.setForeground(Color.black);
         jPanel4.add(jLabelR4);
 
@@ -413,7 +402,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea4.setWrapStyleWord(true);
         jTextArea4.setEditable(false);
         jTextArea4.setText("Información del Dueño");
-        jTextArea4.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.013)));
+        jTextArea4.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane4.setViewportView(jTextArea4);
         jScrollPane4.setBounds(datos);
@@ -433,11 +422,10 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro4.setEditable(false);
         registro4.setBackground(new Color(0, 0, 0, 0));
         registro4.setText("   Datos  Generales: \nEdad:   50       Sexo: Masculino   \n" + "Ocupacion:   Dueño \n" + "\n\n\n  Analisis de personalidad: \n"
-                +"Ambicioso, calculador, exitoso, dominante, materialista");
-        registro4.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
+                + "Ambicioso, calculador, exitoso, dominante, materialista");
+        registro4.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro4.setBounds(registros);
         jPanel4.add(registro4);
-
 
         jPanel5.setBackground(new Color(0, 0, 0, 0));
         jPanel5.setLayout(null);
@@ -445,7 +433,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
         jLabel10.setText("Esposa del dueño");
         jLabel10.setBounds(nombre);
-        jLabel10.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabel10.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel10.setForeground(Color.black);
         jPanel5.add(jLabel10);
 
@@ -460,7 +448,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         }
 
         if (imagen9 != null) {
-            ImageIcon icono9 = new ImageIcon(imagen9.getScaledInstance((int) (tamPant.width*0.11), (int) (tamPant.height*0.13), Image.SCALE_SMOOTH));
+            ImageIcon icono9 = new ImageIcon(imagen9.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
             jLabel9.setIcon(icono9);
         }
         jLabel9.setBorder(new LineBorder(Color.black, 2, true));
@@ -470,7 +458,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         JLabel jLabelR5 = new JLabel();
         jLabelR5.setText("Datos relacionados con la investigacion");
         jLabelR5.setBounds(labelDatos);
-        jLabelR5.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabelR5.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabelR5.setForeground(Color.black);
         jPanel5.add(jLabelR5);
 
@@ -485,7 +473,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea5.setWrapStyleWord(true);
         jTextArea5.setEditable(false);
         jTextArea5.setText("Información de la Esposa del dueño");
-        jTextArea5.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.013)));
+        jTextArea5.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane5.setViewportView(jTextArea5);
         jScrollPane5.setBounds(datos);
@@ -505,11 +493,10 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro5.setEditable(false);
         registro5.setBackground(new Color(0, 0, 0, 0));
         registro5.setText("   Datos  Generales: \nEdad:   42       Sexo: Femenino   \n" + "Ocupacion:   Esposa \n" + "\n\n\n  Analisis de personalidad: \n"
-                +"Elegante, sofisticada, celosa, manipuladora, orgullosa");
-        registro5.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
+                + "Elegante, sofisticada, celosa, manipuladora, orgullosa");
+        registro5.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro5.setBounds(registros);
         jPanel5.add(registro5);
-
 
         jPanel6.setBackground(new Color(0, 0, 0, 0));
         jPanel6.setLayout(null);
@@ -517,7 +504,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
         jLabel12.setText("Secretaria");
         jLabel12.setBounds(nombre);
-        jLabel12.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabel12.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel12.setForeground(Color.black);
         jPanel6.add(jLabel12);
 
@@ -532,7 +519,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         }
 
         if (imagen11 != null) {
-            ImageIcon icono11 = new ImageIcon(imagen11.getScaledInstance((int) (tamPant.width*0.11), (int) (tamPant.height*0.13), Image.SCALE_SMOOTH));
+            ImageIcon icono11 = new ImageIcon(imagen11.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
             jLabel11.setIcon(icono11);
         }
         jLabel11.setBorder(new LineBorder(Color.black, 2, true));
@@ -542,7 +529,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         JLabel jLabelR6 = new JLabel();
         jLabelR6.setText("Datos relacionados con la investigacion");
         jLabelR6.setBounds(labelDatos);
-        jLabelR6.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabelR6.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabelR6.setForeground(Color.black);
         jPanel6.add(jLabelR6);
 
@@ -557,7 +544,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea6.setWrapStyleWord(true);
         jTextArea6.setEditable(false);
         jTextArea6.setText("Información de la Secretaria");
-        jTextArea6.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.013)));
+        jTextArea6.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane6.setViewportView(jTextArea6);
         jScrollPane6.setBounds(datos);
@@ -577,11 +564,10 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro6.setEditable(false);
         registro6.setBackground(new Color(0, 0, 0, 0));
         registro6.setText("   Datos  Generales: \nEdad:   30       Sexo: Femenino   \n" + "Ocupacion:   Secretaria \n" + "\n\n\n  Analisis de personalidad: \n"
-                +"Eficiente, discreta, observadora, leal, organizada");
-        registro6.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
+                + "Eficiente, discreta, observadora, leal, organizada");
+        registro6.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro6.setBounds(registros);
         jPanel6.add(registro6);
-
 
         jPanel7.setBackground(new Color(0, 0, 0, 0));
         jPanel7.setLayout(null);
@@ -589,7 +575,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
         jLabel14.setText("Guia 1");
         jLabel14.setBounds(nombre);
-        jLabel14.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabel14.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel14.setForeground(Color.black);
         jPanel7.add(jLabel14);
 
@@ -604,7 +590,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         }
 
         if (imagen13 != null) {
-            ImageIcon icono13 = new ImageIcon(imagen13.getScaledInstance((int) (tamPant.width*0.11), (int) (tamPant.height*0.13), Image.SCALE_SMOOTH));
+            ImageIcon icono13 = new ImageIcon(imagen13.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
             jLabel13.setIcon(icono13);
         }
         jLabel13.setBorder(new LineBorder(Color.black, 2, true));
@@ -614,7 +600,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         JLabel jLabelR7 = new JLabel();
         jLabelR7.setText("Datos relacionados con la investigacion");
         jLabelR7.setBounds(labelDatos);
-        jLabelR7.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabelR7.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabelR7.setForeground(Color.black);
         jPanel7.add(jLabelR7);
 
@@ -629,7 +615,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea7.setWrapStyleWord(true);
         jTextArea7.setEditable(false);
         jTextArea7.setText("Información del Guia 1");
-        jTextArea7.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.013)));
+        jTextArea7.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane7.setViewportView(jTextArea7);
         jScrollPane7.setBounds(datos);
@@ -649,11 +635,10 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro7.setEditable(false);
         registro7.setBackground(new Color(0, 0, 0, 0));
         registro7.setText("   Datos  Generales: \nEdad:   25       Sexo: Masculino   \n" + "Ocupacion:   Guia \n" + "\n\n\n  Analisis de personalidad: \n"
-                +"Amigable, conocedor, paciente, comunicativo, servicial");
-        registro7.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
+                + "Amigable, conocedor, paciente, comunicativo, servicial");
+        registro7.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro7.setBounds(registros);
         jPanel7.add(registro7);
-
 
         jPanel8.setBackground(new Color(0, 0, 0, 0));
         jPanel8.setLayout(null);
@@ -661,7 +646,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
         jLabel16.setText("Guia 2");
         jLabel16.setBounds(nombre);
-        jLabel16.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabel16.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel16.setForeground(Color.black);
         jPanel8.add(jLabel16);
 
@@ -676,7 +661,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         }
 
         if (imagen15 != null) {
-            ImageIcon icono15 = new ImageIcon(imagen15.getScaledInstance((int) (tamPant.width*0.11), (int) (tamPant.height*0.13), Image.SCALE_SMOOTH));
+            ImageIcon icono15 = new ImageIcon(imagen15.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
             jLabel15.setIcon(icono15);
         }
         jLabel15.setBorder(new LineBorder(Color.black, 2, true));
@@ -686,7 +671,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         JLabel jLabelR8 = new JLabel();
         jLabelR8.setText("Datos relacionados con la investigacion");
         jLabelR8.setBounds(labelDatos);
-        jLabelR8.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabelR8.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabelR8.setForeground(Color.black);
         jPanel8.add(jLabelR8);
 
@@ -701,7 +686,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea8.setWrapStyleWord(true);
         jTextArea8.setEditable(false);
         jTextArea8.setText("Información del Guia 2");
-        jTextArea8.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.013)));
+        jTextArea8.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane8.setViewportView(jTextArea8);
         jScrollPane8.setBounds(datos);
@@ -721,11 +706,10 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro8.setEditable(false);
         registro8.setBackground(new Color(0, 0, 0, 0));
         registro8.setText("   Datos  Generales: \nEdad:   27       Sexo: Femenino   \n" + "Ocupacion:   Guia \n" + "\n\n\n  Analisis de personalidad: \n"
-                +"Energica, entusiasta, extrovertida, carismática, alegre");
-        registro8.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
+                + "Energica, entusiasta, extrovertida, carismática, alegre");
+        registro8.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro8.setBounds(registros);
         jPanel8.add(registro8);
-
 
         jPanel9.setBackground(new Color(0, 0, 0, 0));
         jPanel9.setLayout(null);
@@ -733,7 +717,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
         jLabel18.setText("Seguridad");
         jLabel18.setBounds(nombre);
-        jLabel18.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabel18.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel18.setForeground(Color.black);
         jPanel9.add(jLabel18);
 
@@ -748,7 +732,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         }
 
         if (imagen17 != null) {
-            ImageIcon icono17 = new ImageIcon(imagen17.getScaledInstance((int) (tamPant.width*0.11), (int) (tamPant.height*0.13), Image.SCALE_SMOOTH));
+            ImageIcon icono17 = new ImageIcon(imagen17.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
             jLabel17.setIcon(icono17);
         }
         jLabel17.setBorder(new LineBorder(Color.black, 2, true));
@@ -758,7 +742,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         JLabel jLabelR9 = new JLabel();
         jLabelR9.setText("Datos relacionados con la investigacion");
         jLabelR9.setBounds(labelDatos);
-        jLabelR9.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabelR9.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabelR9.setForeground(Color.black);
         jPanel9.add(jLabelR9);
 
@@ -773,7 +757,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea9.setWrapStyleWord(true);
         jTextArea9.setEditable(false);
         jTextArea9.setText("Información del Seguridad");
-        jTextArea9.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.013)));
+        jTextArea9.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane9.setViewportView(jTextArea9);
         jScrollPane9.setBounds(datos);
@@ -793,11 +777,10 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro9.setEditable(false);
         registro9.setBackground(new Color(0, 0, 0, 0));
         registro9.setText("   Datos  Generales: \nEdad:   40       Sexo: Masculino   \n" + "Ocupacion:   Seguridad \n" + "\n\n\n  Analisis de personalidad: \n"
-                +"Vigilante, fuerte, protector, serio, confiable");
-        registro9.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
+                + "Vigilante, fuerte, protector, serio, confiable");
+        registro9.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro9.setBounds(registros);
         jPanel9.add(registro9);
-
 
         jPanel10.setBackground(new Color(0, 0, 0, 0));
         jPanel10.setLayout(null);
@@ -805,7 +788,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
         jLabel20.setText("Vagabundo");
         jLabel20.setBounds(nombre);
-        jLabel20.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabel20.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel20.setForeground(Color.black);
         jPanel10.add(jLabel20);
 
@@ -820,7 +803,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         }
 
         if (imagen19 != null) {
-            ImageIcon icono19 = new ImageIcon(imagen19.getScaledInstance((int) (tamPant.width*0.11), (int) (tamPant.height*0.13), Image.SCALE_SMOOTH));
+            ImageIcon icono19 = new ImageIcon(imagen19.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
             jLabel19.setIcon(icono19);
         }
         jLabel19.setBorder(new LineBorder(Color.black, 2, true));
@@ -830,7 +813,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         JLabel jLabelR10 = new JLabel();
         jLabelR10.setText("Datos relacionados con la investigacion");
         jLabelR10.setBounds(labelDatos);
-        jLabelR10.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabelR10.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabelR10.setForeground(Color.black);
         jPanel10.add(jLabelR10);
 
@@ -845,7 +828,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea10.setWrapStyleWord(true);
         jTextArea10.setEditable(false);
         jTextArea10.setText("Información del Vagabundo");
-        jTextArea10.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.013)));
+        jTextArea10.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane10.setViewportView(jTextArea10);
         jScrollPane10.setBounds(datos);
@@ -865,8 +848,8 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro10.setEditable(false);
         registro10.setBackground(new Color(0, 0, 0, 0));
         registro10.setText("   Datos  Generales: \nEdad:   55       Sexo: Masculino   \n" + "Ocupacion:   Vagabundo \n" + "\n\n\n  Analisis de personalidad: \n"
-                +"Misterioso, observador, solitario, sabio, marginal");
-        registro10.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
+                + "Misterioso, observador, solitario, sabio, marginal");
+        registro10.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro10.setBounds(registros);
         jPanel10.add(registro10);
 
@@ -876,7 +859,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
         jLabel22.setText("Victima");
         jLabel22.setBounds(nombre);
-        jLabel22.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabel22.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel22.setForeground(Color.black);
         jPanel11.add(jLabel22);
 
@@ -891,7 +874,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         }
 
         if (imagen21 != null) {
-            ImageIcon icono21 = new ImageIcon(imagen21.getScaledInstance((int) (tamPant.width*0.11), (int) (tamPant.height*0.13), Image.SCALE_SMOOTH));
+            ImageIcon icono21 = new ImageIcon(imagen21.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
             jLabel21.setIcon(icono21);
         }
         jLabel21.setBorder(new LineBorder(Color.black, 2, true));
@@ -901,7 +884,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         JLabel jLabelR11 = new JLabel();
         jLabelR11.setText("Datos relacionados con la investigacion");
         jLabelR11.setBounds(labelDatos);
-        jLabelR11.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.016)));
+        jLabelR11.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabelR11.setForeground(Color.black);
         jPanel11.add(jLabelR11);
 
@@ -916,7 +899,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea11.setWrapStyleWord(true);
         jTextArea11.setEditable(false);
         jTextArea11.setText("Información de la Victima");
-        jTextArea11.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.013)));
+        jTextArea11.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane11.setViewportView(jTextArea11);
         jScrollPane11.setBounds(datos);
@@ -936,16 +919,15 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro11.setEditable(false);
         registro11.setBackground(new Color(0, 0, 0, 0));
         registro11.setText("   Datos  Generales: \nEdad:   32       Sexo: Masculino   \n" + "Ocupacion:   Empresario \n" + "\n\n\n  Analisis de personalidad: \n"
-                +"Carismático, ambicioso, popular, influyente, exitoso");
-        registro11.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.015)));
+                + "Carismático, ambicioso, popular, influyente, exitoso");
+        registro11.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro11.setBounds(registros);
         jPanel11.add(registro11);
 
-
         getContentPane().add(contenedor);
         botonSalir = new JButton("Salir");
-        botonSalir.setBounds((int) (tamPant.width*0.9), (int) (tamPant.height*0.03), (int) (tamPant.width*0.08), (int) (tamPant.height*0.05));
-        botonSalir.setFont(new Font("Viner Hand ITC", 0, (int)(tamPant.width*0.012)));
+        botonSalir.setBounds((int) (tamPant.width * 0.9), (int) (tamPant.height * 0.03), (int) (tamPant.width * 0.08), (int) (tamPant.height * 0.05));
+        botonSalir.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.012)));
         botonSalir.setForeground(Color.white);
         botonSalir.setBackground(new Color(100, 13, 13));
         botonSalir.setBorder(new LineBorder(Color.black, 2));
@@ -967,20 +949,47 @@ public class DiarioInterfaz extends javax.swing.JDialog {
             throw new RuntimeException(e);
         }
 
-        ImageIcon icono22 = new ImageIcon(imagen22.getScaledInstance((int) (tamPant.width*0.9), (int) (tamPant.height*0.83), Image.SCALE_SMOOTH));
+        ImageIcon icono22 = new ImageIcon(imagen22.getScaledInstance((int) (tamPant.width * 0.9), (int) (tamPant.height * 0.83), Image.SCALE_SMOOTH));
         fondo.setIcon(icono22);
-        fondo.setBounds((int) (tamPant.width*0.06),(int) (tamPant.height*0.1), (int) (tamPant.width*0.9), (int) (tamPant.height*0.9));
+        fondo.setBounds((int) (tamPant.width * 0.06), (int) (tamPant.height * 0.1), (int) (tamPant.width * 0.9), (int) (tamPant.height * 0.9));
         getContentPane().add(fondo);
 
-        boton1 = new JButton("Investigacion");
-        boton1.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.009)));
-        boton1.setBounds((int) (tamPant.width*0.13),(int) (tamPant.height*0.09), (int) (tamPant.width*0.08), (int) (tamPant.height*0.07));
+        // Definir dimensiones de los botones
+        // Definir dimensiones de los botones
+        int botonAnchoGrande = (int) (tamPant.width * 0.09);
+        int botonAnchoNormal = (int) (tamPant.width * 0.07);
+        int botonAlto = (int) (tamPant.height * 0.07);
+
+// Espacio entre botones centrales (5 píxeles)
+        int espacioEntreCentrales = 5;
+// Espacio extra para separación de botones extremos (15 píxeles para que se note más)
+        int espacioExtraExtremos = 15;
+
+// Posiciones iniciales ajustadas
+        int xInicial = (int) (tamPant.width * 0.15);
+        int yPos = (int) (tamPant.height * 0.09);
+        int xPos = xInicial;
+
+// Botón 1: Investigacion (más grande, separado del grupo central)
+        boton1 = new JButton();
+        try {
+            BufferedImage imagenBoton1 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Victima.png"));
+            if (imagenBoton1 != null) {
+                ImageIcon iconoBoton1 = new ImageIcon(imagenBoton1.getScaledInstance(botonAnchoGrande, botonAlto, Image.SCALE_SMOOTH));
+                boton1.setIcon(iconoBoton1);
+            }
+        } catch (IOException e) {
+            System.err.println("No se pudo cargar la imagen del botón 1: " + e.getMessage());
+        }
+        boton1.setToolTipText("Investigacion");
+        boton1.setBounds(xPos, yPos, botonAnchoGrande, botonAlto);
         boton1.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                boton1mouseEntered(evt);
+                boton1.setBorder(new LineBorder(Color.YELLOW, 2));
             }
+
             public void mouseExited(MouseEvent evt) {
-                boton1MouseExited(evt);
+                boton1.setBorder(null);
             }
         });
         boton1.addActionListener(new ActionListener() {
@@ -989,17 +998,33 @@ public class DiarioInterfaz extends javax.swing.JDialog {
             }
         });
         boton1.setFocusPainted(false);
+        boton1.setContentAreaFilled(false);
+        boton1.setBorderPainted(false);
         getContentPane().add(boton1);
 
-        boton2 = new JButton("Jefe");
-        boton2.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.009)));
-        boton2.setBounds((int) (tamPant.width*0.22),(int) (tamPant.height*0.09), (int) (tamPant.width*0.06), (int) (tamPant.height*0.07));
+// Actualizar posición X para el siguiente botón con espacio extra
+        xPos += botonAnchoGrande + espacioExtraExtremos;
+
+// Botón 2: Jefe
+        boton2 = new JButton();
+        try {
+            BufferedImage imagenBoton2 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/capi.png"));
+            if (imagenBoton2 != null) {
+                ImageIcon iconoBoton2 = new ImageIcon(imagenBoton2.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                boton2.setIcon(iconoBoton2);
+            }
+        } catch (IOException e) {
+            System.err.println("No se pudo cargar la imagen del botón 2: " + e.getMessage());
+        }
+        boton2.setToolTipText("Jefe");
+        boton2.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
         boton2.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                boton2mouseEntered(evt);
+                boton2.setBorder(new LineBorder(Color.YELLOW, 2));
             }
+
             public void mouseExited(MouseEvent evt) {
-                boton2MouseExited(evt);
+                boton2.setBorder(null);
             }
         });
         boton2.addActionListener(new ActionListener() {
@@ -1008,17 +1033,33 @@ public class DiarioInterfaz extends javax.swing.JDialog {
             }
         });
         boton2.setFocusPainted(false);
+        boton2.setContentAreaFilled(false);
+        boton2.setBorderPainted(false);
         getContentPane().add(boton2);
 
-        boton3 = new JButton("Policia");
-        boton3.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.009)));
-        boton3.setBounds((int) (tamPant.width*0.29),(int) (tamPant.height*0.09), (int) (tamPant.width*0.06), (int) (tamPant.height*0.07));
+// Actualizar posición X para siguiente botón
+        xPos += botonAnchoNormal + espacioEntreCentrales;
+
+// Botón 3: Policia
+        boton3 = new JButton();
+        try {
+            BufferedImage imagenBoton3 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Policia.png"));
+            if (imagenBoton3 != null) {
+                ImageIcon iconoBoton3 = new ImageIcon(imagenBoton3.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                boton3.setIcon(iconoBoton3);
+            }
+        } catch (IOException e) {
+            System.err.println("No se pudo cargar la imagen del botón 3: " + e.getMessage());
+        }
+        boton3.setToolTipText("Policia");
+        boton3.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
         boton3.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                boton3mouseEntered(evt);
+                boton3.setBorder(new LineBorder(Color.YELLOW, 2));
             }
+
             public void mouseExited(MouseEvent evt) {
-                boton3MouseExited(evt);
+                boton3.setBorder(null);
             }
         });
         boton3.addActionListener(new ActionListener() {
@@ -1027,17 +1068,33 @@ public class DiarioInterfaz extends javax.swing.JDialog {
             }
         });
         boton3.setFocusPainted(false);
+        boton3.setContentAreaFilled(false);
+        boton3.setBorderPainted(false);
         getContentPane().add(boton3);
 
-        boton4 = new JButton("Dueño");
-        boton4.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.009)));
-        boton4.setBounds((int) (tamPant.width*0.36),(int) (tamPant.height*0.09), (int) (tamPant.width*0.06), (int) (tamPant.height*0.07));
+// Actualizar posición X para siguiente botón
+        xPos += botonAnchoNormal + espacioEntreCentrales;
+
+// Botón 4: Dueño
+        boton4 = new JButton();
+        try {
+            BufferedImage imagenBoton4 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Dueno.png"));
+            if (imagenBoton4 != null) {
+                ImageIcon iconoBoton4 = new ImageIcon(imagenBoton4.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                boton4.setIcon(iconoBoton4);
+            }
+        } catch (IOException e) {
+            System.err.println("No se pudo cargar la imagen del botón 4: " + e.getMessage());
+        }
+        boton4.setToolTipText("Dueño");
+        boton4.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
         boton4.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                boton4mouseEntered(evt);
+                boton4.setBorder(new LineBorder(Color.YELLOW, 2));
             }
+
             public void mouseExited(MouseEvent evt) {
-                boton4MouseExited(evt);
+                boton4.setBorder(null);
             }
         });
         boton4.addActionListener(new ActionListener() {
@@ -1046,17 +1103,33 @@ public class DiarioInterfaz extends javax.swing.JDialog {
             }
         });
         boton4.setFocusPainted(false);
+        boton4.setContentAreaFilled(false);
+        boton4.setBorderPainted(false);
         getContentPane().add(boton4);
 
-        boton5 = new JButton("Esposa");
-        boton5.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.009)));
-        boton5.setBounds((int) (tamPant.width*0.43),(int) (tamPant.height*0.09), (int) (tamPant.width*0.06), (int) (tamPant.height*0.07));
+// Actualizar posición X para siguiente botón
+        xPos += botonAnchoNormal + espacioEntreCentrales;
+
+// Botón 5: Esposa
+        boton5 = new JButton();
+        try {
+            BufferedImage imagenBoton5 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Esposa.png"));
+            if (imagenBoton5 != null) {
+                ImageIcon iconoBoton5 = new ImageIcon(imagenBoton5.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                boton5.setIcon(iconoBoton5);
+            }
+        } catch (IOException e) {
+            System.err.println("No se pudo cargar la imagen del botón 5: " + e.getMessage());
+        }
+        boton5.setToolTipText("Esposa");
+        boton5.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
         boton5.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                boton5mouseEntered(evt);
+                boton5.setBorder(new LineBorder(Color.YELLOW, 2));
             }
+
             public void mouseExited(MouseEvent evt) {
-                boton5MouseExited(evt);
+                boton5.setBorder(null);
             }
         });
         boton5.addActionListener(new ActionListener() {
@@ -1065,17 +1138,33 @@ public class DiarioInterfaz extends javax.swing.JDialog {
             }
         });
         boton5.setFocusPainted(false);
+        boton5.setContentAreaFilled(false);
+        boton5.setBorderPainted(false);
         getContentPane().add(boton5);
 
-        boton6 = new JButton("Secretaria");
-        boton6.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.009)));
-        boton6.setBounds((int) (tamPant.width*0.5),(int) (tamPant.height*0.09), (int) (tamPant.width*0.06), (int) (tamPant.height*0.07));
+// Actualizar posición X para siguiente botón
+        xPos += botonAnchoNormal + espacioEntreCentrales;
+
+// Botón 6: Secretaria
+        boton6 = new JButton();
+        try {
+            BufferedImage imagenBoton6 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Secretaria.png"));
+            if (imagenBoton6 != null) {
+                ImageIcon iconoBoton6 = new ImageIcon(imagenBoton6.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                boton6.setIcon(iconoBoton6);
+            }
+        } catch (IOException e) {
+            System.err.println("No se pudo cargar la imagen del botón 6: " + e.getMessage());
+        }
+        boton6.setToolTipText("Secretaria");
+        boton6.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
         boton6.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                boton6mouseEntered(evt);
+                boton6.setBorder(new LineBorder(Color.YELLOW, 2));
             }
+
             public void mouseExited(MouseEvent evt) {
-                boton6MouseExited(evt);
+                boton6.setBorder(null);
             }
         });
         boton6.addActionListener(new ActionListener() {
@@ -1084,17 +1173,33 @@ public class DiarioInterfaz extends javax.swing.JDialog {
             }
         });
         boton6.setFocusPainted(false);
+        boton6.setContentAreaFilled(false);
+        boton6.setBorderPainted(false);
         getContentPane().add(boton6);
 
-        boton7 = new JButton("Guia 1");
-        boton7.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.009)));
-        boton7.setBounds((int) (tamPant.width*0.57),(int) (tamPant.height*0.09), (int) (tamPant.width*0.06), (int) (tamPant.height*0.07));
+// Actualizar posición X para siguiente botón
+        xPos += botonAnchoNormal + espacioEntreCentrales;
+
+// Botón 7: Guia 1
+        boton7 = new JButton();
+        try {
+            BufferedImage imagenBoton7 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Guia.png"));
+            if (imagenBoton7 != null) {
+                ImageIcon iconoBoton7 = new ImageIcon(imagenBoton7.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                boton7.setIcon(iconoBoton7);
+            }
+        } catch (IOException e) {
+            System.err.println("No se pudo cargar la imagen del botón 7: " + e.getMessage());
+        }
+        boton7.setToolTipText("Guia 1");
+        boton7.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
         boton7.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                boton7mouseEntered(evt);
+                boton7.setBorder(new LineBorder(Color.YELLOW, 2));
             }
+
             public void mouseExited(MouseEvent evt) {
-                boton7MouseExited(evt);
+                boton7.setBorder(null);
             }
         });
         boton7.addActionListener(new ActionListener() {
@@ -1103,17 +1208,33 @@ public class DiarioInterfaz extends javax.swing.JDialog {
             }
         });
         boton7.setFocusPainted(false);
+        boton7.setContentAreaFilled(false);
+        boton7.setBorderPainted(false);
         getContentPane().add(boton7);
 
-        boton8 = new JButton("Guia 2");
-        boton8.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.009)));
-        boton8.setBounds((int) (tamPant.width*0.64),(int) (tamPant.height*0.09), (int) (tamPant.width*0.06), (int) (tamPant.height*0.07));
+// Actualizar posición X para siguiente botón
+        xPos += botonAnchoNormal + espacioEntreCentrales;
+
+// Botón 8: Guia 2
+        boton8 = new JButton();
+        try {
+            BufferedImage imagenBoton8 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Amante.png"));
+            if (imagenBoton8 != null) {
+                ImageIcon iconoBoton8 = new ImageIcon(imagenBoton8.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                boton8.setIcon(iconoBoton8);
+            }
+        } catch (IOException e) {
+            System.err.println("No se pudo cargar la imagen del botón 8: " + e.getMessage());
+        }
+        boton8.setToolTipText("Guia 2");
+        boton8.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
         boton8.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                boton8mouseEntered(evt);
+                boton8.setBorder(new LineBorder(Color.YELLOW, 2));
             }
+
             public void mouseExited(MouseEvent evt) {
-                boton8MouseExited(evt);
+                boton8.setBorder(null);
             }
         });
         boton8.addActionListener(new ActionListener() {
@@ -1122,17 +1243,33 @@ public class DiarioInterfaz extends javax.swing.JDialog {
             }
         });
         boton8.setFocusPainted(false);
+        boton8.setContentAreaFilled(false);
+        boton8.setBorderPainted(false);
         getContentPane().add(boton8);
 
-        boton9 = new JButton("Seguridad");
-        boton9.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.009)));
-        boton9.setBounds((int) (tamPant.width*0.71),(int) (tamPant.height*0.09), (int) (tamPant.width*0.06), (int) (tamPant.height*0.07));
+// Actualizar posición X para siguiente botón
+        xPos += botonAnchoNormal + espacioEntreCentrales;
+
+// Botón 9: Seguridad
+        boton9 = new JButton();
+        try {
+            BufferedImage imagenBoton9 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Seguridad.png"));
+            if (imagenBoton9 != null) {
+                ImageIcon iconoBoton9 = new ImageIcon(imagenBoton9.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                boton9.setIcon(iconoBoton9);
+            }
+        } catch (IOException e) {
+            System.err.println("No se pudo cargar la imagen del botón 9: " + e.getMessage());
+        }
+        boton9.setToolTipText("Seguridad");
+        boton9.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
         boton9.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                boton9mouseEntered(evt);
+                boton9.setBorder(new LineBorder(Color.YELLOW, 2));
             }
+
             public void mouseExited(MouseEvent evt) {
-                boton9MouseExited(evt);
+                boton9.setBorder(null);
             }
         });
         boton9.addActionListener(new ActionListener() {
@@ -1141,17 +1278,33 @@ public class DiarioInterfaz extends javax.swing.JDialog {
             }
         });
         boton9.setFocusPainted(false);
+        boton9.setContentAreaFilled(false);
+        boton9.setBorderPainted(false);
         getContentPane().add(boton9);
 
-        boton10 = new JButton("Vagabundo");
-        boton10.setFont(new Font("Segoe UI", 0, (int)(tamPant.width*0.009)));
-        boton10.setBounds((int) (tamPant.width*0.78),(int) (tamPant.height*0.09), (int) (tamPant.width*0.08), (int) (tamPant.height*0.07));
+// Actualizar posición X con espacio extra antes del último botón
+        xPos += botonAnchoNormal + espacioExtraExtremos;
+
+// Botón 10: Vagabundo - MÁS GRANDE (separado del grupo central)
+        boton10 = new JButton();
+        try {
+            BufferedImage imagenBoton10 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Vagabundo 2.png"));
+            if (imagenBoton10 != null) {
+                ImageIcon iconoBoton10 = new ImageIcon(imagenBoton10.getScaledInstance(botonAnchoGrande, botonAlto, Image.SCALE_SMOOTH));
+                boton10.setIcon(iconoBoton10);
+            }
+        } catch (IOException e) {
+            System.err.println("No se pudo cargar la imagen del botón 10: " + e.getMessage());
+        }
+        boton10.setToolTipText("Vagabundo");
+        boton10.setBounds(xPos, yPos, botonAnchoGrande, botonAlto);
         boton10.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
-                boton10mouseEntered(evt);
+                boton10.setBorder(new LineBorder(Color.YELLOW, 2));
             }
+
             public void mouseExited(MouseEvent evt) {
-                boton10MouseExited(evt);
+                boton10.setBorder(null);
             }
         });
         boton10.addActionListener(new ActionListener() {
@@ -1160,9 +1313,9 @@ public class DiarioInterfaz extends javax.swing.JDialog {
             }
         });
         boton10.setFocusPainted(false);
+        boton10.setContentAreaFilled(false);
+        boton10.setBorderPainted(false);
         getContentPane().add(boton10);
-
-
     }
     private void boton1ActionPerformed(ActionEvent evt) {
         contenedor.removeAll();

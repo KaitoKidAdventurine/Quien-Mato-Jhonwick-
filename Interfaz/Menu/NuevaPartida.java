@@ -193,7 +193,7 @@ public class NuevaPartida extends javax.swing.JFrame {
             timer.schedule(tarea,1000);
             tuto1.setVisible(true);
         }
-        // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
+
         else
         {
             if(comprobacionActionPerformed()) {
@@ -220,7 +220,7 @@ public class NuevaPartida extends javax.swing.JFrame {
             timer.schedule(tarea,1000);
             tuto1.setVisible(true);
         }
-        // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
+
         else
         {
             if(comprobacionActionPerformed()) {
@@ -245,7 +245,7 @@ public class NuevaPartida extends javax.swing.JFrame {
             timer.schedule(tarea,1000);
             tuto1.setVisible(true);
         }
-        // si existe falta colocar que si desea eliminar los datos y comenzar la partida de nuevo.
+
         else
         {
             if(comprobacionActionPerformed()) {
