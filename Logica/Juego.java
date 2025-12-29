@@ -1,5 +1,7 @@
 package Logica;
 
+import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
+
 import java.util.*;
 import javax.swing.*;
 
@@ -284,7 +286,7 @@ public class Juego {
                 secretaria, true);
 
         // Dato clave 1
-       /* añadirAlDiario("Secretaria", "La secretaria tuvo una relación amorosa con el economista.");*/
+        /* añadirAlDiario("Secretaria", "La secretaria tuvo una relación amorosa con el economista.");*/
 
         Dialogo d7 = new Dialogo("Gracias por su sinceridad. Esto podría ser importante.", "DetectiveEntrada1", detective, true);
 
@@ -599,6 +601,126 @@ public class Juego {
             Dialogo despedida6b = new Dialogo("Aquí estaré. No tengo a dónde ir.", "VagabundoCallejon1", vagabundo, true);
         }
 
+        BinaryTreeNode<Dialogo> node1 = new BinaryTreeNode<>(d1);
+        BinaryTreeNode<Dialogo> node2 = new BinaryTreeNode<>(d2);
+        BinaryTreeNode<Dialogo> node3 = new BinaryTreeNode<>(vacio1);
+        BinaryTreeNode<Dialogo> node4 = new BinaryTreeNode<>(vacio2);
+        BinaryTreeNode<Dialogo> node5 = new BinaryTreeNode<>(d3);
+        BinaryTreeNode<Dialogo> node6 = new BinaryTreeNode<>(d4);
+        BinaryTreeNode<Dialogo> node7 = new BinaryTreeNode<>(d5);
+        BinaryTreeNode<Dialogo> node8 = new BinaryTreeNode<>(d6);
+        BinaryTreeNode<Dialogo> node9 = new BinaryTreeNode<>(d7);
+        BinaryTreeNode<Dialogo> node10 = new BinaryTreeNode<>(vacio3);
+        BinaryTreeNode<Dialogo> node11 = new BinaryTreeNode<>(d8);
+        BinaryTreeNode<Dialogo> node12 = new BinaryTreeNode<>(d9);
+        BinaryTreeNode<Dialogo> node13 = new BinaryTreeNode<>(cierre);
+        BinaryTreeNode<Dialogo> node14 = new BinaryTreeNode<>(despedida);
+        BinaryTreeNode<Dialogo> node15 = new BinaryTreeNode<>(s1);
+        BinaryTreeNode<Dialogo> node16 = new BinaryTreeNode<>(s2);
+        BinaryTreeNode<Dialogo> node17 = new BinaryTreeNode<>(s3);
+        BinaryTreeNode<Dialogo> node18 = new BinaryTreeNode<>(s4);
+        BinaryTreeNode<Dialogo> node19 = new BinaryTreeNode<>(vacio1a);
+        BinaryTreeNode<Dialogo> node20 = new BinaryTreeNode<>(vacio1b);
+        BinaryTreeNode<Dialogo> node21 = new BinaryTreeNode<>(vacio2a);
+        BinaryTreeNode<Dialogo> node22 = new BinaryTreeNode<>(vacio2b);
+        BinaryTreeNode<Dialogo> node23 = new BinaryTreeNode<>(c5);
+        BinaryTreeNode<Dialogo> node24 = new BinaryTreeNode<>(c6);
+        BinaryTreeNode<Dialogo> node25 = new BinaryTreeNode<>(c7);
+        BinaryTreeNode<Dialogo> node26 = new BinaryTreeNode<>(c8);
+        BinaryTreeNode<Dialogo> node27 = new BinaryTreeNode<>(vacio3a);
+        BinaryTreeNode<Dialogo> node28 = new BinaryTreeNode<>(vacio3b);
+        BinaryTreeNode<Dialogo> node29 = new BinaryTreeNode<>(c9);
+        BinaryTreeNode<Dialogo> node30 = new BinaryTreeNode<>(c10);
+        BinaryTreeNode<Dialogo> node31 = new BinaryTreeNode<>(c11);
+        BinaryTreeNode<Dialogo> node32 = new BinaryTreeNode<>(d12);
+        BinaryTreeNode<Dialogo> node33 = new BinaryTreeNode<>(d13);
+        BinaryTreeNode<Dialogo> node34 = new BinaryTreeNode<>(d14);
+        BinaryTreeNode<Dialogo> node35 = new BinaryTreeNode<>(cierre2);
+        BinaryTreeNode<Dialogo> node36 = new BinaryTreeNode<>(despedida2);
+        BinaryTreeNode<Dialogo> node37 = new BinaryTreeNode<>(b1);
+        BinaryTreeNode<Dialogo> node38 = new BinaryTreeNode<>(b2);
+        BinaryTreeNode<Dialogo> node39 = new BinaryTreeNode<>(b3);
+        BinaryTreeNode<Dialogo> node40 = new BinaryTreeNode<>(b4);
+        BinaryTreeNode<Dialogo> node41 = new BinaryTreeNode<>(vacio4a);
+        BinaryTreeNode<Dialogo> node42 = new BinaryTreeNode<>(vacio4b);
+        BinaryTreeNode<Dialogo> node43 = new BinaryTreeNode<>(vacio5a);
+        BinaryTreeNode<Dialogo> node44 = new BinaryTreeNode<>(vacio5b);
+        BinaryTreeNode<Dialogo> node45 = new BinaryTreeNode<>(o5);
+        BinaryTreeNode<Dialogo> node46 = new BinaryTreeNode<>(o6);
+        BinaryTreeNode<Dialogo> node47 = new BinaryTreeNode<>(vacio6a);
+        BinaryTreeNode<Dialogo> node48 = new BinaryTreeNode<>(vacio6b);
+        BinaryTreeNode<Dialogo> node49 = new BinaryTreeNode<>(u7);
+        BinaryTreeNode<Dialogo> node50 = new BinaryTreeNode<>(u8);
+        BinaryTreeNode<Dialogo> node51 = new BinaryTreeNode<>(u9);
+        BinaryTreeNode<Dialogo> node52 = new BinaryTreeNode<>(u10);
+        BinaryTreeNode<Dialogo> node53 = new BinaryTreeNode<>(u11);
+        BinaryTreeNode<Dialogo> node54 = new BinaryTreeNode<>(u12);
+        BinaryTreeNode<Dialogo> node55 = new BinaryTreeNode<>(cierre3);
+        BinaryTreeNode<Dialogo> node56 = new BinaryTreeNode<>(despedida3);
+        BinaryTreeNode<Dialogo> node57 = new BinaryTreeNode<>(j1);
+        BinaryTreeNode<Dialogo> node58 = new BinaryTreeNode<>(j2);
+        BinaryTreeNode<Dialogo> node59 = new BinaryTreeNode<>(j3);
+        BinaryTreeNode<Dialogo> node60 = new BinaryTreeNode<>(j4);
+        BinaryTreeNode<Dialogo> node61 = new BinaryTreeNode<>(vacio7a);
+        BinaryTreeNode<Dialogo> node62 = new BinaryTreeNode<>(vacio7b);
+        BinaryTreeNode<Dialogo> node63 = new BinaryTreeNode<>(vacio8a);
+        BinaryTreeNode<Dialogo> node64 = new BinaryTreeNode<>(vacio8b);
+        BinaryTreeNode<Dialogo> node65 = new BinaryTreeNode<>(desbloquear1);
+        BinaryTreeNode<Dialogo> node66 = new BinaryTreeNode<>(desbloquear2);
+        BinaryTreeNode<Dialogo> node67 = new BinaryTreeNode<>(t7);
+        BinaryTreeNode<Dialogo> node68 = new BinaryTreeNode<>(t8);
+        BinaryTreeNode<Dialogo> node69 = new BinaryTreeNode<>(d15);
+        BinaryTreeNode<Dialogo> node70 = new BinaryTreeNode<>(vacio9a);
+        BinaryTreeNode<Dialogo> node71 = new BinaryTreeNode<>(cierre4);
+        BinaryTreeNode<Dialogo> node72 = new BinaryTreeNode<>(despedida4);
+        BinaryTreeNode<Dialogo> node73 = new BinaryTreeNode<>(guia1);
+        BinaryTreeNode<Dialogo> node74 = new BinaryTreeNode<>(guia3);
+        BinaryTreeNode<Dialogo> node75 = new BinaryTreeNode<>(guia4);
+        BinaryTreeNode<Dialogo> node76 = new BinaryTreeNode<>(guia5);
+        BinaryTreeNode<Dialogo> node77 = new BinaryTreeNode<>(vacio10a);
+        BinaryTreeNode<Dialogo> node78 = new BinaryTreeNode<>(vacio10b);
+        BinaryTreeNode<Dialogo> node79 = new BinaryTreeNode<>(vacio11a);
+        BinaryTreeNode<Dialogo> node80 = new BinaryTreeNode<>(vacio11b);
+        BinaryTreeNode<Dialogo> node81 = new BinaryTreeNode<>(p5);
+        BinaryTreeNode<Dialogo> node82 = new BinaryTreeNode<>(p6);
+        BinaryTreeNode<Dialogo> node83 = new BinaryTreeNode<>(vacio12a);
+        BinaryTreeNode<Dialogo> node84 = new BinaryTreeNode<>(vacio12b);
+        BinaryTreeNode<Dialogo> node85 = new BinaryTreeNode<>(detalle1);
+        BinaryTreeNode<Dialogo> node86 = new BinaryTreeNode<>(detalle2);
+        BinaryTreeNode<Dialogo> node87 = new BinaryTreeNode<>(detalle3);
+        BinaryTreeNode<Dialogo> node88 = new BinaryTreeNode<>(detalle4);
+        BinaryTreeNode<Dialogo> node89 = new BinaryTreeNode<>(inter1);
+        BinaryTreeNode<Dialogo> node90 = new BinaryTreeNode<>(inter2);
+        BinaryTreeNode<Dialogo> node91 = new BinaryTreeNode<>(inter3);
+        BinaryTreeNode<Dialogo> node92 = new BinaryTreeNode<>(det1);
+        BinaryTreeNode<Dialogo> node93 = new BinaryTreeNode<>(det2);
+        BinaryTreeNode<Dialogo> node94 = new BinaryTreeNode<>(det3);
+        BinaryTreeNode<Dialogo> node95 = new BinaryTreeNode<>(det4);
+        BinaryTreeNode<Dialogo> node96 = new BinaryTreeNode<>(cierre5);
+        BinaryTreeNode<Dialogo> node97 = new BinaryTreeNode<>(despedida5);
+        BinaryTreeNode<Dialogo> node98 = new BinaryTreeNode<>(reflexion1);
+        BinaryTreeNode<Dialogo> node99 = new BinaryTreeNode<>(reflexion2);
+        BinaryTreeNode<Dialogo> node100 = new BinaryTreeNode<>(vagab1);
+        BinaryTreeNode<Dialogo> node101 = new BinaryTreeNode<>(vagab2);
+        BinaryTreeNode<Dialogo> node102 = new BinaryTreeNode<>(vagab3);
+        BinaryTreeNode<Dialogo> node103 = new BinaryTreeNode<>(vagab4);
+        BinaryTreeNode<Dialogo> node104 = new BinaryTreeNode<>(vacio13a);
+        BinaryTreeNode<Dialogo> node105 = new BinaryTreeNode<>(vacio14a);
+        BinaryTreeNode<Dialogo> node106 = new BinaryTreeNode<>(raras1);
+        BinaryTreeNode<Dialogo> node107 = new BinaryTreeNode<>(raras2);
+        BinaryTreeNode<Dialogo> node108 = new BinaryTreeNode<>(vacio15a);
+        /*
+        BinaryTreeNode<Dialogo> node109 = new BinaryTreeNode<>(v1);
+        BinaryTreeNode<Dialogo> node110 = new BinaryTreeNode<>(v2);
+        BinaryTreeNode<Dialogo> node111 = new BinaryTreeNode<>(v3);
+        BinaryTreeNode<Dialogo> node112 = new BinaryTreeNode<>(cierre6a);
+        BinaryTreeNode<Dialogo> node113 = new BinaryTreeNode<>(despedida6a);
+        BinaryTreeNode<Dialogo> node114 = new BinaryTreeNode<>(v4);
+        BinaryTreeNode<Dialogo> node115 = new BinaryTreeNode<>(v5);
+        BinaryTreeNode<Dialogo> node116 = new BinaryTreeNode<>(v6);
+        BinaryTreeNode<Dialogo> node117 = new BinaryTreeNode<>(cierre6b);
+        BinaryTreeNode<Dialogo> node118 = new BinaryTreeNode<>(despedida6b);
+        */
     }
 
 
