@@ -50,15 +50,8 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
         while (II.hasNext()) {
             ObjetoEscenario objeto = II.next();
             ObjetoMinijuego boton = new ObjetoMinijuego(objeto.getNombre());
-            boton.setBounds((int) (tamPant.width * objeto.getPosX()), (int) (tamPant.height * objeto.getPosY()), (int) (tamPant.width * objeto.getTamLargo()), (int) (tamPant.height * objeto.getTamAncho()));
-            BufferedImage imagen = null;
-            try {
-                imagen = ImageIO.read(new File(String.valueOf(objeto.getImagen())));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width * 0.04), (int) (tamPant.height * 0.11), Image.SCALE_SMOOTH));
-            boton.setBorderPainted(true);
+            boton.setBounds((int) (tamPant.width * objeto.getPosX()), (int) (tamPant.height * objeto.getPosY()), (int) (tamPant.width * objeto.getTamAncho()), (int) (tamPant.height * objeto.getTamLargo()));
+            boton.setBorderPainted(false);
             boton.setContentAreaFilled(false);
             boton.setFocusPainted(false);
             boton.addActionListener(new ActionListener() {
@@ -95,7 +88,7 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width * 0.25), tamPant.height, Image.SCALE_SMOOTH));
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width * 0.245), tamPant.height, Image.SCALE_SMOOTH));
         labelLista.setIcon(icono3);
         labelLista.setBounds(0, 0,(int) (tamPant.width * 0.25), tamPant.height );
         panelEncontrables.add(labelLista);
@@ -152,7 +145,8 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
             encontrable.setHorizontalAlignment(SwingConstants.CENTER);
             encontrable.setForeground(Color.white);
             encontrable.setText(objetosEnc.get(i).getNombre());
-            encontrable.setBounds((int) (tamPant.width * 0.02), ((int) (tamPant.height * (0.4) + (int) (tamPant.width * ((0.05) * i)))), (int) (tamPant.width * 0.15), (int) (tamPant.height * 0.05));
+            encontrable.setBounds((int) (tamPant.width * 0.02), ((int) (tamPant.height * (0.3) + (int) (tamPant.width * ((0.06) * i)))), (int) (tamPant.width * 0.21), (int) (tamPant.height * 0.1));
+            encontrable.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.018)));
             objetosEncontrables.add(encontrable);
         }
         addLabels();

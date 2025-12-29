@@ -28,7 +28,6 @@ public class Tutorial extends JFrame {
     private final Dimension tamPant;
     private Escenario tutorialParte1;
     private Escenario tutorialParte2;
-    private Escenario tutorialParte2o;
     private Escenario tutorialParte3;
     private Escenario tutorialParte4;
     private Escenario tutorialParte5;
@@ -36,18 +35,28 @@ public class Tutorial extends JFrame {
     private Escenario tutorialParte7;
     private Escenario tutorialParte8;
     private Escenario tutorialParte9;
+    private Escenario tutorialParte10;
     private Timer timer;
     private TimerTask tarea;
     private Timer timer2;
     private TimerTask tarea2;
     private JButton botonSaltar;
 
+
+
     public Tutorial() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
 
         tutorialParte1 = new Escenario("Tutorial Parte 1", "Punto inicial de partida", true);
-        tutorialParte2 = new Escenario("Tutorial Parte 2-1", "Punto inicial de partida", true);
-        tutorialParte2o = new Escenario("Tutorial Parte 2-2", "Punto inicial de partida", true);
+        tutorialParte2 = new Escenario("Tutorial Parte 2", "Punto inicial de partida", true);
+        tutorialParte3 = new Escenario("Tutorial Parte 3", "Punto inicial de partida", true);
+        tutorialParte4 = new Escenario("Tutorial Parte 4", "Punto inicial de partida", true);
+        tutorialParte5 = new Escenario("Tutorial Parte 5", "Punto inicial de partida", true);
+        tutorialParte6 = new Escenario("Tutorial Parte 6", "Punto inicial de partida", true);
+        tutorialParte7 = new Escenario("Tutorial Parte 7", "Punto inicial de partida", true);
+        tutorialParte8 = new Escenario("Tutorial Parte 8", "Punto inicial de partida", true);
+        tutorialParte9 = new Escenario("Tutorial Parte 9", "Punto inicial de partida", true);
+        tutorialParte10 = new Escenario("Tutorial Parte 10", "Punto inicial de partida", true);
 
         crearDialogosParte1();
         initComponents();
@@ -55,7 +64,6 @@ public class Tutorial extends JFrame {
         tarea = new TimerTask() {
             @Override
             public void run() {
-
                 ponerDialogoParte2();
             }
         };
@@ -83,6 +91,7 @@ public class Tutorial extends JFrame {
         cajaTexto = new JPanel();
         botonSaltar = new JButton("Saltar al Juego");
 
+
         setMinimumSize(tamPant);
         setUndecorated(true);
         setPreferredSize(tamPant);
@@ -93,8 +102,7 @@ public class Tutorial extends JFrame {
         cajaTexto.setLayout(null);
 
         // Configurar botón saltar
-        botonSaltar.setBounds((int)(tamPant.width*0.85), (int)(tamPant.height*0.05),
-                (int)(tamPant.width*0.12), (int)(tamPant.height*0.06));
+        botonSaltar.setBounds((int)(tamPant.width*0.85), (int)(tamPant.height*0.05), (int)(tamPant.width*0.12), (int)(tamPant.height*0.06));
         botonSaltar.setFont(new Font("Segoe UI", Font.BOLD, (int)(tamPant.width*0.012)));
         botonSaltar.setBackground(new Color(200, 50, 50));
         botonSaltar.setForeground(Color.WHITE);
@@ -117,6 +125,7 @@ public class Tutorial extends JFrame {
         crearDialogosParte2();
         pack();
     }
+
     public void ponerDialogoParte1() {
         if(tutorialParte1.getNodoDialActual() == null || !(tutorialParte1.getArbolDial().nodeIsLeaf(tutorialParte1.getNodoDialActual()))) {
 
@@ -142,8 +151,8 @@ public class Tutorial extends JFrame {
         }
 
         else {
-            Dialogo aux = tutorialParte1.getNodoDialActual().getInfo();
             cajaTexto.removeAll();
+            cajaTexto.setVisible(false);
             crearMinijuego();
             timer.schedule(tarea, 5000);
 
@@ -189,29 +198,29 @@ public class Tutorial extends JFrame {
             }
 
         }else{
-            ponerDialogoParte2o();
+            ponerDialogoParte3();
         }
     }
 
-    public void ponerDialogoParte2o() {
+    public void ponerDialogoParte3() {
 
-        if(tutorialParte2o.getNodoDialActual() == null || !(tutorialParte2o.getArbolDial().nodeIsLeaf(tutorialParte2o.getNodoDialActual()))) {
-            if(!(tutorialParte2o.getNodoDialActual()==null)){
-                Dialogo actual = tutorialParte2o.getDialogoActual();
+        if(tutorialParte3.getNodoDialActual() == null || !(tutorialParte3.getArbolDial().nodeIsLeaf(tutorialParte3.getNodoDialActual()))) {
+            if(!(tutorialParte3.getNodoDialActual()==null)){
+                Dialogo actual = tutorialParte3.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
-            Dialogo aux = tutorialParte2o.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
-            int nivelActualDial = tutorialParte2o.getArbolDial().nodeLevel(tutorialParte2o.getNodoDialActual());
+            Dialogo aux = tutorialParte3.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            int nivelActualDial = tutorialParte3.getArbolDial().nodeLevel(tutorialParte3.getNodoDialActual());
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
-                    cTParte2oMouseClicked(evt);
+                    cTParte3MouseClicked(evt);
                 }
             });
             if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
@@ -221,7 +230,261 @@ public class Tutorial extends JFrame {
             cajaTexto.add(cT);
 
             if(nivelActualDial ==0) {
-                ponerFondoParte2o(nivelActualDial);
+                ponerFondoParte3(nivelActualDial);
+                getContentPane().revalidate();
+                getContentPane().repaint();
+            }
+        }else {
+            ponerDialogoParte4();
+        }
+    }
+    public void ponerDialogoParte4() {
+
+        if(tutorialParte4.getNodoDialActual() == null || !(tutorialParte4.getArbolDial().nodeIsLeaf(tutorialParte4.getNodoDialActual()))) {
+            if(!(tutorialParte4.getNodoDialActual()==null)){
+                Dialogo actual = tutorialParte4.getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = tutorialParte4.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            int nivelActualDial = tutorialParte4.getArbolDial().nodeLevel(tutorialParte4.getNodoDialActual());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    cTParte4MouseClicked(evt);
+                }
+            });
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+
+            if(nivelActualDial ==0) {
+                ponerFondoParte3(nivelActualDial);
+                getContentPane().revalidate();
+                getContentPane().repaint();
+            }
+        }else {
+          ponerDialogoParte5();
+        }
+    }
+
+
+    public void ponerDialogoParte5() {
+
+        if(tutorialParte5.getNodoDialActual() == null || !(tutorialParte5.getArbolDial().nodeIsLeaf(tutorialParte5.getNodoDialActual()))) {
+            if(!(tutorialParte5.getNodoDialActual()==null)){
+                Dialogo actual = tutorialParte5.getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = tutorialParte5.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            int nivelActualDial = tutorialParte5.getArbolDial().nodeLevel(tutorialParte5.getNodoDialActual());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    cTParte5MouseClicked(evt);
+                }
+            });
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+
+            if(nivelActualDial ==0) {
+                ponerFondoParte3(nivelActualDial);
+                getContentPane().revalidate();
+                getContentPane().repaint();
+            }
+        }else {
+            ponerDialogoParte6();
+        }
+    }
+    public void ponerDialogoParte6() {
+
+        if(tutorialParte6.getNodoDialActual() == null || !(tutorialParte6.getArbolDial().nodeIsLeaf(tutorialParte6.getNodoDialActual()))) {
+            if(!(tutorialParte6.getNodoDialActual()==null)){
+                Dialogo actual = tutorialParte6.getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = tutorialParte6.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            int nivelActualDial = tutorialParte6.getArbolDial().nodeLevel(tutorialParte6.getNodoDialActual());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    cTParte6MouseClicked(evt);
+                }
+            });
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+
+            if(nivelActualDial ==0) {
+                ponerFondoParte3(nivelActualDial);
+                getContentPane().revalidate();
+                getContentPane().repaint();
+            }
+        }else {
+            ponerDialogoParte7();
+        }
+    }
+    public void ponerDialogoParte7() {
+
+        if(tutorialParte7.getNodoDialActual() == null || !(tutorialParte7.getArbolDial().nodeIsLeaf(tutorialParte7.getNodoDialActual()))) {
+            if(!(tutorialParte7.getNodoDialActual()==null)){
+                Dialogo actual = tutorialParte7.getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = tutorialParte7.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            int nivelActualDial = tutorialParte7.getArbolDial().nodeLevel(tutorialParte7.getNodoDialActual());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    cTParte7MouseClicked(evt);
+                }
+            });
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+
+            if(nivelActualDial ==0) {
+                ponerFondoParte3(nivelActualDial);
+                getContentPane().revalidate();
+                getContentPane().repaint();
+            }
+        }else {
+            ponerDialogoParte8();
+        }
+    }
+    public void ponerDialogoParte8() {
+
+        if(tutorialParte8.getNodoDialActual() == null || !(tutorialParte8.getArbolDial().nodeIsLeaf(tutorialParte8.getNodoDialActual()))) {
+            if(!(tutorialParte8.getNodoDialActual()==null)){
+                Dialogo actual = tutorialParte8.getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = tutorialParte8.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            int nivelActualDial = tutorialParte8.getArbolDial().nodeLevel(tutorialParte8.getNodoDialActual());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    cTParte8MouseClicked(evt);
+                }
+            });
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+
+            if(nivelActualDial ==0) {
+                ponerFondoParte3(nivelActualDial);
+                getContentPane().revalidate();
+                getContentPane().repaint();
+            }
+        }else {
+            ponerDialogoParte9();
+        }
+    }
+    public void ponerDialogoParte9() {
+
+        if(tutorialParte9.getNodoDialActual() == null || !(tutorialParte9.getArbolDial().nodeIsLeaf(tutorialParte9.getNodoDialActual()))) {
+            if(!(tutorialParte9.getNodoDialActual()==null)){
+                Dialogo actual = tutorialParte9.getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = tutorialParte9.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            int nivelActualDial = tutorialParte9.getArbolDial().nodeLevel(tutorialParte9.getNodoDialActual());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    cTParte9MouseClicked(evt);
+                }
+            });
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+
+            if(nivelActualDial ==0) {
+                ponerFondoParte3(nivelActualDial);
+                getContentPane().revalidate();
+                getContentPane().repaint();
+            }
+        }else {
+           ponerDialogoParte10();
+        }
+    }
+    public void ponerDialogoParte10() {
+
+        if(tutorialParte10.getNodoDialActual() == null || !(tutorialParte10.getArbolDial().nodeIsLeaf(tutorialParte10.getNodoDialActual()))) {
+            if(!(tutorialParte10.getNodoDialActual()==null)){
+                Dialogo actual = tutorialParte10.getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = tutorialParte10.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            int nivelActualDial = tutorialParte10.getArbolDial().nodeLevel(tutorialParte10.getNodoDialActual());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    cTParte10MouseClicked(evt);
+                }
+            });
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+
+            if(nivelActualDial ==0) {
+                ponerFondoParte3(nivelActualDial);
                 getContentPane().revalidate();
                 getContentPane().repaint();
             }
@@ -307,7 +570,7 @@ public class Tutorial extends JFrame {
             throw new RuntimeException(e);
         }
     }
-    private void ponerFondoParte2o(int nivelActualDial) {
+    private void ponerFondoParte3(int nivelActualDial) {
         try {
             BufferedImage imagen = null;
 
@@ -328,14 +591,7 @@ public class Tutorial extends JFrame {
     public void crearDialogosParte1() {
         ImageIcon policia = new ImageIcon("DatosAuxiliares/Personajes/Policia.png");
         ImageIcon dueno = new ImageIcon("DatosAuxiliares/Personajes/Dueño.png");
-        ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/Personajes/Secretaria.png");
         ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
-        ImageIcon amante = new ImageIcon("DatosAuxiliares/Personajes/Amante.png");
-        ImageIcon conserge = new ImageIcon("DatosAuxiliares/Personajes/Conserge.png");
-        ImageIcon esposa = new ImageIcon("DatosAuxiliares/Personajes/Esposa.png");
-        ImageIcon guia = new ImageIcon("DatosAuxiliares/Personajes/Guia.png");
-        ImageIcon seguridad = new ImageIcon("DatosAuxiliares/Personajes/Seguridad.jpg");
-        ImageIcon vagabundo = new ImageIcon("DatosAuxiliares/Personajes/Vagabundo.jpg");
         ImageIcon nada = new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png");
 
         Dialogo d1= new Dialogo("Ha sido una semana larga. Casi siento que no lo logro.  ", "", nada, true);
@@ -629,13 +885,9 @@ public class Tutorial extends JFrame {
         ImageIcon esposa = new ImageIcon("DatosAuxiliares/Personajes/Esposa.png");
         ImageIcon guia = new ImageIcon("DatosAuxiliares/Personajes/Guia 1.png");
         ImageIcon seguridad = new ImageIcon("DatosAuxiliares/Personajes/Seguridad.png");
-        ImageIcon vagabundo = new ImageIcon("DatosAuxiliares/Personajes/Vagabundo.png");
         ImageIcon nada = new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png");
         ImageIcon limpieza = new ImageIcon("DatosAuxiliares/Personajes/Conserje.png");
         ImageIcon guia2 = new ImageIcon("DatosAuxiliares/Personajes/Guia 2.png");
-        ImageIcon narrador = new ImageIcon("DatosAuxiliares/Personajes/Narrador.png");
-        ImageIcon laboratorio = new ImageIcon("DatosAuxiliares/Personajes/Laboratorio.png");
-
 
         Dialogo d92 = new Dialogo("Detective, antes de entrar quiero explicarle cómo funcionará su investigación.", "Policia", policia, true);
         Dialogo d93 = new Dialogo("En la esquina superior izquierda tiene un diario. Allí se guardará toda la información importante que obtenga en cada diálogo.", "Policia", policia, true);
@@ -656,28 +908,26 @@ public class Tutorial extends JFrame {
 
         // Conexiones
 
-
-        Dialogo d101 = new Dialogo("Ah, detective. Justo el héroe que necesitábamos. Aunque claro, yo podría resolver esto solo, pero me dijeron que usted se aburre si no lo llaman.", "Jefe", dueno, true);
+        Dialogo d101 = new Dialogo("Ah, detective. Justo el héroe que necesitábamos. Aunque claro, yo podría resolver esto solo, pero me dijeron que usted se aburre si no lo llaman.", "Jefe", nada, true);
         Dialogo d102 = new Dialogo("No se preocupe, estoy aquí para hacer mi trabajo.", "Detective", detective, true);
-        Dialogo d103 = new Dialogo("Trabajo, dice. Bueno, al menos tiene un teléfono a su disposición para llamarme cuando se pierda... digo, cuando necesite orientación.", "Jefe", dueno, true);
+        Dialogo d103 = new Dialogo("Trabajo, dice. Bueno, al menos tiene un teléfono a su disposición para llamarme cuando se pierda... digo, cuando necesite orientación.", "Jefe", nada, true);
         Dialogo d104 = new Dialogo("¿Un teléfono?", "Detective", detective, true);
-        Dialogo d105 = new Dialogo("Sí, sí. Y no solo sirve para llamarme. También puede cambiar la música y los fondos de pantalla. Ya sabe, para que no se aburra mientras juega a ser Sherlock.", "Jefe", dueno, true);
+        Dialogo d105 = new Dialogo("Sí, sí. Y no solo sirve para llamarme. También puede cambiar la música y los fondos de pantalla. Ya sabe, para que no se aburra mientras juega a ser Sherlock.", "Jefe", nada, true);
         Dialogo d106 = new Dialogo("Interesante. Supongo que eso hará más llevadera la investigación.", "Detective", detective, true);
-        Dialogo d107 = new Dialogo("Claro que sí. Pero lo mejor aún no lo he dicho: el mapa. El museo está dividido en varios escenarios, y en la pantalla verá flechas que le permitirán avanzar de uno a otro.", "Jefe", dueno, true);
+        Dialogo d107 = new Dialogo("Claro que sí. Pero lo mejor aún no lo he dicho: el mapa. El museo está dividido en varios escenarios, y en la pantalla verá flechas que le permitirán avanzar de uno a otro.", "Jefe", nada, true);
         Dialogo d108 = new Dialogo("Así que puedo moverme libremente entre escenarios usando esas flechas.", "Detective", detective, true);
-        Dialogo d109 = new Dialogo("Exacto. Y en cada escenario habrá objetos o personajes con los que podrá interactuar. Solo tiene que pulsarlos para recogerlos o hablar con ellos. Fácil, ¿no?", "Jefe", dueno, true);
+        Dialogo d109 = new Dialogo("Exacto. Y en cada escenario habrá objetos o personajes con los que podrá interactuar. Solo tiene que pulsarlos para recogerlos o hablar con ellos. Fácil, ¿no?", "Jefe", nada, true);
         Dialogo d110 = new Dialogo("Eso será útil. Así podré obtener pistas y objetos directamente en cada lugar.", "Detective", detective, true);
-        Dialogo d111 = new Dialogo("Exactamente. Aunque claro, si se pierde, siempre puede llamarme. No es que yo disfrute repetir las cosas, pero alguien tiene que salvarle la investigación.", "Jefe", dueno, true);
+        Dialogo d111 = new Dialogo("Exactamente. Aunque claro, si se pierde, siempre puede llamarme. No es que yo disfrute repetir las cosas, pero alguien tiene que salvarle la investigación.", "Jefe", nada, true);
 
-        Dialogo decisionJefe = new Dialogo("¿Quiere que le repita cómo usar el teléfono, el mapa y las interacciones, o ya se siente listo?", "Jefe", dueno, true);
+        Dialogo decisionJefe = new Dialogo("¿Quiere que le repita cómo usar el teléfono, el mapa y las interacciones, o ya se siente listo?", "Jefe", nada, true);
         decisionJefe.setOpciones(new LinkedList<>(Arrays.asList("Repítalo, quiero estar seguro.", "No es necesario, ya entendí. Continuemos.")));
 
-        Dialogo respJefeA = new Dialogo("Muy bien, aunque debería haberlo entendido a la primera. Teléfono para llamarme, música y fondos. Flechas para moverse entre escenarios. Y recuerde: pulse objetos o personajes para interactuar. ¿Contento?", "Jefe", dueno, true);
+        Dialogo respJefeA = new Dialogo("Muy bien, aunque debería haberlo entendido a la primera. Teléfono para llamarme, música y fondos. Flechas para moverse entre escenarios. Y recuerde: pulse objetos o personajes para interactuar. ¿Contento?", "Jefe", nada, true);
 
-        Dialogo respJefeB = new Dialogo("Excelente. Al menos no tendré que repetirlo. Adelante, detective, el museo es suyo.", "Jefe", dueno, true);
+        Dialogo respJefeB = new Dialogo("Excelente. Al menos no tendré que repetirlo. Adelante, detective, el museo es suyo.", "Jefe", nada, true);
 
         // Conexiones
-
 
         BinaryTreeNode<Dialogo> node92 = new BinaryTreeNode<>(d92);
         BinaryTreeNode<Dialogo> node93 = new BinaryTreeNode<>(d93);
@@ -726,7 +976,6 @@ public class Tutorial extends JFrame {
         auxTree.insertNode(node302, node300);
 
         GeneralTree<Dialogo> auxTree2 = new GeneralTree<>();
-
         auxTree2.insertNode(node101, null);
         auxTree2.insertNode(node102, node101);
         auxTree2.insertNode(node103, node102);
@@ -744,11 +993,11 @@ public class Tutorial extends JFrame {
 
 
         tutorialParte2.setArbolDial(auxTree);
-        tutorialParte2o.setArbolDial(auxTree2);
+        tutorialParte3.setArbolDial(auxTree2);
 
         //Interaccion del detective con todos los personajes
         //Guardia de Seguridad
-        /*
+
         Dialogo g1 = new Dialogo("Buenas noches, soy el detective asignado al caso. Necesito hablar con usted.", "Detective", detective, true);
         Dialogo g2 = new Dialogo("Buenas noches, detective. Soy el guardia de seguridad del museo.", "Guardia", seguridad, true);
 
@@ -762,7 +1011,6 @@ public class Tutorial extends JFrame {
 
         //Pregunta 2: Relación con la víctima
         Dialogo rB = new Dialogo("Casi ninguna. Era reservado, apenas cruzábamos palabras.", "Guardia", seguridad, true);
-
         //Pregunta 3: Dónde estaba en el momento de los hechos (dato clave)
         Dialogo rC = new Dialogo("Estaba revisando las cámaras. Justo a la hora del asesinato, una de ellas falló en la sección" +
                 " medieval. Fui a investigar y encontré el cuerpo.", "Guardia", seguridad, true);
@@ -771,7 +1019,7 @@ public class Tutorial extends JFrame {
         /* añadirAlDiario("Guardia", "Las cámaras fallaron en la sección medieval justo a la hora del asesinato.");*/
 
         //Pregunta 4: Terminar conversación
-       /*
+
         Dialogo rD = new Dialogo("Entendido, detective. Si necesita algo más, estaré en mi puesto.", "Guardia", seguridad, true);
 
         BinaryTreeNode<Dialogo> node112 = new BinaryTreeNode<>(g1);
@@ -793,7 +1041,7 @@ public class Tutorial extends JFrame {
         auxTree3.insertNode(node309, node306);
         auxTree3.insertNode(node310, node306);
 
-        tutorialParte3.setArbolDial(auxTree3);
+        tutorialParte4.setArbolDial(auxTree3);
 
         //Cambio de personaje, Aqui empieza el guia
 
@@ -809,7 +1057,6 @@ public class Tutorial extends JFrame {
 
         Dialogo respuesta1 = new Dialogo("La verdad, muy escaso. Era reservado, siempre metido en sus asuntos. " +
                 "Apenas cruzábamos palabras.", "Guía", guia, true);
-
         Dialogo despedida1 = new Dialogo("A usted, detective. Si necesita algo más, estaré por aquí.", "Guía", guia, true);
 
         // Segunda decisión: preguntar ubicación o terminar
@@ -822,7 +1069,7 @@ public class Tutorial extends JFrame {
 
         // Dato clave
         /*añadirAlDiario("Guía", "El guía conoce el museo como la palma de su mano.");*/
-/*
+
         Dialogo despedida2 = new Dialogo("A usted, detective. Que tenga buena noche.", "Guía", guia, true);
 
         BinaryTreeNode<Dialogo> node114 = new BinaryTreeNode<>(dect);
@@ -846,7 +1093,7 @@ public class Tutorial extends JFrame {
         auxTree4.insertNode(node314, node344);
         auxTree4.insertNode(node315, node344);
 
-        tutorialParte4.setArbolDial(auxTree4);
+        tutorialParte5.setArbolDial(auxTree4);
 
         //Cambio de personaje, Aqui empieza la secretaria
 
@@ -894,7 +1141,7 @@ public class Tutorial extends JFrame {
         auxTree5.insertNode(node319, node345);
         auxTree5.insertNode(node320, node345);
 
-        tutorialParte5.setArbolDial(auxTree5);
+        tutorialParte6.setArbolDial(auxTree5);
 
         //Cambio de personaje, Aqui empieza el guia2
         Dialogo guiaM1 = new Dialogo("Buenas noches. Estoy hablando con el personal del museo. ¿Podría decirme su nombre y su función " +
@@ -937,7 +1184,6 @@ public class Tutorial extends JFrame {
         BinaryTreeNode<Dialogo> node327 = new BinaryTreeNode<>(despd2);
 
         GeneralTree<Dialogo> auxTree6 = new GeneralTree<>();
-
         auxTree6.insertNode(node118, null);
         auxTree6.insertNode(node119, node118);
         auxTree6.insertNode(node321, node119);
@@ -949,7 +1195,7 @@ public class Tutorial extends JFrame {
         auxTree6.insertNode(node326, node325);
         auxTree6.insertNode(node327, node346);
 
-        tutorialParte6.setArbolDial(auxTree6);
+        tutorialParte7.setArbolDial(auxTree6);
 
         //Cambio de personaje, Aqui empieza la de limpieza
         Dialogo l1 = new Dialogo("Hola. Estoy hablando con todos los empleados del museo. ¿Podría decirme su nombre y qué hace aquí?", "Detective", detective, true);
@@ -979,7 +1225,7 @@ public class Tutorial extends JFrame {
 
         // Dato clave
         /*añadirAlDiario("Limpieza", "Suele encontrarse con cosas útiles al estar solo limpiando.");*/
-/*
+
         Dialogo des2 = new Dialogo("Que tenga buena noche, jefe.", "Limpieza", limpieza, true);
 
         BinaryTreeNode<Dialogo> node120 = new BinaryTreeNode<>(l1);
@@ -996,7 +1242,6 @@ public class Tutorial extends JFrame {
         BinaryTreeNode<Dialogo> node335 = new BinaryTreeNode<>(des2);
 
         GeneralTree<Dialogo> auxTree7 = new GeneralTree<>();
-
         auxTree7.insertNode(node120, null);
         auxTree7.insertNode(node121, node120);
         auxTree7.insertNode(node122, node121);
@@ -1009,7 +1254,7 @@ public class Tutorial extends JFrame {
         auxTree7.insertNode(node334, node333);
         auxTree7.insertNode(node335, node332);
 
-        tutorialParte7.setArbolDial(auxTree7);
+        tutorialParte8.setArbolDial(auxTree7);
 
         //Cambio de personaje, Aqui empieza la Esposa del jefe
 
@@ -1067,8 +1312,7 @@ public class Tutorial extends JFrame {
         auxTree8.insertNode(node342, node341);
         auxTree8.insertNode(node343, node340);
 
-        tutorialParte8.setArbolDial(auxTree8);
-
+        tutorialParte9.setArbolDial(auxTree8);
         //Conversación Lineal entre personajes
         Dialogo p1 = new Dialogo("Gracias a todos por su colaboración. Tras revisar las pruebas encontradas en la escena y los testimonios recabados...", "Policía", policia, true);
         Dialogo p2 = new Dialogo("…la investigación ha concluido que el fallecimiento del economista fue un suicidio.", "Policía", policia, true);
@@ -1102,14 +1346,14 @@ public class Tutorial extends JFrame {
         Dialogo m5 = new Dialogo("(No. Algo no encaja. Y si nadie más va a seguir con esto... lo haré yo.)", "Detective", detective, true);
 
         // Suena el teléfono
-        Dialogo llamada1 = new Dialogo("*Riiing... Riiing...*", "Narrador", narrador, true);
+        Dialogo llamada1 = new Dialogo("*Riiing... Riiing...*", "", nada, true);
         Dialogo llamada2 = new Dialogo("¿Sí? Habla el detective.", "Detective", detective, true);
         Dialogo laboratorio1 = new Dialogo("Detective, nos comunicamos con usted desde el laboratorio forense. Acabamos de terminar" +
-                " el análisis de las pruebas que envió.", "Laboratorio", laboratorio, true);
+                " el análisis de las pruebas que envió.", "Laboratorio", nada, true);
         Dialogo laboratorio2 = new Dialogo("El cuchillo no coincide con la herida. El ángulo, la profundidad, la forma de la " +
-                "herida... no concuerdan con un acto autoinfligidoni con un cuchillo asi.", "Laboratorio", laboratorio, true);
+                "herida... no concuerdan con un acto autoinfligidoni con un cuchillo asi.", "Laboratorio", nada, true);
         Dialogo laboratorio3 = new Dialogo("Y hay algo más: la carta de despedida. La caligrafía no coincide con la de la víctima." +
-                " No es su letra.", "Laboratorio", laboratorio, true);
+                " No es su letra.", "Laboratorio", nada, true);
 
         // Reacción del protagonista
         Dialogo m6 = new Dialogo("(Lo sabía...)", "Detective", detective, true);
@@ -1125,14 +1369,13 @@ public class Tutorial extends JFrame {
         Dialogo d5 = new Dialogo("Y la carta de despedida... no fue escrita por la víctima. La caligrafía no coincide.",
                 "Detective", detective, true);
 
-        Dialogo d6 = new Dialogo("*Un murmullo recorre la sala. Algunos se miran entre sí, otros bajan la mirada.*", "Narrador", narrador, true);
+        Dialogo d6 = new Dialogo("*Un murmullo recorre la sala. Algunos se miran entre sí, otros bajan la mirada.*", "", nada, true);
 
         Dialogo d7 = new Dialogo("Así que no, señores. Esto no fue un suicidio. Fue un montaje. Y alguien aquí sabe exactamente lo que pasó.", "Detective", detective, true);
         Dialogo d8 = new Dialogo("El caso no ha terminado. El caso apenas comienza.", "Detective",
                 detective, true);
 
         Dialogo d9 = new Dialogo("¡NADIE SE MUEVE DEL MUSEO!", "Detective", detective, true);
-
 
         BinaryTreeNode<Dialogo> node126= new BinaryTreeNode<>(p1);
         BinaryTreeNode<Dialogo> node127= new BinaryTreeNode<>(p2);
@@ -1171,7 +1414,6 @@ public class Tutorial extends JFrame {
 
 
         GeneralTree<Dialogo> auxTree9 = new GeneralTree<>();
-
         auxTree9.insertNode(node126, null);
         auxTree9.insertNode(node127, node126);
         auxTree9.insertNode(node128, node127);
@@ -1207,71 +1449,14 @@ public class Tutorial extends JFrame {
         auxTree9.insertNode(node158, node157);
         auxTree9.insertNode(node159, node158);
 
-        tutorialParte9.setArbolDial(auxTree9);
-*/
+        tutorialParte10.setArbolDial(auxTree9);
     }
 
     public void crearMinijuego(){
         // Ocultar botón saltar cuando comience el minijuego
         botonSaltar.setVisible(false);
-
-        ImageIcon escCrimen = new ImageIcon("DatosAuxiliares/Minijuego/EscenaCrimen/Escena del Crimen.png");
-        MiniJuego minijuego = new MiniJuego("Escena del crimen", escCrimen);
-        ObjetoEscenario ob1 = new ObjetoEscenario("Laptop", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.31F, 0, 0.13F, 0.13F, false, "");
-        ObjetoEscenario ob2 = new ObjetoEscenario("Botella", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.27F, 0, 0.02F, 0.12F, false, "");
-        ObjetoEscenario ob3 = new ObjetoEscenario("Charco de sangre", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.18F, 0.62F, 0.35F, 0.25F, false, "");
-        ObjetoEscenario ob4 = new ObjetoEscenario("Gafas", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.31F, 0.8F, 0.08F, 0.08F, false, "");
-        ObjetoEscenario ob5 = new ObjetoEscenario("Sandwich", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.48F, 0.2F, 0.06F, 0.06F, false, "");
-        ObjetoEscenario ob6 = new ObjetoEscenario("Telefono", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.29F, 0.12F, 0.07F, 0.08F, false, "");
-        ObjetoEscenario ob7 = new ObjetoEscenario("Taza de café", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob8 = new ObjetoEscenario("Copa", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob9 = new ObjetoEscenario("Anillo", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob10 = new ObjetoEscenario("Reloj de bolsillo", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob11 = new ObjetoEscenario("Botella", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob12 = new ObjetoEscenario("Memoria USB", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob13 = new ObjetoEscenario("Grabadora de voz", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob14 = new ObjetoEscenario("Pluma", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob15 = new ObjetoEscenario("Calculadora", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob16 = new ObjetoEscenario("Sombrero", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob17 = new ObjetoEscenario("Planta", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob18 = new ObjetoEscenario("Botella", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob19 =  new ObjetoEscenario("Caja de musica", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob20 = new ObjetoEscenario("Pastillas", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob21 = new ObjetoEscenario("Taza de cafe", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob22 = new ObjetoEscenario("Cigarros", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob23 = new ObjetoEscenario("Cuchillo", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, true, "Supuesta arma usada en la escena del crimen. A pesar de que contiene sangre de la victima, la causa de la muerte no coincide con el tipo de herida del cuchillo. Definitivamente no es el arma del crimen.");
-        ObjetoEscenario ob24 = new ObjetoEscenario("Linterna", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob25 = new ObjetoEscenario("Cámara", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-        ObjetoEscenario ob26 = new ObjetoEscenario("Carnet", true,new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), 0.03F, 0.1F, 0.1F, 0.1F, false, "");
-
-        minijuego.agregarObjetoCola(ob1);
-        minijuego.agregarObjetoCola(ob2);
-        minijuego.agregarObjetoCola(ob3);
-        minijuego.agregarObjetoCola(ob4);
-        minijuego.agregarObjetoCola(ob5);
-        minijuego.agregarObjetoCola(ob6);/*
-        minijuego.agregarObjetoCola(ob7);
-        minijuego.agregarObjetoCola(ob8);
-        minijuego.agregarObjetoCola(ob9);
-        minijuego.agregarObjetoCola(ob10);
-        minijuego.agregarObjetoCola(ob11);
-        minijuego.agregarObjetoCola(ob12);
-        minijuego.agregarObjetoCola(ob13);
-        minijuego.agregarObjetoCola(ob14);
-        minijuego.agregarObjetoCola(ob15);
-        minijuego.agregarObjetoCola(ob16);
-        minijuego.agregarObjetoCola(ob17);
-        minijuego.agregarObjetoCola(ob18);
-        minijuego.agregarObjetoCola(ob19);
-        minijuego.agregarObjetoCola(ob20);
-        minijuego.agregarObjetoCola(ob21);
-        minijuego.agregarObjetoCola(ob22);
-        minijuego.agregarObjetoCola(ob23);
-        minijuego.agregarObjetoCola(ob24);
-        minijuego.agregarObjetoCola(ob25);
-        minijuego.agregarObjetoCola(ob26);*/
-
-        MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(minijuego);
+        MiniJuego miniJuego = Juego.getInstance().getMinijuego(0);
+        MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(miniJuego);
         minijuegoInterfaz.setBounds(0, 0, tamPant.width, tamPant.height);
         getContentPane().add(minijuegoInterfaz, 0);
         getContentPane().revalidate();
@@ -1295,8 +1480,43 @@ public class Tutorial extends JFrame {
         getContentPane().revalidate();
         getContentPane().repaint();
     }
-    private void cTParte2oMouseClicked(MouseEvent evt) {
-        ponerDialogoParte2o();
+    private void cTParte3MouseClicked(MouseEvent evt) {
+        ponerDialogoParte3();
+        getContentPane().revalidate();
+        getContentPane().repaint();
+    }
+    private void cTParte4MouseClicked(MouseEvent evt) {
+        ponerDialogoParte4();
+        getContentPane().revalidate();
+        getContentPane().repaint();
+    }
+    private void cTParte5MouseClicked(MouseEvent evt) {
+        ponerDialogoParte5();
+        getContentPane().revalidate();
+        getContentPane().repaint();
+    }
+    private void cTParte6MouseClicked(MouseEvent evt) {
+        ponerDialogoParte6();
+        getContentPane().revalidate();
+        getContentPane().repaint();
+    }
+    private void cTParte7MouseClicked(MouseEvent evt) {
+        ponerDialogoParte7();
+        getContentPane().revalidate();
+        getContentPane().repaint();
+    }
+    private void cTParte8MouseClicked(MouseEvent evt) {
+        ponerDialogoParte8();
+        getContentPane().revalidate();
+        getContentPane().repaint();
+    }
+    private void cTParte9MouseClicked(MouseEvent evt) {
+        ponerDialogoParte9();
+        getContentPane().revalidate();
+        getContentPane().repaint();
+    }
+    private void cTParte10MouseClicked(MouseEvent evt) {
+        ponerDialogoParte10();
         getContentPane().revalidate();
         getContentPane().repaint();
     }
@@ -1304,7 +1524,6 @@ public class Tutorial extends JFrame {
     private void saltarAlJuego() {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
-
         iniciarMundo();
     }
 

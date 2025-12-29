@@ -112,7 +112,7 @@ public class OpcionesDialogos extends JDialog {
                 }
             });
 
-            boton3.setBounds((int) (tamPant.width * 0.01), (int) (tamPant.getHeight() * 0.03), (int) (tamPant.width * 0.43), (int) (tamPant.getHeight() * 0.05));
+            boton3.setBounds((int) (tamPant.width * 0.01), (int) (tamPant.getHeight() * 0.17), (int) (tamPant.width * 0.43), (int) (tamPant.getHeight() * 0.05));
             add(boton3);
         }
 
