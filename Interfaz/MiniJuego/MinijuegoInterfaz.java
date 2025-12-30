@@ -1,8 +1,6 @@
 package Interfaz.MiniJuego;
 
-import Logica.MiniJuego;
-import Logica.ObjetoEscenario;
-import Logica.Reproductor;
+import Logica.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -24,6 +22,7 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
     private JPanel panelEncontrables;
     private ArrayList<JLabel> objetosEncontrables;
     private ArrayList<ObjetoEscenario> objetosEnc;
+    private ArrayList<ObjetoEscenario> objEncontrados;
     private MiniJuego mini;
 
     public MinijuegoInterfaz(MiniJuego miniJuego) {
@@ -32,6 +31,7 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
         objetosMinijuego = new ArrayList<>();
         objetosEncontrables = new ArrayList<>();
         objetosEnc = miniJuego.getListaObjetos();
+        objEncontrados = new ArrayList<>(miniJuego.getCola());
         mini = miniJuego;
         labelLista = new JLabel();
         initComponents(miniJuego);
@@ -121,9 +121,8 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
                     getParent().getComponent(2).setVisible(true);
                     getParent().revalidate();
                     getParent().repaint();
+                    ponerObjetosEnMochila();
                     getParent().remove(0);
-
-
                 }
 
             }
@@ -131,6 +130,15 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
 
 
 
+    }
+
+    private void ponerObjetosEnMochila() {
+        for(int i =0; i< objEncontrados.size(); i++){
+            ObjetoEscenario aux = objEncontrados.get(i);
+            if(aux.getImportante()){
+                Juego.getInstance().getPartidaActual().getJugador().agregarAlMaletin(aux);
+            }
+        }
     }
 
     private void ponerObjetos(MiniJuego miniJuego) {
