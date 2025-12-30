@@ -890,7 +890,7 @@ public class Tutorial extends JFrame {
         ImageIcon guia2 = new ImageIcon("DatosAuxiliares/Personajes/Guia 2.png");
 
         Dialogo d92 = new Dialogo("Detective, antes de entrar quiero explicarle cómo funcionará su investigación.", "Policia", policia, true);
-        Dialogo d93 = new Dialogo("En la esquina superior izquierda tiene un diario. Allí se guardará toda la información importante que obtenga en cada diálogo.", "Policia", policia, true);
+        Dialogo d93 = new Dialogo("En la esquina superior derecha tiene un diario. Allí se guardará toda la información importante que obtenga en cada diálogo.", "Policia", policia, true);
         Dialogo d94 = new Dialogo("Además, cuenta con un portafolios. En él se almacenarán los objetos relevantes que encuentre durante el caso.", "Policia", policia, true);
         Dialogo d95 = new Dialogo("Para que lo entienda mejor, el guardia encontró dos cosas en la escena: este cuchillo y una carta escrita por la víctima.", "Policia", policia, true);
         Dialogo d96 = new Dialogo("Perfecto. Entonces cada pista que obtenga en las conversaciones irá al diario, y cada objeto físico irá al portafolios.", "Detective", detective, true);
@@ -1224,7 +1224,7 @@ public class Tutorial extends JFrame {
                 " hasta notas raras. Supongo que es parte del trabajo.", "Limpieza", limpieza, true);
 
         // Dato clave
-        /*añadirAlDiario("Limpieza", "Suele encontrarse con cosas útiles al estar solo limpiando.");*/
+        Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante ("Limpieza", "Suele encontrarse con cosas útiles al estar solo limpiando.");
 
         Dialogo des2 = new Dialogo("Que tenga buena noche, jefe.", "Limpieza", limpieza, true);
 
@@ -1259,7 +1259,7 @@ public class Tutorial extends JFrame {
         //Cambio de personaje, Aqui empieza la Esposa del jefe
 
         Dialogo e1 = new Dialogo("Buenas noches. Estoy hablando con todos los presentes en el museo. ¿Podría decirme quién es usted?", "Detective", detective, true);
-        Dialogo e2 = new Dialogo("Soy la esposa del director del museo. Esta noche lo acompañé al evento, como es habitual en ocasiones" +
+        Dialogo e2 = new Dialogo("Soy la esposa del director del museo. Me llamo Cate Sinclair, esta noche lo acompañé al evento, como es habitual en ocasiones" +
                 " importantes.", "Esposa", esposa, true);
         Dialogo e3 = new Dialogo("No suelo involucrarme en los asuntos del museo, pero conozco bien a quienes lo rodean.", "Esposa", esposa, true);
 
@@ -1304,13 +1304,16 @@ public class Tutorial extends JFrame {
         auxTree8.insertNode(node124, node123);
         auxTree8.insertNode(node125, node124);
         auxTree8.insertNode(node336, node125);
+        // nodo de desicion 337
         auxTree8.insertNode(node337, node336);
         auxTree8.insertNode(node338, node327);
+        // nodo de salida 339
         auxTree8.insertNode(node339, node336);
         auxTree8.insertNode(node340, node125);
         auxTree8.insertNode(node341, node340);
         auxTree8.insertNode(node342, node341);
         auxTree8.insertNode(node343, node340);
+        auxTree8.insertNode(node339, node338);
 
         tutorialParte9.setArbolDial(auxTree8);
 
