@@ -1336,6 +1336,7 @@ public class Tutorial extends JFrame {
         auxTree8.insertNode(node343, node340);
 
         tutorialParte9.setArbolDial(auxTree8);
+
         //Conversación Lineal entre personajes
         Dialogo p1 = new Dialogo("Gracias a todos por su colaboración. Tras revisar las pruebas encontradas en la escena y los testimonios recabados...", "Policía", policia, true);
         Dialogo p2 = new Dialogo("…la investigación ha concluido que el fallecimiento del economista fue un suicidio.", "Policía", policia, true);
