@@ -60,6 +60,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void initComponents() {
 
+        BufferedImage imagenCursor =null;
+        try {
+             imagenCursor =  ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Cursor.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
+        setCursor(cursor);
+
         botonSalir = new javax.swing.JButton();
         botonNuevPart = new javax.swing.JButton();
         botonCargPar = new javax.swing.JButton();

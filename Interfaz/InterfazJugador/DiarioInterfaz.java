@@ -56,6 +56,14 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     }
 
     private void initComponents() {
+        BufferedImage imagenCursor =null;
+        try {
+            imagenCursor =  ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Cursor.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
+        setCursor(cursor);
 
         getContentPane().setBackground(new Color(0, 0, 0, 0));
         setUndecorated(true);
@@ -956,17 +964,17 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
         // Definir dimensiones de los botones
         // Definir dimensiones de los botones
-        int botonAnchoGrande = (int) (tamPant.width * 0.09);
+        int botonAnchoGrande = (int) (tamPant.width * 0.08);
         int botonAnchoNormal = (int) (tamPant.width * 0.07);
         int botonAlto = (int) (tamPant.height * 0.07);
 
 // Espacio entre botones centrales (5 píxeles)
-        int espacioEntreCentrales = 5;
+        int espacioEntreCentrales = 8;
 // Espacio extra para separación de botones extremos (15 píxeles para que se note más)
-        int espacioExtraExtremos = 15;
+        int espacioExtraExtremos = 8;
 
 // Posiciones iniciales ajustadas
-        int xInicial = (int) (tamPant.width * 0.15);
+        int xInicial = (int) (tamPant.width * 0.117);
         int yPos = (int) (tamPant.height * 0.09);
         int xPos = xInicial;
 
@@ -1322,24 +1330,9 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         contenedor.add(jPanel1);
 
     }
-    private void boton1mouseEntered(MouseEvent evt) {
-
-    }
-    private void boton1MouseExited(MouseEvent evt) {
-
-    }
-
     private void boton2ActionPerformed(ActionEvent evt) {
         contenedor.removeAll();
         contenedor.add(jPanel2);
-
-    }
-
-    private void boton2mouseEntered(MouseEvent evt) {
-
-    }
-
-    private void boton2MouseExited(MouseEvent evt) {
 
     }
 
@@ -1349,25 +1342,9 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
     }
 
-    private void boton3mouseEntered(MouseEvent evt) {
-
-    }
-
-    private void boton3MouseExited(MouseEvent evt) {
-
-    }
-
     private void boton4ActionPerformed(ActionEvent evt) {
         contenedor.removeAll();
         contenedor.add(jPanel4);
-    }
-
-    private void boton4mouseEntered(MouseEvent evt) {
-
-    }
-
-    private void boton4MouseExited(MouseEvent evt) {
-
     }
 
     private void boton5ActionPerformed(ActionEvent evt) {
@@ -1375,25 +1352,9 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         contenedor.add(jPanel5);
     }
 
-    private void boton5mouseEntered(MouseEvent evt) {
-
-    }
-
-    private void boton5MouseExited(MouseEvent evt) {
-
-    }
-
     private void boton6ActionPerformed(ActionEvent evt) {
         contenedor.removeAll();
         contenedor.add(jPanel6);
-    }
-
-    private void boton6mouseEntered(MouseEvent evt) {
-
-    }
-
-    private void boton6MouseExited(MouseEvent evt) {
-
     }
 
     private void boton7ActionPerformed(ActionEvent evt) {
@@ -1401,25 +1362,9 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         contenedor.add(jPanel7);
     }
 
-    private void boton7mouseEntered(MouseEvent evt) {
-
-    }
-
-    private void boton7MouseExited(MouseEvent evt) {
-
-    }
-
     private void boton8ActionPerformed(ActionEvent evt) {
         contenedor.removeAll();
         contenedor.add(jPanel8);
-    }
-
-    private void boton8mouseEntered(MouseEvent evt) {
-
-    }
-
-    private void boton8MouseExited(MouseEvent evt) {
-
     }
 
     private void boton9ActionPerformed(ActionEvent evt) {
@@ -1427,25 +1372,9 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         contenedor.add(jPanel9);
     }
 
-    private void boton9mouseEntered(MouseEvent evt) {
-
-    }
-
-    private void boton9MouseExited(MouseEvent evt) {
-
-    }
-
     private void boton10ActionPerformed(ActionEvent evt) {
         contenedor.removeAll();
         contenedor.add(jPanel10);
-    }
-
-    private void boton10mouseEntered(MouseEvent evt) {
-
-    }
-
-    private void boton10MouseExited(MouseEvent evt) {
-
     }
 
     public void crearInfoDiario(){

@@ -69,6 +69,9 @@ public class Callejon extends ModeloEscenario {
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
         vagabundo = new JButton();
+
+
+
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/callejon 1.jpg"));
 

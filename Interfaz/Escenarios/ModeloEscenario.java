@@ -1,6 +1,11 @@
 package Interfaz.Escenarios;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,10 +20,23 @@ public class ModeloEscenario extends JFrame {
                 dispose();
             }
         };
+
+        BufferedImage imagenCursor =null;
+        try {
+            imagenCursor =  ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Cursor.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
+        setCursor(cursor);
+
     }
 
     public void cerrarEscenario(){
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         temporizador.schedule(task, 1000);
+
+
     }
+
 }

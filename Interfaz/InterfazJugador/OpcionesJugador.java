@@ -28,6 +28,15 @@ public class OpcionesJugador extends JDialog {
         initComponents();
         configurarSlider();
 
+        BufferedImage imagenCursor =null;
+        try {
+            imagenCursor =  ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Cursor.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
+        setCursor(cursor);
+
         int x = (int) (tamPant.width * 0.3);
         int y = (int) (tamPant.height * 0.2);
         setLocation(x, y);

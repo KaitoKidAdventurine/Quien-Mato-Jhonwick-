@@ -38,6 +38,15 @@ public class OpcionesDialogos extends JDialog {
         setUndecorated(true);
         setBackground(new Color(0, 0, 0, 1));
 
+        BufferedImage imagenCursor =null;
+        try {
+            imagenCursor =  ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Cursor.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
+        setCursor(cursor);
+
         boton1 = new JButton();
         boton1.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.015)));
         boton1.setForeground(new Color(255, 255, 255));

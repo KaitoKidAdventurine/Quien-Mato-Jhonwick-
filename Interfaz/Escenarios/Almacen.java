@@ -68,6 +68,9 @@ public class Almacen extends ModeloEscenario {
         flechaPasilloAlmacen = new JButton();
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
+
+
+
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/puerta del lmacen.jpg"));
 

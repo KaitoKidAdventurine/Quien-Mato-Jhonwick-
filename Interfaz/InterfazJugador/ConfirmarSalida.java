@@ -39,6 +39,15 @@ public class ConfirmarSalida extends JDialog {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
+        BufferedImage imagenCursor =null;
+        try {
+            imagenCursor =  ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Cursor.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
+        setCursor(cursor);
+
         if(!(notificacion.equals("Ya existe una partida en este lugar. ¿Estas seguro de que quieres eliminar esta partida?"))) {
             setBounds((int) (tamPant.width * 0.325), (int) (tamPant.height * 0.33), (int) (tamPant.width * 0.35), (int) (tamPant.height * 0.27));
             texto.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.04), (int) (tamPant.width*0.29), (int) (tamPant.height*0.1));

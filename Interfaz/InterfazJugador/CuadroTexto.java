@@ -37,6 +37,7 @@ public class CuadroTexto extends javax.swing.JPanel {
         jLabel3 = new JLabel();
         jLabel2 = new JLabel();
         parrafo = new JLabel();
+        capitanFondo = new JLabel();
         setLayout(null);
 
         setBackground(new Color(0, 0, 0, 0));
@@ -117,11 +118,20 @@ public class CuadroTexto extends javax.swing.JPanel {
                 break;
         }
 
-
-
         add(jLabel2);
 
-
+        if(personaje.equals("Capitan")){
+            BufferedImage imagenCapi = null;
+            try {
+                imagenCapi = ImageIO.read(new File(("DatosAuxiliares/Personajes/Habitacion capitan.png")));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            ImageIcon iconoCapi = new ImageIcon(imagenCapi.getScaledInstance(tamPant.width, tamPant.height , Image.SCALE_SMOOTH));
+            capitanFondo.setIcon(iconoCapi);
+            capitanFondo.setBounds(0, 0, tamPant.width, tamPant.height);
+            add(capitanFondo);
+        }
     }
 
 
@@ -130,5 +140,5 @@ public class CuadroTexto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private JLabel parrafo;
-
+    private  JLabel capitanFondo;
 }
