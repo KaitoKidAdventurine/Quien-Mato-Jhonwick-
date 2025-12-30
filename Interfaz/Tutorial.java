@@ -1002,12 +1002,9 @@ public class Tutorial extends JFrame {
         Dialogo g2 = new Dialogo("Buenas noches, detective. Soy el guardia de seguridad del museo.", "Guardia", seguridad, true);
 
         Dialogo decisionGuardia = new Dialogo("¿Qué desea preguntarme?", "Guardia", seguridad, true);
-        decisionGuardia.setOpciones(new LinkedList<>(Arrays.asList("¿Cuál es su trabajo en el museo?", "¿Qué relación tenía con el economista?",
+        decisionGuardia.setOpciones(new LinkedList<>(Arrays.asList( "¿Qué relación tenía con el economista?",
                 "¿Dónde estaba usted cuando ocurrieron los hechos?", "Eso es suficiente por ahora. Terminemos la conversación.")));
 
-        //Pregunta 1: Trabajo en el museo
-        Dialogo rA = new Dialogo("Me encargo de vigilar las cámaras y patrullar las salas. Es mi responsabilidad mantener todo" +
-                " seguro.", "Guardia", seguridad, true);
 
         //Pregunta 2: Relación con la víctima
         Dialogo rB = new Dialogo("Casi ninguna. Era reservado, apenas cruzábamos palabras.", "Guardia", seguridad, true);
@@ -1015,31 +1012,45 @@ public class Tutorial extends JFrame {
         Dialogo rC = new Dialogo("Estaba revisando las cámaras. Justo a la hora del asesinato, una de ellas falló en la sección" +
                 " medieval. Fui a investigar y encontré el cuerpo.", "Guardia", seguridad, true);
 
-        //Aquí añadimos el dato clave al diario
-        /* añadirAlDiario("Guardia", "Las cámaras fallaron en la sección medieval justo a la hora del asesinato.");*/
+        Dialogo decisionGuardia2 = new Dialogo("¿Alguna pregunta mas?", "Guardia", seguridad, true);
+        decisionGuardia2.setOpciones(new LinkedList<>(Arrays.asList("¿Dónde estaba usted cuando ocurrieron los hechos?", "Eso es suficiente por ahora. Terminemos la conversación.")));
 
-        //Pregunta 4: Terminar conversación
+        Dialogo decisionGuardia3 = new Dialogo("¿Alguna pregunta mas?", "Guardia", seguridad, true);
+        decisionGuardia3.setOpciones(new LinkedList<>(Arrays.asList( "¿Qué relación tenía con el economista?",
+                "Eso es suficiente por ahora. Terminemos la conversación.")));
 
         Dialogo rD = new Dialogo("Entendido, detective. Si necesita algo más, estaré en mi puesto.", "Guardia", seguridad, true);
+        Dialogo despediDet = new Dialogo("Gracias por su cooperacion, eso seria todo por ahora.", "Detective", detective, true);
 
         BinaryTreeNode<Dialogo> node112 = new BinaryTreeNode<>(g1);
         BinaryTreeNode<Dialogo> node113 = new BinaryTreeNode<>(g2);
 
         BinaryTreeNode<Dialogo> node306 = new BinaryTreeNode<>(decisionGuardia);
-        BinaryTreeNode<Dialogo> node307 = new BinaryTreeNode<>(rA);
         BinaryTreeNode<Dialogo> node308 = new BinaryTreeNode<>(rB);
         BinaryTreeNode<Dialogo> node309 = new BinaryTreeNode<>(rC);
+        BinaryTreeNode<Dialogo> node308copia = new BinaryTreeNode<>(rB);
+        BinaryTreeNode<Dialogo> node309copia = new BinaryTreeNode<>(rC);
         BinaryTreeNode<Dialogo> node310 = new BinaryTreeNode<>(rD);
-
+        BinaryTreeNode<Dialogo> node309A = new BinaryTreeNode<>(decisionGuardia2);
+        BinaryTreeNode<Dialogo> node309B = new BinaryTreeNode<>(decisionGuardia3);
+        BinaryTreeNode<Dialogo> nodedespD = new BinaryTreeNode<>(despediDet);
         GeneralTree<Dialogo> auxTree3 = new GeneralTree<>();
 
         auxTree3.insertNode(node112, null);
         auxTree3.insertNode(node113, node112);
         auxTree3.insertNode(node306, node113);
-        auxTree3.insertNode(node307, node306);
         auxTree3.insertNode(node308, node306);
+        auxTree3.insertNode(node309A, node308);
+        auxTree3.insertNode(node309copia, node309A);
+        auxTree3.insertNode(node310, node309A);
         auxTree3.insertNode(node309, node306);
+        auxTree3.insertNode(node309B, node309);
+        auxTree3.insertNode(node308copia, node309B);
+        auxTree3.insertNode(node310, node309B);
         auxTree3.insertNode(node310, node306);
+        auxTree3.insertNode(nodedespD, node309copia);
+        auxTree3.insertNode(nodedespD, node308copia);
+        auxTree3.insertNode(node310,nodedespD);
 
         tutorialParte4.setArbolDial(auxTree3);
 
@@ -1060,7 +1071,7 @@ public class Tutorial extends JFrame {
         Dialogo despedida1 = new Dialogo("A usted, detective. Si necesita algo más, estaré por aquí.", "Guía", guia, true);
 
         // Segunda decisión: preguntar ubicación o terminar
-        Dialogo decision2 = new Dialogo("¿Desea saber dónde estaba durante el incidente o prefiere terminar la conversación?", "Guía", guia, true);
+        Dialogo decision2 = new Dialogo("¿Desea saber algo más?", "Guía", guia, true);
         decision2.setOpciones(new LinkedList<>(Arrays.asList("¿Dónde se encontraba usted durante el incidente?", "Gracias. " +
                 "Eso es todo por ahora.")));
 
@@ -1071,6 +1082,7 @@ public class Tutorial extends JFrame {
         /*añadirAlDiario("Guía", "El guía conoce el museo como la palma de su mano.");*/
 
         Dialogo despedida2 = new Dialogo("A usted, detective. Que tenga buena noche.", "Guía", guia, true);
+        Dialogo despeDetectiveGuia = new Dialogo("Gracias, eso seria todo por ahora", "Detective", detective, true);
 
         BinaryTreeNode<Dialogo> node114 = new BinaryTreeNode<>(dect);
         BinaryTreeNode<Dialogo> node115 = new BinaryTreeNode<>(guia1);
@@ -1081,6 +1093,7 @@ public class Tutorial extends JFrame {
         BinaryTreeNode<Dialogo> node344 = new BinaryTreeNode<>(decision2);
         BinaryTreeNode<Dialogo> node314 = new BinaryTreeNode<>(respuesta2);
         BinaryTreeNode<Dialogo> node315 = new BinaryTreeNode<>(despedida2);
+        BinaryTreeNode<Dialogo> nodeDesGuia = new BinaryTreeNode<>(despeDetectiveGuia);
 
         GeneralTree<Dialogo> auxTree4 = new GeneralTree<>();
 
@@ -1089,8 +1102,10 @@ public class Tutorial extends JFrame {
         auxTree4.insertNode(node311, node115);
         auxTree4.insertNode(node312, node311);
         auxTree4.insertNode(node313, node311);
-        auxTree4.insertNode(node344, node115);
+        auxTree4.insertNode(node344, node312);
         auxTree4.insertNode(node314, node344);
+        auxTree4.insertNode(nodeDesGuia, node314);
+        auxTree4.insertNode(node315, nodeDesGuia);
         auxTree4.insertNode(node315, node344);
 
         tutorialParte5.setArbolDial(auxTree4);
@@ -1111,7 +1126,7 @@ public class Tutorial extends JFrame {
         Dialogo desp1 = new Dialogo("Qué pena... justo cuando empezaba a disfrutar la charla. Estoy a su disposición, detective.", "Secretaria", secretaria, true);
 
         // Segunda decisión
-        Dialogo decs2 = new Dialogo("¿Le interesa saber dónde estaba esa noche o ya me deja tranquila?", "Secretaria", secretaria, true);
+        Dialogo decs2 = new Dialogo("¿Le interesa conocer algo mas acerca de mi.?", "Secretaria", secretaria, true);
         decs2.setOpciones(new LinkedList<>(Arrays.asList("¿Dónde se encontraba cuando ocurrió el incidente?", "Gracias por su tiempo. " +
                 "Eso sería todo.")));
         ;
@@ -1119,6 +1134,7 @@ public class Tutorial extends JFrame {
                 " interesante pasara. Supongo que lo logró.", "Secretaria", secretaria, true);
 
         Dialogo desp2 = new Dialogo("A usted, detective. Que tenga una noche... intrigante.", "Secretaria", secretaria, true);
+        Dialogo despDetSecret= new Dialogo("Eso seria todo, puede regresar. Gracias por su cooperación", "Detective", detective, true);
 
         BinaryTreeNode<Dialogo> node116 = new BinaryTreeNode<>(s1);
         BinaryTreeNode<Dialogo> node117 = new BinaryTreeNode<>(s2);
@@ -1129,6 +1145,7 @@ public class Tutorial extends JFrame {
         BinaryTreeNode<Dialogo> node345 = new BinaryTreeNode<>(decs2);
         BinaryTreeNode<Dialogo> node319 = new BinaryTreeNode<>(resp2);
         BinaryTreeNode<Dialogo> node320 = new BinaryTreeNode<>(desp2);
+        BinaryTreeNode<Dialogo> nodeDesSecr = new BinaryTreeNode<>(despDetSecret);
 
         GeneralTree<Dialogo> auxTree5 = new GeneralTree<>();
 
@@ -1137,8 +1154,10 @@ public class Tutorial extends JFrame {
         auxTree5.insertNode(node316, node117);
         auxTree5.insertNode(node317, node316);
         auxTree5.insertNode(node318, node316);
-        auxTree5.insertNode(node345, node117);
+        auxTree5.insertNode(node345, node317);
         auxTree5.insertNode(node319, node345);
+        auxTree5.insertNode(nodeDesSecr, node319);
+        auxTree5.insertNode(node320, nodeDesSecr);
         auxTree5.insertNode(node320, node345);
 
         tutorialParte6.setArbolDial(auxTree5);
@@ -1169,6 +1188,8 @@ public class Tutorial extends JFrame {
                 " solo... menos distracciones, menos tonterías.", "Guía 2", guia2, true);
         Dialogo relleno2 = new Dialogo("Pero bueno, en este museo el silencio nunca es garantía de tranquilidad.", "Guía 2", guia2, true);
 
+        Dialogo despdDete = new Dialogo("Gracias eso seria todo por ahora", "Detective", detective, true);
+
         Dialogo despd2 = new Dialogo("A usted, detective. Que tenga una noche... tranquila. O lo más cerca que pueda estar de eso.", "Guía 2", guia2, true);
 
         BinaryTreeNode<Dialogo> node118 = new BinaryTreeNode<>(guiaM1);
@@ -1182,6 +1203,7 @@ public class Tutorial extends JFrame {
         BinaryTreeNode<Dialogo> node325 = new BinaryTreeNode<>(respt2);
         BinaryTreeNode<Dialogo> node326 = new BinaryTreeNode<>(relleno2);
         BinaryTreeNode<Dialogo> node327 = new BinaryTreeNode<>(despd2);
+        BinaryTreeNode<Dialogo> nodeDespedidaDet = new BinaryTreeNode<>(despdDete);
 
         GeneralTree<Dialogo> auxTree6 = new GeneralTree<>();
         auxTree6.insertNode(node118, null);
@@ -1190,11 +1212,12 @@ public class Tutorial extends JFrame {
         auxTree6.insertNode(node322, node321);
         auxTree6.insertNode(node323, node322);
         auxTree6.insertNode(node324, node321);
-        auxTree6.insertNode(node346, node119);
+        auxTree6.insertNode(node346, node323);
         auxTree6.insertNode(node325, node346);
         auxTree6.insertNode(node326, node325);
         auxTree6.insertNode(node327, node346);
-
+        auxTree6.insertNode(nodeDespedidaDet, node326);
+        auxTree6.insertNode(node327, nodeDespedidaDet);
         tutorialParte7.setArbolDial(auxTree6);
 
         //Cambio de personaje, Aqui empieza la de limpieza
