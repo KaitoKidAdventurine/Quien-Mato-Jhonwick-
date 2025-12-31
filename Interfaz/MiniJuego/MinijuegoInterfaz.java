@@ -1,5 +1,6 @@
 package Interfaz.MiniJuego;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import Logica.*;
 
 import javax.imageio.ImageIO;
@@ -26,7 +27,6 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
     private MiniJuego mini;
 
     public MinijuegoInterfaz(MiniJuego miniJuego) {
-
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         objetosMinijuego = new ArrayList<>();
         objetosEncontrables = new ArrayList<>();
@@ -38,9 +38,9 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
     }
 
     private void initComponents(MiniJuego miniJuego) {
-        Reproductor r = Reproductor.getInstancia();
-        r.cambiarMusicaNombre("Busqueda");
 
+        Reproductor reproductor = Reproductor.getInstancia();
+        reproductor.cambiarMusicaNombre("Busqueda");
         fondo = new JLabel();
         setLayout(null);
         panelEncontrables = new JPanel();
@@ -48,8 +48,6 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
         Deque<ObjetoEscenario> objetos = miniJuego.getCola();
         Iterator<ObjetoEscenario> II = objetos.iterator();
 
-        Reproductor reproductor = Reproductor.getInstancia();
-        reproductor.musicaDeBusqueda();
         while (II.hasNext()) {
             ObjetoEscenario objeto = II.next();
             ObjetoMinijuego boton = new ObjetoMinijuego(objeto.getNombre());
@@ -101,22 +99,29 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
     private void buscarObjeto(ActionEvent evt) {
         ObjetoMinijuego accionador = (ObjetoMinijuego) evt.getSource();
 
-        for (int i = 0; i < objetosEnc.size(); i++) {
+        for (int i = 0; i < objetosEnc.size(); i++)
+        {
 
             if (accionador.getNombreObjeto().equals(objetosEnc.get(i).getNombre())) {
                 objetosEnc.remove(i);
                 remove(accionador);
+                EfectosEspeciales e =EfectosEspeciales.getInstancia();
+                e.efectoObjetoEncontrado();
                 objetosMinijuego.remove(accionador);
 
                 if(!mini.getCola().isEmpty())
+                {
                     mini.pedirSiguienteObjeCola();
+                }
 
                 actualizarObjetosEncontrables();
 
                 if(!objetosMinijuego.isEmpty()){
                     revalidate();
                     repaint();
-                }else{
+
+                }
+                else{
                     getParent().getComponent(0).setVisible(false);
                     getParent().getComponent(2).setVisible(true);
                     getParent().revalidate();
@@ -182,4 +187,5 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
             }
         }
     }
+
 }

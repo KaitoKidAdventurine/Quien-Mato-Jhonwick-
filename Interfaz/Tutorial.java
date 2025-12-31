@@ -41,12 +41,16 @@ public class Tutorial extends JFrame {
     private Timer timer2;
     private TimerTask tarea2;
     private JButton botonSaltar;
+    private static boolean entro = false;
 
 
 
     public Tutorial() {
-        tamPant = Toolkit.getDefaultToolkit().getScreenSize();
+        Reproductor reproductor = Reproductor.getInstancia();
+        reproductor.cambiarMusicaNombre("Galeria Silenciosa");
 
+
+        tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         tutorialParte1 = new Escenario("Tutorial Parte 1", "Punto inicial de partida", true);
         tutorialParte2 = new Escenario("Tutorial Parte 2", "Punto inicial de partida", true);
         tutorialParte3 = new Escenario("Tutorial Parte 3", "Punto inicial de partida", true);
@@ -80,9 +84,8 @@ public class Tutorial extends JFrame {
 
 
     private void initComponents() {
-        // Reproductor
-        Reproductor reproductor = Reproductor.getInstancia();
-        reproductor.cambiarMusicaNombre("Galeria Silenciosa");
+
+
         // Efectos especiales
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
 
@@ -151,6 +154,7 @@ public class Tutorial extends JFrame {
         }
 
         else {
+
             cajaTexto.removeAll();
             cajaTexto.setVisible(false);
             crearMinijuego();
@@ -167,7 +171,17 @@ public class Tutorial extends JFrame {
     public void ponerDialogoParte2() {
 
         if(tutorialParte2.getNodoDialActual() == null || !(tutorialParte2.getArbolDial().nodeIsLeaf(tutorialParte2.getNodoDialActual()))) {
-            if(!(tutorialParte2.getNodoDialActual()==null)){
+            if(!(tutorialParte2.getNodoDialActual()==null))
+            {
+
+                if(!entro)
+                {
+                    entro = true;
+                    Reproductor reproductor = Reproductor.getInstancia();
+                    reproductor.cambiarMusicaNombre("Galeria Silenciosa");
+                }
+
+
                 Dialogo actual = tutorialParte2.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
@@ -1503,7 +1517,9 @@ public class Tutorial extends JFrame {
     public void crearMinijuego(){
         // Ocultar botón saltar cuando comience el minijuego
         botonSaltar.setVisible(false);
+
         MiniJuego miniJuego = Juego.getInstance().getMinijuego(0);
+
         MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(miniJuego);
         minijuegoInterfaz.setBounds(0, 0, tamPant.width, tamPant.height);
         getContentPane().add(minijuegoInterfaz, 0);

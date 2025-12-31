@@ -50,7 +50,6 @@ public class MiniJuego
     // Metodos
     public void agregarObjetoLista(ObjetoEscenario o)
     {
-
         o.setPosList(indice);
         indice++;
         listaObjetos.add(o);

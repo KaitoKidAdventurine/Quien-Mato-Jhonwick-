@@ -290,18 +290,34 @@ public class Reproductor {
         cambiarMusicaIndice(indiceActual + 1);
     }
 
-    public void detenerCancion()
-    {
+    public synchronized void detenerCancion() {
+        if (!enReproduccion) {
+            return;
+        }
+
         enReproduccion = false;
 
-        if (reproductorMP3 != null)
-        {
-            reproductorMP3.close();
-        }
-        if (hiloReproduccion != null && hiloReproduccion.isAlive())
-        {
+        // Dar tiempo al hilo para que termine limpiamente
+        if (hiloReproduccion != null && hiloReproduccion.isAlive()) {
             hiloReproduccion.interrupt();
+            try {
+                hiloReproduccion.join(1000); // Esperar máximo 1 segundo
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
+
+        if (reproductorMP3 != null) {
+            try {
+                reproductorMP3.close();
+            } catch (Exception e) {
+                // Manejo de excepción
+            } finally {
+                reproductorMP3 = null;
+            }
+        }
+
+        hiloReproduccion = null;
     }
 
     public void activarMusica()

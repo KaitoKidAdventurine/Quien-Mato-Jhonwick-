@@ -42,8 +42,10 @@ public class EfectosEspeciales
             File musicacinco = new File("Musica/Efectos de Sonido/Mochila.mp3");
             File musicaseis = new File("Musica/Efectos de Sonido/SaliendoDelCarro.mp3");
             File efec = new File("Musica/Efectos de Sonido/NuevoTelefonoAlAbrir.mp3");
+            File efect = new File("Musica/Efectos de Sonido/objetoEncontrado.mp3");
 
-            if (archivoMusica.exists()) {
+            if (archivoMusica.exists())
+            {
                 Cancion cancion = new Cancion("Lluvia", archivoMusica);
                 Cancion cancion1 = new Cancion("Telefono Sonando", archivoMusicaDos);
                 Cancion cancion2 = new Cancion("Pasos", archivoMusicaTre);
@@ -54,6 +56,7 @@ public class EfectosEspeciales
                 Cancion cancion7 = new Cancion("Mochila", musicacinco);
                 Cancion cancion8 = new Cancion("SaliendoDelCarro", musicaseis);
                 Cancion cancion9 = new Cancion("NuevoTelefonoAlAbrir", efec);
+                Cancion cancion10 = new Cancion("objetoEncontrado", efect);
 
                 efectosSonido.add(cancion);
                 efectosSonido.add(cancion1);
@@ -65,6 +68,7 @@ public class EfectosEspeciales
                 efectosSonido.add(cancion7);
                 efectosSonido.add(cancion8);
                 efectosSonido.add(cancion9);
+                efectosSonido.add(cancion10);
             }
 
             else {
@@ -343,7 +347,10 @@ public class EfectosEspeciales
     }
 
 
-
+    public void efectoObjetoEncontrado()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("objetoEncontrado");
+    }
 
 
 
