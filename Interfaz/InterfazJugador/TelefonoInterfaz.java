@@ -65,6 +65,15 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         getContentPane().setPreferredSize(new Dimension((int) (tamPant.width*0.4), (int) (tamPant.height*0.6)));
         setBackground(new Color(0,0, 0, 75));
 
+        BufferedImage imagenCursor =null;
+        try {
+            imagenCursor =  ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Cursor.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
+        setCursor(cursor);
+
         pantalla.setBackground(Color.white );
         pantalla.setLayout(null);
         pantalla.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));

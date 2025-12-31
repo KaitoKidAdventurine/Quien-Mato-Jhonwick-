@@ -69,6 +69,9 @@ public class Bano extends ModeloEscenario {
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
         conserje = new JButton();
+
+
+
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/baño 1.jpg"));
 

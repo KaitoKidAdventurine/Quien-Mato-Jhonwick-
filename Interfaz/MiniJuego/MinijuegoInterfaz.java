@@ -1,6 +1,5 @@
 package Interfaz.MiniJuego;
 
-import DatosAuxiliaresLogica.EfectosEspeciales;
 import Logica.*;
 
 import javax.imageio.ImageIO;
@@ -27,17 +26,21 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
     private MiniJuego mini;
 
     public MinijuegoInterfaz(MiniJuego miniJuego) {
+
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         objetosMinijuego = new ArrayList<>();
         objetosEncontrables = new ArrayList<>();
-        objetosEnc = miniJuego.getListaObjetos();
-        objEncontrados = new ArrayList<>(miniJuego.getCola());
-        mini = miniJuego;
+        clonarMinijuego(miniJuego);
+        objetosEnc = mini.getListaObjetos();
+        objEncontrados = new ArrayList<>(mini.getCola());
+
         labelLista = new JLabel();
-        initComponents(miniJuego);
+        initComponents();
     }
 
-    private void initComponents(MiniJuego miniJuego) {
+
+
+    private void initComponents() {
 
         Reproductor reproductor = Reproductor.getInstancia();
         reproductor.cambiarMusicaNombre("Busqueda");
@@ -64,19 +67,19 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
         }
         panelEncontrables.setBounds((int) (tamPant.width * 0.75), 0, (int) (tamPant.width * 0.25), tamPant.height);
         for (int i = 0; i < 5; i++) {
-            miniJuego.pedirSiguienteObjeCola();
+            mini.pedirSiguienteObjeCola();
         }
         panelEncontrables.setBackground(Color.black);
         panelEncontrables.setLayout(null);
         hacerListaObjetosEncontrables();
-        ponerObjetos(miniJuego);
+        ponerObjetos(mini);
         add(panelEncontrables);
 
         fondo.setBounds(0, 0, (int) (tamPant.width * 0.75), tamPant.height);
 
         BufferedImage imagen2 = null;
         try {
-            imagen2 = ImageIO.read(new File(String.valueOf(miniJuego.getFoto())));
+            imagen2 = ImageIO.read(new File(String.valueOf(mini.getFoto())));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -101,7 +104,6 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
 
         for (int i = 0; i < objetosEnc.size(); i++)
         {
-
             if (accionador.getNombreObjeto().equals(objetosEnc.get(i).getNombre())) {
                 objetosEnc.remove(i);
                 remove(accionador);
@@ -110,18 +112,14 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
                 objetosMinijuego.remove(accionador);
 
                 if(!mini.getCola().isEmpty())
-                {
                     mini.pedirSiguienteObjeCola();
-                }
 
                 actualizarObjetosEncontrables();
 
                 if(!objetosMinijuego.isEmpty()){
                     revalidate();
                     repaint();
-
-                }
-                else{
+                }else{
                     getParent().getComponent(0).setVisible(false);
                     getParent().getComponent(2).setVisible(true);
                     getParent().revalidate();
@@ -136,7 +134,15 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
 
 
     }
-
+    private void clonarMinijuego(MiniJuego miniJuego) {
+        mini = new MiniJuego("Tutorial", miniJuego.getFoto());
+        Deque<ObjetoEscenario> objetos = miniJuego.getCola();
+        Iterator<ObjetoEscenario> II = objetos.iterator();
+        while (II.hasNext()) {
+            ObjetoEscenario objeto = II.next();
+            mini.agregarObjetoCola(objeto);
+        }
+    }
     private void ponerObjetosEnMochila() {
         for(int i =0; i< objEncontrados.size(); i++){
             ObjetoEscenario aux = objEncontrados.get(i);
@@ -187,5 +193,4 @@ public class MinijuegoInterfaz extends javax.swing.JPanel {
             }
         }
     }
-
 }

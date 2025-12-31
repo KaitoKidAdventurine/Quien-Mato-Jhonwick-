@@ -71,6 +71,15 @@ public class NuevaPartida extends javax.swing.JFrame {
         setPreferredSize(tamPant);
         getContentPane().setLayout(null);
 
+        BufferedImage imagenCursor =null;
+        try {
+            imagenCursor =  ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Cursor.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
+        setCursor(cursor);
+
         boton3.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.04)));
         boton3.setForeground(new java.awt.Color(255, 255, 255));
         boton3.setText("Nueva Partida 3");

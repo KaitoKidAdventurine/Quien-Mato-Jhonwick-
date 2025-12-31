@@ -82,6 +82,8 @@ public class Entrada extends ModeloEscenario {
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por afuera.jpg"));
 

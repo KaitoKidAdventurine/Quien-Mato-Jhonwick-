@@ -42,6 +42,14 @@ public class Maletin extends javax.swing.JDialog {
         // ponerObjetos();
 
         fondo = new JLabel();
+        BufferedImage imagenCursor =null;
+        try {
+            imagenCursor =  ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Cursor.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
+        setCursor(cursor);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);

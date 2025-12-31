@@ -75,6 +75,14 @@ public class MenuInterno extends javax.swing.JDialog {
         getContentPane().setLayout(null);
         setBackground(new Color(0, 0,0,75 ));
 
+        BufferedImage imagenCursor =null;
+        try {
+            imagenCursor =  ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Cursor.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
+        setCursor(cursor);
         jPanel1.setBackground(Color.black);
         jPanel1.setLayout(null);
 

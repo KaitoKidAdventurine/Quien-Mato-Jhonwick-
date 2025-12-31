@@ -94,6 +94,14 @@ public class Tutorial extends JFrame {
         cajaTexto = new JPanel();
         botonSaltar = new JButton("Saltar al Juego");
 
+        BufferedImage imagenCursor =null;
+        try {
+            imagenCursor =  ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Cursor.png"));
+        } catch (IOException te) {
+            throw new RuntimeException(te);
+        }
+        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
+        setCursor(cursor);
 
         setMinimumSize(tamPant);
         setUndecorated(true);
@@ -625,17 +633,17 @@ public class Tutorial extends JFrame {
         Dialogo d15= new Dialogo("No se por que, pero presiento que de alguna forma me va a afectar esto.", "", nada, true);
         Dialogo d16= new Dialogo("- Ring ring ring ring ring.-", "", nada, true);
         Dialogo d17= new Dialogo("El mensajero de las malas noticias.", "", nada, true);
-        Dialogo d18= new Dialogo("Espero que aprovecharas tus vacaciones", "Jefe", nada, true);
+        Dialogo d18= new Dialogo("Espero que aprovecharas tus vacaciones", "Capitan", nada, true);
         Dialogo d19= new Dialogo("Algo asi.", "", nada, true);
-        Dialogo d20= new Dialogo("¿Estas ocupado?.", "Jefe", nada, true);
+        Dialogo d20= new Dialogo("¿Estas ocupado?.", "Capitan", nada, true);
         Dialogo d21= new Dialogo("La verdad es que si, ando en pijama, viendo una pelicula con mi taza favorita", "", nada, true);
-        Dialogo d22= new Dialogo("Perfecto, estas libre entonces.", "Jefe", nada, true);
+        Dialogo d22= new Dialogo("Perfecto, estas libre entonces.", "Capitan", nada, true);
         Dialogo d23= new Dialogo("No he dicho eso.", "", nada, true);
-        Dialogo d24= new Dialogo("Te necesitamos en el museo Logrimbver.", "Jefe", nada, true);
+        Dialogo d24= new Dialogo("Te necesitamos en el museo Logrimbver.", "Capitan", nada, true);
         Dialogo d25= new Dialogo("¿Tiene que ver con el cuerpo hallado?.", "", nada, true);
-        Dialogo d26= new Dialogo("¿Como te enteraste?", "Jefe", nada, true);
+        Dialogo d26= new Dialogo("¿Como te enteraste?", "Capitan", nada, true);
         Dialogo d27= new Dialogo("Lo acaban de decir por el televisor", "", nada, true);
-        Dialogo d28= new Dialogo("Mejor, ya estas enterado de la situacion entonces. Tienes 20 minutos para llegar.", "Jefe", nada, true);
+        Dialogo d28= new Dialogo("Mejor, ya estas enterado de la situacion entonces. Tienes 20 minutos para llegar.", "Capitan", nada, true);
         Dialogo d29= new Dialogo("Pero nunca estuve de acuerdo para ir en primer lugar.", "", nada, true);
         Dialogo d30= new Dialogo("-Biiiippppp.-", "", nada, true);
         Dialogo d31= new Dialogo("Demonios.", "", nada, true);
