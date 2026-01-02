@@ -1243,7 +1243,7 @@ public class Tutorial extends JFrame {
         auxTree6.insertNode(node327, nodeDespedidaDet);
         tutorialParte7.setArbolDial(auxTree6);
 
-        //Cambio de personaje, Aqui empieza la de limpieza
+        //Cambio de personaje, Aqui empieza el de limpieza
         Dialogo l1 = new Dialogo("Hola. Estoy hablando con todos los empleados del museo. ¿Podría decirme su nombre y qué hace aquí?", "Detective", detective, true);
         Dialogo l2 = new Dialogo("Sí, claro. Soy el encargado de la limpieza del museo. Me encargo de dejar todo en orden cuando ya no" +
                 " queda nadie.", "Limpieza", limpieza, true);
@@ -1252,14 +1252,14 @@ public class Tutorial extends JFrame {
 
         // Primera decisión
         Dialogo de1 = new Dialogo("¿Quiere preguntarme algo más?", "Limpieza", limpieza, true);
-        de1.setOpciones(new LinkedList<>(Arrays.asList("¿Conocía al economista?", "Está bien, gracias por su tiempo.")) );
+        de1.setOpciones(new LinkedList<>(Arrays.asList("¿Conocía al economista?", "Está bien así, gracias por su tiempo.")) );
 
         Dialogo res1 = new Dialogo("Lo veía pasar. Siempre con prisa, como si el tiempo le debiera algo. Nunca me saludó, pero tampoco" +
                 " molestaba.", "Limpieza", limpieza, true);
         Dialogo rell1 = new Dialogo("Una vez dejó caer unos papeles y ni se dio cuenta. Los recogí y se los puse en su escritorio." +
                 " Nunca dijo nada.", "Limpieza", limpieza, true);
 
-        Dialogo des1 = new Dialogo("De nada. Si necesita algo, con gusto puedo ayudar.", "Limpieza", limpieza, true);
+        Dialogo des1 = new Dialogo("De nada. Si necesita algo más, con gusto puedo ayudar.", "Limpieza", limpieza, true);
 
         // Segunda decisión
         Dialogo de2 = new Dialogo("¿Algo más en lo que lo pueda ayudar Detective?", "Limpieza", limpieza, true);
@@ -1379,7 +1379,6 @@ public class Tutorial extends JFrame {
         // nodo de salida con despedida
         auxTree8.insertNode(desp,node342);
         auxTree8.insertNode(node343, desp);
-
 
 
         tutorialParte9.setArbolDial(auxTree8);
