@@ -906,7 +906,7 @@ public class Juego {
         auxTree6.insertNode(node106, node105);
         auxTree6.insertNode(node107, node106);
         auxTree6.insertNode(node108, node107);
-
+        
         /*
         auxTree6.insertNode(node109, node108);
         auxTree6.insertNode(node110, node109);
@@ -919,7 +919,7 @@ public class Juego {
         auxTree6.insertNode(node117, node116);
         auxTree6.insertNode(node118, node117);
         */
-        
+
     }
 
 
