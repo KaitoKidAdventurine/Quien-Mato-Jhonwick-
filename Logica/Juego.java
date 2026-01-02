@@ -817,10 +817,10 @@ public class Juego {
         auxTree5.insertNode(node99, node98);
 
         // Dialogo callejon vagabundo
-        Dialogo vagab1 = new Dialogo("Buenas noches. ¿Todo bien por aquí?", "DetectiveCallejon1", detective, true);
-        Dialogo vagab2 = new Dialogo("¿Todo bien? Estoy en un callejón, con frío y sin cena. ¿Usted qué cree?", "VagabundoCallejon1", vagabundo, true);
-        Dialogo vagab3 = new Dialogo("Tienes razón. No fue la mejor forma de empezar. Solo quería hablar un momento.", "DetectiveCallejon1", detective, true);
-        Dialogo vagab4 = new Dialogo("Hablar no cuesta nada... pero tampoco llena el estómago.", "VagabundoCallejon1", vagabundo, true);
+        Dialogo vagab1 = new Dialogo("Buenas noches. ¿Todo bien por aquí?", "Detective", detective, true);
+        Dialogo vagab2 = new Dialogo("¿Todo bien? Estoy en un callejón, con frío y sin cena. ¿Usted qué cree?", "Vagabundo", vagabundo, true);
+        Dialogo vagab3 = new Dialogo("Tienes razón. No fue la mejor forma de empezar. Solo quería hablar un momento.", "Detective", detective, true);
+        Dialogo vagab4 = new Dialogo("Hablar no cuesta nada... pero tampoco llena el estómago.", "Vagabundo", vagabundo, true);
 
         // Primera decisión
         List<String> decision1 = new LinkedList<>(Arrays.asList(
@@ -831,14 +831,14 @@ public class Juego {
         ));
 
         // Camino vacío: tiempo en el callejón
-        Dialogo vacio13a = new Dialogo("¿Qué importa? El tiempo pasa igual, tenga uno techo o no. Pero sí, llevo un buen rato viendo pasar sombras.", "VagabundoCallejon1", vagabundo, true);
+        Dialogo vacio13a = new Dialogo("¿Qué importa? El tiempo pasa igual, tenga uno techo o no. Pero sí, llevo un buen rato viendo pasar sombras.", "Vagabundo", vagabundo, true);
 
         // Camino vacío: quedarse
-        Dialogo vacio14a = new Dialogo("Mientras no me quite el rincón, siéntase como en casa. Aunque no tengo sofá ni café para ofrecerle.", "VagabundoCallejon1", vagabundo, true);
+        Dialogo vacio14a = new Dialogo("Mientras no me quite el rincón, siéntase como en casa. Aunque no tengo sofá ni café para ofrecerle.", "Vagabundo", vagabundo, true);
 
         // Camino principal: cosas raras
-        Dialogo raras1 = new Dialogo("¿Raro? Aquí todo es raro. Pero sí, hay noches que el silencio se rompe de formas extrañas.", "VagabundoCallejon1", vagabundo, true);
-        Dialogo raras2 = new Dialogo("¿Qué quiere saber exactamente?", "VagabundoCallejon1", vagabundo, true);
+        Dialogo raras1 = new Dialogo("¿Raro? Aquí todo es raro. Pero sí, hay noches que el silencio se rompe de formas extrañas.", "Vagabundo", vagabundo, true);
+        Dialogo raras2 = new Dialogo("¿Qué quiere saber exactamente?", "Vagabundo", vagabundo, true);
 
         // Segunda decisión
         List<String> decision2 = new LinkedList<>(Arrays.asList(
@@ -848,28 +848,28 @@ public class Juego {
         ));
 
         // Camino vacío: ruidos
-        Dialogo vacio15a = new Dialogo("Ruidos hay siempre. Gatos, botellas, viento... o mis tripas. Nada que me quite el sueño.", "VagabundoCallejon1", vagabundo, true);
+        Dialogo vacio15a = new Dialogo("Ruidos hay siempre. Gatos, botellas, viento... o mis tripas. Nada que me quite el sueño.", "Vagabundo", vagabundo, true);
 
         // Camino principal: pregunta clave
         /*if(tienePanConJamon)*/ {
-            Dialogo v1 = new Dialogo("¿Entre la 1 y las 3? Sí... vi a alguien. No saliendo, no. Subiendo.", "VagabundoCallejon1", vagabundo, true);
-            Dialogo v2 = new Dialogo("Ocurrió por la escalera de incendios. Alguien más la bajo, cosa rara. Esa chatarra siempre está recogida.", "VagabundoCallejon1", vagabundo, true);
-            Dialogo v3 = new Dialogo("No les vi la cara. Solo siluetas. Pero no eran de los míos, eso seguro.", "VagabundoCallejon1", vagabundo, true);
+            Dialogo v1 = new Dialogo("¿Entre la 1 y las 3? Sí... vi a alguien. No saliendo, no. Subiendo.", "Vagabundo", vagabundo, true);
+            Dialogo v2 = new Dialogo("Ocurrió por la escalera de incendios. Alguien más la bajo, cosa rara. Esa chatarra siempre está recogida.", "Vagabundo", vagabundo, true);
+            Dialogo v3 = new Dialogo("No les vi la cara. Solo siluetas. Pero no eran de los míos, eso seguro.", "Vagabundo", vagabundo, true);
 
             // Datos clave
             /*añadirAlDiario("Vagabundo", "Alguien subió por la escalera de incendios entre la 1 y las 3 a.m la cual estaba ya bajada.");
             añadirAlDiario("Vagabundo", "La escalera de incendios fue desplegada por una segunda persona.");*/
 
-            Dialogo cierre6a = new Dialogo("Gracias. Eso ayuda más de lo que cree.", "DetectiveCallejon1", detective, true);
-            Dialogo despedida6a = new Dialogo("De nada. Y gracias por el pan. El jamón estaba... casi fresco.", "VagabundoCallejon1", vagabundo, true);
+            Dialogo cierre6a = new Dialogo("Gracias. Eso ayuda más de lo que cree.", "Detective", detective, true);
+            Dialogo despedida6a = new Dialogo("De nada. Y gracias por el pan. El jamón estaba... casi fresco.", "Vagabundo", vagabundo, true);
 
         }/* else*/ {
-            Dialogo v4 = new Dialogo("¿Entre la 1 y las 3? Mmm... la memoria me falla cuando tengo el estómago vacío.", "VagabundoCallejon1", vagabundo, true);
-            Dialogo v5 = new Dialogo("Pero quién sabe... tal vez si tuviera algo caliente en las manos, recordaría mejor.", "VagabundoCallejon1", vagabundo, true);
-            Dialogo v6 = new Dialogo("Algo rico de comer, por ejemplo. No pido mucho. Solo un gesto.", "VagabundoCallejon1", vagabundo, true);
+            Dialogo v4 = new Dialogo("¿Entre la 1 y las 3? Mmm... la memoria me falla cuando tengo el estómago vacío.", "Vagabundo", vagabundo, true);
+            Dialogo v5 = new Dialogo("Pero quién sabe... tal vez si tuviera algo caliente en las manos, recordaría mejor.", "Vagabundo", vagabundo, true);
+            Dialogo v6 = new Dialogo("Algo rico de comer, por ejemplo. No pido mucho. Solo un gesto.", "Vagabundo", vagabundo, true);
 
-            Dialogo cierre6b = new Dialogo("Veré qué puedo hacer.", "DetectiveCallejon1", detective, true);
-            Dialogo despedida6b = new Dialogo("Aquí estaré. No tengo a dónde ir.", "VagabundoCallejon1", vagabundo, true);
+            Dialogo cierre6b = new Dialogo("Veré qué puedo hacer.", "Detective", detective, true);
+            Dialogo despedida6b = new Dialogo("Aquí estaré. No tengo a dónde ir.", "Vagabundo", vagabundo, true);
         }
 
 
@@ -906,7 +906,7 @@ public class Juego {
         auxTree6.insertNode(node106, node105);
         auxTree6.insertNode(node107, node106);
         auxTree6.insertNode(node108, node107);
-        
+
         /*
         auxTree6.insertNode(node109, node108);
         auxTree6.insertNode(node110, node109);
