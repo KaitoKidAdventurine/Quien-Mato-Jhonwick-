@@ -1056,6 +1056,7 @@ public class Tutorial extends JFrame {
         BinaryTreeNode<Dialogo> node309A = new BinaryTreeNode<>(decisionGuardia2);
         BinaryTreeNode<Dialogo> node309B = new BinaryTreeNode<>(decisionGuardia3);
         BinaryTreeNode<Dialogo> nodedespD = new BinaryTreeNode<>(despediDet);
+
         GeneralTree<Dialogo> auxTree3 = new GeneralTree<>();
 
         auxTree3.insertNode(node112, null);
