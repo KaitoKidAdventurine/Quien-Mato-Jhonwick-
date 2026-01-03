@@ -91,19 +91,16 @@ public class MinijuegoInterfaz extends JPanel {
 
 
     private void initComponents() {
-        Reproductor r = Reproductor.getInstancia();
-        r.cambiarMusicaNombre("Busqueda");
 
+        Reproductor reproductor = Reproductor.getInstancia();
+        reproductor.cambiarMusicaNombre("Busqueda");
         fondo = new JLabel();
         setLayout(null);
         panelEncontrables = new JPanel();
         setBackground(Color.blue);
-
-        Reproductor reproductor = Reproductor.getInstancia();
-        reproductor.musicaDeBusqueda();
-
         Deque<ObjetoEscenario> objetos = mini.getCola();
         Iterator<ObjetoEscenario> II = objetos.iterator();
+
         while (II.hasNext()) {
             ObjetoEscenario objeto = II.next();
             ObjetoMinijuego boton = new ObjetoMinijuego(objeto.getNombre());
@@ -235,10 +232,11 @@ public class MinijuegoInterfaz extends JPanel {
         ObjetoMinijuego accionador = (ObjetoMinijuego) evt.getSource();
 
         for (int i = 0; i < objetosEnc.size(); i++) {
-
             if (accionador.getNombreObjeto().equals(objetosEnc.get(i).getNombre())) {
                 objetosEnc.remove(i);
                 remove(accionador);
+                EfectosEspeciales e =EfectosEspeciales.getInstancia();
+                e.efectoObjetoEncontrado();
                 objetosMinijuego.remove(accionador);
 
                 if(!mini.getCola().isEmpty())

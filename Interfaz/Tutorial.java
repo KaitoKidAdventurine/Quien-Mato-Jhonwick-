@@ -44,9 +44,15 @@ public class Tutorial extends JFrame {
     private JButton botonSaltar;
     private Timer salida;
     private  TimerTask salidaTarea;
+    private static boolean entro = false;
+
 
 
     public Tutorial() {
+        Reproductor reproductor = Reproductor.getInstancia();
+        reproductor.cambiarMusicaNombre("Galeria Silenciosa");
+
+
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
 
         tutorialParte1 = new Escenario("Tutorial Parte 1", "Punto inicial de partida", true);
@@ -95,9 +101,8 @@ public class Tutorial extends JFrame {
 
 
     private void initComponents() {
-        // Reproductor
-        Reproductor reproductor = Reproductor.getInstancia();
-        reproductor.cambiarMusicaNombre("Galeria Silenciosa");
+
+
         // Efectos especiales
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
 
@@ -175,6 +180,7 @@ public class Tutorial extends JFrame {
         }
 
         else {
+
             cajaTexto.removeAll();
             cajaTexto.setVisible(false);
             crearMinijuego();
@@ -191,7 +197,17 @@ public class Tutorial extends JFrame {
     public void ponerDialogoParte2() {
 
         if(tutorialParte2.getNodoDialActual() == null || !(tutorialParte2.getArbolDial().nodeIsLeaf(tutorialParte2.getNodoDialActual()))) {
-            if(!(tutorialParte2.getNodoDialActual()==null)){
+            if(!(tutorialParte2.getNodoDialActual()==null))
+            {
+
+                if(!entro)
+                {
+                    entro = true;
+                    Reproductor reproductor = Reproductor.getInstancia();
+                    reproductor.cambiarMusicaNombre("Galeria Silenciosa");
+                }
+
+
                 Dialogo actual = tutorialParte2.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
@@ -1271,6 +1287,7 @@ public class Tutorial extends JFrame {
         BinaryTreeNode<Dialogo> node309A = new BinaryTreeNode<>(decisionGuardia2);
         BinaryTreeNode<Dialogo> node309B = new BinaryTreeNode<>(decisionGuardia3);
         BinaryTreeNode<Dialogo> nodedespD = new BinaryTreeNode<>(despediDet);
+
         GeneralTree<Dialogo> auxTree3 = new GeneralTree<>();
 
         auxTree3.insertNode(node112, null);
@@ -1457,7 +1474,7 @@ public class Tutorial extends JFrame {
         auxTree6.insertNode(node327, nodeDespedidaDet);
         tutorialParte7.setArbolDial(auxTree6);
 
-        //Cambio de personaje, Aqui empieza la de limpieza
+        //Cambio de personaje, Aqui empieza el de limpieza
         Dialogo l1 = new Dialogo("Hola. Estoy hablando con todos los empleados del museo. ¿Podría decirme su nombre y qué hace aquí?", "Detective", detective, true);
         Dialogo l2 = new Dialogo("Sí, claro. Soy el encargado de la limpieza del museo. Me encargo de dejar todo en orden cuando ya no" +
                 " queda nadie.", "Limpieza", limpieza, true);
@@ -1466,14 +1483,14 @@ public class Tutorial extends JFrame {
 
         // Primera decisión
         Dialogo de1 = new Dialogo("¿Quiere preguntarme algo más?", "Limpieza", limpieza, true);
-        de1.setOpciones(new LinkedList<>(Arrays.asList("¿Conocía al economista?", "Está bien, gracias por su tiempo.")) );
+        de1.setOpciones(new LinkedList<>(Arrays.asList("¿Conocía al economista?", "Está bien así, gracias por su tiempo.")) );
 
         Dialogo res1 = new Dialogo("Lo veía pasar. Siempre con prisa, como si el tiempo le debiera algo. Nunca me saludó, pero tampoco" +
                 " molestaba.", "Limpieza", limpieza, true);
         Dialogo rell1 = new Dialogo("Una vez dejó caer unos papeles y ni se dio cuenta. Los recogí y se los puse en su escritorio." +
                 " Nunca dijo nada.", "Limpieza", limpieza, true);
 
-        Dialogo des1 = new Dialogo("De nada. Si necesita algo, con gusto puedo ayudar.", "Limpieza", limpieza, true);
+        Dialogo des1 = new Dialogo("De nada. Si necesita algo más, con gusto puedo ayudar.", "Limpieza", limpieza, true);
 
         // Segunda decisión
         Dialogo de2 = new Dialogo("¿Algo más en lo que lo pueda ayudar Detective?", "Limpieza", limpieza, true);
@@ -1815,7 +1832,9 @@ public class Tutorial extends JFrame {
     public void crearMinijuego(){
         // Ocultar botón saltar cuando comience el minijuego
         botonSaltar.setVisible(false);
+
         MiniJuego miniJuego = Juego.getInstance().getMinijuego(0);
+
         MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(miniJuego);
         minijuegoInterfaz.setBounds(0, 0, tamPant.width, tamPant.height);
         getContentPane().add(minijuegoInterfaz, 0);
