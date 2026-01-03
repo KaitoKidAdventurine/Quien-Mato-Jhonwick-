@@ -2,6 +2,7 @@ package Interfaz.MiniJuego;
 
 import Interfaz.InterfazJugador.InterfazMenuMinijuego;
 import Logica.*;
+import DatosAuxiliaresLogica.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.Timer;
+
 
 public class MinijuegoInterfaz extends JPanel {
     private Dimension tamPant;
