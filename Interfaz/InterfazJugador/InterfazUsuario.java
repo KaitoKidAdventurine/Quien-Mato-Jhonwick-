@@ -309,8 +309,4 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         menu.setIcon(icono);
     }
 
-
-
-
-
 }

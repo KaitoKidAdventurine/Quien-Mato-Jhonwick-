@@ -66,7 +66,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
+        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(0, 0), "Cursor detective");
         setCursor(cursor);
 
         botonSalir = new javax.swing.JButton();
