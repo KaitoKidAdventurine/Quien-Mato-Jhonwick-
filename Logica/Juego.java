@@ -833,6 +833,8 @@ public class Juego {
         auxTree4.insertNode(node71d, nodeSal2);
         auxTree4.insertNode(node72d, node71d);
 
+        escenarios.get(3).setArbolDial(auxTree4);
+
         //Dialogo guias sala antiguedades
         Dialogo guia1 = new Dialogo("Vaya vaya, esta sala siempre me ha parecido la más silenciosa del museo.", "Detective", detective, true);
         Dialogo guia3 = new Dialogo("Es especial, ¿verdad? Tiene una energía distinta. A veces siento que las piezas me observan a mí.", "Guia1", guia, true);
