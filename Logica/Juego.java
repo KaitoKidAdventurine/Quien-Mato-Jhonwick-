@@ -295,6 +295,7 @@ public class Juego {
         ImageIcon guia2 = new ImageIcon("DatosAuxiliares/Personajes/Guia 2.png");
         ImageIcon vagabundo = new ImageIcon("DatosAuxiliares/Personajes/Vagabundo.png");
         ImageIcon nada = new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png");
+        ImageIcon esposa = new ImageIcon("DatosAuxiliares/Personajes/Esposa.png");
 
         //Dialogo de la secretaria en la entrada
         //Breve Introduccion
@@ -1127,7 +1128,168 @@ public class Juego {
 
         escenarios.get(5).setArbolDial(auxTree6);
 
+        // dialogo esposa del jefe
+        Dialogo e1 = new Dialogo("Disculpe la molestia, señora. Solo quería hacerle unas preguntas rápidas, si no le importa.", "Detective", detective, true);
+        Dialogo e2 = new Dialogo("¿A mí? Qué raro. Pero claro, adelante. Aunque no sé si puedo ayudar mucho. Yo solo vine a acompañar a mi esposo.", "Esposa", esposa, true);
+
+        // Primera decisión
+        Dialogo descEsp1= new Dialogo("Pues bien digame..", "Detective", detective, true );
+        descEsp1.setOpciones( new LinkedList<>(Arrays.asList(
+                "¿Le gusta venir al museo?",
+                "¿Cómo es su esposo en casa?",
+                "¿Qué opina del trabajo que hace su marido?"
+
+        )));
+
+        // Camino vacío: gusto por el museo
+        Dialogo respE1 = new Dialogo("La verdad, no soy muy de museos. Pero este tiene su encanto. Y bueno, hay que apoyar a la familia, ¿no?", "Esposa", esposa, true);
+
+        // Camino vacío: vida doméstica
+        Dialogo respE2 = new Dialogo("En casa es igual de mandón que en el trabajo, pero también muy gracioso. Siempre tiene una historia nueva que contar.", "Esposa", esposa, true);
+
+        // Camino principal: orgullo por el esposo
+        Dialogo e3 = new Dialogo("Mi esposo es brillante. Este museo no sería nada sin él. ¿Quiere ver algo?", "Esposa", esposa, true);
+
+
+        Dialogo e4 = new Dialogo("*Saca su teléfono y muestra la pantalla bloqueada.*", "Foto en espera", nada, true);
+
+
+        Dialogo e5 = new Dialogo("Mire, esta es mi pantalla. Es de hace unas semanas. ¿No se ve guapo? Esa es su oficina. Siempre tan elegante.", "Esposa", esposa, true);
+
+        // Observación del detective
+        Dialogo e6 = new Dialogo("*El detective observa la imagen. El jefe aparece sonriendo, de pie junto a su escritorio. En la pared, colgada detrás de él, está la espada... la misma que fue usada como arma homicida.*", "Foto que poner", nada, true);
+
+        Dialogo e7 = new Dialogo("(Esa espada... es la misma. Estaba en su oficina antes del crimen.)", "Detective", detective, true);
+
+        /* // Dato clave
+        añadirAlDiario("Esposa del jefe", "La espada homicida estaba colgada en la oficina del jefe antes del crimen.");*/
+
+        // Disimulo y cierre
+        Dialogo e8 = new Dialogo("Sí, muy buena foto. Se nota que lo admira mucho.", "Detective", detective, true);
+        Dialogo e9 = new Dialogo("Muchísimo. Es un hombre excepcional. Aunque a veces se hace el duro, tiene un gran corazón.", "Esposa", esposa, true);
+
+        Dialogo cierre7 = new Dialogo("Gracias por su tiempo. No la molesto más.", "Detective", detective, true);
+        Dialogo despedida7 = new Dialogo("Cuando quiera señor. Y si ve a mi esposo, dígale que lo estoy esperando para irnos a casa.", "Esposa", esposa, true);
+
+        BinaryTreeNode<Dialogo> node121 = new BinaryTreeNode<>(e1);
+        BinaryTreeNode<Dialogo> node122 = new BinaryTreeNode<>(e2);
+        BinaryTreeNode<Dialogo> decisionEsp1 = new BinaryTreeNode<>(descEsp1);
+        BinaryTreeNode<Dialogo> node123 = new BinaryTreeNode<>(respE1);
+        BinaryTreeNode<Dialogo> node124 = new BinaryTreeNode<>(respE2);
+        BinaryTreeNode<Dialogo> node125 = new BinaryTreeNode<>(e3);
+        BinaryTreeNode<Dialogo> node126 = new BinaryTreeNode<>(e4);
+        BinaryTreeNode<Dialogo> node127 = new BinaryTreeNode<>(e5);
+        BinaryTreeNode<Dialogo> node128 = new BinaryTreeNode<>(e6);
+        BinaryTreeNode<Dialogo> node129 = new BinaryTreeNode<>(e7);
+        BinaryTreeNode<Dialogo> node130 = new BinaryTreeNode<>(e8);
+        BinaryTreeNode<Dialogo> node131 = new BinaryTreeNode<>(e9);
+        BinaryTreeNode<Dialogo> node132 = new BinaryTreeNode<>(cierre7);
+        BinaryTreeNode<Dialogo> node132a = new BinaryTreeNode<>(cierre7);
+        BinaryTreeNode<Dialogo> node132b = new BinaryTreeNode<>(cierre7);
+        BinaryTreeNode<Dialogo> node133 = new BinaryTreeNode<>(despedida7);
+        BinaryTreeNode<Dialogo> node133a = new BinaryTreeNode<>(despedida7);
+        BinaryTreeNode<Dialogo> node133b = new BinaryTreeNode<>(despedida7);
+
+        GeneralTree<Dialogo> auxTree7 = new GeneralTree<>();
+
+        auxTree7.insertNode(node121, null);
+        auxTree7.insertNode(node122, node121);
+        auxTree7.insertNode(decisionEsp1, node122);
+        auxTree7.insertNode(node123, decisionEsp1);
+        auxTree7.insertNode(node132, node123);
+        auxTree7.insertNode(node133, node132);
+
+        auxTree7.insertNode(node124, decisionEsp1);
+        auxTree7.insertNode(node132a, node124);
+        auxTree7.insertNode(node133a, node132a);
+
+        auxTree7.insertNode(node125, decisionEsp1);
+        auxTree7.insertNode(node126, node125);
+        auxTree7.insertNode(node127, node126);
+        auxTree7.insertNode(node128, node127);
+        auxTree7.insertNode(node129, node128);
+        auxTree7.insertNode(node130, node129);
+        auxTree7.insertNode(node131, node130);
+        auxTree7.insertNode(node132b, node131);
+        auxTree7.insertNode(node133b, node132b);
+
+        escenarios.get(6).setArbolDial(auxTree7);
+
+
+        // Monólogo del detective
+        Dialogo m1 = new Dialogo("(No me lo puedo creer... Todo me lleva a él...)", "Detective", detective, true);
+        Dialogo m2 = new Dialogo("(La espada estaba en su oficina, donde solo éltiene acceso. Su esposa la mostró sin saberlo )", "Detective", detective, true);
+        Dialogo m3 = new Dialogo("(Las cámaras fallaron justo cuando no debían. El guardia no vio nada. Pero el vagabundo sí. Cuando el supuestamente no estaba en el museo)", "Detective", detective, true);
+        Dialogo m4 = new Dialogo("(CLARO! Los fondos malversados que descubrió víctima! Esa es la causa del asesinato.)",  "Detective", detective, true);
+        Dialogo m5 = new Dialogo("(El jefe tenía acceso. Tenía el arma. Mintió sobre dónde estaba. Ya no tengo dudas.)", "Detective", detective, true);
+        Dialogo m6 = new Dialogo("(Es hora de terminar con esto.)", "Detective", detective, true);
+
+        // Entrada a la oficina
+        Dialogo m7 = new Dialogo("*El detective entra a la oficina del jefe, acompañado por dos policías. La luz está apagada.*", "Foto que se ponga", nada, true);
+        Dialogo m8 = new Dialogo("Señor director... tenemos que hablar.", "Detective", detective, true);
+        Dialogo m9 = new Dialogo("¿Señor?", "Detective", detective, true);
+        Dialogo m10 = new Dialogo("*Uno de los policías enciende la luz. El cuerpo del jefe yace en el suelo, boca abajo, con una herida profunda en la espalda.*", "Foto que se ponga", nada, true);
+        Dialogo m11 = new Dialogo("¡Dios! Está muerto...", "Policia", seguridad, true);
+        Dialogo m12 = new Dialogo("Una puñalada limpia. Precisa. Por la espalda.", "Detective", detective, true);
+        Dialogo m13 = new Dialogo("¿Dónde está el arma?", "Policia", seguridad, true);
+        Dialogo m14 = new Dialogo("No está, otra vez sin arma homicida. Y la puerta estaba cerrada desde dentro.", "Detective", detective, true);
+
+        // Descubrimiento del pasadizo
+        Dialogo m15 = new Dialogo("*El detective observa una rejilla mal colocada en la pared trasera.*", "Foto que se ponga", nada, true);
+        Dialogo m16 = new Dialogo("¿Qué es esto...?", "Detective", detective, true);
+        Dialogo m17 = new Dialogo("*Retira la rejilla. Detrás, un túnel angosto y oscuro se extiende hacia abajo.*", "Foto que se ponga", nada, true);
+        Dialogo m18 = new Dialogo("Un pasadizo... esto conecta con el baño del piso de abajo.", "Detective", detective, true);
+        Dialogo m19 = new Dialogo("Así entraron. Así lo mataron. Y así desaparecieron sin ser vistos. Esto cambia muchas cosas.", "Detective", detective, true);
+
+        /* // Dato clave
+        añadirAlDiario("Oficina del Jefe", "El jefe fue asesinado en su oficina con una puñalada por la espalda. El arma no fue encontrada. Se descubrió un pasadizo secreto que conecta con el baño del piso inferior.");*/
+
+       BinaryTreeNode<Dialogo> node134 = new BinaryTreeNode<>(m1);
+       BinaryTreeNode<Dialogo> node135 = new BinaryTreeNode<>(m2);
+       BinaryTreeNode<Dialogo> node136 = new BinaryTreeNode<>(m3);
+       BinaryTreeNode<Dialogo> node137 = new BinaryTreeNode<>(m4);
+       BinaryTreeNode<Dialogo> node138 = new BinaryTreeNode<>(m5);
+       BinaryTreeNode<Dialogo> node139 = new BinaryTreeNode<>(m6);
+       BinaryTreeNode<Dialogo> node140 = new BinaryTreeNode<>(m7);
+       BinaryTreeNode<Dialogo> node141 = new BinaryTreeNode<>(m8);
+       BinaryTreeNode<Dialogo> node142 = new BinaryTreeNode<>(m9);
+       BinaryTreeNode<Dialogo> node143 = new BinaryTreeNode<>(m10);
+       BinaryTreeNode<Dialogo> node144 = new BinaryTreeNode<>(m11);
+       BinaryTreeNode<Dialogo> node145 = new BinaryTreeNode<>(m12);
+       BinaryTreeNode<Dialogo> node146 = new BinaryTreeNode<>(m13);
+       BinaryTreeNode<Dialogo> node147 = new BinaryTreeNode<>(m14);
+       BinaryTreeNode<Dialogo> node148 = new BinaryTreeNode<>(m15);
+       BinaryTreeNode<Dialogo> node149 = new BinaryTreeNode<>(m16);
+       BinaryTreeNode<Dialogo> node150 = new BinaryTreeNode<>(m17);
+       BinaryTreeNode<Dialogo> node151 = new BinaryTreeNode<>(m18);
+       BinaryTreeNode<Dialogo> node152 = new BinaryTreeNode<>(m19);
+
+       GeneralTree <Dialogo> auxTree8 = new GeneralTree();
+
+       auxTree8.insertNode(node134, null);
+       auxTree8.insertNode(node135, node134);
+       auxTree8.insertNode(node136, node135);
+       auxTree8.insertNode(node137, node136);
+       auxTree8.insertNode(node138, node137);
+       auxTree8.insertNode(node139, node138);
+       auxTree8.insertNode(node140, node141);
+       auxTree8.insertNode(node141, node142);
+       auxTree8.insertNode(node142, node143);
+       auxTree8.insertNode(node143, node144);
+       auxTree8.insertNode(node144, node145);
+       auxTree8.insertNode(node145, node146);
+       auxTree8.insertNode(node146, node147);
+       auxTree8.insertNode(node147, node148);
+       auxTree8.insertNode(node148, node149);
+       auxTree8.insertNode(node149, node150);
+       auxTree8.insertNode(node150, node151);
+       auxTree8.insertNode(node151, node152);
+
+       escenarios.get(7).setArbolDial(auxTree8);
+
     }
 
+
+    
 
 }
