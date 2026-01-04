@@ -304,22 +304,22 @@ public class Juego {
                 secretaria, true);
 
         // Primera decisión
-        List<String> opciones1 = new LinkedList<String>(Arrays.asList(
+        Dialogo desc1Sec = new Dialogo("Bueno quisiera saber...", "Detective", detective, true );
+        desc1Sec.setOpciones( new LinkedList<String>(Arrays.asList(
                 "¿Notó algo extraño en el comportamiento del guardia?",
-                "¿Sabe si alguien más tenía acceso a su computadora?",
-                "No quiero saber nada más"
-        ));
+                "¿Sabe si alguien más tenía acceso a su computadora?"
+        )));
 
         // Camino vacío: guardia
-        Dialogo vacio1 = new Dialogo("¿El guardia? Siempre fue puntual y correcto. No hablaba mucho, pero hacía su trabajo.", "Secretaria",
-                secretaria, true);
+        Dialogo respS1 = new Dialogo("¿El guardia? Siempre fue puntual y correcto. No hablaba mucho, pero hacía su trabajo, " +
+                "para mi todo estaba como de costumbre.", "Secretaria", secretaria, true);
 
         // Camino vacío: acceso a computadora
-        Dialogo vacio2 = new Dialogo("No, su computadora era personal. Siempre la tenía bloqueada. Nunca compartía su contraseña con nadie.",
+        Dialogo respS2 = new Dialogo("No, su computadora era personal. Siempre la tenía bloqueada. Nunca compartía su contraseña con nadie.",
                 "Secretaria", secretaria, true);
 
         // Camino principal: relación
-        Dialogo d3 = new Dialogo("Dijo que relación con el economista era solo laboral pero, su lenguaje corporal decía otra cosa. ¿Está segura de que no había nada más?",
+        Dialogo d3 = new Dialogo("Ahora que lo pienso dijo que su relación con el economista era solo laboral pero, su lenguaje corporal decía otra cosa. ¿Está segura de que no había nada más?",
                 "Detective", detective, true);
         Dialogo d4 = new Dialogo("No me gusta hablar de mi vida privada, detective. Pero si insiste...", "Secretaria",
                 secretaria, true);
@@ -327,10 +327,12 @@ public class Juego {
                 " necesito saberlo.", "Detective", detective, true);
 
         // Segunda decisión
-        List<String> opciones2 = new LinkedList<>(Arrays.asList(
+        Dialogo desc2Sec = new Dialogo("Umm.. con todo lo anterior buena historia tenemos aquí, ya no se si deba preguntar más " +
+                "o simplemente sacar mis propias conclusiones ", "Detective", detective, true );
+        desc2Sec.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Le tenía afecto?",
                 "No quiero saber nada más"
-        ));
+        )));
 
         Dialogo d6 = new Dialogo("Tuvimos algo. Fue breve. Él decía que no quería complicaciones y bueno Yo... yo me ilusioné más de la cuenta.", "Secretaria",
                 secretaria, true);
@@ -339,16 +341,19 @@ public class Juego {
         /* añadirAlDiario("Secretaria", "La secretaria tuvo una relación amorosa con el economista.");*/
 
         Dialogo d7 = new Dialogo("Gracias por su sinceridad. Esto podría ser importante.", "Detective", detective, true);
+        Dialogo d7a = new Dialogo("Vale, cualquier otra duda aquí estoy", "Secretaria", secretaria, true);
 
         // Tercera decisión
-        List<String> opciones3 = new LinkedList<>( Arrays.asList(
+        Dialogo desc3Sec = new Dialogo("Vale interesante respuesta, pero ahora quiero saber ciertas cositas más o quizás solo me " +
+                "quede con toda la información que tengo hasta el momento, ya veremos...", "Detective", detective, true );
+        desc3Sec.setOpciones( new LinkedList<>( Arrays.asList(
                 "¿Él le confiaba información personal?",
                 "¿Recuerda si mencionó algo sobre su contraseña?",
                 "No quiero saber nada más"
-        ));
+        )));
 
         // Camino vacío: información personal
-        Dialogo vacio3 = new Dialogo("Era reservado. Incluso cuando estábamos juntos, evitaba hablar de su trabajo. Decía que era mejor " +
+        Dialogo respS3 = new Dialogo("Era reservado. Incluso cuando estábamos juntos, evitaba hablar de su trabajo. Decía que era mejor " +
                 "no involucrar lo personal con lo laboral", "Secretaria", secretaria, true);
 
         // Camino principal: contraseña
@@ -356,6 +361,8 @@ public class Juego {
                 "algo para él...", "Secretaria", secretaria, true);
         Dialogo d9 = new Dialogo("Decía: 'Umbra mortis... algo'. No lo terminé de leer. Pero esas palabras estaban al principio.",
                 "Secretaria", secretaria, true);
+        Dialogo d9a = new Dialogo("Vale como prefiera usted, aquí estoy para dialogar y no solo de este tema... usted entiende",
+            "Secretaria", secretaria, true);
 
         // Dato clave 2
         /*añadirAlDiario("Secretaria", "Fragmento de contraseña: comienza con 'Umbra mortis'.");*/
@@ -365,35 +372,54 @@ public class Juego {
 
         BinaryTreeNode<Dialogo> node1 = new BinaryTreeNode<>(d1);
         BinaryTreeNode<Dialogo> node2 = new BinaryTreeNode<>(d2);
-        BinaryTreeNode<Dialogo> node3 = new BinaryTreeNode<>(vacio1);
-        BinaryTreeNode<Dialogo> node4 = new BinaryTreeNode<>(vacio2);
+        BinaryTreeNode<Dialogo> decision1S = new BinaryTreeNode<>(desc1Sec);
+        BinaryTreeNode<Dialogo> node3 = new BinaryTreeNode<>(respS1);
+        BinaryTreeNode<Dialogo> node4 = new BinaryTreeNode<>(respS2);
         BinaryTreeNode<Dialogo> node5 = new BinaryTreeNode<>(d3);
         BinaryTreeNode<Dialogo> node6 = new BinaryTreeNode<>(d4);
         BinaryTreeNode<Dialogo> node7 = new BinaryTreeNode<>(d5);
+        BinaryTreeNode<Dialogo> decision2S = new BinaryTreeNode<>(desc2Sec);
         BinaryTreeNode<Dialogo> node8 = new BinaryTreeNode<>(d6);
         BinaryTreeNode<Dialogo> node9 = new BinaryTreeNode<>(d7);
-        BinaryTreeNode<Dialogo> node10 = new BinaryTreeNode<>(vacio3);
+        BinaryTreeNode<Dialogo> node9a = new BinaryTreeNode<>(d7a);
+        BinaryTreeNode<Dialogo> decision3S = new BinaryTreeNode<>(desc3Sec);
+        BinaryTreeNode<Dialogo> node10 = new BinaryTreeNode<>(respS3);
         BinaryTreeNode<Dialogo> node11 = new BinaryTreeNode<>(d8);
         BinaryTreeNode<Dialogo> node12 = new BinaryTreeNode<>(d9);
+        BinaryTreeNode<Dialogo> node12a = new BinaryTreeNode<>(d9a);
         BinaryTreeNode<Dialogo> node13 = new BinaryTreeNode<>(cierre);
+        BinaryTreeNode<Dialogo> node13a = new BinaryTreeNode<>(cierre);
         BinaryTreeNode<Dialogo> node14 = new BinaryTreeNode<>(despedida);
+        BinaryTreeNode<Dialogo> node14a = new BinaryTreeNode<>(despedida);
 
         GeneralTree<Dialogo> auxTree1 = new GeneralTree<>();
 
         auxTree1.insertNode(node1, null);
         auxTree1.insertNode(node2, node1);
-        auxTree1.insertNode(node3, node2);
-        auxTree1.insertNode(node4, node3);
-        auxTree1.insertNode(node5, node4);
+        auxTree1.insertNode(decision1S, node2);
+        auxTree1.insertNode(node3, decision1S);
+        auxTree1.insertNode(node4, decision1S);
+
+        auxTree1.insertNode(node5, node3);
         auxTree1.insertNode(node6, node5);
         auxTree1.insertNode(node7, node6);
-        auxTree1.insertNode(node8, node7);
+        auxTree1.insertNode(decision2S, node7);
+        auxTree1.insertNode(node8, decision2S);
         auxTree1.insertNode(node9, node8);
-        auxTree1.insertNode(node10, node9);
-        auxTree1.insertNode(node11, node10);
+        auxTree1.insertNode(node9a, decision2S);
+
+        auxTree1.insertNode(decision3S, node4);
+        auxTree1.insertNode(node10, decision3S);
+        auxTree1.insertNode(node11, decision3S);
         auxTree1.insertNode(node12, node11);
-        auxTree1.insertNode(node13, node12);
+        auxTree1.insertNode(node12a, decision3S);
+
+        auxTree1.insertNode(node13, node9a);
         auxTree1.insertNode(node14, node13);
+
+        auxTree1.insertNode(node13a, node12a);
+        auxTree1.insertNode(node14a, node13a);
+
 
         //Guardia de la Sala de Seguridad1
         Dialogo s1 = new Dialogo("Hola Guardia, necesito revisar algunos detalles sobre las cámaras de seguridad.", "Detective", detective, true);
