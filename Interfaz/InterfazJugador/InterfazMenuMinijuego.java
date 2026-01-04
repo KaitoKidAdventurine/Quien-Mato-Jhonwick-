@@ -42,7 +42,7 @@ public class InterfazMenuMinijuego extends JButton {
                 MenuActionPerformed(evt);
             }
         });
-        setBounds((int) (tamPant.width*0.88), (int) (tamPant.height*0.05), (int) (tamPant.width*0.08), (int) (tamPant.height*0.1));
+        setBounds((int) (tamPant.width*0.65), (int) (tamPant.height*0.05), (int) (tamPant.width*0.08), (int) (tamPant.height*0.1));
 
         BufferedImage imagen = null;
         try {

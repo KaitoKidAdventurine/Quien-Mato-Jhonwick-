@@ -24,6 +24,7 @@ public class MinijuegoInterfaz extends JPanel {
     private JLabel labelLista;
     private ArrayList<ObjetoMinijuego> objetosMinijuego;
     private JPanel panelEncontrables;
+    private JPanel panelMinijuego;
     private ArrayList<JLabel> objetosEncontrables;
     private ArrayList<ObjetoEscenario> objetosEnc;
     private ArrayList<ObjetoEscenario> objEncontrados;
@@ -34,10 +35,11 @@ public class MinijuegoInterfaz extends JPanel {
     private Timer timerMini1;
     private Timer timerMini2;
     private Timer timerMini3;
+    private Timer timerMini4;
     private TimerTask tarea1;
     private TimerTask tarea2;
     private TimerTask tarea3;
-    private JPanel contenedorPistas;
+    private TimerTask tarea4;
     private boolean pistaLista;
     private InterfazMenuMinijuego menu;
 
@@ -47,19 +49,21 @@ public class MinijuegoInterfaz extends JPanel {
         timerMini1 = new java.util.Timer();
         timerMini2 = new java.util.Timer();
         timerMini3 = new java.util.Timer();
+        timerMini4 = new java.util.Timer();
         tarea1 = new TimerTask() {
             @Override
             public void run() {
-                contenedorPistas.removeAll();
+                panelMinijuego.remove(0);
                 pistaLista = true;
                 revalidate();
                 repaint();
+                timerMini4.cancel();
             }
         };
         tarea2 = new TimerTask() {
             @Override
             public void run() {
-                contenedorPistas.removeAll();
+                panelMinijuego.remove(0);
                 pistaLista = true;
                 revalidate();
                 repaint();
@@ -68,12 +72,22 @@ public class MinijuegoInterfaz extends JPanel {
         tarea3 = new TimerTask() {
             @Override
             public void run() {
-                contenedorPistas.removeAll();
+                panelMinijuego.remove(0);
                 pistaLista = true;
+                revalidate();
+                repaint();
+
+            }
+        };
+        tarea4 = new TimerTask() {
+            @Override
+            public void run() {
                 revalidate();
                 repaint();
             }
         };
+
+
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         objetosMinijuego = new ArrayList<>();
         objetosEncontrables = new ArrayList<>();
@@ -85,7 +99,7 @@ public class MinijuegoInterfaz extends JPanel {
         pista = new JButton();
         canPistasMostrable = new JLabel(Integer.toString(cantiDePistas));
         pistaLista = true;
-        contenedorPistas = new JPanel();
+        panelMinijuego = new JPanel();
         menu = new InterfazMenuMinijuego();
         initComponents();
     }
@@ -103,6 +117,11 @@ public class MinijuegoInterfaz extends JPanel {
         Deque<ObjetoEscenario> objetos = mini.getCola();
         Iterator<ObjetoEscenario> II = objetos.iterator();
 
+
+        panelMinijuego.setBounds((int) (tamPant.width * 0.232), 0, (int) (tamPant.width * 0.75), tamPant.height);
+        panelMinijuego.setLayout(null);
+        add(panelMinijuego, 0);
+        panelMinijuego.add(menu);
         while (II.hasNext()) {
             ObjetoEscenario objeto = II.next();
             ObjetoMinijuego boton = new ObjetoMinijuego(objeto.getNombre());
@@ -125,7 +144,7 @@ public class MinijuegoInterfaz extends JPanel {
         panelEncontrables.setLayout(null);
         add(panelEncontrables);
 
-        add(menu);
+
         hacerListaObjetosEncontrables();
         ponerObjetos();
 
@@ -201,7 +220,7 @@ public class MinijuegoInterfaz extends JPanel {
         panelEncontrables.add(canPistasMostrable);
 
 
-        fondo.setBounds((int) (tamPant.width * 0.23), 0, (int) (tamPant.width * 0.75), tamPant.height);
+        fondo.setBounds(0, 0, (int) (tamPant.width * 0.75), tamPant.height);
 
         BufferedImage imagen = null;
         try {
@@ -223,45 +242,45 @@ public class MinijuegoInterfaz extends JPanel {
         labelLista.setBounds(0, 0,(int) (tamPant.width * 0.25), tamPant.height );
         panelEncontrables.add(labelLista);
 
-        contenedorPistas.setBounds(0,  0, (int) (tamPant.width * 0.75), tamPant.height);
-        contenedorPistas.setLayout(null);
-        contenedorPistas.setBackground(new Color(0, 0, 0, 0));
-        add(contenedorPistas);
-        add(fondo);
+
+        panelMinijuego.add(fondo);
     }
 
     private void buscarObjeto(ActionEvent evt) {
         ObjetoMinijuego accionador = (ObjetoMinijuego) evt.getSource();
-
-        for (int i = 0; i < objetosEnc.size(); i++) {
-            if (accionador.getNombreObjeto().equals(objetosEnc.get(i).getNombre())) {
-                objetosEnc.remove(i);
-                remove(accionador);
-                EfectosEspeciales e =EfectosEspeciales.getInstancia();
-                e.efectoObjetoEncontrado();
-                objetosMinijuego.remove(accionador);
-
-                if(!mini.getCola().isEmpty())
-                    mini.pedirSiguienteObjeCola();
-
-                actualizarObjetosEncontrables();
-
-                if(!objetosMinijuego.isEmpty()){
-                    revalidate();
-                    repaint();
-                }else{
-                    getParent().getComponent(0).setVisible(false);
-                    getParent().getComponent(2).setVisible(true);
-                    getParent().revalidate();
-                    getParent().repaint();
-                    ponerObjetosEnMochila();
-                    getParent().remove(0);
-                }
-
+        boolean salir = false;
+            int tamanoObjetos=5;
+            if(objetosMinijuego.size()<5) {
+                tamanoObjetos = objetosMinijuego.size() ;
             }
-        }
+            for(int j=0; j<tamanoObjetos && salir ==false; j++){
+                ObjetoMinijuego aux = objetosMinijuego.get(j);
+                if(aux.equals(accionador)){
+                    objetosEnc.remove(j);
+                    panelMinijuego.remove(accionador);
+                    objetosMinijuego.remove(accionador);
+                    EfectosEspeciales e =EfectosEspeciales.getInstancia();
+                    e.efectoObjetoEncontrado();
+                    salir =true;
+                    if(!mini.getCola().isEmpty())
+                        mini.pedirSiguienteObjeCola();
 
+                    actualizarObjetosEncontrables();
 
+                    if(!objetosMinijuego.isEmpty()){
+                        revalidate();
+                        repaint();
+                    }else{
+                        getParent().getComponent(0).setVisible(false);
+                        getParent().getComponent(2).setVisible(true);
+                        getParent().revalidate();
+                        getParent().repaint();
+                        ponerObjetosEnMochila();
+                        getParent().remove(0);
+                    }
+
+                }
+            }
 
     }
     private void clonarMinijuego(MiniJuego miniJuego) {
@@ -284,7 +303,7 @@ public class MinijuegoInterfaz extends JPanel {
 
     private void ponerObjetos() {
         for (int i = 0; i < objetosMinijuego.size(); i++) {
-            add(objetosMinijuego.get(i), i);
+            panelMinijuego.add(objetosMinijuego.get(i));
         }
     }
 
@@ -292,23 +311,24 @@ public class MinijuegoInterfaz extends JPanel {
        if(cantiDePistas>0 && pistaLista==true){
            ObjetoMinijuego objetoABuscar = obtenerObjetoRandom();
 
-           ImageIcon iconoOG = new ImageIcon("DatosAuxiliares/Minijuego/Pista.gif");
-           Image imgScal = iconoOG.getImage().getScaledInstance(objetoABuscar.getWidth(), objetoABuscar.getHeight(), Image.SCALE_DEFAULT);
-           ImageIcon iconoAmpl = new ImageIcon(imgScal, iconoOG.getDescription());
+               ImageIcon iconoOG = new ImageIcon("DatosAuxiliares/Minijuego/Pista.gif");
+               Image imgScal = iconoOG.getImage().getScaledInstance((int)(objetoABuscar.getWidth()*1.1),(int) (objetoABuscar.getHeight()*1.1), Image.SCALE_DEFAULT);
+               ImageIcon iconoAmpl = new ImageIcon(imgScal, iconoOG.getDescription());
+               JLabel pistaEnEscenario = new JLabel(iconoAmpl);
+               pistaEnEscenario.setBounds(objetoABuscar.getX(), objetoABuscar.getY(), (int)(objetoABuscar.getWidth()*1.1),(int) (objetoABuscar.getHeight()*1.1));
+               panelMinijuego.add(pistaEnEscenario, 0);
 
-           JLabel pistaEnEscenario = new JLabel(iconoAmpl);
-           pistaEnEscenario.setBounds(objetoABuscar.getBounds());
 
-           contenedorPistas.add(pistaEnEscenario);
-           switch ( cantiDePistas){
+           switch (cantiDePistas){
                case 1:
-                   timerMini1.schedule(tarea1, 3000);
+                   timerMini1.schedule(tarea1, 4000);
                    break;
                case 2:
-                   timerMini2.schedule(tarea2, 3000);
+                   timerMini2.schedule(tarea2, 4000);
                    break;
                case 3:
-                   timerMini3.schedule(tarea3, 3000);
+                   timerMini3.schedule(tarea3, 4000);
+                   timerMini4.scheduleAtFixedRate(tarea4, 0, 20);
                    break;
            }
 
@@ -327,6 +347,7 @@ public class MinijuegoInterfaz extends JPanel {
                    ImageIcon iconoPista = new ImageIcon(imagenPista.getScaledInstance((int) (tamPant.width * 0.09), (int) (tamPant.height * 0.11), Image.SCALE_SMOOTH));
                    pista.setIcon(iconoPista);
            }
+
        }else
            Toolkit.getDefaultToolkit().beep();
     }

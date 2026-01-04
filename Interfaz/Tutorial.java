@@ -269,7 +269,7 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
-            if(nivelActualDial ==0) {
+            if(nivelActualDial ==5 || nivelActualDial ==7 || nivelActualDial ==9 ) {
                 ponerFondoParte3(nivelActualDial);
                 getContentPane().revalidate();
                 getContentPane().repaint();
@@ -305,11 +305,6 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
-            if(nivelActualDial ==0) {
-                ponerFondoParte3(nivelActualDial);
-                getContentPane().revalidate();
-                getContentPane().repaint();
-            }
         }else {
           ponerDialogoParte5();
         }
@@ -343,11 +338,6 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
-            if(nivelActualDial ==0) {
-                ponerFondoParte3(nivelActualDial);
-                getContentPane().revalidate();
-                getContentPane().repaint();
-            }
         }else {
             ponerDialogoParte6();
         }
@@ -379,11 +369,6 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
-            if(nivelActualDial ==0) {
-                ponerFondoParte3(nivelActualDial);
-                getContentPane().revalidate();
-                getContentPane().repaint();
-            }
         }else {
             ponerDialogoParte7();
         }
@@ -415,11 +400,6 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
-            if(nivelActualDial ==0) {
-                ponerFondoParte3(nivelActualDial);
-                getContentPane().revalidate();
-                getContentPane().repaint();
-            }
         }else {
             ponerDialogoParte8();
         }
@@ -451,11 +431,6 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
-            if(nivelActualDial ==0) {
-                ponerFondoParte3(nivelActualDial);
-                getContentPane().revalidate();
-                getContentPane().repaint();
-            }
         }else {
             ponerDialogoParte9();
         }
@@ -487,11 +462,7 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
-            if(nivelActualDial ==0) {
-                ponerFondoParte3(nivelActualDial);
-                getContentPane().revalidate();
-                getContentPane().repaint();
-            }
+
         }else {
            ponerDialogoParte10();
         }
@@ -523,11 +494,6 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
-            if(nivelActualDial ==0) {
-                ponerFondoParte3(nivelActualDial);
-                getContentPane().revalidate();
-                getContentPane().repaint();
-            }
         }else {
             iniciarMundo();
         }
@@ -580,6 +546,9 @@ public class Tutorial extends JFrame {
                 case 85:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
                     break;
+
+                default:
+                    break;
             }
 
             ImageIcon icono = new ImageIcon(imagen != null ? imagen.getScaledInstance(tamPant.width, tamPant.height, Image.SCALE_SMOOTH) : null);
@@ -600,7 +569,8 @@ public class Tutorial extends JFrame {
                 case 0:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
                     break;
-
+                default:
+                    break;
             }
 
             ImageIcon icono = new ImageIcon(Objects.requireNonNull(imagen).getScaledInstance(tamPant.width, tamPant.height, Image.SCALE_SMOOTH));
@@ -615,8 +585,14 @@ public class Tutorial extends JFrame {
             BufferedImage imagen = null;
 
             switch (nivelActualDial) {
-                case 0:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                case 5:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/pasillo 3.jpg"));
+                    break;
+                case 7:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por dentro.jpg"));
+                    break;
+                case 9:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/sala.jpg"));
                     break;
 
             }
@@ -964,7 +940,7 @@ public class Tutorial extends JFrame {
         Dialogo d105 = new Dialogo("Por aqui.", "Policia", policia, true);
         Dialogo d106 = new Dialogo("¿Cuantos se encontraban en el museo a esta hora?", "Detective", detective, true);
         Dialogo d107 = new Dialogo("Segun pude verificar el museo tiene en total 28 trabajadores, de los cuales se quedaron hasta tarde hoy 7.", "Policia", policia, true);
-        Dialogo d108 = new Dialogo("No es un mal numero para trabbajar. ¿Algo mas que deba de saber si hay alguien que frecuenta el edificio o algo asi?.", "Detective", detective, true);
+        Dialogo d108 = new Dialogo("No es un mal numero para trabajar. ¿Algo mas que deba de saber si hay alguien que frecuenta el edificio o algo asi?.", "Detective", detective, true);
         Dialogo d109 = new Dialogo("No sabria decir, aunque muchos mencionan la presencia de un vagabundo en un callejon cercano que a menudo se le podia ver interactuando con el economico.", "Policia", policia, true);
         Dialogo d110 = new Dialogo("Eso será útil. ", "Detective", detective, true);
         Dialogo d110q = new Dialogo("Ah, detective, justo el hombre que estaba esperando. Por favor puede poner orden la sala, todos andan preocupados de que un asesino pueda andar por ahi. Por favor expliqueles que lo que le paso al economico fue por decision propia. ", "Dueño", dueno, true);
