@@ -420,6 +420,8 @@ public class Juego {
         auxTree1.insertNode(node13a, node12a);
         auxTree1.insertNode(node14a, node13a);
 
+        escenarios.get(1).setArbolDial(auxTree1);
+
 
         //Guardia de la Sala de Seguridad1
         Dialogo s1 = new Dialogo("Hola Guardia, necesito revisar algunos detalles sobre las cámaras de seguridad.", "Detective", detective, true);
