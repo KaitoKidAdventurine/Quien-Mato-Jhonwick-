@@ -297,6 +297,7 @@ public class Juego {
         ImageIcon guia2 = new ImageIcon("DatosAuxiliares/Personajes/Guia 2.png");
         ImageIcon vagabundo = new ImageIcon("DatosAuxiliares/Personajes/Vagabundo.png");
         ImageIcon nada = new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png");
+        ImageIcon esposa = new ImageIcon("DatosAuxiliares/Personajes/Esposa.png");
 
         //Dialogo de la secretaria en la entrada
         //Breve Introduccion
@@ -306,22 +307,22 @@ public class Juego {
                 secretaria, true);
 
         // Primera decisión
-        List<String> opciones1 = new LinkedList<String>(Arrays.asList(
+        Dialogo desc1Sec = new Dialogo("Bueno quisiera saber...", "Detective", detective, true );
+        desc1Sec.setOpciones( new LinkedList<String>(Arrays.asList(
                 "¿Notó algo extraño en el comportamiento del guardia?",
-                "¿Sabe si alguien más tenía acceso a su computadora?",
-                "No quiero saber nada más"
-        ));
+                "¿Sabe si alguien más tenía acceso a su computadora?"
+        )));
 
         // Camino vacío: guardia
-        Dialogo vacio1 = new Dialogo("¿El guardia? Siempre fue puntual y correcto. No hablaba mucho, pero hacía su trabajo.", "Secretaria",
-                secretaria, true);
+        Dialogo respS1 = new Dialogo("¿El guardia? Siempre fue puntual y correcto. No hablaba mucho, pero hacía su trabajo, " +
+                "para mi todo estaba como de costumbre.", "Secretaria", secretaria, true);
 
         // Camino vacío: acceso a computadora
-        Dialogo vacio2 = new Dialogo("No, su computadora era personal. Siempre la tenía bloqueada. Nunca compartía su contraseña con nadie.",
+        Dialogo respS2 = new Dialogo("No, su computadora era personal. Siempre la tenía bloqueada. Nunca compartía su contraseña con nadie.",
                 "Secretaria", secretaria, true);
 
         // Camino principal: relación
-        Dialogo d3 = new Dialogo("Dijo que relación con el economista era solo laboral pero, su lenguaje corporal decía otra cosa. ¿Está segura de que no había nada más?",
+        Dialogo d3 = new Dialogo("Ahora que lo pienso dijo que su relación con el economista era solo laboral pero, su lenguaje corporal decía otra cosa. ¿Está segura de que no había nada más?",
                 "Detective", detective, true);
         Dialogo d4 = new Dialogo("No me gusta hablar de mi vida privada, detective. Pero si insiste...", "Secretaria",
                 secretaria, true);
@@ -329,10 +330,12 @@ public class Juego {
                 " necesito saberlo.", "Detective", detective, true);
 
         // Segunda decisión
-        List<String> opciones2 = new LinkedList<>(Arrays.asList(
+        Dialogo desc2Sec = new Dialogo("Umm.. con todo lo anterior buena historia tenemos aquí, ya no se si deba preguntar más " +
+                "o simplemente sacar mis propias conclusiones ", "Detective", detective, true );
+        desc2Sec.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Le tenía afecto?",
                 "No quiero saber nada más"
-        ));
+        )));
 
         Dialogo d6 = new Dialogo("Tuvimos algo. Fue breve. Él decía que no quería complicaciones y bueno Yo... yo me ilusioné más de la cuenta.", "Secretaria",
                 secretaria, true);
@@ -341,16 +344,19 @@ public class Juego {
         /* añadirAlDiario("Secretaria", "La secretaria tuvo una relación amorosa con el economista.");*/
 
         Dialogo d7 = new Dialogo("Gracias por su sinceridad. Esto podría ser importante.", "Detective", detective, true);
+        Dialogo d7a = new Dialogo("Vale, cualquier otra duda aquí estoy", "Secretaria", secretaria, true);
 
         // Tercera decisión
-        List<String> opciones3 = new LinkedList<>( Arrays.asList(
+        Dialogo desc3Sec = new Dialogo("Vale interesante respuesta, pero ahora quiero saber ciertas cositas más o quizás solo me " +
+                "quede con toda la información que tengo hasta el momento, ya veremos...", "Detective", detective, true );
+        desc3Sec.setOpciones( new LinkedList<>( Arrays.asList(
                 "¿Él le confiaba información personal?",
                 "¿Recuerda si mencionó algo sobre su contraseña?",
                 "No quiero saber nada más"
-        ));
+        )));
 
         // Camino vacío: información personal
-        Dialogo vacio3 = new Dialogo("Era reservado. Incluso cuando estábamos juntos, evitaba hablar de su trabajo. Decía que era mejor " +
+        Dialogo respS3 = new Dialogo("Era reservado. Incluso cuando estábamos juntos, evitaba hablar de su trabajo. Decía que era mejor " +
                 "no involucrar lo personal con lo laboral", "Secretaria", secretaria, true);
 
         // Camino principal: contraseña
@@ -358,6 +364,8 @@ public class Juego {
                 "algo para él...", "Secretaria", secretaria, true);
         Dialogo d9 = new Dialogo("Decía: 'Umbra mortis... algo'. No lo terminé de leer. Pero esas palabras estaban al principio.",
                 "Secretaria", secretaria, true);
+        Dialogo d9a = new Dialogo("Vale como prefiera usted, aquí estoy para dialogar y no solo de este tema... usted entiende",
+            "Secretaria", secretaria, true);
 
         // Dato clave 2
         /*añadirAlDiario("Secretaria", "Fragmento de contraseña: comienza con 'Umbra mortis'.");*/
@@ -367,35 +375,70 @@ public class Juego {
 
         BinaryTreeNode<Dialogo> node1 = new BinaryTreeNode<>(d1);
         BinaryTreeNode<Dialogo> node2 = new BinaryTreeNode<>(d2);
-        BinaryTreeNode<Dialogo> node3 = new BinaryTreeNode<>(vacio1);
-        BinaryTreeNode<Dialogo> node4 = new BinaryTreeNode<>(vacio2);
+        BinaryTreeNode<Dialogo> decision1S = new BinaryTreeNode<>(desc1Sec);
+        BinaryTreeNode<Dialogo> node3 = new BinaryTreeNode<>(respS1);
+        BinaryTreeNode<Dialogo> node4 = new BinaryTreeNode<>(respS2);
         BinaryTreeNode<Dialogo> node5 = new BinaryTreeNode<>(d3);
         BinaryTreeNode<Dialogo> node6 = new BinaryTreeNode<>(d4);
         BinaryTreeNode<Dialogo> node7 = new BinaryTreeNode<>(d5);
+        BinaryTreeNode<Dialogo> decision2S = new BinaryTreeNode<>(desc2Sec);
         BinaryTreeNode<Dialogo> node8 = new BinaryTreeNode<>(d6);
         BinaryTreeNode<Dialogo> node9 = new BinaryTreeNode<>(d7);
-        BinaryTreeNode<Dialogo> node10 = new BinaryTreeNode<>(vacio3);
+        BinaryTreeNode<Dialogo> node9a = new BinaryTreeNode<>(d7a);
+        BinaryTreeNode<Dialogo> decision3S = new BinaryTreeNode<>(desc3Sec);
+        BinaryTreeNode<Dialogo> node10 = new BinaryTreeNode<>(respS3);
         BinaryTreeNode<Dialogo> node11 = new BinaryTreeNode<>(d8);
         BinaryTreeNode<Dialogo> node12 = new BinaryTreeNode<>(d9);
+        BinaryTreeNode<Dialogo> node12a = new BinaryTreeNode<>(d9a);
         BinaryTreeNode<Dialogo> node13 = new BinaryTreeNode<>(cierre);
+        BinaryTreeNode<Dialogo> node13a = new BinaryTreeNode<>(cierre);
+        BinaryTreeNode<Dialogo> node13b = new BinaryTreeNode<>(cierre);
+        BinaryTreeNode<Dialogo> node13c = new BinaryTreeNode<>(cierre);
+        BinaryTreeNode<Dialogo> node13d = new BinaryTreeNode<>(cierre);
         BinaryTreeNode<Dialogo> node14 = new BinaryTreeNode<>(despedida);
+        BinaryTreeNode<Dialogo> node14a = new BinaryTreeNode<>(despedida);
+        BinaryTreeNode<Dialogo> node14b = new BinaryTreeNode<>(despedida);
+        BinaryTreeNode<Dialogo> node14c = new BinaryTreeNode<>(despedida);
+        BinaryTreeNode<Dialogo> node14d = new BinaryTreeNode<>(despedida);
 
         GeneralTree<Dialogo> auxTree1 = new GeneralTree<>();
 
         auxTree1.insertNode(node1, null);
         auxTree1.insertNode(node2, node1);
-        auxTree1.insertNode(node3, node2);
-        auxTree1.insertNode(node4, node3);
-        auxTree1.insertNode(node5, node4);
+        auxTree1.insertNode(decision1S, node2);
+        auxTree1.insertNode(node3, decision1S);
+        auxTree1.insertNode(node4, decision1S);
+
+        auxTree1.insertNode(node5, node3);
         auxTree1.insertNode(node6, node5);
         auxTree1.insertNode(node7, node6);
-        auxTree1.insertNode(node8, node7);
+        auxTree1.insertNode(decision2S, node7);
+        auxTree1.insertNode(node8, decision2S);
         auxTree1.insertNode(node9, node8);
-        auxTree1.insertNode(node10, node9);
-        auxTree1.insertNode(node11, node10);
+        auxTree1.insertNode(node9a, decision2S);
+
+        auxTree1.insertNode(decision3S, node4);
+        auxTree1.insertNode(node10, decision3S);
+        auxTree1.insertNode(node11, decision3S);
         auxTree1.insertNode(node12, node11);
-        auxTree1.insertNode(node13, node12);
+        auxTree1.insertNode(node12a, decision3S);
+
+        auxTree1.insertNode(node13, node9a);
         auxTree1.insertNode(node14, node13);
+
+        auxTree1.insertNode(node13b, node9);
+        auxTree1.insertNode(node14b, node13b);
+
+        auxTree1.insertNode(node13d, node10);
+        auxTree1.insertNode(node14d, node13d);
+
+        auxTree1.insertNode(node13a, node12a);
+        auxTree1.insertNode(node14a, node13a);
+
+        auxTree1.insertNode(node13c, node12);
+        auxTree1.insertNode(node14c, node13c);
+
+        escenarios.get(0).setArbolDial(auxTree1);
 
         //Guardia de la Sala de Seguridad1
         Dialogo s1 = new Dialogo("Hola Guardia, necesito revisar algunos detalles sobre las cámaras de seguridad.", "Detective", detective, true);
@@ -404,19 +447,19 @@ public class Juego {
         Dialogo s4 = new Dialogo("Supongo... aunque no me gusta pensar que algo se me pudo haber pasado.", "Seguridad", seguridad, true);
 
         // Primera decisión
-        List<String> opc3 = new LinkedList<>(Arrays.asList(
+        Dialogo desc1Seg= new Dialogo("Bueno quisiera hacerle unas preguntas", "Detective", detective, true );
+        desc1Seg.setOpciones( new LinkedList<>(Arrays.asList(
                 "¿Alguien más tiene acceso a la sala de seguridad?",
-                "¿Notó algo extraño en los monitores?",
-                "No quiero saber nada más"
-        ));
+                "¿Notó algo extraño en los monitores?"
+        )));
 
         // Camino vacío: acceso a la sala
-        Dialogo vacio1a = new Dialogo("Solo yo tengo acceso directo. El jefe también, pero rara vez entra. Confían en que yo lo manejo todo.", "Seguridad", seguridad, true);
-        Dialogo vacio1b = new Dialogo("Además, todo queda registrado. Si alguien más hubiera entrado, lo sabría.", "Seguridad", seguridad, true);
+        Dialogo respSeg1a = new Dialogo("Solo yo tengo acceso directo. El jefe también, pero rara vez entra. Confían en que yo lo manejo todo.", "Seguridad", seguridad, true);
+        Dialogo respSeg1b = new Dialogo("Además, todo queda registrado. Si alguien más hubiera entrado, lo sabría.", "Seguridad", seguridad, true);
 
         // Camino vacío: monitores
-        Dialogo vacio2a = new Dialogo("Los monitores estaban normales. A veces hay interferencias menores, pero nada fuera de lo común... o al menos eso creo.", "Seguridad", seguridad, true);
-        Dialogo vacio2b = new Dialogo("Aunque ahora que lo pienso, hubo un parpadeo en la pantalla 3... pero fue tan rápido que ni lo reporté.", "Seguridad", seguridad, true);
+        Dialogo respSeg2a = new Dialogo("Los monitores estaban normales. A veces hay interferencias menores, pero nada fuera de lo común... o al menos eso creo.", "Seguridad", seguridad, true);
+        Dialogo respSeg2b = new Dialogo("Aunque ahora que lo pienso, hubo un parpadeo en la pantalla 3... pero fue tan rápido que ni lo reporté.", "Seguridad", seguridad, true);
 
         // Camino principal: cámaras
         Dialogo c5 = new Dialogo("¿Todas las cámaras funcionaban esa noche? Necesito estar seguro.", "Detective", detective, true);
@@ -425,15 +468,17 @@ public class Juego {
         Dialogo c8 = new Dialogo("Desconexiones, cortes breves. Nada que activara alarmas, pero sí lo suficiente para dejar huecos.", "Seguridad", seguridad, true);
 
         // Segunda decisión
-        List<String> opc4 =  new LinkedList<>(Arrays.asList(
+        Dialogo desc2Seg= new Dialogo("Bueno quizas le haga unas preguntas o tal vez me quede con la información que ya tengo...",
+                "Detective", detective, true );
+        desc2Seg.setOpciones( new LinkedList<>(Arrays.asList(
                 "¿Es común que se caigan?",
                 "¿Qué cámaras fallaron exactamente?",
                 "No quiero saber nada más"
-        ));
+        )));
 
         // Camino vacío: frecuencia de fallos
-        Dialogo vacio3a = new Dialogo("A veces se reinician solas. El sistema es viejo. Pero nunca había pasado algo así en una noche tan importante.", "Seguridad", seguridad, true);
-        Dialogo vacio3b = new Dialogo("De todos modos, siempre reviso los registros al final del turno. No me gusta dejar cabos sueltos.", "Seguridad", seguridad, true);
+        Dialogo respSeg3a = new Dialogo("A veces se reinician solas. El sistema es viejo. Pero nunca había pasado algo así en una noche tan importante.", "Seguridad", seguridad, true);
+        Dialogo respSeg3b = new Dialogo("De todos modos, siempre reviso los registros al final del turno. No me gusta dejar cabos sueltos.", "Seguridad", seguridad, true);
 
         // Camino principal: cámaras específicas
         Dialogo c9 = new Dialogo("La del callejón trasero se cayó entre la 1 y las 3 de la mañana. Pensé que era un corte de señal temporal.", "Seguridad", seguridad, true);
@@ -450,6 +495,8 @@ public class Juego {
         Dialogo d14 = new Dialogo("A veces uno se acostumbra tanto a las fallas técnicas que deja de ver lo que tiene delante.",
                 "Seguridad", seguridad, true);
 
+        Dialogo respSeg4 = new Dialogo("Vale si necesita algo más aquí me tiene", "Seguridad", seguridad, true);
+
         Dialogo cierre2 = new Dialogo("Gracias. Esto le da un giro a las cosas, aquí cada detalle cuenta.", "Detective", detective, true);
         Dialogo despedida2 = new Dialogo("Si necesita revisar los registros, están en el servidor. Aunque... no sé si todo quedó grabado como debería.",
                 "Seguridad", seguridad, true);
@@ -458,24 +505,33 @@ public class Juego {
         BinaryTreeNode<Dialogo> node16 = new BinaryTreeNode<>(s2);
         BinaryTreeNode<Dialogo> node17 = new BinaryTreeNode<>(s3);
         BinaryTreeNode<Dialogo> node18 = new BinaryTreeNode<>(s4);
-        BinaryTreeNode<Dialogo> node19 = new BinaryTreeNode<>(vacio1a);
-        BinaryTreeNode<Dialogo> node20 = new BinaryTreeNode<>(vacio1b);
-        BinaryTreeNode<Dialogo> node21 = new BinaryTreeNode<>(vacio2a);
-        BinaryTreeNode<Dialogo> node22 = new BinaryTreeNode<>(vacio2b);
+        BinaryTreeNode<Dialogo> decision1Seg = new BinaryTreeNode<>(desc1Seg);
+        BinaryTreeNode<Dialogo> node19 = new BinaryTreeNode<>(respSeg1a);
+        BinaryTreeNode<Dialogo> node20 = new BinaryTreeNode<>(respSeg1b);
+        BinaryTreeNode<Dialogo> node21 = new BinaryTreeNode<>(respSeg2a);
+        BinaryTreeNode<Dialogo> node22 = new BinaryTreeNode<>(respSeg2b);
         BinaryTreeNode<Dialogo> node23 = new BinaryTreeNode<>(c5);
         BinaryTreeNode<Dialogo> node24 = new BinaryTreeNode<>(c6);
         BinaryTreeNode<Dialogo> node25 = new BinaryTreeNode<>(c7);
         BinaryTreeNode<Dialogo> node26 = new BinaryTreeNode<>(c8);
-        BinaryTreeNode<Dialogo> node27 = new BinaryTreeNode<>(vacio3a);
-        BinaryTreeNode<Dialogo> node28 = new BinaryTreeNode<>(vacio3b);
+        BinaryTreeNode<Dialogo> decision2Seg = new BinaryTreeNode<>(desc2Seg);
+        BinaryTreeNode<Dialogo> node27 = new BinaryTreeNode<>(respSeg3a);
+        BinaryTreeNode<Dialogo> node28 = new BinaryTreeNode<>(respSeg3b);
         BinaryTreeNode<Dialogo> node29 = new BinaryTreeNode<>(c9);
         BinaryTreeNode<Dialogo> node30 = new BinaryTreeNode<>(c10);
         BinaryTreeNode<Dialogo> node31 = new BinaryTreeNode<>(c11);
         BinaryTreeNode<Dialogo> node32 = new BinaryTreeNode<>(d12);
         BinaryTreeNode<Dialogo> node33 = new BinaryTreeNode<>(d13);
         BinaryTreeNode<Dialogo> node34 = new BinaryTreeNode<>(d14);
+        BinaryTreeNode<Dialogo> resp4 = new BinaryTreeNode<>(respSeg4);
         BinaryTreeNode<Dialogo> node35 = new BinaryTreeNode<>(cierre2);
+        BinaryTreeNode<Dialogo> node35a = new BinaryTreeNode<>(cierre2);
+        BinaryTreeNode<Dialogo> node35b = new BinaryTreeNode<>(cierre2);
+        BinaryTreeNode<Dialogo> node35c = new BinaryTreeNode<>(cierre2);
         BinaryTreeNode<Dialogo> node36 = new BinaryTreeNode<>(despedida2);
+        BinaryTreeNode<Dialogo> node36a = new BinaryTreeNode<>(despedida2);
+        BinaryTreeNode<Dialogo> node36b = new BinaryTreeNode<>(despedida2);
+        BinaryTreeNode<Dialogo> node36c = new BinaryTreeNode<>(despedida2);
 
         GeneralTree<Dialogo> auxTree2 = new GeneralTree<>();
 
@@ -483,25 +539,38 @@ public class Juego {
         auxTree2.insertNode(node16, node15);
         auxTree2.insertNode(node17, node16);
         auxTree2.insertNode(node18, node17);
-        auxTree2.insertNode(node19, node18);
+        auxTree2.insertNode(decision1Seg, node18);
+        auxTree2.insertNode(node19, decision1Seg);
         auxTree2.insertNode(node20, node19);
-        auxTree2.insertNode(node21, node20);
+        auxTree2.insertNode(node21, decision1Seg);
         auxTree2.insertNode(node22, node21);
-        auxTree2.insertNode(node23, node22);
+        auxTree2.insertNode(node35, node22);
+        auxTree2.insertNode(node36, node35);
+
+        auxTree2.insertNode(node23, node20);
         auxTree2.insertNode(node24, node23);
         auxTree2.insertNode(node25, node24);
         auxTree2.insertNode(node26, node25);
-        auxTree2.insertNode(node27, node26);
+        auxTree2.insertNode(decision2Seg, node26);
+        auxTree2.insertNode(node27, decision2Seg);
         auxTree2.insertNode(node28, node27);
-        auxTree2.insertNode(node29, node28);
+        auxTree2.insertNode(node35a, node28);
+        auxTree2.insertNode(node36a, node35a);
+
+        auxTree2.insertNode(node29, decision2Seg);
         auxTree2.insertNode(node30, node29);
         auxTree2.insertNode(node31, node30);
         auxTree2.insertNode(node32, node31);
         auxTree2.insertNode(node33, node32);
         auxTree2.insertNode(node34, node33);
-        auxTree2.insertNode(node35, node34);
-        auxTree2.insertNode(node36, node35);
+        auxTree2.insertNode(node35b, node34);
+        auxTree2.insertNode(node36b, node35b);
 
+        auxTree2.insertNode(resp4, decision2Seg);
+        auxTree2.insertNode(node35c, resp4);
+        auxTree2.insertNode(node36c, node35c);
+
+         escenarios.get(1).setArbolDial(auxTree2);
 
         // Dialogo limpiador baño inferior
         Dialogo b1 = new Dialogo("Buenas noches Conserje, ¿Tiene un momento? Necesito hacerle unas preguntas.", "Detective", detective, true);
@@ -510,38 +579,40 @@ public class Juego {
         Dialogo b4 = new Dialogo("Bueno... depende de lo que llame 'fuera de lugar'. Hay cosas raras todo el tiempo en este museo.", "Conserje", limpieza, true);
 
         // Primera decisión
-        List<String> opcion1 =  new LinkedList<>(Arrays.asList(
+        Dialogo desc1Limp= new Dialogo("Bueno vamos directo al grano...", "Detective", detective, true );
+        desc1Limp.setOpciones(  new LinkedList<>(Arrays.asList(
                 "¿Notó algo raro en los baños esta semana?",
                 "¿Ha visto a alguien bajar aquí cuando no debería?",
-                "¿Encontró algún objeto que no debería estar ahí?",
-                "No quiero saber nada más"
-        ));
+                "¿Encontró algún objeto que no debería estar ahí?"
+        )));
 
         // Camino vacío: baños
-        Dialogo vacio4a = new Dialogo("Los baños estaban limpios. Bueno, dentro de lo que cabe. Nada fuera de lo común.", "Conserje", limpieza, true);
-        Dialogo vacio4b = new Dialogo("Aunque alguien dejó una taza de café en el lavamanos... pero eso pasa más de lo que imagina.", "Conserje", limpieza, true);
+        Dialogo respLimp1 = new Dialogo("Los baños estaban limpios. Bueno, dentro de lo que cabe. Nada fuera de lo común.", "Conserje", limpieza, true);
+        Dialogo respLimp1b = new Dialogo("Aunque alguien dejó una taza de café en el lavamanos... pero eso pasa más de lo que imagina.", "Conserje", limpieza, true);
 
         // Camino vacío: gente bajando
-        Dialogo vacio5a = new Dialogo("A veces escucho pasos, pero no sé quién baja. Yo no me meto con nadie, solo barro y subo.", "Conserje", limpieza, true);
-        Dialogo vacio5b = new Dialogo("Una vez vi a la esposa del director pasar por aquí, no me saludó. Iba apurada, como si buscara algo.", "Conserje", limpieza, true);
+        Dialogo respLimp2 = new Dialogo("A veces escucho pasos, pero no sé quién baja. Yo no me meto con nadie, solo barro y subo.", "Conserje", limpieza, true);
+        Dialogo respLimp2b = new Dialogo("Una vez vi a la esposa del director pasar por aquí, no me saludó. Iba apurada, como si buscara algo.", "Conserje", limpieza, true);
 
         // Camino principal: objetos encontrados
-        Dialogo o5 = new Dialogo("¿Objetos? Bueno... encontré unas llaves hace unos días. Cerca del depósito, tiradas en el suelo.", "Conserje", limpieza, true);
-        Dialogo o6 = new Dialogo("Pensé que eran del almacén, así que las guardé. Pero luego se me olvidaron en el bolsillo.", "Conserje", limpieza, true);
+        Dialogo respLimp3 = new Dialogo("¿Objetos? Bueno... encontré unas llaves hace unos días. Cerca del depósito, tiradas en el suelo.", "Conserje", limpieza, true);
+        Dialogo respLimp3b = new Dialogo("Pensé que eran del almacén, así que las guardé. Pero luego se me olvidaron en el bolsillo.", "Conserje", limpieza, true);
 
         // Segunda decisión
-        List<String> opcion2 = new LinkedList<>(Arrays.asList(
+        Dialogo desc2Limp= new Dialogo("Que interesante....", "Detective", detective, true );
+        desc2Limp.setOpciones( new LinkedList<>(Arrays.asList(
                 "¿Qué tipo de llaves eran?",
-                "¿Dónde están ahora?",
-                "No quiero saber nada más"
-        ));
+                "Listo con esto tengo no quiero saber nada más",
+                "¿Dónde están esas llaves ahora?"
+        )));
 
         // Camino vacío: tipo de llaves
-        Dialogo vacio6a = new Dialogo("Eran metálicas, con una etiqueta vieja. No decía mucho, solo un número.", "Conserje", limpieza, true);
-        Dialogo vacio6b = new Dialogo("No me fijé mucho, la verdad. Las guardé en el bolsillo como le comenté y seguí limpiando.", "Conserje", limpieza, true);
+        Dialogo respLimp4a = new Dialogo("Eran metálicas, con una etiqueta vieja. No decía mucho, solo un número.", "Conserje", limpieza, true);
+        Dialogo respLimp4b = new Dialogo("No me fijé mucho, la verdad. Las guardé en el bolsillo como le comenté y seguí limpiando.", "Conserje", limpieza, true);
+
+        Dialogo u7 = new Dialogo("Vale, cualquier otra cosa que necesite estaré por aquí", "Conserje", limpieza, true);
 
         // Camino principal: ubicación actual
-        Dialogo u7 = new Dialogo("¿Dónde están esas llaves ahora?", "Detective", detective, true);
         Dialogo u8 = new Dialogo("En mi casa. Me di cuenta cuando vacié el uniforme. Pensaba traerlas hoy, pero con todo esto...", "Conserje", limpieza, true);
         Dialogo u9 = new Dialogo("¿Se da cuenta de lo importante que puede ser eso? Necesito esas llaves de inmediato.", "Detective", detective, true);
         Dialogo u10 = new Dialogo("Sí, sí, lo entiendo. Vivo cerca. Si quiere, puedo ir por ellas ahora mismo.", "Conserje", limpieza, true);
@@ -552,29 +623,43 @@ public class Juego {
         Dialogo u11 = new Dialogo("Hágalo. Pero por ahora, no le diga a nadie que las encontró. ¿De acuerdo?", "Detective", detective, true);
         Dialogo u12 = new Dialogo("¿En secreto? Bueno... si usted lo dice. No quiero meterme en líos.", "Conserje", limpieza, true);
 
-        Dialogo cierre3 = new Dialogo("Gracias. Avíseme en cuanto las tenga.", "Detective", detective, true);
-        Dialogo despedida3 = new Dialogo("Sí, voy saliendo ya mismo.", "Conserje", limpieza, true);
+        Dialogo cierreEsp = new Dialogo("Gracias. Avíseme en cuanto las tenga.", "Detective", detective, true);
+        Dialogo despedidaEsp = new Dialogo("Sí, voy saliendo ya mismo.", "Conserje", limpieza, true);
+
+        Dialogo cierre3 = new Dialogo("Muchas gracias por toda la información brindada, aunque no lo crea todo es de gran " +
+                "ayuda..", "Detective", detective, true );
+        Dialogo despedida3 = new Dialogo("Un placer, ,e alegra ser util en su investigación.", "Conserje", limpieza, true);
 
         BinaryTreeNode<Dialogo> node37 = new BinaryTreeNode<>(b1);
         BinaryTreeNode<Dialogo> node38 = new BinaryTreeNode<>(b2);
         BinaryTreeNode<Dialogo> node39 = new BinaryTreeNode<>(b3);
         BinaryTreeNode<Dialogo> node40 = new BinaryTreeNode<>(b4);
-        BinaryTreeNode<Dialogo> node41 = new BinaryTreeNode<>(vacio4a);
-        BinaryTreeNode<Dialogo> node42 = new BinaryTreeNode<>(vacio4b);
-        BinaryTreeNode<Dialogo> node43 = new BinaryTreeNode<>(vacio5a);
-        BinaryTreeNode<Dialogo> node44 = new BinaryTreeNode<>(vacio5b);
-        BinaryTreeNode<Dialogo> node45 = new BinaryTreeNode<>(o5);
-        BinaryTreeNode<Dialogo> node46 = new BinaryTreeNode<>(o6);
-        BinaryTreeNode<Dialogo> node47 = new BinaryTreeNode<>(vacio6a);
-        BinaryTreeNode<Dialogo> node48 = new BinaryTreeNode<>(vacio6b);
+        BinaryTreeNode<Dialogo> decisionLimp1 = new BinaryTreeNode<>(desc1Limp);
+        BinaryTreeNode<Dialogo> node41 = new BinaryTreeNode<>(respLimp1);
+        BinaryTreeNode<Dialogo> node42 = new BinaryTreeNode<>(respLimp1b);
+        BinaryTreeNode<Dialogo> node43 = new BinaryTreeNode<>(respLimp2);
+        BinaryTreeNode<Dialogo> node44 = new BinaryTreeNode<>(respLimp2b);
+        BinaryTreeNode<Dialogo> node45 = new BinaryTreeNode<>(respLimp3);
+        BinaryTreeNode<Dialogo> node46 = new BinaryTreeNode<>(respLimp3b);
+        BinaryTreeNode<Dialogo> decisionLimp2 = new BinaryTreeNode<>(desc2Limp);
+        BinaryTreeNode<Dialogo> node47 = new BinaryTreeNode<>(respLimp4a);
+        BinaryTreeNode<Dialogo> node48 = new BinaryTreeNode<>(respLimp4b);
         BinaryTreeNode<Dialogo> node49 = new BinaryTreeNode<>(u7);
         BinaryTreeNode<Dialogo> node50 = new BinaryTreeNode<>(u8);
         BinaryTreeNode<Dialogo> node51 = new BinaryTreeNode<>(u9);
         BinaryTreeNode<Dialogo> node52 = new BinaryTreeNode<>(u10);
         BinaryTreeNode<Dialogo> node53 = new BinaryTreeNode<>(u11);
         BinaryTreeNode<Dialogo> node54 = new BinaryTreeNode<>(u12);
-        BinaryTreeNode<Dialogo> node55 = new BinaryTreeNode<>(cierre3);
-        BinaryTreeNode<Dialogo> node56 = new BinaryTreeNode<>(despedida3);
+        BinaryTreeNode<Dialogo> node55 = new BinaryTreeNode<>(cierreEsp);
+        BinaryTreeNode<Dialogo> node55a = new BinaryTreeNode<>(cierre3);
+        BinaryTreeNode<Dialogo> node55b = new BinaryTreeNode<>(cierre3);
+        BinaryTreeNode<Dialogo> node55c = new BinaryTreeNode<>(cierre3);
+        BinaryTreeNode<Dialogo> node55d = new BinaryTreeNode<>(cierre3);
+        BinaryTreeNode<Dialogo> node56 = new BinaryTreeNode<>(despedidaEsp);
+        BinaryTreeNode<Dialogo> node56a = new BinaryTreeNode<>(despedida3);
+        BinaryTreeNode<Dialogo> node56b = new BinaryTreeNode<>(despedida3);
+        BinaryTreeNode<Dialogo> node56c = new BinaryTreeNode<>(despedida3);
+        BinaryTreeNode<Dialogo> node56d = new BinaryTreeNode<>(despedida3);
 
         GeneralTree<Dialogo> auxTree3 = new GeneralTree<>();
 
@@ -582,16 +667,30 @@ public class Juego {
         auxTree3.insertNode(node38, node37);
         auxTree3.insertNode(node39, node38);
         auxTree3.insertNode(node40, node39);
-        auxTree3.insertNode(node41, node40);
+        auxTree3.insertNode(decisionLimp1, node40);
+        auxTree3.insertNode(node41, decisionLimp1);
         auxTree3.insertNode(node42, node41);
-        auxTree3.insertNode(node43, node42);
+        auxTree3.insertNode(node55a, node42);
+        auxTree3.insertNode(node56a, node55a);
+
+        auxTree3.insertNode(node43, decisionLimp1);
         auxTree3.insertNode(node44, node43);
-        auxTree3.insertNode(node45, node44);
+        auxTree3.insertNode(node55b, node44);
+        auxTree3.insertNode(node56b, node55b);
+
+        auxTree3.insertNode(node45, decisionLimp1);
         auxTree3.insertNode(node46, node45);
-        auxTree3.insertNode(node47, node46);
+        auxTree3.insertNode(decisionLimp2, node46);
+        auxTree3.insertNode(node47, decisionLimp2);
         auxTree3.insertNode(node48, node47);
-        auxTree3.insertNode(node49, node48);
-        auxTree3.insertNode(node50, node49);
+        auxTree3.insertNode(node55c, node48);
+        auxTree3.insertNode(node56c, node55c);
+
+        auxTree3.insertNode(node49, decisionLimp2);
+        auxTree3.insertNode(node55d, node49);
+        auxTree3.insertNode(node56d, node55d);
+
+        auxTree3.insertNode(node50, decisionLimp2);
         auxTree3.insertNode(node51, node50);
         auxTree3.insertNode(node52, node51);
         auxTree3.insertNode(node53, node52);
@@ -599,96 +698,145 @@ public class Juego {
         auxTree3.insertNode(node55, node54);
         auxTree3.insertNode(node56, node55);
 
+        escenarios.get(2).setArbolDial(auxTree3);
 
         // Dueño en la oficina
-        Dialogo j1 = new Dialogo("Hola señor, no pude evitar distraerme con todos esos trofeos. Necesito hacerle unas preguntas, si no le molesta.", "Detective", detective, true);
-        Dialogo j2 = new Dialogo("¿Otra ronda de interrogatorios, detective? ¿No se cansa de buscar fantasmas?", "Jefe", nada, true);
+        Dialogo j1 = new Dialogo("Hola señor, no pude evitar distraerme con todos esos trofeos. Necesito hacerle unas preguntas," +
+                " si no le molesta.", "Detective", detective, true);
+        Dialogo j2 = new Dialogo("¿Otra ronda de interrogatorios, detective? ¿No se cansa de buscar fantasmas?", "Dueno", dueno, true);
         Dialogo j3 = new Dialogo("Solo intento entender lo que pasó. Cualquier detalle puede ser de suma importancia.", "Detective", detective, true);
-        Dialogo j4 = new Dialogo("Claro, claro... aunque si me pregunta a mí, esto ya está más que resuelto. Pero adelante, dispare.", "Jefe", nada, true);
+        Dialogo j4 = new Dialogo("Claro, claro... aunque si me pregunta a mí, esto ya está más que resuelto. Pero adelante, dispare.", "Dueno", dueno, true);
 
         // Primera decisión
-        List<String> op1 = new LinkedList<>(Arrays.asList(
+        Dialogo desc1Due= new Dialogo("Que interesante su afirmación, pero ahora dígame...", "Detective", detective, true );
+        desc1Due.setOpciones( new LinkedList<>(Arrays.asList(
                 "¿Conocía bien al economista?",
                 "¿Dónde estaba usted cuando ocurrió el incidente?",
-                "Bonita oficina... ¿puedo preguntarle sobre la decoración?",
-                "No quiero saber nada más"
-        ));
+                "Bonita oficina... ¿puedo preguntarle sobre la decoración?"
+        )));
 
         // Camino vacío: relación con el economista
-        Dialogo vacio7a = new Dialogo("Lo conocía lo justo. Buen tipo, algo aburrido. Siempre hablando de números y teorías. Yo prefiero el arte, ya sabe.", "Jefe", nada, true);
-        Dialogo vacio7b = new Dialogo("Aunque debo admitir que tenía una forma muy... muy peculiar de ver el mundo. Como si siempre supiera algo que los demás no.", "Jefe", nada, true);
+        Dialogo respDue1a = new Dialogo("Lo conocía lo justo. Buen tipo, algo aburrido. Siempre hablando de números y teorías. " +
+                "Yo prefiero el arte, ya sabe.", "Dueno", dueno, true);
+        Dialogo respDue1b = new Dialogo("Aunque debo admitir que tenía una forma muy... muy peculiar de ver el mundo. Como si siempre" +
+                " supiera algo que los demás no.", "Dueno", dueno, true);
 
         // Camino vacío: coartada
-        Dialogo vacio8a = new Dialogo("Estaba en casa, durmiendo como un bebé. Pregúntele a mi esposa si no me cree... aunque no sé si le conviene despertarla.", "Jefe", nada, true);
-        Dialogo vacio8b = new Dialogo("Además, si yo hubiera querido matar a alguien, créame que no dejaría pistas. Pero no se lo tome a mal, detective.", "Jefe", nada, true);
+        Dialogo respDue2a = new Dialogo("Estaba en casa, durmiendo como un bebé. Pregúntele a mi esposa si no me cree... aunque no sé" +
+                " si le conviene despertarla.", "Dueno", dueno, true);
+        Dialogo respDue2b = new Dialogo("Además, si yo hubiera querido matar a alguien, créame que no dejaría pistas. Pero no se lo " +
+                "tome a mal, detective.", "Dueno", dueno, true);
 
         // Camino que desbloquea segunda decisión
-        Dialogo desbloquear1 = new Dialogo("¿Preguntando cosas personales? Vaya, detective... pensé que esto era una investigación, no una cita.", "Jefe", nada, true);
-        Dialogo desbloquear2 = new Dialogo("Pero adelante, pregunte. Aunque no prometo responder con seriedad.", "Jefe", nada, true);
+        Dialogo desbloquear1 = new Dialogo("¿Preguntando cosas personales? Vaya, detective... pensé que esto era una investigación, " +
+                "no una cita.", "Dueno", dueno, true);
+        Dialogo desbloquear2 = new Dialogo("Pero adelante, pregunte. Aunque no prometo responder con seriedad.", "Dueno", dueno, true);
 
         // Segunda decisión (solo aparece si se elige la opción correcta)
-        List<String> op2 = new LinkedList<>(Arrays.asList(
+        Dialogo desc2Due= new Dialogo("Usted responda ya yo veré ..", "Detective", detective, true );
+        desc2Due.setOpciones( new LinkedList<>(Arrays.asList(
                 "¿Qué son todos esos trofeos en su estantería?",
                 "No quiero saber nada más"
-        ));
+        )));
 
         // Camino principal: trofeos
-        Dialogo t7 = new Dialogo("¿Los trofeos? Ah, veo que tiene buen ojo. Son de cuando practicaba esgrima. Era bastante bueno, ¿sabe?", "Jefe", nada, true);
-        Dialogo t8 = new Dialogo("Campeón regional tres años seguidos. Aunque ahora solo es buen material para presumir con los visitantes importantes.", "Jefe", nada, true);
+        Dialogo respDue3a = new Dialogo("¿Los trofeos? Ah, veo que tiene buen ojo. Son de cuando practicaba esgrima. Era bastante" +
+                " bueno, ¿sabe?", "Dueno", dueno, true);
+        Dialogo respDue3b = new Dialogo("Campeón regional tres años seguidos. Aunque ahora solo es buen material para presumir con " +
+                "los visitantes importantes.", "Dueno", dueno, true);
 
         // Dato clave
         /*añadirAlDiario("Jefe del museo", "El jefe practicó esgrima cuando era joven.");*/
 
-        Dialogo d15 = new Dialogo("¿Quiere una demostración? No se preocupe, no suelo atacar a los invitados... a menos que me acusen de asesinato jajajaj.", "Jefe", nada, true);
+        Dialogo d15 = new Dialogo("¿Quiere una demostración? No se preocupe, no suelo atacar a los invitados... a menos que me acusen" +
+                " de asesinato jajajaj.", "Dueno", dueno, true);
+
+        Dialogo salida1 = new Dialogo("Si quiere saber algo más ya sabe aquí estoy", "Dueno", dueno, true);
 
         //Tercera decisión
-        List<String> op3 = new LinkedList<>(Arrays.asList(
+        Dialogo desc3Due= new Dialogo("Usted responda ya yo veré ..", "Detective", detective, true );
+        desc3Due.setOpciones( new LinkedList<>(Arrays.asList(
                 "¿Aún practica esgrima?",
                 "No quiero saber nada más"
-        ));
+        )));
 
         // Camino vacío: práctica actual
-        Dialogo vacio9a = new Dialogo("Ya no. Las rodillas no perdonan, detective. Ahora solo practico con el control remoto y el sillón reclinable.", "Jefe", nada, true);
+        Dialogo respDue4 = new Dialogo("Ya no. Las rodillas no perdonan, detective. Ahora solo practico con el control remoto y el" +
+                " sillón reclinable.", "Dueno", dueno, true);
+
+        Dialogo salida2 = new Dialogo("Si quiere saber algo más ya sabe aquí estoy", "Dueno", dueno, true);
 
         Dialogo cierre4 = new Dialogo("Gracias por su tiempo. Si recuerda algo más, estaré cerca.", "Detective", detective, true);
-        Dialogo despedida4 = new Dialogo("Cuando quiera, detective. Aunque si me pregunta, esto es una pérdida de tiempo con corbata.", "Jefe", nada, true);
+        Dialogo despedida4 = new Dialogo("Cuando quiera, detective. Aunque si me pregunta, esto es una pérdida de tiempo con corbata.", "Dueno", dueno, true);
 
         BinaryTreeNode<Dialogo> node57 = new BinaryTreeNode<>(j1);
         BinaryTreeNode<Dialogo> node58 = new BinaryTreeNode<>(j2);
         BinaryTreeNode<Dialogo> node59 = new BinaryTreeNode<>(j3);
         BinaryTreeNode<Dialogo> node60 = new BinaryTreeNode<>(j4);
-        BinaryTreeNode<Dialogo> node61 = new BinaryTreeNode<>(vacio7a);
-        BinaryTreeNode<Dialogo> node62 = new BinaryTreeNode<>(vacio7b);
-        BinaryTreeNode<Dialogo> node63 = new BinaryTreeNode<>(vacio8a);
-        BinaryTreeNode<Dialogo> node64 = new BinaryTreeNode<>(vacio8b);
+        BinaryTreeNode<Dialogo> decisionDue1 = new BinaryTreeNode<>(desc1Due);
+        BinaryTreeNode<Dialogo> node61 = new BinaryTreeNode<>(respDue1a);
+        BinaryTreeNode<Dialogo> node62 = new BinaryTreeNode<>(respDue1b);
+        BinaryTreeNode<Dialogo> node63 = new BinaryTreeNode<>(respDue2a);
+        BinaryTreeNode<Dialogo> node64 = new BinaryTreeNode<>(respDue2b);
         BinaryTreeNode<Dialogo> node65 = new BinaryTreeNode<>(desbloquear1);
         BinaryTreeNode<Dialogo> node66 = new BinaryTreeNode<>(desbloquear2);
-        BinaryTreeNode<Dialogo> node67 = new BinaryTreeNode<>(t7);
-        BinaryTreeNode<Dialogo> node68 = new BinaryTreeNode<>(t8);
+        BinaryTreeNode<Dialogo> decisionDue2 = new BinaryTreeNode<>(desc2Due);
+        BinaryTreeNode<Dialogo> node67 = new BinaryTreeNode<>(respDue3a);
+        BinaryTreeNode<Dialogo> node68 = new BinaryTreeNode<>(respDue3b);
         BinaryTreeNode<Dialogo> node69 = new BinaryTreeNode<>(d15);
-        BinaryTreeNode<Dialogo> node70 = new BinaryTreeNode<>(vacio9a);
+        BinaryTreeNode<Dialogo> nodeSal1 = new BinaryTreeNode<>(salida1);
+        BinaryTreeNode<Dialogo> decisionDue3 = new BinaryTreeNode<>(desc3Due);
+        BinaryTreeNode<Dialogo> node70 = new BinaryTreeNode<>(respDue4);
+        BinaryTreeNode<Dialogo> nodeSal2 = new BinaryTreeNode<>(salida2);
         BinaryTreeNode<Dialogo> node71 = new BinaryTreeNode<>(cierre4);
+        BinaryTreeNode<Dialogo> node71a = new BinaryTreeNode<>(cierre4);
+        BinaryTreeNode<Dialogo> node71b = new BinaryTreeNode<>(cierre4);
+        BinaryTreeNode<Dialogo> node71c = new BinaryTreeNode<>(cierre4);
+        BinaryTreeNode<Dialogo> node71d = new BinaryTreeNode<>(cierre4);
         BinaryTreeNode<Dialogo> node72 = new BinaryTreeNode<>(despedida4);
+        BinaryTreeNode<Dialogo> node72a = new BinaryTreeNode<>(despedida4);
+        BinaryTreeNode<Dialogo> node72b = new BinaryTreeNode<>(despedida4);
+        BinaryTreeNode<Dialogo> node72c = new BinaryTreeNode<>(despedida4);
+        BinaryTreeNode<Dialogo> node72d = new BinaryTreeNode<>(despedida4);
 
         GeneralTree<Dialogo> auxTree4 = new GeneralTree<>();
 
-        auxTree3.insertNode(node57, null);
-        auxTree3.insertNode(node58, node57);
-        auxTree3.insertNode(node59, node58);
-        auxTree3.insertNode(node60, node59);
-        auxTree3.insertNode(node61, node60);
-        auxTree3.insertNode(node62, node61);
-        auxTree3.insertNode(node63, node62);
-        auxTree3.insertNode(node64, node63);
-        auxTree3.insertNode(node65, node64);
-        auxTree3.insertNode(node66, node65);
-        auxTree3.insertNode(node67, node66);
-        auxTree3.insertNode(node68, node67);
-        auxTree3.insertNode(node69, node68);
-        auxTree3.insertNode(node70, node69);
-        auxTree3.insertNode(node71, node70);
-        auxTree3.insertNode(node72, node71);
+        auxTree4.insertNode(node57, null);
+        auxTree4.insertNode(node58, node57);
+        auxTree4.insertNode(node59, node58);
+        auxTree4.insertNode(node60, node59);
+        auxTree4.insertNode(decisionDue1, node60);
+        auxTree4.insertNode(node61, decisionDue1);
+        auxTree4.insertNode(node62, node61);
+        auxTree4.insertNode(node71, node62);
+        auxTree4.insertNode(node72, node71);
 
+        auxTree4.insertNode(node63, decisionDue1);
+        auxTree4.insertNode(node64, node63);
+        auxTree4.insertNode(node71a, node62);
+        auxTree4.insertNode(node72a, node71a);
+
+        auxTree4.insertNode(node65, decisionDue1);
+        auxTree4.insertNode(node66, node65);
+        auxTree4.insertNode(decisionDue2, node66);
+        auxTree4.insertNode(nodeSal1, decisionDue2);
+        auxTree4.insertNode(node71b, nodeSal1);
+        auxTree4.insertNode(node72b, node71b);
+
+        auxTree4.insertNode(node67, decisionDue2);
+        auxTree4.insertNode(node68, node67);
+        auxTree4.insertNode(node69, node68);
+        auxTree4.insertNode(decisionDue3, node69);
+
+        auxTree4.insertNode(node70, decisionDue3);
+        auxTree4.insertNode(node71c, node70);
+        auxTree4.insertNode(node72c, node71c);
+
+        auxTree4.insertNode(nodeSal2, decisionDue3);
+        auxTree4.insertNode(node71d, nodeSal2);
+        auxTree4.insertNode(node72d, node71d);
+
+        escenarios.get(3).setArbolDial(auxTree4);
 
         //Dialogo guias sala antiguedades
         Dialogo guia1 = new Dialogo("Vaya vaya, esta sala siempre me ha parecido la más silenciosa del museo.", "Detective", detective, true);
@@ -697,44 +845,48 @@ public class Juego {
         Dialogo guia5 = new Dialogo("Ocho años. He guiado a miles de personas por cada rincón de este lugar. Me lo conozco como si fuese la palma de mi mano.", "Guia1", guia, true);
 
         // Primera decisión
-        List<String> opc1 = new LinkedList<>( Arrays.asList(
+        Dialogo desc1G1= new Dialogo("Pues muy bien ahora quiero saber..", "Detective", detective, true );
+        desc1G1.setOpciones(  new LinkedList<>( Arrays.asList(
                 "¿Qué pieza de esta sala le parece más interesante?",
-                "¿Le ha tocado ver cosas extrañas en sus turnos?",
                 "¿Diría que nota cuando algo está fuera de lugar?",
-                "No quiero saber nada más"
-        ));
+                "¿Le ha tocado ver cosas extrañas en sus turnos?"
+
+        )));
 
         // Camino vacío: pieza favorita
-        Dialogo vacio10a = new Dialogo("Sería muy difícil elegir. Pero si me apura, diría el reloj solar romano. Es simple, pero preciso" +
+        Dialogo resp1aG1 = new Dialogo("Sería muy difícil elegir. Pero si me apura, diría el reloj solar romano. Es simple, pero preciso" +
                 ". Como deberían ser las cosas.", "Guia1", guia, true);
-        Dialogo vacio10b = new Dialogo("Aunque claro, la mayoría prefiere las armaduras. Supongo que tienen más... presencia.", "Guia1", guia, true);
-
-        // Camino vacío: cosas extrañas
-        Dialogo vacio11a = new Dialogo("Algunas sombras, ruidos, puertas que se cierran solas... pero nada que no tenga explicación lógica. " +
-                "O al menos eso me digo para poder dormir tranquilo.", "Guia1",guia, true);
-        Dialogo vacio11b = new Dialogo("Aunque una vez juraría que vi una figura moverse entre las vitrinas. Pero era tarde, y estaba cansado " +
-                "así que decidí culpar al cansancio.", "Guia1", guia, true);
+        Dialogo resp1bG1 = new Dialogo("Aunque claro, la mayoría prefiere las armaduras. Supongo que tienen más... presencia.", "Guia1", guia, true);
 
         // Camino principal: percepción del entorno
-        Dialogo p5 = new Dialogo("¿Fuera de lugar? Claro. Cuando uno ve lo mismo todos los días, cualquier mínimo cambio salta a la vista.", "Guia1", guia, true);
-        Dialogo p6 = new Dialogo("De hecho, ahora que lo menciona, hay algo que me pareció raro esta mañana.", "Guia1", guia, true);
+        Dialogo resp2aG1 = new Dialogo("¿Fuera de lugar? Claro. Cuando uno ve lo mismo todos los días, cualquier mínimo cambio salta a la vista.", "Guia1", guia, true);
+        Dialogo resp2bG1 = new Dialogo("De hecho, ahora que lo menciona, hay algo que me pareció raro esta mañana.", "Guia1", guia, true);
+
+        // Camino vacío: cosas extrañas
+        Dialogo resp3aG1 = new Dialogo("Algunas sombras, ruidos, puertas que se cierran solas... pero nada que no tenga explicación lógica. " +
+                "O al menos eso me digo para poder dormir tranquilo.", "Guia1",guia, true);
+        Dialogo resp3bG1 = new Dialogo("Aunque una vez juraría que vi una figura moverse entre las vitrinas. Pero era tarde, y estaba cansado " +
+                "así que decidí culpar al cansancio.", "Guia1", guia, true);
 
         // Segunda decisión
-        List<String> opc2 = new LinkedList<>(Arrays.asList(
+        Dialogo desc2G1= new Dialogo("Usted responda mientras yo deduzco si debo seguir preguntandole o no..", "Detective", detective, true );
+        desc2G1.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Alguien estaba donde no debería?",
                 "¿Qué vio fuera de lugar?",
                 "No quiero saber nada más"
-        ));
+        )));
 
         // Camino vacío: pregunta ambigua
-        Dialogo vacio12a = new Dialogo("No, no vi a nadie moverse. Solo noté una sensación rara, como si algo no encajara. Pero no sabría decir qué.", "Guia1", guia, true);
-        Dialogo vacio12b = new Dialogo("Quizás solo estaba cansado. A veces la mente juega con uno cuando está solo entre estas cosas antiguas.", "Guia1", guia, true);
+        Dialogo resp4aG1 = new Dialogo("No, no vi a nadie moverse. Solo noté una sensación rara, como si algo no encajara. Pero no sabría decir qué.", "Guia1", guia, true);
+        Dialogo resp4bG1 = new Dialogo("Quizás solo estaba cansado. A veces la mente juega con uno cuando está solo entre estas cosas antiguas.", "Guia1", guia, true);
 
         // Camino principal: detalle observado
-        Dialogo detalle1 = new Dialogo("Una de las armaduras... de la otra sala. Siempre ha estado girada hacia la entrada, como si saludara a los visitantes.", "Guia1", guia, true);
+        Dialogo detalle1 = new Dialogo("Ahora que lo pienso una de las armaduras... de la otra sala. Siempre ha estado girada hacia la entrada, como si saludara a los visitantes.", "Guia1", guia, true);
         Dialogo detalle2 = new Dialogo("Pero esta mañana la encontré girada hacia la pared. No es algo que se mueva solo, créame. Pesa como un camión.", "Guia1", guia, true);
         Dialogo detalle3 = new Dialogo("¿Y no hay forma de que alguien la haya movido por accidente?", "Detective", detective, true);
         Dialogo detalle4 = new Dialogo("No sin ayuda. Y no hay registro de que se haya autorizado moverla. Por eso me pareció raro.", "Guia1", guia, true);
+
+        Dialogo salida3 = new Dialogo("Como usted diga Sr.Detective, quedo a su disposición", "Guia1", guia, true);
 
         // Dato clave 1 y 2
         /*añadirAlDiario("Guía 1", "Una de las armaduras fue encontrada en una posición inusual.");
@@ -755,7 +907,7 @@ public class Juego {
         Dialogo despedida5 = new Dialogo("Cuando quiera, detective. Espero que encuentre lo que busca.", "Guia1", guia, true);
 
         // Reacción del detective (después del cierre)
-        Dialogo reflexion1 = new Dialogo("(Demasiado interés en desviar la atención. Esa guía sabe más de lo que aparenta...)", "Detective", detective, true);
+        Dialogo reflexion1 = new Dialogo("(Demasiado interés en desviar la atención. Ese guía sabe más de lo que aparenta...)", "Detective", detective, true);
         Dialogo reflexion2 = new Dialogo("(Siento que me voy acercando... en el fondo lo siento, y estas sensaciones no engañan...)", "Detective", detective, true);
 
         // Dato clave 2
@@ -765,18 +917,21 @@ public class Juego {
         BinaryTreeNode<Dialogo> node74 = new BinaryTreeNode<>(guia3);
         BinaryTreeNode<Dialogo> node75 = new BinaryTreeNode<>(guia4);
         BinaryTreeNode<Dialogo> node76 = new BinaryTreeNode<>(guia5);
-        BinaryTreeNode<Dialogo> node77 = new BinaryTreeNode<>(vacio10a);
-        BinaryTreeNode<Dialogo> node78 = new BinaryTreeNode<>(vacio10b);
-        BinaryTreeNode<Dialogo> node79 = new BinaryTreeNode<>(vacio11a);
-        BinaryTreeNode<Dialogo> node80 = new BinaryTreeNode<>(vacio11b);
-        BinaryTreeNode<Dialogo> node81 = new BinaryTreeNode<>(p5);
-        BinaryTreeNode<Dialogo> node82 = new BinaryTreeNode<>(p6);
-        BinaryTreeNode<Dialogo> node83 = new BinaryTreeNode<>(vacio12a);
-        BinaryTreeNode<Dialogo> node84 = new BinaryTreeNode<>(vacio12b);
+        BinaryTreeNode<Dialogo> decision1G1 = new BinaryTreeNode<>(desc1G1);
+        BinaryTreeNode<Dialogo> node77 = new BinaryTreeNode<>(resp1aG1);
+        BinaryTreeNode<Dialogo> node78 = new BinaryTreeNode<>(resp1bG1);
+        BinaryTreeNode<Dialogo> node79 = new BinaryTreeNode<>(resp2aG1);
+        BinaryTreeNode<Dialogo> node80 = new BinaryTreeNode<>(resp2bG1);
+        BinaryTreeNode<Dialogo> node81 = new BinaryTreeNode<>(resp3aG1);
+        BinaryTreeNode<Dialogo> node82 = new BinaryTreeNode<>(resp3bG1);
+        BinaryTreeNode<Dialogo> decision2G1 = new BinaryTreeNode<>(desc2G1);
+        BinaryTreeNode<Dialogo> node83 = new BinaryTreeNode<>(resp4aG1);
+        BinaryTreeNode<Dialogo> node84 = new BinaryTreeNode<>(resp4bG1);
         BinaryTreeNode<Dialogo> node85 = new BinaryTreeNode<>(detalle1);
         BinaryTreeNode<Dialogo> node86 = new BinaryTreeNode<>(detalle2);
         BinaryTreeNode<Dialogo> node87 = new BinaryTreeNode<>(detalle3);
         BinaryTreeNode<Dialogo> node88 = new BinaryTreeNode<>(detalle4);
+        BinaryTreeNode<Dialogo> nodeSal3 = new BinaryTreeNode<>(salida3);
         BinaryTreeNode<Dialogo> node89 = new BinaryTreeNode<>(inter1);
         BinaryTreeNode<Dialogo> node90 = new BinaryTreeNode<>(inter2);
         BinaryTreeNode<Dialogo> node91 = new BinaryTreeNode<>(inter3);
@@ -784,10 +939,16 @@ public class Juego {
         BinaryTreeNode<Dialogo> node93 = new BinaryTreeNode<>(det2);
         BinaryTreeNode<Dialogo> node94 = new BinaryTreeNode<>(det3);
         BinaryTreeNode<Dialogo> node95 = new BinaryTreeNode<>(det4);
-        BinaryTreeNode<Dialogo> node96 = new BinaryTreeNode<>(cierre5);
-        BinaryTreeNode<Dialogo> node97 = new BinaryTreeNode<>(despedida5);
         BinaryTreeNode<Dialogo> node98 = new BinaryTreeNode<>(reflexion1);
         BinaryTreeNode<Dialogo> node99 = new BinaryTreeNode<>(reflexion2);
+        BinaryTreeNode<Dialogo> node96 = new BinaryTreeNode<>(cierre5);
+        BinaryTreeNode<Dialogo> node96a = new BinaryTreeNode<>(cierre5);
+        BinaryTreeNode<Dialogo> node96b = new BinaryTreeNode<>(cierre5);
+        BinaryTreeNode<Dialogo> node96c = new BinaryTreeNode<>(cierre5);
+        BinaryTreeNode<Dialogo> node97 = new BinaryTreeNode<>(despedida5);
+        BinaryTreeNode<Dialogo> node97a = new BinaryTreeNode<>(despedida5);
+        BinaryTreeNode<Dialogo> node97b = new BinaryTreeNode<>(despedida5);
+        BinaryTreeNode<Dialogo> node97c = new BinaryTreeNode<>(despedida5);
 
         GeneralTree<Dialogo> auxTree5 = new GeneralTree<>();
 
@@ -795,29 +956,44 @@ public class Juego {
         auxTree5.insertNode(node74, node73);
         auxTree5.insertNode(node75, node74);
         auxTree5.insertNode(node76, node75);
-        auxTree5.insertNode(node77, node76);
+        auxTree5.insertNode(decision1G1, node76);
+        auxTree5.insertNode(node77, decision1G1);
         auxTree5.insertNode(node78, node77);
-        auxTree5.insertNode(node79, node78);
-        auxTree5.insertNode(node80, node79);
-        auxTree5.insertNode(node81, node80);
+        auxTree5.insertNode(node96, node78);
+        auxTree5.insertNode(node97, node96);
+
+        auxTree5.insertNode(node81, decision1G1);
         auxTree5.insertNode(node82, node81);
-        auxTree5.insertNode(node83, node82);
+        auxTree5.insertNode(node96a, node82);
+        auxTree5.insertNode(node97a, node96a);
+
+        auxTree5.insertNode(node79, decision1G1);
+        auxTree5.insertNode(node80, node79);
+        auxTree5.insertNode(decision2G1, node80);
+        auxTree5.insertNode(node83, decision2G1);
         auxTree5.insertNode(node84, node83);
-        auxTree5.insertNode(node85, node84);
+        auxTree5.insertNode(node96b, node84);
+        auxTree5.insertNode(node97b, node96b);
+
+        auxTree5.insertNode(node85, decision2G1);
         auxTree5.insertNode(node86, node85);
         auxTree5.insertNode(node87, node86);
         auxTree5.insertNode(node88, node87);
-        auxTree5.insertNode(node89, node88);
+        auxTree5.insertNode(node96c, node88);
+        auxTree5.insertNode(node97c, node96c);
+
+        auxTree5.insertNode(nodeSal3, decision2G1);
+        auxTree5.insertNode(node89, nodeSal3);
         auxTree5.insertNode(node90, node89);
         auxTree5.insertNode(node91, node90);
         auxTree5.insertNode(node92, node91);
         auxTree5.insertNode(node93, node92);
         auxTree5.insertNode(node94, node93);
         auxTree5.insertNode(node95, node94);
-        auxTree5.insertNode(node96, node95);
-        auxTree5.insertNode(node97, node96);
-        auxTree5.insertNode(node98, node97);
+        auxTree5.insertNode(node98, node95);
         auxTree5.insertNode(node99, node98);
+
+        escenarios.get(4).setArbolDial(auxTree5);
 
         // Dialogo callejon vagabundo
         Dialogo vagab1 = new Dialogo("Buenas noches señor. ¿Todo bien por aquí?", "Detective", detective, true);
@@ -826,32 +1002,34 @@ public class Juego {
         Dialogo vagab4 = new Dialogo("Hablar no cuesta nada... pero tampoco llena el estómago.", "Vagabundo", vagabundo, true);
 
         // Primera decisión
-        List<String> decision1 = new LinkedList<>(Arrays.asList(
+        Dialogo descVag1= new Dialogo("Usted responda mientras yo deduzco si debo seguir preguntandole o no..", "Detective", detective, true );
+        descVag1.setOpciones( new LinkedList<>(Arrays.asList(
                 "¿Hace cuánto duerme aquí?",
                 "¿Le molesta si me quedo un momento?",
-                "¿Ha visto algo raro últimamente?",
-                "No quiero saber nada más"
-        ));
+                "¿Ha visto algo raro últimamente?"
+        )));
 
         // Camino vacío: tiempo en el callejón
-        Dialogo vacio13a = new Dialogo("¿Qué importa? El tiempo pasa igual, tenga uno techo o no. Pero sí, llevo un buen rato viendo pasar sombras.", "Vagabundo", vagabundo, true);
+        Dialogo respV1 = new Dialogo("¿Qué importa? El tiempo pasa igual, tenga uno techo o no. Pero sí, llevo un buen rato viendo " +
+                "pasar sombras.", "Vagabundo", vagabundo, true);
 
         // Camino vacío: quedarse
-        Dialogo vacio14a = new Dialogo("Mientras no me quite el rincón, siéntase como en casa. Aunque no tengo sofá ni café para ofrecerle.", "Vagabundo", vagabundo, true);
+        Dialogo respV2 = new Dialogo("Mientras no me quite el rincón, siéntase como en casa. Aunque no tengo sofá ni café para ofrecerle.", "Vagabundo", vagabundo, true);
 
         // Camino principal: cosas raras
         Dialogo raras1 = new Dialogo("¿Raro? Aquí todo es raro. Pero sí, hay noches que el silencio se rompe de formas extrañas.", "Vagabundo", vagabundo, true);
         Dialogo raras2 = new Dialogo("¿Qué quiere saber exactamente?", "Vagabundo", vagabundo, true);
 
         // Segunda decisión
-        List<String> decision2 = new LinkedList<>(Arrays.asList(
+        Dialogo descVag2= new Dialogo("Mmm me parece que quizas deba seguir investigando o quizas no...", "Detective", detective, true );
+        descVag2.setOpciones( new LinkedList<>(Arrays.asList(
                 "¿Escuchó algún ruido fuerte anoche?",
                 "¿Vio a alguien salir del museo entre la 1 y las 3 a.m.?",
                 "No quiero saber nada más"
-        ));
+        )));
 
         // Camino vacío: ruidos
-        Dialogo vacio15a = new Dialogo("Ruidos hay siempre. Gatos, botellas, viento... o mis tripas. Nada que me quite el sueño.", "Vagabundo", vagabundo, true);
+        Dialogo respV3 = new Dialogo("Ruidos hay siempre. Gatos, botellas, viento... o mis tripas. Nada que me quite el sueño.", "Vagabundo", vagabundo, true);
 
         // Camino principal: pregunta clave
 
@@ -866,24 +1044,29 @@ public class Juego {
         Dialogo v5 = new Dialogo("¿Entre la 1 y las 3? Sí... vi a alguien. No saliendo, no. Subiendo.", "Vagabundo", vagabundo, true);
         Dialogo v6 = new Dialogo("Ocurrió por la escalera de incendios. Alguien más la bajó, cosa rara. Esa chatarra siempre está recogida.", "Vagabundo", vagabundo, true);
         Dialogo v7 = new Dialogo("No les vi la cara. Solo siluetas. Pero no eran de los míos, eso seguro.", "Vagabundo", vagabundo, true);
+        Dialogo v8 = new Dialogo("Y gracias por el pan. El jamón estaba... casi fresco.", "Vagabundo", vagabundo, true);
+
+        Dialogo salida4 = new Dialogo("Como desee, aquí estaré siempre que me necesite, no suelo cambiar de casa jajaja", "Vagabundo", vagabundo, true);
 
         // Datos clave
         /*añadirAlDiario("Vagabundo", "Alguien subió por la escalera de incendios entre la 1 y las 3 a.m la cual estaba ya bajada.");
         añadirAlDiario("Vagabundo", "La escalera de incendios fue desplegada por una segunda persona.");*/
 
-        Dialogo cierre6b = new Dialogo("Gracias. Eso ayuda más de lo que cree.", "Detective", detective, true);
-        Dialogo despedida6b = new Dialogo("De nada. Y gracias por el pan. El jamón estaba... casi fresco.", "Vagabundo", vagabundo, true);
+        Dialogo cierre6 = new Dialogo("Gracias. Toda información ayuda más de lo que cree.", "Detective", detective, true);
+        Dialogo despedida6 = new Dialogo("Gracias a usted, después de mucho tiempo conversé con alguien, eso no se da todos los días", "Vagabundo", vagabundo, true);
 
 
         BinaryTreeNode<Dialogo> node100 = new BinaryTreeNode<>(vagab1);
         BinaryTreeNode<Dialogo> node101 = new BinaryTreeNode<>(vagab2);
         BinaryTreeNode<Dialogo> node102 = new BinaryTreeNode<>(vagab3);
         BinaryTreeNode<Dialogo> node103 = new BinaryTreeNode<>(vagab4);
-        BinaryTreeNode<Dialogo> node104 = new BinaryTreeNode<>(vacio13a);
-        BinaryTreeNode<Dialogo> node105 = new BinaryTreeNode<>(vacio14a);
+        BinaryTreeNode<Dialogo> decisionV1 = new BinaryTreeNode<>(descVag1);
+        BinaryTreeNode<Dialogo> node104 = new BinaryTreeNode<>(respV1);
+        BinaryTreeNode<Dialogo> node105 = new BinaryTreeNode<>(respV2);
         BinaryTreeNode<Dialogo> node106 = new BinaryTreeNode<>(raras1);
         BinaryTreeNode<Dialogo> node107 = new BinaryTreeNode<>(raras2);
-        BinaryTreeNode<Dialogo> node108 = new BinaryTreeNode<>(vacio15a);
+        BinaryTreeNode<Dialogo> decisionV2 = new BinaryTreeNode<>(descVag2);
+        BinaryTreeNode<Dialogo> node108 = new BinaryTreeNode<>(respV3);
         BinaryTreeNode<Dialogo> node109 = new BinaryTreeNode<>(v1);
         BinaryTreeNode<Dialogo> node110 = new BinaryTreeNode<>(v2);
         BinaryTreeNode<Dialogo> node111 = new BinaryTreeNode<>(v3);
@@ -893,8 +1076,18 @@ public class Juego {
         BinaryTreeNode<Dialogo> node115 = new BinaryTreeNode<>(v5);
         BinaryTreeNode<Dialogo> node116 = new BinaryTreeNode<>(v6);
         BinaryTreeNode<Dialogo> node117 = new BinaryTreeNode<>(v7);
-        BinaryTreeNode<Dialogo> node118 = new BinaryTreeNode<>(cierre6b);
-        BinaryTreeNode<Dialogo> node119 = new BinaryTreeNode<>(despedida6b);
+        BinaryTreeNode<Dialogo> node118 = new BinaryTreeNode<>(v8);
+        BinaryTreeNode<Dialogo> nodeSal4 = new BinaryTreeNode<>(salida4);
+        BinaryTreeNode<Dialogo> node119 = new BinaryTreeNode<>(cierre6);
+        BinaryTreeNode<Dialogo> node119b = new BinaryTreeNode<>(cierre6);
+        BinaryTreeNode<Dialogo> node119c = new BinaryTreeNode<>(cierre6);
+        BinaryTreeNode<Dialogo> node119d = new BinaryTreeNode<>(cierre6);
+        BinaryTreeNode<Dialogo> node119e = new BinaryTreeNode<>(cierre6);
+        BinaryTreeNode<Dialogo> node120 = new BinaryTreeNode<>(despedida6);
+        BinaryTreeNode<Dialogo> node120b = new BinaryTreeNode<>(despedida6);
+        BinaryTreeNode<Dialogo> node120c = new BinaryTreeNode<>(despedida6);
+        BinaryTreeNode<Dialogo> node120d = new BinaryTreeNode<>(despedida6);
+        BinaryTreeNode<Dialogo> node120e = new BinaryTreeNode<>(despedida6);
 
         GeneralTree<Dialogo> auxTree6 = new GeneralTree<>();
 
@@ -902,12 +1095,23 @@ public class Juego {
         auxTree6.insertNode(node101, node100);
         auxTree6.insertNode(node102, node101);
         auxTree6.insertNode(node103, node102);
-        auxTree6.insertNode(node104, node103);
-        auxTree6.insertNode(node105, node104);
-        auxTree6.insertNode(node106, node105);
+        auxTree6.insertNode(decisionV1,node103);
+        auxTree6.insertNode(node105, decisionV1);
+        auxTree6.insertNode(node119, node105);
+        auxTree6.insertNode(node120, node119);
+
+        auxTree6.insertNode(node106, decisionV1);
         auxTree6.insertNode(node107, node106);
-        auxTree6.insertNode(node108, node107);
-        auxTree6.insertNode(node109, node108);
+        auxTree6.insertNode(node119b, node107);
+        auxTree6.insertNode(node120b, node119b);
+
+        auxTree6.insertNode(node104, decisionV1);
+        auxTree6.insertNode(decisionV2, node104);
+        auxTree6.insertNode(node108, decisionV2);
+        auxTree6.insertNode(node119c, node108);
+        auxTree6.insertNode(node120c, node119c);
+
+        auxTree6.insertNode(node109, decisionV2);
         auxTree6.insertNode(node110, node109);
         auxTree6.insertNode(node111, node110);
         auxTree6.insertNode(node112, node111);
@@ -917,10 +1121,177 @@ public class Juego {
         auxTree6.insertNode(node116, node115);
         auxTree6.insertNode(node117, node116);
         auxTree6.insertNode(node118, node117);
-        auxTree6.insertNode(node119, node118);
+        auxTree6.insertNode(node119d, node118);
+        auxTree6.insertNode(node120d, node119d);
 
+        auxTree6.insertNode(nodeSal4, decisionV2);
+        auxTree6.insertNode(node119e, nodeSal4);
+        auxTree6.insertNode(node120e, node119e);
+
+        escenarios.get(5).setArbolDial(auxTree6);
+
+        // dialogo esposa del jefe
+        Dialogo e1 = new Dialogo("Disculpe la molestia, señora. Solo quería hacerle unas preguntas rápidas, si no le importa.", "Detective", detective, true);
+        Dialogo e2 = new Dialogo("¿A mí? Qué raro. Pero claro, adelante. Aunque no sé si puedo ayudar mucho. Yo solo vine a acompañar a mi esposo.", "Esposa", esposa, true);
+
+        // Primera decisión
+        Dialogo descEsp1= new Dialogo("Pues bien digame..", "Detective", detective, true );
+        descEsp1.setOpciones( new LinkedList<>(Arrays.asList(
+                "¿Le gusta venir al museo?",
+                "¿Cómo es su esposo en casa?",
+                "¿Qué opina del trabajo que hace su marido?"
+
+        )));
+
+        // Camino vacío: gusto por el museo
+        Dialogo respE1 = new Dialogo("La verdad, no soy muy de museos. Pero este tiene su encanto. Y bueno, hay que apoyar a la familia, ¿no?", "Esposa", esposa, true);
+
+        // Camino vacío: vida doméstica
+        Dialogo respE2 = new Dialogo("En casa es igual de mandón que en el trabajo, pero también muy gracioso. Siempre tiene una historia nueva que contar.", "Esposa", esposa, true);
+
+        // Camino principal: orgullo por el esposo
+        Dialogo e3 = new Dialogo("Mi esposo es brillante. Este museo no sería nada sin él. ¿Quiere ver algo?", "Esposa", esposa, true);
+
+
+        Dialogo e4 = new Dialogo("*Saca su teléfono y muestra la pantalla bloqueada.*", "Foto en espera", nada, true);
+
+
+        Dialogo e5 = new Dialogo("Mire, esta es mi pantalla. Es de hace unas semanas. ¿No se ve guapo? Esa es su oficina. Siempre tan elegante.", "Esposa", esposa, true);
+
+        // Observación del detective
+        Dialogo e6 = new Dialogo("*El detective observa la imagen. El jefe aparece sonriendo, de pie junto a su escritorio. En la pared, colgada detrás de él, está la espada... la misma que fue usada como arma homicida.*", "Foto que poner", nada, true);
+
+        Dialogo e7 = new Dialogo("(Esa espada... es la misma. Estaba en su oficina antes del crimen.)", "Detective", detective, true);
+
+        /* // Dato clave
+        añadirAlDiario("Esposa del jefe", "La espada homicida estaba colgada en la oficina del jefe antes del crimen.");*/
+
+        // Disimulo y cierre
+        Dialogo e8 = new Dialogo("Sí, muy buena foto. Se nota que lo admira mucho.", "Detective", detective, true);
+        Dialogo e9 = new Dialogo("Muchísimo. Es un hombre excepcional. Aunque a veces se hace el duro, tiene un gran corazón.", "Esposa", esposa, true);
+
+        Dialogo cierre7 = new Dialogo("Gracias por su tiempo. No la molesto más.", "Detective", detective, true);
+        Dialogo despedida7 = new Dialogo("Cuando quiera señor. Y si ve a mi esposo, dígale que lo estoy esperando para irnos a casa.", "Esposa", esposa, true);
+
+        BinaryTreeNode<Dialogo> node121 = new BinaryTreeNode<>(e1);
+        BinaryTreeNode<Dialogo> node122 = new BinaryTreeNode<>(e2);
+        BinaryTreeNode<Dialogo> decisionEsp1 = new BinaryTreeNode<>(descEsp1);
+        BinaryTreeNode<Dialogo> node123 = new BinaryTreeNode<>(respE1);
+        BinaryTreeNode<Dialogo> node124 = new BinaryTreeNode<>(respE2);
+        BinaryTreeNode<Dialogo> node125 = new BinaryTreeNode<>(e3);
+        BinaryTreeNode<Dialogo> node126 = new BinaryTreeNode<>(e4);
+        BinaryTreeNode<Dialogo> node127 = new BinaryTreeNode<>(e5);
+        BinaryTreeNode<Dialogo> node128 = new BinaryTreeNode<>(e6);
+        BinaryTreeNode<Dialogo> node129 = new BinaryTreeNode<>(e7);
+        BinaryTreeNode<Dialogo> node130 = new BinaryTreeNode<>(e8);
+        BinaryTreeNode<Dialogo> node131 = new BinaryTreeNode<>(e9);
+        BinaryTreeNode<Dialogo> node132 = new BinaryTreeNode<>(cierre7);
+        BinaryTreeNode<Dialogo> node132a = new BinaryTreeNode<>(cierre7);
+        BinaryTreeNode<Dialogo> node132b = new BinaryTreeNode<>(cierre7);
+        BinaryTreeNode<Dialogo> node133 = new BinaryTreeNode<>(despedida7);
+        BinaryTreeNode<Dialogo> node133a = new BinaryTreeNode<>(despedida7);
+        BinaryTreeNode<Dialogo> node133b = new BinaryTreeNode<>(despedida7);
+
+        GeneralTree<Dialogo> auxTree7 = new GeneralTree<>();
+
+        auxTree7.insertNode(node121, null);
+        auxTree7.insertNode(node122, node121);
+        auxTree7.insertNode(decisionEsp1, node122);
+        auxTree7.insertNode(node123, decisionEsp1);
+        auxTree7.insertNode(node132, node123);
+        auxTree7.insertNode(node133, node132);
+
+        auxTree7.insertNode(node124, decisionEsp1);
+        auxTree7.insertNode(node132a, node124);
+        auxTree7.insertNode(node133a, node132a);
+
+        auxTree7.insertNode(node125, decisionEsp1);
+        auxTree7.insertNode(node126, node125);
+        auxTree7.insertNode(node127, node126);
+        auxTree7.insertNode(node128, node127);
+        auxTree7.insertNode(node129, node128);
+        auxTree7.insertNode(node130, node129);
+        auxTree7.insertNode(node131, node130);
+        auxTree7.insertNode(node132b, node131);
+        auxTree7.insertNode(node133b, node132b);
+
+        escenarios.get(6).setArbolDial(auxTree7);
+
+
+        // Monólogo del detective
+        Dialogo m1 = new Dialogo("(No me lo puedo creer... Todo me lleva a él...)", "Detective", detective, true);
+        Dialogo m2 = new Dialogo("(La espada estaba en su oficina, donde solo éltiene acceso. Su esposa la mostró sin saberlo )", "Detective", detective, true);
+        Dialogo m3 = new Dialogo("(Las cámaras fallaron justo cuando no debían. El guardia no vio nada. Pero el vagabundo sí. Cuando el supuestamente no estaba en el museo)", "Detective", detective, true);
+        Dialogo m4 = new Dialogo("(CLARO! Los fondos malversados que descubrió víctima! Esa es la causa del asesinato.)",  "Detective", detective, true);
+        Dialogo m5 = new Dialogo("(El jefe tenía acceso. Tenía el arma. Mintió sobre dónde estaba. Ya no tengo dudas.)", "Detective", detective, true);
+        Dialogo m6 = new Dialogo("(Es hora de terminar con esto.)", "Detective", detective, true);
+
+        // Entrada a la oficina
+        Dialogo m7 = new Dialogo("*El detective entra a la oficina del jefe, acompañado por dos policías. La luz está apagada.*", "Foto que se ponga", nada, true);
+        Dialogo m8 = new Dialogo("Señor director... tenemos que hablar.", "Detective", detective, true);
+        Dialogo m9 = new Dialogo("¿Señor?", "Detective", detective, true);
+        Dialogo m10 = new Dialogo("*Uno de los policías enciende la luz. El cuerpo del jefe yace en el suelo, boca abajo, con una herida profunda en la espalda.*", "Foto que se ponga", nada, true);
+        Dialogo m11 = new Dialogo("¡Dios! Está muerto...", "Policia", seguridad, true);
+        Dialogo m12 = new Dialogo("Una puñalada limpia. Precisa. Por la espalda.", "Detective", detective, true);
+        Dialogo m13 = new Dialogo("¿Dónde está el arma?", "Policia", seguridad, true);
+        Dialogo m14 = new Dialogo("No está, otra vez sin arma homicida. Y la puerta estaba cerrada desde dentro.", "Detective", detective, true);
+
+        // Descubrimiento del pasadizo
+        Dialogo m15 = new Dialogo("*El detective observa una rejilla mal colocada en la pared trasera.*", "Foto que se ponga", nada, true);
+        Dialogo m16 = new Dialogo("¿Qué es esto...?", "Detective", detective, true);
+        Dialogo m17 = new Dialogo("*Retira la rejilla. Detrás, un túnel angosto y oscuro se extiende hacia abajo.*", "Foto que se ponga", nada, true);
+        Dialogo m18 = new Dialogo("Un pasadizo... esto conecta con el baño del piso de abajo.", "Detective", detective, true);
+        Dialogo m19 = new Dialogo("Así entraron. Así lo mataron. Y así desaparecieron sin ser vistos. Esto cambia muchas cosas.", "Detective", detective, true);
+
+        /* // Dato clave
+        añadirAlDiario("Oficina del Jefe", "El jefe fue asesinado en su oficina con una puñalada por la espalda. El arma no fue encontrada. Se descubrió un pasadizo secreto que conecta con el baño del piso inferior.");*/
+
+       BinaryTreeNode<Dialogo> node134 = new BinaryTreeNode<>(m1);
+       BinaryTreeNode<Dialogo> node135 = new BinaryTreeNode<>(m2);
+       BinaryTreeNode<Dialogo> node136 = new BinaryTreeNode<>(m3);
+       BinaryTreeNode<Dialogo> node137 = new BinaryTreeNode<>(m4);
+       BinaryTreeNode<Dialogo> node138 = new BinaryTreeNode<>(m5);
+       BinaryTreeNode<Dialogo> node139 = new BinaryTreeNode<>(m6);
+       BinaryTreeNode<Dialogo> node140 = new BinaryTreeNode<>(m7);
+       BinaryTreeNode<Dialogo> node141 = new BinaryTreeNode<>(m8);
+       BinaryTreeNode<Dialogo> node142 = new BinaryTreeNode<>(m9);
+       BinaryTreeNode<Dialogo> node143 = new BinaryTreeNode<>(m10);
+       BinaryTreeNode<Dialogo> node144 = new BinaryTreeNode<>(m11);
+       BinaryTreeNode<Dialogo> node145 = new BinaryTreeNode<>(m12);
+       BinaryTreeNode<Dialogo> node146 = new BinaryTreeNode<>(m13);
+       BinaryTreeNode<Dialogo> node147 = new BinaryTreeNode<>(m14);
+       BinaryTreeNode<Dialogo> node148 = new BinaryTreeNode<>(m15);
+       BinaryTreeNode<Dialogo> node149 = new BinaryTreeNode<>(m16);
+       BinaryTreeNode<Dialogo> node150 = new BinaryTreeNode<>(m17);
+       BinaryTreeNode<Dialogo> node151 = new BinaryTreeNode<>(m18);
+       BinaryTreeNode<Dialogo> node152 = new BinaryTreeNode<>(m19);
+
+       GeneralTree <Dialogo> auxTree8 = new GeneralTree();
+
+       auxTree8.insertNode(node134, null);
+       auxTree8.insertNode(node135, node134);
+       auxTree8.insertNode(node136, node135);
+       auxTree8.insertNode(node137, node136);
+       auxTree8.insertNode(node138, node137);
+       auxTree8.insertNode(node139, node138);
+       auxTree8.insertNode(node140, node141);
+       auxTree8.insertNode(node141, node142);
+       auxTree8.insertNode(node142, node143);
+       auxTree8.insertNode(node143, node144);
+       auxTree8.insertNode(node144, node145);
+       auxTree8.insertNode(node145, node146);
+       auxTree8.insertNode(node146, node147);
+       auxTree8.insertNode(node147, node148);
+       auxTree8.insertNode(node148, node149);
+       auxTree8.insertNode(node149, node150);
+       auxTree8.insertNode(node150, node151);
+       auxTree8.insertNode(node151, node152);
+
+       escenarios.get(7).setArbolDial(auxTree8);
 
     }
 
+
+    
 
 }
