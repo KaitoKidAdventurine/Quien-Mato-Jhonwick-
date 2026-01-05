@@ -24,6 +24,8 @@ public class Juego {
 
         //esto se quita mas adelante
         this.partidaActual = null;
+        addEscenario();
+        crearDialogosActo1();
         hacerMinijuegos();
     }
 
@@ -243,14 +245,14 @@ public class Juego {
     public void addEscenario() {
 
         Escenario acto1Parte1 = new Escenario("Acto 1-Secretaria", "Primera interaccion con la secretaria", true);
-        Escenario acto1Parte2;
-        Escenario acto1Parte3;
-        Escenario acto1Parte4;
-        Escenario acto1Parte5;
-        Escenario acto1Parte6;
-        Escenario acto1Parte7;
-        Escenario acto1Parte8;
-        Escenario acto1Parte9;
+        Escenario acto1Parte2= new Escenario("Acto 1-Seguridad", "Primera interaccion con el de seguridad", true);
+        Escenario acto1Parte3= new Escenario("Acto 1-Conserje", "Primera interaccion con el conserje", true);
+        Escenario acto1Parte4= new Escenario("Acto 1-Dueño", "Primera interaccion con el dueño", true);
+        Escenario acto1Parte5= new Escenario("Acto 1-Guias, ", "Primera interaccion con los guias", true);
+        Escenario acto1Parte6= new Escenario("Acto 1-Vagabundo", "Primera interaccion con el vagabundo", true);
+        Escenario acto1Parte7= new Escenario("Acto 1-Esposa", "Primera interaccion con la esposa", true);
+        Escenario acto1Parte8= new Escenario("Acto 1-Detective", "Fin del acto 1", true);
+       /* Escenario acto1Parte9;
         Escenario acto1Parte10;
         Escenario acto1Parte11;
         Escenario acto1Parte12;
@@ -261,16 +263,16 @@ public class Juego {
         Escenario acto1Parte17;
         Escenario acto1Parte18;
         Escenario acto1Parte19;
-        Escenario acto1Parte20;
+        Escenario acto1Parte20;*/
 
         this.escenarios.add(acto1Parte1);
-       /* this.escenarios.add(acto1Parte2);
+        this.escenarios.add(acto1Parte2);
         this.escenarios.add(acto1Parte3);
         this.escenarios.add(acto1Parte4);
         this.escenarios.add(acto1Parte5);
         this.escenarios.add(acto1Parte6);
         this.escenarios.add(acto1Parte7);
-        this.escenarios.add(acto1Parte8);
+        this.escenarios.add(acto1Parte8);/*
         this.escenarios.add(acto1Parte9);
         this.escenarios.add(acto1Parte10);
         this.escenarios.add(acto1Parte11);
@@ -286,6 +288,14 @@ public class Juego {
 
     }
 
+    public ArrayList<Escenario> getEscenarios() {
+        return escenarios;
+    }
+
+    public void setEscenarios(ArrayList<Escenario> escenarios) {
+        this.escenarios = escenarios;
+    }
+
     public void crearDialogosActo1(){
 
         ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/Personajes/Secretaria.png");
@@ -293,7 +303,7 @@ public class Juego {
         ImageIcon seguridad = new ImageIcon("DatosAuxiliares/Personajes/Seguridad.png");
         ImageIcon limpieza = new ImageIcon("DatosAuxiliares/Personajes/Conserje.png");
         ImageIcon dueno = new ImageIcon("DatosAuxiliares/Personajes/Dueño.png");
-        ImageIcon guia = new ImageIcon("DatosAuxiliares/Personajes/Guia.png");
+        ImageIcon guia = new ImageIcon("DatosAuxiliares/Personajes/Guia 1.png");
         ImageIcon guia2 = new ImageIcon("DatosAuxiliares/Personajes/Guia 2.png");
         ImageIcon vagabundo = new ImageIcon("DatosAuxiliares/Personajes/Vagabundo.png");
         ImageIcon nada = new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png");
@@ -628,7 +638,7 @@ public class Juego {
 
         Dialogo cierre3 = new Dialogo("Muchas gracias por toda la información brindada, aunque no lo crea todo es de gran " +
                 "ayuda..", "Detective", detective, true );
-        Dialogo despedida3 = new Dialogo("Un placer, ,e alegra ser util en su investigación.", "Conserje", limpieza, true);
+        Dialogo despedida3 = new Dialogo("Un placer, me alegra ser util en su investigación.", "Conserje", limpieza, true);
 
         BinaryTreeNode<Dialogo> node37 = new BinaryTreeNode<>(b1);
         BinaryTreeNode<Dialogo> node38 = new BinaryTreeNode<>(b2);
@@ -734,10 +744,7 @@ public class Juego {
 
         // Segunda decisión (solo aparece si se elige la opción correcta)
         Dialogo desc2Due= new Dialogo("Usted responda ya yo veré ..", "Detective", detective, true );
-        desc2Due.setOpciones( new LinkedList<>(Arrays.asList(
-                "¿Qué son todos esos trofeos en su estantería?",
-                "No quiero saber nada más"
-        )));
+        desc2Due.setOpciones( new LinkedList<>(Arrays.asList("No quiero saber nada más",  "¿Qué son todos esos trofeos en su estantería?")));
 
         // Camino principal: trofeos
         Dialogo respDue3a = new Dialogo("¿Los trofeos? Ah, veo que tiene buen ojo. Son de cuando practicaba esgrima. Era bastante" +
@@ -819,6 +826,7 @@ public class Juego {
         auxTree4.insertNode(node65, decisionDue1);
         auxTree4.insertNode(node66, node65);
         auxTree4.insertNode(decisionDue2, node66);
+
         auxTree4.insertNode(nodeSal1, decisionDue2);
         auxTree4.insertNode(node71b, nodeSal1);
         auxTree4.insertNode(node72b, node71b);
@@ -1220,7 +1228,7 @@ public class Juego {
 
         // Monólogo del detective
         Dialogo m1 = new Dialogo("(No me lo puedo creer... Todo me lleva a él...)", "Detective", detective, true);
-        Dialogo m2 = new Dialogo("(La espada estaba en su oficina, donde solo éltiene acceso. Su esposa la mostró sin saberlo )", "Detective", detective, true);
+        Dialogo m2 = new Dialogo("(La espada estaba en su oficina, donde solo él tiene acceso. Su esposa la mostró sin saberlo )", "Detective", detective, true);
         Dialogo m3 = new Dialogo("(Las cámaras fallaron justo cuando no debían. El guardia no vio nada. Pero el vagabundo sí. Cuando el supuestamente no estaba en el museo)", "Detective", detective, true);
         Dialogo m4 = new Dialogo("(CLARO! Los fondos malversados que descubrió víctima! Esa es la causa del asesinato.)",  "Detective", detective, true);
         Dialogo m5 = new Dialogo("(El jefe tenía acceso. Tenía el arma. Mintió sobre dónde estaba. Ya no tengo dudas.)", "Detective", detective, true);

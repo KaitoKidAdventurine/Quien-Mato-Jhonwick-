@@ -2,8 +2,11 @@ package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
+import Interfaz.InterfazJugador.CuadroTexto;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.InterfazJugador.OpcionesDialogos;
 import Interfaz.Menu.MenuPrincipal;
+import Logica.Dialogo;
 import Logica.Juego;
 import Logica.Partida;
 
@@ -47,6 +50,9 @@ public class Bano extends ModeloEscenario {
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     cerrarEscenario();
                     tarea2.cancel();
+                }else{
+                    revalidate();
+                    repaint();
                 }
             }
         };
@@ -91,10 +97,9 @@ public class Bano extends ModeloEscenario {
             jLabel1.setPreferredSize(tamPant);
             jLabel1.setBounds(0, 0, tamPant.width, tamPant.height);
 
-            cajaTexto.setOpaque(false);
-            cajaTexto.setBounds(220, 280, 1200, 800);
+            cajaTexto.setBackground(new Color(0, 0, 0, 0));
+            cajaTexto.setBounds(0, 0,  tamPant.width, tamPant.height);
             cajaTexto.setLayout(null);
-
 
             BufferedImage imagen2 = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha abajo.png"));
             ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
@@ -167,7 +172,7 @@ public class Bano extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 20);
+        timer2.scheduleAtFixedRate(tarea2, 0, 10);
     }
 
     private void conserjeMouseExited(MouseEvent evt) {
@@ -193,7 +198,8 @@ public class Bano extends ModeloEscenario {
     }
 
     private void conserjeActionPerformed(ActionEvent evt) {
-
+        ponerDialogo();
+        conserje.setVisible(false);
     }
 
     private void flechaEntradaDentroMouseExited(MouseEvent evt) {
@@ -223,9 +229,38 @@ public class Bano extends ModeloEscenario {
     }
 
     public void ponerDialogo() {
+        if(Juego.getInstance().getEscenarios().get(2).getNodoDialActual() == null || !(Juego.getInstance().getEscenarios().get(2).getArbolDial().nodeIsLeaf(Juego.getInstance().getEscenarios().get(2).getNodoDialActual()))) {
+            if(!(Juego.getInstance().getEscenarios().get(2).getNodoDialActual()==null)){
+                Dialogo actual = Juego.getInstance().getEscenarios().get(2).getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = Juego.getInstance().getEscenarios().get(2).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    conserjeMouseClicked(evt);
+                }
+            });
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
+            cajaTexto.removeAll();
+            revalidate();
+            repaint();
+            conserje.setVisible(true);
+        }
+        getContentPane().revalidate();
+        getContentPane().repaint();
     }
 
-    private void cTMouseClicked(MouseEvent evt) {
+    private void conserjeMouseClicked(MouseEvent evt) {
         ponerDialogo();
         getContentPane().revalidate();
         getContentPane().repaint();

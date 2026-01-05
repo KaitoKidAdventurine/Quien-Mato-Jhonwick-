@@ -38,12 +38,13 @@ public class CuadroTexto extends javax.swing.JPanel {
         jLabel2 = new JLabel();
         parrafo = new JLabel();
         capitanFondo = new JLabel();
+
         setLayout(null);
+
 
         setBackground(new Color(0, 0, 0, 0));
         jPanel1.setBackground(new Color(0, 0, 0, 100));
-        jPanel1.setFocusable(false);
-
+        jPanel1.setFocusable(true);
         jPanel1.setLayout(null);
 
 
@@ -61,7 +62,7 @@ public class CuadroTexto extends javax.swing.JPanel {
         add(jLabel3);
 
 
-        parrafo.setText("<html>" + texto + "</html>");
+        parrafo.setText("<html>" + texto );
         parrafo.setBounds((int) (tamPant.height*0.32),  (int) (tamPant.height*0.015), (int) (tamPant.width*0.68), (int) (tamPant.height*0.25));
         parrafo.setForeground(new Color(255, 255, 255, 200));
         parrafo.setOpaque(true);

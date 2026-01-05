@@ -118,7 +118,7 @@ public class MinijuegoInterfaz extends JPanel {
         Iterator<ObjetoEscenario> II = objetos.iterator();
 
 
-        panelMinijuego.setBounds((int) (tamPant.width * 0.232), 0, (int) (tamPant.width * 0.75), tamPant.height);
+        panelMinijuego.setBounds((int) (tamPant.width * 0.25), 0, (int) (tamPant.width * 0.75), tamPant.height);
         panelMinijuego.setLayout(null);
         add(panelMinijuego, 0);
         panelMinijuego.add(menu);

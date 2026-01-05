@@ -2,7 +2,9 @@ package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
+import Interfaz.InterfazJugador.CuadroTexto;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.InterfazJugador.OpcionesDialogos;
 import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
 import Logica.Escenario;
@@ -36,7 +38,7 @@ public class Recepcion extends ModeloEscenario{
     private TimerTask tarea2;
     private JButton policia;
     private JButton secretaria;
-    /**
+
      /**
      * Creates new form Entrada
      */
@@ -47,13 +49,15 @@ public class Recepcion extends ModeloEscenario{
         tarea2 = new TimerTask() {
             @Override
             public void run() {
-
                 if(UnionInterfaces.getInstance().getCerrarVentana()){
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     cerrarEscenario();
                     tarea2.cancel();
+                }else{
+                    revalidate();
+                    repaint();
                 }
             }
         };
@@ -103,8 +107,8 @@ public class Recepcion extends ModeloEscenario{
             fondo.setPreferredSize(tamPant);
             fondo.setBounds(0, 0, tamPant.width, tamPant.height);
 
-            cajaTexto.setOpaque(false);
-            cajaTexto.setBounds(220, 280, 1200, 800);
+            cajaTexto.setBackground(new Color(0, 0, 0, 0));
+            cajaTexto.setBounds(0, 0,  tamPant.width, tamPant.height);
             cajaTexto.setLayout(null);
 
             BufferedImage imagen2 = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha arriba.png"));
@@ -261,13 +265,13 @@ public class Recepcion extends ModeloEscenario{
         secretaria.setBorderPainted(false);
         secretaria.setFocusPainted(false);
 
-        getContentPane().add(cajaTexto);
-        getContentPane().add(flechaSalida);
-        getContentPane().add(flechaBano);
-        getContentPane().add(flechaSala1);
-        getContentPane().add(flechaPasillo1);
-        getContentPane().add(policia);
-        getContentPane().add(secretaria);
+        add(cajaTexto);
+        add(flechaSalida);
+        add(flechaBano);
+        add(flechaSala1);
+        add(flechaPasillo1);
+        add(policia);
+        add(secretaria);
         lugar.setText("Recepcion");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
@@ -280,7 +284,8 @@ public class Recepcion extends ModeloEscenario{
 
         getContentPane().add(fondo);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 20);
+        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+
     }
 
     private void secretariaMouseExited(MouseEvent evt) {
@@ -306,7 +311,8 @@ public class Recepcion extends ModeloEscenario{
     }
 
     private void secretariaActionPerformed(ActionEvent evt) {
-        JOptionPane.showMessageDialog(null, "2");
+       ponerDialogoSecretaria();
+      secretaria.setVisible(false);
     }
 
     private void policiaMouseExited(MouseEvent evt) {
@@ -334,11 +340,42 @@ public class Recepcion extends ModeloEscenario{
     private void policiaActionPerformed(ActionEvent evt) {
         JOptionPane.showMessageDialog(null, "º1");    }
 
-    public void ponerDialogo() {
+    public void ponerDialogoSecretaria() {
+        if(Juego.getInstance().getEscenarios().get(0).getNodoDialActual() == null || !(Juego.getInstance().getEscenarios().get(0).getArbolDial().nodeIsLeaf(Juego.getInstance().getEscenarios().get(0).getNodoDialActual()))) {
+            if(!(Juego.getInstance().getEscenarios().get(0).getNodoDialActual()==null)){
+                Dialogo actual = Juego.getInstance().getEscenarios().get(0).getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = Juego.getInstance().getEscenarios().get(0).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    secretariaMouseClicked(evt);
+                }
+            });
+
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
+            cajaTexto.removeAll();
+            revalidate();
+            repaint();
+            secretaria.setVisible(true);
+        }
+        getContentPane().revalidate();
+        getContentPane().repaint();
     }
 
-    private void cTMouseClicked(MouseEvent evt) {
-        ponerDialogo();
+    private void secretariaMouseClicked(MouseEvent evt) {
+        ponerDialogoSecretaria();
         getContentPane().revalidate();
         getContentPane().repaint();
     }

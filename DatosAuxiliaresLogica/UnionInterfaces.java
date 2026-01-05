@@ -18,7 +18,6 @@ public class UnionInterfaces {
     public int getOpcionDialogo() {
         return opcionDialogo;
     }
-
     public boolean getCerrarVentana() {
         return cerrarVentana;
     }

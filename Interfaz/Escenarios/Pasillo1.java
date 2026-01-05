@@ -106,8 +106,8 @@ public class Pasillo1 extends ModeloEscenario {
             jLabel1.setPreferredSize(tamPant);
             jLabel1.setBounds(0, 0, tamPant.width, tamPant.height);
 
-            cajaTexto.setOpaque(false);
-            cajaTexto.setBounds(220, 280, 1200, 800);
+            cajaTexto.setBackground(new Color(0, 0, 0, 0));
+            cajaTexto.setBounds(0, 0,  tamPant.width, tamPant.height);
             cajaTexto.setLayout(null);
 
             BufferedImage imagen2 = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha abajo.png"));

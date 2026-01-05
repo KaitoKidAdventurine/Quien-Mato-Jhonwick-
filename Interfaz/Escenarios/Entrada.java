@@ -104,8 +104,8 @@ public class Entrada extends ModeloEscenario {
             fondo.setPreferredSize(tamPant);
             fondo.setBounds(0, 0, tamPant.width, tamPant.height);
 
-            cajaTexto.setOpaque(false);
-            cajaTexto.setBounds((int) (tamPant.width*0.17), (int) (tamPant.height* 0.34), (int) (tamPant.width*0.72), (int) (tamPant.height*0.6));
+            cajaTexto.setBackground(new Color(0, 0, 0, 0));
+            cajaTexto.setBounds(0, 0,  tamPant.width, tamPant.height);
             cajaTexto.setLayout(null);
 
             BufferedImage imagen2 = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha arriba.png"));
