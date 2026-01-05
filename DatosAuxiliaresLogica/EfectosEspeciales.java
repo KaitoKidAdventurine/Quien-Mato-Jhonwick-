@@ -3,6 +3,8 @@ package DatosAuxiliaresLogica;
 import java.io.File;
 import java.util.ArrayList;
 import java.io.FileInputStream;
+import java.util.Timer;
+
 import javazoom.jl.player.Player;
 
 
@@ -296,6 +298,7 @@ public class EfectosEspeciales
         reproductorMP3.close();
     }
 
+
     // Metodos para buscar rapido el sonido
     public void efectoDePasos()
     {
@@ -309,7 +312,7 @@ public class EfectosEspeciales
 
     public void efectoDeTelefonoResiviendoLlamda()
     {
-        cambiarEfectoNombre("Telefono Sonando");
+        cambiarEfectoNombreUsarSoloUnaVez("Telefono Sonando");
     }
 
     public void efectoDeAbrirDiario()

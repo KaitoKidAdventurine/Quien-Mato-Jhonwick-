@@ -2,11 +2,11 @@ package Logica;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.Informacion;
+import Logica.Sexo;
 
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
-import DatosAuxiliaresLogica.Informacion;
 
 public class Diario implements Serializable
 {
@@ -16,6 +16,7 @@ public class Diario implements Serializable
     public Diario()
     {
         this.dialogosImportantes = new LinkedList<Informacion>();
+        inicializarDatos();
     }
 
     public void setDialogosImportantes() {
@@ -27,6 +28,107 @@ public class Diario implements Serializable
         return dialogosImportantes;
     }
 
+    // Metodo para inicializar a todos los NPC
+    public void inicializarDatos() {
+
+        // 1. CASO
+        Informacion victima = new Informacion("Caso", "32", Sexo.MASCULINO, "Economico");
+        victima.agregarCualidad("Timido");
+        victima.agregarCualidad("Reservado");
+        victima.agregarCualidad("Poco amigable");
+        victima.agregarCualidad("Tranquilo");
+        dialogosImportantes.add(victima);
+
+        // 2. JEFE
+        Informacion jefe = new Informacion("Jefe", "45", Sexo.MASCULINO, "Jefe");
+        jefe.agregarCualidad("Autoritario");
+        jefe.agregarCualidad("estricto");
+        jefe.agregarCualidad("responsable");
+        jefe.agregarCualidad("serio");
+        jefe.agregarCualidad("lider");
+        dialogosImportantes.add(jefe);
+
+        // 3. POLICÍA
+        Informacion policia = new Informacion("Policia", "35", Sexo.MASCULINO, "Policia");
+        policia.agregarCualidad("Justo");
+        policia.agregarCualidad("valiente");
+        policia.agregarCualidad("protector");
+        policia.agregarCualidad("honesto");
+        policia.agregarCualidad("disciplinado");
+        dialogosImportantes.add(policia);
+
+        // 4. DUEÑO
+        Informacion dueno = new Informacion("Dueño", "50", Sexo.MASCULINO, "Dueño");
+        dueno.agregarCualidad("Ambicioso");
+        dueno.agregarCualidad("calculador");
+        dueno.agregarCualidad("exitoso");
+        dueno.agregarCualidad("dominante");
+        dueno.agregarCualidad("materialista");
+        dialogosImportantes.add(dueno);
+
+        // 5. ESPOSA DEL DUEÑO
+        Informacion esposa = new Informacion("Esposa del dueño", "42", Sexo.FEMENINO, "Esposa");
+        esposa.agregarCualidad("Elegante");
+        esposa.agregarCualidad("sofisticada");
+        esposa.agregarCualidad("celosa");
+        esposa.agregarCualidad("manipuladora");
+        esposa.agregarCualidad("orgullosa");
+        dialogosImportantes.add(esposa);
+
+        // 6. SECRETARIA
+        Informacion secretaria = new Informacion("Secretaria", "30", Sexo.FEMENINO, "Secretaria");
+        secretaria.agregarCualidad("Eficiente");
+        secretaria.agregarCualidad("discreta");
+        secretaria.agregarCualidad("observadora");
+        secretaria.agregarCualidad("leal");
+        secretaria.agregarCualidad("organizada");
+        dialogosImportantes.add(secretaria);
+
+        // 7. GUÍA 1
+        Informacion guia1 = new Informacion("Guia 1", "25", Sexo.MASCULINO, "Guia");
+        guia1.agregarCualidad("Amigable");
+        guia1.agregarCualidad("conocedor");
+        guia1.agregarCualidad("paciente");
+        guia1.agregarCualidad("comunicativo");
+        guia1.agregarCualidad("servicial");
+        dialogosImportantes.add(guia1);
+
+        // 8. GUÍA 2
+        Informacion guia2 = new Informacion("Guia 2", "27", Sexo.FEMENINO, "Guia");
+        guia2.agregarCualidad("Energica");
+        guia2.agregarCualidad("entusiasta");
+        guia2.agregarCualidad("extrovertida");
+        guia2.agregarCualidad("carismática");
+        guia2.agregarCualidad("alegre");
+        dialogosImportantes.add(guia2);
+
+        // 9. SEGURIDAD
+        Informacion seguridad = new Informacion("Seguridad", "40", Sexo.MASCULINO, "Seguridad");
+        seguridad.agregarCualidad("Vigilante");
+        seguridad.agregarCualidad("fuerte");
+        seguridad.agregarCualidad("protector");
+        seguridad.agregarCualidad("serio");
+        seguridad.agregarCualidad("confiable");
+        dialogosImportantes.add(seguridad);
+
+        // 10. VAGABUNDO
+        Informacion vagabundo = new Informacion("Vagabundo", "55", Sexo.MASCULINO, "Vagabundo");
+        vagabundo.agregarCualidad("Misterioso");
+        vagabundo.agregarCualidad("observador");
+        vagabundo.agregarCualidad("solitario");
+        vagabundo.agregarCualidad("sabio");
+        vagabundo.agregarCualidad("marginal");
+        dialogosImportantes.add(vagabundo);
+
+        // 11. VÍCTIMA
+        Informacion victimaEmpresario = new Informacion("Victima", "32", Sexo.MASCULINO, "Empresario");
+        victimaEmpresario.agregarCualidad("Carismático");
+        victimaEmpresario.agregarCualidad("ambicioso");
+        victimaEmpresario.agregarCualidad("popular");
+        victimaEmpresario.agregarCualidad("influyente");
+        victimaEmpresario.agregarCualidad("exitoso");
+        dialogosImportantes.add(victimaEmpresario);
+    }
 
     // Para guardar los dialogos mas importantes para cada NPC
     public void agregarDialogoImportante(String nombreNPC, String informacion)
@@ -40,11 +142,11 @@ public class Diario implements Serializable
                 Informacion i = II.next();
                 if (i.getNombreNPC().equals(nombreNPC))
                 {
-                    EfectosEspeciales e = EfectosEspeciales.getInstancia();
-                    e.efectoDeEscribirDiario();
-
-                    salida = true;
                     i.getListaDeDialogos().add(informacion);
+                    salida = true;
+                    EfectosEspeciales efe = EfectosEspeciales.getInstancia();
+                    efe.efectoDeEscribirDiario();
+
                 }
             }
         }
@@ -55,6 +157,7 @@ public class Diario implements Serializable
         }
 
     }
+
     public void agregarInformacion(Informacion informacion){
         dialogosImportantes.add(informacion);
     }
