@@ -1487,7 +1487,7 @@ public class Tutorial extends JFrame {
 
 
         // Dato clave
-        Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante ("Limpieza", "Suele encontrarse con cosas útiles al estar solo limpiando.");
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante ("Limpieza", "Suele encontrarse con cosas útiles al estar solo limpiando.");
 
         Dialogo despedidaDetec = new Dialogo("Gracias, eso seria todo por ahora, mantengase cerca por" +
                 " si necesitamos hacerle más preguntas", "Detective", detective, true);
