@@ -1,9 +1,12 @@
 package DatosAuxiliaresLogica;
 
-public class Eventos {
+import java.io.Serializable;
+
+public class Eventos implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private int dialogoCapitanActual;
     private boolean acto1;
-
 
 
     public Eventos(){
