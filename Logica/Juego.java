@@ -252,8 +252,9 @@ public class Juego {
         Escenario acto1Parte6= new Escenario("Acto 1-Vagabundo", "Primera interaccion con el vagabundo", true);
         Escenario acto1Parte7= new Escenario("Acto 1-Esposa", "Primera interaccion con la esposa", true);
         Escenario acto1Parte8= new Escenario("Acto 1-Detective", "Fin del acto 1", true);
-       /* Escenario acto1Parte9;
-        Escenario acto1Parte10;
+        Escenario acto1Parte9 = new Escenario("Acto 1-Policia", "Interaccion con policia", true);
+        Escenario acto1Parte10 = new Escenario("Acto 1-Guia2", "Interaccion con segundo guia", true);
+        /*
         Escenario acto1Parte11;
         Escenario acto1Parte12;
         Escenario acto1Parte13;
@@ -272,9 +273,10 @@ public class Juego {
         this.escenarios.add(acto1Parte5);
         this.escenarios.add(acto1Parte6);
         this.escenarios.add(acto1Parte7);
-        this.escenarios.add(acto1Parte8);/*
+        this.escenarios.add(acto1Parte8);
         this.escenarios.add(acto1Parte9);
         this.escenarios.add(acto1Parte10);
+        /*
         this.escenarios.add(acto1Parte11);
         this.escenarios.add(acto1Parte12);
         this.escenarios.add(acto1Parte13);
@@ -352,7 +354,7 @@ public class Juego {
                 secretaria, true);
 
         // Dato clave 1
-        /* añadirAlDiario("Secretaria", "La secretaria tuvo una relación amorosa con el economista.");*/
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Secretaria", "La secretaria tuvo una relación amorosa con el economista.");
 
         Dialogo d7 = new Dialogo("Gracias por su sinceridad. Esto podría ser importante.", "Detective", detective, true);
         Dialogo d7a = new Dialogo("Vale, cualquier otra duda aquí estoy", "Secretaria", secretaria, true);
@@ -379,7 +381,7 @@ public class Juego {
             "Secretaria", secretaria, true);
 
         // Dato clave 2
-        /*añadirAlDiario("Secretaria", "Fragmento de contraseña: comienza con 'Umbra mortis'.");*/
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Secretaria", "Fragmento de contraseña: comienza con 'Umbra mortis'.");
 
         Dialogo cierre = new Dialogo("Gracias. Eso será todo por ahora.", "Detective", detective, true);
         Dialogo despedida = new Dialogo("Espero que le sirva de algo. No me gusta recordar ciertas cosas.", "Secretaria", secretaria, true);
@@ -496,9 +498,9 @@ public class Juego {
         Dialogo c10 = new Dialogo("Y la de la sala donde encontraron al economista... se congeló por unos segundos justo a la hora estimada del deceso.", "Seguridad", seguridad, true);
         Dialogo c11 = new Dialogo("No hay grabación de ese momento. Solo un salto en el tiempo. Como si alguien hubiese querido borrar algo.", "Seguridad", seguridad, true);
 
-        // Datos clave
-        /* añadirAlDiario("Guardia", "La cámara del callejón dejó de funcionar entre la 1:00 y las 3:00 a.m.");
-        añadirAlDiario("Guardia", "La cámara de la escena del crimen se congeló brevemente durante el momento del asesinato.");*/
+
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guardia", "La cámara del callejón dejó de funcionar entre la 1:00 y las 3:00 a.m.");
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guardia", "La cámara de la escena del crimen se congeló brevemente durante el momento del asesinato.");
 
         Dialogo d12 = new Dialogo("¿Y no le pareció sospechoso?", "Detective", detective, true);
         Dialogo d13 = new Dialogo("Ahora que lo dice... sí. Pero en el momento pensé que era una coincidencia. No quería sonar paranoico.",
@@ -629,7 +631,7 @@ public class Juego {
         Dialogo u10 = new Dialogo("Sí, sí, lo entiendo. Vivo cerca. Si quiere, puedo ir por ellas ahora mismo.", "Conserje", limpieza, true);
 
         // Dato clave
-        /*añadirAlDiario("Limpiador", "El limpiador encontró las llaves del almacén y las llevó por accidente a su casa.");*/
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Limpiador", "El limpiador encontró las llaves del almacén y las llevó por accidente a su casa.");
 
         Dialogo u11 = new Dialogo("Hágalo. Pero por ahora, no le diga a nadie que las encontró. ¿De acuerdo?", "Detective", detective, true);
         Dialogo u12 = new Dialogo("¿En secreto? Bueno... si usted lo dice. No quiero meterme en líos.", "Conserje", limpieza, true);
@@ -753,8 +755,8 @@ public class Juego {
         Dialogo respDue3b = new Dialogo("Campeón regional tres años seguidos. Aunque ahora solo es buen material para presumir con " +
                 "los visitantes importantes.", "Dueno", dueno, true);
 
-        // Dato clave
-        /*añadirAlDiario("Jefe del museo", "El jefe practicó esgrima cuando era joven.");*/
+
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Jefe del museo", "El jefe practicó esgrima cuando era joven.");
 
         Dialogo d15 = new Dialogo("¿Quiere una demostración? No se preocupe, no suelo atacar a los invitados... a menos que me acusen" +
                 " de asesinato jajajaj.", "Dueno", dueno, true);
@@ -898,8 +900,8 @@ public class Juego {
         Dialogo salida3 = new Dialogo("Como usted diga Sr.Detective, quedo a su disposición", "Guia1", guia, true);
 
         // Dato clave 1 y 2
-        /*añadirAlDiario("Guía 1", "Una de las armaduras fue encontrada en una posición inusual.");
-        añadirAlDiario("Guía 1", "La armadura no pudo ser movida por una sola persona.");*/
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guía 1", "Una de las armaduras fue encontrada en una posición inusual.");
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guía 1", "La armadura no pudo ser movida por una sola persona.");
 
         // Intervención de Guía 2
         Dialogo inter1 = new Dialogo("(Parece que el guía 2 viene hacia aquí... con la intención de interrumpir)", "Detective", detective, true);
@@ -920,7 +922,7 @@ public class Juego {
         Dialogo reflexion2 = new Dialogo("(Siento que me voy acercando... en el fondo lo siento, y estas sensaciones no engañan...)", "Detective", detective, true);
 
         // Dato clave 2
-        /*añadirAlDiario("Guía 2", "La Guía 2 intentó restarle importancia al detalle de la armadura. Parece que tiene algo que ocultar.");*/
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guía 2", "La Guía 2 intentó restarle importancia al detalle de la armadura. Parece que tiene algo que ocultar.");
 
         BinaryTreeNode<Dialogo> node73 = new BinaryTreeNode<>(guia1);
         BinaryTreeNode<Dialogo> node74 = new BinaryTreeNode<>(guia3);
@@ -1057,9 +1059,9 @@ public class Juego {
 
         Dialogo salida4 = new Dialogo("Como desee, aquí estaré siempre que me necesite, no suelo cambiar de casa jajaja", "Vagabundo", vagabundo, true);
 
-        // Datos clave
-        /*añadirAlDiario("Vagabundo", "Alguien subió por la escalera de incendios entre la 1 y las 3 a.m la cual estaba ya bajada.");
-        añadirAlDiario("Vagabundo", "La escalera de incendios fue desplegada por una segunda persona.");*/
+        //Dato clave
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Vagabundo", "Alguien subió por la escalera de incendios entre la 1 y las 3 a.m la cual estaba ya bajada.");
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Vagabundo", "La escalera de incendios fue desplegada por una segunda persona.");
 
         Dialogo cierre6 = new Dialogo("Gracias. Toda información ayuda más de lo que cree.", "Detective", detective, true);
         Dialogo despedida6 = new Dialogo("Gracias a usted, después de mucho tiempo conversé con alguien, eso no se da todos los días", "Vagabundo", vagabundo, true);
@@ -1172,8 +1174,8 @@ public class Juego {
 
         Dialogo e7 = new Dialogo("(Esa espada... es la misma. Estaba en su oficina antes del crimen.)", "Detective", detective, true);
 
-        /* // Dato clave
-        añadirAlDiario("Esposa del jefe", "La espada homicida estaba colgada en la oficina del jefe antes del crimen.");*/
+
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Esposa del jefe", "La espada homicida estaba colgada en la oficina del jefe antes del crimen.");
 
         // Disimulo y cierre
         Dialogo e8 = new Dialogo("Sí, muy buena foto. Se nota que lo admira mucho.", "Detective", detective, true);
@@ -1251,8 +1253,8 @@ public class Juego {
         Dialogo m18 = new Dialogo("Un pasadizo... esto conecta con el baño del piso de abajo.", "Detective", detective, true);
         Dialogo m19 = new Dialogo("Así entraron. Así lo mataron. Y así desaparecieron sin ser vistos. Esto cambia muchas cosas.", "Detective", detective, true);
 
-        /* // Dato clave
-        añadirAlDiario("Oficina del Jefe", "El jefe fue asesinado en su oficina con una puñalada por la espalda. El arma no fue encontrada. Se descubrió un pasadizo secreto que conecta con el baño del piso inferior.");*/
+        // Dato clave
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Oficina del Jefe", "El jefe fue asesinado en su oficina con una puñalada por la espalda. El arma no fue encontrada. Se descubrió un pasadizo secreto que conecta con el baño del piso inferior.");
 
        BinaryTreeNode<Dialogo> node134 = new BinaryTreeNode<>(m1);
        BinaryTreeNode<Dialogo> node135 = new BinaryTreeNode<>(m2);
@@ -1274,26 +1276,27 @@ public class Juego {
        BinaryTreeNode<Dialogo> node151 = new BinaryTreeNode<>(m18);
        BinaryTreeNode<Dialogo> node152 = new BinaryTreeNode<>(m19);
 
-       GeneralTree <Dialogo> auxTree8 = new GeneralTree();
+        GeneralTree <Dialogo> auxTree8 = new GeneralTree();
 
-       auxTree8.insertNode(node134, null);
-       auxTree8.insertNode(node135, node134);
-       auxTree8.insertNode(node136, node135);
-       auxTree8.insertNode(node137, node136);
-       auxTree8.insertNode(node138, node137);
-       auxTree8.insertNode(node139, node138);
-       auxTree8.insertNode(node140, node141);
-       auxTree8.insertNode(node141, node142);
-       auxTree8.insertNode(node142, node143);
-       auxTree8.insertNode(node143, node144);
-       auxTree8.insertNode(node144, node145);
-       auxTree8.insertNode(node145, node146);
-       auxTree8.insertNode(node146, node147);
-       auxTree8.insertNode(node147, node148);
-       auxTree8.insertNode(node148, node149);
-       auxTree8.insertNode(node149, node150);
-       auxTree8.insertNode(node150, node151);
-       auxTree8.insertNode(node151, node152);
+        auxTree8.insertNode(node134, null);
+        auxTree8.insertNode(node135, node134);
+        auxTree8.insertNode(node136, node135);
+        auxTree8.insertNode(node137, node136);
+        auxTree8.insertNode(node138, node137);
+        auxTree8.insertNode(node139, node138);
+        auxTree8.insertNode(node140, node139);
+        auxTree8.insertNode(node141, node140);
+        auxTree8.insertNode(node142, node141);
+        auxTree8.insertNode(node143, node142);
+        auxTree8.insertNode(node144, node143);
+        auxTree8.insertNode(node145, node144);
+        auxTree8.insertNode(node146, node145);
+        auxTree8.insertNode(node147, node146);
+        auxTree8.insertNode(node148, node147);
+        auxTree8.insertNode(node149, node148);
+        auxTree8.insertNode(node150, node149);
+        auxTree8.insertNode(node151, node150);
+        auxTree8.insertNode(node152, node151);
 
        escenarios.get(7).setArbolDial(auxTree8);
 
@@ -1439,11 +1442,6 @@ public class Juego {
         auxTree10.insertNode(node173, node172);
 
         escenarios.get(9).setArbolDial(auxTree10);
-
-    
-
     }
-
-
 }
 

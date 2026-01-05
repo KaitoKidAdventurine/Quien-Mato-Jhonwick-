@@ -318,6 +318,7 @@ public class Tutorial extends JFrame {
 
     public void ponerDialogoParte5() {
 
+        // Colocar escritura si entra a ese dialogo
         if(tutorialParte5.getNodoDialActual() == null || !(tutorialParte5.getArbolDial().nodeIsLeaf(tutorialParte5.getNodoDialActual()))) {
             if(!(tutorialParte5.getNodoDialActual()==null)){
                 Dialogo actual = tutorialParte5.getDialogoActual();
