@@ -160,6 +160,11 @@ public class Tutorial extends JFrame {
 
             Dialogo aux = tutorialParte1.getDialogoSiguiente(1);
             int nivelActualDial = tutorialParte1.getArbolDial().nodeLevel(tutorialParte1.getNodoDialActual());
+            if (aux.getTexto().contains("- Ring ring ring ring ring.-")) {
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoDeTelefonoResiviendoLlamda();
+            }
+
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
@@ -317,6 +322,10 @@ public class Tutorial extends JFrame {
             if(!(tutorialParte5.getNodoDialActual()==null)){
                 Dialogo actual = tutorialParte5.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
+
+                    // Dato clave
+                    Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guia 1", "El guía conoce el museo como la palma de su mano.");
+
                     OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
@@ -1307,9 +1316,6 @@ public class Tutorial extends JFrame {
 
         Dialogo respuesta2 = new Dialogo("Estaba en la sala de arte moderno, preparando la presentación de mañana. " +
                 "Conozco el museo como la palma de mi mano, y no noté nada fuera de lo común.", "Guía", guia, true);
-
-        // Dato clave
-        Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guía", "El guía conoce el museo como la palma de su mano.");
 
         Dialogo despedida2 = new Dialogo("A usted, detective. Que tenga buena noche.", "Guía", guia, true);
         Dialogo despeDetectiveGuia = new Dialogo("Gracias, eso seria todo por ahora", "Detective", detective, true);
