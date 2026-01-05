@@ -1440,7 +1440,252 @@ public class Juego {
 
         escenarios.get(9).setArbolDial(auxTree10);
 
-    
+    }
+
+    public void crearDislogosActo2(){
+
+        ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/Personajes/Secretaria.png");
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        ImageIcon seguridad = new ImageIcon("DatosAuxiliares/Personajes/Seguridad.png");
+        ImageIcon limpieza = new ImageIcon("DatosAuxiliares/Personajes/Conserje.png");
+        ImageIcon dueno = new ImageIcon("DatosAuxiliares/Personajes/Dueño.png");
+        ImageIcon guia = new ImageIcon("DatosAuxiliares/Personajes/Guia 1.png");
+        ImageIcon guia2 = new ImageIcon("DatosAuxiliares/Personajes/Guia 2.png");
+        ImageIcon vagabundo = new ImageIcon("DatosAuxiliares/Personajes/Vagabundo.png");
+        ImageIcon nada = new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png");
+        ImageIcon esposa = new ImageIcon("DatosAuxiliares/Personajes/Esposa.png");
+        ImageIcon policia = new ImageIcon("DatosAuxiliares/Personajes/Policia.png");
+
+        // Dialogo Conserje acto 2
+        Dialogo c1 = new Dialogo("*El detective se acerca al limpiador, que organiza su equipo en silencio.*", "Foto que se ponga", nada, true);
+        Dialogo c2 = new Dialogo("Necesito hablar contigo un momento. Esta vez en serio.", "Detective", detective, true);
+        Dialogo c3 = new Dialogo("¿Otra vez yo? Ya le dije todo lo que sabía. Pero bueno, diga.", "Conserje", limpieza, true);
+
+        // Primera decisión
+        Dialogo descL1= new Dialogo("", "Detective", detective, true );
+        descL1.setOpciones( new LinkedList<>(Arrays.asList(
+                "¿Cómo fue tu mañana hoy?",
+                "¿Tuviste algún problema con tu equipo?",
+                "¿Alguien se acercó a ti esta mañana?"
+
+        )));
+
+        // Rama 1: Rutina general
+        Dialogo respL1 = new Dialogo("Normal, supongo. Llegué temprano, como siempre. Fui directo a buscar el carro y empecé por los baños del ala este.", "Conserje", limpieza, true);
+        Dialogo respL1a = new Dialogo("No vi nada raro. Aunque el ambiente estaba más tenso de lo habitual.", "Conserje", limpieza, true);
+
+        // Rama 2: Problemas con el equipo → desbloquea segunda decisión
+        Dialogo respL2a = new Dialogo("Ahora que lo menciona... sí. Algo me molestó esta mañana.", "Conserje", limpieza, true);
+        Dialogo respL2b = new Dialogo("Mi carro de limpieza no estaba donde lo dejé anoche. Siempre lo dejo junto al depósito, pero esta vez apareció más lejos.", "Conserje", limpieza, true);
+        Dialogo respl2c = new Dialogo("Pensé que alguien lo había movido sin avisar. No es la primera vez, pero igual me incomodó.", "Conserje", limpieza, true);
+
+        // Segunda decisión (solo si se accede desde rama 2)
+        Dialogo descL2= new Dialogo("", "Detective", detective, true );
+        descL2.setOpciones( new LinkedList<>(Arrays.asList(
+                "¿Revisaste si faltaba algo?",
+                "¿Te pareció que alguien lo usó?",
+                "¿Tienes acceso al almacén?",
+                "No quiero seguir hablando"
+        )));
+
+        // Rama 2.1: Revisión → desbloquea pista
+        Dialogo respL3a = new Dialogo("Sí, lo revisé. Y ahí fue cuando noté que faltaban las tijeras del botiquín. Siempre están en el compartimento lateral.", "Conserje", limpieza, true);
+        Dialogo respL3b = new Dialogo("Pensé que alguien las había tomado prestadas, pero no las devolvieron. No lo reporté porque... bueno, aquí nadie escucha.", "Conserje", limpieza, true);
+
+        // Pista 1
+        // añadirAlDiario("Limpiador", "El carro de limpieza fue movido sin su permiso y faltaban las tijeras del botiquín.");
+
+        // Rama 2.2: Sospechas
+        Dialogo respL4 = new Dialogo("No vi a nadie cerca. Pero el carro estaba más sucio de lo normal. Como si lo hubieran usado con prisa.", "Conserje", limpieza, true);
+
+        // Rama 2.3: Pregunta por la llave → desbloquea tercera decisión
+        Dialogo respL5a = new Dialogo("¿La del almacén? Bueno... sí. Tengo una copia. Pero no es lo que piensa. Es por si acaso. A veces me piden cosas de ahí y me cansé de esperar a que me la presten.", "Conserje", limpieza, true);
+        Dialogo respL5b = new Dialogo("La guardo en mi casillero. Pero no hay nada raro ahí, se lo juro.", "Conserje", limpieza, true);
+
+        // Tercera decisión (solo si se preguntó por la llave)
+        Dialogo descL3= new Dialogo("", "Detective", detective, true );
+        descL3.setOpciones( new LinkedList<>(Arrays.asList(
+                "Quiero revisar tu casillero.",
+                "No hace falta, gracias"
+        )));
+
+        // Rama 3.1: Revisión del casillero → desbloquea pista
+        Dialogo respL6a = new Dialogo("*El detective abre el casillero. Dentro, junto a la llave, hay unas tijeras con manchas secas de sangre en el mango.*", "Foto que se ponga", nada, true);
+        Dialogo respL6b = new Dialogo("¿Esto es tuyo?", "Detective", detective, true);
+        Dialogo respL6c = new Dialogo("¡No! ¡Eso no estaba ahí! ¡Alguien me está enmarcando! Yo solo limpio, no mato jefes corruptos.", "Conserje", limpieza, true);
+
+        // Pista 2
+        // añadirAlDiario("Limpiador", "Se encontraron tijeras con sangre en su casillero, junto a una copia de la llave del almacén.");
+
+        Dialogo cierre = new Dialogo("Vamos a tener que retenerte por ahora. Esto es serio.", "Detective", detective, true);
+
+        // Rama 3.2: Rechaza revisión
+        Dialogo rechazo = new Dialogo("Gracias... de verdad. No quiero más problemas.", "Conserje", limpieza, true);
+
+        // Rama 4: Cierre inmediato
+        Dialogo cierreI = new Dialogo("Como quiera. Pero si algo se rompe, no me culpe a mí también.", "Conserje", limpieza, true);
+
+
+
+        // Activación al pulsar el cuerpo
+        Dialogo d1 = new Dialogo("*Te agachas junto al cuerpo del jefe. La oficina está en silencio.*", "Foto que se ponga", nada, true);
+        Dialogo m1 = new Dialogo("(Herida limpia. Precisa. Sin señales de lucha. Nada fuera de lugar.)", "Detective", detective, true);
+        Dialogo m2 = new Dialogo("(Tijeras… o algún instrumento similar. Lo atacaron por la espalda. No tuvo oportunidad de defenderse.)", "Detective", detective, true);
+
+        // Intervención del policía
+        Dialogo d2 = new Dialogo("¿Ves algo que nos diga quién fue?", "Policia", policia, true);
+        Dialogo d3 = new Dialogo("No todavía. Pero esto fue rápido. Preciso. Alguien que sabía lo que hacía.", "Detective", detective, true);
+
+        // Huellas de sangre
+        Dialogo d4 = new Dialogo("*Notas unas gotas de sangre que se alejan del cuerpo hacia la pared trasera.*", "Foto que se ponga", nada, true);
+        Dialogo m3 = new Dialogo("(No hay arma en la escena. Pero estas huellas... no son de arrastre. Son de alguien que salió por aquí.)", "Detective", detective, true);
+        Dialogo m4 = new Dialogo("(La pared parece sólida... pero este azulejo está suelto.)", "Detective", detective, true);
+
+        // Descubrimiento del pasaje
+        Dialogo d5 = new Dialogo("*Presionas el azulejo. Un clic metálico suena. Un panel se abre revelando un pasaje oscuro.*", "Foto que se ponga", nada, true);
+        Dialogo d6 = new Dialogo("Aquí estás... el pasaje secreto. Conecta con el baño del piso de abajo.", "Detective", detective, true);
+        Dialogo d7 = new Dialogo("¿Cómo demonios nadie mencionó esto antes?", "Policia", policia, true);
+
+        // Llega el forense //Ojo Kevin con esto nuevo personaje
+        Dialogo d8 = new Dialogo("*El forense entra y se arrodilla junto al cuerpo.*", "Foto que se ponga",  nada, true);
+        Dialogo d9 = new Dialogo("Hora estimada de muerte: entre las 10:00 y las 10:30. Justo después de la hora en que ibas a confrontarlo.", "Forense (ni idea que poner aqui)", nada, true);
+
+        // Reacción del detective
+        Dialogo m5 = new Dialogo("(Llegué tarde. Minutos tarde. Y alguien se me adelantó.)", "Detective", detective, true);
+
+        // Registro en el diario
+        /*añadirAlDiario("Director", "El jefe fue asesinado entre las 10:00 y las 10:30 con un objeto punzante.");
+        añadirAlDiario("Director", "El asesino se fue por un pasaje secreto oculto tras la pared de la oficina del director, conectado con el baño del piso inferior.");*/
+
+        // Orden de cierre
+        Dialogo d10 = new Dialogo("Cierren todo. Nadie entra. Nadie sale. Este museo queda sellado hasta que sepamos quién lo hizo.", "Detective", detective, true);
+        Dialogo d11 = new Dialogo("Entendido. Voy a asegurar todas las salidas ahora mismo.", "Policia", policia, true);
+
+
+
+        // Esposa del jefe acto 2
+        Dialogo e1 = new Dialogo("*Encuentras a la esposa del jefe sentada sola, con los ojos hinchados y la mirada perdida.*", "Foto que se ponga", nada, true);
+        Dialogo e2 = new Dialogo("Señora... no vengo a juzgarla y también se que esto es muy dificil para usted. Solo quiero entender qué pasó esta mañana. Cualquier detalle puede ayudar.", "Detective", detective, true);
+        Dialogo e3 = new Dialogo("¿Ayudar? ¿A quién? ¿A él? Ya es tarde para eso... Nadie entiende el dolor por el que estoy pasando...", "Esposa", esposa, true);
+        Dialogo e4 = new Dialogo("Lo sé. Pero si alguien más corre peligro, necesito saberlo. Usted conocía bien a su esposo. Mejor que nadie.", "Detective", detective, true);
+
+        // Primera decisión
+        Dialogo descEsp1= new Dialogo("", "Detective", detective, true );
+        descEsp1.setOpciones( new LinkedList<>(Arrays.asList(
+                "¿Cómo era su relación últimamente?",
+                "¿Él tenía enemigos o relaciones peligrosas?",
+                "No quiero seguir hablando"
+        )));
+
+        // Rama 1.1: Relación con el jefe → desbloquea segunda decisión
+        Dialogo respE1a = new Dialogo("¿Nuestra relación? Fría. Silenciosa. Como un museo vacío. Él dormía en una habitación, yo en otra.", "Esposa", esposa, true);
+        Dialogo respE1b = new Dialogo("Pero eso no significa que quisiera verlo muerto. Solo... me acostumbré a no esperar nada de él.", "Esposa", esposa, true);
+
+        // Segunda decisión (desbloqueada tras respE1a)
+        Dialogo descEsp2= new Dialogo("", "Detective", detective, true );
+        descEsp2.setOpciones( new LinkedList<>(Arrays.asList(
+                "¿Él esperaba algo de usted?",
+                "Encontramos un teléfono oculto. No estaba a su nombre.",
+                "No quiero seguir hablando"
+        )));
+
+        // Rama 2.1: Insinuación del teléfono → chantaje emocional → desbloquea tercera decisión
+        Dialogo respE2a = new Dialogo("*Ella se tensa. Baja la mirada.*", "Foto que se ponga", nada, true);
+        Dialogo respE2b = new Dialogo("¿Un teléfono? ¿Qué... qué tiene que ver eso conmigo?", "Esposa", esposa, true);
+        Dialogo respE2c = new Dialogo("No lo sé. Pero los mensajes eran personales. Muy personales. Y no estaban dirigidos a su esposo.", "Detective", detective, true);
+        Dialogo respE2d = new Dialogo("¿Está diciendo que yo...? ¡No! ¡No era mío! ¡Era de él! ¡Él tenía a ese guía... ese...!", "Esposa", esposa, true);
+        Dialogo respE2e = new Dialogo("*Rompe en llanto. Luego, más calmada.*", "Foto que se ponga", nada, true);
+        Dialogo respE2f = new Dialogo("Sí... lo sabía. Desde hace meses. Él y ese guía... pensaban que yo era estúpida.", "Esposa", esposa, true);
+        Dialogo respE2g = new Dialogo("Pero no dije nada. No por amor, ya todo estaba roto. Era por la estabilidad que me proporcionaba. Él me mantenía, me daba todo. Y yo fingía no ver.", "Esposa", esposa, true);
+
+        //añadirAlDiario("Esposa del Jefe", "El director tenía un romance con el segundo guia y ella era conciente.");
+
+        // Tercera decisión (desbloqueada tras respE2f)
+        Dialogo descEsp3= new Dialogo("", "Detective", detective, true );
+        descEsp3.setOpciones( new LinkedList<>(Arrays.asList(
+                "¿Tuvo contacto con el guía esta mañana?",
+                "No quiero seguir hablando"
+        )));
+
+        // Rama 3.1: Llaves prestadas
+        Dialogo respE3a = new Dialogo("Sí... esta mañana me pidió las llaves de repuesto del almacen. Dijo que necesitaba ''sacar unas cajas del almacén'' antes de que llegara el jefe.", "Esposa", esposa, true);
+        Dialogo respE3b = new Dialogo("No pensé que fuera nada raro. Él tenía acceso a todo de todos modos. Solo quería ayudarlo.", "Esposa", esposa, true);
+
+        //añadirAlDiario("Esposa del Jefe", "La esposa prestó sus llaves de repuesto del almacén esa mañana al amante de su marido.");
+
+        // Rama 1.2: Enemigos del jefe → pista separada
+        Dialogo respE4a = new Dialogo("Mi esposo... no era un santo. Tenía tratos con gente peligrosa. No sé mucho, pero hablaba de 'círculos oscuros'.", "Esposa", esposa, true);
+        Dialogo respE4b = new Dialogo("Siempre decía que si algo le pasaba, no sería por amor... sino por negocios.", "Esposa", esposa, true);
+        Dialogo respE4c = new Dialogo("(Círculos oscuros... eso suena a crimen organizado. Quizás el museo era más que un simple museo.)", "Detective", detective, true);
+
+        // Registro en el diario
+        // añadirAlDiario("Esposa del Jefe", "El director tenía enemigos en 'círculos oscuros', posiblemente vinculados al crimen organizado.");
+
+        // Rama 1.3: Cierre inmediato
+        Dialogo respE5 = new Dialogo("Como quiera. Pero no me pida más. Ya perdí todo lo que tenía.", "Esposa", esposa, true);
+
+
+
+        // guia 2 acto 2
+        Dialogo dG1 = new Dialogo("¿Otra vez yo? Ya le dije que no vi nada. Solo hago mi trabajo.", "Guia2", guia2, true);
+        Dialogo dG2 = new Dialogo("No estoy aquí para molestarte. Pero necesito que seas honesto. Esto es serio.", "Detective", detective, true);
+        Dialogo dG3 = new Dialogo("Siempre soy honesto. No tengo nada que ocultar.", "Guia2", guia2, true);
+
+        // Primera decisión
+        Dialogo desc1Guia2= new Dialogo("", "Detective", detective, true );
+        desc1Guia2.setOpciones( new LinkedList<>(Arrays.asList(
+                "¿Dónde estabas esta mañana?",
+                "¿Cómo era tu relación con el jefe?",
+                "No quiero seguir hablando"
+        )));
+
+        // Rama 1.1: Coartada evasiva
+        Dialogo resp1G2= new Dialogo("Estaba en el ala este, preparando la visita de las 11. Pregúntele a los pasantes si no me cree.", "Guia2", guia2, true);
+
+        // Rama 1.2: Relación con el jefe → desbloquea segunda decisión
+        Dialogo resp2G2 = new Dialogo("Era mi jefe. Y como todos los jefes, tenía mal genio. Pero yo no soy violento, si eso insinúa.", "Guia2", guia2, true);
+        Dialogo resp2aG2 = new Dialogo("No me llevaba bien con él, pero tampoco lo odiaba. Solo... lo soportaba.", "Guia2", guia2, true);
+
+        // Segunda decisión (desbloqueada tras res2G2)
+        Dialogo desc2G2= new Dialogo("", "Detective", detective, true );
+        desc2G2.setOpciones( new LinkedList<>( Arrays.asList(
+                "¿Seguro que no te llevabas bien con él'?",
+                "¿Conoces un pasadizo secreto en el museo?",
+                "No quiero seguir hablando"
+        )));
+
+        // Rama 2.1: Presión emocional → confiesa abuso
+        Dialogo resp3G2 = new Dialogo(" ¡No! Bueno... tal vez no dije todo. Teníamos algo, secreto... Lo siento, pero no es que quisieramoss que todos lo supieran.", "Guia2", guia2, true);
+        Dialogo resp3aG2 = new Dialogo("Él me golpeaba. Cuando se enojaba. Cuando tomaba. Pero yo no soy un asesino. Nunca haría lo mismo que él", "Guia2", guia2, true);
+        Dialogo resp3bG2 = new Dialogo("Lo odiaba, sí. Pero no lo maté. Solo quería que me dejara en paz.", "Guia2", guia2, true);
+
+        // Pista 1
+        //añadirAlDiario("Guía", "El guía confesó su relación con el jefe y que lo golpeaba en privado.");
+
+        // Rama 2.2: Confrontación con el pasadizo (si fue descubierto) → desbloquea tercera decisión
+        /*  if (pasadizoDescubierto) */{
+            Dialogo resp4G2 = new Dialogo("Sí... lo conocía. Lo usábamos para vernos sin que nadie supiera. Era nuestro secreto.", "Guia2", guia2, true);
+            Dialogo resp5G2 = new Dialogo("Pero no lo usé para matarlo. Solo para... estar con él. Aunque últimamente, todo era gritos y golpes.", "Guia2", guia2, true);
+
+            // Tercera decisión (desbloqueada tras resp4G2)
+            Dialogo desc3G2= new Dialogo("", "Detective", detective, true );
+            desc3G2.setOpciones( new LinkedList<>( Arrays.asList(
+                    "¿Viste a alguien cerca del baño esa mañana?",
+                    "¿Por qué no denunciaste los abusos?",
+                    "No quiero seguir hablando"
+            )));
+
+            // Rama 3.1: Menciona al vagabundo → pista
+            Dialogo resp6G2 = new Dialogo("Vi al vagabundo. Estaba cerca del baño, justo antes de que todo pasara.", "Guia2", guia2, true);
+            Dialogo resp6aG2 = new Dialogo("No sé qué hacía ahí, pero no era normal, no se le suele permitir entrar. Tal vez deberías hablar con él, o preguntarle al guardia por que le permitio entrar.", "Guia2", guia2, true);
+
+            // Pista 2
+            // añadirAlDiario("Guía", "El guía afirma haber visto al vagabundo merodeando cerca del baño poco antes del asesinato.");
+        }
+
+        // Rama 1.3 / 2.3 / 3.3: Cierre inmediato
+        Dialogo cierre2 = new Dialogo("Como quiera. Pero no me mire así. Yo también tengo miedo.", "Guia2", guia2, true);
+
 
     }
 
