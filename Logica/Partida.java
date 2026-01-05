@@ -1,5 +1,6 @@
 package Logica;
 
+import DatosAuxiliaresLogica.Eventos;
 import Interfaz.Escenarios.Almacen;
 import java.io.*;
 import java.io.Serializable;
@@ -20,7 +21,7 @@ public class Partida implements Serializable, Cloneable
     private String estado;
     private ArrayList<Escenario> escenarios;
     private Jugador jugador;
-
+    private Eventos eventos;
     public Partida() {
         // Para darle un valor al ID sera la partida que escoja el usuario.
         // O sea que cuando toque Nueva Partida 1, ese 1 sera el ID.
@@ -30,6 +31,7 @@ public class Partida implements Serializable, Cloneable
         this.estado = "";
         this.escenarios = new ArrayList<Escenario>();
         this.jugador = new Jugador();
+        this.eventos = new Eventos();
         agregarEscenariosAutomaticamente();
     }
 
@@ -100,6 +102,14 @@ public class Partida implements Serializable, Cloneable
                 salida = true;
             }
         }
+    }
+
+    public Eventos getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(Eventos eventos) {
+        this.eventos = eventos;
     }
 
     public void agregarEscenariosAutomaticamente()
