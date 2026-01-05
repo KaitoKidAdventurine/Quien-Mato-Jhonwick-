@@ -19,7 +19,7 @@ public class Juego {
 
     private Juego() {
         this.titulo = "Juego";
-        this.version = "0.01";
+        this.version = "0.5";
         this.partidas = new LinkedList<Partida>();
         this.miniJuegos = new ArrayList<>();
         this.escenarios = new ArrayList<Escenario>();
