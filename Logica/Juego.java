@@ -15,18 +15,91 @@ public class Juego {
     private ArrayList<MiniJuego> miniJuegos;
     private ArrayList<Escenario> escenarios;
 
+    private ArrayList<ArrayList<Dialogo>> dialogosCapitan;
+
     private Juego() {
         this.titulo = "Juego";
         this.version = "0.01";
         this.partidas = new LinkedList<Partida>();
         this.miniJuegos = new ArrayList<>();
         this.escenarios = new ArrayList<Escenario>();
-
+        dialogosCapitan = new ArrayList<>();
         //esto se quita mas adelante
         this.partidaActual = null;
         addEscenario();
         crearDialogosActo1();
+        crearDialogosCapitan();
         hacerMinijuegos();
+    }
+
+    private void crearDialogosCapitan() {
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        ImageIcon nada = new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png");
+
+        ArrayList<Dialogo> dialogo1= new ArrayList<>();
+       Dialogo d1 = new Dialogo("- Bipp Bipp-.", "", nada, true);
+        Dialogo d2 = new Dialogo("¿Quien sera a esta hora?", "Detective", detective, true);
+        Dialogo d3 = new Dialogo("Oigo", "Detective", detective, true);
+        Dialogo d4 = new Dialogo("Soy yo de nuevo. ¿Como te va con la investigacion?", "Capitan", nada, true);
+        Dialogo d5 = new Dialogo("Normal, nada del otro mundo, un miercoles cualquiera. ", "Detective", detective, true);
+        Dialogo d6 = new Dialogo("Eso no es lo que escuche, llame a tu oficial asignado y dice que no tienes ni idea de por donde empezar.", "Capitan", nada, true);
+        Dialogo d7 = new Dialogo("Nada mas lejano de la realidad. Actualmente tengo a 4 personas sospechosas que podrian haber cometido el crimen.", "Detective", detective, true);
+        Dialogo d8 = new Dialogo("Magnifico, solo espero que en tu apuro por ir a resolver el crimen rapido no te hayas olvidado de tus herramientas principales.", "Capitan", nada, true);
+        Dialogo d9 = new Dialogo("No, los tengo a la mano.", "Detective", detective, true);
+        Dialogo d10 = new Dialogo("¿Y estas seguro de como usarlos?", "Capitan", nada, true);
+        Dialogo d11 = new Dialogo("Claro que si, llevo 11 años de experiencia.", "Detective", detective, true);
+        Dialogo d12 = new Dialogo("Bueno, pero solo para estar seguros, dime como funcionan cada uno.", "Capitan", nada, true);
+        Dialogo d13 = new Dialogo("Mira que eres pesado. Bien, en primer lugar tenemos al Diario. Encontradose primero de izquierda a derecha en la esquina superior derecha. Su funcion, llevar un registo de los sospechosos y del estado de la investigacion.", "Detective", detective, true);
+        Dialogo d14 = new Dialogo("Bien, pero que me dices del telefono.", "Capitan", nada, true);
+        Dialogo d15 = new Dialogo("El telefono es una herramienta que sirve para manipular la musica que escucho, y principalmente para llamarte a ti en caso de quedareme estancado, de igual forma tambien puedes manipular el aspecto del mismo, se encuentra como segundo de izquierda a derecha.", "Detective", detective, true);
+        Dialogo d16 = new Dialogo("No esta mal. ¿Que harias si te encuentras un objeto que te pueda ayudar a resolver el crimen?", "Capitan", nada, true);
+        Dialogo d17 = new Dialogo("Entonces lo pondria en mi maleta para usarlo en el futuro, con la cual puedo verificarlo cuando quiera y se encuentra como el tercer objeto de izquierda a derecha en la ezquina derecha de la pantalla.", "Detective", detective, true);
+        Dialogo d18 = new Dialogo("Veo que no has perdido el toque. por ultimo. Explicame el ultimo objeto de la interfaz", "Capitan", nada, true);
+        Dialogo d19 = new Dialogo("Sencillo. El menu interno, me permite guardar partida, salir al menu, salir al escritorio, y acceder a los ajustes, se encuentra al final de los objetos de la interfaz, en la ezquina superior derecha.", "Detective", detective, true);
+        Dialogo d20 = new Dialogo("No esperaba menos de ti, como esperé estas listo para la acción." , "Capitan", nada, true);
+        Dialogo d21 = new Dialogo("Siempre has sabido que soy tu mejor activo. ", "Detective", detective, true);
+        Dialogo d22 = new Dialogo("No comentare nada al respecto a eso, pero respecto al caso solo te voy a decir que no la cagues, por alguna razon este caso parece preocuparle a los jefes. " , "Capitan", nada, true);
+        Dialogo d23 = new Dialogo("Sabes que nunca lo haria, pero pos si acaso. ¿Cómo me recomendarias actuar? ", "Detective", detective, true);
+        Dialogo d24 = new Dialogo("En primer lugar volver a entrevistar a todos, empieza por los que consideres mas gordos, luego ve por los pequeños a ver que encuentras. " , "Capitan", nada, true);
+        Dialogo d25 = new Dialogo("Justo lo que pense que dirias. Entonces mi acercamiento inicial debe de ser, Dueño,Guia principal, Seguridad y Secretaria. Luego continuo con los demas. ", "Detective", detective, true);
+        Dialogo d26 = new Dialogo("Parece que no tengo nada mas que enseñarte. Continua con la investigacion. " , "Capitan", nada, true);
+        Dialogo d27 = new Dialogo("Si necesito consejo te vuelvo a llamar.", "Detective", detective, true);
+        Dialogo d28 = new Dialogo("Esta bien. " , "Capitan", nada, true);
+        Dialogo d29 = new Dialogo("-Biiiip.- " , "Capitan", nada, true);
+        Dialogo d30 = new Dialogo("(Me trata como si fuera un niño pequeño, y tengo resueltos mas casos que el en toda su carrera de detective. En fin, todavia tengo un criminal que arrestar.", "Detective", detective, true);
+
+        dialogo1.add(d1);
+        dialogo1.add(d2);
+        dialogo1.add(d3);
+        dialogo1.add(d4);
+        dialogo1.add(d5);
+        dialogo1.add(d6);
+        dialogo1.add(d7);
+        dialogo1.add(d8);
+        dialogo1.add(d9);
+        dialogo1.add(d10);
+        dialogo1.add(d11);
+        dialogo1.add(d12);
+        dialogo1.add(d13);
+        dialogo1.add(d14);
+        dialogo1.add(d15);
+        dialogo1.add(d16);
+        dialogo1.add(d17);
+        dialogo1.add(d18);
+        dialogo1.add(d19);
+        dialogo1.add(d20);
+        dialogo1.add(d21);
+        dialogo1.add(d22);
+        dialogo1.add(d23);
+        dialogo1.add(d24);
+        dialogo1.add(d25);
+        dialogo1.add(d26);
+        dialogo1.add(d27);
+        dialogo1.add(d28);
+        dialogo1.add(d29);
+        dialogo1.add(d30);
+        dialogosCapitan.add(dialogo1);
+
     }
 
     public static Juego getInstance() {
@@ -1300,6 +1373,6 @@ public class Juego {
     }
 
 
-    
+
 
 }

@@ -6,6 +6,7 @@ package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
+import Interfaz.InterfazJugador.CuadroTexto;
 import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
@@ -66,6 +67,9 @@ public class Entrada extends ModeloEscenario {
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     cerrarEscenario();
                     tarea2.cancel();
+                }else{
+                    revalidate();
+                    repaint();
                 }
             }
         };
@@ -153,8 +157,37 @@ public class Entrada extends ModeloEscenario {
         getContentPane().add(fondo );
 
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 20);
+        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+        if(Juego.getInstance().getPartidaActual().getEventos().getDialogoCapitanActual()==0){
+            llamadaCapitan(0);
+        }
     }// </editor-fold>//GEN-END:initComponents
+
+    private void llamadaCapitan(int actual) {
+        /*if(actual<Juego.getInstance().getDialogosCapitan().get(0).size()) {
+            Dialogo aux = Juego.getInstance().getDialogosCapitan().get(0).get(actual);
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            actual++;
+            int finalActual = actual;
+
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    llamaCapMouseClicked( finalActual);
+                }
+            });
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
+            cajaTexto.removeAll();
+            Juego.getInstance().getPartidaActual().getEventos().setDialogoCapitanActual(1);
+        }*/
+        JOptionPane.showMessageDialog(null, Juego.getInstance().getPartidaActual().getIdPartida());;
+    }
+
+    private void llamaCapMouseClicked(int finalActual) {
+        llamadaCapitan(finalActual);
+    }
 
     private void flechaActionPerformed(ActionEvent evt) {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
@@ -164,10 +197,6 @@ public class Entrada extends ModeloEscenario {
         recepcion.setVisible(true);
         tarea2.cancel();
         timer.schedule(tarea, 1000);
-    }
-
-    private void verificarCerrado() {
-
     }
 
 

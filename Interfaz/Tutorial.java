@@ -1309,7 +1309,6 @@ public class Tutorial extends JFrame {
                 "Conozco el museo como la palma de mi mano, y no noté nada fuera de lo común.", "Guía", guia, true);
 
         // Dato clave
-        Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guía", "El guía conoce el museo como la palma de su mano.");
 
         Dialogo despedida2 = new Dialogo("A usted, detective. Que tenga buena noche.", "Guía", guia, true);
         Dialogo despeDetectiveGuia = new Dialogo("Gracias, eso seria todo por ahora", "Detective", detective, true);
@@ -1478,7 +1477,6 @@ public class Tutorial extends JFrame {
 
 
         // Dato clave
-        Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante ("Limpieza", "Suele encontrarse con cosas útiles al estar solo limpiando.");
 
         Dialogo despedidaDetec = new Dialogo("Gracias, eso seria todo por ahora, mantengase cerca por" +
                 " si necesitamos hacerle más preguntas", "Detective", detective, true);
@@ -1729,80 +1727,7 @@ public class Tutorial extends JFrame {
 
         tutorialParte10.setArbolDial(auxTree9);
 
-        /*Usar en el juego como tutorial del mundo
 
-        Dialogo d92 = new Dialogo("Detective, antes de entrar quiero explicarle cómo funcionará su investigación.", "Policia", policia, true);
-        Dialogo d93 = new Dialogo("En la esquina superior derecha tiene un diario. Allí se guardará toda la información importante que obtenga en cada diálogo.", "Policia", policia, true);
-        Dialogo d94 = new Dialogo("Además, cuenta con un portafolios. En él se almacenarán los objetos relevantes que encuentre durante el caso.", "Policia", policia, true);
-        Dialogo d95 = new Dialogo("Para que lo entienda mejor, el guardia encontró dos cosas en la escena: este cuchillo y una carta escrita por la víctima.", "Policia", policia, true);
-        Dialogo d96 = new Dialogo("Perfecto. Entonces cada pista que obtenga en las conversaciones irá al diario, y cada objeto físico irá al portafolios.", "Detective", detective, true);
-        Dialogo d97 = new Dialogo("Exactamente. Así podrá revisar todo lo que descubra en cualquier momento.", "Policia", policia, true);
-        Dialogo d98 = new Dialogo("Muy bien, entregueme los objetos. Los guardaré en el portafolios.", "Detective", detective, true);
-        Dialogo d99 = new Dialogo("Aquí tiene: el cuchillo y la carta. Ahora ya puede empezar a investigar.", "Policia", policia, true);
-
-        // --- Primer árbol de decisión ---
-        Dialogo decisionInicio = new Dialogo("¿Desea que le recuerde cómo usar el diario y el portafolios, o prefiere continuar?", "Policia", policia, true);
-        decisionInicio.setOpciones(new LinkedList<>(Arrays.asList("Explíqueme otra vez cómo funciona el diario y el portafolios.", "No es necesario, ya entendí. Es hora de entrar.")));
-
-        Dialogo respuestaA = new Dialogo("Claro. El diario guarda la información de los diálogos, y el portafolios los objetos físicos. Así nunca perderá nada importante.", "Policia", policia, true);
-
-        Dialogo respuestaB = new Dialogo("Perfecto, detective. Adelante, el museo lo espera.", "Policia", policia, true);
-
-        // Conexiones
-
-        Dialogo d101 = new Dialogo("Ah, detective. Justo el héroe que necesitábamos. Aunque claro, yo podría resolver esto solo, pero me dijeron que usted se aburre si no lo llaman.", "Jefe", nada, true);
-        Dialogo d102 = new Dialogo("No se preocupe, estoy aquí para hacer mi trabajo.", "Detective", detective, true);
-        Dialogo d103 = new Dialogo("Trabajo, dice. Bueno, al menos tiene un teléfono a su disposición para llamarme cuando se pierda... digo, cuando necesite orientación.", "Jefe", nada, true);
-        Dialogo d104 = new Dialogo("¿Un teléfono?", "Detective", detective, true);
-        Dialogo d105 = new Dialogo("Sí, sí. Y no solo sirve para llamarme. También puede cambiar la música y los fondos de pantalla. Ya sabe, para que no se aburra mientras juega a ser Sherlock.", "Jefe", nada, true);
-        Dialogo d106 = new Dialogo("Interesante. Supongo que eso hará más llevadera la investigación.", "Detective", detective, true);
-        Dialogo d107 = new Dialogo("Claro que sí. Pero lo mejor aún no lo he dicho: el mapa. El museo está dividido en varios escenarios, y en la pantalla verá flechas que le permitirán avanzar de uno a otro.", "Jefe", nada, true);
-        Dialogo d108 = new Dialogo("Así que puedo moverme libremente entre escenarios usando esas flechas.", "Detective", detective, true);
-        Dialogo d109 = new Dialogo("Exacto. Y en cada escenario habrá objetos o personajes con los que podrá interactuar. Solo tiene que pulsarlos para recogerlos o hablar con ellos. Fácil, ¿no?", "Jefe", nada, true);
-        Dialogo d110 = new Dialogo("Eso será útil. Así podré obtener pistas y objetos directamente en cada lugar.", "Detective", detective, true);
-        Dialogo d111 = new Dialogo("Exactamente. Aunque claro, si se pierde, siempre puede llamarme. No es que yo disfrute repetir las cosas, pero alguien tiene que salvarle la investigación.", "Jefe", nada, true);
-
-        Dialogo decisionDueno = new Dialogo("¿Quiere que le repita cómo usar el teléfono, el mapa y las interacciones, o ya se siente listo?", "Jefe", nada, true);
-        decisionDueno.setOpciones(new LinkedList<>(Arrays.asList("Repítalo, quiero estar seguro.", "No es necesario, ya entendí. Continuemos.")));
-
-        Dialogo dRama2Due1 = new Dialogo("Muy bien, aunque debería haberlo entendido a la primera. Teléfono para llamarme, música y fondos. Flechas para moverse entre escenarios. Y recuerde: pulse objetos o personajes para interactuar. ¿Contento?", "Jefe", nada, true);
-
-        Dialogo dRama3Due = new Dialogo("Excelente. Al menos no tendré que repetirlo. Adelante, detective, el museo es suyo.", "Jefe", nada, true);
-
-        // Conexiones
-
-        BinaryTreeNode<Dialogo> node92 = new BinaryTreeNode<>(d92);
-        BinaryTreeNode<Dialogo> node93 = new BinaryTreeNode<>(d93);
-        BinaryTreeNode<Dialogo> node94 = new BinaryTreeNode<>(d94);
-        BinaryTreeNode<Dialogo> node95 = new BinaryTreeNode<>(d95);
-        BinaryTreeNode<Dialogo> node96 = new BinaryTreeNode<>(d96);
-        BinaryTreeNode<Dialogo> node97 = new BinaryTreeNode<>(d97);
-        BinaryTreeNode<Dialogo> node98 = new BinaryTreeNode<>(d98);
-        BinaryTreeNode<Dialogo> node99 = new BinaryTreeNode<>(d99);
-
-        BinaryTreeNode<Dialogo> node300 = new BinaryTreeNode<>(decisionInicio);
-
-        BinaryTreeNode<Dialogo> node301 = new BinaryTreeNode<>(respuestaA);
-        BinaryTreeNode<Dialogo> node302 = new BinaryTreeNode<>(respuestaB);
-
-        BinaryTreeNode<Dialogo> node101 = new BinaryTreeNode<>(d101);
-        BinaryTreeNode<Dialogo> node102 = new BinaryTreeNode<>(d102);
-        BinaryTreeNode<Dialogo> node103 = new BinaryTreeNode<>(d103);
-        BinaryTreeNode<Dialogo> node104 = new BinaryTreeNode<>(d104);
-        BinaryTreeNode<Dialogo> node105 = new BinaryTreeNode<>(d105);
-        BinaryTreeNode<Dialogo> node106 = new BinaryTreeNode<>(d106);
-        BinaryTreeNode<Dialogo> node107 = new BinaryTreeNode<>(d107);
-        BinaryTreeNode<Dialogo> node108 = new BinaryTreeNode<>(d108);
-        BinaryTreeNode<Dialogo> node109 = new BinaryTreeNode<>(d109);
-        BinaryTreeNode<Dialogo> node110 = new BinaryTreeNode<>(d110);
-        BinaryTreeNode<Dialogo> node111 = new BinaryTreeNode<>(d111);
-
-        BinaryTreeNode<Dialogo> node303 = new BinaryTreeNode<>(decisionDueno);
-
-        BinaryTreeNode<Dialogo> node304 = new BinaryTreeNode<>(dRama2Due1);
-        BinaryTreeNode<Dialogo> node305 = new BinaryTreeNode<>(dRama3Due);
-
-         */
     }
 
     public void crearMinijuego(){
