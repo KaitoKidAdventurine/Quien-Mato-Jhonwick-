@@ -247,11 +247,7 @@ public class Sala2  extends ModeloEscenario {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            revalidate();
-            repaint();
         }
-        getContentPane().revalidate();
-        getContentPane().repaint();
 
     }
     private void guia2MouseClicked(ArrayList<Dialogo> dialogos, int actual){
