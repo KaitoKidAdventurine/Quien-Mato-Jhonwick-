@@ -5,6 +5,7 @@
 package Interfaz.Menu;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import Logica.Juego;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -199,7 +200,7 @@ public class CargarPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_boton1MouseExited
 
     private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
-        // TODO add your handling code here:
+        Juego.getInstance().cargarPartida(1);
     }//GEN-LAST:event_boton1ActionPerformed
 
     private void boton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton2MouseEntered
@@ -215,7 +216,7 @@ public class CargarPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_boton2MouseExited
 
     private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
-        // TODO add your handling code here:
+        Juego.getInstance().cargarPartida(2);
     }//GEN-LAST:event_boton2ActionPerformed
 
     private void boton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton3MouseEntered
@@ -227,7 +228,7 @@ public class CargarPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_boton3MouseExited
 
     private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
-        // TODO add your handling code here:
+        Juego.getInstance().cargarPartida(3);
     }//GEN-LAST:event_boton3ActionPerformed
     public void arreglarBot(){
 

@@ -31,7 +31,7 @@ public class Partida implements Serializable, Cloneable
         this.estado = "";
         this.escenarios = new ArrayList<Escenario>();
         this.jugador = new Jugador();
-        this.eventos = new Eventos();
+        this.eventos = new Eventos(false, false, false, false, false, false, false, false, false);
         agregarEscenariosAutomaticamente();
     }
 

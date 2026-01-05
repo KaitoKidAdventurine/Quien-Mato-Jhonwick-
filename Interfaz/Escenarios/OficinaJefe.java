@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -195,8 +196,47 @@ public class OficinaJefe extends ModeloEscenario {
     }
 
     private void duennoActionPerformed(ActionEvent evt) {
-        duenno.setVisible(false);
-        ponerDialogo();
+        if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==0 && !Juego.getInstance().getPartidaActual().getEventos().isDuenoYA()){
+            ponerDialogo();
+            duenno.setVisible(false);
+        }else
+            ponerDialogosEstatico(crearDialogoYa(), 0);
+    }
+
+    private ArrayList<Dialogo> crearDialogoYa(){
+        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(Ya hable con el)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Deberia de enfocarme en recorrer el museo y buscar otras pistas.)", "Detective", detective, true);
+
+        dialogosConserje.add(d1);
+        dialogosConserje.add(d2);
+        return dialogosConserje;
+    }
+    private void ponerDialogosEstatico(ArrayList<Dialogo> dialogos, int actual) {
+        if(actual<dialogos.size()) {
+            Dialogo aux = dialogos.get(actual);
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            actual++;
+            int finalActual = actual;
+
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    EstatiMouseClicked(dialogos, finalActual);
+                }
+            });
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
+            cajaTexto.removeAll();
+        }
+
+    }
+    private void EstatiMouseClicked(ArrayList<Dialogo> dialogos, int actual){
+        ponerDialogosEstatico(dialogos, actual);
+
     }
 
     public void ponerDialogo() {
@@ -223,12 +263,10 @@ public class OficinaJefe extends ModeloEscenario {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            revalidate();
-            repaint();
+            Juego.getInstance().getPartidaActual().getEventos().setDuenoYA(true);
+            Juego.getInstance().getPartidaActual().getEventos().cambiarARonda1();
             duenno.setVisible(true);
         }
-        getContentPane().revalidate();
-        getContentPane().repaint();
     }
 
     private void flechaPasillo2ActionPerformed(ActionEvent evt) {

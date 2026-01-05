@@ -43,6 +43,7 @@ public class Entrada extends ModeloEscenario {
     private TimerTask tarea2;
     private InterfazUsuario interfazUsuario;
     private Escenario escenario;
+
     /**
      * Creates new form Entrada
      */
@@ -61,13 +62,13 @@ public class Entrada extends ModeloEscenario {
             @Override
             public void run() {
 
-                if(UnionInterfaces.getInstance().getCerrarVentana()){
+                if (UnionInterfaces.getInstance().getCerrarVentana()) {
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     cerrarEscenario();
                     tarea2.cancel();
-                }else{
+                } else {
                     revalidate();
                     repaint();
                 }
@@ -77,14 +78,12 @@ public class Entrada extends ModeloEscenario {
     }
 
 
-
-
     private void initComponents() {
-        cajaTexto  = new JPanel();
+        cajaTexto = new JPanel();
         fondo = new JLabel();
         flecha = new JButton();
         lugar = new JLabel();
-        interfazUsuario= new InterfazUsuario();
+        interfazUsuario = new InterfazUsuario();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
@@ -109,18 +108,18 @@ public class Entrada extends ModeloEscenario {
             fondo.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cajaTexto.setBackground(new Color(0, 0, 0, 0));
-            cajaTexto.setBounds(0, 0,  tamPant.width, tamPant.height);
+            cajaTexto.setBounds(0, 0, tamPant.width, tamPant.height);
             cajaTexto.setLayout(null);
 
             BufferedImage imagen2 = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/flecha arriba.png"));
-            ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+            ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width * 0.04), (int) (tamPant.height * 0.11), Image.SCALE_SMOOTH));
             flecha.setIcon(icono2);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        flecha.setBounds((int) (tamPant.width*0.484), (int) (tamPant.height*0.77), (int) (tamPant.width*0.048), (int) (tamPant.height*0.124));
+        flecha.setBounds((int) (tamPant.width * 0.484), (int) (tamPant.height * 0.77), (int) (tamPant.width * 0.048), (int) (tamPant.height * 0.124));
         flecha.setOpaque(true);
         flecha.setToolTipText("Recepcion");
         flecha.setContentAreaFilled(false);
@@ -136,35 +135,35 @@ public class Entrada extends ModeloEscenario {
             public void mouseEntered(MouseEvent evt) {
                 flechaMouseEntered(evt);
             }
+
             public void mouseExited(MouseEvent evt) {
                 flechaMouseExited(evt);
             }
         });
-        ponerDialogo();
         getContentPane().add(cajaTexto);
         getContentPane().add(flecha);
 
         lugar.setText("Entrada");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
-        lugar.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
-        lugar.setBounds((int) (tamPant.width*0.03), (int) (tamPant.height*0.06), (int) (tamPant.width*0.3), (int) (tamPant.height*0.1));
+        lugar.setFont(new Font("Segoe UI", 0, (int) (tamPant.width * 0.035)));
+        lugar.setBounds((int) (tamPant.width * 0.03), (int) (tamPant.height * 0.06), (int) (tamPant.width * 0.3), (int) (tamPant.height * 0.1));
         getContentPane().add(lugar);
 
-        interfazUsuario.setBounds((int) (tamPant.width*0.55), (int) (tamPant.height*0.05), (int) (tamPant.width*0.45), (int) (tamPant.height*0.15));
+        interfazUsuario.setBounds((int) (tamPant.width * 0.55), (int) (tamPant.height * 0.05), (int) (tamPant.width * 0.45), (int) (tamPant.height * 0.15));
         getContentPane().add(interfazUsuario);
 
-        getContentPane().add(fondo );
+        getContentPane().add(fondo);
 
         pack();
         timer2.scheduleAtFixedRate(tarea2, 0, 10);
-        if(Juego.getInstance().getPartidaActual().getEventos().getDialogoCapitanActual()==0){
+        if (Juego.getInstance().getPartidaActual().getEventos().getDialogoCapitanActual() == 0) {
             llamadaCapitan(0);
         }
     }// </editor-fold>//GEN-END:initComponents
 
     private void llamadaCapitan(int actual) {
-        /*if(actual<Juego.getInstance().getDialogosCapitan().get(0).size()) {
+        if (actual < Juego.getInstance().getDialogosCapitan().get(0).size()) {
             Dialogo aux = Juego.getInstance().getDialogosCapitan().get(0).get(actual);
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
@@ -173,16 +172,55 @@ public class Entrada extends ModeloEscenario {
 
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
-                    llamaCapMouseClicked( finalActual);
+                    llamaCapMouseClicked(finalActual);
                 }
             });
             cajaTexto.removeAll();
-            cajaTexto.add(cT);
-        }else {
+            cajaTexto.add(cT, 0);
+            switch (actual) {
+                case 13:
+                    resaltar(1);
+                    break;
+                case 15:
+                    resaltar(2);
+                    break;
+                case 17:
+                    resaltar(3);
+                    break;
+                case 19:
+                    resaltar(4);
+                    break;
+                default:
+                    break;
+
+            }
+        } else {
             cajaTexto.removeAll();
             Juego.getInstance().getPartidaActual().getEventos().setDialogoCapitanActual(1);
-        }*/
-        JOptionPane.showMessageDialog(null, Juego.getInstance().getPartidaActual().getIdPartida());;
+        }
+
+    }
+
+    private void resaltar(int i) {
+        JPanel blanco = new JPanel();
+        blanco.setBackground(new Color(255, 255, 255, 60));
+        switch (i){
+            case 1:
+                blanco.setBounds((int) (tamPant.width * 0.595), (int) (tamPant.height * 0.085), (int) (tamPant.width * 0.08), (int) (tamPant.height * 0.11));
+                break;
+            case 2:
+                blanco.setBounds((int) (tamPant.width * 0.685), (int) (tamPant.height * 0.085), (int) (tamPant.width * 0.08), (int) (tamPant.height * 0.11));
+                break;
+            case 3:
+                blanco.setBounds((int) (tamPant.width * 0.78), (int) (tamPant.height * 0.085), (int) (tamPant.width * 0.08), (int) (tamPant.height * 0.11));
+                break;
+            case 4:
+                blanco.setBounds((int) (tamPant.width * 0.878), (int) (tamPant.height * 0.085), (int) (tamPant.width * 0.08), (int) (tamPant.height * 0.11));
+                break;
+            default:
+                break;
+        }
+        cajaTexto.add(blanco, 1);
     }
 
     private void llamaCapMouseClicked(int finalActual) {
@@ -199,18 +237,6 @@ public class Entrada extends ModeloEscenario {
         timer.schedule(tarea, 1000);
     }
 
-
-    public void ponerDialogo() {
-
-    }
-    public JPanel darCuadroTexto(){
-        return cajaTexto;
-    }
-    private void cTMouseClicked(MouseEvent evt) {
-        ponerDialogo();
-        getContentPane().revalidate();
-        getContentPane().repaint();
-    }
     private void flechaMouseExited(MouseEvent evt) {
         BufferedImage imagen = null;
 
@@ -220,7 +246,7 @@ public class Entrada extends ModeloEscenario {
             throw new RuntimeException(e);
         }
 
-        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width * 0.04), (int) (tamPant.height * 0.11), Image.SCALE_SMOOTH));
         flecha.setIcon(icono);
     }
 
@@ -233,7 +259,7 @@ public class Entrada extends ModeloEscenario {
             throw new RuntimeException(e);
         }
 
-        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width * 0.04), (int) (tamPant.height * 0.11), Image.SCALE_SMOOTH));
         flecha.setIcon(icono);
     }
 

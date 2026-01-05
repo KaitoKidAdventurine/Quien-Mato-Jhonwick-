@@ -126,11 +126,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jLabel20 = new JLabel();
         jScrollPane10 = new JScrollPane();
         jTextArea10 = new JTextArea();
-        jPanel11 = new JPanel();
-        jLabel21 = new JLabel();
-        jLabel22 = new JLabel();
-        jScrollPane11 = new JScrollPane();
-        jTextArea11 = new JTextArea();
+
         fondo = new JLabel();
 
         contenedor = new JPanel();
@@ -146,7 +142,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jPanel1.setBounds(panel);
         jPanel1.setLayout(null);
 
-        jLabel1.setText("Victima");
+        jLabel1.setText(Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(0).getNombreNPC());
         jLabel1.setBounds(nombre);
         jLabel1.setFont(new Font("Viner Hand ITC", Font.PLAIN, (int) (tamPant.width * 0.016)));
         jLabel1.setForeground(Color.black);
@@ -190,7 +186,6 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         while (iterator1.hasNext()) {
             String contenido = iterator1.next();
             if (!jTextArea1.getText().isEmpty()) {
-
                 jTextArea1.setText(jTextArea1.getText() + "\n" + "·" + contenido);
             } else
                 jTextArea1.setText("·" + contenido);
@@ -214,19 +209,30 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro1.setWrapStyleWord(true);
         registro1.setEditable(false);
         registro1.setBackground(new Color(0, 0, 0, 0));
-        registro1.setText("   Datos  Generales: \nEdad:   32       Sexo: Masculino   \n" + "Ocupacion:   Economico \n" + "\n\n\n  Analisis de personalidad: \n"
-                + "Timido, Reservado, Poco amigable, tranquilo");
+        registro1.setText("   Datos  Generales: \nEdad: " + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(0).getEdadNPC() +       "    " +
+                "Sexo: "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(0).getSexo()  +
+                "  \n" + "Ocupacion:  "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(0).getOcupacion()  + " \n\n\n\n  Analisis de personalidad: \n");
+        int r1= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(0).getPersonalidad().size();
+        for(int q = 0; q<r1; q++){
+            if(q==(r1-1))
+                registro1.setText(registro1.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(0).getPersonalidad().get(q));
+            else
+                registro1.setText(registro1.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(0).getPersonalidad().get(q)+ ", ");
+
+        }
         registro1.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro1.setBounds(registros);
         jPanel1.add(registro1);
 
+
         contenedor.add(jPanel1);
 
+        //Pagina 2
         jPanel2.setBackground(new Color(0, 0, 0, 0));
         jPanel2.setLayout(null);
         jPanel2.setBounds(panel);
 
-        jLabel4.setText("Jefe");
+        jLabel4.setText(Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(1).getNombreNPC());
         jLabel4.setBounds(nombre);
         jLabel4.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel4.setForeground(Color.black);
@@ -237,7 +243,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         BufferedImage imagen3 = null;
 
         try {
-            imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Detective Reducido.png"));
+            imagen3 = ImageIO.read(new File("DatosAuxiliares/Personajes/Capitan Cabeza.png"));
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen: " + e.getMessage());
         }
@@ -257,6 +263,15 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jLabelR2.setForeground(Color.black);
         jPanel2.add(jLabelR2);
 
+        Informacion info2 = informacion.get(1);
+        Iterator<String> iterator2 = info2.getListaDeDialogos().iterator();
+        while(iterator2.hasNext()) {
+            String contenido = iterator2.next();
+            if (!jTextArea2.getText().isEmpty()) {
+                jTextArea2.setText(jTextArea2.getText() + "\n" + "·" + contenido);
+            } else
+                jTextArea2.setText("·" + contenido);
+        }
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jTextArea2.setBackground(new Color(0, 0, 0, 0));
@@ -267,7 +282,6 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea2.setLineWrap(true);
         jTextArea2.setWrapStyleWord(true);
         jTextArea2.setEditable(false);
-        jTextArea2.setText("Información del Jefe");
         jTextArea2.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane2.setViewportView(jTextArea2);
@@ -287,17 +301,31 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro2.setWrapStyleWord(true);
         registro2.setEditable(false);
         registro2.setBackground(new Color(0, 0, 0, 0));
-        registro2.setText("   Datos  Generales: \nEdad:   45       Sexo: Masculino   \n" + "Ocupacion:   Jefe \n" + "\n\n\n  Analisis de personalidad: \n"
-                + "Autoritario, estricto, responsable, serio, lider");
+
+        registro2.setText("   Datos  Generales: \nEdad: " + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(1).getEdadNPC() + "    "+
+                "Sexo: "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(1).getSexo()  +
+                "  \n" + "Ocupacion:  "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(1).getOcupacion()  + " \n\n\n\n  Analisis de personalidad: \n");
+        int r2= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(1).getPersonalidad().size();
+        for(int q =0; q<r2; q++){
+            if(q!=r2-1)
+                registro2.setText(registro2.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(1).getPersonalidad().get(q) + ", ");
+            else
+                registro2.setText(registro2.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(1).getPersonalidad().get(q));
+
+        }
         registro2.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro2.setBounds(registros);
         jPanel2.add(registro2);
+
+
+        //Pagina 3
+
 
         jPanel3.setBackground(new Color(0, 0, 0, 0));
         jPanel3.setLayout(null);
         jPanel3.setBounds(panel);
 
-        jLabel6.setText("Policia");
+        jLabel6.setText(Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(2).getNombreNPC());
         jLabel6.setBounds(nombre);
         jLabel6.setFont(new Font("Viner Hand ITC", Font.PLAIN, (int) (tamPant.width * 0.016)));
         jLabel6.setForeground(Color.black);
@@ -338,7 +366,16 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea3.setLineWrap(true);
         jTextArea3.setWrapStyleWord(true);
         jTextArea3.setEditable(false);
-        jTextArea3.setText("Información del Policia");
+
+        Informacion info3 = informacion.get(2);
+        Iterator<String> iterator3 = info3.getListaDeDialogos().iterator();
+        while(iterator3.hasNext()) {
+            String contenido = iterator3.next();
+            if (!jTextArea3.getText().isEmpty()) {
+                jTextArea3.setText(jTextArea3.getText() + "\n" + "·" + contenido);
+            } else
+                jTextArea3.setText("·" + contenido);
+        }
         jTextArea3.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane3.setViewportView(jTextArea3);
@@ -358,17 +395,30 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro3.setWrapStyleWord(true);
         registro3.setEditable(false);
         registro3.setBackground(new Color(0, 0, 0, 0));
-        registro3.setText("   Datos  Generales: \nEdad:   35       Sexo: Masculino   \n" + "Ocupacion:   Policia \n" + "\n\n\n  Analisis de personalidad: \n"
-                + "Justo, valiente, protector, honesto, disciplinado");
+        registro3.setText("   Datos  Generales: \nEdad: " + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(2).getEdadNPC() + "    "+
+                "Sexo: "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(2).getSexo()  +
+                "  \n" + "Ocupacion:  "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(2).getOcupacion()  + " \n\n\n\n  Analisis de personalidad: \n");
+        int r3= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(2).getPersonalidad().size();
+        for(int q =0; q<r3; q++){
+            if(q!=r3-1)
+                registro3.setText(registro3.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(2).getPersonalidad().get(q) + ", ");
+            else
+                registro3.setText(registro3.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(2).getPersonalidad().get(q));
+
+        }
         registro3.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro3.setBounds(registros);
         jPanel3.add(registro3);
+
+
+        //Pagina 4
+
 
         jPanel4.setBackground(new Color(0, 0, 0, 0));
         jPanel4.setLayout(null);
         jPanel4.setBounds(panel);
 
-        jLabel8.setText("Dueño");
+        jLabel8.setText(Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(3).getNombreNPC());
         jLabel8.setBounds(nombre);
         jLabel8.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel8.setForeground(Color.black);
@@ -409,7 +459,17 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea4.setLineWrap(true);
         jTextArea4.setWrapStyleWord(true);
         jTextArea4.setEditable(false);
-        jTextArea4.setText("Información del Dueño");
+
+        Informacion info4 = informacion.get(3);
+        Iterator<String> iterator4 = info4.getListaDeDialogos().iterator();
+        while(iterator4.hasNext()) {
+            String contenido = iterator4.next();
+            if (!jTextArea4.getText().isEmpty()) {
+                jTextArea4.setText(jTextArea4.getText() + "\n" + "·" + contenido);
+            } else
+                jTextArea4.setText("·" + contenido);
+        }
+
         jTextArea4.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane4.setViewportView(jTextArea4);
@@ -429,17 +489,28 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro4.setWrapStyleWord(true);
         registro4.setEditable(false);
         registro4.setBackground(new Color(0, 0, 0, 0));
-        registro4.setText("   Datos  Generales: \nEdad:   50       Sexo: Masculino   \n" + "Ocupacion:   Dueño \n" + "\n\n\n  Analisis de personalidad: \n"
-                + "Ambicioso, calculador, exitoso, dominante, materialista");
+        registro4.setText("   Datos  Generales: \nEdad: " + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(3).getEdadNPC() + "    " +
+                "Sexo: "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(3).getSexo()  +
+                "  \n" + "Ocupacion:  "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(3).getOcupacion()  + " \n\n\n\n  Analisis de personalidad: \n");
+        int r4= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(3).getPersonalidad().size();
+        for(int q =0; q<r4; q++){
+            if(q!=r4-1)
+                registro4.setText(registro4.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(3).getPersonalidad().get(q) + ", ");
+            else
+                registro4.setText(registro4.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(3).getPersonalidad().get(q));
+
+        }
         registro4.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro4.setBounds(registros);
         jPanel4.add(registro4);
+
+        //Pagina 5
 
         jPanel5.setBackground(new Color(0, 0, 0, 0));
         jPanel5.setLayout(null);
         jPanel5.setBounds(panel);
 
-        jLabel10.setText("Esposa del dueño");
+        jLabel10.setText(Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(4).getNombreNPC());
         jLabel10.setBounds(nombre);
         jLabel10.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel10.setForeground(Color.black);
@@ -480,7 +551,17 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea5.setLineWrap(true);
         jTextArea5.setWrapStyleWord(true);
         jTextArea5.setEditable(false);
-        jTextArea5.setText("Información de la Esposa del dueño");
+
+        Informacion info5 = informacion.get(4);
+        Iterator<String> iterator5 = info5.getListaDeDialogos().iterator();
+        while(iterator5.hasNext()) {
+            String contenido = iterator3.next();
+            if (!jTextArea5.getText().isEmpty()) {
+                jTextArea5.setText(jTextArea5.getText() + "\n" + "·" + contenido);
+            } else
+                jTextArea5.setText("·" + contenido);
+        }
+
         jTextArea5.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane5.setViewportView(jTextArea5);
@@ -500,17 +581,26 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro5.setWrapStyleWord(true);
         registro5.setEditable(false);
         registro5.setBackground(new Color(0, 0, 0, 0));
-        registro5.setText("   Datos  Generales: \nEdad:   42       Sexo: Femenino   \n" + "Ocupacion:   Esposa \n" + "\n\n\n  Analisis de personalidad: \n"
-                + "Elegante, sofisticada, celosa, manipuladora, orgullosa");
+        registro5.setText("   Datos  Generales: \nEdad: " + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(4).getEdadNPC() + "    "+
+                "Sexo: "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(4).getSexo()  +
+                "  \n" + "Ocupacion:  "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(4).getOcupacion()  + " \n\n\n\n  Analisis de personalidad: \n");
+        int r5= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(4).getPersonalidad().size();
+        for(int q =0; q<r5; q++) {
+            if (q != r5-1)
+                registro5.setText(registro5.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(4).getPersonalidad().get(q) + ", " );
+            else
+                registro5.setText(registro5.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(4).getPersonalidad().get(q));
+        }
         registro5.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro5.setBounds(registros);
         jPanel5.add(registro5);
 
+        //Pagina 6
         jPanel6.setBackground(new Color(0, 0, 0, 0));
         jPanel6.setLayout(null);
         jPanel6.setBounds(panel);
 
-        jLabel12.setText("Secretaria");
+        jLabel12.setText(Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(5).getNombreNPC());
         jLabel12.setBounds(nombre);
         jLabel12.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel12.setForeground(Color.black);
@@ -551,7 +641,16 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea6.setLineWrap(true);
         jTextArea6.setWrapStyleWord(true);
         jTextArea6.setEditable(false);
-        jTextArea6.setText("Información de la Secretaria");
+
+        Informacion info6 = informacion.get(5);
+        Iterator<String> iterator6 = info6.getListaDeDialogos().iterator();
+        while(iterator6.hasNext()) {
+            String contenido = iterator6.next();
+            if (!jTextArea6.getText().isEmpty()) {
+                jTextArea6.setText(jTextArea6.getText() + "\n" + "·" + contenido);
+            } else
+                jTextArea6.setText("·" + contenido);
+        }
         jTextArea6.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane6.setViewportView(jTextArea6);
@@ -571,17 +670,27 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro6.setWrapStyleWord(true);
         registro6.setEditable(false);
         registro6.setBackground(new Color(0, 0, 0, 0));
-        registro6.setText("   Datos  Generales: \nEdad:   30       Sexo: Femenino   \n" + "Ocupacion:   Secretaria \n" + "\n\n\n  Analisis de personalidad: \n"
-                + "Eficiente, discreta, observadora, leal, organizada");
+        registro6.setText("   Datos  Generales: \nEdad: " + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(5).getEdadNPC() + "    "+
+                "Sexo: "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(5).getSexo()  +
+                "  \n" + "Ocupacion:  "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(5).getOcupacion()  + " \n\n\n\n  Analisis de personalidad: \n");
+        int r6= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(5).getPersonalidad().size();
+        for(int q =0; q<r6; q++) {
+            if (q != r6-1)
+                registro6.setText(registro6.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(5).getPersonalidad().get(q) + ", ");
+            else
+                registro6.setText(registro6.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(5).getPersonalidad().get(q));
+        }
         registro6.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro6.setBounds(registros);
         jPanel6.add(registro6);
+
+        //Pagina 7
 
         jPanel7.setBackground(new Color(0, 0, 0, 0));
         jPanel7.setLayout(null);
         jPanel7.setBounds(panel);
 
-        jLabel14.setText("Guia 1");
+        jLabel14.setText(Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(6).getNombreNPC());
         jLabel14.setBounds(nombre);
         jLabel14.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel14.setForeground(Color.black);
@@ -622,7 +731,16 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea7.setLineWrap(true);
         jTextArea7.setWrapStyleWord(true);
         jTextArea7.setEditable(false);
-        jTextArea7.setText("Información del Guia 1");
+
+        Informacion info7 = informacion.get(6);
+        Iterator<String> iterator7 = info7.getListaDeDialogos().iterator();
+        while(iterator7.hasNext()) {
+            String contenido = iterator7.next();
+            if (!jTextArea7.getText().isEmpty()) {
+                jTextArea7.setText(jTextArea7.getText() + "\n" + "·" + contenido);
+            } else
+                jTextArea7.setText("·" + contenido);
+        }
         jTextArea7.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane7.setViewportView(jTextArea7);
@@ -642,17 +760,26 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro7.setWrapStyleWord(true);
         registro7.setEditable(false);
         registro7.setBackground(new Color(0, 0, 0, 0));
-        registro7.setText("   Datos  Generales: \nEdad:   25       Sexo: Masculino   \n" + "Ocupacion:   Guia \n" + "\n\n\n  Analisis de personalidad: \n"
-                + "Amigable, conocedor, paciente, comunicativo, servicial");
+        registro7.setText("   Datos  Generales: \nEdad: " + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(6).getEdadNPC() + "    "+
+                "Sexo: "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(6).getSexo()  +
+                "  \n" + "Ocupacion:  "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(6).getOcupacion()  + " \n\n\n\n  Analisis de personalidad: \n");
+        int r7= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(6).getPersonalidad().size();
+        for(int q =0; q<r7; q++) {
+            if (q != r7-1)
+                registro7.setText(registro7.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(6).getPersonalidad().get(q) + ", ");
+            else
+                registro7.setText(registro7.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(6).getPersonalidad().get(q));
+        }
         registro7.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro7.setBounds(registros);
         jPanel7.add(registro7);
 
+        //Pagina 8
         jPanel8.setBackground(new Color(0, 0, 0, 0));
         jPanel8.setLayout(null);
         jPanel8.setBounds(panel);
 
-        jLabel16.setText("Guia 2");
+        jLabel16.setText(Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(7).getNombreNPC());
         jLabel16.setBounds(nombre);
         jLabel16.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel16.setForeground(Color.black);
@@ -693,7 +820,17 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea8.setLineWrap(true);
         jTextArea8.setWrapStyleWord(true);
         jTextArea8.setEditable(false);
-        jTextArea8.setText("Información del Guia 2");
+
+        Informacion info8 = informacion.get(7);
+        Iterator<String> iterator8 = info8.getListaDeDialogos().iterator();
+        while(iterator8.hasNext()) {
+            String contenido = iterator8.next();
+            if (!jTextArea8.getText().isEmpty()) {
+                jTextArea8.setText(jTextArea8.getText() + "\n" + "·" + contenido);
+            } else
+                jTextArea8.setText("·" + contenido);
+        }
+
         jTextArea8.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane8.setViewportView(jTextArea8);
@@ -712,18 +849,29 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro8.setLineWrap(true);
         registro8.setWrapStyleWord(true);
         registro8.setEditable(false);
+
         registro8.setBackground(new Color(0, 0, 0, 0));
-        registro8.setText("   Datos  Generales: \nEdad:   27       Sexo: Femenino   \n" + "Ocupacion:   Guia \n" + "\n\n\n  Analisis de personalidad: \n"
-                + "Energica, entusiasta, extrovertida, carismática, alegre");
+        registro8.setText("   Datos  Generales: \nEdad: " + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(7).getEdadNPC() + "    "+
+                "Sexo: "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(7).getSexo()  +
+                "  \n" + "Ocupacion:  "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(7).getOcupacion()  + " \n\n\n\n  Analisis de personalidad: \n");
+        int r8= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(7).getPersonalidad().size();
+        for(int q =0; q<r8; q++) {
+            if (q != r8-1)
+                registro8.setText(registro8.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(7).getPersonalidad().get(q) + ", ");
+            else
+                registro8.setText(registro8.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(7).getPersonalidad().get(q));
+        }
+
         registro8.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro8.setBounds(registros);
         jPanel8.add(registro8);
 
+        //Pagina 9
         jPanel9.setBackground(new Color(0, 0, 0, 0));
         jPanel9.setLayout(null);
         jPanel9.setBounds(panel);
 
-        jLabel18.setText("Seguridad");
+        jLabel18.setText(Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(8).getNombreNPC());
         jLabel18.setBounds(nombre);
         jLabel18.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel18.setForeground(Color.black);
@@ -734,7 +882,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         BufferedImage imagen17 = null;
 
         try {
-            imagen17 = ImageIO.read(new File("DatosAuxiliares/Personajes/Detective Reducido.png"));
+            imagen17 = ImageIO.read(new File("DatosAuxiliares/Personajes/Seguridad Reducido.png"));
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen: " + e.getMessage());
         }
@@ -764,7 +912,17 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea9.setLineWrap(true);
         jTextArea9.setWrapStyleWord(true);
         jTextArea9.setEditable(false);
-        jTextArea9.setText("Información del Seguridad");
+
+        Informacion info9 = informacion.get(8);
+        Iterator<String> iterator9 = info9.getListaDeDialogos().iterator();
+        while(iterator9.hasNext()) {
+            String contenido = iterator9.next();
+            if (!jTextArea9.getText().isEmpty()) {
+                jTextArea9.setText(jTextArea9.getText() + "\n" + "·" + contenido);
+            } else
+                jTextArea9.setText("·" + contenido);
+        }
+
         jTextArea9.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane9.setViewportView(jTextArea9);
@@ -784,17 +942,30 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro9.setWrapStyleWord(true);
         registro9.setEditable(false);
         registro9.setBackground(new Color(0, 0, 0, 0));
-        registro9.setText("   Datos  Generales: \nEdad:   40       Sexo: Masculino   \n" + "Ocupacion:   Seguridad \n" + "\n\n\n  Analisis de personalidad: \n"
-                + "Vigilante, fuerte, protector, serio, confiable");
+
+        registro9.setText("   Datos  Generales: \nEdad: " + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(8).getEdadNPC() + "    "+
+                "Sexo: "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(8).getSexo()  +
+                "  \n" + "Ocupacion:  "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(8).getOcupacion()  + " \n\n\n\n  Analisis de personalidad: \n");
+        int r9= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(8).getPersonalidad().size();
+        for(int q =0; q<r9; q++) {
+            if (q != r9-1)
+                registro9.setText(registro9.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(8).getPersonalidad().get(q) + ", ");
+            else
+                registro9.setText(registro9.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(8).getPersonalidad().get(q));
+        }
         registro9.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro9.setBounds(registros);
         jPanel9.add(registro9);
+
+
+        //Pagina 10
+
 
         jPanel10.setBackground(new Color(0, 0, 0, 0));
         jPanel10.setLayout(null);
         jPanel10.setBounds(panel);
 
-        jLabel20.setText("Vagabundo");
+        jLabel20.setText(Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(9).getNombreNPC());
         jLabel20.setBounds(nombre);
         jLabel20.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
         jLabel20.setForeground(Color.black);
@@ -805,7 +976,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         BufferedImage imagen19 = null;
 
         try {
-            imagen19 = ImageIO.read(new File("DatosAuxiliares/Personajes/Detective Reducido.png"));
+            imagen19 = ImageIO.read(new File("DatosAuxiliares/Personajes/Vagabundo Reducido.png"));
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen: " + e.getMessage());
         }
@@ -835,7 +1006,16 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jTextArea10.setLineWrap(true);
         jTextArea10.setWrapStyleWord(true);
         jTextArea10.setEditable(false);
-        jTextArea10.setText("Información del Vagabundo");
+
+        Informacion info10 = informacion.get(9);
+        Iterator<String> iterator10 = info10.getListaDeDialogos().iterator();
+        while(iterator10.hasNext()) {
+            String contenido = iterator10.next();
+            if (!jTextArea10.getText().isEmpty()) {
+                jTextArea10.setText(jTextArea10.getText() + "\n" + "·" + contenido);
+            } else
+                jTextArea10.setText("·" + contenido);
+        }
         jTextArea10.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
 
         jScrollPane10.setViewportView(jTextArea10);
@@ -855,83 +1035,22 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro10.setWrapStyleWord(true);
         registro10.setEditable(false);
         registro10.setBackground(new Color(0, 0, 0, 0));
-        registro10.setText("   Datos  Generales: \nEdad:   55       Sexo: Masculino   \n" + "Ocupacion:   Vagabundo \n" + "\n\n\n  Analisis de personalidad: \n"
-                + "Misterioso, observador, solitario, sabio, marginal");
+        registro10.setText("   Datos  Generales: \nEdad: " + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(9).getEdadNPC() + "    "+
+                "Sexo: "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(9).getSexo()  +
+                "  \n" + "Ocupacion:  "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(9).getOcupacion()  + " \n\n\n\n  Analisis de personalidad: \n");
+        int r10= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(9).getPersonalidad().size();
+        for(int q =0; q<r10; q++) {
+            if (q != r10-1)
+                registro10.setText(registro10.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(9).getPersonalidad().get(q) + ", ");
+            else
+                registro10.setText(registro10.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(9).getPersonalidad().get(q));
+        }
         registro10.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
         registro10.setBounds(registros);
         jPanel10.add(registro10);
 
-        jPanel11.setBackground(new Color(0, 0, 0, 0));
-        jPanel11.setLayout(null);
-        jPanel11.setBounds(panel);
 
-        jLabel22.setText("Victima");
-        jLabel22.setBounds(nombre);
-        jLabel22.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
-        jLabel22.setForeground(Color.black);
-        jPanel11.add(jLabel22);
-
-        jLabel21.setBounds(foto);
-        jLabel21.setOpaque(true);
-        BufferedImage imagen21 = null;
-
-        try {
-            imagen21 = ImageIO.read(new File("DatosAuxiliares/Personajes/Victima Reducida.png"));
-        } catch (IOException e) {
-            System.err.println("No se pudo cargar la imagen: " + e.getMessage());
-        }
-
-        if (imagen21 != null) {
-            ImageIcon icono21 = new ImageIcon(imagen21.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
-            jLabel21.setIcon(icono21);
-        }
-        jLabel21.setBorder(new LineBorder(Color.black, 2, true));
-        jLabel21.setBackground(new Color(255, 255, 255, 30));
-        jPanel11.add(jLabel21);
-
-        JLabel jLabelR11 = new JLabel();
-        jLabelR11.setText("Datos relacionados con la investigacion");
-        jLabelR11.setBounds(labelDatos);
-        jLabelR11.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
-        jLabelR11.setForeground(Color.black);
-        jPanel11.add(jLabelR11);
-
-        jTextArea11.setColumns(20);
-        jTextArea11.setRows(5);
-        jTextArea11.setBackground(new Color(0, 0, 0, 0));
-        jTextArea11.setEnabled(false);
-        jTextArea11.setFocusable(false);
-        jTextArea11.setHighlighter(null);
-        jTextArea11.setDisabledTextColor(Color.black);
-        jTextArea11.setLineWrap(true);
-        jTextArea11.setWrapStyleWord(true);
-        jTextArea11.setEditable(false);
-        jTextArea11.setText("Información de la Victima");
-        jTextArea11.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
-
-        jScrollPane11.setViewportView(jTextArea11);
-        jScrollPane11.setBounds(datos);
-        jScrollPane11.setOpaque(true);
-        jScrollPane11.setBackground(new Color(0, 0, 0, 0));
-        jScrollPane11.setBorder(null);
-        jPanel11.add(jScrollPane11);
-
-        JTextArea registro11 = new JTextArea();
-        registro11.setColumns(20);
-        registro11.setRows(5);
-        registro11.setHighlighter(null);
-        registro11.setFocusable(false);
-        registro11.setDisabledTextColor(Color.black);
-        registro11.setLineWrap(true);
-        registro11.setWrapStyleWord(true);
-        registro11.setEditable(false);
-        registro11.setBackground(new Color(0, 0, 0, 0));
-        registro11.setText("   Datos  Generales: \nEdad:   32       Sexo: Masculino   \n" + "Ocupacion:   Empresario \n" + "\n\n\n  Analisis de personalidad: \n"
-                + "Carismático, ambicioso, popular, influyente, exitoso");
-        registro11.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
-        registro11.setBounds(registros);
-        jPanel11.add(registro11);
-
+        //Fin de las paginas
         getContentPane().add(contenedor);
         botonSalir = new JButton("Salir");
         botonSalir.setBounds((int) (tamPant.width * 0.9), (int) (tamPant.height * 0.03), (int) (tamPant.width * 0.08), (int) (tamPant.height * 0.05));
@@ -1432,8 +1551,6 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1443,7 +1560,6 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1454,7 +1570,6 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1466,7 +1581,6 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     private JPanel contenedor;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea10;
-    private javax.swing.JTextArea jTextArea11;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
@@ -1488,5 +1602,5 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     private JButton boton8;
     private JButton boton9;
     private JButton boton10;
-    private JButton boton11;
+
 }

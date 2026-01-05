@@ -32,7 +32,7 @@ public class Diario implements Serializable
     public void inicializarDatos() {
 
         // 1. CASO
-        Informacion victima = new Informacion("Caso", "32", Sexo.MASCULINO, "Economico");
+        Informacion victima = new Informacion("Henry Bennett", "32", Sexo.MASCULINO, "Economico");
         victima.agregarCualidad("Timido");
         victima.agregarCualidad("Reservado");
         victima.agregarCualidad("Poco amigable");
@@ -40,7 +40,7 @@ public class Diario implements Serializable
         dialogosImportantes.add(victima);
 
         // 2. JEFE
-        Informacion jefe = new Informacion("Jefe", "45", Sexo.MASCULINO, "Jefe");
+        Informacion jefe = new Informacion("Capitan", "45", Sexo.MASCULINO, "Jefe");
         jefe.agregarCualidad("Autoritario");
         jefe.agregarCualidad("estricto");
         jefe.agregarCualidad("responsable");
@@ -49,7 +49,7 @@ public class Diario implements Serializable
         dialogosImportantes.add(jefe);
 
         // 3. POLICÍA
-        Informacion policia = new Informacion("Policia", "35", Sexo.MASCULINO, "Policia");
+        Informacion policia = new Informacion("Max Turner", "35", Sexo.MASCULINO, "Policia");
         policia.agregarCualidad("Justo");
         policia.agregarCualidad("valiente");
         policia.agregarCualidad("protector");
@@ -58,7 +58,7 @@ public class Diario implements Serializable
         dialogosImportantes.add(policia);
 
         // 4. DUEÑO
-        Informacion dueno = new Informacion("Dueño", "50", Sexo.MASCULINO, "Dueño");
+        Informacion dueno = new Informacion("Theodore Winslow", "50", Sexo.MASCULINO, "Dueño");
         dueno.agregarCualidad("Ambicioso");
         dueno.agregarCualidad("calculador");
         dueno.agregarCualidad("exitoso");
@@ -67,7 +67,7 @@ public class Diario implements Serializable
         dialogosImportantes.add(dueno);
 
         // 5. ESPOSA DEL DUEÑO
-        Informacion esposa = new Informacion("Esposa del dueño", "42", Sexo.FEMENINO, "Esposa");
+        Informacion esposa = new Informacion("Cate Sinclair", "42", Sexo.FEMENINO, "Esposa");
         esposa.agregarCualidad("Elegante");
         esposa.agregarCualidad("sofisticada");
         esposa.agregarCualidad("celosa");
@@ -76,7 +76,7 @@ public class Diario implements Serializable
         dialogosImportantes.add(esposa);
 
         // 6. SECRETARIA
-        Informacion secretaria = new Informacion("Secretaria", "30", Sexo.FEMENINO, "Secretaria");
+        Informacion secretaria = new Informacion("Elizabeth Reed", "30", Sexo.FEMENINO, "Secretaria");
         secretaria.agregarCualidad("Eficiente");
         secretaria.agregarCualidad("discreta");
         secretaria.agregarCualidad("observadora");
@@ -85,7 +85,7 @@ public class Diario implements Serializable
         dialogosImportantes.add(secretaria);
 
         // 7. GUÍA 1
-        Informacion guia1 = new Informacion("Guia 1", "25", Sexo.MASCULINO, "Guia");
+        Informacion guia1 = new Informacion("William Harrington", "25", Sexo.MASCULINO, "Guia");
         guia1.agregarCualidad("Amigable");
         guia1.agregarCualidad("conocedor");
         guia1.agregarCualidad("paciente");
@@ -94,7 +94,7 @@ public class Diario implements Serializable
         dialogosImportantes.add(guia1);
 
         // 8. GUÍA 2
-        Informacion guia2 = new Informacion("Guia 2", "27", Sexo.FEMENINO, "Guia");
+        Informacion guia2 = new Informacion("Alex Valle", "27", Sexo.FEMENINO, "Guia");
         guia2.agregarCualidad("Energica");
         guia2.agregarCualidad("entusiasta");
         guia2.agregarCualidad("extrovertida");
@@ -103,7 +103,7 @@ public class Diario implements Serializable
         dialogosImportantes.add(guia2);
 
         // 9. SEGURIDAD
-        Informacion seguridad = new Informacion("Seguridad", "40", Sexo.MASCULINO, "Seguridad");
+        Informacion seguridad = new Informacion("Kai Collins", "40", Sexo.MASCULINO, "Seguridad");
         seguridad.agregarCualidad("Vigilante");
         seguridad.agregarCualidad("fuerte");
         seguridad.agregarCualidad("protector");
@@ -112,7 +112,7 @@ public class Diario implements Serializable
         dialogosImportantes.add(seguridad);
 
         // 10. VAGABUNDO
-        Informacion vagabundo = new Informacion("Vagabundo", "55", Sexo.MASCULINO, "Vagabundo");
+        Informacion vagabundo = new Informacion("Leo Kuibbert", "55", Sexo.MASCULINO, "Vagabundo");
         vagabundo.agregarCualidad("Misterioso");
         vagabundo.agregarCualidad("observador");
         vagabundo.agregarCualidad("solitario");
@@ -120,14 +120,7 @@ public class Diario implements Serializable
         vagabundo.agregarCualidad("marginal");
         dialogosImportantes.add(vagabundo);
 
-        // 11. VÍCTIMA
-        Informacion victimaEmpresario = new Informacion("Victima", "32", Sexo.MASCULINO, "Empresario");
-        victimaEmpresario.agregarCualidad("Carismático");
-        victimaEmpresario.agregarCualidad("ambicioso");
-        victimaEmpresario.agregarCualidad("popular");
-        victimaEmpresario.agregarCualidad("influyente");
-        victimaEmpresario.agregarCualidad("exitoso");
-        dialogosImportantes.add(victimaEmpresario);
+
     }
 
     // Para guardar los dialogos mas importantes para cada NPC

@@ -19,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -200,8 +201,47 @@ public class SalaDeCamaras extends ModeloEscenario {
     }
 
     private void seguridadActionPerformed(ActionEvent evt) {
-        seguridad.setVisible(false);
-        ponerDialogo();
+        if((Juego.getInstance().getPartidaActual().getEventos().getRonda()==0 &&!Juego.getInstance().getPartidaActual().getEventos().isSeguridadYa())){
+            ponerDialogo();
+            seguridad.setVisible(false);
+        }else
+            ponerDialogosEstatico(crearDialogoYa(), 0);
+    }
+
+    private ArrayList<Dialogo> crearDialogoYa(){
+        ArrayList<Dialogo> dialogoEstatic = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(Ya hable con el)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Deberia de enfocarme en recorrer el museo y buscar otras pistas.)", "Detective", detective, true);
+
+        dialogoEstatic.add(d1);
+        dialogoEstatic.add(d2);
+        return dialogoEstatic;
+    }
+    private void ponerDialogosEstatico(ArrayList<Dialogo> dialogos, int actual) {
+        if(actual<dialogos.size()) {
+            Dialogo aux = dialogos.get(actual);
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            actual++;
+            int finalActual = actual;
+
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    EstatiMouseClicked(dialogos, finalActual);
+                }
+            });
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
+            cajaTexto.removeAll();
+        }
+
+    }
+    private void EstatiMouseClicked(ArrayList<Dialogo> dialogos, int actual){
+        ponerDialogosEstatico(dialogos, actual);
+
     }
 
     public void ponerDialogo() {
@@ -230,8 +270,8 @@ public class SalaDeCamaras extends ModeloEscenario {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            revalidate();
-            repaint();
+            Juego.getInstance().getPartidaActual().getEventos().setSeguridadYa(true);
+            Juego.getInstance().getPartidaActual().getEventos().cambiarARonda1();
             seguridad.setVisible(true);
         }
         getContentPane().revalidate();

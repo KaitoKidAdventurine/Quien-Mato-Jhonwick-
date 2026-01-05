@@ -7,12 +7,14 @@ public class UnionInterfaces {
     private boolean salirJuego;
     private boolean confirmarBorrado;
     private static UnionInterfaces instancia;
+    private boolean abriendoPartida;
 
     public UnionInterfaces(){
         this.opcionDialogo = 1;
         this.cerrarVentana= false;
         this.salirJuego = false;
         this.confirmarBorrado = false;
+        this.abriendoPartida=false;
     }
 
     public int getOpcionDialogo() {
@@ -50,5 +52,13 @@ public class UnionInterfaces {
 
     public void setConfirmarBorrado(boolean confirmarBorrado) {
         this.confirmarBorrado = confirmarBorrado;
+    }
+
+    public boolean getAbriendoPartida() {
+        return abriendoPartida;
+    }
+
+    public void setAbriendoPartida(boolean abriendoPartida) {
+        this.abriendoPartida = abriendoPartida;
     }
 }

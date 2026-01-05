@@ -65,7 +65,7 @@ public class Juego {
         Dialogo d22 = new Dialogo("No comentare nada al respecto a eso, pero respecto al caso solo te voy a decir que no la cagues, por alguna razon este caso parece preocuparle a los jefes. " , "Capitan", nada, true);
         Dialogo d23 = new Dialogo("Sabes que nunca lo haria, pero pos si acaso. ¿Cómo me recomendarias actuar? ", "Detective", detective, true);
         Dialogo d24 = new Dialogo("En primer lugar volver a entrevistar a todos, empieza por los que consideres mas gordos, luego ve por los pequeños a ver que encuentras. " , "Capitan", nada, true);
-        Dialogo d25 = new Dialogo("Justo lo que pense que dirias. Entonces mi acercamiento inicial debe de ser, Dueño,Guia principal, Seguridad y Secretaria. Luego continuo con los demas. ", "Detective", detective, true);
+        Dialogo d25 = new Dialogo("Justo lo que pense que dirias. Entonces mi acercamiento inicial debe de ser, Dueño, Guia principal y Seguridad. Luego continuo con los demas. ", "Detective", detective, true);
         Dialogo d26 = new Dialogo("Parece que no tengo nada mas que enseñarte. Continua con la investigacion. " , "Capitan", nada, true);
         Dialogo d27 = new Dialogo("Si necesito consejo te vuelvo a llamar.", "Detective", detective, true);
         Dialogo d28 = new Dialogo("Esta bien. " , "Capitan", nada, true);
@@ -111,6 +111,14 @@ public class Juego {
             instance = new Juego();
         }
         return instance;
+    }
+
+    public ArrayList<ArrayList<Dialogo>> getDialogosCapitan() {
+        return dialogosCapitan;
+    }
+
+    public void setDialogosCapitan(ArrayList<ArrayList<Dialogo>> dialogosCapitan) {
+        this.dialogosCapitan = dialogosCapitan;
     }
 
     public String getTitulo() {

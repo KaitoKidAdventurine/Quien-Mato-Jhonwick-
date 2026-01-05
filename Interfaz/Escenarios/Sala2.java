@@ -8,7 +8,6 @@ import Interfaz.InterfazJugador.OpcionesDialogos;
 import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
 import Logica.Juego;
-import Logica.Partida;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -227,10 +226,42 @@ public class Sala2  extends ModeloEscenario {
     }
 
     private void guia2ActionPerformed(ActionEvent evt) {
-        ponerDialogoGuia2(crearDialogoGuia2(), 0);
+        if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==0){
+            ponerDialogosEstatico(crearDialogoNoDisponible(), 0);
+        }else if (Juego.getInstance().getPartidaActual().getEventos().getRonda()==1 && !Juego.getInstance().getPartidaActual().getEventos().isGuia2Ya()){
+            ponerDialogoGuia2();
+            guia2.setVisible(false);
+        }else
+            ponerDialogosEstatico(crearDialogoYa(), 0);
     }
 
-    private void ponerDialogoGuia2(ArrayList<Dialogo> dialogos, int actual) {
+
+    private void guia2MouseClicked(){
+        ponerDialogoGuia2();
+    }
+    private ArrayList<Dialogo> crearDialogoNoDisponible(){
+        ArrayList<Dialogo> dialogosEstatic= new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(No creo que sea lo mas adecuado preguntar al guia secundario acerca del lugar, por ahora.)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Pospondre su interrogatorio hasta que haya terminado con los trabajadores mas importantes.)", "Detective", detective, true);
+
+        dialogosEstatic.add(d1);
+        dialogosEstatic.add(d2);
+        return dialogosEstatic;
+    }
+    private ArrayList<Dialogo> crearDialogoYa(){
+        ArrayList<Dialogo> dialogosEstatic = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(Ya hable con el)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Deberia de enfocarme en recorrer el museo y buscar otras pistas.)", "Detective", detective, true);
+
+        dialogosEstatic.add(d1);
+        dialogosEstatic.add(d2);
+        return dialogosEstatic;
+    }
+    private void ponerDialogosEstatico(ArrayList<Dialogo> dialogos, int actual) {
         if(actual<dialogos.size()) {
             Dialogo aux = dialogos.get(actual);
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
@@ -240,7 +271,7 @@ public class Sala2  extends ModeloEscenario {
 
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
-                    guia2MouseClicked(dialogos, finalActual);
+                    EstatiMouseClicked2(dialogos, finalActual);
                 }
             });
             cajaTexto.removeAll();
@@ -250,19 +281,8 @@ public class Sala2  extends ModeloEscenario {
         }
 
     }
-    private void guia2MouseClicked(ArrayList<Dialogo> dialogos, int actual){
-        ponerDialogoGuia2(dialogos, actual);
-        revalidate();
-        repaint();
-    }
-    private ArrayList<Dialogo> crearDialogoGuia2() {
-        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
-        Dialogo d1= new Dialogo("(Pensandolo mejor, en vez de hablar con el guia auxiliar del museo, creo que obtendre informacion mucho mejor si en cambio le pregunto al guia principal.)", "Detective", detective, true);
-        Dialogo d2= new Dialogo("(Pospodre el interrogatorio al guia auxiliar hasta despues del guia principal.)", "Detective", detective, true);
-        ArrayList<Dialogo> dialogosGuia2 = new ArrayList<>();
-        dialogosGuia2.add(d1);
-        dialogosGuia2.add(d2);
-        return dialogosGuia2;
+    private void EstatiMouseClicked2(ArrayList<Dialogo> dialogos, int actual){
+        ponerDialogosEstatico(dialogos, actual);
     }
 
     private void guia1MouseExited(MouseEvent evt) {
@@ -288,8 +308,11 @@ public class Sala2  extends ModeloEscenario {
     }
 
     private void guia1ActionPerformed(ActionEvent evt) {
-        ponerDialogoGuia1();
-        guia1.setVisible(false);
+        if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==0 && !Juego.getInstance().getPartidaActual().getEventos().isGuia1Ya()){
+            ponerDialogoGuia1();
+            guia1.setVisible(false);
+        }else ponerDialogosEstatico(crearDialogoYa(), 0);
+
     }
 
     public void ponerDialogoGuia1() {
@@ -316,18 +339,44 @@ public class Sala2  extends ModeloEscenario {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            revalidate();
-            repaint();
+            Juego.getInstance().getPartidaActual().getEventos().setGuia1Ya(true);
+            Juego.getInstance().getPartidaActual().getEventos().cambiarARonda1();
             guia1.setVisible(true);
+        }
+    }
+    public void ponerDialogoGuia2() {
+        if(Juego.getInstance().getEscenarios().get(9).getNodoDialActual() == null || !(Juego.getInstance().getEscenarios().get(9).getArbolDial().nodeIsLeaf(Juego.getInstance().getEscenarios().get(9).getNodoDialActual()))) {
+            if(!(Juego.getInstance().getEscenarios().get(9).getNodoDialActual()==null)){
+                Dialogo actual = Juego.getInstance().getEscenarios().get(9).getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = Juego.getInstance().getEscenarios().get(9).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    guia2MouseClicked();
+                }
+            });
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
+            cajaTexto.removeAll();
+            Juego.getInstance().getPartidaActual().getEventos().setGuia2Ya(true);
+            Juego.getInstance().getPartidaActual().getEventos().cambiarRonda2();
+            guia2.setVisible(true);
         }
         getContentPane().revalidate();
         getContentPane().repaint();
     }
-
     private void guia1MouseClicked(MouseEvent evt) {
         ponerDialogoGuia1();
-        getContentPane().revalidate();
-        getContentPane().repaint();
     }
     private void flechaSalidaActionPerformed(ActionEvent evt) {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();

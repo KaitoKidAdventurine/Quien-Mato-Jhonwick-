@@ -23,10 +23,8 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class Recepcion extends ModeloEscenario{
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Recepcion.class.getName());
@@ -311,8 +309,60 @@ public class Recepcion extends ModeloEscenario{
     }
 
     private void secretariaActionPerformed(ActionEvent evt) {
-       ponerDialogoSecretaria();
-      secretaria.setVisible(false);
+        if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==0){
+            ponerDialogosEstatico(crearDialogoNoDisponible(), 0);
+        }else if (Juego.getInstance().getPartidaActual().getEventos().getRonda()==1 && !Juego.getInstance().getPartidaActual().getEventos().isSecretariaYa()){
+            ponerDialogoSecretaria();
+            secretaria.setVisible(false);
+        }else
+            ponerDialogosEstatico(crearDialogoYaSecre(), 0);
+    }
+    private ArrayList<Dialogo> crearDialogoNoDisponible(){
+        ArrayList<Dialogo> dialogosEsta= new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(No creo que sea lo mas adecuado preguntar a la secretaria acerca del lugar, por ahora.)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Pospondre su interrogatorio hasta que haya terminado con los trabajadores mas importantes.)", "Detective", detective, true);
+
+        dialogosEsta.add(d1);
+        dialogosEsta.add(d2);
+        return dialogosEsta;
+    }
+    private ArrayList<Dialogo> crearDialogoYaSecre(){
+        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(Ya hable con ella)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Deberia de enfocarme en recorrer el museo y buscar otras pistas.)", "Detective", detective, true);
+
+        dialogosConserje.add(d1);
+        dialogosConserje.add(d2);
+        return dialogosConserje;
+    }
+    private void ponerDialogosEstatico(ArrayList<Dialogo> dialogos, int actual) {
+        if(actual<dialogos.size()) {
+            Dialogo aux = dialogos.get(actual);
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            actual++;
+            int finalActual = actual;
+
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    EstatiMouseClicked(dialogos, finalActual);
+                }
+            });
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
+            cajaTexto.removeAll();
+        }
+
+    }
+    private void EstatiMouseClicked(ArrayList<Dialogo> dialogos, int actual){
+        ponerDialogosEstatico(dialogos, actual);
+
+
     }
 
     private void policiaMouseExited(MouseEvent evt) {
@@ -366,12 +416,11 @@ public class Recepcion extends ModeloEscenario{
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            revalidate();
-            repaint();
+            Juego.getInstance().getPartidaActual().getEventos().setSecretariaYa(true);
+            Juego.getInstance().getPartidaActual().getEventos().cambiarRonda2();
             secretaria.setVisible(true);
         }
-        getContentPane().revalidate();
-        getContentPane().repaint();
+
     }
 
     private void secretariaMouseClicked(MouseEvent evt) {

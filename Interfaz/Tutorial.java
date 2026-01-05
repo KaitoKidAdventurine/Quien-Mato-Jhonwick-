@@ -670,7 +670,7 @@ public class Tutorial extends JFrame {
         Dialogo d48= new Dialogo("Ni siquiera quiero imaginarlo.", "Policia", policia, true);
         Dialogo d49= new Dialogo("La verdad que no. ", "Detective", detective, true);
         Dialogo d50= new Dialogo("Y bien. ¿Con que exactamente estamos lidiando hoy? Escuche algo antes de venir, pero solamente algunos detalles.", "Detective", detective, true);
-        Dialogo d51= new Dialogo("Hace aproximadamente una hora se encontro el cuerpo sin vida de Elliot Majader. Un economico encargado de las finanzas de museo.", "Policia", policia, true);
+        Dialogo d51= new Dialogo("Hace aproximadamente una hora se encontro el cuerpo sin vida de Henry Bennett. Un economico encargado de las finanzas de museo.", "Policia", policia, true);
         Dialogo d52= new Dialogo("¿Que sabemos de el?", "Detective", detective, true);
         Dialogo d53= new Dialogo("No mucho. Una persona solitaria, sin amigos, no hablaba con nadie en el museo, sin pareja, probablemente sin amigos. Vivia en un apartamento pequeño en un rincon de la ciudad.", "Policia", policia, true);
         Dialogo d54= new Dialogo("¿Algun familiar cercano?", "Detective", detective, true);
@@ -678,7 +678,7 @@ public class Tutorial extends JFrame {
         Dialogo d56= new Dialogo("Interesante. La victima es una sombra, del tipo del que nadie se daria cuenta que desaparecio.", "Detective", detective, true);
         Dialogo d57= new Dialogo("Excepto que en este caso encontraron el cuerpo ", "Policia", policia, true);
         Dialogo d58= new Dialogo("¿Quien lo encontro?", "Detective", detective, true);
-        Dialogo d59= new Dialogo("El guardia de seguridad. Se percato de que en un sector fallaban las camaras y decidio investigar la razon. Y bueno, encontro el cadaver de Elliot.", "Policia", policia, true);
+        Dialogo d59= new Dialogo("El guardia de seguridad. Se percato de que en un sector fallaban las camaras y decidio investigar la razon. Y bueno, encontro el cadaver de Henry.", "Policia", policia, true);
         Dialogo d60= new Dialogo("Guiame hacia alli", "Detective", detective, true);
         Dialogo d61= new Dialogo("Claro, seria por este camino.", "Policia", policia, true);
         Dialogo d62= new Dialogo("Dime lo que han encontrado en la escena del crimen", "Detective", detective, true);

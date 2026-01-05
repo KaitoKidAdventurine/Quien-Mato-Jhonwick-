@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -198,10 +199,59 @@ public class Bano extends ModeloEscenario {
     }
 
     private void conserjeActionPerformed(ActionEvent evt) {
-        ponerDialogo();
-        conserje.setVisible(false);
+       if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==0){
+           ponerDialogosConserjeEstatico(crearDialogoConserjeNoDisponible(), 0);
+       }else if (Juego.getInstance().getPartidaActual().getEventos().getRonda()==1 && !Juego.getInstance().getPartidaActual().getEventos().isConserjeYa()){
+           ponerDialogo();
+           conserje.setVisible(false);
+       }else
+           ponerDialogosConserjeEstatico(crearDialogoConserjeYa(), 0);
     }
+    private ArrayList<Dialogo> crearDialogoConserjeNoDisponible(){
+        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
 
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(No creo que sea lo mas adecuado preguntar al conserje acerca del lugar, por ahora.)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Pospondre su interrogatorio hasta que haya terminado con los trbajadores mas importantes.)", "Detective", detective, true);
+
+        dialogosConserje.add(d1);
+        dialogosConserje.add(d2);
+        return dialogosConserje;
+    }
+    private ArrayList<Dialogo> crearDialogoConserjeYa(){
+        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(Ya hable con el)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Deberia de enfocarme en recorrer el museo y buscar otras pistas.)", "Detective", detective, true);
+
+        dialogosConserje.add(d1);
+        dialogosConserje.add(d2);
+        return dialogosConserje;
+    }
+    private void ponerDialogosConserjeEstatico(ArrayList<Dialogo> dialogos, int actual) {
+        if(actual<dialogos.size()) {
+            Dialogo aux = dialogos.get(actual);
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            actual++;
+            int finalActual = actual;
+
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    conserjeEstatiMouseClicked(dialogos, finalActual);
+                }
+            });
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
+            cajaTexto.removeAll();
+        }
+
+    }
+    private void conserjeEstatiMouseClicked(ArrayList<Dialogo> dialogos, int actual){
+        ponerDialogosConserjeEstatico(dialogos, actual);
+    }
     private void flechaEntradaDentroMouseExited(MouseEvent evt) {
         BufferedImage imagen = null;
 
@@ -252,12 +302,11 @@ public class Bano extends ModeloEscenario {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            revalidate();
-            repaint();
+            Juego.getInstance().getPartidaActual().getEventos().setConserjeYa(true);
+            Juego.getInstance().getPartidaActual().getEventos().cambiarRonda2();
             conserje.setVisible(true);
         }
-        getContentPane().revalidate();
-        getContentPane().repaint();
+
     }
 
     private void conserjeMouseClicked(MouseEvent evt) {

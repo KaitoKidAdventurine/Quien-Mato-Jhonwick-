@@ -10,6 +10,7 @@ import Interfaz.Menu.MenuPrincipal;
 import Interfaz.Menu.NuevaPartida;
 import Interfaz.Menu.Opciones;
 import Interfaz.Menu.OpcionesJugador;
+import Logica.Juego;
 import Logica.Reproductor;
 
 import javax.imageio.ImageIO;
@@ -251,7 +252,7 @@ public class MenuInterno extends javax.swing.JDialog {
 
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-
+        Juego.getInstance().guardarPartida();
     }
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {
