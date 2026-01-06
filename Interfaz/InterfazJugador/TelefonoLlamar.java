@@ -1,6 +1,9 @@
 package Interfaz.InterfazJugador;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import DatosAuxiliaresLogica.UnionInterfaces;
+import Logica.Dialogo;
+import Logica.Juego;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -20,7 +23,8 @@ public class TelefonoLlamar extends JPanel {
     private JButton apagar;
     private JButton salir;
     private JLabel contactos;
-    public TelefonoLlamar(){
+
+    public TelefonoLlamar() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         initComponents();
     }
@@ -30,27 +34,19 @@ public class TelefonoLlamar extends JPanel {
         salir = new JButton();
         contactos = new JLabel();
         llamarOtro = new JButton();
-        apagar= new JButton();
+        apagar = new JButton();
         setBackground(new Color(0, 0, 0, 0));
         setLayout(null);
 
         llamarJefe.setBorderPainted(false);
         llamarJefe.setContentAreaFilled(false);
         llamarJefe.setFocusPainted(false);
-        llamarJefe.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent evt) {
-                jButton1MouseEntered(evt);
-            }
-            public void mouseExited(MouseEvent evt) {
-                jButton1MouseExited(evt);
-            }
-        });
         llamarJefe.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        llamarJefe.setBounds((int) (tamPant.width*0.017), (int) (tamPant.height*0.13),(int) (tamPant.width*0.23), (int) (tamPant.height*0.07));
+        llamarJefe.setBounds((int) (tamPant.width * 0.017), (int) (tamPant.height * 0.13), (int) (tamPant.width * 0.23), (int) (tamPant.height * 0.07));
         llamarJefe.setBackground(Color.blue);
         add(llamarJefe);
 
@@ -58,20 +54,12 @@ public class TelefonoLlamar extends JPanel {
         llamarOtro.setBorderPainted(false);
         llamarOtro.setContentAreaFilled(false);
         llamarOtro.setFocusPainted(false);
-        llamarOtro.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent evt) {
-                jButton3MouseEntered(evt);
-            }
-            public void mouseExited(MouseEvent evt) {
-                jButton3MouseExited(evt);
-            }
-        });
         llamarOtro.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        llamarOtro.setBounds((int) (tamPant.width*0.017), (int) (tamPant.height*0.21),(int) (tamPant.width*0.23), (int) (tamPant.height*0.4));
+        llamarOtro.setBounds((int) (tamPant.width * 0.017), (int) (tamPant.height * 0.21), (int) (tamPant.width * 0.23), (int) (tamPant.height * 0.4));
         llamarOtro.setBackground(Color.blue);
         add(llamarOtro);
 
@@ -83,6 +71,7 @@ public class TelefonoLlamar extends JPanel {
             public void mouseEntered(MouseEvent evt) {
                 jButton2MouseEntered(evt);
             }
+
             public void mouseExited(MouseEvent evt) {
                 jButton2MouseExited(evt);
             }
@@ -96,7 +85,7 @@ public class TelefonoLlamar extends JPanel {
             throw new RuntimeException(e);
         }
 
-        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width * 0.05), (int) (tamPant.height * 0.07), Image.SCALE_SMOOTH));
         salir.setIcon(icono3);
 
         salir.addActionListener(new ActionListener() {
@@ -104,7 +93,7 @@ public class TelefonoLlamar extends JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        salir.setBounds((int) (tamPant.height*0.11), (int) (tamPant.height*0.66),(int) (tamPant.width*0.05), (int) (tamPant.height*0.07));
+        salir.setBounds((int) (tamPant.height * 0.11), (int) (tamPant.height * 0.66), (int) (tamPant.width * 0.05), (int) (tamPant.height * 0.07));
 
         add(salir);
 
@@ -116,14 +105,14 @@ public class TelefonoLlamar extends JPanel {
             throw new RuntimeException(e);
         }
 
-        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.255), (int) (tamPant.height*0.72), Image.SCALE_SMOOTH));
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width * 0.255), (int) (tamPant.height * 0.72), Image.SCALE_SMOOTH));
         contactos.setIcon(icono);
-        contactos.setBounds((int) (tamPant.width*0.005),0, (int) (tamPant.width*0.255), (int) (tamPant.height*0.72));
+        contactos.setBounds((int) (tamPant.width * 0.005), 0, (int) (tamPant.width * 0.255), (int) (tamPant.height * 0.72));
 
         apagar.setBorderPainted(false);
         apagar.setContentAreaFilled(false);
         apagar.setFocusPainted(false);
-        apagar.setBounds((int) (tamPant.width*0.16), (int) (tamPant.height*0.66),(int) (tamPant.width*0.05), (int) (tamPant.height*0.07));
+        apagar.setBounds((int) (tamPant.width * 0.16), (int) (tamPant.height * 0.66), (int) (tamPant.width * 0.05), (int) (tamPant.height * 0.07));
 
         BufferedImage imagen7 = null;
 
@@ -133,7 +122,7 @@ public class TelefonoLlamar extends JPanel {
             throw new RuntimeException(e);
         }
 
-        ImageIcon icono7 = new ImageIcon(imagen7.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        ImageIcon icono7 = new ImageIcon(imagen7.getScaledInstance((int) (tamPant.width * 0.05), (int) (tamPant.height * 0.07), Image.SCALE_SMOOTH));
         apagar.setIcon(icono7);
         add(apagar);
 
@@ -142,26 +131,19 @@ public class TelefonoLlamar extends JPanel {
     }
 
 
-
     private void jButton3ActionPerformed(ActionEvent evt) {
-        JOptionPane.showMessageDialog(null, "No creo que sea buena idea llamarlo a esta hora");
+        UnionInterfaces.getInstance().setMolestandoTarde(true);
     }
 
-    private void jButton3MouseExited(MouseEvent evt) {
-
-    }
-
-    private void jButton3MouseEntered(MouseEvent evt) {
-    }
 
     private void jButton2ActionPerformed(ActionEvent evt) {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBotonesTelefono();
-        getParent().getComponent(0).setVisible(true);
-        getParent().getComponent(1).setVisible(false);
+        getParent().getComponent(1).setVisible(true);
+        getParent().getComponent(2).setVisible(false);
         getParent().revalidate();
         getParent().repaint();
-        getParent().remove(1);
+        getParent().remove(2);
 
     }
 
@@ -174,7 +156,7 @@ public class TelefonoLlamar extends JPanel {
             throw new RuntimeException(e);
         }
 
-        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width * 0.05), (int) (tamPant.height * 0.07), Image.SCALE_SMOOTH));
         salir.setIcon(icono3);
 
     }
@@ -188,22 +170,16 @@ public class TelefonoLlamar extends JPanel {
             throw new RuntimeException(e);
         }
 
-        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
+        ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width * 0.05), (int) (tamPant.height * 0.07), Image.SCALE_SMOOTH));
         salir.setIcon(icono3);
 
     }
 
     private void jButton1ActionPerformed(ActionEvent evt) {
-        JOptionPane.showMessageDialog(null, "Llamar al jefe");
-    }
-
-    void jButton1MouseExited(MouseEvent evt) {
-    }
-
-
-    private void jButton1MouseEntered(MouseEvent evt) {
+        UnionInterfaces.getInstance().setHablandoCapitan(true);
     }
 
 }
+
 
 

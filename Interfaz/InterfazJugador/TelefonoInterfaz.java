@@ -1,6 +1,8 @@
 package Interfaz.InterfazJugador;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import DatosAuxiliaresLogica.UnionInterfaces;
+import Logica.Dialogo;
 import Logica.Juego;
 import Logica.Jugador;
 import Logica.Telefono;
@@ -15,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,8 +28,13 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
 
     private Timer timer;
     private TimerTask tarea;
+    private Timer timer1;
+    private TimerTask tarea1;
+    private Timer timer2;
+    private TimerTask tarea2;
     private Telefono telefonoLogica;
     private JButton apagar;
+    private JPanel cajaTexto;
 
     /**
      * Creates new form MenuInterno
@@ -35,16 +43,44 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         super(parent, modal);
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         telefonoLogica = Juego.getInstance().getPartidaActual().getJugador().getTelefono();
-        initComponents();
+        cajaTexto = new JPanel();
+
 
         timer = new Timer();
         tarea = new TimerTask() {
             @Override
             public void run() {
-                dispose();
+                revalidate();
+                repaint();
             }
         };
-
+        timer1 = new Timer();
+        tarea1 = new TimerTask() {
+            @Override
+            public void run() {
+                if(UnionInterfaces.getInstance().getHablandoCapitan()){
+                    UnionInterfaces.getInstance().setHablandoCapitan(false);
+                    getContentPane().getComponent(2).setVisible(false);
+                    getContentPane().getComponent(1).setVisible(false);
+                    telefono.setVisible(false);
+                    llamadaCapitan(0);
+                }
+            }
+        };
+        timer2 = new Timer();
+        tarea2 = new TimerTask() {
+            @Override
+            public void run() {
+                if(UnionInterfaces.getInstance().getMolestandoTarde()){
+                    UnionInterfaces.getInstance().setMolestandoTarde(false);
+                    getContentPane().getComponent(2).setVisible(false);
+                    getContentPane().getComponent(1).setVisible(false);
+                    telefono.setVisible(false);
+                    molestarTarde();
+                }
+            }
+        };
+        initComponents();
     }
 
 
@@ -64,6 +100,11 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         getContentPane().setLayout(null);
         getContentPane().setPreferredSize(new Dimension((int) (tamPant.width*0.4), (int) (tamPant.height*0.6)));
         setBackground(new Color(0,0, 0, 75));
+
+        cajaTexto.setBackground(new Color(0, 0, 0, 0));
+        cajaTexto.setBounds(0, 0,  tamPant.width, tamPant.height);
+        cajaTexto.setLayout(null);
+        add(cajaTexto, 0);
 
         BufferedImage imagenCursor =null;
         try {
@@ -244,10 +285,13 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         fondo.setIcon(icono5);
         fondo.setBounds((int) (tamPant.width*0.005),0, (int) (tamPant.width*0.255), (int) (tamPant.height*0.72));
         pantalla.add(fondo);
-        add(pantalla, 0);
+        add(pantalla, 1);
         add(telefono);
 
         pack();
+        timer.scheduleAtFixedRate(tarea, 0, 10);
+        timer1.scheduleAtFixedRate(tarea1, 0, 20);
+        timer2.scheduleAtFixedRate(tarea2, 0, 20);
     }// </editor-fold>
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,7 +299,8 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBotonesTelefono();
         TelefonoLlamar llamada = new TelefonoLlamar();
-        llamada.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));add(llamada, 1);
+        llamada.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
+        add(llamada, 2);
         pantalla.setVisible(false);
         llamada.setVisible(true);
         revalidate();
@@ -296,11 +341,10 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         e.efectoDeBotonesTelefono();
         TelefonoAjustes ajustesT = new TelefonoAjustes(telefonoLogica, fondo);
         ajustesT.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
-        add(ajustesT, 1);
+        add(ajustesT, 2);
         pantalla.setVisible(false);
         ajustesT.setVisible(true);
-        revalidate();
-        repaint();
+
     }
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {
@@ -336,11 +380,10 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
 
         TelefonoReproductor reproductorT = new TelefonoReproductor(telefonoLogica);
         reproductorT.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
-        add(reproductorT, 1);
+        add(reproductorT, 2);
         pantalla.setVisible(false);
         reproductorT.setVisible(true);
-        revalidate();
-        repaint();
+
     }
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {
@@ -396,7 +439,73 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         ImageIcon icono7 = new ImageIcon(imagen7.getScaledInstance((int) (tamPant.width*0.05), (int) (tamPant.height*0.07), Image.SCALE_SMOOTH));
         apagar.setIcon(icono7);
     }
+    private void llamadaCapitan(int actual) {
+        if (actual < Juego.getInstance().getPartidaActual().getDialogosCapitan().get(Juego.getInstance().getPartidaActual().getEventos().getRonda()+1).size()) {
+            Dialogo aux = Juego.getInstance().getPartidaActual().getDialogosCapitan().get(Juego.getInstance().getPartidaActual().getEventos().getRonda()+1).get(actual);
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            actual++;
+            int finalActual = actual;
 
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    llamaCapMouseClicked(finalActual);
+                }
+            });
+            cajaTexto.removeAll();
+            cajaTexto.add(cT, 0);
+
+        } else{
+            cajaTexto.removeAll();
+            getContentPane().getComponent(2).setVisible(true);
+            getContentPane().getComponent(1).setVisible(true);
+            telefono.setVisible(true);
+        }
+    }
+
+    private void llamaCapMouseClicked(int finalActual) {
+        llamadaCapitan(finalActual);
+    }
+    private void molestarTarde() {
+        ponerDialogosEstatico(crearDialogosMolestar(), 0);
+    }
+    private ArrayList<Dialogo> crearDialogosMolestar(){
+        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(Creo que estas no son horas de molestar)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Deberia de llamarle mañana.)", "Detective", detective, true);
+
+        dialogosConserje.add(d1);
+        dialogosConserje.add(d2);
+        return dialogosConserje;
+    }
+    private void ponerDialogosEstatico(ArrayList<Dialogo> dialogos, int actual) {
+        if(actual<dialogos.size()) {
+            Dialogo aux = dialogos.get(actual);
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            actual++;
+            int finalActual = actual;
+
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    EstatiMouseClicked(dialogos, finalActual);
+                }
+            });
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
+            cajaTexto.removeAll();
+            getContentPane().getComponent(2).setVisible(true);
+            getContentPane().getComponent(1).setVisible(true);
+            telefono.setVisible(true);
+        }
+
+    }
+    private void EstatiMouseClicked(ArrayList<Dialogo> dialogos, int actual){
+        ponerDialogosEstatico(dialogos, actual);
+    }
 
     /**
      * @param args the command line arguments

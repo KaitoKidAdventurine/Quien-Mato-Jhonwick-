@@ -7,10 +7,7 @@ import DatosAuxiliaresLogica.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -42,6 +39,7 @@ public class MinijuegoInterfaz extends JPanel {
     private TimerTask tarea4;
     private boolean pistaLista;
     private InterfazMenuMinijuego menu;
+
 
 
     public MinijuegoInterfaz(MiniJuego miniJuego) {
@@ -122,6 +120,12 @@ public class MinijuegoInterfaz extends JPanel {
         panelMinijuego.setLayout(null);
         add(panelMinijuego, 0);
         panelMinijuego.add(menu);
+        panelMinijuego.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+            Toolkit.getDefaultToolkit().beep();
+            }
+
+        });
         while (II.hasNext()) {
             ObjetoEscenario objeto = II.next();
             ObjetoMinijuego boton = new ObjetoMinijuego(objeto.getNombre());
@@ -163,21 +167,7 @@ public class MinijuegoInterfaz extends JPanel {
                 usarPista();
             }
         });
-        pista.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
+        pista.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -257,11 +247,20 @@ public class MinijuegoInterfaz extends JPanel {
                 ObjetoMinijuego aux = objetosMinijuego.get(j);
                 if(aux.equals(accionador)){
                     objetosEnc.remove(j);
-                    panelMinijuego.remove(accionador);
+                    BufferedImage imagen = null;
+                    try {
+                        imagen = ImageIO.read(new File("DatosAuxiliares/Minijuego/Etiqueta.png"));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width * 0.05), (int) (tamPant.height* 0.07), Image.SCALE_SMOOTH));
+                    accionador.setIcon(icono);
+
                     objetosMinijuego.remove(accionador);
                     EfectosEspeciales e =EfectosEspeciales.getInstancia();
                     e.efectoObjetoEncontrado();
                     salir =true;
+
                     if(!mini.getCola().isEmpty())
                         mini.pedirSiguienteObjeCola();
 
@@ -281,6 +280,9 @@ public class MinijuegoInterfaz extends JPanel {
 
                 }
             }
+            if(salir==false)
+                Toolkit.getDefaultToolkit().beep();
+
 
     }
     private void clonarMinijuego(MiniJuego miniJuego) {

@@ -306,6 +306,29 @@ public class Partida implements Serializable, Cloneable
         dialogo1.add(d30);
         dialogosCapitan.add(dialogo1);
 
+        ArrayList<Dialogo> dialogos2 = new ArrayList<>();
+        Dialogo d31 = new Dialogo("Beeeppp", "", nada, true);
+        Dialogo d32 = new Dialogo("Oigo", "Capitan", nada, true);
+        Dialogo d33 = new Dialogo("Disculpe la molestia capitan.", "Detective", detective, true);
+        Dialogo d34 = new Dialogo("No hay de que, sabia que volverias a llamar por algo que te acabo de decir.", "Capitan", nada, true);
+        Dialogo d35 = new Dialogo("Recuerda, tienes que ir a hablar con el dueño del museo, el guardia de seguridad y el guia principal.", "Capitan", nada, true);
+        Dialogo d36 = new Dialogo("¿Por alguna casualidad sabras donde se encuentran?", "Detective", detective, true);
+        Dialogo d37 = new Dialogo("Yo no soy el que se encuentra en el terreno, ese eres tu. Aun asi puedo hacer una prediccion.", "Capitan", nada, true);
+        Dialogo d38 = new Dialogo("Por lo general los de seguridad se quedan en los pisos bajos. Los dueños por alguna razon le gusta estar en lugares altos, y viendo el tamaño de la barriga en su expediente, este probablente le guste tener cerca un baño.", "Capitan", nada, true);
+        Dialogo d39 = new Dialogo("En canto al guia principal no estoy seguro. ", "Capitan", nada, true);
+        Dialogo d40 = new Dialogo("Gracias, has sido de mucha ayuda.", "Detective", detective, true);
+
+        dialogos2.add(d31);
+        dialogos2.add(d32);
+        dialogos2.add(d33);
+        dialogos2.add(d34);
+        dialogos2.add(d35);
+        dialogos2.add(d36);
+        dialogos2.add(d37);
+        dialogos2.add(d38);
+        dialogos2.add(d39);
+        dialogos2.add(d40);
+        dialogosCapitan.add(dialogos2);
     }
 
     public void crearDialogosActo1(){

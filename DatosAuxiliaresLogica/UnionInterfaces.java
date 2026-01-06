@@ -8,13 +8,16 @@ public class UnionInterfaces {
     private boolean confirmarBorrado;
     private static UnionInterfaces instancia;
     private boolean abriendoPartida;
-
+    private boolean hablandoCapitan;
+    private boolean molestandoTarde;
     public UnionInterfaces(){
         this.opcionDialogo = 1;
         this.cerrarVentana= false;
         this.salirJuego = false;
         this.confirmarBorrado = false;
         this.abriendoPartida=false;
+        this.hablandoCapitan=false;
+        this.molestandoTarde=false;
     }
 
     public int getOpcionDialogo() {
@@ -60,5 +63,21 @@ public class UnionInterfaces {
 
     public void setAbriendoPartida(boolean abriendoPartida) {
         this.abriendoPartida = abriendoPartida;
+    }
+
+    public boolean getHablandoCapitan() {
+        return hablandoCapitan;
+    }
+
+    public void setHablandoCapitan(boolean hablandoCapitan) {
+        this.hablandoCapitan = hablandoCapitan;
+    }
+
+    public boolean getMolestandoTarde() {
+        return molestandoTarde;
+    }
+
+    public void setMolestandoTarde(boolean molestandoTarde) {
+        this.molestandoTarde = molestandoTarde;
     }
 }

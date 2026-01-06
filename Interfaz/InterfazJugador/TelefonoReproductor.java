@@ -274,11 +274,11 @@ public class TelefonoReproductor extends JPanel {
     private void botonSalirActionPerformed(ActionEvent evt) {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBotonesTelefono();
-        getParent().getComponent(0).setVisible(true);
-        getParent().getComponent(1).setVisible(false);
+        getParent().getComponent(1).setVisible(true);
+        getParent().getComponent(2).setVisible(false);
         getParent().revalidate();
         getParent().repaint();
-        getParent().remove(1);
+        getParent().remove(2);
 
     }
 
