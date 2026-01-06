@@ -391,16 +391,16 @@ public class Recepcion extends ModeloEscenario{
         JOptionPane.showMessageDialog(null, "º1");    }
 
     public void ponerDialogoSecretaria() {
-        if(Juego.getInstance().getEscenarios().get(0).getNodoDialActual() == null || !(Juego.getInstance().getEscenarios().get(0).getArbolDial().nodeIsLeaf(Juego.getInstance().getEscenarios().get(0).getNodoDialActual()))) {
-            if(!(Juego.getInstance().getEscenarios().get(0).getNodoDialActual()==null)){
-                Dialogo actual = Juego.getInstance().getEscenarios().get(0).getDialogoActual();
+        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getNodoDialActual()))) {
+            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getNodoDialActual()==null)){
+                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
-            Dialogo aux = Juego.getInstance().getEscenarios().get(0).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {

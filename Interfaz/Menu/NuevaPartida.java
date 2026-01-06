@@ -192,72 +192,117 @@ public class NuevaPartida extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean crearPartidaDirecta(String id, String nombreJugador) {
+
+        try {
+            // Crear partida manualmente
+            Partida partida = new Partida();
+            partida.setIdPartida(id);
+            partida.setEstado("Acto 1");
+            partida.getJugador().setNombre(nombreJugador);
+
+            // Guardar en Juego
+            Juego.getInstance().getPartidas().add(partida);
+            Juego.getInstance().setPartidaActual(partida);
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Juego.getInstance().getPartidaActual() != null;
+    }
+
+
     private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
-        if(!UnionInterfaces.getInstance().getAbriendoPartida()) {
+        if (!UnionInterfaces.getInstance().getAbriendoPartida()) {
             UnionInterfaces.getInstance().setAbriendoPartida(true);
             EfectosEspeciales e = EfectosEspeciales.getInstancia();
             e.efectoDeBoton();
 
             if (!Juego.getInstance().existePartida("3")) {
-                Juego.getInstance().crearNuevaPartida("3", "Jugador 3");
-                Tutorial tuto1 = new Tutorial();
-                timer.schedule(tarea, 1000);
-                tuto1.setVisible(true);
-            } else {
-                if (comprobacionActionPerformed()) {
-                    Juego.getInstance().eliminarPartida("3");
-                    Juego.getInstance().crearNuevaPartida("3", "Jugador 3");
+                if (crearPartidaDirecta("3", "Jugador 3")) {
                     Tutorial tuto1 = new Tutorial();
                     timer.schedule(tarea, 1000);
                     tuto1.setVisible(true);
+                } else {
+                    // Manejo de error
+                    UnionInterfaces.getInstance().setAbriendoPartida(false);
+                }
+            } else {
+                if (comprobacionActionPerformed()) {
+                    Juego.getInstance().eliminarPartida("3");
+                    if (crearPartidaDirecta("3", "Jugador 3")) {
+                        Tutorial tuto1 = new Tutorial();
+                        timer.schedule(tarea, 1000);
+                        tuto1.setVisible(true);
+                    } else {
+                        // Manejo de error
+                        UnionInterfaces.getInstance().setAbriendoPartida(false);
+                    }
                 }
             }
         }
 
     }//GEN-LAST:event_boton3ActionPerformed
 
-    private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
-        if(!UnionInterfaces.getInstance().getAbriendoPartida()) {
+    private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        if (!UnionInterfaces.getInstance().getAbriendoPartida()) {
             UnionInterfaces.getInstance().setAbriendoPartida(true);
             EfectosEspeciales e = EfectosEspeciales.getInstancia();
             e.efectoDeBoton();
 
-
             if (!Juego.getInstance().existePartida("2")) {
-                Juego.getInstance().crearNuevaPartida("2", "Jugador 2");
-                Tutorial tuto1 = new Tutorial();
-                timer.schedule(tarea, 1000);
-                tuto1.setVisible(true);
-            } else {
-                if (comprobacionActionPerformed()) {
-                    Juego.getInstance().eliminarPartida("2");
-                    Juego.getInstance().crearNuevaPartida("2", "Jugador 2");
+                if (crearPartidaDirecta("1", "Jugador 2")) {
                     Tutorial tuto1 = new Tutorial();
                     timer.schedule(tarea, 1000);
                     tuto1.setVisible(true);
+                } else {
+                    // Manejo de error
+                    UnionInterfaces.getInstance().setAbriendoPartida(false);
+                }
+            } else {
+                if (comprobacionActionPerformed()) {
+                    Juego.getInstance().eliminarPartida("2");
+                    if (crearPartidaDirecta("2", "Jugador 2")) {
+                        Tutorial tuto1 = new Tutorial();
+                        timer.schedule(tarea, 1000);
+                        tuto1.setVisible(true);
+                    } else {
+                        // Manejo de error
+                        UnionInterfaces.getInstance().setAbriendoPartida(false);
+                    }
                 }
             }
         }
     }//GEN-LAST:event_boton2ActionPerformed
 
-    private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
+    private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {
         if (!UnionInterfaces.getInstance().getAbriendoPartida()) {
             UnionInterfaces.getInstance().setAbriendoPartida(true);
             EfectosEspeciales e = EfectosEspeciales.getInstancia();
             e.efectoDeBoton();
 
             if (!Juego.getInstance().existePartida("1")) {
-                Juego.getInstance().crearNuevaPartida("1", "Jugador 1");
-                Tutorial tuto1 = new Tutorial();
-                timer.schedule(tarea, 1000);
-                tuto1.setVisible(true);
-            } else {
-                if (comprobacionActionPerformed()) {
-                    Juego.getInstance().eliminarPartida("1");
-                    Juego.getInstance().crearNuevaPartida("1", "Jugador 1");
+                if (crearPartidaDirecta("1", "Jugador 1")) {
                     Tutorial tuto1 = new Tutorial();
                     timer.schedule(tarea, 1000);
                     tuto1.setVisible(true);
+                } else {
+                    // Manejo de error
+                    UnionInterfaces.getInstance().setAbriendoPartida(false);
+                }
+            } else {
+                if (comprobacionActionPerformed()) {
+                    Juego.getInstance().eliminarPartida("1");
+                    if (crearPartidaDirecta("1", "Jugador 1")) {
+                        Tutorial tuto1 = new Tutorial();
+                        timer.schedule(tarea, 1000);
+                        tuto1.setVisible(true);
+                    } else {
+                        // Manejo de error
+                        UnionInterfaces.getInstance().setAbriendoPartida(false);
+                    }
                 }
             }
         }
