@@ -123,11 +123,78 @@ public class Diario implements Serializable
 
     }
 
+    public String buscarNombre(String profesion) {
+        String nombre = "";
+
+        switch(profesion.toLowerCase()) {
+            case "victima":
+            case "caso":
+            case "economico":
+                nombre = "Henry Bennett";
+                break;
+
+            case "jefe":
+            case "capitan":
+                nombre = "Capitan";
+                break;
+
+            case "policia":
+            case "policía":
+                nombre = "Max Turner";
+                break;
+
+            case "dueño":
+            case "dueno":
+            case "propietario":
+                nombre = "Theodore Winslow";
+                break;
+
+            case "esposa":
+            case "esposa del dueño":
+                nombre = "Cate Sinclair";
+                break;
+
+            case "secretaria":
+                nombre = "Elizabeth Reed";
+                break;
+
+            case "guia":
+            case "guia 1":
+            case "guía":
+            case "guía 1":
+                nombre = "William Harrington";
+                break;
+
+            case "guia 2":
+            case "guía 2":
+            case "amante":
+                nombre = "Alex Valle";
+                break;
+
+            case "seguridad":
+            case "guardia":
+                nombre = "Kai Collins";
+                break;
+
+            case "vagabundo":
+            case "mendigo":
+                nombre = "Leo Kuibbert";
+                break;
+
+            default:
+                nombre = "Personaje no encontrado";
+                break;
+        }
+        return nombre;
+    }
+
+
     // Para guardar los dialogos mas importantes para cada NPC
-    public void agregarDialogoImportante(String nombreNPC, String informacion)
+    public void agregarDialogoImportante(String profesion, String informacion)
     {
         try
         {
+            String nombreNPC = buscarNombre(profesion);
             boolean salida = false;
             Iterator<Informacion> II = dialogosImportantes.iterator();
             while(!salida && II.hasNext())
@@ -139,14 +206,13 @@ public class Diario implements Serializable
                     salida = true;
                     EfectosEspeciales efe = EfectosEspeciales.getInstancia();
                     efe.efectoDeEscribirDiario();
-
                 }
             }
         }
 
         catch (Exception e)
         {
-            System.err.println("Error No se encontro: " + e.getMessage());
+            System.err.println("Error No se encontro el NPC: " + e.getMessage());
         }
 
     }
