@@ -1,5 +1,6 @@
 package Logica;
 
+import Interfaz.MiniJuego.MinijuegoInterfaz;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 
@@ -272,6 +273,34 @@ public class Juego {
         bathSecondFloor.agregarObjetoCola(obCepillo);
 
         miniJuegos.add(bathSecondFloor);
+
+
+        ImageIcon camerasImage = new ImageIcon("DatosAuxiliares/Minijuego/Sala de Cámaras.png");
+        MiniJuego camerasRoom = new MiniJuego("Sala de Cámaras", camerasImage);
+
+        ObjetoEscenario obLibro = new ObjetoEscenario("Libro", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (65-30)/1152f, (532-25)/765f, (166-65)/1152f, (561-532)/765f, false, "");
+        ObjetoEscenario obCigarrillos = new ObjetoEscenario("Cigarrillos", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (943-305)/1152f, (748-32)/765f, (982-943)/1152f, (766-748)/765f, false, "");
+        ObjetoEscenario obLlave = new ObjetoEscenario("Llave", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (893-305)/1152f, (620-25)/765f, (933-893)/1152f, (629-620)/765f, false, "");
+        ObjetoEscenario obPluma = new ObjetoEscenario("Pluma", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (469-160)/1152f, (620-25)/765f, (512-469)/1152f, (627-620)/765f, false, "");
+        ObjetoEscenario obCuadro = new ObjetoEscenario("Cuadro", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (46-25)/1152f, (106-25)/765f, (117-46)/1152f, (243-106)/765f, false, "");
+        ObjetoEscenario obGrabador = new ObjetoEscenario("Grabador de Audio", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (861-280)/1152f, (571-25)/765f, (883-861)/1152f, (582-571)/765f, false, "");
+        ObjetoEscenario obEstatua = new ObjetoEscenario("Estatua", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (640-210)/1152f, (171-5)/765f, (667-640)/1152f, (244-171)/765f, false, "");
+        ObjetoEscenario obObraArte = new ObjetoEscenario("Obra de Arte", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (810-270)/1152f, (437-15)/765f, (845-810)/1152f, (505-437)/765f, false, "");
+        ObjetoEscenario obGafas = new ObjetoEscenario("Gafas", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (373-120)/1152f, (561-25)/765f, (415-373)/1152f, (577-561)/765f, false, "");
+        ObjetoEscenario obAuriculares = new ObjetoEscenario("Auriculares", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (613-205)/1152f, (543-25)/765f, (676-613)/1152f, (613-543)/765f, false, "");
+
+        camerasRoom.agregarObjetoCola(obLibro);
+        camerasRoom.agregarObjetoCola(obCigarrillos);
+        camerasRoom.agregarObjetoCola(obLlave);
+        camerasRoom.agregarObjetoCola(obPluma);
+        camerasRoom.agregarObjetoCola(obCuadro);
+        camerasRoom.agregarObjetoCola(obGrabador);
+        camerasRoom.agregarObjetoCola(obEstatua);
+        camerasRoom.agregarObjetoCola(obObraArte);
+        camerasRoom.agregarObjetoCola(obGafas);
+        camerasRoom.agregarObjetoCola(obAuriculares);
+
+        miniJuegos.add(camerasRoom);
     }
 
 
