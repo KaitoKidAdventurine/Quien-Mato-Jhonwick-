@@ -1536,7 +1536,7 @@ public class Partida implements Serializable, Cloneable {
         escenariosMundo.get(8).setArbolDial(auxTree9);
 
 
-        // Monólogo del detective
+        // Monólogo del detective para el final
 
         Dialogo m1 = new Dialogo("(No me lo puedo creer... Todo me lleva a él...)", "Detective", detective, true);
         Dialogo m2 = new Dialogo("(La espada estaba en su oficina, donde solo él tiene acceso. Su esposa la mostró sin saberlo )", "Detective", detective, true);
