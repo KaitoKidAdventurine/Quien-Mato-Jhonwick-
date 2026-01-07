@@ -39,7 +39,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
      */
     public DiarioInterfaz(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        crearInfoDiario();
+
         informacion= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes();
 
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
@@ -126,6 +126,11 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         jLabel20 = new JLabel();
         jScrollPane10 = new JScrollPane();
         jTextArea10 = new JTextArea();
+        jPanel11 = new JPanel();
+        jLabel21 = new JLabel();
+        jLabel22 = new JLabel();
+        jScrollPane11 = new JScrollPane();
+        jTextArea11 = new JTextArea();
 
         fondo = new JLabel();
 
@@ -249,7 +254,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         }
 
         if (imagen3 != null) {
-            ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
+            ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width * 0.13), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
             jLabel3.setIcon(icono3);
         }
         jLabel3.setBorder(new LineBorder(Color.black, 2, true));
@@ -555,7 +560,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         Informacion info5 = informacion.get(4);
         Iterator<String> iterator5 = info5.getListaDeDialogos().iterator();
         while(iterator5.hasNext()) {
-            String contenido = iterator3.next();
+            String contenido = iterator5.next();
             if (!jTextArea5.getText().isEmpty()) {
                 jTextArea5.setText(jTextArea5.getText() + "\n" + "·" + contenido);
             } else
@@ -1049,6 +1054,94 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         registro10.setBounds(registros);
         jPanel10.add(registro10);
 
+        // Pagina 11 - Limpieza (NUEVA)
+        jPanel11.setBackground(new Color(0, 0, 0, 0));
+        jPanel11.setLayout(null);
+        jPanel11.setBounds(panel);
+
+        jLabel22.setText(Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(10).getNombreNPC());
+        jLabel22.setBounds(nombre);
+        jLabel22.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
+        jLabel22.setForeground(Color.black);
+        jPanel11.add(jLabel22);
+
+        jLabel21.setBounds(foto);
+        jLabel21.setOpaque(true);
+        BufferedImage imagen21 = null;
+
+        try {
+            imagen21 = ImageIO.read(new File("DatosAuxiliares/Personajes/Conserge Reducido.png"));
+        } catch (IOException e) {
+            System.err.println("No se pudo cargar la imagen: " + e.getMessage());
+        }
+
+        if (imagen21 != null) {
+            ImageIcon icono21 = new ImageIcon(imagen21.getScaledInstance((int) (tamPant.width * 0.11), (int) (tamPant.height * 0.13), Image.SCALE_SMOOTH));
+            jLabel21.setIcon(icono21);
+        }
+        jLabel21.setBorder(new LineBorder(Color.black, 2, true));
+        jLabel21.setBackground(new Color(255, 255, 255, 30));
+        jPanel11.add(jLabel21);
+
+        JLabel jLabelR11 = new JLabel();
+        jLabelR11.setText("Datos relacionados con la investigacion");
+        jLabelR11.setBounds(labelDatos);
+        jLabelR11.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.016)));
+        jLabelR11.setForeground(Color.black);
+        jPanel11.add(jLabelR11);
+
+        jTextArea11.setColumns(20);
+        jTextArea11.setRows(5);
+        jTextArea11.setBackground(new Color(0, 0, 0, 0));
+        jTextArea11.setEnabled(false);
+        jTextArea11.setFocusable(false);
+        jTextArea11.setHighlighter(null);
+        jTextArea11.setDisabledTextColor(Color.black);
+        jTextArea11.setLineWrap(true);
+        jTextArea11.setWrapStyleWord(true);
+        jTextArea11.setEditable(false);
+
+        Informacion info11 = informacion.get(10);
+        Iterator<String> iterator11 = info11.getListaDeDialogos().iterator();
+        while(iterator11.hasNext()) {
+            String contenido = iterator11.next();
+            if (!jTextArea11.getText().isEmpty()) {
+                jTextArea11.setText(jTextArea11.getText() + "\n" + "·" + contenido);
+            } else
+                jTextArea11.setText("·" + contenido);
+        }
+        jTextArea11.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.013)));
+
+        jScrollPane11.setViewportView(jTextArea11);
+        jScrollPane11.setBounds(datos);
+        jScrollPane11.setOpaque(true);
+        jScrollPane11.setBackground(new Color(0, 0, 0, 0));
+        jScrollPane11.setBorder(null);
+        jPanel11.add(jScrollPane11);
+
+        JTextArea registro11 = new JTextArea();
+        registro11.setColumns(20);
+        registro11.setRows(5);
+        registro11.setHighlighter(null);
+        registro11.setFocusable(false);
+        registro11.setDisabledTextColor(Color.black);
+        registro11.setLineWrap(true);
+        registro11.setWrapStyleWord(true);
+        registro11.setEditable(false);
+        registro11.setBackground(new Color(0, 0, 0, 0));
+        registro11.setText("   Datos  Generales: \nEdad: " + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(10).getEdadNPC() + "    "+
+                "Sexo: "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(10).getSexo()  +
+                "  \n" + "Ocupacion:  "+ Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(10).getOcupacion()  + " \n\n\n\n  Analisis de personalidad: \n");
+        int r11= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(10).getPersonalidad().size();
+        for(int q =0; q<r11; q++) {
+            if (q != r11-1)
+                registro11.setText(registro11.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(10).getPersonalidad().get(q) + ", ");
+            else
+                registro11.setText(registro11.getText() + Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes().get(10).getPersonalidad().get(q));
+        }
+        registro11.setFont(new Font("Viner Hand ITC", 0, (int) (tamPant.width * 0.015)));
+        registro11.setBounds(registros);
+        jPanel11.add(registro11);
 
         //Fin de las paginas
         getContentPane().add(contenedor);
@@ -1081,40 +1174,33 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         fondo.setBounds((int) (tamPant.width * 0.06), (int) (tamPant.height * 0.1), (int) (tamPant.width * 0.9), (int) (tamPant.height * 0.9));
         getContentPane().add(fondo);
 
-        // Definir dimensiones de los botones
-        // Definir dimensiones de los botones
-        int botonAnchoGrande = (int) (tamPant.width * 0.08);
-        int botonAnchoNormal = (int) (tamPant.width * 0.07);
+        // Definir dimensiones de los botones - ahora 11 botones del mismo tamaño
+        int botonAncho = (int) (tamPant.width * 0.065);
         int botonAlto = (int) (tamPant.height * 0.07);
+        int espacio = 3;
 
-// Espacio entre botones centrales (5 píxeles)
-        int espacioEntreCentrales = 8;
-// Espacio extra para separación de botones extremos (15 píxeles para que se note más)
-        int espacioExtraExtremos = 8;
-
-// Posiciones iniciales ajustadas
+        // Posiciones iniciales ajustadas
         int xInicial = (int) (tamPant.width * 0.117);
         int yPos = (int) (tamPant.height * 0.09);
         int xPos = xInicial;
 
-// Botón 1: Investigacion (más grande, separado del grupo central)
+        // Botón 1: Investigacion
         boton1 = new JButton();
         try {
             BufferedImage imagenBoton1 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Victima.png"));
             if (imagenBoton1 != null) {
-                ImageIcon iconoBoton1 = new ImageIcon(imagenBoton1.getScaledInstance(botonAnchoGrande, botonAlto, Image.SCALE_SMOOTH));
+                ImageIcon iconoBoton1 = new ImageIcon(imagenBoton1.getScaledInstance(botonAncho, botonAlto, Image.SCALE_SMOOTH));
                 boton1.setIcon(iconoBoton1);
             }
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen del botón 1: " + e.getMessage());
         }
         boton1.setToolTipText("Investigacion");
-        boton1.setBounds(xPos, yPos, botonAnchoGrande, botonAlto);
+        boton1.setBounds(xPos, yPos, botonAncho, botonAlto);
         boton1.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 boton1.setBorder(new LineBorder(Color.YELLOW, 2));
             }
-
             public void mouseExited(MouseEvent evt) {
                 boton1.setBorder(null);
             }
@@ -1128,28 +1214,25 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         boton1.setContentAreaFilled(false);
         boton1.setBorderPainted(false);
         getContentPane().add(boton1);
+        xPos += botonAncho + espacio;
 
-// Actualizar posición X para el siguiente botón con espacio extra
-        xPos += botonAnchoGrande + espacioExtraExtremos;
-
-// Botón 2: Jefe
+        // Botón 2: Jefe
         boton2 = new JButton();
         try {
             BufferedImage imagenBoton2 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/capi.png"));
             if (imagenBoton2 != null) {
-                ImageIcon iconoBoton2 = new ImageIcon(imagenBoton2.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                ImageIcon iconoBoton2 = new ImageIcon(imagenBoton2.getScaledInstance(botonAncho, botonAlto, Image.SCALE_SMOOTH));
                 boton2.setIcon(iconoBoton2);
             }
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen del botón 2: " + e.getMessage());
         }
         boton2.setToolTipText("Jefe");
-        boton2.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
+        boton2.setBounds(xPos, yPos, botonAncho, botonAlto);
         boton2.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 boton2.setBorder(new LineBorder(Color.YELLOW, 2));
             }
-
             public void mouseExited(MouseEvent evt) {
                 boton2.setBorder(null);
             }
@@ -1163,28 +1246,25 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         boton2.setContentAreaFilled(false);
         boton2.setBorderPainted(false);
         getContentPane().add(boton2);
+        xPos += botonAncho + espacio;
 
-// Actualizar posición X para siguiente botón
-        xPos += botonAnchoNormal + espacioEntreCentrales;
-
-// Botón 3: Policia
+        // Botón 3: Policia
         boton3 = new JButton();
         try {
             BufferedImage imagenBoton3 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Policia.png"));
             if (imagenBoton3 != null) {
-                ImageIcon iconoBoton3 = new ImageIcon(imagenBoton3.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                ImageIcon iconoBoton3 = new ImageIcon(imagenBoton3.getScaledInstance(botonAncho, botonAlto, Image.SCALE_SMOOTH));
                 boton3.setIcon(iconoBoton3);
             }
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen del botón 3: " + e.getMessage());
         }
         boton3.setToolTipText("Policia");
-        boton3.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
+        boton3.setBounds(xPos, yPos, botonAncho, botonAlto);
         boton3.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 boton3.setBorder(new LineBorder(Color.YELLOW, 2));
             }
-
             public void mouseExited(MouseEvent evt) {
                 boton3.setBorder(null);
             }
@@ -1198,28 +1278,25 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         boton3.setContentAreaFilled(false);
         boton3.setBorderPainted(false);
         getContentPane().add(boton3);
+        xPos += botonAncho + espacio;
 
-// Actualizar posición X para siguiente botón
-        xPos += botonAnchoNormal + espacioEntreCentrales;
-
-// Botón 4: Dueño
+        // Botón 4: Dueño
         boton4 = new JButton();
         try {
             BufferedImage imagenBoton4 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Dueno.png"));
             if (imagenBoton4 != null) {
-                ImageIcon iconoBoton4 = new ImageIcon(imagenBoton4.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                ImageIcon iconoBoton4 = new ImageIcon(imagenBoton4.getScaledInstance(botonAncho, botonAlto, Image.SCALE_SMOOTH));
                 boton4.setIcon(iconoBoton4);
             }
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen del botón 4: " + e.getMessage());
         }
         boton4.setToolTipText("Dueño");
-        boton4.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
+        boton4.setBounds(xPos, yPos, botonAncho, botonAlto);
         boton4.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 boton4.setBorder(new LineBorder(Color.YELLOW, 2));
             }
-
             public void mouseExited(MouseEvent evt) {
                 boton4.setBorder(null);
             }
@@ -1233,28 +1310,25 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         boton4.setContentAreaFilled(false);
         boton4.setBorderPainted(false);
         getContentPane().add(boton4);
+        xPos += botonAncho + espacio;
 
-// Actualizar posición X para siguiente botón
-        xPos += botonAnchoNormal + espacioEntreCentrales;
-
-// Botón 5: Esposa
+        // Botón 5: Esposa
         boton5 = new JButton();
         try {
             BufferedImage imagenBoton5 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Esposa.png"));
             if (imagenBoton5 != null) {
-                ImageIcon iconoBoton5 = new ImageIcon(imagenBoton5.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                ImageIcon iconoBoton5 = new ImageIcon(imagenBoton5.getScaledInstance(botonAncho, botonAlto, Image.SCALE_SMOOTH));
                 boton5.setIcon(iconoBoton5);
             }
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen del botón 5: " + e.getMessage());
         }
         boton5.setToolTipText("Esposa");
-        boton5.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
+        boton5.setBounds(xPos, yPos, botonAncho, botonAlto);
         boton5.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 boton5.setBorder(new LineBorder(Color.YELLOW, 2));
             }
-
             public void mouseExited(MouseEvent evt) {
                 boton5.setBorder(null);
             }
@@ -1268,28 +1342,25 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         boton5.setContentAreaFilled(false);
         boton5.setBorderPainted(false);
         getContentPane().add(boton5);
+        xPos += botonAncho + espacio;
 
-// Actualizar posición X para siguiente botón
-        xPos += botonAnchoNormal + espacioEntreCentrales;
-
-// Botón 6: Secretaria
+        // Botón 6: Secretaria
         boton6 = new JButton();
         try {
             BufferedImage imagenBoton6 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Secretaria.png"));
             if (imagenBoton6 != null) {
-                ImageIcon iconoBoton6 = new ImageIcon(imagenBoton6.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                ImageIcon iconoBoton6 = new ImageIcon(imagenBoton6.getScaledInstance(botonAncho, botonAlto, Image.SCALE_SMOOTH));
                 boton6.setIcon(iconoBoton6);
             }
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen del botón 6: " + e.getMessage());
         }
         boton6.setToolTipText("Secretaria");
-        boton6.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
+        boton6.setBounds(xPos, yPos, botonAncho, botonAlto);
         boton6.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 boton6.setBorder(new LineBorder(Color.YELLOW, 2));
             }
-
             public void mouseExited(MouseEvent evt) {
                 boton6.setBorder(null);
             }
@@ -1303,28 +1374,25 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         boton6.setContentAreaFilled(false);
         boton6.setBorderPainted(false);
         getContentPane().add(boton6);
+        xPos += botonAncho + espacio;
 
-// Actualizar posición X para siguiente botón
-        xPos += botonAnchoNormal + espacioEntreCentrales;
-
-// Botón 7: Guia 1
+        // Botón 7: Guia 1
         boton7 = new JButton();
         try {
             BufferedImage imagenBoton7 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Guia.png"));
             if (imagenBoton7 != null) {
-                ImageIcon iconoBoton7 = new ImageIcon(imagenBoton7.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                ImageIcon iconoBoton7 = new ImageIcon(imagenBoton7.getScaledInstance(botonAncho, botonAlto, Image.SCALE_SMOOTH));
                 boton7.setIcon(iconoBoton7);
             }
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen del botón 7: " + e.getMessage());
         }
         boton7.setToolTipText("Guia 1");
-        boton7.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
+        boton7.setBounds(xPos, yPos, botonAncho, botonAlto);
         boton7.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 boton7.setBorder(new LineBorder(Color.YELLOW, 2));
             }
-
             public void mouseExited(MouseEvent evt) {
                 boton7.setBorder(null);
             }
@@ -1338,28 +1406,25 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         boton7.setContentAreaFilled(false);
         boton7.setBorderPainted(false);
         getContentPane().add(boton7);
+        xPos += botonAncho + espacio;
 
-// Actualizar posición X para siguiente botón
-        xPos += botonAnchoNormal + espacioEntreCentrales;
-
-// Botón 8: Guia 2
+        // Botón 8: Guia 2
         boton8 = new JButton();
         try {
             BufferedImage imagenBoton8 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Amante.png"));
             if (imagenBoton8 != null) {
-                ImageIcon iconoBoton8 = new ImageIcon(imagenBoton8.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                ImageIcon iconoBoton8 = new ImageIcon(imagenBoton8.getScaledInstance(botonAncho, botonAlto, Image.SCALE_SMOOTH));
                 boton8.setIcon(iconoBoton8);
             }
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen del botón 8: " + e.getMessage());
         }
         boton8.setToolTipText("Guia 2");
-        boton8.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
+        boton8.setBounds(xPos, yPos, botonAncho, botonAlto);
         boton8.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 boton8.setBorder(new LineBorder(Color.YELLOW, 2));
             }
-
             public void mouseExited(MouseEvent evt) {
                 boton8.setBorder(null);
             }
@@ -1373,28 +1438,25 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         boton8.setContentAreaFilled(false);
         boton8.setBorderPainted(false);
         getContentPane().add(boton8);
+        xPos += botonAncho + espacio;
 
-// Actualizar posición X para siguiente botón
-        xPos += botonAnchoNormal + espacioEntreCentrales;
-
-// Botón 9: Seguridad
+        // Botón 9: Seguridad
         boton9 = new JButton();
         try {
             BufferedImage imagenBoton9 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Seguridad.png"));
             if (imagenBoton9 != null) {
-                ImageIcon iconoBoton9 = new ImageIcon(imagenBoton9.getScaledInstance(botonAnchoNormal, botonAlto, Image.SCALE_SMOOTH));
+                ImageIcon iconoBoton9 = new ImageIcon(imagenBoton9.getScaledInstance(botonAncho, botonAlto, Image.SCALE_SMOOTH));
                 boton9.setIcon(iconoBoton9);
             }
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen del botón 9: " + e.getMessage());
         }
         boton9.setToolTipText("Seguridad");
-        boton9.setBounds(xPos, yPos, botonAnchoNormal, botonAlto);
+        boton9.setBounds(xPos, yPos, botonAncho, botonAlto);
         boton9.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 boton9.setBorder(new LineBorder(Color.YELLOW, 2));
             }
-
             public void mouseExited(MouseEvent evt) {
                 boton9.setBorder(null);
             }
@@ -1408,28 +1470,25 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         boton9.setContentAreaFilled(false);
         boton9.setBorderPainted(false);
         getContentPane().add(boton9);
+        xPos += botonAncho + espacio;
 
-// Actualizar posición X con espacio extra antes del último botón
-        xPos += botonAnchoNormal + espacioExtraExtremos;
-
-// Botón 10: Vagabundo - MÁS GRANDE (separado del grupo central)
+        // Botón 10: Limpieza (NUEVO)
         boton10 = new JButton();
         try {
-            BufferedImage imagenBoton10 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Vagabundo 2.png"));
+            BufferedImage imagenBoton10 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Conserje.png"));
             if (imagenBoton10 != null) {
-                ImageIcon iconoBoton10 = new ImageIcon(imagenBoton10.getScaledInstance(botonAnchoGrande, botonAlto, Image.SCALE_SMOOTH));
+                ImageIcon iconoBoton10 = new ImageIcon(imagenBoton10.getScaledInstance(botonAncho, botonAlto, Image.SCALE_SMOOTH));
                 boton10.setIcon(iconoBoton10);
             }
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen del botón 10: " + e.getMessage());
         }
-        boton10.setToolTipText("Vagabundo");
-        boton10.setBounds(xPos, yPos, botonAnchoGrande, botonAlto);
+        boton10.setToolTipText("Limpieza");
+        boton10.setBounds(xPos, yPos, botonAncho, botonAlto);
         boton10.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 boton10.setBorder(new LineBorder(Color.YELLOW, 2));
             }
-
             public void mouseExited(MouseEvent evt) {
                 boton10.setBorder(null);
             }
@@ -1443,22 +1502,51 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         boton10.setContentAreaFilled(false);
         boton10.setBorderPainted(false);
         getContentPane().add(boton10);
+        xPos += botonAncho + espacio;
+
+        // Botón 11: Vagabundo (ahora es el último)
+        boton11 = new JButton();
+        try {
+            BufferedImage imagenBoton11 = ImageIO.read(new File("DatosAuxiliares/MarcadoresDiario/Vagabundo 2.png"));
+            if (imagenBoton11 != null) {
+                ImageIcon iconoBoton11 = new ImageIcon(imagenBoton11.getScaledInstance(botonAncho, botonAlto, Image.SCALE_SMOOTH));
+                boton11.setIcon(iconoBoton11);
+            }
+        } catch (IOException e) {
+            System.err.println("No se pudo cargar la imagen del botón 11: " + e.getMessage());
+        }
+        boton11.setToolTipText("Vagabundo");
+        boton11.setBounds(xPos, yPos, botonAncho, botonAlto);
+        boton11.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                boton11.setBorder(new LineBorder(Color.YELLOW, 2));
+            }
+            public void mouseExited(MouseEvent evt) {
+                boton11.setBorder(null);
+            }
+        });
+        boton11.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                boton11ActionPerformed(evt);
+            }
+        });
+        boton11.setFocusPainted(false);
+        boton11.setContentAreaFilled(false);
+        boton11.setBorderPainted(false);
+        getContentPane().add(boton11);
     }
     private void boton1ActionPerformed(ActionEvent evt) {
         contenedor.removeAll();
         contenedor.add(jPanel1);
-
     }
     private void boton2ActionPerformed(ActionEvent evt) {
         contenedor.removeAll();
         contenedor.add(jPanel2);
-
     }
 
     private void boton3ActionPerformed(ActionEvent evt) {
         contenedor.removeAll();
         contenedor.add(jPanel3);
-
     }
 
     private void boton4ActionPerformed(ActionEvent evt) {
@@ -1493,16 +1581,16 @@ public class DiarioInterfaz extends javax.swing.JDialog {
 
     private void boton10ActionPerformed(ActionEvent evt) {
         contenedor.removeAll();
-        contenedor.add(jPanel10);
+        contenedor.add(jPanel11); // Panel de limpieza
     }
 
-    public void crearInfoDiario(){
-        Diario diario = Juego.getInstance().getPartidaActual().getJugador().getDiario();
-        Informacion info = new Informacion("Detective");
-        info.agregarDialogo("Esta muerto");
-
-        diario.agregarInformacion(info);
+    private void boton11ActionPerformed(ActionEvent evt) {
+        contenedor.removeAll();
+        contenedor.add(jPanel10); // Panel de vagabundo
     }
+
+
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1551,6 +1639,8 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1560,6 +1650,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1570,6 +1661,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1581,6 +1673,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     private JPanel contenedor;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea10;
+    private javax.swing.JTextArea jTextArea11;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
@@ -1590,6 +1683,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     private javax.swing.JTextArea jTextArea8;
     private javax.swing.JTextArea jTextArea9;
     private JTextArea registro1;
+
     private JLabel jLabelR1;
     private JLabel fondo;
     private JButton boton1;
@@ -1602,5 +1696,5 @@ public class DiarioInterfaz extends javax.swing.JDialog {
     private JButton boton8;
     private JButton boton9;
     private JButton boton10;
-
+    private JButton boton11;
 }
