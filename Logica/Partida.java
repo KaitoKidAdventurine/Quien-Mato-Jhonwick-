@@ -1640,6 +1640,7 @@ public class Partida implements Serializable, Cloneable
         BinaryTreeNode<Dialogo> node186 = new BinaryTreeNode<>(con13);
         BinaryTreeNode<Dialogo> node187 = new BinaryTreeNode<>(con14);
         BinaryTreeNode<Dialogo> node188 = new BinaryTreeNode<>(con15);
+        BinaryTreeNode<Dialogo> decisionDet1 = new BinaryTreeNode<>(descDet1);
         BinaryTreeNode<Dialogo> node189 = new BinaryTreeNode<>(reaccion1);
         BinaryTreeNode<Dialogo> node190 = new BinaryTreeNode<>(reaccion1a);
         BinaryTreeNode<Dialogo> node191 = new BinaryTreeNode<>(reaccion1b);
@@ -1653,7 +1654,46 @@ public class Partida implements Serializable, Cloneable
         BinaryTreeNode<Dialogo> node199 = new BinaryTreeNode<>(reaccion2g);
         BinaryTreeNode<Dialogo> node200 = new BinaryTreeNode<>(reaccion2h);
         BinaryTreeNode<Dialogo> node201 = new BinaryTreeNode<>(cierre9);
+        BinaryTreeNode<Dialogo> node201a = new BinaryTreeNode<>(cierre9);
         BinaryTreeNode<Dialogo> node202 = new BinaryTreeNode<>(despedida9);
+        BinaryTreeNode<Dialogo> node202a = new BinaryTreeNode<>(despedida9);
+
+        GeneralTree<Dialogo> auxTree11 = new GeneralTree<>();
+
+        auxTree11.insertNode(node174, null);
+        auxTree11.insertNode(node175, node174);
+        auxTree11.insertNode(node176, node175);
+        auxTree11.insertNode(node177, node176);
+        auxTree11.insertNode(node178, node177);
+        auxTree11.insertNode(node179, node178);
+        auxTree11.insertNode(node180, node179);
+        auxTree11.insertNode(node181, node180);
+        auxTree11.insertNode(node182, node181);
+        auxTree11.insertNode(node183, node182);
+        auxTree11.insertNode(node184, node183);
+        auxTree11.insertNode(node185, node184);
+        auxTree11.insertNode(node186, node185);
+        auxTree11.insertNode(node187, node186);
+        auxTree11.insertNode(node188, node187);
+        auxTree11.insertNode(decisionDet1, node188);
+        auxTree11.insertNode(node189, decisionDet1);
+        auxTree11.insertNode(node190, node189);
+        auxTree11.insertNode(node191, node190);
+        auxTree11.insertNode(node201, node190);
+        auxTree11.insertNode(node202, node201);
+
+        auxTree11.insertNode(node192, decisionDet1);
+        auxTree11.insertNode(node193, node192);
+        auxTree11.insertNode(node194, node193);
+        auxTree11.insertNode(node195, node194);
+        auxTree11.insertNode(node196, node195);
+        auxTree11.insertNode(node197, node196);
+        auxTree11.insertNode(node198, node197);
+        auxTree11.insertNode(node199, node198);
+        auxTree11.insertNode(node200, node199);
+        auxTree11.insertNode(node201a, node201);
+        auxTree11.insertNode(node202a, node201a);
+
 
     }
 
