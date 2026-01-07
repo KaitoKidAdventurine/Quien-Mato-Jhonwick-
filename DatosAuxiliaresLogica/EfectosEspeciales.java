@@ -45,6 +45,7 @@ public class EfectosEspeciales
             File musicaseis = new File("Musica/Efectos de Sonido/SaliendoDelCarro.mp3");
             File efec = new File("Musica/Efectos de Sonido/NuevoTelefonoAlAbrir.mp3");
             File efect = new File("Musica/Efectos de Sonido/objetoEncontrado.mp3");
+            File efectt = new File("Musica/Efectos de Sonido/colgarTelefono.mp3");
 
             if (archivoMusica.exists())
             {
@@ -59,6 +60,7 @@ public class EfectosEspeciales
                 Cancion cancion8 = new Cancion("SaliendoDelCarro", musicaseis);
                 Cancion cancion9 = new Cancion("NuevoTelefonoAlAbrir", efec);
                 Cancion cancion10 = new Cancion("objetoEncontrado", efect);
+                Cancion cancion11 = new Cancion("colgarTelefono", efectt);
 
                 efectosSonido.add(cancion);
                 efectosSonido.add(cancion1);
@@ -71,6 +73,7 @@ public class EfectosEspeciales
                 efectosSonido.add(cancion8);
                 efectosSonido.add(cancion9);
                 efectosSonido.add(cancion10);
+                efectosSonido.add(cancion11);
             }
 
             else {
@@ -291,11 +294,34 @@ public class EfectosEspeciales
         System.out.println(" Volumen: " + volumenSistema + "%");
     }
 
+    public void detenerSiEsNecesario()
+    {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        if(e.getIndiceActual() != 0 && e.getHiloReproduccion().isAlive())
+        {
+            e.detenerEfecto();
+        }
+    }
 
     public void detenerEfecto()
     {
+        // Detener la reproducción actual
         enReproduccion = false;
-        reproductorMP3.close();
+
+        // Detener el reproductor MP3
+        if (reproductorMP3 != null) {
+            reproductorMP3.close();
+        }
+
+        // Interrumpir el hilo de reproducción si está activo
+        if (hiloReproduccion != null && hiloReproduccion.isAlive()) {
+            hiloReproduccion.interrupt();
+        }
+
+        // Restablecer el booleano a true para futuras reproducciones
+        enReproduccion = true;
+
+        System.out.println("Efecto desactivado y booleano restablecido");
     }
 
 
@@ -355,6 +381,10 @@ public class EfectosEspeciales
         cambiarEfectoNombreUsarSoloUnaVez("objetoEncontrado");
     }
 
+    public void efectoColgarTelefono()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("colgarTelefono");
+    }
 
 
 

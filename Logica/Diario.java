@@ -127,8 +127,12 @@ public class Diario implements Serializable
         String nombre = "";
 
         switch(profesion.toLowerCase()) {
+            case "Caso":
+            case "Victima":
             case "victima":
             case "caso":
+            case "investigacion":
+            case "Investigacion":
             case "economico":
                 nombre = "Henry Bennett";
                 break;
@@ -159,6 +163,8 @@ public class Diario implements Serializable
                 break;
 
             case "guia":
+            case "Guia 1":
+            case "Guía 1":
             case "guia 1":
             case "guía":
             case "guía 1":
@@ -171,6 +177,8 @@ public class Diario implements Serializable
                 nombre = "Alex Valle";
                 break;
 
+            case "Guardia":
+            case "Seguridad":
             case "seguridad":
             case "guardia":
                 nombre = "Kai Collins";
