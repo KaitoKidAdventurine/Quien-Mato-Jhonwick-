@@ -246,7 +246,7 @@ public class SalaDeCamaras extends ModeloEscenario {
     }
 
     private void revisarCamarasActionPerformed(ActionEvent evt) {
-        MiniJuego miniJuego = Juego.getInstance().getMinijuego(0);
+        MiniJuego miniJuego = Juego.getInstance().getMinijuego(1);
 
         MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(miniJuego, 1);
         minijuegoInterfaz.setBounds(0, 0, tamPant.width, tamPant.height);
@@ -338,7 +338,7 @@ public class SalaDeCamaras extends ModeloEscenario {
             seguridad.setVisible(true);
             ObjetoEscenario pan = new ObjetoEscenario("Pan con jamon", true,new ImageIcon("DatosAuxiliares/Objetos/Cuchillo.png"), 0, 0, 0, 0, true, "Aperitivo dado por el guardia de seguridad. Por alguna razon el jamón parece casi hechado a perder");
             Juego.getInstance().getPartidaActual().getJugador().agregarAlMaletin(pan);
-
+            JOptionPane.showMessageDialog(null, "funciono");
         }
 
     }
