@@ -288,6 +288,11 @@ public class Juego {
         ObjetoEscenario obObraArte = new ObjetoEscenario("Obra de Arte", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (810-270)/1152f, (437-15)/765f, (845-810)/1152f, (505-437)/765f, false, "");
         ObjetoEscenario obGafas = new ObjetoEscenario("Gafas", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (373-120)/1152f, (561-25)/765f, (415-373)/1152f, (577-561)/765f, false, "");
         ObjetoEscenario obAuriculares = new ObjetoEscenario("Auriculares", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (613-205)/1152f, (543-25)/765f, (676-613)/1152f, (613-543)/765f, false, "");
+        ObjetoEscenario obGafas2 = new ObjetoEscenario("Gafas 2", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (122-32)/1280f, (569-3)/800f, (175-122)/1280f, (580-569+3)/800f, false, "");
+        ObjetoEscenario obVasos = new ObjetoEscenario("Vasos", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (277-70)/1280f, 664f/800f, (322-277)/1280f, (717-664)/800f, false, "");
+        ObjetoEscenario obMapa = new ObjetoEscenario("Mapa", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (119-75)/1280f, 732f/800f, (317-119)/1280f, (785-732)/800f, false, "");
+        ObjetoEscenario obExtintor = new ObjetoEscenario("Extintor", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (77-20)/1280f, 410f/800f, (92-77)/1280f, (464-410)/800f, false, "");
+        ObjetoEscenario obMochila = new ObjetoEscenario("Mochila", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (1025-262)/1280f, 611f/800f, (1116-1025)/1280f, (715-611)/800f, false, "");
 
         camerasRoom.agregarObjetoCola(obLibro);
         camerasRoom.agregarObjetoCola(obCigarrillos);
@@ -299,6 +304,11 @@ public class Juego {
         camerasRoom.agregarObjetoCola(obObraArte);
         camerasRoom.agregarObjetoCola(obGafas);
         camerasRoom.agregarObjetoCola(obAuriculares);
+        camerasRoom.agregarObjetoCola(obGafas2);
+        camerasRoom.agregarObjetoCola(obVasos);
+        camerasRoom.agregarObjetoCola(obMapa);
+        camerasRoom.agregarObjetoCola(obExtintor);
+        camerasRoom.agregarObjetoCola(obMochila);
 
         miniJuegos.add(camerasRoom);
 
