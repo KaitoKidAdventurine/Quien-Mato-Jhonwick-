@@ -155,20 +155,35 @@ public class Tutorial extends JFrame {
         salida.scheduleAtFixedRate(salidaTarea, 0, 20);
     }
 
+    // Comienzo
     public void ponerDialogoParte1() {
         if(tutorialParte1.getNodoDialActual() == null || !(tutorialParte1.getArbolDial().nodeIsLeaf(tutorialParte1.getNodoDialActual()))) {
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
 
             Dialogo aux = tutorialParte1.getDialogoSiguiente(1);
             int nivelActualDial = tutorialParte1.getArbolDial().nodeLevel(tutorialParte1.getNodoDialActual());
+
+            e.detenerSiEsNecesario();
+
             if (aux.getTexto().contains("- Ring ring ring ring ring.-")) {
-                EfectosEspeciales e = EfectosEspeciales.getInstancia();
                 e.efectoDeTelefonoResiviendoLlamda();
             }
 
-            else if(aux.getTexto().equals("Hola detective. Espero que haya descansado bien."))
+            else if(aux.getTexto().equals("Lo justo como para no volverme loco"))
             {
-                EfectosEspeciales.getInstancia().efectoSalirDelCarro();
+                e.efectoSalirDelCarro();
             }
+
+            else if (aux.getTexto().equals("El guardia de seguridad. Se percató de que en un sector fallaban las cámaras y decidió investigar la razón. Y bueno, encontró el cadáver de Henry.")) {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Victima","Fue encontrada por el guardia de seguridad");
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guardia","Encontro el cadaver, cuando fue a revisar \n una camara que fallaba");
+            }
+
+            else if (aux.getTexto().equals("Bip - Bip - Bip."))
+            {
+                e.efectoColgarTelefono();
+            }
+
 
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
@@ -204,6 +219,7 @@ public class Tutorial extends JFrame {
 
     }
 
+    // Dialogo con el policia
     public void ponerDialogoParte2() {
 
         if(tutorialParte2.getNodoDialActual() == null || !(tutorialParte2.getArbolDial().nodeIsLeaf(tutorialParte2.getNodoDialActual()))) {
@@ -218,12 +234,16 @@ public class Tutorial extends JFrame {
                 }
 
 
+
                 Dialogo actual = tutorialParte2.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
+
+
+
             }
             Dialogo aux = tutorialParte2.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = tutorialParte2.getArbolDial().nodeLevel(tutorialParte2.getNodoDialActual());
@@ -252,6 +272,7 @@ public class Tutorial extends JFrame {
         }
     }
 
+    // Duenno
     public void ponerDialogoParte3() {
 
         if(tutorialParte3.getNodoDialActual() == null || !(tutorialParte3.getArbolDial().nodeIsLeaf(tutorialParte3.getNodoDialActual()))) {
@@ -284,10 +305,24 @@ public class Tutorial extends JFrame {
                 getContentPane().revalidate();
                 getContentPane().repaint();
             }
+            if (aux.getTexto().equals("Ninguna, personas como él no merecen que gaste mi tiempo en ellas."))
+            {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("dueno", "No le tenía aprecio a la víctima");
+            }
+
+            else if(aux.getTexto().equals("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitación en todo el día."))
+            {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("dueno", "Dijo que estuvo todo el día en \n su oficina");
+            }
+
+
+
         }else {
             ponerDialogoParte4();
         }
     }
+
+    // Seguridad
     public void ponerDialogoParte4() {
 
         if(tutorialParte4.getNodoDialActual() == null || !(tutorialParte4.getArbolDial().nodeIsLeaf(tutorialParte4.getNodoDialActual()))) {
@@ -315,23 +350,20 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
+
         }else {
           ponerDialogoParte5();
         }
     }
 
-
+    // Guia 1
     public void ponerDialogoParte5() {
 
-        // Colocar escritura si entra a ese dialogo
+
         if(tutorialParte5.getNodoDialActual() == null || !(tutorialParte5.getArbolDial().nodeIsLeaf(tutorialParte5.getNodoDialActual()))) {
             if(!(tutorialParte5.getNodoDialActual()==null)){
                 Dialogo actual = tutorialParte5.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
-
-                    // Dato clave
-                    Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guia 1", "El guía conoce el museo como la palma de su mano.");
-
                     OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
@@ -353,10 +385,19 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
+            if(aux.getTexto().equals("Estaba en la sala de arte moderno, preparando la presentación de mañana. " +
+                    "Conozco el museo como la palma de mi mano, y no noté nada fuera de lo común."))
+            {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("guia 1", "Dijo que se encontraba en la \n sala de arte en el momento del \n asesinato");
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("guia 1", "Se conoce el museo de memoria");
+            }
+
         }else {
             ponerDialogoParte6();
         }
     }
+
+    // Secretaria
     public void ponerDialogoParte6() {
 
         if(tutorialParte6.getNodoDialActual() == null || !(tutorialParte6.getArbolDial().nodeIsLeaf(tutorialParte6.getNodoDialActual()))) {
@@ -384,10 +425,13 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
+
         }else {
             ponerDialogoParte7();
         }
     }
+
+    // Guia 2 o el amante
     public void ponerDialogoParte7() {
 
         if(tutorialParte7.getNodoDialActual() == null || !(tutorialParte7.getArbolDial().nodeIsLeaf(tutorialParte7.getNodoDialActual()))) {
@@ -419,6 +463,8 @@ public class Tutorial extends JFrame {
             ponerDialogoParte8();
         }
     }
+
+    // Limpieza
     public void ponerDialogoParte8() {
 
         if(tutorialParte8.getNodoDialActual() == null || !(tutorialParte8.getArbolDial().nodeIsLeaf(tutorialParte8.getNodoDialActual()))) {
@@ -450,6 +496,8 @@ public class Tutorial extends JFrame {
             ponerDialogoParte9();
         }
     }
+
+    // Esposa
     public void ponerDialogoParte9() {
 
         if(tutorialParte9.getNodoDialActual() == null || !(tutorialParte9.getArbolDial().nodeIsLeaf(tutorialParte9.getNodoDialActual()))) {
@@ -482,6 +530,8 @@ public class Tutorial extends JFrame {
            ponerDialogoParte10();
         }
     }
+
+    // Continuacion del caso
     public void ponerDialogoParte10() {
 
         if(tutorialParte10.getNodoDialActual() == null || !(tutorialParte10.getArbolDial().nodeIsLeaf(tutorialParte10.getNodoDialActual()))) {
@@ -517,7 +567,7 @@ public class Tutorial extends JFrame {
     public void ponerFondoParte1(int nivelActualDial){
         try {
             BufferedImage imagen = null;
-
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
             switch (nivelActualDial) {
                 case 0:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Escena 1.jpg"));
@@ -539,18 +589,17 @@ public class Tutorial extends JFrame {
                     break;
                 case 34:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Escena Auto.jpg"));
-                    EfectosEspeciales e = EfectosEspeciales.getInstancia();
                     e.efectoDeLluvia();
                     break;
                 case 43:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por afuera.jpg"));
-                    EfectosEspeciales e1 = EfectosEspeciales.getInstancia();
-                    e1.detenerEfecto();
+                    if (e.getHiloReproduccion().isAlive() && e.getIndiceActual() == 0)
+                    {
+                        e.detenerEfecto();
+                    }
                     break;
                 case 61:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por dentro.jpg"));
-                    EfectosEspeciales e2 = EfectosEspeciales.getInstancia();
-                    e2.detenerEfecto();
                     break;
                 case 76:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/pasillo 1.jpg"));
@@ -625,98 +674,98 @@ public class Tutorial extends JFrame {
         ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
         ImageIcon nada = new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png");
 
-        Dialogo d1= new Dialogo("Ha sido una semana larga. Casi siento que no lo logro.  ", "", nada, true);
-        Dialogo d2= new Dialogo("Creo que me merezco un pequeño descanso. Es sabado en la noche despues de todo, no creo que ocurra ningun problema. ", "", nada, true);
-        Dialogo d3= new Dialogo("Voy a prender el televisor un momento, en la oficina me comentaron que hoy iban a pasar una pelicula muy buena a esta hora. ", "", nada, true);
-        Dialogo d4= new Dialogo("Pondre el canal 34 a revisar si es verdad. Vere los primeros 10 minutos, si no me gusta como empieza no me va a interesar como termine.  ", "", nada, true);
-        Dialogo d5= new Dialogo("Todavia necesito ponerme al dia con One Piece. No puedo desperdiciar el tiempo", "", nada, true);
-        Dialogo d6= new Dialogo("-50 minutos despues.-", "", nada, true);
-        Dialogo d7= new Dialogo("Ok. He de decir que la pelicula en realidad esta bastante buena", "", nada, true);
-        Dialogo d8= new Dialogo("La tematica de que sean superheroes esta gastada, pero no me esperaba que de repente hubiera una invasion alienigena y un viajero temporal robotico llegara a salvar el dia, mientras que el segundo grupo fuera por ahoi cazando mitos con un perro.", "", nada, true);
-        Dialogo d9= new Dialogo("No me queda nada mas que tragarme mi orgullo, esto parece que promete para una saga entera co 5 spin-off", "", nada, true);
-        Dialogo d10= new Dialogo("Interrumpimos la programacion planificada para reportar una noticia de ultima hora.", "Presentadora", nada, true);
-        Dialogo d11= new Dialogo("Genial. Justo cuando estaba la mejor parte. Solo espero que me lo pongan justo donde se quedo. No tolelaria perderme el final", "", nada, true);
-        Dialogo d12= new Dialogo("Se reporta que en el famoso museo Logrenveich, creo que se pronuncia asi, se ha encontrado el cuerpo sin vida de uno de sus empleados.", "Presentadorea", nada, true);
-        Dialogo d13= new Dialogo("¿Eso no es el museo en donde se iba a llevar a cabo la exposicion del Magnamen rojo?.", "", nada, true);
-        Dialogo d14= new Dialogo("Con su exposicion mas ambiciosa la semana que viene, en donde hace presencia de su mas reciente adquisicion, El Magnamen rojo, el tercer rubi mas grande del mundo. El museo pasa por un momento delicado cuanto menos", "Presentadora", nada, true);
-        Dialogo d15= new Dialogo("No se por que, pero presiento que de alguna forma me va a afectar esto.", "", nada, true);
+        Dialogo d1= new Dialogo("Ha sido una semana larga. Casi siento que no lo logro.", "", nada, true);
+        Dialogo d2= new Dialogo("Creo que me merezco un pequeño descanso. Es sábado en la noche después de todo, no creo que ocurra ningún problema.", "", nada, true);
+        Dialogo d3= new Dialogo("Voy a prender el televisor un momento, en la oficina me comentaron que hoy iban a pasar una película muy buena a esta hora.", "", nada, true);
+        Dialogo d4= new Dialogo("Pondré el canal 34 a revisar si es verdad. Veré los primeros 10 minutos, si no me gusta como empieza no me va a interesar como termine.", "", nada, true);
+        Dialogo d5= new Dialogo("Todavía necesito ponerme al día con One Piece. No puedo desperdiciar el tiempo", "", nada, true);
+        Dialogo d6= new Dialogo("-50 minutos después.-", "", nada, true);
+        Dialogo d7= new Dialogo("Ok. He de decir que la película en realidad está bastante buena", "", nada, true);
+        Dialogo d8= new Dialogo("La temática de que sean superhéroes está gastada, pero no me esperaba que de repente hubiera una invasión alienígena y un viajero temporal robótico llegara a salvar el día, mientras que el segundo grupo fuera por ahí cazando mitos con un perro.", "", nada, true);
+        Dialogo d9= new Dialogo("No me queda nada más que tragarme mi orgullo, esto parece que promete para una saga entera con 5 spin-off", "", nada, true);
+        Dialogo d10= new Dialogo("Interrumpimos la programación planificada para reportar una noticia de última hora.", "Presentadora", nada, true);
+        Dialogo d11= new Dialogo("Genial. Justo cuando estaba la mejor parte. Solo espero que me lo pongan justo donde se quedó. No toleraría perderme el final", "", nada, true);
+        Dialogo d12= new Dialogo("Se reporta que en el famoso museo Logrenveich, creo que se pronuncia así, se ha encontrado el cuerpo sin vida de uno de sus empleados.", "Presentadora", nada, true);
+        Dialogo d13= new Dialogo("¿Eso no es el museo en donde se iba a llevar a cabo la exposición del Magnamen rojo?.", "", nada, true);
+        Dialogo d14= new Dialogo("Con su exposición más ambiciosa la semana que viene, en donde hace presencia de su más reciente adquisición, El Magnamen rojo, el tercer rubí más grande del mundo. El museo pasa por un momento delicado cuanto menos", "Presentadora", nada, true);
+        Dialogo d15= new Dialogo("No sé por qué, pero presiento que de alguna forma me va a afectar esto.", "", nada, true);
         Dialogo d16= new Dialogo("- Ring ring ring ring ring.-", "", nada, true);
         Dialogo d17= new Dialogo("El mensajero de las malas noticias.", "", nada, true);
         Dialogo d18= new Dialogo("Espero que aprovecharas tus vacaciones", "Capitan", nada, true);
-        Dialogo d19= new Dialogo("Algo asi.", "", nada, true);
-        Dialogo d20= new Dialogo("¿Estas ocupado?.", "Capitan", nada, true);
-        Dialogo d21= new Dialogo("La verdad es que si, ando en pijama, viendo una pelicula con mi taza favorita", "", nada, true);
-        Dialogo d22= new Dialogo("Perfecto, estas libre entonces.", "Capitan", nada, true);
+        Dialogo d19= new Dialogo("Algo así.", "", nada, true);
+        Dialogo d20= new Dialogo("¿Estás ocupado?.", "Capitan", nada, true);
+        Dialogo d21= new Dialogo("La verdad es que sí, ando en pijama, viendo una película con mi taza favorita", "", nada, true);
+        Dialogo d22= new Dialogo("Perfecto, estás libre entonces.", "Capitan", nada, true);
         Dialogo d23= new Dialogo("No he dicho eso.", "", nada, true);
         Dialogo d24= new Dialogo("Te necesitamos en el museo Logrimbver.", "Capitan", nada, true);
         Dialogo d25= new Dialogo("¿Tiene que ver con el cuerpo hallado?.", "", nada, true);
-        Dialogo d26= new Dialogo("¿Como te enteraste?", "Capitan", nada, true);
+        Dialogo d26= new Dialogo("¿Cómo te enteraste?", "Capitan", nada, true);
         Dialogo d27= new Dialogo("Lo acaban de decir por el televisor", "", nada, true);
-        Dialogo d28= new Dialogo("Mejor, ya estas enterado de la situacion entonces. Tienes 20 minutos para llegar.", "Capitan", nada, true);
+        Dialogo d28= new Dialogo("Mejor, ya estás enterado de la situación entonces. Tienes 20 minutos para llegar.", "Capitan", nada, true);
         Dialogo d29= new Dialogo("Pero nunca estuve de acuerdo para ir en primer lugar.", "", nada, true);
-        Dialogo d30= new Dialogo("-Biiiippppp.-", "", nada, true);
+        Dialogo d30= new Dialogo("Bip - Bip - Bip.", "", nada, true);
+
         Dialogo d31= new Dialogo("Demonios.", "", nada, true);
-        Dialogo d32= new Dialogo("Parece que se acabo el descanso.", "", nada, true);
-        Dialogo d33= new Dialogo("Y yo que ya estaba a punto de terminar la pelicula. Supongo que sera en otra ocasion.", "", nada, true);
+        Dialogo d32= new Dialogo("Parece que se acabó el descanso.", "", nada, true);
+        Dialogo d33= new Dialogo("Y yo que ya estaba a punto de terminar la película. Supongo que será en otra ocasión.", "", nada, true);
         Dialogo d34= new Dialogo("Pero primero necesito ponerme una ropa adecuada para el trabajo.", "", nada, true);
-        Dialogo d35= new Dialogo("Se reportan que para el dia de hoy habra fuertes lluvias en algunas regiones de la ciudad.","Emisora", nada, true);
-        Dialogo d36= new Dialogo("No me digas. Recien me entero", "", nada, true);
-        Dialogo d37= new Dialogo("Mira que tener que levantarme de mi comodo sillon solo para tener que investigar un caso a estas horas de la noche. Ser el mejor en lo que hago no siempre es bueno.", "", nada, true);
-        Dialogo d38= new Dialogo("Ahora por lo que todos estaban esperando, la cancion You are like like a rainbow.", "Emisora", nada, true);
-        Dialogo d39= new Dialogo("¿Quien le pone esos titulos horrorosos a las canciones?.", "", nada, true);
+        Dialogo d35= new Dialogo("Se reporta que para el día de hoy habrá fuertes lluvias en algunas regiones de la ciudad.","Emisora", nada, true);
+        Dialogo d36= new Dialogo("No me digas. Recién me entero", "", nada, true);
+        Dialogo d37= new Dialogo("Mira que tener que levantarme de mi cómodo sillón solo para tener que investigar un caso a estas horas de la noche. Ser el mejor en lo que hago no siempre es bueno.", "", nada, true);
+        Dialogo d38= new Dialogo("Ahora por lo que todos estaban esperando, la canción You are like like a rainbow.", "Emisora", nada, true);
+        Dialogo d39= new Dialogo("¿Quién le pone esos títulos horrorosos a las canciones?.", "", nada, true);
         Dialogo d40= new Dialogo("Oh baby, you are like a rainbow. Is hurting in my vains like hurricain. Your body, your booty and your eyes are like a bomb in myn heart.", "Cantante", nada, true);
         Dialogo d41= new Dialogo("Parece que no solo no saben poner nombres, tampoco saben componer ni cantar.", "", nada, true);
-        Dialogo d42= new Dialogo("Voy a apagarlo. No se como los jovenes soportan este tipo de canciones hoy en dia.", "", nada, true);
-        Dialogo d43= new Dialogo("-15 minutos despues-", "", nada, true);
-        Dialogo d44= new Dialogo("Hola detective. Espero que haya descansado bien.", "Policia", policia, true);
-        Dialogo d45= new Dialogo("Lo justo como para no volverme loco", "Detective", detective, true);
-        Dialogo d46= new Dialogo("Si. Este trabajo tiende a hacer eso con la gente. Lo que vemos aqui puede quebrar a mas de uno.", "Policia", policia, true);
-        Dialogo d47= new Dialogo("Y eso que todavia no has visto la mitad de lo que este trabajo tiene para ofrecer.", "Detective", detective, true);
+        Dialogo d42= new Dialogo("Voy a apagarlo. No sé cómo los jóvenes soportan este tipo de canciones hoy en día.", "", nada, true);
+        Dialogo d43= new Dialogo("-15 minutos después-", "", nada, true);
+        Dialogo d44= new Dialogo("Hola detective, me llamo Max Turner. Espero que haya descansado bien.", "Policia", policia, true);
+        Dialogo d45= new Dialogo("Lo justo como para no volverme loco, me llamo Mason Carter", "Detective", detective, true);
+        Dialogo d46= new Dialogo("Sí. Este trabajo tiende a hacer eso con la gente. Lo que vemos aquí puede quebrar a más de uno.", "Policia", policia, true);
+        Dialogo d47= new Dialogo("Y eso que todavía no has visto la mitad de lo que este trabajo tiene para ofrecer.", "Detective", detective, true);
         Dialogo d48= new Dialogo("Ni siquiera quiero imaginarlo.", "Policia", policia, true);
-        Dialogo d49= new Dialogo("La verdad que no. ", "Detective", detective, true);
-        Dialogo d50= new Dialogo("Y bien. ¿Con que exactamente estamos lidiando hoy? Escuche algo antes de venir, pero solamente algunos detalles.", "Detective", detective, true);
-        Dialogo d51= new Dialogo("Hace aproximadamente una hora se encontro el cuerpo sin vida de Henry Bennett. Un economico encargado de las finanzas de museo.", "Policia", policia, true);
-        Dialogo d52= new Dialogo("¿Que sabemos de el?", "Detective", detective, true);
-        Dialogo d53= new Dialogo("No mucho. Una persona solitaria, sin amigos, no hablaba con nadie en el museo, sin pareja, probablemente sin amigos. Vivia en un apartamento pequeño en un rincon de la ciudad.", "Policia", policia, true);
-        Dialogo d54= new Dialogo("¿Algun familiar cercano?", "Detective", detective, true);
+        Dialogo d49= new Dialogo("La verdad que no...", "Detective", detective, true);
+        Dialogo d50= new Dialogo("Y bien. ¿Con qué exactamente estamos lidiando hoy? Escuché algo antes de venir, pero solamente algunos detalles.", "Detective", detective, true);
+        Dialogo d51= new Dialogo("Hace aproximadamente una hora se encontró el cuerpo sin vida de Henry Bennett. Un economista encargado de las finanzas del museo.", "Policia", policia, true);
+        Dialogo d52= new Dialogo("¿Qué sabemos de él?", "Detective", detective, true);
+        Dialogo d53= new Dialogo("No mucho. Una persona solitaria, sin amigos, no hablaba con nadie en el museo, sin pareja, probablemente sin amigos. Vivía en un apartamento pequeño en un rincón de la ciudad.", "Policia", policia, true);
+        Dialogo d54= new Dialogo("¿Algún familiar cercano?", "Detective", detective, true);
         Dialogo d55= new Dialogo("Ninguno hasta donde sabemos.", "Policia", policia, true);
-        Dialogo d56= new Dialogo("Interesante. La victima es una sombra, del tipo del que nadie se daria cuenta que desaparecio.", "Detective", detective, true);
-        Dialogo d57= new Dialogo("Excepto que en este caso encontraron el cuerpo ", "Policia", policia, true);
-        Dialogo d58= new Dialogo("¿Quien lo encontro?", "Detective", detective, true);
-        Dialogo d59= new Dialogo("El guardia de seguridad. Se percato de que en un sector fallaban las camaras y decidio investigar la razon. Y bueno, encontro el cadaver de Henry.", "Policia", policia, true);
-        Dialogo d60= new Dialogo("Guiame hacia alli", "Detective", detective, true);
-        Dialogo d61= new Dialogo("Claro, seria por este camino.", "Policia", policia, true);
+        Dialogo d56= new Dialogo("Interesante. La víctima es una sombra, del tipo del que nadie se daría cuenta si desapareciera.", "Detective", detective, true);
+        Dialogo d57= new Dialogo("Excepto que en este caso encontraron el cuerpo", "Policia", policia, true);
+        Dialogo d58= new Dialogo("¿Quién lo encontró?", "Detective", detective, true);
+        Dialogo d59= new Dialogo("El guardia de seguridad. Se percató de que en un sector fallaban las cámaras y decidió investigar la razón. Y bueno, encontró el cadáver de Henry.", "Policia", policia, true);
+        Dialogo d60= new Dialogo("Guíame hacia allí", "Detective", detective, true);
+        Dialogo d61= new Dialogo("Claro, sería por este camino.", "Policia", policia, true);
         Dialogo d62= new Dialogo("Dime lo que han encontrado en la escena del crimen", "Detective", detective, true);
-        Dialogo d63= new Dialogo("No mucho, el unico forense que queda trabajando a esta hora esta ocupado en otro caso.", "Policia", policia, true);
+        Dialogo d63= new Dialogo("No mucho, el único forense que queda trabajando a esta hora está ocupado en otro caso.", "Policia", policia, true);
         Dialogo d64= new Dialogo("¿Y el resto?", "Detective", detective, true);
-        Dialogo d65= new Dialogo("En su casa probablemente. ", "Policia", policia, true);
+        Dialogo d65= new Dialogo("En su casa probablemente.", "Policia", policia, true);
         Dialogo d66= new Dialogo("Por supuesto, ellos se pueden quedar en su casa descansando, pero yo tengo que venir a revisar una escena del crimen a esta hora de la noche.", "Detective", detective, true);
-        Dialogo d67= new Dialogo("El jefe comento que usted era mas que suficiente para este caso. Comento que es hora de poner en practica esas habilidades tan especiales que dice tener.", "Policia", policia, true);
-        Dialogo d68= new Dialogo("Razon no le falta. Soy el mejor en lo que hago. Pero eso no niega de que cuando termine exigire un dia de descanso en compensacion.", "Detective", detective, true);
-        Dialogo d69= new Dialogo("Tambien menciono que diria algo como eso.", "Policia", policia, true);
-        Dialogo d70= new Dialogo("No se preocupe detective. El caso esta practicamente cerrado. ", "Dueño", dueno, true);
+        Dialogo d67= new Dialogo("El jefe comentó que usted era más que suficiente para este caso. Comentó que es hora de poner en práctica esas habilidades tan especiales que dice tener.", "Policia", policia, true);
+        Dialogo d68= new Dialogo("Razón no le falta. Soy el mejor en lo que hago. Pero eso no niega que cuando termine exigiré un día de descanso en compensación.", "Detective", detective, true);
+        Dialogo d69= new Dialogo("También mencionó que diría algo como eso.", "Policia", policia, true);
+        Dialogo d70= new Dialogo("No se preocupe detective. El caso está prácticamente cerrado.", "Dueño", dueno, true);
         Dialogo d71= new Dialogo("¿Disculpa?", "Detective", detective, true);
-        Dialogo d72= new Dialogo("Disculpado. Simplemente no hay necesidad de investigaciones posteriores. El pobre no pudo soportar la presion y escogio el camino facil.", "Dueño", dueno, true);
-        Dialogo d73= new Dialogo("¿Acaso insinua que se suicido?", "Detective", detective, true);
+        Dialogo d72= new Dialogo("Disculpado. Soy el dueño de este museo, Theodore Winslow ese es mi nombre. Como estaba diceindo simplemente no hay necesidad de investigaciones posteriores. El pobre no pudo soportar la presión y escogió el camino fácil.", "Dueño", dueno, true);
+        Dialogo d73= new Dialogo("¿Acaso insinúa que se suicidó?", "Detective", detective, true);
         Dialogo d74= new Dialogo("No lo digo yo, las evidencias son claras.", "Dueño", dueno, true);
-        Dialogo d75= new Dialogo("Eso lo decido yo, y por favor deje de molestar, interrumpe mi trabajo. Vamonos oficial", "Detective", detective, true);
-        Dialogo d76= new Dialogo("Vera lo que digo cuando lo vea. ", "Dueño", dueno, true);
-        Dialogo d77= new Dialogo("Podra ser excentrico y pesado, pero probablemente tenga razon. La escena apunta a un suicidio causado por el estres.", "Policia", policia, true);
-        Dialogo d78= new Dialogo("Poco probable, los suicidios generados por trabajo rara vez ocurren en el centro laboral. Ademas segun lo que me comentaste su personalidad era mas bien reservada, dudo mucho que quisiera irse de forma tan llamativa.", "Detective", detective, true);
+        Dialogo d75= new Dialogo("Eso lo decido yo, y por favor deje de molestar, interrumpe mi trabajo. Vámonos oficial", "Detective", detective, true);
+        Dialogo d76= new Dialogo("Verá lo que digo cuando lo vea.", "Dueño", dueno, true);
+        Dialogo d77= new Dialogo("Podrá ser excéntrico y pesado, pero probablemente tenga razón. La escena apunta a un suicidio causado por el estrés.", "Policia", policia, true);
+        Dialogo d78= new Dialogo("Poco probable, los suicidios generados por trabajo rara vez ocurren en el centro laboral. Además, según lo que me comentaste, su personalidad era más bien reservada, dudo mucho que quisiera irse de forma tan llamativa.", "Detective", detective, true);
         Dialogo d79= new Dialogo("¿Y si se equivoca?", "Policia", policia, true);
         Dialogo d80= new Dialogo("Pocas veces lo hago.", "Detective", detective, true);
-        Dialogo d81= new Dialogo("Eso he oido. Su ratio de casos resueltos es el mas alto en el cuartel. ", "Policia", policia, true);
+        Dialogo d81= new Dialogo("Eso he oído. Su ratio de casos resueltos es el más alto en el cuartel.", "Policia", policia, true);
         Dialogo d82= new Dialogo("Sin contar en los que he ayudado a cerrar como asesor.", "Detective", detective, true);
-        Dialogo d83= new Dialogo("¿Es aqui?.", "Detective", detective, true);
-        Dialogo d84= new Dialogo("Si, detras de esta puerta.", "Policia", policia, true);
-        Dialogo d85= new Dialogo("Bueno, entonces vamos a entrar. ", "Detective", detective, true);
-        Dialogo d86= new Dialogo("¿Por cierto, traiste el equipo para realizar el trabajo forense?.", "Detective", detective, true);
-        Dialogo d87= new Dialogo("Si, aqui lo tengo", "Policia", policia, true);
+        Dialogo d83= new Dialogo("¿Es aquí?.", "Detective", detective, true);
+        Dialogo d84= new Dialogo("Sí, detrás de esta puerta.", "Policia", policia, true);
+        Dialogo d85= new Dialogo("Bueno, entonces vamos a entrar.", "Detective", detective, true);
+        Dialogo d86= new Dialogo("¿Por cierto, trajiste el equipo para realizar el trabajo forense?.", "Detective", detective, true);
+        Dialogo d87= new Dialogo("Sí, aquí lo tengo", "Policia", policia, true);
         Dialogo d88= new Dialogo("Perfecto.", "Detective", detective, true);
-        Dialogo d89= new Dialogo("Es hora de hacer mi trabajo. Mientras tanto, organiza a todo el personal del centro en la recepcion.", "Detective", detective, true);
+        Dialogo d89= new Dialogo("Es hora de hacer mi trabajo. Mientras tanto, organiza a todo el personal del centro en la recepción.", "Detective", detective, true);
         Dialogo d90= new Dialogo("Como ordene.", "Policia", policia, true);
-        Dialogo d91= new Dialogo("Entonces solo quedamos tu y yo amigos. Dime como fue que terminaste asi.", "Detective", detective, true);
-
+        Dialogo d91= new Dialogo("Entonces solo quedamos tú y yo, amigo. Dime cómo fue que terminaste así.", "Detective", detective, true);
 
         BinaryTreeNode<Dialogo> node1 = new BinaryTreeNode<>(d1);
         BinaryTreeNode<Dialogo> node2 = new BinaryTreeNode<>(d2);
@@ -921,111 +970,112 @@ public class Tutorial extends JFrame {
         ImageIcon guia2 = new ImageIcon("DatosAuxiliares/Personajes/Guia 2.png");
 
         Dialogo d92 = new Dialogo("Umm. Eso fue interesante.", "Detective", detective, true);
-        Dialogo d93 = new Dialogo("(Debido a la naturaleza de la victima uno pensaria que seria bastante mas organizado, la mayoria de los economistas tienden a ser perfeccionistas o al menos un poco pulcros, dejandome pensando en solo dos posibles respuestas a tanto desorden.)", "Detective", detective, true);
-        Dialogo d94 = new Dialogo("(O bien es una excepcion a la regla o hubo algun tipo de forcejeo. Ambas opciones son igual de fascinantes, solo que la ultima parece mas interesante.) ", "Detective", detective, true);
-        Dialogo d95 = new Dialogo("(De igual forma el cuerpo me parece inusual, postrado en el suelo en lugar de quitarse la vida en un lugar mas comodo y simple como una silla, simplemente no tiene sentido para mi.)", "Detective", detective, true);
+        Dialogo d93 = new Dialogo("(Debido a la naturaleza de la víctima, uno pensaría que sería bastante más organizado; la mayoría de los economistas tienden a ser perfeccionistas o al menos un poco pulcros, dejándome pensando en solo dos posibles respuestas a tanto desorden.)", "Detective", detective, true);
+        Dialogo d94 = new Dialogo("(O bien es una excepción a la regla o hubo algún tipo de forcejeo. Ambas opciones son igual de fascinantes, solo que la última parece más interesante.)", "Detective", detective, true);
+        Dialogo d95 = new Dialogo("(De igual forma, el cuerpo me parece inusual, postrado en el suelo en lugar de quitarse la vida en un lugar más cómodo y simple como una silla, simplemente no tiene sentido para mí.)", "Detective", detective, true);
         Dialogo d96 = new Dialogo("(Hay muchas cosas en este caso que no cuadran.)", "Detective", detective, true);
-        Dialogo d97 = new Dialogo("- Knock kcnok. -", "", nada, true);
-        Dialogo d98 = new Dialogo("¿Quien es?.", "Detective", detective, true);
+        Dialogo d97 = new Dialogo("- Knock knock. -", "", nada, true);
+        Dialogo d98 = new Dialogo("¿Quién es?", "Detective", detective, true);
         Dialogo d99 = new Dialogo("Soy yo, he venido a decirle que todos los trabajadores del centro se encuentran reunidos en la recepción.", "Policia", policia, true);
 
-        // --- Primer árbol de decisión ---
-        Dialogo decisionInicio = new Dialogo("La mayoria ni siquiera parecia haberse enterado de que se habia encontrado el cuerpo del economico. Tuve que ponerlos al tanto de lo que estaba pasando.", "Policia", policia, true);
-        decisionInicio.setOpciones(new LinkedList<>(Arrays.asList("¿Como reaccionaron?", "No debiste de haber hecho eso.")));
+// --- Primer árbol de decisión ---
+        Dialogo decisionInicio = new Dialogo("La mayoría ni siquiera parecía haberse enterado de que se había encontrado el cuerpo del economista. Tuve que ponerlos al tanto de lo que estaba pasando.", "Policia", policia, true);
+        decisionInicio.setOpciones(new LinkedList<>(Arrays.asList("¿Cómo reaccionaron?", "No debiste de haber hecho eso.")));
 
-        Dialogo respuestaA = new Dialogo("Sorprendidos diria, honestamente no sabria decir. Eso si, ninguno parecia especialmente adolorido", "Policia", policia, true);
-        Dialogo contRA = new Dialogo("Es mas de lo que me esperaría dado el carácter solitario del económico. Apuesto a que mas de la mitad ni siquiera se saben su nombre.", "Detective", detective, true);
-        Dialogo contRA1 = new Dialogo("No creo que sea buena idea hacer apuestas acerca de un caso que involucre un cadaver. ", "Policia", policia, true);
-        Dialogo contRA2 = new Dialogo("Le quitas lo divertido a la vida. Pero puede que tengas razon, no es hora de juegos, llevame hacia los testigos.", "Detective", detective, true);
+        Dialogo respuestaA = new Dialogo("Sorprendidos diría, honestamente no sabría decir. Eso sí, ninguno parecía especialmente adolorido.", "Policia", policia, true);
+        Dialogo contRA = new Dialogo("Es más de lo que me esperaría dado el carácter solitario del economista. Apuesto a que más de la mitad ni siquiera se saben su nombre.", "Detective", detective, true);
+        Dialogo contRA1 = new Dialogo("No creo que sea buena idea hacer apuestas acerca de un caso que involucre un cadáver.", "Policia", policia, true);
+        Dialogo contRA2 = new Dialogo("Le quitas lo divertido a la vida. Pero puede que tengas razón, no es hora de juegos, llévame hacia los testigos.", "Detective", detective, true);
 
-        Dialogo respuestaB = new Dialogo("Debiste de dejarme ese trabajo a mi, hay mucha información que se puede extraer de la reacción de una persona a diferentes sucesos. Informacion que estoy acostumbrado a leer.", "Detective", detective, true);
+        Dialogo respuestaB = new Dialogo("Debiste de dejarme ese trabajo a mí, hay mucha información que se puede extraer de la reacción de una persona a diferentes sucesos. Información que estoy acostumbrado a leer.", "Detective", detective, true);
         Dialogo contRB = new Dialogo("Disculpe. Lo tendré en cuenta para la próxima vez.", "Policia", policia, true);
-        Dialogo contRB1 = new Dialogo("Lo hecho hecho está. No te preocupes por ello, todavia tengo mis metodos para hacerlos cantar.", "Detective", detective, true);
+        Dialogo contRB1 = new Dialogo("Lo hecho, hecho está. No te preocupes por ello, todavía tengo mis métodos para hacerlos cantar.", "Detective", detective, true);
         Dialogo contRB2 = new Dialogo("Lo dice como si estuviera seguro de que fue un asesinato.", "Policia", policia, true);
-        Dialogo contRB3 = new Dialogo("No puedo afirmar nada todavia, pero si puedo decir que este caso tiene demasiadas cosas extrañas.", "Detective", detective, true);
-        Dialogo contRB4 = new Dialogo("Pero como todavia no tengo ninguna evidencia no hay nada determinante por ahora. Necesitamos reunir pruebas solidas. Por ahora vayamos hacia los testigos para reunir unos cuantos testimonios.", "Detective", detective, true);
+        Dialogo contRB3 = new Dialogo("No puedo afirmar nada todavía, pero sí puedo decir que este caso tiene demasiadas cosas extrañas.", "Detective", detective, true);
+        Dialogo contRB4 = new Dialogo("Pero como todavía no tengo ninguna evidencia, no hay nada determinante por ahora. Necesitamos reunir pruebas sólidas. Por ahora, vayamos hacia los testigos para reunir unos cuantos testimonios.", "Detective", detective, true);
+
+// Conexiones
+        Dialogo d101 = new Dialogo("Sí, por supuesto, actualmente todos se encuentran en la sala norte. Sé que me dijo que los pusiera en la recepción, pero consideré que existía un riesgo real de que, en caso de ser un asesinato, el culpable huyera.", "Policia", policia, true);
+        Dialogo d102 = new Dialogo("Buen juicio, si resulta en una verdadera escena del crimen es mejor dificultarles la salida. Aunque para la próxima ocasión consúltalo conmigo primero, después de todo soy tu jefe.", "Detective", detective, true);
+        Dialogo d103 = new Dialogo("Lo tendré en consideración.", "Policia", policia, true);
+        Dialogo d104 = new Dialogo("Perfecto, ahora guíame hacia donde se encuentran los trabajadores del museo.", "Detective", detective, true);
+        Dialogo d105 = new Dialogo("Por aquí.", "Policia", policia, true);
+        Dialogo d106 = new Dialogo("¿Cuántos se encontraban en el museo a esta hora?", "Detective", detective, true);
+        Dialogo d107 = new Dialogo("Según pude verificar, el museo tiene en total 28 trabajadores, de los cuales se quedaron hasta tarde hoy 7.", "Policia", policia, true);
+        Dialogo d108 = new Dialogo("No es un mal número para trabajar. ¿Algo más que deba saber? ¿Hay alguien que frecuente el edificio o algo así?", "Detective", detective, true);
+        Dialogo d109 = new Dialogo("No sabría decir, aunque muchos mencionan la presencia de un vagabundo en un callejón cercano que a menudo se le podía ver interactuando con el economista.", "Policia", policia, true);
+        Dialogo d110 = new Dialogo("Eso será útil.", "Detective", detective, true);
+        Dialogo d110q = new Dialogo("Ah, detective, justo el hombre que estaba esperando. Por favor, puede poner orden en la sala, todos andan preocupados de que un asesino pueda andar por ahí. Por favor, explíqueles que lo que le pasó al economista fue por decisión propia.", "Dueño", dueno, true);
+        Dialogo d110w = new Dialogo("Pondré orden en la sala, pero la posibilidad de un asesinato es alta. Por favor, agente, mande las fotografías de la escena del crimen al laboratorio y pida un análisis inmediato.", "Detective", detective, true);
+        Dialogo d110e = new Dialogo("A sus órdenes.", "Policia", policia, true);
+        Dialogo d110r = new Dialogo("Ahora, volviendo a lo que estábamos. Usted es el dueño del museo, y por tanto el más afectado por lo sucedido en él. Empezaré el interrogatorio por usted. Digo, si no le es de ningún problema.", "Detective", detective, true);
+        Dialogo d111 = new Dialogo("No... ehem, no, no hay ningún problema. Todo bien, nada de lo que preocuparse... eh, puede preguntar lo que quiera.", "Dueño", dueno, true);
+
+        Dialogo decisionDueno = new Dialogo("¿Qué desea saber?", "Dueño", dueno, true);
+        decisionDueno.setOpciones(new LinkedList<>(Arrays.asList("¿En dónde se encontraba en el momento de la tragedia?", "¿El economista tenía algún enemigo?", "¿Cómo era su relación con el economista?")));
+
+        Dialogo dRama1Due = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitación en todo el día.", "Dueño", dueno, true);
+        Dialogo dRama1DuePr1 = new Dialogo("¿Desea saber algo más?", "Dueño", dueno, true);
+        dRama1DuePr1.setOpciones(new LinkedList<>(Arrays.asList("¿El economista tenía algún enemigo?", "¿Cómo era su relación con el economista?")));
+
+        Dialogo dRama1Due1 = new Dialogo("Hasta donde sé, era una persona tranquila, no creo que nadie lo llegara a odiar. Era del tipo de gente que no sabes que está a tu lado hasta que empieza a hablar. No creo que nadie de aquí supiera su nombre para empezar.", "Dueño", dueno, true);
+        Dialogo dRama1Due2 = new Dialogo("Ya entiendo, una última pregunta. ¿Cómo era su relación con el economista?", "Detective", detective, true);
+        Dialogo dRama1Due3 = new Dialogo("Ninguna, personas como él no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
 
 
-        // Conexiones
 
-        Dialogo d101 = new Dialogo("Si, por supuesto, actualmente todos se encuentran en la sala norte. Se que me dijo que los pusiera en la recepcion, pero considere que existia un riesgo real de que en caso de ser un asesinato el culpable huyera.", "Policia", policia, true);
-        Dialogo d102 = new Dialogo("Buen juicio, si resulta en una verdadera excena del crimen es mejor dificultarles la salida. Aunque para la proxima ocasion consultalo conmigo primero, despues de todo soy tu jefe.", "Detective", detective, true);
-        Dialogo d103 = new Dialogo("Lo tendre en consideracion.", "Policia", policia, true);
-        Dialogo d104 = new Dialogo("Perfecto, ahora guiame hacia donde se encuentran los trabajadores del museo.", "Detective", detective, true);
-        Dialogo d105 = new Dialogo("Por aqui.", "Policia", policia, true);
-        Dialogo d106 = new Dialogo("¿Cuantos se encontraban en el museo a esta hora?", "Detective", detective, true);
-        Dialogo d107 = new Dialogo("Segun pude verificar el museo tiene en total 28 trabajadores, de los cuales se quedaron hasta tarde hoy 7.", "Policia", policia, true);
-        Dialogo d108 = new Dialogo("No es un mal numero para trabajar. ¿Algo mas que deba de saber si hay alguien que frecuenta el edificio o algo asi?.", "Detective", detective, true);
-        Dialogo d109 = new Dialogo("No sabria decir, aunque muchos mencionan la presencia de un vagabundo en un callejon cercano que a menudo se le podia ver interactuando con el economico.", "Policia", policia, true);
-        Dialogo d110 = new Dialogo("Eso será útil. ", "Detective", detective, true);
-        Dialogo d110q = new Dialogo("Ah, detective, justo el hombre que estaba esperando. Por favor puede poner orden la sala, todos andan preocupados de que un asesino pueda andar por ahi. Por favor expliqueles que lo que le paso al economico fue por decision propia. ", "Dueño", dueno, true);
-        Dialogo d110w = new Dialogo("Pondre orden en la sala, pero la posibilidad de un asesinato es alta. Por favor agente, manda las fotografias de la escena del crimen al laboratorio y pide un analisis inmediato. ", "Detective", detective, true);
-        Dialogo d110e = new Dialogo("A sus ordenes.", "Policia", policia, true);
-        Dialogo d110r = new Dialogo("Ahora, volviendo a lo que estabamos. Usted es el dueño del museo, y por tanto el más afectado por lo sucedido en él. Empezaré el interrogatorio por usted. Digo, si no le es de ningun problema. ", "Detective", detective, true);
-        Dialogo d111 = new Dialogo("No.....heem, no, no hay nigun problema. Todo bien, nada de lo que preocuparse... he, puede preguntar lo que quiera.", "Dueño", dueno, true);
+        Dialogo dRama1Due4 = new Dialogo("Me imaginé que dirías algo así. Gracias por su cooperación, puede retirarse.", "Detective", detective, true);
+        Dialogo dRama1Due5 = new Dialogo("Apúrese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
+        Dialogo dRama1Due6 = new Dialogo("(Qué persona más rara.)", "Detective", detective, true);
 
-        Dialogo decisionDueno = new Dialogo("¿Que desea saber?", "Dueño", dueno, true);
-        decisionDueno.setOpciones(new LinkedList<>(Arrays.asList("¿En donde se encontraba en el momento de la tragedia?", "¿El economico tenia algun enemigo?", "¿Como era su relación con el económico?")));
+        Dialogo dRama1Due1$1 = new Dialogo("Ninguna, personas como él no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
+        Dialogo dRama1Due2$1 = new Dialogo("Me imaginé que dirías algo así. Solo me queda una pregunta. ¿El economista tenía algún enemigo?", "Detective", detective, true);
+        Dialogo dRama1Due3$1 = new Dialogo("Hasta donde sé, era una persona tranquila, no creo que nadie lo llegara a odiar. Era del tipo de gente que no sabes que está a tu lado hasta que empieza a hablar. No creo que nadie de aquí supiera su nombre para empezar.", "Dueño", dueno, true);
+        Dialogo dRama1Due4$1 = new Dialogo("Ya entiendo. Gracias por su cooperación.", "Detective", detective, true);
+        Dialogo dRama1Due5$1 = new Dialogo("Apúrese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
+        Dialogo dRama1Due6$1 = new Dialogo("(Qué persona más rara.)", "Detective", detective, true);
 
-        Dialogo dRama1Due = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitacion en todo el dia.", "Dueño", dueno, true);
-        Dialogo dRama1DuePr1 = new Dialogo("¿Desea saber algo mas?", "Dueño", dueno, true);
-        dRama1DuePr1.setOpciones(new LinkedList<>(Arrays.asList( "¿El economico tenia algun enemigo?", "¿Como era su relación con el económico?")));
+        Dialogo dRama2Due = new Dialogo("Hasta donde sé, era una persona tranquila, no creo que nadie lo llegara a odiar. Era del tipo de gente que no sabes que está a tu lado hasta que empieza a hablar. No creo que nadie de aquí supiera su nombre para empezar.", "Dueño", dueno, true);
+        Dialogo dRama2Due1 = new Dialogo("Así que nadie de por aquí tenía una relación cercana a él.", "Detective", detective, true);
+        Dialogo dRama2Due2 = new Dialogo("Se podría decir. ¿Desea saber algo más?", "Dueño", dueno, true);
+        dRama2Due2.setOpciones(new LinkedList<>(Arrays.asList("¿En dónde se encontraba en el momento de la tragedia?", "¿Cómo era su relación con el economista?")));
 
-        Dialogo dRama1Due1 = new Dialogo("Hasta donde sé, era una persona tranquila, no creo que nadie lo llegara odiar. Era del tipo de gente que no sabes que esta a tu lado, hasta que empieza a hablar. No creo que nadie de aqui supiera su nombre para empezar.", "Dueño", dueno, true);
-        Dialogo dRama1Due2 = new Dialogo("Ya entiendo, una ultima pregunta. ¿Como era su relación con el económico?", "Detective", detective, true);
-        Dialogo dRama1Due3 = new Dialogo("Ninguna, personas como el no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
-        Dialogo dRama1Due4 = new Dialogo("Me imagine que dirias algo asi. Gracias por su cooperacion, puede retirarse.", "Detective", detective, true);
-        Dialogo dRama1Due5 = new Dialogo("Apurese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera el que lo paga.", "Dueño", dueno, true);
-        Dialogo dRama1Due6 = new Dialogo("(Que persona mas rara.)", "Detective", detective, true);
+        Dialogo dRama2Due3 = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitación en todo el día.", "Dueño", dueno, true);
+        Dialogo dRama2Due4 = new Dialogo("Ya entiendo, una última pregunta. ¿Cómo era su relación con el economista?", "Detective", detective, true);
+        Dialogo dRama2Due5 = new Dialogo("Ninguna, personas como él no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
+        Dialogo dRama2Due6 = new Dialogo("Me imaginé que dirías algo así. Gracias por su cooperación, puede retirarse.", "Detective", detective, true);
+        Dialogo dRama2Due7 = new Dialogo("Apúrese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
+        Dialogo dRama2Due8 = new Dialogo("(Qué persona más rara.)", "Detective", detective, true);
 
-        Dialogo dRama1Due1$1 = new Dialogo("Ninguna, personas como el no merecen que gaste mi tiempo en ellas", "Dueño", dueno, true);
-        Dialogo dRama1Due2$1 = new Dialogo("Me imagine que dirias algo asi. Solo me queda una pregunta. ¿El economico tenia algun enemigo?", "Detective", detective, true);
-        Dialogo dRama1Due3$1 = new Dialogo("Hasta donde sé, era una persona tranquila, no creo que nadie lo llegara odiar. Era del tipo de gente que no sabes que esta a tu lado, hasta que empieza a hablar. No creo que nadie de aqui supiera su nombre para empezar.", "Dueño", dueno, true);
-        Dialogo dRama1Due4$1 = new Dialogo("Ya entiendo. Gracias por su cooperacion", "Detective", detective, true);
-        Dialogo dRama1Due5$1 = new Dialogo("Apurese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
-        Dialogo dRama1Due6$1 = new Dialogo("(Que persona mas rara.)", "Detective", detective, true);
+        Dialogo dRama2Due3$1 = new Dialogo("Ninguna, personas como él no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
+        Dialogo dRama2Due4$1 = new Dialogo("Me imaginé que dirías algo así. Una última pregunta para terminar. ¿En dónde se encontraba en el momento de la tragedia?", "Detective", detective, true);
+        Dialogo dRama2Due5$1 = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitación en todo el día.", "Dueño", dueno, true);
+        Dialogo dRama2Due6$1 = new Dialogo("Ya entiendo, una última pregunta. Gracias por su cooperación, puede retirarse.", "Detective", detective, true);
+        Dialogo dRama2Due7$1 = new Dialogo("Apúrese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
+        Dialogo dRama2Due8$1 = new Dialogo("(Qué persona más rara.)", "Detective", detective, true);
 
-        Dialogo dRama2Due = new Dialogo("Hasta donde sé, era una persona tranquila, no creo que nadie lo llegara odiar. Era del tipo de gente que no sabes que esta a tu lado, hasta que empieza a hablar. No creo que nadie de aqui supiera su nombre para empezar.", "Dueño", dueno, true);
-        Dialogo dRama2Due1 = new Dialogo("Asi que nadie de por aqui tenia una relacion cercana a el.", "Detective", detective, true);
-        Dialogo dRama2Due2 = new Dialogo("Se podria decir. ¿Desea saber algo mas?", "Dueño", dueno, true);
-        dRama2Due2.setOpciones(new LinkedList<>(Arrays.asList( "¿En donde se encontraba en el momento de la tragedia?", "¿Como era su relación con el económico?")));
+        Dialogo dRama3Due = new Dialogo("Ninguna, personas como él no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
+        Dialogo dRama3Due1 = new Dialogo("Me imaginé que diría algo como eso.", "Detective", detective, true);
+        Dialogo dRama3Due2 = new Dialogo("¿Desea saber algo más?", "Dueño", dueno, true);
+        dRama3Due2.setOpciones(new LinkedList<>(Arrays.asList("¿En dónde se encontraba en el momento de la tragedia?", "¿El economista tenía algún enemigo?")));
 
-        Dialogo dRama2Due3 = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitacion en todo el dia.", "Dueño", dueno, true);
-        Dialogo dRama2Due4 = new Dialogo("Ya entiendo, una ultima pregunta. ¿Como era su relación con el económico?", "Detective", detective, true);
-        Dialogo dRama2Due5 = new Dialogo("Ninguna, personas como el no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
-        Dialogo dRama2Due6 = new Dialogo("Me imagine que dirias algo asi. Gracias por su cooperacion, puede retirarse.", "Detective", detective, true);
-        Dialogo dRama2Due7 = new Dialogo("Apurese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
-        Dialogo dRama2Due8 = new Dialogo("(Que persona mas rara.)", "Detective", detective, true);
+        Dialogo dRama3Due3 = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitación en todo el día.", "Dueño", dueno, true);
+        Dialogo dRama3Due4 = new Dialogo("Ya entiendo, una última pregunta. ¿El economista tenía algún enemigo?", "Detective", detective, true);
+        Dialogo dRama3Due5 = new Dialogo("Hasta donde sé, era una persona tranquila, no creo que nadie lo llegara a odiar. Era del tipo de gente que no sabes que está a tu lado hasta que empieza a hablar. No creo que nadie de aquí supiera su nombre para empezar.", "Dueño", dueno, true);
+        Dialogo dRama3Due6 = new Dialogo("Así que nadie de por aquí tenía una relación cercana a él.", "Detective", detective, true);
+        Dialogo dRama3Due7 = new Dialogo("Se podría decir. ¿Desea saber algo más?", "Dueño", dueno, true);
+        Dialogo dRama3Due8 = new Dialogo("No, con eso ya tengo suficiente. Gracias por su cooperación, puede retirarse.", "Detective", detective, true);
+        Dialogo dRama3Due9 = new Dialogo("Apúrese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
+        Dialogo dRama3Due10 = new Dialogo("(Qué persona más rara.)", "Detective", detective, true);
 
-        Dialogo dRama2Due3$1 = new Dialogo("Ninguna, personas como el no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
-        Dialogo dRama2Due4$1 = new Dialogo("Me imagine que dirias algo asi. Una ultima pregunta para terminar. ¿En donde se encontraba en el momento de la tragedia?", "Detective", detective, true);
-        Dialogo dRama2Due5$1 = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitacion en todo el dia.", "Dueño", dueno, true);
-        Dialogo dRama2Due6$1 = new Dialogo("Ya entiendo, una ultima pregunta.Gracias por su cooperacion, puede retirarse.", "Detective", detective, true);
-        Dialogo dRama2Due7$1 = new Dialogo("Apurese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
-        Dialogo dRama2Due8$1 = new Dialogo("(Que persona mas rara.)", "Detective", detective, true);
-
-        Dialogo dRama3Due = new Dialogo("Ninguna, personas como el no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
-        Dialogo dRama3Due1 = new Dialogo("Me imagine que diria algo como eso.", "Detective", detective, true);
-        Dialogo dRama3Due2 = new Dialogo("¿Desea saber algo mas?", "Dueño", dueno, true);
-        dRama3Due2.setOpciones(new LinkedList<>(Arrays.asList( "¿En donde se encontraba en el momento de la tragedia?", "¿El economico tenia algun enemigo?")));
-
-        Dialogo dRama3Due3 = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitacion en todo el dia.", "Dueño", dueno, true);
-        Dialogo dRama3Due4 = new Dialogo("Ya entiendo, una ultima pregunta. ¿El economico tenia algun  enemigo?", "Detective", detective, true);
-        Dialogo dRama3Due5 = new Dialogo("Hasta donde sé, era una persona tranquila, no creo que nadie lo llegara odiar. Era del tipo de gente que no sabes que esta a tu lado, hasta que empieza a hablar. No creo que nadie de aqui supiera su nombre para empezar.", "Dueño", dueno, true);
-        Dialogo dRama3Due6 = new Dialogo("Asi que nadie de por aqui tenia una relacion cercana a el.", "Detective", detective, true);
-        Dialogo dRama3Due7 = new Dialogo("Se podria decir. ¿Desea saber algo mas?", "Dueño", dueno, true);
-        Dialogo dRama3Due8 = new Dialogo("No, con eso ya tengo suficiente. Gracias por su cooperacion, puede retirarse", "Detective", detective, true);
-        Dialogo dRama3Due9 = new Dialogo("Apurese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
-        Dialogo dRama3Due10 = new Dialogo("(Que persona mas rara.)", "Detective", detective, true);
-
-        Dialogo dRama3Due3$1 = new Dialogo("Hasta donde sé, era una persona tranquila, no creo que nadie lo llegara odiar. Era del tipo de gente que no sabes que esta a tu lado, hasta que empieza a hablar. No creo que nadie de aqui supiera su nombre para empezar.", "Dueño", dueno, true);
-        Dialogo dRama3Due4$1 = new Dialogo("Asi que nadie de por aqui tenia una relacion cercana a el.", "Detective", detective, true);
-        Dialogo dRama3Due5$1 = new Dialogo("Se podria decir. ¿Desea saber algo mas?", "Dueño", dueno, true);
-        Dialogo dRama3Due6$1 = new Dialogo("Si. ¿Donde se encontraba en el momento de la tragedia?", "Detective", detective, true);
-        Dialogo dRama3Due7$1 = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitacion en todo el dia.", "Dueño", dueno, true);
-        Dialogo dRama3Due8$1 = new Dialogo("Ya entiendo, una ultima pregunta.Gracias por su cooperacion, puede retirarse.", "Detective", detective, true);
-        Dialogo dRama3Due9$1 = new Dialogo("Apurese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
-        Dialogo dRama3Due10$1 = new Dialogo("(Que persona mas rara.)", "Detective", detective, true);
+        Dialogo dRama3Due3$1 = new Dialogo("Hasta donde sé, era una persona tranquila, no creo que nadie lo llegara a odiar. Era del tipo de gente que no sabes que está a tu lado hasta que empieza a hablar. No creo que nadie de aquí supiera su nombre para empezar.", "Dueño", dueno, true);
+        Dialogo dRama3Due4$1 = new Dialogo("Así que nadie de por aquí tenía una relación cercana a él.", "Detective", detective, true);
+        Dialogo dRama3Due5$1 = new Dialogo("Se podría decir. ¿Desea saber algo más?", "Dueño", dueno, true);
+        Dialogo dRama3Due6$1 = new Dialogo("Sí. ¿Dónde se encontraba en el momento de la tragedia?", "Detective", detective, true);
+        Dialogo dRama3Due7$1 = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitación en todo el día.", "Dueño", dueno, true);
+        Dialogo dRama3Due8$1 = new Dialogo("Ya entiendo. Gracias por su cooperación, puede retirarse.", "Detective", detective, true);
+        Dialogo dRama3Due9$1 = new Dialogo("Apúrese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
+        Dialogo dRama3Due10$1 = new Dialogo("(Qué persona más rara.)", "Detective", detective, true);
 
         // Conexiones
 
@@ -1242,29 +1292,35 @@ public class Tutorial extends JFrame {
         //Interaccion del detective con todos los personajes
         //Guardia de Seguridad
 
-        Dialogo g1 = new Dialogo("Buenas noches, soy el detective asignado al caso. Necesito hablar con usted.", "Detective", detective, true);
-        Dialogo g2 = new Dialogo("Buenas noches, detective. Soy el guardia de seguridad del museo.", "Guardia", seguridad, true);
+        Dialogo g1 = new Dialogo("Buenas noches, soy el detective Mason Carter asignado al caso. Necesito hablar con usted.", "Detective", detective, true);
+        Dialogo g2 = new Dialogo("Buenas noches, detective. Me llamo Kai Collins, soy el guardia de seguridad del museo.", "Guardia", seguridad, true);
 
         Dialogo decisionGuardia = new Dialogo("¿Qué desea preguntarme?", "Guardia", seguridad, true);
-        decisionGuardia.setOpciones(new LinkedList<>(Arrays.asList( "¿Qué relación tenía con el economista?",
-                "¿Dónde estaba usted cuando ocurrieron los hechos?", "Eso es suficiente por ahora. Terminemos la conversación.")));
+        decisionGuardia.setOpciones(new LinkedList<>(Arrays.asList(
+                "¿Qué relación tenía con el economista?",
+                "¿Dónde estaba usted cuando ocurrieron los hechos?",
+                "Eso es suficiente por ahora. Terminemos la conversación."
+        )));
 
-
-        //Pregunta 2: Relación con la víctima
+// Pregunta 2: Relación con la víctima
         Dialogo rB = new Dialogo("Casi ninguna. Era reservado, apenas cruzábamos palabras.", "Guardia", seguridad, true);
-        //Pregunta 3: Dónde estaba en el momento de los hechos (dato clave)
-        Dialogo rC = new Dialogo("Estaba revisando las cámaras. Justo a la hora del asesinato, una de ellas falló en la sección" +
-                " medieval. Fui a investigar y encontré el cuerpo.", "Guardia", seguridad, true);
+// Pregunta 3: Dónde estaba en el momento de los hechos (dato clave)
+        Dialogo rC = new Dialogo("Estaba revisando las cámaras. Justo a la hora del asesinato, una de ellas falló en la sección medieval. Fui a investigar y encontré el cuerpo.", "Guardia", seguridad, true);
 
-        Dialogo decisionGuardia2 = new Dialogo("¿Alguna pregunta mas?", "Guardia", seguridad, true);
-        decisionGuardia2.setOpciones(new LinkedList<>(Arrays.asList("¿Dónde estaba usted cuando ocurrieron los hechos?", "Eso es suficiente por ahora. Terminemos la conversación.")));
+        Dialogo decisionGuardia2 = new Dialogo("¿Alguna pregunta más?", "Guardia", seguridad, true);
+        decisionGuardia2.setOpciones(new LinkedList<>(Arrays.asList(
+                "¿Dónde estaba usted cuando ocurrieron los hechos?",
+                "Eso es suficiente por ahora. Terminemos la conversación."
+        )));
 
         Dialogo decisionGuardia3 = new Dialogo("¿Alguna pregunta más?", "Guardia", seguridad, true);
-        decisionGuardia3.setOpciones(new LinkedList<>(Arrays.asList( "¿Qué relación tenía con el economista?",
-                "Eso es suficiente por ahora. Terminemos la conversación.")));
+        decisionGuardia3.setOpciones(new LinkedList<>(Arrays.asList(
+                "¿Qué relación tenía con el economista?",
+                "Eso es suficiente por ahora. Terminemos la conversación."
+        )));
 
         Dialogo rD = new Dialogo("Entendido, detective. Si necesita algo más, estaré en mi puesto.", "Guardia", seguridad, true);
-        Dialogo despediDet = new Dialogo("Gracias por su cooperacion, eso seria todo por ahora.", "Detective", detective, true);
+        Dialogo despediDet = new Dialogo("Gracias por su cooperación, eso sería todo por ahora.", "Detective", detective, true);
 
         BinaryTreeNode<Dialogo> node112 = new BinaryTreeNode<>(g1);
         BinaryTreeNode<Dialogo> node113 = new BinaryTreeNode<>(g2);
@@ -1303,7 +1359,7 @@ public class Tutorial extends JFrame {
 
         Dialogo dect = new Dialogo("Buenas noches. Estoy interrogando al personal del museo. ¿Podría decirme quién es usted y " +
                 "qué función cumple aquí?", "Detective", detective, true);
-        Dialogo guia1 = new Dialogo("Claro, detective. Soy el guía principal del museo. Me encargo de recibir a los visitantes," +
+        Dialogo guia1 = new Dialogo("Claro, detective.  Soy el guía principal del museo, mi nombre es Willian Harrington. Me encargo de recibir a los visitantes," +
                 " explicarles las exposiciones y resolver cualquier duda que tengan.", "Guía", guia, true);
 
         // Primera decisión: preguntar o terminar
@@ -1357,29 +1413,28 @@ public class Tutorial extends JFrame {
         //Cambio de personaje, Aqui empieza la secretaria
 
         Dialogo s1 = new Dialogo("Buenas noches. Estoy reuniendo declaraciones del personal. ¿Podemos hablar un momento?", "Detective", detective, true);
-        Dialogo s2 = new Dialogo("Por supuesto, detective. Soy la secretaria del director. Manejo su agenda, sus llamadas... y" +
-                " a veces sus caprichos.", "Secretaria", secretaria, true);
+        Dialogo s2 = new Dialogo("Por supuesto, detective. Soy la secretaria del director. Manejo su agenda, sus llamadas... y a veces sus caprichos.", "Secretaria", secretaria, true);
 
         // Primera decisión
-        Dialogo decs1= new Dialogo("¿Quiere saber algo más o solo vino a saludar?", "Secretaria", secretaria, true);
-        decs1.setOpciones(new LinkedList<>(Arrays.asList("¿Tenía algún tipo de relación con el economista?", "No, eso sería todo por ahora.")));
+        Dialogo decs1 = new Dialogo("¿Quiere saber algo más o solo vino a saludar?", "Secretaria", secretaria, true);
+        decs1.setOpciones(new LinkedList<>(Arrays.asList(
+                "¿Tenía algún tipo de relación con el economista?",
+                "No, eso sería todo por ahora."
+        )));
 
-        Dialogo resp1 = new Dialogo("Nada fuera de lo laboral. Era serio, distante... aunque a veces me lanzaba miradas que decían más " +
-                "que sus palabras.", "Secretaria", secretaria, true);
-
+        Dialogo resp1 = new Dialogo("Nada fuera de lo laboral. Era serio, distante... aunque a veces me lanzaba miradas que decían más que sus palabras.", "Secretaria", secretaria, true);
         Dialogo desp1 = new Dialogo("Qué pena... justo cuando empezaba a disfrutar la charla. Estoy a su disposición, detective.", "Secretaria", secretaria, true);
 
         // Segunda decisión
-        Dialogo decs2 = new Dialogo("¿Le interesa conocer algo mas acerca de mi.?", "Secretaria", secretaria, true);
-        decs2.setOpciones(new LinkedList<>(Arrays.asList("¿Dónde se encontraba cuando ocurrió el incidente?", "Gracias por su tiempo. " +
-                "Eso sería todo.")));
-        ;
-        Dialogo resp2 = new Dialogo("En mi oficina, como siempre. Archivando papeles, atendiendo llamadas... y esperando que algo" +
-                " interesante pasara. Supongo que lo logró.", "Secretaria", secretaria, true);
+        Dialogo decs2 = new Dialogo("¿Le interesa conocer algo más acerca de mí?", "Secretaria", secretaria, true);
+        decs2.setOpciones(new LinkedList<>(Arrays.asList(
+                "¿Dónde se encontraba cuando ocurrió el incidente?",
+                "Gracias por su tiempo. Eso sería todo."
+        )));
 
+        Dialogo resp2 = new Dialogo("En mi oficina, como siempre. Archivando papeles, atendiendo llamadas... y esperando que algo interesante pasara. Supongo que lo logró.", "Secretaria", secretaria, true);
         Dialogo desp2 = new Dialogo("A usted, detective. Que tenga una noche... intrigante.", "Secretaria", secretaria, true);
-        Dialogo despDetSecret= new Dialogo("Eso seria todo, puede regresar. Gracias por su cooperación", "Detective", detective, true);
-
+        Dialogo despDetSecret = new Dialogo("Eso sería todo, puede regresar. Gracias por su cooperación.", "Detective", detective, true);
         BinaryTreeNode<Dialogo> node116 = new BinaryTreeNode<>(s1);
         BinaryTreeNode<Dialogo> node117 = new BinaryTreeNode<>(s2);
 
