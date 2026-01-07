@@ -275,11 +275,7 @@ public class TelefonoReproductor extends JPanel {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBotonesTelefono();
         getParent().getComponent(1).setVisible(true);
-        getParent().getComponent(2).setVisible(false);
-        getParent().revalidate();
-        getParent().repaint();
-        getParent().remove(2);
-
+        getParent().getComponent(4).setVisible(false);
     }
 
     private void botonSalirMouseEntered(MouseEvent evt) {

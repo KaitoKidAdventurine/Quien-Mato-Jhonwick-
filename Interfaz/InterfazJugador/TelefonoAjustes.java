@@ -314,10 +314,9 @@ public class TelefonoAjustes extends JPanel{
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBotonesTelefono();
         getParent().getComponent(1).setVisible(true);
-        getParent().getComponent(2).setVisible(false);
+        getParent().getComponent(3).setVisible(false);
         getParent().revalidate();
         getParent().repaint();
-        getParent().remove(2);
 
     }
 

@@ -1807,7 +1807,7 @@ public class Tutorial extends JFrame {
 
         MiniJuego miniJuego = Juego.getInstance().getMinijuego(0);
 
-        MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(miniJuego);
+        MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(miniJuego, 0);
         minijuegoInterfaz.setBounds(0, 0, tamPant.width, tamPant.height);
         getContentPane().add(minijuegoInterfaz, 0);
         getContentPane().revalidate();

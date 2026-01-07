@@ -39,11 +39,12 @@ public class MinijuegoInterfaz extends JPanel {
     private TimerTask tarea4;
     private boolean pistaLista;
     private InterfazMenuMinijuego menu;
+    private int momentoUsado;
 
 
 
-    public MinijuegoInterfaz(MiniJuego miniJuego) {
-
+    public MinijuegoInterfaz(MiniJuego miniJuego, int momentoUsado) {
+        this.momentoUsado=momentoUsado;
         timerMini1 = new java.util.Timer();
         timerMini2 = new java.util.Timer();
         timerMini3 = new java.util.Timer();
@@ -270,12 +271,20 @@ public class MinijuegoInterfaz extends JPanel {
                         revalidate();
                         repaint();
                     }else{
-                        getParent().getComponent(0).setVisible(false);
-                        getParent().getComponent(2).setVisible(true);
-                        getParent().revalidate();
-                        getParent().repaint();
-                        ponerObjetosEnMochila();
-                        getParent().remove(0);
+                        switch (momentoUsado){
+                            case 0:
+                                getParent().getComponent(0).setVisible(false);
+                                getParent().getComponent(2).setVisible(true);
+                                getParent().revalidate();
+                                getParent().repaint();
+                                ponerObjetosEnMochila();
+                                getParent().remove(0);
+                                break;
+                            case 1:
+                                Juego.getInstance().getPartidaActual().getEventos().setPuertaCerrada(false);
+                                Juego.getInstance().getPartidaActual().getEventos().setCamarasRevisadas(true);
+                        }
+
                     }
 
                 }

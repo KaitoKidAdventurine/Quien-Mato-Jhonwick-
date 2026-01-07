@@ -264,10 +264,10 @@ public class Sala extends ModeloEscenario {
     private void esposaActionPerformed(ActionEvent evt) {
         int variable =Juego.getInstance().getPartidaActual().getEventos().getRonda();
         switch (variable){
-            case 0, 1:
+            case 0, 1, 2, 3:
                 ponerDialogosEstatico(crearDialogoNoDisponible(), 0);
                 break;
-            case 2:
+            case 4:
                 if(!Juego.getInstance().getPartidaActual().getEventos().isEsposaYa()) {
                     ponerDialogo();
                     esposa.setVisible(false);

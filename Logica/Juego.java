@@ -246,7 +246,7 @@ public class Juego {
         miniJuegos.add(escenaDelCrimen);
 
 
-        ImageIcon bathImage = new ImageIcon("DatosAuxiliares/Minijuego/Baño Piso 2.png");
+        ImageIcon bathImage = new ImageIcon("DatosAuxiliares/Minijuego/Escena del Baño.png");
         MiniJuego bathSecondFloor = new MiniJuego("Baño Segundo Piso", bathImage);
 
         ObjetoEscenario obBilletera = new ObjetoEscenario("Billetera", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (622-175)/1152f, 667f/765f, (725-622)/1152f, (719-667)/765f, false, "");

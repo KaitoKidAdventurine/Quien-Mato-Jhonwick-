@@ -35,6 +35,9 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
     private Telefono telefonoLogica;
     private JButton apagar;
     private JPanel cajaTexto;
+    private TelefonoLlamar llamada;
+    private TelefonoAjustes ajustesT;
+    private TelefonoReproductor reproductorT;
 
     /**
      * Creates new form MenuInterno
@@ -60,8 +63,8 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
             public void run() {
                 if(UnionInterfaces.getInstance().getHablandoCapitan()){
                     UnionInterfaces.getInstance().setHablandoCapitan(false);
-                    getContentPane().getComponent(2).setVisible(false);
-                    getContentPane().getComponent(1).setVisible(false);
+                    llamada.setVisible(false);
+                    pantalla.setVisible(false);
                     telefono.setVisible(false);
                     llamadaCapitan(0);
                 }
@@ -73,8 +76,8 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
             public void run() {
                 if(UnionInterfaces.getInstance().getMolestandoTarde()){
                     UnionInterfaces.getInstance().setMolestandoTarde(false);
-                    getContentPane().getComponent(2).setVisible(false);
-                    getContentPane().getComponent(1).setVisible(false);
+                    llamada.setVisible(false);
+                    pantalla.setVisible(false);
                     telefono.setVisible(false);
                     molestarTarde();
                 }
@@ -119,6 +122,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         pantalla.setLayout(null);
         pantalla.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
         pantalla.setOpaque(false);
+
         llamar.setBorderPainted(false);
         llamar.setContentAreaFilled(false);
         llamar.setFocusPainted(false);
@@ -288,6 +292,23 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
         add(pantalla, 1);
         add(telefono);
 
+        llamada = new TelefonoLlamar();
+        llamada.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
+        llamada.setVisible(false);
+        add(llamada,2);
+
+
+        ajustesT = new TelefonoAjustes(telefonoLogica, fondo);
+        ajustesT.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
+        ajustesT.setVisible(false);
+        add(ajustesT, 3);
+
+
+        reproductorT = new TelefonoReproductor(telefonoLogica);
+        reproductorT.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
+        reproductorT.setVisible(false);
+        add(reproductorT, 4);
+
         pack();
         timer.scheduleAtFixedRate(tarea, 0, 10);
         timer1.scheduleAtFixedRate(tarea1, 0, 20);
@@ -298,13 +319,11 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
 
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBotonesTelefono();
-        TelefonoLlamar llamada = new TelefonoLlamar();
-        llamada.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
-        add(llamada, 2);
+
         pantalla.setVisible(false);
         llamada.setVisible(true);
-        revalidate();
-        repaint();
+        reproductorT.setVisible(false);
+        ajustesT.setVisible(false);
     }
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {
@@ -339,12 +358,10 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
     private void jButton2ActionPerformed(ActionEvent evt, Telefono telefonoLogica, JLabel fondo) {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBotonesTelefono();
-        TelefonoAjustes ajustesT = new TelefonoAjustes(telefonoLogica, fondo);
-        ajustesT.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
-        add(ajustesT, 2);
         pantalla.setVisible(false);
+        llamada.setVisible(false);
+        reproductorT.setVisible(false);
         ajustesT.setVisible(true);
-
     }
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {
@@ -377,13 +394,10 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
     private void jButton3ActionPerformed(ActionEvent evt, Telefono telefonoLogica) {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBotonesTelefono();
-
-        TelefonoReproductor reproductorT = new TelefonoReproductor(telefonoLogica);
-        reproductorT.setBounds((int) (tamPant.width*0.3394), (int) (tamPant.height*0.12), (int) (tamPant.width*0.27), (int) (tamPant.height*0.73));
-        add(reproductorT, 2);
         pantalla.setVisible(false);
         reproductorT.setVisible(true);
-
+        llamada.setVisible(false);
+        ajustesT.setVisible(false);
     }
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {
@@ -457,8 +471,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
 
         } else{
             cajaTexto.removeAll();
-            getContentPane().getComponent(2).setVisible(true);
-            getContentPane().getComponent(1).setVisible(true);
+            llamada.setVisible(true);
             telefono.setVisible(true);
         }
     }
@@ -497,8 +510,7 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            getContentPane().getComponent(2).setVisible(true);
-            getContentPane().getComponent(1).setVisible(true);
+            llamada.setVisible(true);
             telefono.setVisible(true);
         }
 
