@@ -46,7 +46,7 @@ public class Partida implements Serializable, Cloneable
         } catch (Exception e) {
             System.out.println("ERROR en constructor de Partida: " + e.getMessage());
             e.printStackTrace();
-            throw e;  // Re-lanza para que el error sea visible
+            throw e;
         }
     }
 
@@ -354,9 +354,9 @@ public class Partida implements Serializable, Cloneable
         dialogosCapitan.add(dialogos3);
     }
 
-    public void crearDialogosActo1(){
+    public void crearDialogosActo1() {
 
-        ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/Personajes/Secretaria.png");
+        ImageIcon secretaria = new ImageIcon("DatosAuxiliares/Personajes/Secretaria.png");
         ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
         ImageIcon seguridad = new ImageIcon("DatosAuxiliares/Personajes/Seguridad.png");
         ImageIcon limpieza = new ImageIcon("DatosAuxiliares/Personajes/Conserje.png");
@@ -376,8 +376,8 @@ public class Partida implements Serializable, Cloneable
                 secretaria, true);
 
         // Primera decisión
-        Dialogo desc1Sec = new Dialogo("Bueno quisiera saber...", "Detective", detective, true );
-        desc1Sec.setOpciones( new LinkedList<String>(Arrays.asList(
+        Dialogo desc1Sec = new Dialogo("Bueno quisiera saber...", "Detective", detective, true);
+        desc1Sec.setOpciones(new LinkedList<String>(Arrays.asList(
                 "¿Notó algo extraño en el comportamiento del guardia?",
                 "¿Sabe si alguien más tenía acceso a su computadora?"
         )));
@@ -400,7 +400,7 @@ public class Partida implements Serializable, Cloneable
 
         // Segunda decisión
         Dialogo desc2Sec = new Dialogo("Umm.. con todo lo anterior buena historia tenemos aquí, ya no se si deba preguntar más " +
-                "o simplemente sacar mis propias conclusiones ", "Detective", detective, true );
+                "o simplemente sacar mis propias conclusiones ", "Detective", detective, true);
         desc2Sec.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Le tenía afecto?",
                 "No quiero saber nada más"
@@ -417,8 +417,8 @@ public class Partida implements Serializable, Cloneable
 
         // Tercera decisión
         Dialogo desc3Sec = new Dialogo("Vale interesante respuesta, pero ahora quiero saber ciertas cositas más o quizás solo me " +
-                "quede con toda la información que tengo hasta el momento, ya veremos...", "Detective", detective, true );
-        desc3Sec.setOpciones( new LinkedList<>( Arrays.asList(
+                "quede con toda la información que tengo hasta el momento, ya veremos...", "Detective", detective, true);
+        desc3Sec.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Él le confiaba información personal?",
                 "¿Recuerda si mencionó algo sobre su contraseña?",
                 "No quiero saber nada más"
@@ -516,8 +516,8 @@ public class Partida implements Serializable, Cloneable
         Dialogo s4 = new Dialogo("Supongo... aunque no me gusta pensar que algo se me pudo haber pasado.", "Seguridad", seguridad, true);
 
         // Primera decisión
-        Dialogo desc1Seg= new Dialogo("Bueno quisiera hacerle unas preguntas", "Detective", detective, true );
-        desc1Seg.setOpciones( new LinkedList<>(Arrays.asList(
+        Dialogo desc1Seg = new Dialogo("Bueno quisiera hacerle unas preguntas", "Detective", detective, true);
+        desc1Seg.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Alguien más tiene acceso a la sala de seguridad?",
                 "¿Notó algo extraño en los monitores?"
         )));
@@ -537,9 +537,9 @@ public class Partida implements Serializable, Cloneable
         Dialogo c8 = new Dialogo("Desconexiones, cortes breves. Nada que activara alarmas, pero sí lo suficiente para dejar huecos.", "Seguridad", seguridad, true);
 
         // Segunda decisión
-        Dialogo desc2Seg= new Dialogo("Bueno quizas le haga unas preguntas o tal vez me quede con la información que ya tengo...",
-                "Detective", detective, true );
-        desc2Seg.setOpciones( new LinkedList<>(Arrays.asList(
+        Dialogo desc2Seg = new Dialogo("Bueno quizas le haga unas preguntas o tal vez me quede con la información que ya tengo...",
+                "Detective", detective, true);
+        desc2Seg.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Es común que se caigan?",
                 "¿Qué cámaras fallaron exactamente?",
                 "No quiero saber nada más"
@@ -648,8 +648,8 @@ public class Partida implements Serializable, Cloneable
         Dialogo b4 = new Dialogo("Bueno... depende de lo que llame 'fuera de lugar'. Hay cosas raras todo el tiempo en este museo.", "Conserje", limpieza, true);
 
         // Primera decisión
-        Dialogo desc1Limp= new Dialogo("Bueno vamos directo al grano...", "Detective", detective, true );
-        desc1Limp.setOpciones(  new LinkedList<>(Arrays.asList(
+        Dialogo desc1Limp = new Dialogo("Bueno vamos directo al grano...", "Detective", detective, true);
+        desc1Limp.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Notó algo raro en los baños esta semana?",
                 "¿Ha visto a alguien bajar aquí cuando no debería?",
                 "¿Encontró algún objeto que no debería estar ahí?"
@@ -668,8 +668,8 @@ public class Partida implements Serializable, Cloneable
         Dialogo respLimp3b = new Dialogo("Pensé que eran del almacén, así que las guardé. Pero luego se me olvidaron en el bolsillo.", "Conserje", limpieza, true);
 
         // Segunda decisión
-        Dialogo desc2Limp= new Dialogo("Que interesante....", "Detective", detective, true );
-        desc2Limp.setOpciones( new LinkedList<>(Arrays.asList(
+        Dialogo desc2Limp = new Dialogo("Que interesante....", "Detective", detective, true);
+        desc2Limp.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Qué tipo de llaves eran?",
                 "Listo con esto tengo no quiero saber nada más",
                 "¿Dónde están esas llaves ahora?"
@@ -696,7 +696,7 @@ public class Partida implements Serializable, Cloneable
         Dialogo despedidaEsp = new Dialogo("Sí, voy saliendo ya mismo.", "Conserje", limpieza, true);
 
         Dialogo cierre3 = new Dialogo("Muchas gracias por toda la información brindada, aunque no lo crea todo es de gran " +
-                "ayuda..", "Detective", detective, true );
+                "ayuda..", "Detective", detective, true);
         Dialogo despedida3 = new Dialogo("Un placer, me alegra ser util en su investigación.", "Conserje", limpieza, true);
 
         BinaryTreeNode<Dialogo> node37 = new BinaryTreeNode<>(b1);
@@ -777,8 +777,8 @@ public class Partida implements Serializable, Cloneable
         Dialogo j4 = new Dialogo("Claro, claro... aunque si me pregunta a mí, esto ya está más que resuelto. Pero adelante, dispare.", "Dueno", dueno, true);
 
         // Primera decisión
-        Dialogo desc1Due= new Dialogo("Que interesante su afirmación, pero ahora dígame...", "Detective", detective, true );
-        desc1Due.setOpciones( new LinkedList<>(Arrays.asList(
+        Dialogo desc1Due = new Dialogo("Que interesante su afirmación, pero ahora dígame...", "Detective", detective, true);
+        desc1Due.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Conocía bien al economista?",
                 "¿Dónde estaba usted cuando ocurrió el incidente?",
                 "Bonita oficina... ¿puedo preguntarle sobre la decoración?"
@@ -802,8 +802,8 @@ public class Partida implements Serializable, Cloneable
         Dialogo desbloquear2 = new Dialogo("Pero adelante, pregunte. Aunque no prometo responder con seriedad.", "Dueno", dueno, true);
 
         // Segunda decisión (solo aparece si se elige la opción correcta)
-        Dialogo desc2Due= new Dialogo("Usted responda ya yo veré ..", "Detective", detective, true );
-        desc2Due.setOpciones( new LinkedList<>(Arrays.asList("No quiero saber nada más",  "¿Qué son todos esos trofeos en su estantería?")));
+        Dialogo desc2Due = new Dialogo("Usted responda ya yo veré ..", "Detective", detective, true);
+        desc2Due.setOpciones(new LinkedList<>(Arrays.asList("No quiero saber nada más", "¿Qué son todos esos trofeos en su estantería?")));
 
         // Camino principal: trofeos
         Dialogo respDue3a = new Dialogo("¿Los trofeos? Ah, veo que tiene buen ojo. Son de cuando practicaba esgrima. Era bastante" +
@@ -820,8 +820,8 @@ public class Partida implements Serializable, Cloneable
         Dialogo salida1 = new Dialogo("Si quiere saber algo más ya sabe aquí estoy", "Dueno", dueno, true);
 
         //Tercera decisión
-        Dialogo desc3Due= new Dialogo("Usted responda ya yo veré ..", "Detective", detective, true );
-        desc3Due.setOpciones( new LinkedList<>(Arrays.asList(
+        Dialogo desc3Due = new Dialogo("Usted responda ya yo veré ..", "Detective", detective, true);
+        desc3Due.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Aún practica esgrima?",
                 "No quiero saber nada más"
         )));
@@ -912,8 +912,8 @@ public class Partida implements Serializable, Cloneable
         Dialogo guia5 = new Dialogo("Ocho años. He guiado a miles de personas por cada rincón de este lugar. Me lo conozco como si fuese la palma de mi mano.", "Guia1", guia, true);
 
         // Primera decisión
-        Dialogo desc1G1= new Dialogo("Pues muy bien ahora quiero saber..", "Detective", detective, true );
-        desc1G1.setOpciones(  new LinkedList<>( Arrays.asList(
+        Dialogo desc1G1 = new Dialogo("Pues muy bien ahora quiero saber..", "Detective", detective, true);
+        desc1G1.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Qué pieza de esta sala le parece más interesante?",
                 "¿Diría que nota cuando algo está fuera de lugar?",
                 "¿Le ha tocado ver cosas extrañas en sus turnos?"
@@ -931,12 +931,12 @@ public class Partida implements Serializable, Cloneable
 
         // Camino vacío: cosas extrañas
         Dialogo resp3aG1 = new Dialogo("Algunas sombras, ruidos, puertas que se cierran solas... pero nada que no tenga explicación lógica. " +
-                "O al menos eso me digo para poder dormir tranquilo.", "Guia1",guia, true);
+                "O al menos eso me digo para poder dormir tranquilo.", "Guia1", guia, true);
         Dialogo resp3bG1 = new Dialogo("Aunque una vez juraría que vi una figura moverse entre las vitrinas. Pero era tarde, y estaba cansado " +
                 "así que decidí culpar al cansancio.", "Guia1", guia, true);
 
         // Segunda decisión
-        Dialogo desc2G1= new Dialogo("Usted responda mientras yo deduzco si debo seguir preguntandole o no..", "Detective", detective, true );
+        Dialogo desc2G1 = new Dialogo("Usted responda mientras yo deduzco si debo seguir preguntandole o no..", "Detective", detective, true);
         desc2G1.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Alguien estaba donde no debería?",
                 "¿Qué vio fuera de lugar?",
@@ -1069,8 +1069,8 @@ public class Partida implements Serializable, Cloneable
         Dialogo vagab4 = new Dialogo("Hablar no cuesta nada... pero tampoco llena el estómago.", "Vagabundo", vagabundo, true);
 
         // Primera decisión
-        Dialogo descVag1= new Dialogo("Usted responda mientras yo deduzco si debo seguir preguntandole o no..", "Detective", detective, true );
-        descVag1.setOpciones( new LinkedList<>(Arrays.asList(
+        Dialogo descVag1 = new Dialogo("Usted responda mientras yo deduzco si debo seguir preguntandole o no..", "Detective", detective, true);
+        descVag1.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Hace cuánto duerme aquí?",
                 "¿Le molesta si me quedo un momento?",
                 "¿Ha visto algo raro últimamente?"
@@ -1088,8 +1088,8 @@ public class Partida implements Serializable, Cloneable
         Dialogo raras2 = new Dialogo("¿Qué quiere saber exactamente?", "Vagabundo", vagabundo, true);
 
         // Segunda decisión
-        Dialogo descVag2= new Dialogo("Mmm me parece que quizas deba seguir investigando o quizas no...", "Detective", detective, true );
-        descVag2.setOpciones( new LinkedList<>(Arrays.asList(
+        Dialogo descVag2 = new Dialogo("Mmm me parece que quizas deba seguir investigando o quizas no...", "Detective", detective, true);
+        descVag2.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Escuchó algún ruido fuerte anoche?",
                 "¿Vio a alguien salir del museo entre la 1 y las 3 a.m.?",
                 "No quiero saber nada más"
@@ -1162,7 +1162,7 @@ public class Partida implements Serializable, Cloneable
         auxTree6.insertNode(node101, node100);
         auxTree6.insertNode(node102, node101);
         auxTree6.insertNode(node103, node102);
-        auxTree6.insertNode(decisionV1,node103);
+        auxTree6.insertNode(decisionV1, node103);
         auxTree6.insertNode(node105, decisionV1);
         auxTree6.insertNode(node119, node105);
         auxTree6.insertNode(node120, node119);
@@ -1202,8 +1202,8 @@ public class Partida implements Serializable, Cloneable
         Dialogo e2 = new Dialogo("¿A mí? Qué raro. Pero claro, adelante. Aunque no sé si puedo ayudar mucho. Yo solo vine a acompañar a mi esposo.", "Esposa", esposa, true);
 
         // Primera decisión
-        Dialogo descEsp1= new Dialogo("Pues bien digame..", "Detective", detective, true );
-        descEsp1.setOpciones( new LinkedList<>(Arrays.asList(
+        Dialogo descEsp1 = new Dialogo("Pues bien digame..", "Detective", detective, true);
+        descEsp1.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Le gusta venir al museo?",
                 "¿Cómo es su esposo en casa?",
                 "¿Qué opina del trabajo que hace su marido?"
@@ -1288,24 +1288,24 @@ public class Partida implements Serializable, Cloneable
         Dialogo m1 = new Dialogo("(No me lo puedo creer... Todo me lleva a él...)", "Detective", detective, true);
         Dialogo m2 = new Dialogo("(La espada estaba en su oficina, donde solo él tiene acceso. Su esposa la mostró sin saberlo )", "Detective", detective, true);
         Dialogo m3 = new Dialogo("(Las cámaras fallaron justo cuando no debían. El guardia no vio nada. Pero el vagabundo sí. Cuando el supuestamente no estaba en el museo)", "Detective", detective, true);
-        Dialogo m4 = new Dialogo("(CLARO! Los fondos malversados que descubrió víctima! Esa es la causa del asesinato.)",  "Detective", detective, true);
+        Dialogo m4 = new Dialogo("(CLARO! Los fondos malversados que descubrió víctima! Esa es la causa del asesinato.)", "Detective", detective, true);
         Dialogo m5 = new Dialogo("(El jefe tenía acceso. Tenía el arma. Mintió sobre dónde estaba. Ya no tengo dudas.)", "Detective", detective, true);
         Dialogo m6 = new Dialogo("(Es hora de terminar con esto.)", "Detective", detective, true);
 
         // Entrada a la oficina
-        Dialogo m7 = new Dialogo("*El detective entra a la oficina del jefe, acompañado por dos policías. La luz está apagada.*", "Foto que se ponga", nada, true);
+        Dialogo m7 = new Dialogo("*El detective entra a la oficina del jefe, acompañado por dos policías. La luz está apagada.*", "Narrador", nada, true);
         Dialogo m8 = new Dialogo("Señor director... tenemos que hablar.", "Detective", detective, true);
         Dialogo m9 = new Dialogo("¿Señor?", "Detective", detective, true);
-        Dialogo m10 = new Dialogo("*Uno de los policías enciende la luz. El cuerpo del jefe yace en el suelo, boca abajo, con una herida profunda en la espalda.*", "Foto que se ponga", nada, true);
+        Dialogo m10 = new Dialogo("*Uno de los policías enciende la luz. El cuerpo del jefe yace en el suelo, boca abajo, con una herida profunda en la espalda.*", "Narrador", nada, true);
         Dialogo m11 = new Dialogo("¡Dios! Está muerto...", "Policia", seguridad, true);
         Dialogo m12 = new Dialogo("Una puñalada limpia. Precisa. Por la espalda.", "Detective", detective, true);
         Dialogo m13 = new Dialogo("¿Dónde está el arma?", "Policia", seguridad, true);
         Dialogo m14 = new Dialogo("No está, otra vez sin arma homicida. Y la puerta estaba cerrada desde dentro.", "Detective", detective, true);
 
         // Descubrimiento del pasadizo
-        Dialogo m15 = new Dialogo("*El detective observa una rejilla mal colocada en la pared trasera.*", "Foto que se ponga", nada, true);
+        Dialogo m15 = new Dialogo("*El detective observa una rejilla mal colocada en la pared trasera.*", "Narrador", nada, true);
         Dialogo m16 = new Dialogo("¿Qué es esto...?", "Detective", detective, true);
-        Dialogo m17 = new Dialogo("*Retira la rejilla. Detrás, un túnel angosto y oscuro se extiende hacia abajo.*", "Foto que se ponga", nada, true);
+        Dialogo m17 = new Dialogo("*Retira la rejilla. Detrás, un túnel angosto y oscuro se extiende hacia abajo.*", "Narrador", nada, true);
         Dialogo m18 = new Dialogo("Un pasadizo... esto conecta con el baño del piso de abajo.", "Detective", detective, true);
         Dialogo m19 = new Dialogo("Así entraron. Así lo mataron. Y así desaparecieron sin ser vistos. Esto cambia muchas cosas.", "Detective", detective, true);
 
@@ -1332,7 +1332,7 @@ public class Partida implements Serializable, Cloneable
         BinaryTreeNode<Dialogo> node151 = new BinaryTreeNode<>(m18);
         BinaryTreeNode<Dialogo> node152 = new BinaryTreeNode<>(m19);
 
-        GeneralTree <Dialogo> auxTree8 = new GeneralTree();
+        GeneralTree<Dialogo> auxTree8 = new GeneralTree();
 
         auxTree8.insertNode(node134, null);
         auxTree8.insertNode(node135, node134);
@@ -1361,8 +1361,8 @@ public class Partida implements Serializable, Cloneable
         Dialogo p2 = new Dialogo("Por supuesto. ¿Cómo vas con todo esto? El ambiente está más denso que el aire en la sala egipcia.", "Policia", policia, true);
 
         // Primera decisión
-        Dialogo descPol1= new Dialogo("Pues digame...", "Detective", detective, true );
-        descPol1.setOpciones( new LinkedList<>(Arrays.asList(
+        Dialogo descPol1 = new Dialogo("Pues digame...", "Detective", detective, true);
+        descPol1.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Qué opinas del museo?",
                 "¿Crees que esto fue planeado?"
         )));
@@ -1377,8 +1377,8 @@ public class Partida implements Serializable, Cloneable
 
 
         // Segunda decisión dentro de rama 1
-        Dialogo descPol2= new Dialogo("Umm interesante... Quizas con esto es suficiente o no....", "Detective", detective, true );
-        descPol2.setOpciones( new LinkedList<>(Arrays.asList(
+        Dialogo descPol2 = new Dialogo("Umm interesante... Quizas con esto es suficiente o no....", "Detective", detective, true);
+        descPol2.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Te gustaría trabajar en un lugar así?",
                 "¿Crees que alguien del personal está mintiendo?",
                 "Eso es todo por ahora"
@@ -1390,8 +1390,8 @@ public class Partida implements Serializable, Cloneable
 
 
         // Segunda decisión dentro de rama 2
-        Dialogo descPol3= new Dialogo("Umm interesante... Quizas con esto es suficiente o no....", "Detective", detective, true );
-        descPol3.setOpciones( new LinkedList<>(Arrays.asList(
+        Dialogo descPol3 = new Dialogo("Umm interesante... Quizas con esto es suficiente o no....", "Detective", detective, true);
+        descPol3.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Tienes algún sospechoso?",
                 "¿Qué harías tú en mi lugar?",
                 "Eso es todo por ahora"
@@ -1499,253 +1499,88 @@ public class Partida implements Serializable, Cloneable
 
         escenariosMundo.get(9).setArbolDial(auxTree10);
 
-    }
+        // Confrontación final con el dueño
 
-    public void crearDislogosActo2(){
+        Dialogo con1 = new Dialogo("¿Qué haces aquí? No tengo citas contigo. Estoy ocupado.", "Dueño", dueno, true);
+        Dialogo con2 = new Dialogo("No vine por cortesía. Vine porque ya no puedes seguir escondiéndote detrás de tu escritorio.", "Detective", detective, true);
+        Dialogo con3 = new Dialogo("¿Perdón?", "Dueño", dueno, true);
+        Dialogo con4 = new Dialogo("Encontramos la en la armadura. Y las cuentas... están podridas. Contratos falsos, transferencias a empresas fantasma. Todo apunta a ti.", "Detective", detective, true);
+        Dialogo con5 = new Dialogo("*El jefe se queda en silencio unos segundos. Luego se levanta lentamente.*", "Narrador", nada, true);
+        Dialogo con6 = new Dialogo("No tienes idea de lo que estás diciendo. ¿Sabes cuántas vidas dependen de este museo? ¿De mí?", "Dueño", dueno, true);
+        Dialogo con7 = new Dialogo("¿Y eso justifica un asesinato? ¿Desviar fondos públicos? ¿Mentirle a todos?", "Detective", detective, true);
+        Dialogo con8 = new Dialogo("¡No lo maté! ¡Yo no...! Solo quería ganar tiempo. Tapar el hueco. Él iba a hablar, y todo se iba a venir abajo.", "Dueño", dueno, true);
+        Dialogo con9 = new Dialogo("Entonces habla. Dime quién más está metido en esto. Tal vez aún puedas salvarte.", "Detective", detective, true);
 
-        ImageIcon secretaria  = new ImageIcon("DatosAuxiliares/Personajes/Secretaria.png");
-        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
-        ImageIcon seguridad = new ImageIcon("DatosAuxiliares/Personajes/Seguridad.png");
-        ImageIcon limpieza = new ImageIcon("DatosAuxiliares/Personajes/Conserje.png");
-        ImageIcon dueno = new ImageIcon("DatosAuxiliares/Personajes/Dueño.png");
-        ImageIcon guia = new ImageIcon("DatosAuxiliares/Personajes/Guia 1.png");
-        ImageIcon guia2 = new ImageIcon("DatosAuxiliares/Personajes/Guia 2.png");
-        ImageIcon vagabundo = new ImageIcon("DatosAuxiliares/Personajes/Vagabundo.png");
-        ImageIcon nada = new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png");
-        ImageIcon esposa = new ImageIcon("DatosAuxiliares/Personajes/Esposa.png");
-        ImageIcon policia = new ImageIcon("DatosAuxiliares/Personajes/Policia.png");
+        // El jefe se altera
+        Dialogo con10 = new Dialogo("*El jefe comienza a respirar con dificultad. Se lleva la mano al cajón.*", "Narrador", nada, true);
+        Dialogo con11 = new Dialogo("No entiendes... No puedo. No puedo traicionarlos. Si hablo, estoy muerto.", "Dueño", dueno, true);
+        Dialogo con12 = new Dialogo("¡No hagas una estupidez!", "Detective", detective, true);
 
-        // Dialogo Conserje acto 2
-        Dialogo c1 = new Dialogo("*El detective se acerca al limpiador, que organiza su equipo en silencio.*", "Foto que se ponga", nada, true);
-        Dialogo c2 = new Dialogo("Necesito hablar contigo un momento. Esta vez en serio.", "Detective", detective, true);
-        Dialogo c3 = new Dialogo("¿Otra vez yo? Ya le dije todo lo que sabía. Pero bueno, diga.", "Conserje", limpieza, true);
+        // Disparo
+        Dialogo con13 = new Dialogo("*El jefe saca un arma y dispara. El proyectil impacta en el hombro de tu compañero, que cae al suelo.*", "Narrador", nada, true);
+        Dialogo con14 = new Dialogo("¡Agh! ¡Estoy bien... solo el hombro!", "Policia", policia, true);
+        Dialogo con15 = new Dialogo("¡Suelta el arma, ahora!", "Detective", detective, true);
 
-        // Primera decisión
-        Dialogo descL1= new Dialogo("", "Detective", detective, true );
-        descL1.setOpciones( new LinkedList<>(Arrays.asList(
-                "¿Cómo fue tu mañana hoy?",
-                "¿Tuviste algún problema con tu equipo?",
-                "¿Alguien se acercó a ti esta mañana?"
-
+        // Decisión crítica
+        Dialogo descDet1 = new Dialogo("....", "Detective", detective, true);
+        descDet1.setOpciones(new LinkedList<>(Arrays.asList(
+                "Disparar al dueño",
+                "Dialogar y exigir cooperación"
         )));
 
-        // Rama 1: Rutina general
-        Dialogo respL1 = new Dialogo("Normal, supongo. Llegué temprano, como siempre. Fui directo a buscar el carro y empecé por los baños del ala este.", "Conserje", limpieza, true);
-        Dialogo respL1a = new Dialogo("No vi nada raro. Aunque el ambiente estaba más tenso de lo habitual.", "Conserje", limpieza, true);
+        // Rama 1: Disparar
+        Dialogo reaccion1 = new Dialogo("*Disparas. El jefe cae al suelo, sin vida. El museo queda en silencio.*", "Narrador", nada, true);
+        Dialogo reaccion1a = new Dialogo("No quería que terminara así... pero eligió su camino.", "Detective", detective, true);
+        Dialogo reaccion1b = new Dialogo("Todo indica que el jefe no estaba solo. Supongo que tendremos que seguir ivestigando", "Detective", detective, true);
 
-        // Rama 2: Problemas con el equipo → desbloquea segunda decisión
-        Dialogo respL2a = new Dialogo("Ahora que lo menciona... sí. Algo me molestó esta mañana.", "Conserje", limpieza, true);
-        Dialogo respL2b = new Dialogo("Mi carro de limpieza no estaba donde lo dejé anoche. Siempre lo dejo junto al depósito, pero esta vez apareció más lejos.", "Conserje", limpieza, true);
-        Dialogo respl2c = new Dialogo("Pensé que alguien lo había movido sin avisar. No es la primera vez, pero igual me incomodó.", "Conserje", limpieza, true);
+        // Rama 2: Dialogar
+        Dialogo reaccion2 = new Dialogo("¡No tienes salida! Mira lo que hiciste. Coopera y tal vez esto no termine peor para ti.", "Detective", detective, true);
+        Dialogo reaccion2a = new Dialogo("*El jefe, temblando, deja caer el arma. Se sienta, derrotado, con la mirada perdida.*", "Narrador", nada, true);
+        Dialogo reaccion2b = new Dialogo("No estaba solo... Hay otros. Gente con poder. Yo solo era el rostro visible.", "Dueño", dueno, true);
+        Dialogo reaccion2c = new Dialogo("¿Quiénes?", "Detective", detective, true);
+        Dialogo reaccion2d = new Dialogo("Empresarios. Políticos. Usaban el museo como fachada. Lavaban dinero a través de las exposiciones, las donaciones... Yo solo seguía órdenes.", "Dueño", dueno, true);
+        Dialogo reaccion2e = new Dialogo("¿Y el muerto?", "Detective", detective, true);
+        Dialogo reaccion2f = new Dialogo("Él descubrió algo. Me amenazó con ir a la policía. Yo... lo maté.", "Dueño", dueno, true);
+        Dialogo reaccion2g = new Dialogo("Dame nombres. Ahora.", "Detective", detective, true);
+        Dialogo reaccion2h = new Dialogo("Si me das protección... te los doy todos.", "Dueño", dueno, true);
 
-        // Segunda decisión (solo si se accede desde rama 2)
-        Dialogo descL2= new Dialogo("", "Detective", detective, true );
-        descL2.setOpciones( new LinkedList<>(Arrays.asList(
-                "¿Revisaste si faltaba algo?",
-                "¿Te pareció que alguien lo usó?",
-                "¿Tienes acceso al almacén?",
-                "No quiero seguir hablando"
-        )));
+        // Registro final
+        //añadirAlDiario("Jefe del Museo", "El jefe confesó su implicación en el asesinato y la malversación de fondos. Reveló que no actuaba solo y que el museo era usado como fachada para una red de lavado de dinero.");
 
-        // Rama 2.1: Revisión → desbloquea pista
-        Dialogo respL3a = new Dialogo("Sí, lo revisé. Y ahí fue cuando noté que faltaban las tijeras del botiquín. Siempre están en el compartimento lateral.", "Conserje", limpieza, true);
-        Dialogo respL3b = new Dialogo("Pensé que alguien las había tomado prestadas, pero no las devolvieron. No lo reporté porque... bueno, aquí nadie escucha.", "Conserje", limpieza, true);
-
-        // Pista 1
-        // añadirAlDiario("Limpiador", "El carro de limpieza fue movido sin su permiso y faltaban las tijeras del botiquín.");
-
-        // Rama 2.2: Sospechas
-        Dialogo respL4 = new Dialogo("No vi a nadie cerca. Pero el carro estaba más sucio de lo normal. Como si lo hubieran usado con prisa.", "Conserje", limpieza, true);
-
-        // Rama 2.3: Pregunta por la llave → desbloquea tercera decisión
-        Dialogo respL5a = new Dialogo("¿La del almacén? Bueno... sí. Tengo una copia. Pero no es lo que piensa. Es por si acaso. A veces me piden cosas de ahí y me cansé de esperar a que me la presten.", "Conserje", limpieza, true);
-        Dialogo respL5b = new Dialogo("La guardo en mi casillero. Pero no hay nada raro ahí, se lo juro.", "Conserje", limpieza, true);
-
-        // Tercera decisión (solo si se preguntó por la llave)
-        Dialogo descL3= new Dialogo("", "Detective", detective, true );
-        descL3.setOpciones( new LinkedList<>(Arrays.asList(
-                "Quiero revisar tu casillero.",
-                "No hace falta, gracias"
-        )));
-
-        // Rama 3.1: Revisión del casillero → desbloquea pista
-        Dialogo respL6a = new Dialogo("*El detective abre el casillero. Dentro, junto a la llave, hay unas tijeras con manchas secas de sangre en el mango.*", "Foto que se ponga", nada, true);
-        Dialogo respL6b = new Dialogo("¿Esto es tuyo?", "Detective", detective, true);
-        Dialogo respL6c = new Dialogo("¡No! ¡Eso no estaba ahí! ¡Alguien me está enmarcando! Yo solo limpio, no mato jefes corruptos.", "Conserje", limpieza, true);
-
-        // Pista 2
-        // añadirAlDiario("Limpiador", "Se encontraron tijeras con sangre en su casillero, junto a una copia de la llave del almacén.");
-
-        Dialogo cierre = new Dialogo("Vamos a tener que retenerte por ahora. Esto es serio.", "Detective", detective, true);
-
-        // Rama 3.2: Rechaza revisión
-        Dialogo rechazo = new Dialogo("Gracias... de verdad. No quiero más problemas.", "Conserje", limpieza, true);
-
-        // Rama 4: Cierre inmediato
-        Dialogo cierreI = new Dialogo("Como quiera. Pero si algo se rompe, no me culpe a mí también.", "Conserje", limpieza, true);
+        // Cierre
+        Dialogo cierre9 = new Dialogo("*La policía llega. El jefe es arrestado. Tu compañero es trasladado al hospital. Afuera, las sirenas se mezclan con el murmullo de los curiosos.*", "Narrador", nada, true);
+        Dialogo despedida9 = new Dialogo("Esto no termina aquí. Solo abrimos la primera puerta.", "Detective", detective, true);
 
 
-
-        // Activación al pulsar el cuerpo
-        Dialogo d1 = new Dialogo("*Te agachas junto al cuerpo del jefe. La oficina está en silencio.*", "Foto que se ponga", nada, true);
-        Dialogo m1 = new Dialogo("(Herida limpia. Precisa. Sin señales de lucha. Nada fuera de lugar.)", "Detective", detective, true);
-        Dialogo m2 = new Dialogo("(Tijeras… o algún instrumento similar. Lo atacaron por la espalda. No tuvo oportunidad de defenderse.)", "Detective", detective, true);
-
-        // Intervención del policía
-        Dialogo d2 = new Dialogo("¿Ves algo que nos diga quién fue?", "Policia", policia, true);
-        Dialogo d3 = new Dialogo("No todavía. Pero esto fue rápido. Preciso. Alguien que sabía lo que hacía.", "Detective", detective, true);
-
-        // Huellas de sangre
-        Dialogo d4 = new Dialogo("*Notas unas gotas de sangre que se alejan del cuerpo hacia la pared trasera.*", "Foto que se ponga", nada, true);
-        Dialogo m3 = new Dialogo("(No hay arma en la escena. Pero estas huellas... no son de arrastre. Son de alguien que salió por aquí.)", "Detective", detective, true);
-        Dialogo m4 = new Dialogo("(La pared parece sólida... pero este azulejo está suelto.)", "Detective", detective, true);
-
-        // Descubrimiento del pasaje
-        Dialogo d5 = new Dialogo("*Presionas el azulejo. Un clic metálico suena. Un panel se abre revelando un pasaje oscuro.*", "Foto que se ponga", nada, true);
-        Dialogo d6 = new Dialogo("Aquí estás... el pasaje secreto. Conecta con el baño del piso de abajo.", "Detective", detective, true);
-        Dialogo d7 = new Dialogo("¿Cómo demonios nadie mencionó esto antes?", "Policia", policia, true);
-
-        // Llega el forense //Ojo Kevin con esto nuevo personaje
-        Dialogo d8 = new Dialogo("*El forense entra y se arrodilla junto al cuerpo.*", "Foto que se ponga",  nada, true);
-        Dialogo d9 = new Dialogo("Hora estimada de muerte: entre las 10:00 y las 10:30. Justo después de la hora en que ibas a confrontarlo.", "Forense (ni idea que poner aqui)", nada, true);
-
-        // Reacción del detective
-        Dialogo m5 = new Dialogo("(Llegué tarde. Minutos tarde. Y alguien se me adelantó.)", "Detective", detective, true);
-
-        // Registro en el diario
-        /*añadirAlDiario("Director", "El jefe fue asesinado entre las 10:00 y las 10:30 con un objeto punzante.");
-        añadirAlDiario("Director", "El asesino se fue por un pasaje secreto oculto tras la pared de la oficina del director, conectado con el baño del piso inferior.");*/
-
-        // Orden de cierre
-        Dialogo d10 = new Dialogo("Cierren todo. Nadie entra. Nadie sale. Este museo queda sellado hasta que sepamos quién lo hizo.", "Detective", detective, true);
-        Dialogo d11 = new Dialogo("Entendido. Voy a asegurar todas las salidas ahora mismo.", "Policia", policia, true);
-
-
-
-        // Esposa del jefe acto 2
-        Dialogo e1 = new Dialogo("*Encuentras a la esposa del jefe sentada sola, con los ojos hinchados y la mirada perdida.*", "Foto que se ponga", nada, true);
-        Dialogo e2 = new Dialogo("Señora... no vengo a juzgarla y también se que esto es muy dificil para usted. Solo quiero entender qué pasó esta mañana. Cualquier detalle puede ayudar.", "Detective", detective, true);
-        Dialogo e3 = new Dialogo("¿Ayudar? ¿A quién? ¿A él? Ya es tarde para eso... Nadie entiende el dolor por el que estoy pasando...", "Esposa", esposa, true);
-        Dialogo e4 = new Dialogo("Lo sé. Pero si alguien más corre peligro, necesito saberlo. Usted conocía bien a su esposo. Mejor que nadie.", "Detective", detective, true);
-
-        // Primera decisión
-        Dialogo descEsp1= new Dialogo("", "Detective", detective, true );
-        descEsp1.setOpciones( new LinkedList<>(Arrays.asList(
-                "¿Cómo era su relación últimamente?",
-                "¿Él tenía enemigos o relaciones peligrosas?",
-                "No quiero seguir hablando"
-        )));
-
-        // Rama 1.1: Relación con el jefe → desbloquea segunda decisión
-        Dialogo respE1a = new Dialogo("¿Nuestra relación? Fría. Silenciosa. Como un museo vacío. Él dormía en una habitación, yo en otra.", "Esposa", esposa, true);
-        Dialogo respE1b = new Dialogo("Pero eso no significa que quisiera verlo muerto. Solo... me acostumbré a no esperar nada de él.", "Esposa", esposa, true);
-
-        // Segunda decisión (desbloqueada tras respE1a)
-        Dialogo descEsp2= new Dialogo("", "Detective", detective, true );
-        descEsp2.setOpciones( new LinkedList<>(Arrays.asList(
-                "¿Él esperaba algo de usted?",
-                "Encontramos un teléfono oculto. No estaba a su nombre.",
-                "No quiero seguir hablando"
-        )));
-
-        // Rama 2.1: Insinuación del teléfono → chantaje emocional → desbloquea tercera decisión
-        Dialogo respE2a = new Dialogo("*Ella se tensa. Baja la mirada.*", "Foto que se ponga", nada, true);
-        Dialogo respE2b = new Dialogo("¿Un teléfono? ¿Qué... qué tiene que ver eso conmigo?", "Esposa", esposa, true);
-        Dialogo respE2c = new Dialogo("No lo sé. Pero los mensajes eran personales. Muy personales. Y no estaban dirigidos a su esposo.", "Detective", detective, true);
-        Dialogo respE2d = new Dialogo("¿Está diciendo que yo...? ¡No! ¡No era mío! ¡Era de él! ¡Él tenía a ese guía... ese...!", "Esposa", esposa, true);
-        Dialogo respE2e = new Dialogo("*Rompe en llanto. Luego, más calmada.*", "Foto que se ponga", nada, true);
-        Dialogo respE2f = new Dialogo("Sí... lo sabía. Desde hace meses. Él y ese guía... pensaban que yo era estúpida.", "Esposa", esposa, true);
-        Dialogo respE2g = new Dialogo("Pero no dije nada. No por amor, ya todo estaba roto. Era por la estabilidad que me proporcionaba. Él me mantenía, me daba todo. Y yo fingía no ver.", "Esposa", esposa, true);
-
-        //añadirAlDiario("Esposa del Jefe", "El director tenía un romance con el segundo guia y ella era conciente.");
-
-        // Tercera decisión (desbloqueada tras respE2f)
-        Dialogo descEsp3= new Dialogo("", "Detective", detective, true );
-        descEsp3.setOpciones( new LinkedList<>(Arrays.asList(
-                "¿Tuvo contacto con el guía esta mañana?",
-                "No quiero seguir hablando"
-        )));
-
-        // Rama 3.1: Llaves prestadas
-        Dialogo respE3a = new Dialogo("Sí... esta mañana me pidió las llaves de repuesto del almacen. Dijo que necesitaba ''sacar unas cajas del almacén'' antes de que llegara el jefe.", "Esposa", esposa, true);
-        Dialogo respE3b = new Dialogo("No pensé que fuera nada raro. Él tenía acceso a todo de todos modos. Solo quería ayudarlo.", "Esposa", esposa, true);
-
-        //añadirAlDiario("Esposa del Jefe", "La esposa prestó sus llaves de repuesto del almacén esa mañana al amante de su marido.");
-
-        // Rama 1.2: Enemigos del jefe → pista separada
-        Dialogo respE4a = new Dialogo("Mi esposo... no era un santo. Tenía tratos con gente peligrosa. No sé mucho, pero hablaba de 'círculos oscuros'.", "Esposa", esposa, true);
-        Dialogo respE4b = new Dialogo("Siempre decía que si algo le pasaba, no sería por amor... sino por negocios.", "Esposa", esposa, true);
-        Dialogo respE4c = new Dialogo("(Círculos oscuros... eso suena a crimen organizado. Quizás el museo era más que un simple museo.)", "Detective", detective, true);
-
-        // Registro en el diario
-        // añadirAlDiario("Esposa del Jefe", "El director tenía enemigos en 'círculos oscuros', posiblemente vinculados al crimen organizado.");
-
-        // Rama 1.3: Cierre inmediato
-        Dialogo respE5 = new Dialogo("Como quiera. Pero no me pida más. Ya perdí todo lo que tenía.", "Esposa", esposa, true);
-
-
-
-        // guia 2 acto 2
-        Dialogo dG1 = new Dialogo("¿Otra vez yo? Ya le dije que no vi nada. Solo hago mi trabajo.", "Guia2", guia2, true);
-        Dialogo dG2 = new Dialogo("No estoy aquí para molestarte. Pero necesito que seas honesto. Esto es serio.", "Detective", detective, true);
-        Dialogo dG3 = new Dialogo("Siempre soy honesto. No tengo nada que ocultar.", "Guia2", guia2, true);
-
-        // Primera decisión
-        Dialogo desc1Guia2= new Dialogo("", "Detective", detective, true );
-        desc1Guia2.setOpciones( new LinkedList<>(Arrays.asList(
-                "¿Dónde estabas esta mañana?",
-                "¿Cómo era tu relación con el jefe?",
-                "No quiero seguir hablando"
-        )));
-
-        // Rama 1.1: Coartada evasiva
-        Dialogo resp1G2= new Dialogo("Estaba en el ala este, preparando la visita de las 11. Pregúntele a los pasantes si no me cree.", "Guia2", guia2, true);
-
-        // Rama 1.2: Relación con el jefe → desbloquea segunda decisión
-        Dialogo resp2G2 = new Dialogo("Era mi jefe. Y como todos los jefes, tenía mal genio. Pero yo no soy violento, si eso insinúa.", "Guia2", guia2, true);
-        Dialogo resp2aG2 = new Dialogo("No me llevaba bien con él, pero tampoco lo odiaba. Solo... lo soportaba.", "Guia2", guia2, true);
-
-        // Segunda decisión (desbloqueada tras res2G2)
-        Dialogo desc2G2= new Dialogo("", "Detective", detective, true );
-        desc2G2.setOpciones( new LinkedList<>( Arrays.asList(
-                "¿Seguro que no te llevabas bien con él'?",
-                "¿Conoces un pasadizo secreto en el museo?",
-                "No quiero seguir hablando"
-        )));
-
-        // Rama 2.1: Presión emocional → confiesa abuso
-        Dialogo resp3G2 = new Dialogo(" ¡No! Bueno... tal vez no dije todo. Teníamos algo, secreto... Lo siento, pero no es que quisieramoss que todos lo supieran.", "Guia2", guia2, true);
-        Dialogo resp3aG2 = new Dialogo("Él me golpeaba. Cuando se enojaba. Cuando tomaba. Pero yo no soy un asesino. Nunca haría lo mismo que él", "Guia2", guia2, true);
-        Dialogo resp3bG2 = new Dialogo("Lo odiaba, sí. Pero no lo maté. Solo quería que me dejara en paz.", "Guia2", guia2, true);
-
-        // Pista 1
-        //añadirAlDiario("Guía", "El guía confesó su relación con el jefe y que lo golpeaba en privado.");
-
-        // Rama 2.2: Confrontación con el pasadizo (si fue descubierto) → desbloquea tercera decisión
-        /*  if (pasadizoDescubierto) */{
-            Dialogo resp4G2 = new Dialogo("Sí... lo conocía. Lo usábamos para vernos sin que nadie supiera. Era nuestro secreto.", "Guia2", guia2, true);
-            Dialogo resp5G2 = new Dialogo("Pero no lo usé para matarlo. Solo para... estar con él. Aunque últimamente, todo era gritos y golpes.", "Guia2", guia2, true);
-
-            // Tercera decisión (desbloqueada tras resp4G2)
-            Dialogo desc3G2= new Dialogo("", "Detective", detective, true );
-            desc3G2.setOpciones( new LinkedList<>( Arrays.asList(
-                    "¿Viste a alguien cerca del baño esa mañana?",
-                    "¿Por qué no denunciaste los abusos?",
-                    "No quiero seguir hablando"
-            )));
-
-            // Rama 3.1: Menciona al vagabundo → pista
-            Dialogo resp6G2 = new Dialogo("Vi al vagabundo. Estaba cerca del baño, justo antes de que todo pasara.", "Guia2", guia2, true);
-            Dialogo resp6aG2 = new Dialogo("No sé qué hacía ahí, pero no era normal, no se le suele permitir entrar. Tal vez deberías hablar con él, o preguntarle al guardia por que le permitio entrar.", "Guia2", guia2, true);
-
-            // Pista 2
-            // añadirAlDiario("Guía", "El guía afirma haber visto al vagabundo merodeando cerca del baño poco antes del asesinato.");
-        }
-
-        // Rama 1.3 / 2.3 / 3.3: Cierre inmediato
-        Dialogo cierre2 = new Dialogo("Como quiera. Pero no me mire así. Yo también tengo miedo.", "Guia2", guia2, true);
-
-
+        BinaryTreeNode<Dialogo> node174 = new BinaryTreeNode<>(con1);
+        BinaryTreeNode<Dialogo> node175 = new BinaryTreeNode<>(con2);
+        BinaryTreeNode<Dialogo> node176 = new BinaryTreeNode<>(con3);
+        BinaryTreeNode<Dialogo> node177 = new BinaryTreeNode<>(con4);
+        BinaryTreeNode<Dialogo> node178 = new BinaryTreeNode<>(con5);
+        BinaryTreeNode<Dialogo> node179 = new BinaryTreeNode<>(con6);
+        BinaryTreeNode<Dialogo> node180 = new BinaryTreeNode<>(con7);
+        BinaryTreeNode<Dialogo> node181 = new BinaryTreeNode<>(con8);
+        BinaryTreeNode<Dialogo> node182 = new BinaryTreeNode<>(con9);
+        BinaryTreeNode<Dialogo> node183 = new BinaryTreeNode<>(con10);
+        BinaryTreeNode<Dialogo> node184 = new BinaryTreeNode<>(con11);
+        BinaryTreeNode<Dialogo> node185 = new BinaryTreeNode<>(con12);
+        BinaryTreeNode<Dialogo> node186 = new BinaryTreeNode<>(con13);
+        BinaryTreeNode<Dialogo> node187 = new BinaryTreeNode<>(con14);
+        BinaryTreeNode<Dialogo> node188 = new BinaryTreeNode<>(con15);
+        BinaryTreeNode<Dialogo> node189 = new BinaryTreeNode<>(reaccion1);
+        BinaryTreeNode<Dialogo> node190 = new BinaryTreeNode<>(reaccion1a);
+        BinaryTreeNode<Dialogo> node191 = new BinaryTreeNode<>(reaccion1b);
+        BinaryTreeNode<Dialogo> node192 = new BinaryTreeNode<>(reaccion2);
+        BinaryTreeNode<Dialogo> node193 = new BinaryTreeNode<>(reaccion2a);
+        BinaryTreeNode<Dialogo> node194 = new BinaryTreeNode<>(reaccion2b);
+        BinaryTreeNode<Dialogo> node195 = new BinaryTreeNode<>(reaccion2c);
+        BinaryTreeNode<Dialogo> node196 = new BinaryTreeNode<>(reaccion2d);
+        BinaryTreeNode<Dialogo> node197 = new BinaryTreeNode<>(reaccion2e);
+        BinaryTreeNode<Dialogo> node198 = new BinaryTreeNode<>(reaccion2f);
+        BinaryTreeNode<Dialogo> node199 = new BinaryTreeNode<>(reaccion2g);
+        BinaryTreeNode<Dialogo> node200 = new BinaryTreeNode<>(reaccion2h);
+        BinaryTreeNode<Dialogo> node201 = new BinaryTreeNode<>(cierre9);
+        BinaryTreeNode<Dialogo> node202 = new BinaryTreeNode<>(despedida9);
 
     }
 

@@ -12,7 +12,7 @@ import Interfaz.Menu.Opciones;
 import Interfaz.Menu.OpcionesJugador;
 import Logica.Juego;
 import Logica.Reproductor;
-
+import DatosAuxiliaresLogica.MensajeExito;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -166,6 +166,7 @@ public class MenuInterno extends javax.swing.JDialog {
                 EfectosEspeciales e = EfectosEspeciales.getInstancia();
                 e.efectoDeBoton();
                 jButton3ActionPerformed(evt);
+
             }
         });
         jButton3.setBounds((int) (tamPant.width*0.05), (int) (tamPant.height*0.36),(int) (tamPant.width*0.3), (int) (tamPant.height*0.065));
@@ -214,6 +215,7 @@ public class MenuInterno extends javax.swing.JDialog {
             public void actionPerformed(ActionEvent evt) {
                 EfectosEspeciales e = EfectosEspeciales.getInstancia();
                 e.efectoDeBoton();
+
                 jButton5ActionPerformed(evt);
             }
         });
@@ -263,9 +265,92 @@ public class MenuInterno extends javax.swing.JDialog {
         jButton2.setForeground(Color.white);
     }
 
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
 
+        boolean resultado = Juego.getInstance().guardarPartida();
+
+
+        int ancho = (int)(tamPant.width * 0.4);
+        int alto = (int)(tamPant.height * 0.65);
+
+        JDialog dialog = new JDialog((Frame)null, "", true);
+        dialog.setUndecorated(true);
+        dialog.setSize(ancho, alto);
+        dialog.setLocationRelativeTo(this);
+
+
+        final ImageIcon[] iconoArray = new ImageIcon[1];
+
+        try {
+
+            BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/menu 1.jpg"));
+            Image imagenEscalada = imagen.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+            iconoArray[0] = new ImageIcon(imagenEscalada);
+        } catch (Exception ex) {
+            iconoArray[0] = null;
+        }
+
+        JPanel panel = new JPanel(null) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                try {
+                    if (iconoArray[0] != null) {
+
+                        g.drawImage(iconoArray[0].getImage(), 0, 0, getWidth(), getHeight(), this);
+                    } else {
+
+                        g.setColor(Color.BLACK);
+                        g.fillRect(0, -10, getWidth(), getHeight()+5);
+                    }
+                } catch (Exception ex) {
+                    // Si hay error al dibujar
+                    g.setColor(Color.BLACK);
+                    g.fillRect(0, -10, getWidth(), getHeight()+5);
+                }
+            }
+        };
+
+        JLabel texto = new JLabel(
+                resultado ? "Se ha guardado la partida con éxito" : "Error al guardar la partida"
+        );
+        texto.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        texto.setForeground(Color.WHITE);
+        texto.setHorizontalAlignment(SwingConstants.CENTER);
+        texto.setBounds(0, 100, dialog.getWidth(), 50);
+
+        JButton boton = new JButton("Entendido");
+        boton.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+        boton.setForeground(Color.WHITE);
+        boton.setContentAreaFilled(false);
+        boton.setBorderPainted(false);
+        boton.setFocusPainted(false);
+        boton.setBounds(dialog.getWidth()/2 - 75, 200, 150, 40);
+
+        boton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent evt) {
+                boton.setForeground(Color.RED);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent evt) {
+                boton.setForeground(Color.WHITE);
+            }
+        });
+
+        boton.addActionListener(event -> {
+            EfectosEspeciales.getInstancia().efectoDeBoton();
+            dialog.dispose();
+        });
+
+        panel.add(texto);
+        panel.add(boton);
+        dialog.add(panel);
+        dialog.setVisible(true);
     }
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {

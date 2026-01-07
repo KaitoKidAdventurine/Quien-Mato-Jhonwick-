@@ -244,6 +244,28 @@ public class Juego {
         escenaDelCrimen.agregarObjetoCola(ob26);
 
         miniJuegos.add(escenaDelCrimen);
+
+
+        ImageIcon bathImage = new ImageIcon("DatosAuxiliares/Minijuego/Baño Piso 2.png");
+        MiniJuego bathSecondFloor = new MiniJuego("Baño Segundo Piso", bathImage);
+
+        ObjetoEscenario obBilletera = new ObjetoEscenario("Billetera", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (622-175)/1152f, 667f/765f, (725-622)/1152f, (719-667)/765f, false, "");
+        ObjetoEscenario obJabon = new ObjetoEscenario("Jabón", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (342-100)/1152f, 363f/765f, (398-342)/1152f, (396-363)/765f, false, "");
+        ObjetoEscenario obGel = new ObjetoEscenario("Gel de Manos", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (211-50)/1152f, 318f/765f, (255-211)/1152f, (395-318)/765f, false, "");
+        ObjetoEscenario obLata = new ObjetoEscenario("Lata de Refresco", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (314-75)/1152f, 594f/765f, (351-314)/1152f, (647-594)/765f, false, "");
+        ObjetoEscenario obPalo = new ObjetoEscenario("Palo de Trapear", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (102-25)/1152f, 427f/765f, (148-102)/1152f, (530-427)/765f, false, "");
+        ObjetoEscenario obGrafiti = new ObjetoEscenario("Grafiti", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (109-25)/1152f, 282f/765f, (178-109)/1152f, (340-282)/765f, false, "");
+        ObjetoEscenario obNotas = new ObjetoEscenario("Notas Adhesivas", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (111-25)/1152f, 697f/765f, (192-111)/1152f, (742-697)/765f, false, "");
+
+        bathSecondFloor.agregarObjetoCola(obBilletera);
+        bathSecondFloor.agregarObjetoCola(obJabon);
+        bathSecondFloor.agregarObjetoCola(obGel);
+        bathSecondFloor.agregarObjetoCola(obLata);
+        bathSecondFloor.agregarObjetoCola(obPalo);
+        bathSecondFloor.agregarObjetoCola(obGrafiti);
+        bathSecondFloor.agregarObjetoCola(obNotas);
+
+        miniJuegos.add(bathSecondFloor);
     }
 
 

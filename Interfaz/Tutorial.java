@@ -165,6 +165,11 @@ public class Tutorial extends JFrame {
                 e.efectoDeTelefonoResiviendoLlamda();
             }
 
+            else if(aux.getTexto().equals("Hola detective. Espero que haya descansado bien."))
+            {
+                EfectosEspeciales.getInstancia().efectoSalirDelCarro();
+            }
+
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
