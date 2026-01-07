@@ -230,7 +230,7 @@ public class OficinaEconomico extends ModeloEscenario {
     private void ponerFinal() {
         FinDelJuego fin = new FinDelJuego();
         timer.schedule(tarea, 1000);
-        fin.setVisible(true);
+        fin.setVisible(true );
     }
 
     private void computadoraMouseClicked(MouseEvent evt) {

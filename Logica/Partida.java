@@ -145,20 +145,10 @@ public class Partida implements Serializable, Cloneable
         Escenario acto1Parte5= new Escenario("Acto 1-Guias, ", "Primera interaccion con los guias", true);
         Escenario acto1Parte6= new Escenario("Acto 1-Vagabundo", "Primera interaccion con el vagabundo", true);
         Escenario acto1Parte7= new Escenario("Acto 1-Esposa", "Primera interaccion con la esposa", true);
-        Escenario acto1Parte8= new Escenario("Acto 1-Detective", "Fin del acto 1", true);
-        Escenario acto1Parte9 = new Escenario("Acto 1-Policia", "Interaccion con policia", true);
-        Escenario acto1Parte10 = new Escenario("Acto 1-Guia2", "Interaccion con segundo guia", true);
-        /*
-        Escenario acto1Parte11;
-        Escenario acto1Parte12;
-        Escenario acto1Parte13;
-        Escenario acto1Parte14;
-        Escenario acto1Parte15;
-        Escenario acto1Parte16;
-        Escenario acto1Parte17;
-        Escenario acto1Parte18;
-        Escenario acto1Parte19;
-        Escenario acto1Parte20;*/
+        Escenario acto1Parte8= new Escenario("Acto 1-Policia", "Primera interaccion policia", true);
+        Escenario acto1Parte9 = new Escenario("Acto 1-Guia 2", "Interaccion con segundo guia ", true);
+        Escenario acto1Parte10 = new Escenario("Acto 1-Encontrar espada", "encontrar espada", true);
+        Escenario acto1Parte11 = new Escenario("Fin", "Fin", true);
 
         this.escenariosMundo.add(acto1Parte1);
         this.escenariosMundo.add(acto1Parte2);
@@ -170,17 +160,7 @@ public class Partida implements Serializable, Cloneable
         this.escenariosMundo.add(acto1Parte8);
         this.escenariosMundo.add(acto1Parte9);
         this.escenariosMundo.add(acto1Parte10);
-        /*
-        this.escenarios.add(acto1Parte11);
-        this.escenarios.add(acto1Parte12);
-        this.escenarios.add(acto1Parte13);
-        this.escenarios.add(acto1Parte14);
-        this.escenarios.add(acto1Parte15);
-        this.escenarios.add(acto1Parte16);
-        this.escenarios.add(acto1Parte17);
-        this.escenarios.add(acto1Parte18);
-        this.escenarios.add(acto1Parte19);
-        this.escenarios.add(acto1Parte20);*/
+        this.escenariosMundo.add(acto1Parte11);
 
     }
 
