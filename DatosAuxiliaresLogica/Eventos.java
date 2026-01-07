@@ -16,8 +16,10 @@ public class Eventos implements Serializable {
     private boolean guia2Ya;
     private boolean esposaYa;
     private boolean vagabundoYa;
+    private boolean puertaCerrada;
+    private boolean camarasRevisadas;
 
-    public Eventos(boolean duenoYA, boolean secretariaYa, boolean seguridadYa, boolean policiaYa, boolean conserjeYa, boolean guia1Ya, boolean guia2Ya, boolean esposaYa, boolean vagabundo) {
+    public Eventos(boolean duenoYA, boolean secretariaYa, boolean seguridadYa, boolean policiaYa, boolean conserjeYa, boolean guia1Ya, boolean guia2Ya, boolean esposaYa, boolean vagabundo, boolean puertaCerrada, boolean camarasRevisadas) {
         this.duenoYA = duenoYA;
         this.secretariaYa = secretariaYa;
         this.seguridadYa = seguridadYa;
@@ -27,13 +29,12 @@ public class Eventos implements Serializable {
         this.guia2Ya = guia2Ya;
         this.vagabundoYa = vagabundo;
         this.esposaYa = esposaYa;
-    }
-
-    public Eventos(){
+        this.puertaCerrada = puertaCerrada;
+        this.camarasRevisadas = camarasRevisadas;
         dialogoCapitanActual=0;
         ronda = 0;
-
     }
+    
 
     public int getRonda() {
         return ronda;
@@ -130,5 +131,21 @@ public class Eventos implements Serializable {
 
     public void setVagabundoYa(boolean vagabundoYa) {
         this.vagabundoYa = vagabundoYa;
+    }
+
+    public boolean isPuertaCerrada() {
+        return puertaCerrada;
+    }
+
+    public void setPuertaCerrada(boolean puertaCerrada) {
+        this.puertaCerrada = puertaCerrada;
+    }
+
+    public boolean isCamarasRevisadas() {
+        return camarasRevisadas;
+    }
+
+    public void setCamarasRevisadas(boolean camarasRevisadas) {
+        this.camarasRevisadas = camarasRevisadas;
     }
 }

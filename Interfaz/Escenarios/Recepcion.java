@@ -7,11 +7,7 @@ import Interfaz.InterfazJugador.InterfazUsuario;
 import Interfaz.InterfazJugador.OpcionesDialogos;
 import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
-import Logica.Escenario;
 import Logica.Juego;
-import Logica.Partida;
-import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
-import cu.edu.cujae.ceis.tree.general.GeneralTree;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -310,12 +306,12 @@ public class Recepcion extends ModeloEscenario{
 
     private void secretariaActionPerformed(ActionEvent evt) {
         if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==0){
-            ponerDialogosEstatico(crearDialogoNoDisponible(), 0);
+            ponerDialogosEstatico(crearDialogoNoDisponible(), 0, true);
         }else if (Juego.getInstance().getPartidaActual().getEventos().getRonda()==1 && !Juego.getInstance().getPartidaActual().getEventos().isSecretariaYa()){
             ponerDialogoSecretaria();
             secretaria.setVisible(false);
         }else
-            ponerDialogosEstatico(crearDialogoYaSecre(), 0);
+            ponerDialogosEstatico(crearDialogoYaSecre(), 0, true);
     }
     private ArrayList<Dialogo> crearDialogoNoDisponible(){
         ArrayList<Dialogo> dialogosEsta= new ArrayList<>();
@@ -329,17 +325,17 @@ public class Recepcion extends ModeloEscenario{
         return dialogosEsta;
     }
     private ArrayList<Dialogo> crearDialogoYaSecre(){
-        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
+        ArrayList<Dialogo> dialogosSecre = new ArrayList<>();
 
         ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
         Dialogo d1= new Dialogo("(Ya hable con ella)", "Detective", detective, true);
         Dialogo d2= new Dialogo("(Deberia de enfocarme en recorrer el museo y buscar otras pistas.)", "Detective", detective, true);
 
-        dialogosConserje.add(d1);
-        dialogosConserje.add(d2);
-        return dialogosConserje;
+        dialogosSecre.add(d1);
+        dialogosSecre.add(d2);
+        return dialogosSecre;
     }
-    private void ponerDialogosEstatico(ArrayList<Dialogo> dialogos, int actual) {
+    private void ponerDialogosEstatico(ArrayList<Dialogo> dialogos, int actual, boolean isSecretaria) {
         if(actual<dialogos.size()) {
             Dialogo aux = dialogos.get(actual);
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
@@ -349,22 +345,30 @@ public class Recepcion extends ModeloEscenario{
 
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
-                    EstatiMouseClicked(dialogos, finalActual);
+                    if(isSecretaria)
+                        EstatiMouseClickedSecre(dialogos, finalActual);
+                    else
+                        EstatiMouseClickedPoli(dialogos, finalActual);
                 }
             });
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {
+            if(isSecretaria)
+                secretaria.setVisible(true);
+            else
+                policia.setVisible(true);
             cajaTexto.removeAll();
         }
 
-    }
-    private void EstatiMouseClicked(ArrayList<Dialogo> dialogos, int actual){
-        ponerDialogosEstatico(dialogos, actual);
-
 
     }
-
+    private void EstatiMouseClickedSecre(ArrayList<Dialogo> dialogos, int actual){
+        ponerDialogosEstatico(dialogos, actual, true);
+    }
+    private void EstatiMouseClickedPoli(ArrayList<Dialogo> dialogos, int actual){
+        ponerDialogosEstatico(dialogos, actual, false);
+    }
     private void policiaMouseExited(MouseEvent evt) {
         BufferedImage imagen6 = null;
         try {
@@ -388,8 +392,29 @@ public class Recepcion extends ModeloEscenario{
     }
 
     private void policiaActionPerformed(ActionEvent evt) {
-        JOptionPane.showMessageDialog(null, "º1");    }
+        if(!Juego.getInstance().getPartidaActual().getEventos().isPoliciaYa()){
+            ponerDialogoPolicia();
+        }else{
+            ponerDialogosEstatico(crearDialogoPolicia(), 0, false);
+        }
+    }
 
+    private ArrayList<Dialogo> crearDialogoPolicia(){
+        ArrayList<Dialogo> dialogosPolicia = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        ImageIcon poli = new ImageIcon("DatosAuxiliares/Personajes/Policia.png");
+        Dialogo d1= new Dialogo("Hombre, menuda noche, ya estoy esperando a que se termine.", "Policia", poli, true);
+        Dialogo d2= new Dialogo("Dimelo a mi. Tambien tengo deseo de cerrar el caso.", "Detective", detective, true);
+        Dialogo d3= new Dialogo("Ni que lo digas. Tengo ganas de regresar a la casa para pasar tiempo de calidad con mi esposa", "Policia", poli, true);
+        Dialogo d4= new Dialogo("Ejemm, bueno, yo tambien tengo cosas importantes que hacer en mi casa.", "Detective", detective, true);
+
+        dialogosPolicia.add(d1);
+        dialogosPolicia.add(d2);
+        dialogosPolicia.add(d3);
+        dialogosPolicia.add(d4);
+        return dialogosPolicia;
+    }
     public void ponerDialogoSecretaria() {
         if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getNodoDialActual()))) {
             if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getNodoDialActual()==null)){
@@ -423,6 +448,39 @@ public class Recepcion extends ModeloEscenario{
 
     }
 
+    public void ponerDialogoPolicia() {
+        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getNodoDialActual()))) {
+            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getNodoDialActual()==null)){
+                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    policiaMouseClicked();
+                }
+            });
+
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
+            cajaTexto.removeAll();
+            Juego.getInstance().getPartidaActual().getEventos().setPoliciaYa(true);
+            policia.setVisible(true);
+        }
+
+    }
+    private void policiaMouseClicked(){
+        ponerDialogoPolicia();
+    }
     private void secretariaMouseClicked(MouseEvent evt) {
         ponerDialogoSecretaria();
         getContentPane().revalidate();

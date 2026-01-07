@@ -141,9 +141,6 @@ public class TelefonoLlamar extends JPanel {
         e.efectoDeBotonesTelefono();
         getParent().getComponent(1).setVisible(true);
         getParent().getComponent(2).setVisible(false);
-        getParent().revalidate();
-        getParent().repaint();
-        getParent().remove(2);
 
     }
 

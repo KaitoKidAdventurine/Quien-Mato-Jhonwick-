@@ -37,7 +37,7 @@ public class Partida implements Serializable, Cloneable
         this.escenarios = new ArrayList<Escenario>();
         this.escenariosMundo = new ArrayList<Escenario>();
         this.jugador = new Jugador();
-        this.eventos = new Eventos(false, false, false, false, false, false, false, false, false);
+        this.eventos = new Eventos(false, false, false, false, false, false, false, false, false, false, false);
         agregarEscenariosAutomaticamente();
         dialogosCapitan = new ArrayList<>();
         addEscenario();
@@ -329,6 +329,29 @@ public class Partida implements Serializable, Cloneable
         dialogos2.add(d39);
         dialogos2.add(d40);
         dialogosCapitan.add(dialogos2);
+
+        ArrayList<Dialogo> dialogos3 = new ArrayList<>();
+        Dialogo d41 = new Dialogo("Beeeppp", "", nada, true);
+        Dialogo d42 = new Dialogo("Oigo", "Capitan", nada, true);
+        Dialogo d43 = new Dialogo("Disculpe la molestia capitan.", "Detective", detective, true);
+        Dialogo d44 = new Dialogo("No hay de que, sabia que volverias a llamar en cualquier momento. ¿Que necesitas ahora?", "Capitan", nada, true);
+        Dialogo d45 = new Dialogo("Ya termine de tomar de nuevo la declaracion de dueño, el guia principal y el guardia de seguridad. ¿Como me recomiendas actuar ahora?", "Detective", detective, true);
+        Dialogo d46 = new Dialogo("Mmmhh, si ya pasaste por los puestos mas importantes lo mejor seria entrevistar a los otros trabajadores del museo, a lo mejor puedes obtener algun tipo de informacion util acerca del caso, quien sabe.", "Capitan", nada, true);
+        Dialogo d47 = new Dialogo("¿Eso tambien incluye a la esposa del dueño?", "Detective", detective, true);
+        Dialogo d48 = new Dialogo("Por ahora mantenla al marge, despues de todo solo estaba de visita y no tendria ningun motivo real para llevar a cabo un asesinato. ", "Capitan", nada, true);
+        Dialogo d49 = new Dialogo("Esta bien, ahora me pongo en funcion de ello. ", "Detective", detective, true);
+
+        dialogos3.add(d41);
+        dialogos3.add(d42);
+        dialogos3.add(d43);
+        dialogos3.add(d44);
+        dialogos3.add(d45);
+        dialogos3.add(d46);
+        dialogos3.add(d47);
+        dialogos3.add(d48);
+        dialogos3.add(d49);
+
+        dialogosCapitan.add(dialogos3);
     }
 
     public void crearDialogosActo1(){
@@ -484,7 +507,7 @@ public class Partida implements Serializable, Cloneable
         auxTree1.insertNode(node13c, node12);
         auxTree1.insertNode(node14c, node13c);
 
-        escenarios.get(0).setArbolDial(auxTree1);
+        escenariosMundo.get(0).setArbolDial(auxTree1);
 
         //Guardia de la Sala de Seguridad1
         Dialogo s1 = new Dialogo("Hola Guardia, necesito revisar algunos detalles sobre las cámaras de seguridad.", "Detective", detective, true);
@@ -616,7 +639,7 @@ public class Partida implements Serializable, Cloneable
         auxTree2.insertNode(node35c, resp4);
         auxTree2.insertNode(node36c, node35c);
 
-        escenarios.get(1).setArbolDial(auxTree2);
+        escenariosMundo.get(1).setArbolDial(auxTree2);
 
         // Dialogo limpiador baño inferior
         Dialogo b1 = new Dialogo("Buenas noches Conserje, ¿Tiene un momento? Necesito hacerle unas preguntas.", "Detective", detective, true);
@@ -744,7 +767,7 @@ public class Partida implements Serializable, Cloneable
         auxTree3.insertNode(node55, node54);
         auxTree3.insertNode(node56, node55);
 
-        escenarios.get(2).setArbolDial(auxTree3);
+        escenariosMundo.get(2).setArbolDial(auxTree3);
 
         // Dueño en la oficina
         Dialogo j1 = new Dialogo("Hola señor, no pude evitar distraerme con todos esos trofeos. Necesito hacerle unas preguntas," +
@@ -880,7 +903,7 @@ public class Partida implements Serializable, Cloneable
         auxTree4.insertNode(node71d, nodeSal2);
         auxTree4.insertNode(node72d, node71d);
 
-        escenarios.get(3).setArbolDial(auxTree4);
+        escenariosMundo.get(3).setArbolDial(auxTree4);
 
         //Dialogo guias sala antiguedades
         Dialogo guia1 = new Dialogo("Vaya vaya, esta sala siempre me ha parecido la más silenciosa del museo.", "Detective", detective, true);
@@ -1037,7 +1060,7 @@ public class Partida implements Serializable, Cloneable
         auxTree5.insertNode(node98, node95);
         auxTree5.insertNode(node99, node98);
 
-        escenarios.get(4).setArbolDial(auxTree5);
+        escenariosMundo.get(4).setArbolDial(auxTree5);
 
         // Dialogo callejon vagabundo
         Dialogo vagab1 = new Dialogo("Buenas noches señor. ¿Todo bien por aquí?", "Detective", detective, true);
@@ -1172,7 +1195,7 @@ public class Partida implements Serializable, Cloneable
         auxTree6.insertNode(node119e, nodeSal4);
         auxTree6.insertNode(node120e, node119e);
 
-        escenarios.get(5).setArbolDial(auxTree6);
+        escenariosMundo.get(5).setArbolDial(auxTree6);
 
         // dialogo esposa del jefe
         Dialogo e1 = new Dialogo("Disculpe la molestia, señora. Solo quería hacerle unas preguntas rápidas, si no le importa.", "Detective", detective, true);
@@ -1259,7 +1282,7 @@ public class Partida implements Serializable, Cloneable
         auxTree7.insertNode(node132b, node131);
         auxTree7.insertNode(node133b, node132b);
 
-        escenarios.get(6).setArbolDial(auxTree7);
+        escenariosMundo.get(6).setArbolDial(auxTree7);
 
         // Monólogo del detective
         Dialogo m1 = new Dialogo("(No me lo puedo creer... Todo me lleva a él...)", "Detective", detective, true);
@@ -1331,7 +1354,7 @@ public class Partida implements Serializable, Cloneable
         auxTree8.insertNode(node151, node150);
         auxTree8.insertNode(node152, node151);
 
-        escenarios.get(7).setArbolDial(auxTree8);
+        escenariosMundo.get(7).setArbolDial(auxTree8);
 
         //  Policia acto 1
         Dialogo p1 = new Dialogo("Como esta oficial. Si tienes un minuto me gustaria hablar con usted.", "Detective", detective, true);
@@ -1445,7 +1468,7 @@ public class Partida implements Serializable, Cloneable
         auxTree9.insertNode(node165e, node164);
         auxTree9.insertNode(node166e, node165e);
 
-        escenarios.get(8).setArbolDial(auxTree9);
+        escenariosMundo.get(8).setArbolDial(auxTree9);
 
         //Guia2
         Dialogo conv1 = new Dialogo("¿Y ahora qué? ¿Van a interrogar a todos los que respiramos?", "Guia2", guia2, true);
@@ -1474,7 +1497,7 @@ public class Partida implements Serializable, Cloneable
         auxTree10.insertNode(node172, node171);
         auxTree10.insertNode(node173, node172);
 
-        escenarios.get(9).setArbolDial(auxTree10);
+        escenariosMundo.get(9).setArbolDial(auxTree10);
 
     }
 
