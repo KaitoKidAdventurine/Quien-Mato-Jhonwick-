@@ -334,11 +334,12 @@ public class SalaDeCamaras extends ModeloEscenario {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {
-            cajaTexto.removeAll();
+
             seguridad.setVisible(true);
-            ObjetoEscenario pan = new ObjetoEscenario("Pan con jamon", true,new ImageIcon("DatosAuxiliares/Objetos/Cuchillo.png"), 0, 0, 0, 0, true, "Aperitivo dado por el guardia de seguridad. Por alguna razon el jamón parece casi hechado a perder");
+
+            ObjetoEscenario pan = new ObjetoEscenario("Pan con jamon",true,  new ImageIcon("DatosAuxiliares/Minijuego/Etiqueta.png"), 0.1F, 0.1F, 0.1F, 0.1F, false, "Aperitivo entregado por el guardia de seguridad. Por alguna razón el jamón parece casi hechado a perder.");
             Juego.getInstance().getPartidaActual().getJugador().agregarAlMaletin(pan);
-            JOptionPane.showMessageDialog(null, "funciono");
+            cajaTexto.removeAll();
         }
 
     }
@@ -346,7 +347,7 @@ public class SalaDeCamaras extends ModeloEscenario {
         ponerDialogosEstatico(dialogos, actual, false);
     }
     private void estatiMouseClickedSegu2(ArrayList<Dialogo> dialogos, int actual) {
-        ponerDialogosEstatico(dialogos, actual, false);
+        ponerDialogosEstaticoSeguridad2(dialogos, actual);
     }
     private void estatiMouseClicked(ArrayList<Dialogo> dialogos, int actual){
         ponerDialogosEstatico(dialogos, actual, true);

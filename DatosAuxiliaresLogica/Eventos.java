@@ -18,8 +18,9 @@ public class Eventos implements Serializable {
     private boolean vagabundoYa;
     private boolean puertaCerrada;
     private boolean camarasRevisadas;
+    private boolean policiaSiguiendo;
 
-    public Eventos(boolean duenoYA, boolean secretariaYa, boolean seguridadYa, boolean policiaYa, boolean conserjeYa, boolean guia1Ya, boolean guia2Ya, boolean esposaYa, boolean vagabundo, boolean puertaCerrada, boolean camarasRevisadas) {
+    public Eventos(boolean duenoYA, boolean secretariaYa, boolean seguridadYa, boolean policiaYa, boolean conserjeYa, boolean guia1Ya, boolean guia2Ya, boolean esposaYa, boolean vagabundo, boolean puertaCerrada, boolean camarasRevisadas, boolean policiaSiguiendo) {
         this.duenoYA = duenoYA;
         this.secretariaYa = secretariaYa;
         this.seguridadYa = seguridadYa;
@@ -31,6 +32,7 @@ public class Eventos implements Serializable {
         this.esposaYa = esposaYa;
         this.puertaCerrada = puertaCerrada;
         this.camarasRevisadas = camarasRevisadas;
+        this.policiaSiguiendo = policiaSiguiendo;
         dialogoCapitanActual=0;
         ronda = 0;
     }
@@ -121,10 +123,18 @@ public class Eventos implements Serializable {
         }
     }
     public void cambiarRonda2(){
-        if(secretariaYa ==true && guia2Ya==true && conserjeYa)
+        if(secretariaYa ==true && guia2Ya==true && conserjeYa==true)
             setRonda(2);
     }
 
+    public void cambiarRonda3(){
+        if(vagabundoYa==true)
+            setRonda(3);
+    }
+    public void cambiarRonda4(){
+        if(esposaYa==true)
+            setRonda(4);
+    }
     public boolean isVagabundoYa() {
         return vagabundoYa;
     }
@@ -147,5 +157,13 @@ public class Eventos implements Serializable {
 
     public void setCamarasRevisadas(boolean camarasRevisadas) {
         this.camarasRevisadas = camarasRevisadas;
+    }
+
+    public boolean isPoliciaSiguiendo() {
+        return policiaSiguiendo;
+    }
+
+    public void setPoliciaSiguiendo(boolean policiaSiguiendo) {
+        this.policiaSiguiendo = policiaSiguiendo;
     }
 }

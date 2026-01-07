@@ -287,7 +287,8 @@ public class Callejon extends ModeloEscenario {
         }else {
             cajaTexto.removeAll();
             Juego.getInstance().getPartidaActual().getEventos().setVagabundoYa(true);
-            Juego.getInstance().getPartidaActual().getEventos().cambiarRonda2();
+            Juego.getInstance().getPartidaActual().getEventos().cambiarRonda3();
+            Juego.getInstance().getPartidaActual().getJugador().usarObjeto("Pan con jamon");
             vagabundo.setVisible(true);
         }
 

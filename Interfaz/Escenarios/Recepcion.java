@@ -259,6 +259,9 @@ public class Recepcion extends ModeloEscenario{
         secretaria.setBorderPainted(false);
         secretaria.setFocusPainted(false);
 
+        if(Juego.getInstance().getPartidaActual().getEventos().isPoliciaSiguiendo())
+            policia.setVisible(false);
+
         add(cajaTexto);
         add(flechaSalida);
         add(flechaBano);
@@ -360,8 +363,30 @@ public class Recepcion extends ModeloEscenario{
                 policia.setVisible(true);
             cajaTexto.removeAll();
         }
+    }
+    private void ponerDialogosEstaticoLlevarsePolicia(ArrayList<Dialogo> dialogos, int actual) {
+        if(actual<dialogos.size()) {
+            Dialogo aux = dialogos.get(actual);
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            actual++;
+            int finalActual = actual;
 
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                  ponerDialogosEstaticoLlevarsePolicia(dialogos, finalActual);
+                }
+            });
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
 
+                Juego.getInstance().getPartidaActual().getEventos().setPoliciaSiguiendo(true);
+                cajaTexto.removeAll();
+        }
+    }
+    private void EstatiMouseClickedLevarsePoli(ArrayList<Dialogo> dialogos, int actual){
+        ponerDialogosEstaticoLlevarsePolicia(dialogos, actual);
     }
     private void EstatiMouseClickedSecre(ArrayList<Dialogo> dialogos, int actual){
         ponerDialogosEstatico(dialogos, actual, true);
@@ -392,13 +417,39 @@ public class Recepcion extends ModeloEscenario{
     }
 
     private void policiaActionPerformed(ActionEvent evt) {
-        if(!Juego.getInstance().getPartidaActual().getEventos().isPoliciaYa()){
+        if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==4){
+            llevarseAlPolicia();
+        } else if(!Juego.getInstance().getPartidaActual().getEventos().isPoliciaYa()){
             ponerDialogoPolicia();
         }else{
             ponerDialogosEstatico(crearDialogoPolicia(), 0, false);
         }
     }
 
+    private void llevarseAlPolicia() {
+        policia.setVisible(false);
+        ponerDialogosEstaticoLlevarsePolicia(crearDialogoLlevarsePolciia(), 0);
+    }
+    private ArrayList<Dialogo> crearDialogoLlevarsePolciia(){
+        ArrayList<Dialogo> dialogos = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        ImageIcon poli = new ImageIcon("DatosAuxiliares/Personajes/Policia.png");
+        Dialogo d1= new Dialogo("Hombre, menuda noche, ya estoy esperando a que se termine.", "Policia", poli, true);
+        Dialogo d2= new Dialogo("No te preocupes, ya estamos bastante adelantados respecto al caso.", "Detective", detective, true);
+        Dialogo d3= new Dialogo("Menos mal, ya se me estaban congelando algunas partes que es mejor no decir.", "Policia", poli, true);
+        Dialogo d4= new Dialogo("Ahora necesito de tu ayuda, estoy buscando el arma homicida, tengo un presentimiento de que puede estar por cualquier parte. Necesito que me ayudes a encontrarla.", "Detective", detective, true);
+        Dialogo d5= new Dialogo("No hay problema, despues de todo eres el jefe, debo de seguir tus ordenes.", "Policia", poli, true);
+        Dialogo d6= new Dialogo("Perfecto, tiremos este lugar para abajo.", "Detective", detective, true);
+
+        dialogos.add(d1);
+        dialogos.add(d2);
+        dialogos.add(d3);
+        dialogos.add(d4);
+        dialogos.add(d5);
+        dialogos.add(d6);
+        return  dialogos;
+    }
     private ArrayList<Dialogo> crearDialogoPolicia(){
         ArrayList<Dialogo> dialogosPolicia = new ArrayList<>();
 

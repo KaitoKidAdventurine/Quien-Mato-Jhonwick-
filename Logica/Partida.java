@@ -37,7 +37,7 @@ public class Partida implements Serializable, Cloneable
         this.escenarios = new ArrayList<Escenario>();
         this.escenariosMundo = new ArrayList<Escenario>();
         this.jugador = new Jugador();
-        this.eventos = new Eventos(false, false, false, false, false, false, false, false, false, false, false);
+        this.eventos = new Eventos(false, false, false, false, false, false, false, false, false, false, false, false);
         agregarEscenariosAutomaticamente();
         dialogosCapitan = new ArrayList<>();
         addEscenario();
@@ -352,6 +352,119 @@ public class Partida implements Serializable, Cloneable
         dialogos3.add(d49);
 
         dialogosCapitan.add(dialogos3);
+
+        ArrayList<Dialogo> dialogos4 = new ArrayList<>();
+        Dialogo d50 = new Dialogo("Beeeppp", "", nada, true);
+        Dialogo d51 = new Dialogo("Oigo", "Capitan", nada, true);
+        Dialogo d52 = new Dialogo("Disculpe la molestia capitan.", "Detective", detective, true);
+        Dialogo d53 = new Dialogo("No hay de que, sabia que volverias a llamar en cualquier momento. ¿Que necesitas ahora?", "Capitan", nada, true);
+        Dialogo d54 = new Dialogo("Ya termine de tomar de nuevo la declaracion del guia secundario, la secretaria y el conserje. ¿Como me recomiendas actuar ahora?", "Detective", detective, true);
+        Dialogo d55 = new Dialogo("Si ya pasaste por todos los trabajadores se complica la tarea. Significa que deberas de buscar informacion mas escondida.", "Capitan", nada, true);
+        Dialogo d56 = new Dialogo("Podria probar con el vagabundo.", "Detective", detective, true);
+        Dialogo d57 = new Dialogo("¿Hay un vagabundo en el museo? ", "Capitan", nada, true);
+        Dialogo d58 = new Dialogo("No exactamente en el museo, cerca de el, en un callejon. Algunos empleados han comentado verlo visto interactuando con la victima en mas de un acasion.", "Detective", detective, true);
+        Dialogo d59 = new Dialogo("Parece que ya tienes una idea entonces.", "Capitan", nada, true);
+        Dialogo d60 = new Dialogo("Si. Ahora me pongo en funcion de ello.", "Detective", detective, true);
+
+        dialogos4.add(d50);
+        dialogos4.add(d51);
+        dialogos4.add(d52);
+        dialogos4.add(d53);
+        dialogos4.add(d54);
+        dialogos4.add(d55);
+        dialogos4.add(d56);
+        dialogos4.add(d57);
+        dialogos4.add(d58);
+        dialogos4.add(d59);
+        dialogos4.add(d60);
+        dialogosCapitan.add(dialogos4);
+
+        ArrayList<Dialogo> dialogos5 = new ArrayList<>();
+        Dialogo d61 = new Dialogo("Beeeppp", "", nada, true);
+        Dialogo d62 = new Dialogo("Oigo", "Capitan", nada, true);
+        Dialogo d63 = new Dialogo("Disculpe la molestia capitan.", "Detective", detective, true);
+        Dialogo d64 = new Dialogo("No hay de que, sabia que volverias a llamar en cualquier momento. ¿Que necesitas ahora?", "Capitan", nada, true);
+        Dialogo d65 = new Dialogo("Ya tome la declaracion del vagaundo. En esencia, luego de ser sobornado con un pan me dijo que alguien entro a la 1:00 AM por la escalera de incendio y se metio en la oficina de la victima.", "Detective", detective, true);
+        Dialogo d66 = new Dialogo("Eso quiere decir que el asesino conoce el lugar y sabia a quien iba a atacar, no fue coincidencia, fue un acto premeditado.", "Capitan", nada, true);
+        Dialogo d67 = new Dialogo("Lo mismo opino. El problema, el vagabundo no pudo verle la cara al asesino.", "Detective", detective, true);
+        Dialogo d68 = new Dialogo("Otro camino muerto entonces. Parece que tendras que probar suerte con la esposa del duaño, solo para estar seguros.", "Capitan", nada, true);
+        Dialogo d69 = new Dialogo("Probare a ver que ta---.", "Detective", detective, true);
+        Dialogo d70 = new Dialogo("Beeppp", "Capitan", nada, true);
+        Dialogo d71 = new Dialogo("No me dejó terminar de hablar", "Detective", detective, true);
+
+        dialogos5.add(d61);
+        dialogos5.add(d62);
+        dialogos5.add(d63);
+        dialogos5.add(d64);
+        dialogos5.add(d65);
+        dialogos5.add(d66);
+        dialogos5.add(d67);
+        dialogos5.add(d68);
+        dialogos5.add(d69);
+        dialogos5.add(d70);
+        dialogos5.add(d71);
+        dialogosCapitan.add(dialogos5);
+
+        ArrayList<Dialogo> dialogos6 = new ArrayList<>();
+        Dialogo d72 = new Dialogo("Beeeppp", "", nada, true);
+        Dialogo d73 = new Dialogo("Oigo", "Capitan", nada, true);
+        Dialogo d74 = new Dialogo("Disculpe la molestia capitan.", "Detective", detective, true);
+        Dialogo d75 = new Dialogo("No hay de que, sabia que volverias a llamar en cualquier momento. ¿Que necesitas ahora?", "Capitan", nada, true);
+        Dialogo d76 = new Dialogo("Despues de hablar con la esposa del dueño vi en una foto de la semana pasada en su oficina una espada, que parecce tener las proporciones adecuadas para coincidir con el arma del crimen.", "Detective", detective, true);
+        Dialogo d77 = new Dialogo("Bien hecho, solo te queda encontrar el arma.", "Capitan", nada, true);
+        Dialogo d78 = new Dialogo("No te preocupes, buscare por todo el museo, si dicha arma sigue estando aqui creeme que la encontraré.", "Detective", detective, true);
+        Dialogo d79 = new Dialogo("Ponte en ello.", "Capitan", nada, true);
+        Dialogo d80 = new Dialogo("Por supuesto, por quien me tom---.", "Detective", detective, true);
+        Dialogo d81 = new Dialogo("Beeppp", "Capitan", nada, true);
+        Dialogo d82 = new Dialogo("No me dejó terminar de hablar", "Detective", detective, true);
+
+        dialogos6.add(d72);
+        dialogos6.add(d73);
+        dialogos6.add(d74);
+        dialogos6.add(d75);
+        dialogos6.add(d76);
+        dialogos6.add(d77);
+        dialogos6.add(d78);
+        dialogos6.add(d79);
+        dialogos6.add(d80);
+        dialogos6.add(d81);
+        dialogos6.add(d82);
+        dialogosCapitan.add(dialogos6);
+
+        ArrayList<Dialogo> dialogos7 = new ArrayList<>();
+        Dialogo d83 = new Dialogo("Beeeppp", "", nada, true);
+        Dialogo d84 = new Dialogo("Oigo", "Capitan", nada, true);
+        Dialogo d85 = new Dialogo("Disculpe la molestia capitan.", "Detective", detective, true);
+        Dialogo d86 = new Dialogo("No hay de que, sabia que volverias a llamar en cualquier momento. ¿Que necesitas ahora?", "Capitan", nada, true);
+        Dialogo d87 = new Dialogo("Ya encontramos el arma homicia, en estos momentos el oficial esta de camino al laboratorio para que lo analicen en busqueda de huellas y otros indicadores.", "Detective", detective, true);
+        Dialogo d88 = new Dialogo("Bien hecho. Con  suerte nos dara suficiente evidencia para detectar al culpable.", "Capitan", nada, true);
+        Dialogo d89 = new Dialogo("Tu lo dijiste, con suerte. Aunque tengamos el arma, todavia necesitamos saber el motivo.", "Detective", detective, true);
+        Dialogo d90 = new Dialogo("Lo mas probable es que viera mas de la cuenta, sino los de altos rangos no me estuvieran presionando por cerrar el caso tan rapido.", "Capitan", nada, true);
+        Dialogo d91 = new Dialogo("Intentare revisando la computadora de la victima, pero segun la secretaria que salio con el por un tiempo tiene una contraseña bastante fuerte.", "Detective", detective, true);
+        Dialogo d92 = new Dialogo("Tendras que revisar el museo a ver si encuentras pistas acerca de la misma.", "Capitan", nada, true);
+        Dialogo d93 = new Dialogo("Si, es mismo estaba pensan--", "Detective", detective, true);
+        Dialogo d94 = new Dialogo("Beep", "Capitan", nada, true);
+        Dialogo d95 = new Dialogo("No me dejó terminar de hablar, otra vez", "Detective", detective, true);
+        Dialogo d96 = new Dialogo("Creo que le gusta cortar a la gente a mitad de frase.", "Detective", detective, true);
+
+        dialogos7.add(d83);
+        dialogos7.add(d84);
+        dialogos7.add(d85);
+        dialogos7.add(d86);
+        dialogos7.add(d87);
+        dialogos7.add(d88);
+        dialogos7.add(d89);
+        dialogos7.add(d90);
+        dialogos7.add(d91);
+        dialogos7.add(d92);
+        dialogos7.add(d93);
+        dialogos7.add(d94);
+        dialogos7.add(d95);
+        dialogos7.add(d96);
+        dialogosCapitan.add(dialogos7);
+
+
+
     }
 
     public void crearDialogosActo1() {

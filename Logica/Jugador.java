@@ -110,7 +110,17 @@ public class Jugador implements Serializable, Cloneable
         this.escenarioActual = escenarioActual;
     }
 
-
+    public void usarObjeto(String nombre){
+        Iterator<ObjetoEscenario> ii = maletin.iterator();
+        boolean encontrado = false;
+        while(ii.hasNext() && !encontrado){
+            ObjetoEscenario aux = ii.next();
+            if(aux.getNombre().equals(nombre)){
+                encontrado =true;
+                maletin.remove(aux);
+            }
+        }
+    }
     // Metodos
     public void agregarAlMaletin(ObjetoEscenario o)
     {
