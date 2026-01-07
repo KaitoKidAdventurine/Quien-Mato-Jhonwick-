@@ -15,7 +15,7 @@ public class MensajeExito extends JDialog {
 
     private Dimension tamPant;
 
-    // Constructor mejorado
+    
     public MensajeExito(Window parent, boolean modal, String mensaje) {
         super(parent, modal ? DEFAULT_MODALITY_TYPE : ModalityType.MODELESS);
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
@@ -24,23 +24,23 @@ public class MensajeExito extends JDialog {
         setVisible(true); // ¡IMPORTANTE! Esto hace que se muestre
     }
 
-    // Constructor adicional con título
+
     public MensajeExito(Window parent, boolean modal, String mensaje, String titulo) {
         this(parent, modal, mensaje); // Reutiliza el constructor principal
     }
 
     private void initComponents(String mensajeTexto) {
-        // Configuración básica del diálogo
+
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setModal(true);
         setLayout(new BorderLayout());
 
-        // Panel principal con fondo
+
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
 
-        // Intentar cargar la imagen de fondo
+
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/menu 1.jpg"));
             ImageIcon icono = new ImageIcon(imagen.getScaledInstance(
@@ -52,24 +52,24 @@ public class MensajeExito extends JDialog {
             JLabel fondo = new JLabel(icono);
             fondo.setLayout(new BorderLayout());
 
-            // Panel para el contenido
+
             JPanel contentPanel = new JPanel();
             contentPanel.setOpaque(false);
             contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
             contentPanel.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
 
-            // Mensaje
+
             JLabel mensajeLabel = new JLabel("<html><center>" + mensajeTexto.replace("\n", "<br>") + "</center></html>");
             mensajeLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
             mensajeLabel.setForeground(Color.WHITE);
             mensajeLabel.setAlignmentX(CENTER_ALIGNMENT);
 
-            // Espacio
+
             contentPanel.add(Box.createVerticalStrut(20));
             contentPanel.add(mensajeLabel);
             contentPanel.add(Box.createVerticalStrut(40));
 
-            // Botón Entendido
+
             JButton btnEntendido = new JButton("Entendido");
             btnEntendido.setFont(new Font("Segoe UI", Font.PLAIN, 18));
             btnEntendido.setForeground(Color.WHITE);
@@ -78,7 +78,7 @@ public class MensajeExito extends JDialog {
             btnEntendido.setFocusPainted(false);
             btnEntendido.setAlignmentX(CENTER_ALIGNMENT);
 
-            // Estilo del botón
+
             btnEntendido.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
@@ -93,7 +93,7 @@ public class MensajeExito extends JDialog {
                 }
             });
 
-            // Acción del botón
+
             btnEntendido.addActionListener(e -> {
                 EfectosEspeciales.getInstancia().efectoDeBoton();
                 dispose();
@@ -124,13 +124,13 @@ public class MensajeExito extends JDialog {
             mainPanel.add(btnEntendido, BorderLayout.SOUTH);
         }
 
-        // Configurar tamaño
+
         setSize((int)(tamPant.width * 0.4), (int)(tamPant.height * 0.6));
 
-        // Añadir panel principal
+
         add(mainPanel);
 
-        // Hacer que se pueda cerrar con ESC
+
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
                 KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "cerrar"
         );
