@@ -120,6 +120,17 @@ public class Diario implements Serializable
         vagabundo.agregarCualidad("marginal");
         dialogosImportantes.add(vagabundo);
 
+        // 11 Limpieza
+        Informacion infoLimpieza = new Informacion("Victor Langley");
+        infoLimpieza.setEdadNPC("69");
+        infoLimpieza.setSexo(Sexo.MASCULINO);
+        infoLimpieza.setOcupacion("Encargado de limpieza");
+        infoLimpieza.getPersonalidad().add("Curioso");
+        infoLimpieza.getPersonalidad().add("Observador");
+        infoLimpieza.getPersonalidad().add("Buen corazón");
+        infoLimpieza.getPersonalidad().add("Trabajador");
+        infoLimpieza.getPersonalidad().add("Atento a los detalles");
+        dialogosImportantes.add(infoLimpieza);
 
     }
 
@@ -127,8 +138,14 @@ public class Diario implements Serializable
         String nombre = "";
 
         switch(profesion.toLowerCase()) {
+            case "Caso":
+            case "vic":
+            case "Vic":
+            case "Victima":
             case "victima":
             case "caso":
+            case "investigacion":
+            case "Investigacion":
             case "economico":
                 nombre = "Henry Bennett";
                 break;
@@ -139,26 +156,38 @@ public class Diario implements Serializable
                 break;
 
             case "policia":
+            case "Oficial":
+            case "ofi":
+            case "oficial":
             case "policía":
                 nombre = "Max Turner";
                 break;
 
             case "dueño":
             case "dueno":
+            case "duenno":
+            case "Dueno":
             case "propietario":
                 nombre = "Theodore Winslow";
                 break;
 
             case "esposa":
+            case "esp":
             case "esposa del dueño":
                 nombre = "Cate Sinclair";
                 break;
 
+            case "Relacion de la Victima":
+            case "Sec":
+            case "sec" :
+            case "Secretaria":
             case "secretaria":
                 nombre = "Elizabeth Reed";
                 break;
 
             case "guia":
+            case "Guia 1":
+            case "Guía 1":
             case "guia 1":
             case "guía":
             case "guía 1":
@@ -168,9 +197,13 @@ public class Diario implements Serializable
             case "guia 2":
             case "guía 2":
             case "amante":
+            case "Amante":
+            case "aman":
                 nombre = "Alex Valle";
                 break;
 
+            case "Guardia":
+            case "Seguridad":
             case "seguridad":
             case "guardia":
                 nombre = "Kai Collins";
@@ -180,6 +213,17 @@ public class Diario implements Serializable
             case "mendigo":
                 nombre = "Leo Kuibbert";
                 break;
+
+            case "Limpiador":
+            case "limpiador":
+            case "limp":
+            case "Limp":
+            case "Don Limpio":
+            case "Victor":
+            case "victor":
+                    nombre = "Victor Langley";
+                break;
+
 
             default:
                 nombre = "Personaje no encontrado";
