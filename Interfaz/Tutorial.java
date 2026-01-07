@@ -425,6 +425,16 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
+            if (aux.getTexto().equals("Nada fuera de lo laboral. Era serio, distante... aunque a veces me lanzaba miradas que decían más que sus palabras."))
+            {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("victima", "Parece que la víctima estaba \n enamorado de la secretaria");
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("sec", "La secretaria sospechaba de que \n la víctima estaba enamorado de ella");
+            }
+
+            else if (aux.getTexto().equals("En mi oficina, como siempre. Archivando papeles, atendiendo llamadas... y esperando que algo interesante pasara. Supongo que lo logró."))
+            {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("sec", "Dijo que se encontraba en su oficina \n archivando papeles");
+            }
 
         }else {
             ponerDialogoParte7();
@@ -459,6 +469,16 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
+            if (aux.getTexto().equals("Aunque, claro, en este lugar todos llevamos máscaras. Algunas más pesadas que otras."))
+            {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("aman", "El guía presenta una actitud \n extraña como si tuviera que \n esconder algo");
+            }
+            else if(aux.getTexto().equals("En la sala de esculturas. Estaba revisando unos textos para la próxima muestra. Me gusta trabajar" +
+                    " solo... menos distracciones, menos tonterías."))
+            {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("aman", "Dijo que se encontraba solo \n en la sala de esculturas");
+            }
+
         }else {
             ponerDialogoParte8();
         }
@@ -492,6 +512,17 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
+             if (aux.getTexto().equals("Trabajo de noche, así que casi siempre estoy solo. Es tranquilo... aunque uno se encuentra cosas que" +
+                    " otros no notan."))
+            {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("","Dijo que se encontraba limpiando el baño\n a la hora del asesinato");
+            }
+
+            else if (aux.getTexto().equals("A veces, mientras limpio, me encuentro con cosas que otros dejan olvidadas. Papeles, llaves," +
+                    " hasta notas raras. Supongo que es parte del trabajo."))
+            {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Limpieza", "Suele encontrar objetos interesantes");
+            }
         }else {
             ponerDialogoParte9();
         }
@@ -525,6 +556,17 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
+            if (aux.getTexto().equals("Era un hombre reservado, meticuloso. Mi esposo confiaba en él, aunque yo siempre lo encontré..." +
+                    " difícil de leer."))
+            {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("esposa", "Piensa que la víctima ocultaba algo");
+            }
+
+            else if (aux.getTexto().equals("Estaba en el salón principal, conversando con algunos invitados. No vi ni escuché nada fuera de " +
+                    "lo común."))
+            {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("esposa", "Dijo que se encontraba en la \n sala Principal");
+            }
 
         }else {
            ponerDialogoParte10();
@@ -543,6 +585,10 @@ public class Tutorial extends JFrame {
                     oD.setVisible(true);
                 }
             }
+
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.detenerSiEsNecesario();
+
             Dialogo aux = tutorialParte10.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = tutorialParte10.getArbolDial().nodeLevel(tutorialParte10.getNodoDialActual());
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
@@ -558,6 +604,28 @@ public class Tutorial extends JFrame {
 
             cajaTexto.removeAll();
             cajaTexto.add(cT);
+
+
+            if (aux.getTexto().equals("*Riiing... Riiing...*"))
+            {
+                e.efectoDeTelefonoResiviendoLlamda();
+            }
+
+            else if (aux.getTexto().equals("El cuchillo no coincide con la herida. El ángulo, la profundidad, la forma de la " +
+                    "herida... no concuerdan con un acto autoinfligidoni con un cuchillo asi."))
+            {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("victima", "La herida no coincide con el \n tamaño del cuchillo que fue encontrado en \n la escena del crimen");
+            }
+            else if (aux.getTexto().equals("Y hay algo más: la carta de despedida. La caligrafía no coincide con la de la víctima."))
+            {
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("victima", "La caligrafía no coincide con \n la de la carta");
+            }
+            else if(aux.getTexto().equals("*Un murmullo recorre la sala. Algunos se miran entre sí, otros bajan la mirada.*"))
+            {
+                e.efectoDeSusuros();
+            }
+
+            // Agregar mas alante Efecto de Sonido de: NADIE SE MUEVE DEL MUSEO!!!!!
 
         }else {
             iniciarMundo();
@@ -1412,8 +1480,8 @@ public class Tutorial extends JFrame {
 
         //Cambio de personaje, Aqui empieza la secretaria
 
-        Dialogo s1 = new Dialogo("Buenas noches. Estoy reuniendo declaraciones del personal. ¿Podemos hablar un momento?", "Detective", detective, true);
-        Dialogo s2 = new Dialogo("Por supuesto, detective. Soy la secretaria del director. Manejo su agenda, sus llamadas... y a veces sus caprichos.", "Secretaria", secretaria, true);
+        Dialogo s1 = new Dialogo("Buenas noches. Soy el detective Mason Carter, estoy reuniendo declaraciones del personal. ¿Podemos hablar un momento?", "Detective", detective, true);
+        Dialogo s2 = new Dialogo("Por supuesto, detective. Mi nombre es Elisabeth Reed, soy la secretaria del director. Manejo su agenda, sus llamadas... y a veces sus caprichos.", "Secretaria", secretaria, true);
 
         // Primera decisión
         Dialogo decs1 = new Dialogo("¿Quiere saber algo más o solo vino a saludar?", "Secretaria", secretaria, true);
@@ -1461,10 +1529,10 @@ public class Tutorial extends JFrame {
 
         tutorialParte6.setArbolDial(auxTree5);
 
-        //Cambio de personaje, Aqui empieza el guia2
-        Dialogo guiaM1 = new Dialogo("Buenas noches. Estoy hablando con el personal del museo. ¿Podría decirme su nombre y su función " +
+        //Cambio de personaje, Aqui empieza el guia2 o el amante
+        Dialogo guiaM1 = new Dialogo("Buenas noches, soy el detective Mason Carter, estoy hablando con el personal del museo. ¿Podría decirme su nombre y su función " +
                 "aquí?", "Detective", detective, true);
-        Dialogo guiaM2 = new Dialogo("Soy el segundo guía del museo. Me encargo de apoyar en las visitas... y de resolver los problemas " +
+        Dialogo guiaM2 = new Dialogo("Buenas noches Detective, mi nombre es Alex Valle, soy el segundo guía del museo. Me encargo de apoyar en las visitas... y de resolver los problemas " +
                 "que otros prefieren ignorar.", "Guía 2", guia2, true);
 
         // Primera decisión
@@ -1520,8 +1588,8 @@ public class Tutorial extends JFrame {
         tutorialParte7.setArbolDial(auxTree6);
 
         //Cambio de personaje, Aqui empieza el de limpieza
-        Dialogo l1 = new Dialogo("Hola. Estoy hablando con todos los empleados del museo. ¿Podría decirme su nombre y qué hace aquí?", "Detective", detective, true);
-        Dialogo l2 = new Dialogo("Sí, claro. Soy el encargado de la limpieza del museo. Me encargo de dejar todo en orden cuando ya no" +
+        Dialogo l1 = new Dialogo("Buenas noches . Soy el detective Mason Carter, estoy hablando con todos los empleados del museo. ¿Podría decirme su nombre y qué hace aquí?", "Detective", detective, true);
+        Dialogo l2 = new Dialogo("Sí, claro. Mi nombre es: Victor Langley, soy el encargado de la limpieza del museo. Me encargo de dejar todo en orden cuando ya no" +
                 " queda nadie.", "Limpieza", limpieza, true);
         Dialogo l3 = new Dialogo("Trabajo de noche, así que casi siempre estoy solo. Es tranquilo... aunque uno se encuentra cosas que" +
                 " otros no notan.", "Limpieza", limpieza, true);
@@ -1546,8 +1614,6 @@ public class Tutorial extends JFrame {
                 " hasta notas raras. Supongo que es parte del trabajo.", "Limpieza", limpieza, true);
 
 
-        // Dato clave
-        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante ("Limpieza", "Suele encontrarse con cosas útiles al estar solo limpiando.");
 
         Dialogo despedidaDetec = new Dialogo("Gracias, eso seria todo por ahora, mantengase cerca por" +
                 " si necesitamos hacerle más preguntas", "Detective", detective, true);
@@ -1591,8 +1657,8 @@ public class Tutorial extends JFrame {
 
         //Cambio de personaje, Aqui empieza la Esposa del jefe
 
-        Dialogo e1 = new Dialogo("Buenas noches. Estoy hablando con todos los presentes en el museo. ¿Podría decirme quién es usted?", "Detective", detective, true);
-        Dialogo e2 = new Dialogo("Soy la esposa del director del museo. Me llamo Cate Sinclair, esta noche lo acompañé al evento, como es habitual en ocasiones" +
+        Dialogo e1 = new Dialogo("Buenas noches. Soy el detective Mason Carter, estoy hablando con todos los presentes en el museo. ¿Podría decirme quién es usted?", "Detective", detective, true);
+        Dialogo e2 = new Dialogo("Soy la esposa del dueño del museo. Me llamo Cate Sinclair, esta noche lo acompañé al evento, como es habitual en ocasiones" +
                 " importantes.", "Esposa", esposa, true);
         Dialogo e3 = new Dialogo("No suelo involucrarme en los asuntos del museo, pero conozco bien a quienes lo rodean.", "Esposa", esposa, true);
 

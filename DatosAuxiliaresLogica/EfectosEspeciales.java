@@ -46,7 +46,7 @@ public class EfectosEspeciales
             File efec = new File("Musica/Efectos de Sonido/NuevoTelefonoAlAbrir.mp3");
             File efect = new File("Musica/Efectos de Sonido/objetoEncontrado.mp3");
             File efectt = new File("Musica/Efectos de Sonido/colgarTelefono.mp3");
-
+            File efecto = new File("Musica/Efectos de Sonido/susuros.mp3");
             if (archivoMusica.exists())
             {
                 Cancion cancion = new Cancion("Lluvia", archivoMusica);
@@ -61,6 +61,7 @@ public class EfectosEspeciales
                 Cancion cancion9 = new Cancion("NuevoTelefonoAlAbrir", efec);
                 Cancion cancion10 = new Cancion("objetoEncontrado", efect);
                 Cancion cancion11 = new Cancion("colgarTelefono", efectt);
+                Cancion cancion12 = new Cancion("susuros", efecto);
 
                 efectosSonido.add(cancion);
                 efectosSonido.add(cancion1);
@@ -74,6 +75,7 @@ public class EfectosEspeciales
                 efectosSonido.add(cancion9);
                 efectosSonido.add(cancion10);
                 efectosSonido.add(cancion11);
+                efectosSonido.add(cancion12);
             }
 
             else {
@@ -384,6 +386,11 @@ public class EfectosEspeciales
     public void efectoColgarTelefono()
     {
         cambiarEfectoNombreUsarSoloUnaVez("colgarTelefono");
+    }
+
+    public void efectoDeSusuros()
+    {
+    cambiarEfectoNombreUsarSoloUnaVez("susuros");
     }
 
 
