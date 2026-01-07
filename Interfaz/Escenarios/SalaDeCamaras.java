@@ -36,6 +36,7 @@ public class SalaDeCamaras extends ModeloEscenario {
     private JButton revisarCamaras;
     private Timer timer3;
     private TimerTask tarea3;
+
     /**
      * Creates new form Entrada
      */
@@ -130,7 +131,7 @@ public class SalaDeCamaras extends ModeloEscenario {
             ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.125), (int) (tamPant.height*0.57), Image.SCALE_SMOOTH));
             seguridad.setIcon(icono3);
 
-            BufferedImage imagen4 = ImageIO.read(new File("DatosAuxiliares/Minijuego/Lupa.png"));
+            BufferedImage imagen4 = ImageIO.read(new File("DatosAuxiliares/Minijuego/Buscar.png"));
             ImageIcon icono4 = new ImageIcon(imagen4.getScaledInstance((int) (tamPant.width*0.08), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
             revisarCamaras.setIcon(icono4);
 
@@ -225,7 +226,7 @@ public class SalaDeCamaras extends ModeloEscenario {
     private void revisarCamarasMouseExited(MouseEvent evt) {
         BufferedImage imagen =null;
         try {
-            imagen = ImageIO.read(new File("DatosAuxiliares/Minijuego/Lupa.png"));
+            imagen = ImageIO.read(new File("DatosAuxiliares/Minijuego/Buscar.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -237,7 +238,7 @@ public class SalaDeCamaras extends ModeloEscenario {
     private void revisarCamarasMouseEntered(MouseEvent evt) {
        BufferedImage imagen =null;
         try {
-            imagen = ImageIO.read(new File("DatosAuxiliares/Minijuego/Lupa BR.png"));
+            imagen = ImageIO.read(new File("DatosAuxiliares/Minijuego/Buscar BR.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -337,7 +338,7 @@ public class SalaDeCamaras extends ModeloEscenario {
 
             seguridad.setVisible(true);
 
-            ObjetoEscenario pan = new ObjetoEscenario("Pan con jamon",true,  new ImageIcon("DatosAuxiliares/Minijuego/Etiqueta.png"), 0.1F, 0.1F, 0.1F, 0.1F, false, "Aperitivo entregado por el guardia de seguridad. Por alguna razón el jamón parece casi hechado a perder.");
+            ObjetoEscenario pan = new ObjetoEscenario("Pan con jamon",true,  new ImageIcon("DatosAuxiliares/Minijuego/Pan con jamon.png"), 0.1F, 0.1F, 0.1F, 0.1F, false, "Aperitivo entregado por el guardia de seguridad. Por alguna razón el jamón parece casi hechado a perder.");
             Juego.getInstance().getPartidaActual().getJugador().agregarAlMaletin(pan);
             cajaTexto.removeAll();
         }

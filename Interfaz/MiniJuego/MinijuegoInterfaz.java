@@ -271,7 +271,7 @@ public class MinijuegoInterfaz extends JPanel {
                         revalidate();
                         repaint();
                     }else{
-                        switch (momentoUsado){
+                        switch (momentoUsado) {
                             case 0:
                                 getParent().getComponent(0).setVisible(false);
                                 getParent().getComponent(2).setVisible(true);
@@ -283,6 +283,17 @@ public class MinijuegoInterfaz extends JPanel {
                             case 1:
                                 Juego.getInstance().getPartidaActual().getEventos().setPuertaCerrada(false);
                                 Juego.getInstance().getPartidaActual().getEventos().setCamarasRevisadas(true);
+                                break;
+                            case 2:
+                                ponerObjetosEnMochila();
+                                Juego.getInstance().getPartidaActual().getEventos().setBanoRevisado(true);
+                                break;
+                            case 3:
+                                ponerObjetosEnMochila();
+                                Juego.getInstance().getPartidaActual().getEventos().setAlmacenRevisado(true);
+                                break;
+                            default:
+                                break;
                         }
 
                     }

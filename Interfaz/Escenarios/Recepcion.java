@@ -380,7 +380,6 @@ public class Recepcion extends ModeloEscenario{
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {
-
                 Juego.getInstance().getPartidaActual().getEventos().setPoliciaSiguiendo(true);
                 cajaTexto.removeAll();
         }

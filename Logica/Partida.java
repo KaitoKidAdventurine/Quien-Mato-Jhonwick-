@@ -37,7 +37,7 @@ public class Partida implements Serializable, Cloneable
         this.escenarios = new ArrayList<Escenario>();
         this.escenariosMundo = new ArrayList<Escenario>();
         this.jugador = new Jugador();
-        this.eventos = new Eventos(false, false, false, false, false, false, false, false, false, false, false, false);
+        this.eventos = new Eventos();
         agregarEscenariosAutomaticamente();
         dialogosCapitan = new ArrayList<>();
         addEscenario();
@@ -1405,22 +1405,6 @@ public class Partida implements Serializable, Cloneable
         Dialogo m5 = new Dialogo("(El jefe tenía acceso. Tenía el arma. Mintió sobre dónde estaba. Ya no tengo dudas.)", "Detective", detective, true);
         Dialogo m6 = new Dialogo("(Es hora de terminar con esto.)", "Detective", detective, true);
 
-        // Entrada a la oficina
-        Dialogo m7 = new Dialogo("*El detective entra a la oficina del jefe, acompañado por dos policías. La luz está apagada.*", "Narrador", nada, true);
-        Dialogo m8 = new Dialogo("Señor director... tenemos que hablar.", "Detective", detective, true);
-        Dialogo m9 = new Dialogo("¿Señor?", "Detective", detective, true);
-        Dialogo m10 = new Dialogo("*Uno de los policías enciende la luz. El cuerpo del jefe yace en el suelo, boca abajo, con una herida profunda en la espalda.*", "Narrador", nada, true);
-        Dialogo m11 = new Dialogo("¡Dios! Está muerto...", "Policia", seguridad, true);
-        Dialogo m12 = new Dialogo("Una puñalada limpia. Precisa. Por la espalda.", "Detective", detective, true);
-        Dialogo m13 = new Dialogo("¿Dónde está el arma?", "Policia", seguridad, true);
-        Dialogo m14 = new Dialogo("No está, otra vez sin arma homicida. Y la puerta estaba cerrada desde dentro.", "Detective", detective, true);
-
-        // Descubrimiento del pasadizo
-        Dialogo m15 = new Dialogo("*El detective observa una rejilla mal colocada en la pared trasera.*", "Narrador", nada, true);
-        Dialogo m16 = new Dialogo("¿Qué es esto...?", "Detective", detective, true);
-        Dialogo m17 = new Dialogo("*Retira la rejilla. Detrás, un túnel angosto y oscuro se extiende hacia abajo.*", "Narrador", nada, true);
-        Dialogo m18 = new Dialogo("Un pasadizo... esto conecta con el baño del piso de abajo.", "Detective", detective, true);
-        Dialogo m19 = new Dialogo("Así entraron. Así lo mataron. Y así desaparecieron sin ser vistos. Esto cambia muchas cosas.", "Detective", detective, true);
 
         // Dato clave
         //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Oficina del Jefe", "El jefe fue asesinado en su oficina con una puñalada por la espalda. El arma no fue encontrada. Se descubrió un pasadizo secreto que conecta con el baño del piso inferior.");
@@ -1431,19 +1415,7 @@ public class Partida implements Serializable, Cloneable
         BinaryTreeNode<Dialogo> node137 = new BinaryTreeNode<>(m4);
         BinaryTreeNode<Dialogo> node138 = new BinaryTreeNode<>(m5);
         BinaryTreeNode<Dialogo> node139 = new BinaryTreeNode<>(m6);
-        BinaryTreeNode<Dialogo> node140 = new BinaryTreeNode<>(m7);
-        BinaryTreeNode<Dialogo> node141 = new BinaryTreeNode<>(m8);
-        BinaryTreeNode<Dialogo> node142 = new BinaryTreeNode<>(m9);
-        BinaryTreeNode<Dialogo> node143 = new BinaryTreeNode<>(m10);
-        BinaryTreeNode<Dialogo> node144 = new BinaryTreeNode<>(m11);
-        BinaryTreeNode<Dialogo> node145 = new BinaryTreeNode<>(m12);
-        BinaryTreeNode<Dialogo> node146 = new BinaryTreeNode<>(m13);
-        BinaryTreeNode<Dialogo> node147 = new BinaryTreeNode<>(m14);
-        BinaryTreeNode<Dialogo> node148 = new BinaryTreeNode<>(m15);
-        BinaryTreeNode<Dialogo> node149 = new BinaryTreeNode<>(m16);
-        BinaryTreeNode<Dialogo> node150 = new BinaryTreeNode<>(m17);
-        BinaryTreeNode<Dialogo> node151 = new BinaryTreeNode<>(m18);
-        BinaryTreeNode<Dialogo> node152 = new BinaryTreeNode<>(m19);
+
 
         GeneralTree<Dialogo> auxTree8 = new GeneralTree();
 
@@ -1453,19 +1425,7 @@ public class Partida implements Serializable, Cloneable
         auxTree8.insertNode(node137, node136);
         auxTree8.insertNode(node138, node137);
         auxTree8.insertNode(node139, node138);
-        auxTree8.insertNode(node140, node139);
-        auxTree8.insertNode(node141, node140);
-        auxTree8.insertNode(node142, node141);
-        auxTree8.insertNode(node143, node142);
-        auxTree8.insertNode(node144, node143);
-        auxTree8.insertNode(node145, node144);
-        auxTree8.insertNode(node146, node145);
-        auxTree8.insertNode(node147, node146);
-        auxTree8.insertNode(node148, node147);
-        auxTree8.insertNode(node149, node148);
-        auxTree8.insertNode(node150, node149);
-        auxTree8.insertNode(node151, node150);
-        auxTree8.insertNode(node152, node151);
+
 
         escenariosMundo.get(7).setArbolDial(auxTree8);
 

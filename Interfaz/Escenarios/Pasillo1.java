@@ -55,6 +55,9 @@ public class Pasillo1 extends ModeloEscenario {
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     cerrarEscenario();
                     tarea2.cancel();
+                }else{
+                    revalidate();
+                    repaint();
                 }
             }
         };
@@ -219,7 +222,7 @@ public class Pasillo1 extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 20);
+        timer2.scheduleAtFixedRate(tarea2, 0, 10);
     }
 
     private void flechaCamaraActionPerformed(ActionEvent evt) {

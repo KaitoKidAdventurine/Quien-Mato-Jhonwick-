@@ -46,6 +46,9 @@ public class PasilloAlmacen extends ModeloEscenario {
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     cerrarEscenario();
                     tarea2.cancel();
+                }else{
+                    revalidate();
+                    repaint();
                 }
             }
         };
@@ -198,7 +201,7 @@ public class PasilloAlmacen extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 20);
+        timer2.scheduleAtFixedRate(tarea2, 0, 10);
     }
     public void ponerDialogo() {
     }
