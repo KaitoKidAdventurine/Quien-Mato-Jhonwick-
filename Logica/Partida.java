@@ -1270,19 +1270,19 @@ public class Partida implements Serializable, Cloneable
         Dialogo m6 = new Dialogo("(Es hora de terminar con esto.)", "Detective", detective, true);
 
         // Entrada a la oficina
-        Dialogo m7 = new Dialogo("*El detective entra a la oficina del jefe, acompañado por dos policías. La luz está apagada.*", "Foto que se ponga", nada, true);
+        Dialogo m7 = new Dialogo("*El detective entra a la oficina del jefe, acompañado por dos policías. La luz está apagada.*", "Narrador", nada, true);
         Dialogo m8 = new Dialogo("Señor director... tenemos que hablar.", "Detective", detective, true);
         Dialogo m9 = new Dialogo("¿Señor?", "Detective", detective, true);
-        Dialogo m10 = new Dialogo("*Uno de los policías enciende la luz. El cuerpo del jefe yace en el suelo, boca abajo, con una herida profunda en la espalda.*", "Foto que se ponga", nada, true);
+        Dialogo m10 = new Dialogo("*Uno de los policías enciende la luz. El cuerpo del jefe yace en el suelo, boca abajo, con una herida profunda en la espalda.*", "Narrador", nada, true);
         Dialogo m11 = new Dialogo("¡Dios! Está muerto...", "Policia", seguridad, true);
         Dialogo m12 = new Dialogo("Una puñalada limpia. Precisa. Por la espalda.", "Detective", detective, true);
         Dialogo m13 = new Dialogo("¿Dónde está el arma?", "Policia", seguridad, true);
         Dialogo m14 = new Dialogo("No está, otra vez sin arma homicida. Y la puerta estaba cerrada desde dentro.", "Detective", detective, true);
 
         // Descubrimiento del pasadizo
-        Dialogo m15 = new Dialogo("*El detective observa una rejilla mal colocada en la pared trasera.*", "Foto que se ponga", nada, true);
+        Dialogo m15 = new Dialogo("*El detective observa una rejilla mal colocada en la pared trasera.*", "Narrador", nada, true);
         Dialogo m16 = new Dialogo("¿Qué es esto...?", "Detective", detective, true);
-        Dialogo m17 = new Dialogo("*Retira la rejilla. Detrás, un túnel angosto y oscuro se extiende hacia abajo.*", "Foto que se ponga", nada, true);
+        Dialogo m17 = new Dialogo("*Retira la rejilla. Detrás, un túnel angosto y oscuro se extiende hacia abajo.*", "Narrador", nada, true);
         Dialogo m18 = new Dialogo("Un pasadizo... esto conecta con el baño del piso de abajo.", "Detective", detective, true);
         Dialogo m19 = new Dialogo("Así entraron. Así lo mataron. Y así desaparecieron sin ser vistos. Esto cambia muchas cosas.", "Detective", detective, true);
 
@@ -1482,19 +1482,19 @@ public class Partida implements Serializable, Cloneable
         Dialogo con2 = new Dialogo("No vine por cortesía. Vine porque ya no puedes seguir escondiéndote detrás de tu escritorio.", "Detective", detective, true);
         Dialogo con3 = new Dialogo("¿Perdón?", "Dueño", dueno, true);
         Dialogo con4 = new Dialogo("Encontramos la en la armadura. Y las cuentas... están podridas. Contratos falsos, transferencias a empresas fantasma. Todo apunta a ti.", "Detective", detective, true);
-        Dialogo con5 = new Dialogo("*El jefe se queda en silencio unos segundos. Luego se levanta lentamente.*", "Foto que se ponga", nada, true);
+        Dialogo con5 = new Dialogo("*El jefe se queda en silencio unos segundos. Luego se levanta lentamente.*", "Narrador", nada, true);
         Dialogo con6 = new Dialogo("No tienes idea de lo que estás diciendo. ¿Sabes cuántas vidas dependen de este museo? ¿De mí?", "Dueño", dueno, true);
         Dialogo con7 = new Dialogo("¿Y eso justifica un asesinato? ¿Desviar fondos públicos? ¿Mentirle a todos?", "Detective", detective, true);
         Dialogo con8 = new Dialogo("¡No lo maté! ¡Yo no...! Solo quería ganar tiempo. Tapar el hueco. Él iba a hablar, y todo se iba a venir abajo.", "Dueño", dueno, true);
         Dialogo con9 = new Dialogo("Entonces habla. Dime quién más está metido en esto. Tal vez aún puedas salvarte.", "Detective", detective, true);
 
         // El jefe se altera
-        Dialogo con10 = new Dialogo("*El jefe comienza a respirar con dificultad. Se lleva la mano al cajón.*", "Foto que se ponga", nada, true);
+        Dialogo con10 = new Dialogo("*El jefe comienza a respirar con dificultad. Se lleva la mano al cajón.*", "Narrador", nada, true);
         Dialogo con11 = new Dialogo("No entiendes... No puedo. No puedo traicionarlos. Si hablo, estoy muerto.", "Dueño", dueno, true);
         Dialogo con12 = new Dialogo("¡No hagas una estupidez!", "Detective", detective, true);
 
         // Disparo
-        Dialogo con13 = new Dialogo("*El jefe saca un arma y dispara. El proyectil impacta en el hombro de tu compañero, que cae al suelo.*", "Foto que se ponga", nada, true);
+        Dialogo con13 = new Dialogo("*El jefe saca un arma y dispara. El proyectil impacta en el hombro de tu compañero, que cae al suelo.*", "Narrador", nada, true);
         Dialogo con14 = new Dialogo("¡Agh! ¡Estoy bien... solo el hombro!", "Policia", policia, true);
         Dialogo con15 = new Dialogo("¡Suelta el arma, ahora!", "Detective", detective, true);
 
@@ -1560,6 +1560,6 @@ public class Partida implements Serializable, Cloneable
         BinaryTreeNode<Dialogo> node202 = new BinaryTreeNode<>(despedida9);
 
     }
-    
+
 }
 
