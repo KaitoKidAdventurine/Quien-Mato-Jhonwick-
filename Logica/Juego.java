@@ -306,27 +306,37 @@ public class Juego {
         ImageIcon storageImage = new ImageIcon("DatosAuxiliares/Minijuego/Almacén.png");
         MiniJuego storageRoom = new MiniJuego("Almacén", storageImage);
 
-        ObjetoEscenario obLampara = new ObjetoEscenario("Lampara", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (95-30)/1152f, 699f/896f, (140-95)/1152f, (802-699)/896f, false, "");
+        ObjetoEscenario obLampara = new ObjetoEscenario("Lámpara", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (95-30)/1152f, 699f/896f, (140-95)/1152f, (802-699)/896f, false, "");
         ObjetoEscenario obSpray = new ObjetoEscenario("Spray", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (882-227)/1152f, 809f/896f, (916-882)/1152f, (879-809)/896f, false, "");
         ObjetoEscenario obBotella = new ObjetoEscenario("Botella", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (356-90)/1152f, 697f/896f, (382-356)/1152f, (791-697)/896f, false, "");
         ObjetoEscenario obEsfera = new ObjetoEscenario("Esfera del Mundo", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (248-73)/1152f, 592f/896f, (317-248)/1152f, (660-592)/896f, false, "");
         ObjetoEscenario obTelescopio = new ObjetoEscenario("Telescopio", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (366-103)/1152f, 548f/896f, (478-366)/1152f, (602-548)/896f, false, "");
-        ObjetoEscenario obBuho = new ObjetoEscenario("Buho de Madera", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (385-100)/1152f, 222f/896f, (422-385)/1152f, (270-222)/896f, false, "");
+        ObjetoEscenario obBuho = new ObjetoEscenario("Búho de Madera", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (385-100)/1152f, 222f/896f, (422-385)/1152f, (270-222)/896f, false, "");
         ObjetoEscenario obPergamino = new ObjetoEscenario("Pergamino", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (625-170)/1152f, 779f/896f, (742-625)/1152f, (823-779)/896f, false, "");
         ObjetoEscenario obLupa = new ObjetoEscenario("Lupa", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (707-186)/1152f, 839f/896f, (806-707)/1152f, (872-839)/896f, false, "");
         ObjetoEscenario obCopaRota = new ObjetoEscenario("Copa Rota", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (761-195)/1152f, 549f/896f, (791-761)/1152f, (607-549)/896f, false, "");
         ObjetoEscenario obEstatua2 = new ObjetoEscenario("Estatua", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (826-213)/1152f, 499f/896f, (867-826)/1152f, (639-499)/896f, false, "");
+        ObjetoEscenario obMaleta = new ObjetoEscenario("Maleta", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (504-125)/1152f, 549f/896f, (619-504-25)/1152f, (600-549)/896f, false, "");
+        ObjetoEscenario obMaceta = new ObjetoEscenario("Maceta", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (477-122)/1152f, 454f/896f, (508-477)/1152f, (495-454)/896f, false, "");
+        ObjetoEscenario obPeriodico = new ObjetoEscenario("Periodico", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (394-100)/1152f, 831f/896f, (500-394-20)/1152f, (879-831)/896f, false, "");
+        ObjetoEscenario obEscoba = new ObjetoEscenario("Escoba", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (970-250)/1152f, 647f/896f, (1022-970)/1152f, (744-272)*0.25f/896f, false, "");
+        ObjetoEscenario obVasijaRota = new ObjetoEscenario("VasijaRota", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (937-238)/1152f, 778f/896f, (994-937)/1152f, (834-778)/896f, false, "");
 
         storageRoom.agregarObjetoCola(obLampara);
         storageRoom.agregarObjetoCola(obSpray);
-        storageRoom.agregarObjetoCola(obTelescopio);
         storageRoom.agregarObjetoCola(obBotella);
-        storageRoom.agregarObjetoCola(obCopaRota);
         storageRoom.agregarObjetoCola(obEsfera);
+        storageRoom.agregarObjetoCola(obTelescopio);
         storageRoom.agregarObjetoCola(obBuho);
-        storageRoom.agregarObjetoCola(obEstatua2);
         storageRoom.agregarObjetoCola(obPergamino);
         storageRoom.agregarObjetoCola(obLupa);
+        storageRoom.agregarObjetoCola(obCopaRota);
+        storageRoom.agregarObjetoCola(obEstatua2);
+        storageRoom.agregarObjetoCola(obMaleta);
+        storageRoom.agregarObjetoCola(obMaceta);
+        storageRoom.agregarObjetoCola(obPeriodico);
+        storageRoom.agregarObjetoCola(obEscoba);
+        storageRoom.agregarObjetoCola(obVasijaRota);
 
         miniJuegos.add(storageRoom);
     }
