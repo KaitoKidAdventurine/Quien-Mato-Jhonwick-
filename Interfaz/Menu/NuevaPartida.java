@@ -6,13 +6,10 @@ package Interfaz.Menu;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
-import Interfaz.Escenarios.Entrada;
 import Interfaz.InterfazJugador.ConfirmarSalida;
 import Logica.Juego;
-import Logica.Jugador;
 import Logica.Partida;
-import Interfaz.Tutorial;
-import Logica.Reproductor;
+import Interfaz.Cinematicas.InicioJuego;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -20,7 +17,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Parameter;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -222,7 +218,7 @@ public class NuevaPartida extends javax.swing.JFrame {
 
             if (!Juego.getInstance().existePartida("3")) {
                 if (crearPartidaDirecta("3", "Jugador 3")) {
-                    Tutorial tuto1 = new Tutorial();
+                    InicioJuego tuto1 = new InicioJuego();
                     timer.schedule(tarea, 1000);
                     tuto1.setVisible(true);
                 } else {
@@ -233,7 +229,7 @@ public class NuevaPartida extends javax.swing.JFrame {
                 if (comprobacionActionPerformed()) {
                     Juego.getInstance().eliminarPartida("3");
                     if (crearPartidaDirecta("3", "Jugador 3")) {
-                        Tutorial tuto1 = new Tutorial();
+                        InicioJuego tuto1 = new InicioJuego();
                         timer.schedule(tarea, 1000);
                         tuto1.setVisible(true);
                     } else {
@@ -254,7 +250,7 @@ public class NuevaPartida extends javax.swing.JFrame {
 
             if (!Juego.getInstance().existePartida("2")) {
                 if (crearPartidaDirecta("1", "Jugador 2")) {
-                    Tutorial tuto1 = new Tutorial();
+                    InicioJuego tuto1 = new InicioJuego();
                     timer.schedule(tarea, 1000);
                     tuto1.setVisible(true);
                 } else {
@@ -265,7 +261,7 @@ public class NuevaPartida extends javax.swing.JFrame {
                 if (comprobacionActionPerformed()) {
                     Juego.getInstance().eliminarPartida("2");
                     if (crearPartidaDirecta("2", "Jugador 2")) {
-                        Tutorial tuto1 = new Tutorial();
+                        InicioJuego tuto1 = new InicioJuego();
                         timer.schedule(tarea, 1000);
                         tuto1.setVisible(true);
                     } else {
@@ -285,7 +281,7 @@ public class NuevaPartida extends javax.swing.JFrame {
 
             if (!Juego.getInstance().existePartida("1")) {
                 if (crearPartidaDirecta("1", "Jugador 1")) {
-                    Tutorial tuto1 = new Tutorial();
+                    InicioJuego tuto1 = new InicioJuego();
                     timer.schedule(tarea, 1000);
                     tuto1.setVisible(true);
                 } else {
@@ -296,7 +292,7 @@ public class NuevaPartida extends javax.swing.JFrame {
                 if (comprobacionActionPerformed()) {
                     Juego.getInstance().eliminarPartida("1");
                     if (crearPartidaDirecta("1", "Jugador 1")) {
-                        Tutorial tuto1 = new Tutorial();
+                        InicioJuego tuto1 = new InicioJuego();
                         timer.schedule(tarea, 1000);
                         tuto1.setVisible(true);
                     } else {

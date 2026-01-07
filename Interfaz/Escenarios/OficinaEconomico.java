@@ -4,7 +4,10 @@ package Interfaz.Escenarios;
 import DatosAuxiliaresLogica.EfectosEspeciales;
 
 import DatosAuxiliaresLogica.UnionInterfaces;
+import Interfaz.Cinematicas.FinDelJuego;
+import Interfaz.InterfazJugador.CuadroTexto;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.InterfazJugador.OpcionesDialogos;
 import Interfaz.Menu.MenuPrincipal;
 import Logica.*;
 
@@ -24,13 +27,13 @@ import java.util.TimerTask;
 public class OficinaEconomico extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OficinaEconomico.class.getName());
     private Dimension tamPant;
-    private int dialogoActual;
     private java.util.Timer timer;
     private TimerTask tarea;
     private Timer timer2;
     private TimerTask tarea2;
     private InterfazUsuario interfazUsuario;
     private JButton victima;
+    private JButton computadora;
     /**
      * Creates new form Entrada
      */
@@ -47,6 +50,9 @@ public class OficinaEconomico extends ModeloEscenario {
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     cerrarEscenario();
                     tarea2.cancel();
+                }else{
+                    revalidate();
+                    repaint();
                 }
             }
         };
@@ -69,6 +75,7 @@ public class OficinaEconomico extends ModeloEscenario {
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
         victima = new JButton();
+        computadora= new JButton();
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
 
@@ -140,6 +147,21 @@ public class OficinaEconomico extends ModeloEscenario {
         victima.setFocusPainted(false);
 
         getContentPane().add(victima);
+
+        computadora.setBounds((int) (tamPant.width*0.32), (int) (tamPant.height*0.43), (int) (tamPant.width*0.438), (int) (tamPant.height*0.23));
+        computadora.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                computadoraActionPerformed(evt);
+            }
+
+        });
+
+        computadora.setContentAreaFilled(false);
+        computadora.setBorderPainted(false);
+        computadora.setFocusPainted(false);
+
+        getContentPane().add(computadora);
+
         lugar.setText("Oficina de la Victima");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
@@ -154,7 +176,17 @@ public class OficinaEconomico extends ModeloEscenario {
         getContentPane().add(jLabel1);
 
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 20);
+        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+    }
+
+    private void computadoraActionPerformed(ActionEvent evt) {
+        if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==5){
+            if(Juego.getInstance().getPartidaActual().getJugador().revisarSiExisteObjetoEnMochila("Pedazo de papel ") && Juego.getInstance().getPartidaActual().getJugador().revisarSiExisteObjetoEnMochila("Libro")){
+                    ponerDialogo();
+            }else {
+                JOptionPane.showMessageDialog(null, "Todavia no tengo la contraseña completa");
+            }
+        }
     }
 
 
@@ -164,13 +196,46 @@ public class OficinaEconomico extends ModeloEscenario {
         JOptionPane.showMessageDialog(null, "Esta muerto");
     }
 
-    private void ponerDialogo() {
+    public void ponerDialogo() {
+        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual()))) {
+            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual()==null)){
+                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                   computadoraMouseClicked(evt);
+                }
+            });
+
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
+            cajaTexto.removeAll();
+            ponerFinal();
+        }
+
     }
 
-    private void cTMouseClicked(MouseEvent evt) {
+    private void ponerFinal() {
+        FinDelJuego fin = new FinDelJuego();
+        timer.schedule(tarea, 1000);
+        fin.setVisible(true);
+    }
+
+    private void computadoraMouseClicked(MouseEvent evt) {
         ponerDialogo();
-        getContentPane().revalidate();
-        getContentPane().repaint();
+
     }
     private void flechaPasillo3ActionPerformed(ActionEvent evt) {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();

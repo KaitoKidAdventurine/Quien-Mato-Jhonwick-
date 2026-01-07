@@ -19,20 +19,23 @@ public class Eventos implements Serializable {
     private boolean puertaCerrada;
     private boolean camarasRevisadas;
     private boolean policiaSiguiendo;
-
-    public Eventos(boolean duenoYA, boolean secretariaYa, boolean seguridadYa, boolean policiaYa, boolean conserjeYa, boolean guia1Ya, boolean guia2Ya, boolean esposaYa, boolean vagabundo, boolean puertaCerrada, boolean camarasRevisadas, boolean policiaSiguiendo) {
-        this.duenoYA = duenoYA;
-        this.secretariaYa = secretariaYa;
-        this.seguridadYa = seguridadYa;
-        this.policiaYa = policiaYa;
-        this.conserjeYa = conserjeYa;
-        this.guia1Ya = guia1Ya;
-        this.guia2Ya = guia2Ya;
-        this.vagabundoYa = vagabundo;
-        this.esposaYa = esposaYa;
-        this.puertaCerrada = puertaCerrada;
-        this.camarasRevisadas = camarasRevisadas;
-        this.policiaSiguiendo = policiaSiguiendo;
+    private boolean banoRevisado;
+    private boolean almacenRevisado;
+    public Eventos() {
+        this.duenoYA = false;
+        this.secretariaYa = false;
+        this.seguridadYa = false;
+        this.policiaYa = false;
+        this.conserjeYa = false;
+        this.guia1Ya = false;
+        this.guia2Ya = false;
+        this.vagabundoYa = false;
+        this.esposaYa = false;
+        this.puertaCerrada = false;
+        this.camarasRevisadas = false;
+        this.policiaSiguiendo = false;
+        this.banoRevisado=false;
+        this.almacenRevisado = false;
         dialogoCapitanActual=0;
         ronda = 0;
     }
@@ -135,6 +138,9 @@ public class Eventos implements Serializable {
         if(esposaYa==true)
             setRonda(4);
     }
+    public void cambiarRonda5(){
+        setRonda(5);
+    }
     public boolean isVagabundoYa() {
         return vagabundoYa;
     }
@@ -165,5 +171,21 @@ public class Eventos implements Serializable {
 
     public void setPoliciaSiguiendo(boolean policiaSiguiendo) {
         this.policiaSiguiendo = policiaSiguiendo;
+    }
+
+    public boolean isBanoRevisado() {
+        return banoRevisado;
+    }
+
+    public void setBanoRevisado(boolean banoRevisado) {
+        this.banoRevisado = banoRevisado;
+    }
+
+    public boolean isAlmacenRevisado() {
+        return almacenRevisado;
+    }
+
+    public void setAlmacenRevisado(boolean almacenRevisado) {
+        this.almacenRevisado = almacenRevisado;
     }
 }

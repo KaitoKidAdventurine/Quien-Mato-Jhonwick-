@@ -2,9 +2,14 @@ package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
+import Interfaz.InterfazJugador.CuadroTexto;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.InterfazJugador.OpcionesDialogos;
 import Interfaz.Menu.MenuPrincipal;
+import Interfaz.MiniJuego.MinijuegoInterfaz;
+import Logica.Dialogo;
 import Logica.Juego;
+import Logica.MiniJuego;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -28,6 +33,9 @@ public class Bano2  extends ModeloEscenario {
     private Timer timer2;
     private TimerTask tarea2;
     private InterfazUsuario interfazUsuario;
+    private JButton revisarBano;
+    private Timer timer3;
+    private TimerTask tarea3;
     /**
      * Creates new form Entrada
      */
@@ -44,6 +52,21 @@ public class Bano2  extends ModeloEscenario {
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     cerrarEscenario();
                     tarea2.cancel();
+                }else{
+                    revalidate();
+                    repaint();
+                }
+            }
+        };
+        timer3 = new Timer();
+        tarea3 = new TimerTask() {
+            @Override
+            public void run() {
+                if(Juego.getInstance().getPartidaActual().getEventos().isBanoRevisado()){
+                    cajaTexto.removeAll();
+                    revisarBano.setVisible(false);
+                    ponerDialogo();
+                    tarea3.cancel();
                 }
             }
         };
@@ -65,7 +88,7 @@ public class Bano2  extends ModeloEscenario {
         flechaPasillo2 = new JButton();
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
-
+        revisarBano = new JButton();
 
 
         try {
@@ -97,6 +120,10 @@ public class Bano2  extends ModeloEscenario {
             ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
             flechaPasillo2.setIcon(icono2);
 
+            BufferedImage imagen3 = ImageIO.read(new File("DatosAuxiliares/Minijuego/Buscar.png"));
+            ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.08), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+            revisarBano.setIcon(icono3);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -122,10 +149,35 @@ public class Bano2  extends ModeloEscenario {
             }
         });
 
+        getContentPane().add(cajaTexto);
+
         getContentPane().add(flechaPasillo2);
 
+        revisarBano.setBounds((int) (tamPant.width*0.47), (int) (tamPant.height*0.53), (int) (tamPant.width*0.08), (int) (tamPant.height*0.11));
+        revisarBano.setContentAreaFilled(false);
+        revisarBano.setBorderPainted(false);
+        revisarBano.setFocusPainted(false);
+        revisarBano.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                revisarBanoActionPerformed(evt);
+            }
 
-        getContentPane().add(cajaTexto);
+        });
+        revisarBano.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                revisarBanoMouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                revisarBanoMouseExited(evt);
+            }
+        });
+        if(!(Juego.getInstance().getPartidaActual().getEventos().getRonda()==5)) {
+            revisarBano.setVisible(false);
+        }
+        if(Juego.getInstance().getPartidaActual().getEventos().isBanoRevisado()){
+                revisarBano.setVisible(false);
+        }
+        getContentPane().add(revisarBano);
 
         lugar.setText("Baño Planta Alta");
         lugar.setOpaque(false);
@@ -139,10 +191,75 @@ public class Bano2  extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 20);
+        timer2.scheduleAtFixedRate(tarea2, 0, 10);
     }
     public void ponerDialogo() {
+            if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual()))) {
+                if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual()==null)){
+                    Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getDialogoActual();
+                    if(!actual.getOpciones().isEmpty()){
+                        OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                        oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                        oD.setVisible(true);
+                    }
+                }
+                Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+                CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+                cT.setBounds(0, 0, tamPant.width, tamPant.height);
+                cT.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent evt) {
+                        banoMouseClicked(evt);
+                    }
+                });
+
+                if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                    UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+                cajaTexto.removeAll();
+                cajaTexto.add(cT);
+            }else {
+                cajaTexto.removeAll();
+            }
+
+        }
+
+        private void banoMouseClicked(MouseEvent evt) {
+            ponerDialogo();
+
+        }
+
+    private void revisarBanoMouseExited(MouseEvent evt) {
+        BufferedImage imagen =null;
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/Minijuego/Buscar.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.08), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        revisarBano.setIcon(icono);
+
     }
+
+    private void revisarBanoMouseEntered(MouseEvent evt) {
+        BufferedImage imagen =null;
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/Minijuego/Buscar BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.08), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        revisarBano.setIcon(icono);
+    }
+
+    private void revisarBanoActionPerformed(ActionEvent evt) {
+        MiniJuego miniJuego = Juego.getInstance().getMinijuego(1);
+
+        MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(miniJuego, 2);
+        minijuegoInterfaz.setBounds(0, 0, tamPant.width, tamPant.height);
+        cajaTexto.add(minijuegoInterfaz);
+        timer3.scheduleAtFixedRate(tarea3, 0 ,20);
+    }
+
     private void flechaPasillo2MouseExited(MouseEvent evt) {
         BufferedImage imagen = null;
 
