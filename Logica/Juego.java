@@ -256,6 +256,9 @@ public class Juego {
         ObjetoEscenario obPalo = new ObjetoEscenario("Palo de Trapear", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (102-25)/1152f, 427f/765f, (148-102)/1152f, (530-427)/765f, false, "");
         ObjetoEscenario obGrafiti = new ObjetoEscenario("Grafiti", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (109-25)/1152f, 282f/765f, (178-109)/1152f, (340-282)/765f, false, "");
         ObjetoEscenario obNotas = new ObjetoEscenario("Notas Adhesivas", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (111-25)/1152f, 697f/765f, (192-111)/1152f, (742-697)/765f, false, "");
+        ObjetoEscenario obLata2 = new ObjetoEscenario("Lata de refresco 2", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (465-118)/1152f, 607f/765f, (521-465)/1152f, (645-607)/765f, false, "");
+        ObjetoEscenario obHoja = new ObjetoEscenario("Hoja de papel", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (621-160)/1152f, 578f/765f, (688-621)/1152f, (607-578)/765f, true, "Contiene la contraseña de la computadora.");
+        ObjetoEscenario obCepillo = new ObjetoEscenario("Cepillo de Dientes", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (555-125)/1152f, 322f/765f, (577-555)/1152f, (355-322)/765f, false, "");
 
         bathSecondFloor.agregarObjetoCola(obBilletera);
         bathSecondFloor.agregarObjetoCola(obJabon);
@@ -264,6 +267,9 @@ public class Juego {
         bathSecondFloor.agregarObjetoCola(obPalo);
         bathSecondFloor.agregarObjetoCola(obGrafiti);
         bathSecondFloor.agregarObjetoCola(obNotas);
+        bathSecondFloor.agregarObjetoCola(obLata2);
+        bathSecondFloor.agregarObjetoCola(obHoja);
+        bathSecondFloor.agregarObjetoCola(obCepillo);
 
         miniJuegos.add(bathSecondFloor);
     }
