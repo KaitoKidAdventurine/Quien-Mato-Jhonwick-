@@ -46,7 +46,7 @@ public class Partida implements Serializable, Cloneable
         } catch (Exception e) {
             System.out.println("ERROR en constructor de Partida: " + e.getMessage());
             e.printStackTrace();
-            throw e;  // Re-lanza para que el error sea visible
+            throw e;
         }
     }
 
