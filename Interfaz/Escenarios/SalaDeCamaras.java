@@ -358,57 +358,52 @@ public class SalaDeCamaras extends ModeloEscenario {
     public void ponerDialogo() {
         Escenario escenario = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(1);
 
-        // VERIFICAR SI YA SE COMPLETÓ
-        if (escenario.isDialogoCompletado()) {
-            // Mostrar directamente los botones finales
-            cajaTexto.removeAll();
-            revisarCamaras.setVisible(true);
-            Juego.getInstance().getPartidaActual().getEventos().setSeguridadYa(true);
-            Juego.getInstance().getPartidaActual().getEventos().setPuertaCerrada(true);
-            seguridad.setVisible(true);
-            getContentPane().revalidate();
-            getContentPane().repaint();
-            return;
+        boolean dialogoYaTerminado = escenario.isDialogoCompletado();
+
+        if (!dialogoYaTerminado) {
+            if (escenario.getNodoDialActual() == null || !(escenario.getArbolDial().nodeIsLeaf(escenario.getNodoDialActual()))) {
+                if (!(escenario.getNodoDialActual() == null)) {
+                    Dialogo actual = escenario.getDialogoActual();
+                    if (!actual.getOpciones().isEmpty()) {
+                        OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                        oD.setBounds((int) (tamPant.width * 0.28), (int) (tamPant.getHeight() * 0.37), (int) (tamPant.width * 0.48), (int) (tamPant.getHeight() * 0.5));
+                        oD.setVisible(true);
+                    }
+                }
+                Dialogo aux = escenario.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+                CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+                cT.setBounds(0, 0, tamPant.width, tamPant.height);
+                cT.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent evt) {
+                        seguridadMouseClicked(evt);
+                    }
+                });
+
+                if (UnionInterfaces.getInstance().getOpcionDialogo() != 1) {
+                    UnionInterfaces.getInstance().setOpcionDialogo(1);
+                }
+
+                cajaTexto.removeAll();
+                cajaTexto.add(cT);
+            } else {
+                dialogoYaTerminado = true;
+                escenario.setDialogoCompletado(true);
+                cajaTexto.removeAll();
+                revisarCamaras.setVisible(true);
+                Juego.getInstance().getPartidaActual().getEventos().setSeguridadYa(true);
+                Juego.getInstance().getPartidaActual().getEventos().setPuertaCerrada(true);
+                seguridad.setVisible(true);
+            }
         }
 
-        // CÓDIGO NORMAL (igual que antes)
-        if (escenario.getNodoDialActual() == null || !(escenario.getArbolDial().nodeIsLeaf(escenario.getNodoDialActual()))) {
-            if (escenario.getNodoDialActual() != null) {
-                Dialogo actual = escenario.getDialogoActual();
-                if (actual != null && !actual.getOpciones().isEmpty()) {
-                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
-                    oD.setBounds((int) (tamPant.width * 0.28), (int) (tamPant.getHeight() * 0.37), (int) (tamPant.width * 0.48), (int) (tamPant.getHeight() * 0.5));
-                    oD.setVisible(true);
-                }
-            }
-
-            Dialogo aux = escenario.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
-            cT.setBounds(0, 0, tamPant.width, tamPant.height);
-            cT.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent evt) {
-                    seguridadMouseClicked(evt);
-                }
-            });
-
-            if (UnionInterfaces.getInstance().getOpcionDialogo() != 1) {
-                UnionInterfaces.getInstance().setOpcionDialogo(1);
-            }
-
-            cajaTexto.removeAll();
-            cajaTexto.add(cT);
-
-            // VERIFICAR SI ACABAMOS DE COMPLETAR EL DIÁLOGO
-            escenario.verificarSiCompletado();
-        } else {
-            // MARCAR COMO COMPLETADO
-            escenario.setDialogoCompletado(true);
+        if (dialogoYaTerminado) {
             cajaTexto.removeAll();
             revisarCamaras.setVisible(true);
             Juego.getInstance().getPartidaActual().getEventos().setSeguridadYa(true);
             Juego.getInstance().getPartidaActual().getEventos().setPuertaCerrada(true);
             seguridad.setVisible(true);
         }
+
         getContentPane().revalidate();
         getContentPane().repaint();
     }
