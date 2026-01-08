@@ -172,7 +172,7 @@ public class Almacen extends ModeloEscenario {
         if(!(Juego.getInstance().getPartidaActual().getEventos().getRonda()==5)) {
             revisarAlmacen.setVisible(false);
         }
-        if(Juego.getInstance().getPartidaActual().getEventos().isBanoRevisado()){
+        if(Juego.getInstance().getPartidaActual().getEventos().isAlmacenRevisado()){
             revisarAlmacen.setVisible(false);
         }
         getContentPane().add(revisarAlmacen);
@@ -193,16 +193,16 @@ public class Almacen extends ModeloEscenario {
         timer2.scheduleAtFixedRate(tarea2, 0, 10);
     }
     public void ponerDialogo() {
-        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual()))) {
-            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual()==null)){
-                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getDialogoActual();
+        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getNodoDialActual()))) {
+            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getNodoDialActual()==null)){
+                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
-            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {

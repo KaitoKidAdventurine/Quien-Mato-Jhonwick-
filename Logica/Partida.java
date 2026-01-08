@@ -149,6 +149,8 @@ public class Partida implements Serializable, Cloneable
         Escenario acto1Parte9 = new Escenario("Acto 1-Guia 2", "Interaccion con segundo guia ", true);
         Escenario acto1Parte10 = new Escenario("Acto 1-Encontrar espada", "Encontrar espada", true);
         Escenario acto1Parte11 = new Escenario("Fin", "Fin", true);
+        Escenario acto1Parte12 = new Escenario("Acto 1-Encontrar nota", "Encontrar nota", true);
+        Escenario acto1Parte13 = new Escenario("Acto 1-Encontrar libro", "Encontrar libro", true);
 
         this.escenariosMundo.add(acto1Parte1);
         this.escenariosMundo.add(acto1Parte2);
@@ -161,7 +163,8 @@ public class Partida implements Serializable, Cloneable
         this.escenariosMundo.add(acto1Parte9);
         this.escenariosMundo.add(acto1Parte10);
         this.escenariosMundo.add(acto1Parte11);
-
+        this.escenariosMundo.add(acto1Parte12);
+        this.escenariosMundo.add(acto1Parte13);
     }
 
 
@@ -1787,13 +1790,13 @@ public class Partida implements Serializable, Cloneable
         auxTree12.insertNode(node205, node204);
         auxTree12.insertNode(node206, node205);
 
-        escenarios.get(11).setArbolDial(auxTree12);
+        escenariosMundo.get(11).setArbolDial(auxTree12);
 
         // Dialogos para la nota arrugada en la caja de archivos
 
-        Dialogo n5 = new Dialogo("(Otra nota. Y esta vez en el fondo de una caja de archivos viejos.)", "Detective", detective, true);
+        Dialogo n5 = new Dialogo("(Una nota extraña. Esta vez dentro del libro en el almacen.)", "Detective", detective, true);
         Dialogo n6 = new Dialogo("Dice 'me sequitur'. También en latín... 'me sigue'.", "Detective", detective, true);
-        Dialogo n7 = new Dialogo("¿Contraseña o advertencia? Sea lo que sea, esto conduce directo al económico.", "Detective", detective, true);
+        Dialogo n7 = new Dialogo("¿Contraseña o advertencia? Sea lo que sea, apuesto a que esto conduce directo al económico.", "Detective", detective, true);
         Dialogo n8 = new Dialogo("¿Qué tanto esconde esta víctima?.", "Detective", detective, true);
 
         BinaryTreeNode<Dialogo> node207 = new BinaryTreeNode<>(n5);
@@ -1808,7 +1811,7 @@ public class Partida implements Serializable, Cloneable
         auxTree12.insertNode(node209, node208);
         auxTree12.insertNode(node210, node209);
 
-        escenarios.get(12).setArbolDial(auxTree13);
+        escenariosMundo.get(12).setArbolDial(auxTree13);
 
     }
 
