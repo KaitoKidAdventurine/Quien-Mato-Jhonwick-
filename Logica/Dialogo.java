@@ -1,6 +1,9 @@
 package Logica;
 
+import DatosAuxiliaresLogica.Datos;
+
 import javax.swing.*;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -12,6 +15,8 @@ public class Dialogo
     private LinkedList<String> opciones;
     private ImageIcon icono;
     private boolean revelable;
+    private LinkedList<Datos> textoImport;
+
 
     public Dialogo(String texto, String personaje, ImageIcon imagenPersonaje, boolean revelable)
     {
@@ -20,6 +25,8 @@ public class Dialogo
         this.opciones = new LinkedList<>();
         this.icono = imagenPersonaje;
         this.revelable = revelable;
+        textoImport = new LinkedList<Datos>();
+
     }
 
     public String getTexto()
@@ -56,4 +63,29 @@ public class Dialogo
 
     public boolean isRevelable() { return revelable; }
     public void setRevelable(boolean revelable) { this.revelable = revelable; }
+
+    public LinkedList<Datos> getTextoImport() {
+        return textoImport;
+    }
+
+    public void setTextoImport(LinkedList<Datos> textoImport) {
+        this.textoImport = textoImport;
+    }
+    public void agregar(String nomNPC, String texto)
+    {
+        textoImport.add(new Datos(nomNPC, texto));
+    }
+
+    public void guardarEnDiario()
+    {
+        if (!textoImport.isEmpty())
+        {
+            Iterator<Datos> ID = textoImport.iterator();
+            while (ID.hasNext())
+            {
+                Datos D = ID.next();
+                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante(D.getNomNPC(), D.getTextoImportante());
+            }
+        }
+    }
 }

@@ -174,9 +174,9 @@ public class Tutorial extends JFrame {
                 e.efectoSalirDelCarro();
             }
 
-            else if (aux.getTexto().equals("El guardia de seguridad. Se percató de que en un sector fallaban las cámaras y decidió investigar la razón. Y bueno, encontró el cadáver de Henry.")) {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Victima","Fue encontrada por el guardia de seguridad");
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guardia","Encontro el cadaver, cuando fue a revisar \n una camara que fallaba");
+            else if(!aux.getTextoImport().isEmpty())
+            {
+                aux.guardarEnDiario();
             }
 
             else if (aux.getTexto().equals("Bip - Bip - Bip."))
@@ -305,17 +305,11 @@ public class Tutorial extends JFrame {
                 getContentPane().revalidate();
                 getContentPane().repaint();
             }
-            if (aux.getTexto().equals("Ninguna, personas como él no merecen que gaste mi tiempo en ellas."))
+
+            if (aux.getTextoImport().isEmpty() == false)
             {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("dueno", "No le tenía aprecio a la víctima");
+                aux.guardarEnDiario();
             }
-
-            else if(aux.getTexto().equals("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitación en todo el día."))
-            {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("dueno", "Dijo que estuvo todo el día en \n su oficina");
-            }
-
-
 
         }else {
             ponerDialogoParte4();
@@ -349,6 +343,11 @@ public class Tutorial extends JFrame {
 
             cajaTexto.removeAll();
             cajaTexto.add(cT);
+
+            if (aux.getTextoImport().isEmpty() == false)
+            {
+                aux.guardarEnDiario();
+            }
 
 
         }else {
@@ -385,11 +384,9 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
-            if(aux.getTexto().equals("Estaba en la sala de arte moderno, preparando la presentación de mañana. " +
-                    "Conozco el museo como la palma de mi mano, y no noté nada fuera de lo común."))
+            if(aux.getTextoImport().isEmpty() == false)
             {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("guia 1", "Dijo que se encontraba en la \n sala de arte en el momento del \n asesinato");
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("guia 1", "Se conoce el museo de memoria");
+                aux.guardarEnDiario();
             }
 
         }else {
@@ -425,15 +422,9 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
-            if (aux.getTexto().equals("Nada fuera de lo laboral. Era serio, distante... aunque a veces me lanzaba miradas que decían más que sus palabras."))
+            if (aux.getTextoImport().isEmpty() == false)
             {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("victima", "Parece que la víctima estaba \n enamorado de la secretaria");
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("sec", "La secretaria sospechaba de que \n la víctima estaba enamorado de ella");
-            }
-
-            else if (aux.getTexto().equals("En mi oficina, como siempre. Archivando papeles, atendiendo llamadas... y esperando que algo interesante pasara. Supongo que lo logró."))
-            {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("sec", "Dijo que se encontraba en su oficina \n archivando papeles");
+                aux.guardarEnDiario();
             }
 
         }else {
@@ -469,14 +460,9 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
-            if (aux.getTexto().equals("Aunque, claro, en este lugar todos llevamos máscaras. Algunas más pesadas que otras."))
+            if (aux.getTextoImport().isEmpty() == false)
             {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("aman", "El guía presenta una actitud \n extraña como si tuviera que \n esconder algo");
-            }
-            else if(aux.getTexto().equals("En la sala de esculturas. Estaba revisando unos textos para la próxima muestra. Me gusta trabajar" +
-                    " solo... menos distracciones, menos tonterías."))
-            {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("aman", "Dijo que se encontraba solo \n en la sala de esculturas");
+                aux.guardarEnDiario();
             }
 
         }else {
@@ -512,16 +498,9 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
-             if (aux.getTexto().equals("Trabajo de noche, así que casi siempre estoy solo. Es tranquilo... aunque uno se encuentra cosas que" +
-                    " otros no notan."))
+             if (aux.getTextoImport().isEmpty() == false)
             {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("","Dijo que se encontraba limpiando el baño\n a la hora del asesinato");
-            }
-
-            else if (aux.getTexto().equals("A veces, mientras limpio, me encuentro con cosas que otros dejan olvidadas. Papeles, llaves," +
-                    " hasta notas raras. Supongo que es parte del trabajo."))
-            {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Limpieza", "Suele encontrar objetos interesantes");
+                aux.guardarEnDiario();
             }
         }else {
             ponerDialogoParte9();
@@ -556,17 +535,12 @@ public class Tutorial extends JFrame {
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
-            if (aux.getTexto().equals("Era un hombre reservado, meticuloso. Mi esposo confiaba en él, aunque yo siempre lo encontré..." +
-                    " difícil de leer."))
+            if (aux.getTextoImport().isEmpty() == false)
             {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("esposa", "Piensa que la víctima ocultaba algo");
+                aux.guardarEnDiario();
             }
 
-            else if (aux.getTexto().equals("Estaba en el salón principal, conversando con algunos invitados. No vi ni escuché nada fuera de " +
-                    "lo común."))
-            {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("esposa", "Dijo que se encontraba en la \n sala Principal");
-            }
+
 
         }else {
            ponerDialogoParte10();
@@ -611,15 +585,11 @@ public class Tutorial extends JFrame {
                 e.efectoDeTelefonoResiviendoLlamda();
             }
 
-            else if (aux.getTexto().equals("El cuchillo no coincide con la herida. El ángulo, la profundidad, la forma de la " +
-                    "herida... no concuerdan con un acto autoinfligidoni con un cuchillo asi."))
+            else if (aux.getTextoImport().isEmpty() == false)
             {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("victima", "La herida no coincide con el \n tamaño del cuchillo que fue encontrado en \n la escena del crimen");
+                aux.guardarEnDiario();
             }
-            else if (aux.getTexto().equals("Y hay algo más: la carta de despedida. La caligrafía no coincide con la de la víctima."))
-            {
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("victima", "La caligrafía no coincide con \n la de la carta");
-            }
+
             else if(aux.getTexto().equals("*Un murmullo recorre la sala. Algunos se miran entre sí, otros bajan la mirada.*"))
             {
                 e.efectoDeSusuros();
@@ -802,6 +772,8 @@ public class Tutorial extends JFrame {
         Dialogo d57= new Dialogo("Excepto que en este caso encontraron el cuerpo", "Policia", policia, true);
         Dialogo d58= new Dialogo("¿Quién lo encontró?", "Detective", detective, true);
         Dialogo d59= new Dialogo("El guardia de seguridad. Se percató de que en un sector fallaban las cámaras y decidió investigar la razón. Y bueno, encontró el cadáver de Henry.", "Policia", policia, true);
+        d59.agregar("Victima","Fue encontrada por el guardia de seguridad");
+        d59.agregar("Guardia", "Encontro el cadaver, cuando fue a revisar \n una camara que fallaba");
         Dialogo d60= new Dialogo("Guíame hacia allí", "Detective", detective, true);
         Dialogo d61= new Dialogo("Claro, sería por este camino.", "Policia", policia, true);
         Dialogo d62= new Dialogo("Dime lo que han encontrado en la escena del crimen", "Detective", detective, true);
@@ -1083,13 +1055,15 @@ public class Tutorial extends JFrame {
         decisionDueno.setOpciones(new LinkedList<>(Arrays.asList("¿En dónde se encontraba en el momento de la tragedia?", "¿El economista tenía algún enemigo?", "¿Cómo era su relación con el economista?")));
 
         Dialogo dRama1Due = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitación en todo el día.", "Dueño", dueno, true);
+        dRama1Due.agregar("dueno", "Dijo que estuvo todo el día en \n su oficina");
+
         Dialogo dRama1DuePr1 = new Dialogo("¿Desea saber algo más?", "Dueño", dueno, true);
         dRama1DuePr1.setOpciones(new LinkedList<>(Arrays.asList("¿El economista tenía algún enemigo?", "¿Cómo era su relación con el economista?")));
 
         Dialogo dRama1Due1 = new Dialogo("Hasta donde sé, era una persona tranquila, no creo que nadie lo llegara a odiar. Era del tipo de gente que no sabes que está a tu lado hasta que empieza a hablar. No creo que nadie de aquí supiera su nombre para empezar.", "Dueño", dueno, true);
         Dialogo dRama1Due2 = new Dialogo("Ya entiendo, una última pregunta. ¿Cómo era su relación con el economista?", "Detective", detective, true);
         Dialogo dRama1Due3 = new Dialogo("Ninguna, personas como él no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
-
+        dRama1Due3.agregar("dueno", "No le tenía aprecio a la víctima.");
 
 
         Dialogo dRama1Due4 = new Dialogo("Me imaginé que dirías algo así. Gracias por su cooperación, puede retirarse.", "Detective", detective, true);
@@ -1097,6 +1071,10 @@ public class Tutorial extends JFrame {
         Dialogo dRama1Due6 = new Dialogo("(Qué persona más rara.)", "Detective", detective, true);
 
         Dialogo dRama1Due1$1 = new Dialogo("Ninguna, personas como él no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
+        dRama1Due1$1.agregar("dueno", "No le tenía aprecio a la víctima.");
+
+
+
         Dialogo dRama1Due2$1 = new Dialogo("Me imaginé que dirías algo así. Solo me queda una pregunta. ¿El economista tenía algún enemigo?", "Detective", detective, true);
         Dialogo dRama1Due3$1 = new Dialogo("Hasta donde sé, era una persona tranquila, no creo que nadie lo llegara a odiar. Era del tipo de gente que no sabes que está a tu lado hasta que empieza a hablar. No creo que nadie de aquí supiera su nombre para empezar.", "Dueño", dueno, true);
         Dialogo dRama1Due4$1 = new Dialogo("Ya entiendo. Gracias por su cooperación.", "Detective", detective, true);
@@ -1109,25 +1087,44 @@ public class Tutorial extends JFrame {
         dRama2Due2.setOpciones(new LinkedList<>(Arrays.asList("¿En dónde se encontraba en el momento de la tragedia?", "¿Cómo era su relación con el economista?")));
 
         Dialogo dRama2Due3 = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitación en todo el día.", "Dueño", dueno, true);
+        dRama2Due3.agregar("dueno", "Dijo que estuvo todo el día en \n su oficina");
+
+
+
         Dialogo dRama2Due4 = new Dialogo("Ya entiendo, una última pregunta. ¿Cómo era su relación con el economista?", "Detective", detective, true);
         Dialogo dRama2Due5 = new Dialogo("Ninguna, personas como él no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
+        dRama2Due5.agregar("dueno", "No le tenía aprecio a la víctima.");
+
+
         Dialogo dRama2Due6 = new Dialogo("Me imaginé que dirías algo así. Gracias por su cooperación, puede retirarse.", "Detective", detective, true);
         Dialogo dRama2Due7 = new Dialogo("Apúrese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
         Dialogo dRama2Due8 = new Dialogo("(Qué persona más rara.)", "Detective", detective, true);
 
         Dialogo dRama2Due3$1 = new Dialogo("Ninguna, personas como él no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
+        dRama2Due3$1.agregar("dueno", "No le tenía aprecio a la víctima.");
+
+
+
         Dialogo dRama2Due4$1 = new Dialogo("Me imaginé que dirías algo así. Una última pregunta para terminar. ¿En dónde se encontraba en el momento de la tragedia?", "Detective", detective, true);
         Dialogo dRama2Due5$1 = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitación en todo el día.", "Dueño", dueno, true);
-        Dialogo dRama2Due6$1 = new Dialogo("Ya entiendo, una última pregunta. Gracias por su cooperación, puede retirarse.", "Detective", detective, true);
+        dRama2Due5$1.agregar("dueno", "No le tenía aprecio a la víctima.");
+
+
+
+        Dialogo dRama2Due6$1 = new Dialogo("Ya entiendo. Gracias por su cooperación, puede retirarse.", "Detective", detective, true);
         Dialogo dRama2Due7$1 = new Dialogo("Apúrese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
         Dialogo dRama2Due8$1 = new Dialogo("(Qué persona más rara.)", "Detective", detective, true);
 
         Dialogo dRama3Due = new Dialogo("Ninguna, personas como él no merecen que gaste mi tiempo en ellas.", "Dueño", dueno, true);
         Dialogo dRama3Due1 = new Dialogo("Me imaginé que diría algo como eso.", "Detective", detective, true);
+        dRama3Due1.agregar("dueno", "No le tenía aprecio a la víctima.");
+
         Dialogo dRama3Due2 = new Dialogo("¿Desea saber algo más?", "Dueño", dueno, true);
         dRama3Due2.setOpciones(new LinkedList<>(Arrays.asList("¿En dónde se encontraba en el momento de la tragedia?", "¿El economista tenía algún enemigo?")));
 
         Dialogo dRama3Due3 = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitación en todo el día.", "Dueño", dueno, true);
+        dRama3Due3.agregar("dueno", "Dijo que estuvo todo el día en \n su oficina");
+
         Dialogo dRama3Due4 = new Dialogo("Ya entiendo, una última pregunta. ¿El economista tenía algún enemigo?", "Detective", detective, true);
         Dialogo dRama3Due5 = new Dialogo("Hasta donde sé, era una persona tranquila, no creo que nadie lo llegara a odiar. Era del tipo de gente que no sabes que está a tu lado hasta que empieza a hablar. No creo que nadie de aquí supiera su nombre para empezar.", "Dueño", dueno, true);
         Dialogo dRama3Due6 = new Dialogo("Así que nadie de por aquí tenía una relación cercana a él.", "Detective", detective, true);
@@ -1141,6 +1138,9 @@ public class Tutorial extends JFrame {
         Dialogo dRama3Due5$1 = new Dialogo("Se podría decir. ¿Desea saber algo más?", "Dueño", dueno, true);
         Dialogo dRama3Due6$1 = new Dialogo("Sí. ¿Dónde se encontraba en el momento de la tragedia?", "Detective", detective, true);
         Dialogo dRama3Due7$1 = new Dialogo("Estaba en mi oficina, trabajando en algunos documentos que tengo atrasados. No he dejado la habitación en todo el día.", "Dueño", dueno, true);
+        dRama3Due7$1.agregar("dueno", "Dijo que estuvo todo el día en \n su oficina");
+
+
         Dialogo dRama3Due8$1 = new Dialogo("Ya entiendo. Gracias por su cooperación, puede retirarse.", "Detective", detective, true);
         Dialogo dRama3Due9$1 = new Dialogo("Apúrese en cerrar el caso, cada minuto que pierdo con ustedes es mi billetera la que lo paga.", "Dueño", dueno, true);
         Dialogo dRama3Due10$1 = new Dialogo("(Qué persona más rara.)", "Detective", detective, true);
@@ -1370,10 +1370,15 @@ public class Tutorial extends JFrame {
                 "Eso es suficiente por ahora. Terminemos la conversación."
         )));
 
-// Pregunta 2: Relación con la víctima
+
+
+        // Pregunta 2: Relación con la víctima
         Dialogo rB = new Dialogo("Casi ninguna. Era reservado, apenas cruzábamos palabras.", "Guardia", seguridad, true);
-// Pregunta 3: Dónde estaba en el momento de los hechos (dato clave)
+        // Pregunta 3: Dónde estaba en el momento de los hechos (dato clave)
         Dialogo rC = new Dialogo("Estaba revisando las cámaras. Justo a la hora del asesinato, una de ellas falló en la sección medieval. Fui a investigar y encontré el cuerpo.", "Guardia", seguridad, true);
+        rC.agregar("Guardia", "Dijo que se encontraba revisando las camaras");
+
+
 
         Dialogo decisionGuardia2 = new Dialogo("¿Alguna pregunta más?", "Guardia", seguridad, true);
         decisionGuardia2.setOpciones(new LinkedList<>(Arrays.asList(
@@ -1423,7 +1428,7 @@ public class Tutorial extends JFrame {
 
         tutorialParte4.setArbolDial(auxTree3);
 
-        //Cambio de personaje, Aqui empieza el guia
+        //Cambio de personaje, Aqui empieza el guia 1
 
         Dialogo dect = new Dialogo("Buenas noches. Estoy interrogando al personal del museo. ¿Podría decirme quién es usted y " +
                 "qué función cumple aquí?", "Detective", detective, true);
@@ -1446,8 +1451,8 @@ public class Tutorial extends JFrame {
 
         Dialogo respuesta2 = new Dialogo("Estaba en la sala de arte moderno, preparando la presentación de mañana. " +
                 "Conozco el museo como la palma de mi mano, y no noté nada fuera de lo común.", "Guía", guia, true);
-
-        // Dato clave
+        respuesta2.agregar("guia 1", "Dijo que se encontraba en la \n sala de arte en el momento del \n asesinato");
+        respuesta2.agregar("guia 1", "Se conoce el museo de memoria");
 
         Dialogo despedida2 = new Dialogo("A usted, detective. Que tenga buena noche.", "Guía", guia, true);
         Dialogo despeDetectiveGuia = new Dialogo("Gracias, eso seria todo por ahora", "Detective", detective, true);
@@ -1491,6 +1496,10 @@ public class Tutorial extends JFrame {
         )));
 
         Dialogo resp1 = new Dialogo("Nada fuera de lo laboral. Era serio, distante... aunque a veces me lanzaba miradas que decían más que sus palabras.", "Secretaria", secretaria, true);
+        resp1.agregar("victima", "Parece que la víctima estaba \n enamorado de la secretaria");
+        resp1.agregar("sec", "La secretaria sospechaba de que \n la víctima estaba enamorado de ella");
+
+
         Dialogo desp1 = new Dialogo("Qué pena... justo cuando empezaba a disfrutar la charla. Estoy a su disposición, detective.", "Secretaria", secretaria, true);
 
         // Segunda decisión
@@ -1501,6 +1510,7 @@ public class Tutorial extends JFrame {
         )));
 
         Dialogo resp2 = new Dialogo("En mi oficina, como siempre. Archivando papeles, atendiendo llamadas... y esperando que algo interesante pasara. Supongo que lo logró.", "Secretaria", secretaria, true);
+        resp2.agregar("sec", "Dijo que se encontraba en su oficina \n archivando papeles");
         Dialogo desp2 = new Dialogo("A usted, detective. Que tenga una noche... intrigante.", "Secretaria", secretaria, true);
         Dialogo despDetSecret = new Dialogo("Eso sería todo, puede regresar. Gracias por su cooperación.", "Detective", detective, true);
         BinaryTreeNode<Dialogo> node116 = new BinaryTreeNode<>(s1);
@@ -1542,6 +1552,8 @@ public class Tutorial extends JFrame {
         Dialogo respt1 = new Dialogo("Lo justo. No era alguien con quien uno quisiera compartir un café. Siempre tan correcto," +
                 " tan... aburrido.", "Guía 2", guia2, true);
         Dialogo relleno1 = new Dialogo("Aunque, claro, en este lugar todos llevamos máscaras. Algunas más pesadas que otras.", "Guía 2", guia2, true);
+        relleno1.agregar("aman", "El guía presenta una actitud \n extraña como si tuviera que \n esconder algo");
+
 
         Dialogo despd1 = new Dialogo("Como desee. Aunque si cambia de opinión, estaré por aquí... observando cómo se desenvuelven " +
                 "las piezas.", "Guía 2", guia2, true);
@@ -1553,6 +1565,7 @@ public class Tutorial extends JFrame {
 
         Dialogo respt2 = new Dialogo("En la sala de esculturas. Estaba revisando unos textos para la próxima muestra. Me gusta trabajar" +
                 " solo... menos distracciones, menos tonterías.", "Guía 2", guia2, true);
+        respt2.agregar("aman", "Dijo que se encontraba solo \n en la sala de esculturas");
         Dialogo relleno2 = new Dialogo("Pero bueno, en este museo el silencio nunca es garantía de tranquilidad.", "Guía 2", guia2, true);
 
         Dialogo despdDete = new Dialogo("Gracias eso seria todo por ahora", "Detective", detective, true);
@@ -1594,6 +1607,8 @@ public class Tutorial extends JFrame {
         Dialogo l3 = new Dialogo("Trabajo de noche, así que casi siempre estoy solo. Es tranquilo... aunque uno se encuentra cosas que" +
                 " otros no notan.", "Limpieza", limpieza, true);
 
+
+
         // Primera decisión
         Dialogo de1 = new Dialogo("¿Quiere preguntarme algo más?", "Limpieza", limpieza, true);
         de1.setOpciones(new LinkedList<>(Arrays.asList("¿Conocía al economista?", "Está bien así, gracias por su tiempo.")) );
@@ -1610,9 +1625,11 @@ public class Tutorial extends JFrame {
         de2.setOpciones(new LinkedList<>(Arrays.asList("¿Dónde se encontraba cuando ocurrió todo?", "Gracias. Eso es todo por ahora.")));
 
         Dialogo res2 = new Dialogo("En los baños, siempre empiezo por ahí. No escuché nada raro, solo el eco de mis pasos.", "Limpieza", limpieza, true);
+        res2.agregar("Victor","Dijo que se encontraba limpiando el baño\n a la hora del asesinato");
+        res2.agregar("Victor", "Suele encontrar objetos interesantes");
+
         Dialogo rell2 = new Dialogo("A veces, mientras limpio, me encuentro con cosas que otros dejan olvidadas. Papeles, llaves," +
                 " hasta notas raras. Supongo que es parte del trabajo.", "Limpieza", limpieza, true);
-
 
 
         Dialogo despedidaDetec = new Dialogo("Gracias, eso seria todo por ahora, mantengase cerca por" +
@@ -1668,6 +1685,9 @@ public class Tutorial extends JFrame {
         ;
         Dialogo rp1 = new Dialogo("Era un hombre reservado, meticuloso. Mi esposo confiaba en él, aunque yo siempre lo encontré..." +
                 " difícil de leer.", "Esposa", esposa, true);
+        rp1.agregar("esposa", "Piensa que la víctima ocultaba algo");
+
+
         Dialogo relle1 = new Dialogo("A veces me preguntaba si ocultaba algo. Pero supongo que todos lo hacemos, ¿no cree?", "Esposa", esposa, true);
 
         Dialogo despdid1 = new Dialogo("Muy bien. Si recuerda algo más, estaré en el vestíbulo. Prefiero no quedarme sola por ahora.", "Esposa", esposa, true);
@@ -1679,6 +1699,8 @@ public class Tutorial extends JFrame {
 
         Dialogo rp2 = new Dialogo("Estaba en el salón principal, conversando con algunos invitados. No vi ni escuché nada fuera de " +
                 "lo común.", "Esposa", esposa, true);
+        rp2.agregar("esposa", "Dijo que se encontraba en la \n sala Principal");
+
         Dialogo relle2 = new Dialogo("Aunque, para ser sincera, últimamente he notado cierta tensión en el ambiente. Nada concreto..." +
                 " solo una sensación.", "Esposa", esposa, true);
 
@@ -1765,8 +1787,12 @@ public class Tutorial extends JFrame {
                 " el análisis de las pruebas que envió.", "Laboratorio", nada, true);
         Dialogo laboratorio2 = new Dialogo("El cuchillo no coincide con la herida. El ángulo, la profundidad, la forma de la " +
                 "herida... no concuerdan con un acto autoinfligidoni con un cuchillo asi.", "Laboratorio", nada, true);
+        laboratorio2.agregar("victima", "La herida no coincide con el \n tamaño del cuchillo que fue encontrado en \n la escena del crimen");
+
         Dialogo laboratorio3 = new Dialogo("Y hay algo más: la carta de despedida. La caligrafía no coincide con la de la víctima." +
                 " No es su letra.", "Laboratorio", nada, true);
+        laboratorio3.agregar("victima", "La caligrafía no coincide con \n la de la carta");
+
 
         // Reacción del protagonista
         Dialogo m6 = new Dialogo("(Lo sabía...)", "Detective", detective, true);
