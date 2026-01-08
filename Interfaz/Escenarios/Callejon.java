@@ -26,7 +26,6 @@ import java.util.TimerTask;
 public class Callejon extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Callejon.class.getName());
     private Dimension tamPant;
-    private int dialogoActual;
     private Timer timer;
     private TimerTask tarea;
     private Timer timer2;
@@ -62,6 +61,7 @@ public class Callejon extends ModeloEscenario {
             @Override
             public void run() {
                 dispose();
+                UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
 
@@ -320,13 +320,16 @@ public class Callejon extends ModeloEscenario {
     }
 
     private void flechaPasilloAlmacenActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
-        pasilloAlmacen.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
+            pasilloAlmacen.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void vagabundoMouseClicked(MouseEvent evt) {
         ponerDialogo();

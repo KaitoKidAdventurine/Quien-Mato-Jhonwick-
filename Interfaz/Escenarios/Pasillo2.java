@@ -23,7 +23,6 @@ import java.util.TimerTask;
 public class Pasillo2 extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Pasillo2.class.getName());
     private Dimension tamPant;
-    private int dialogoActual;
     private java.util.Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
@@ -56,7 +55,7 @@ public class Pasillo2 extends ModeloEscenario {
         tarea = new TimerTask() {
             @Override
             public void run() {
-                dispose();
+                dispose(); UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
     }
@@ -200,41 +199,42 @@ public class Pasillo2 extends ModeloEscenario {
         pack();
         timer2.scheduleAtFixedRate(tarea2, 0, 10);
     }
-    public void ponerDialogo() {
-    }
-
-    private void cTMouseClicked(MouseEvent evt) {
-        ponerDialogo();
-        getContentPane().revalidate();
-        getContentPane().repaint();
-    }
 
     private void flechaSalaActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Sala sala = new Sala();
-        sala.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Sala sala = new Sala();
+            sala.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void flechaOficinaJefeActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        OficinaJefe oficinaJefe = new OficinaJefe();
-        oficinaJefe.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            OficinaJefe oficinaJefe = new OficinaJefe();
+            oficinaJefe.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void flechaBano2ActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Bano2 bano2 = new Bano2();
-        bano2.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Bano2 bano2 = new Bano2();
+            bano2.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void flechaSalaMouseExited(MouseEvent evt) {
         BufferedImage imagen = null;

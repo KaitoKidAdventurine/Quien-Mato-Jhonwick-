@@ -61,7 +61,7 @@ public class Recepcion extends ModeloEscenario{
         tarea = new TimerTask() {
             @Override
             public void run() {
-                dispose();
+                dispose(); UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
 
@@ -349,9 +349,9 @@ public class Recepcion extends ModeloEscenario{
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
                     if(isSecretaria)
-                        EstatiMouseClickedSecre(dialogos, finalActual);
+                        estatiMouseClickedSecre(dialogos, finalActual);
                     else
-                        EstatiMouseClickedPoli(dialogos, finalActual);
+                        estatiMouseClickedPoli(dialogos, finalActual);
                 }
             });
             cajaTexto.removeAll();
@@ -374,7 +374,7 @@ public class Recepcion extends ModeloEscenario{
 
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
-                  ponerDialogosEstaticoLlevarsePolicia(dialogos, finalActual);
+                  estatiMouseClickedLevarsePoli(dialogos, finalActual);
                 }
             });
             cajaTexto.removeAll();
@@ -384,13 +384,13 @@ public class Recepcion extends ModeloEscenario{
                 cajaTexto.removeAll();
         }
     }
-    private void EstatiMouseClickedLevarsePoli(ArrayList<Dialogo> dialogos, int actual){
+    private void estatiMouseClickedLevarsePoli(ArrayList<Dialogo> dialogos, int actual){
         ponerDialogosEstaticoLlevarsePolicia(dialogos, actual);
     }
-    private void EstatiMouseClickedSecre(ArrayList<Dialogo> dialogos, int actual){
+    private void estatiMouseClickedSecre(ArrayList<Dialogo> dialogos, int actual){
         ponerDialogosEstatico(dialogos, actual, true);
     }
-    private void EstatiMouseClickedPoli(ArrayList<Dialogo> dialogos, int actual){
+    private void estatiMouseClickedPoli(ArrayList<Dialogo> dialogos, int actual){
         ponerDialogosEstatico(dialogos, actual, false);
     }
     private void policiaMouseExited(MouseEvent evt) {
@@ -499,16 +499,16 @@ public class Recepcion extends ModeloEscenario{
     }
 
     public void ponerDialogoPolicia() {
-        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getNodoDialActual()))) {
-            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getNodoDialActual()==null)){
-                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getDialogoActual();
+        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual()))) {
+            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual()==null)){
+                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
-            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
@@ -537,41 +537,53 @@ public class Recepcion extends ModeloEscenario{
         getContentPane().repaint();
     }
     private void flechaSalidaActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
 
-        Entrada entrada = new Entrada();
-        entrada.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
+
+            Entrada entrada = new Entrada();
+            entrada.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void flechaBanoActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Bano bano = new Bano();
-        bano.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Bano bano = new Bano();
+            bano.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void flechaSala1ActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Sala sala1 = new Sala();
-        sala1.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Sala sala1 = new Sala();
+            sala1.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void flechaPasillo1ActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Pasillo1 pasillo1 = new Pasillo1();
-        pasillo1.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
-
+            Pasillo1 pasillo1 = new Pasillo1();
+            pasillo1.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
 
     }
     private void flechaSalidaMouseExited(MouseEvent evt) {

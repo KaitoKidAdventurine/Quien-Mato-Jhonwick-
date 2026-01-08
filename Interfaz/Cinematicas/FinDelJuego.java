@@ -39,6 +39,8 @@ public class FinDelJuego extends JFrame {
         Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
         setCursor(cursor);
 
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         setMinimumSize(tamPant);
         setUndecorated(true);
         setPreferredSize(tamPant);
@@ -65,17 +67,17 @@ public class FinDelJuego extends JFrame {
     }
 
     private void ponerDialogo() {
-        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(3).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(3).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(3).getNodoDialActual()))) {
-            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(3).getNodoDialActual()==null)){
-                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(3).getDialogoActual();
+        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getNodoDialActual()))) {
+            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getNodoDialActual()==null)){
+                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
-            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(3).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
-            int nivelActualDial = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(3).getArbolDial().nodeLevel(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getNodoDialActual());
+            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            int nivelActualDial = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getArbolDial().nodeLevel(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getNodoDialActual());
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
@@ -86,7 +88,8 @@ public class FinDelJuego extends JFrame {
 
             cajaTexto.removeAll();
             cajaTexto.add(cT);
-            ponerFondo(nivelActualDial);
+           if(nivelActualDial==100)
+               ponerFondo(nivelActualDial);
             if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
                 UnionInterfaces.getInstance().setOpcionDialogo(1);
         }else {
@@ -105,7 +108,6 @@ public class FinDelJuego extends JFrame {
     private void ponerFondo(int nivelActualDial) {
         try {
             BufferedImage imagen = null;
-            EfectosEspeciales e = EfectosEspeciales.getInstancia();
             switch (nivelActualDial) {
                 case 0:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
@@ -114,7 +116,7 @@ public class FinDelJuego extends JFrame {
                     break;
             }
 
-            ImageIcon icono = new ImageIcon(imagen != null ? imagen.getScaledInstance(tamPant.width, tamPant.height, Image.SCALE_SMOOTH) : null);
+            ImageIcon icono = new ImageIcon(imagen.getScaledInstance(tamPant.width, tamPant.height, Image.SCALE_SMOOTH) );
             fondo.setIcon(icono);
 
         } catch (IOException e) {

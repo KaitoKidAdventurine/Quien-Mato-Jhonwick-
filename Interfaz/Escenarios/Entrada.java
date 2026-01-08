@@ -54,7 +54,7 @@ public class Entrada extends ModeloEscenario {
         tarea = new TimerTask() {
             @Override
             public void run() {
-                dispose();
+                dispose();  UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
         timer2 = new Timer();
@@ -228,13 +228,16 @@ public class Entrada extends ModeloEscenario {
     }
 
     private void flechaActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Recepcion recepcion = new Recepcion();
-        recepcion.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Recepcion recepcion = new Recepcion();
+            recepcion.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
 
     private void flechaMouseExited(MouseEvent evt) {

@@ -23,7 +23,6 @@ import java.util.TimerTask;
 public class Pasillo3 extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Pasillo3.class.getName());
     private Dimension tamPant;
-    private int dialogoActual;
     private java.util.Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
@@ -57,7 +56,7 @@ public class Pasillo3 extends ModeloEscenario {
         tarea = new TimerTask() {
             @Override
             public void run() {
-                dispose();
+                dispose(); UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
     }
@@ -197,43 +196,45 @@ public class Pasillo3 extends ModeloEscenario {
         pack();
         timer2.scheduleAtFixedRate(tarea2, 0, 10);
     }
-    public void ponerDialogo() {
-    }
 
-    private void cTMouseClicked(MouseEvent evt) {
-        ponerDialogo();
-        getContentPane().revalidate();
-        getContentPane().repaint();
-    }
     private void flechaPasillo1ActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Pasillo1 pasillo1 = new Pasillo1();
-        pasillo1.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Pasillo1 pasillo1 = new Pasillo1();
+            pasillo1.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
 
     }
     private void flechaOficinaEconoActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        OficinaEconomico oficinaEconomico = new OficinaEconomico();
-        oficinaEconomico.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            OficinaEconomico oficinaEconomico = new OficinaEconomico();
+            oficinaEconomico.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
 
     }
 
     private void flechaPasilloAlmacenActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
-        pasilloAlmacen.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
+            pasilloAlmacen.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
 
     }
     private void flechaPasillo1MouseExited(MouseEvent evt) {

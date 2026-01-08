@@ -247,34 +247,6 @@ public class Juego {
         miniJuegos.add(escenaDelCrimen);
 
 
-        ImageIcon bathImage = new ImageIcon("DatosAuxiliares/Minijuego/Escena del Baño.png");
-        MiniJuego bathSecondFloor = new MiniJuego("Baño Segundo Piso", bathImage);
-
-        ObjetoEscenario obBilletera = new ObjetoEscenario("Billetera", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (622-175)/1152f, 667f/765f, (725-622)/1152f, (719-667)/765f, false, "");
-        ObjetoEscenario obJabon = new ObjetoEscenario("Jabón", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (342-100)/1152f, 363f/765f, (398-342)/1152f, (396-363)/765f, false, "");
-        ObjetoEscenario obGel = new ObjetoEscenario("Gel de Manos", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (211-50)/1152f, 318f/765f, (255-211)/1152f, (395-318)/765f, false, "");
-        ObjetoEscenario obLata = new ObjetoEscenario("Lata de Refresco", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (314-75)/1152f, 594f/765f, (351-314)/1152f, (647-594)/765f, false, "");
-        ObjetoEscenario obPalo = new ObjetoEscenario("Palo de Trapear", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (102-25)/1152f, 427f/765f, (148-102)/1152f, (530-427)/765f, false, "");
-        ObjetoEscenario obGrafiti = new ObjetoEscenario("Grafiti", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (109-25)/1152f, 282f/765f, (178-109)/1152f, (340-282)/765f, false, "");
-        ObjetoEscenario obNotas = new ObjetoEscenario("Notas Adhesivas", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (111-25)/1152f, 697f/765f, (192-111)/1152f, (742-697)/765f, false, "");
-        ObjetoEscenario obLata2 = new ObjetoEscenario("Lata de refresco 2", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (465-118)/1152f, 607f/765f, (521-465)/1152f, (645-607)/765f, false, "");
-        ObjetoEscenario obHoja = new ObjetoEscenario("Hoja de papel", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (621-160)/1152f, 578f/765f, (688-621)/1152f, (607-578)/765f, true, "Contiene la contraseña de la computadora.");
-        ObjetoEscenario obCepillo = new ObjetoEscenario("Cepillo de Dientes", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (555-125)/1152f, 322f/765f, (577-555)/1152f, (355-322)/765f, false, "");
-
-        bathSecondFloor.agregarObjetoCola(obBilletera);
-        bathSecondFloor.agregarObjetoCola(obJabon);
-        bathSecondFloor.agregarObjetoCola(obGel);
-        bathSecondFloor.agregarObjetoCola(obLata);
-        bathSecondFloor.agregarObjetoCola(obPalo);
-        bathSecondFloor.agregarObjetoCola(obGrafiti);
-        bathSecondFloor.agregarObjetoCola(obNotas);
-        bathSecondFloor.agregarObjetoCola(obLata2);
-        bathSecondFloor.agregarObjetoCola(obHoja);
-        bathSecondFloor.agregarObjetoCola(obCepillo);
-
-        miniJuegos.add(bathSecondFloor);
-
-
         ImageIcon camerasImage = new ImageIcon("DatosAuxiliares/Minijuego/Sala de Cámaras.png");
         MiniJuego camerasRoom = new MiniJuego("Sala de Cámaras", camerasImage);
 
@@ -311,6 +283,34 @@ public class Juego {
         camerasRoom.agregarObjetoCola(obMochila);
 
         miniJuegos.add(camerasRoom);
+
+
+        ImageIcon bathImage = new ImageIcon("DatosAuxiliares/Minijuego/Escena del Baño.png");
+        MiniJuego bathSecondFloor = new MiniJuego("Baño Segundo Piso", bathImage);
+
+        ObjetoEscenario obBilletera = new ObjetoEscenario("Billetera", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (622-175)/1152f, 667f/765f, (725-622)/1152f, (719-667)/765f, false, "");
+        ObjetoEscenario obJabon = new ObjetoEscenario("Jabón", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (342-100)/1152f, 363f/765f, (398-342)/1152f, (396-363)/765f, false, "");
+        ObjetoEscenario obGel = new ObjetoEscenario("Gel de Manos", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (211-50)/1152f, 318f/765f, (255-211)/1152f, (395-318)/765f, false, "");
+        ObjetoEscenario obLata = new ObjetoEscenario("Lata de Refresco", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (314-75)/1152f, 594f/765f, (351-314)/1152f, (647-594)/765f, false, "");
+        ObjetoEscenario obPalo = new ObjetoEscenario("Palo de Trapear", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (102-25)/1152f, 427f/765f, (148-102)/1152f, (530-427)/765f, false, "");
+        ObjetoEscenario obGrafiti = new ObjetoEscenario("Grafiti", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (109-25)/1152f, 282f/765f, (178-109)/1152f, (340-282)/765f, false, "");
+        ObjetoEscenario obNotas = new ObjetoEscenario("Notas Adhesivas", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (111-25)/1152f, 697f/765f, (192-111)/1152f, (742-697)/765f, false, "");
+        ObjetoEscenario obLata2 = new ObjetoEscenario("Lata de refresco 2", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (465-118)/1152f, 607f/765f, (521-465)/1152f, (645-607)/765f, false, "");
+        ObjetoEscenario obHoja = new ObjetoEscenario("Hoja de papel", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (621-160)/1152f, 578f/765f, (688-621)/1152f, (607-578)/765f, true, "Contiene algunos escritos en latin.");
+        ObjetoEscenario obCepillo = new ObjetoEscenario("Cepillo de Dientes", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (555-125)/1152f, 322f/765f, (577-555)/1152f, (355-322)/765f, false, "");
+
+        bathSecondFloor.agregarObjetoCola(obBilletera);
+        bathSecondFloor.agregarObjetoCola(obJabon);
+        bathSecondFloor.agregarObjetoCola(obGel);
+        bathSecondFloor.agregarObjetoCola(obLata);
+        bathSecondFloor.agregarObjetoCola(obPalo);
+        bathSecondFloor.agregarObjetoCola(obGrafiti);
+        bathSecondFloor.agregarObjetoCola(obNotas);
+        bathSecondFloor.agregarObjetoCola(obLata2);
+        bathSecondFloor.agregarObjetoCola(obHoja);
+        bathSecondFloor.agregarObjetoCola(obCepillo);
+
+        miniJuegos.add(bathSecondFloor);
 
 
         ImageIcon storageImage = new ImageIcon("DatosAuxiliares/Minijuego/Almacén.png");

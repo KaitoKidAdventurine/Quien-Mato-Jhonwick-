@@ -26,7 +26,6 @@ import java.util.TimerTask;
 public class SalaDeCamaras extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SalaDeCamaras.class.getName());
     private Dimension tamPant;
-    private int dialogoActual;
     private Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
@@ -76,7 +75,7 @@ public class SalaDeCamaras extends ModeloEscenario {
         tarea = new TimerTask() {
             @Override
             public void run() {
-                dispose();
+                dispose();  UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
     }
@@ -338,7 +337,7 @@ public class SalaDeCamaras extends ModeloEscenario {
 
             seguridad.setVisible(true);
 
-            ObjetoEscenario pan = new ObjetoEscenario("Pan con jamon",true,  new ImageIcon("DatosAuxiliares/Minijuego/Pan con jamon.png"), 0.1F, 0.1F, 0.1F, 0.1F, false, "Aperitivo entregado por el guardia de seguridad. Por alguna razón el jamón parece casi hechado a perder.");
+            ObjetoEscenario pan = new ObjetoEscenario("Pan con jamon",true,  new ImageIcon("DatosAuxiliares/Objetos/Pan con jamon.png"), 0.1F, 0.1F, 0.1F, 0.1F, false, "Aperitivo entregado por el guardia de seguridad. Por alguna razón el jamón parece casi hechado a perder.");
             Juego.getInstance().getPartidaActual().getJugador().agregarAlMaletin(pan);
             cajaTexto.removeAll();
         }
@@ -398,13 +397,16 @@ public class SalaDeCamaras extends ModeloEscenario {
     }
     private void flechaPasillo1ActionPerformed(ActionEvent evt) {
         if(!Juego.getInstance().getPartidaActual().getEventos().isPuertaCerrada()){
-            EfectosEspeciales e = EfectosEspeciales.getInstancia();
-            e.efectoDePasos();
+            if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+                UnionInterfaces.getInstance().setUsandoFlecha(true);
+                EfectosEspeciales e = EfectosEspeciales.getInstancia();
+                e.efectoDePasos();
 
-            Pasillo1 pasillo1 = new Pasillo1();
-            pasillo1.setVisible(true);
-            tarea2.cancel();
-            timer.schedule(tarea, 1000);
+                Pasillo1 pasillo1 = new Pasillo1();
+                pasillo1.setVisible(true);
+                tarea2.cancel();
+                timer.schedule(tarea, 500);
+            }
         }else{
             ponerDialogoPuertaCerrada();
         }

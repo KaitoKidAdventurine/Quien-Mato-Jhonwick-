@@ -21,6 +21,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -61,7 +62,7 @@ public class OficinaEconomico extends ModeloEscenario {
         tarea = new TimerTask() {
             @Override
             public void run() {
-                dispose();
+                dispose();  UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
 
@@ -180,11 +181,12 @@ public class OficinaEconomico extends ModeloEscenario {
     }
 
     private void computadoraActionPerformed(ActionEvent evt) {
-        if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==5){
-            if(Juego.getInstance().getPartidaActual().getJugador().revisarSiExisteObjetoEnMochila("Pedazo de papel ") && Juego.getInstance().getPartidaActual().getJugador().revisarSiExisteObjetoEnMochila("Libro")){
-                    ponerDialogo();
+        if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==0){
+            ponerFinal();
+            if(Juego.getInstance().getPartidaActual().getJugador().revisarSiExisteObjetoEnMochila("Hoja de papel") /*&& Juego.getInstance().getPartidaActual().getJugador().revisarSiExisteObjetoEnMochila("Libro")*/){
+                    ponerFinal();
             }else {
-                JOptionPane.showMessageDialog(null, "Todavia no tengo la contraseña completa");
+                ponerDialogosEstatico(crearDialogoComputadora(), 0);
             }
         }
     }
@@ -192,59 +194,78 @@ public class OficinaEconomico extends ModeloEscenario {
 
 
     private void victimaActionPerformed(ActionEvent evt) {
-
-        JOptionPane.showMessageDialog(null, "Esta muerto");
+        ponerDialogosEstatico(crearDialogoMuerto(), 0);
     }
 
-    public void ponerDialogo() {
-        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual()))) {
-            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual()==null)){
-                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getDialogoActual();
-                if(!actual.getOpciones().isEmpty()){
-                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
-                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
-                    oD.setVisible(true);
-                }
-            }
-            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+
+    private ArrayList<Dialogo> crearDialogoMuerto(){
+        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("Es una lastima lo que te pasó", "Detective", detective, true);
+        Dialogo d2= new Dialogo("Encontrare al culpable que te hizo esto y lo llevare ante la justicia", "Detective", detective, true);
+
+        dialogosConserje.add(d1);
+        dialogosConserje.add(d2);
+        return dialogosConserje;
+    }
+    private ArrayList<Dialogo> crearDialogoComputadora(){
+        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        ImageIcon nada = new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png");
+        Dialogo d1= new Dialogo("No tengo la mas remota idea de cual es la cotraseña. Probare 1234.", "Detective", detective, true);
+        Dialogo d2= new Dialogo("-Error.- ", "", nada, true);
+        Dialogo d3= new Dialogo("La secretaria menciono algo acerca de una frase en latin. Umbra mortis, pero estaba incompleta", "Detective", detective, true);
+        Dialogo d4= new Dialogo("Debo de recorrer el museo en busca del resto de la frase.", "Detective", detective, true);
+
+        dialogosConserje.add(d1);
+        dialogosConserje.add(d2);
+        dialogosConserje.add(d3);
+        dialogosConserje.add(d4);
+        return dialogosConserje;
+    }
+    private void ponerDialogosEstatico(ArrayList<Dialogo> dialogos, int actual) {
+        if(actual<dialogos.size()) {
+            Dialogo aux = dialogos.get(actual);
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            actual++;
+            int finalActual = actual;
+
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
-                   computadoraMouseClicked(evt);
+                    EstatiMouseClicked(dialogos, finalActual);
                 }
             });
-
-            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
-                UnionInterfaces.getInstance().setOpcionDialogo(1);
-
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            ponerFinal();
         }
 
     }
+    private void EstatiMouseClicked(ArrayList<Dialogo> dialogos, int actual){
+        ponerDialogosEstatico(dialogos, actual);
 
+    }
     private void ponerFinal() {
         FinDelJuego fin = new FinDelJuego();
-        timer.schedule(tarea, 1000);
+        timer.schedule(tarea, 500);
         fin.setVisible(true );
     }
 
-    private void computadoraMouseClicked(MouseEvent evt) {
-        ponerDialogo();
-
-    }
     private void flechaPasillo3ActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Pasillo3 pasillo3 = new Pasillo3();
-        pasillo3.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Pasillo3 pasillo3 = new Pasillo3();
+            pasillo3.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void flechaMouseExited(MouseEvent evt) {
         BufferedImage imagen = null;

@@ -66,6 +66,7 @@ public class Bano2  extends ModeloEscenario {
                     cajaTexto.removeAll();
                     revisarBano.setVisible(false);
                     ponerDialogo();
+                    UnionInterfaces.getInstance().setUsandoFlecha(false);
                     tarea3.cancel();
                 }
             }
@@ -76,6 +77,7 @@ public class Bano2  extends ModeloEscenario {
             @Override
             public void run() {
                 dispose();
+                UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
 
@@ -252,12 +254,15 @@ public class Bano2  extends ModeloEscenario {
     }
 
     private void revisarBanoActionPerformed(ActionEvent evt) {
-        MiniJuego miniJuego = Juego.getInstance().getMinijuego(1);
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            MiniJuego miniJuego = Juego.getInstance().getMinijuego(2);
 
-        MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(miniJuego, 2);
-        minijuegoInterfaz.setBounds(0, 0, tamPant.width, tamPant.height);
-        cajaTexto.add(minijuegoInterfaz);
-        timer3.scheduleAtFixedRate(tarea3, 0 ,20);
+            MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(miniJuego, 2);
+            minijuegoInterfaz.setBounds(0, 0, tamPant.width, tamPant.height);
+            cajaTexto.add(minijuegoInterfaz);
+            timer3.scheduleAtFixedRate(tarea3, 0, 20);
+        }
     }
 
     private void flechaPasillo2MouseExited(MouseEvent evt) {
@@ -286,13 +291,16 @@ public class Bano2  extends ModeloEscenario {
         flechaPasillo2.setIcon(icono);
     }
     private void flechaPasillo2ActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Pasillo2 p2 = new Pasillo2();
-        p2.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Pasillo2 p2 = new Pasillo2();
+            p2.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void cTMouseClicked(MouseEvent evt) {
         ponerDialogo();

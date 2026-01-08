@@ -45,7 +45,6 @@ public class Almacen extends ModeloEscenario {
         tarea2 = new TimerTask() {
             @Override
             public void run() {
-
                 if(UnionInterfaces.getInstance().getCerrarVentana()){
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
@@ -76,6 +75,7 @@ public class Almacen extends ModeloEscenario {
             @Override
             public void run() {
                 dispose();
+                UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
 
@@ -169,7 +169,7 @@ public class Almacen extends ModeloEscenario {
                 revisarAlmaceMouseExited(evt);
             }
         });
-        if((Juego.getInstance().getPartidaActual().getEventos().getRonda()==5)) {
+        if(!(Juego.getInstance().getPartidaActual().getEventos().getRonda()==5)) {
             revisarAlmacen.setVisible(false);
         }
         if(Juego.getInstance().getPartidaActual().getEventos().isBanoRevisado()){
@@ -228,13 +228,16 @@ public class Almacen extends ModeloEscenario {
 
 
     private void flechaPasilloAlmacenActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+       if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+           UnionInterfaces.getInstance().setUsandoFlecha(true);
+           EfectosEspeciales e = EfectosEspeciales.getInstancia();
+           e.efectoDePasos();
 
-        PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
-        pasilloAlmacen.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+           PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
+           pasilloAlmacen.setVisible(true);
+           tarea2.cancel();
+           timer.schedule(tarea, 500);
+       }
     }
 
     private void flechaMouseExited(MouseEvent evt) {
@@ -286,7 +289,7 @@ public class Almacen extends ModeloEscenario {
     }
 
     private void revisarAlmacenActionPerformed(ActionEvent evt) {
-        MiniJuego miniJuego = Juego.getInstance().getMinijuego(1);
+        MiniJuego miniJuego = Juego.getInstance().getMinijuego(3);
 
         MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(miniJuego, 3);
         minijuegoInterfaz.setBounds(0, 0, tamPant.width, tamPant.height);

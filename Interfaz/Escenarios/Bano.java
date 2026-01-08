@@ -62,7 +62,7 @@ public class Bano extends ModeloEscenario {
         tarea = new TimerTask() {
             @Override
             public void run() {
-                dispose();
+                dispose(); UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
 
@@ -315,13 +315,16 @@ public class Bano extends ModeloEscenario {
         getContentPane().repaint();
     }
     private void flechaSalidaActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Recepcion entradaD = new Recepcion();
-        entradaD.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Recepcion entradaD = new Recepcion();
+            entradaD.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
 
     /**

@@ -1564,7 +1564,7 @@ public class Partida implements Serializable, Cloneable
         auxTree10.insertNode(node144, node143);
         auxTree10.insertNode(node145, node144);
 
-        escenarios.get(9).setArbolDial(auxTree10);
+        escenariosMundo.get(9).setArbolDial(auxTree10);
 
         //Final del Acto1
         // Monólogo del detective para el final
@@ -1713,7 +1713,7 @@ public class Partida implements Serializable, Cloneable
         auxTree11.insertNode(node201a, node201);
         auxTree11.insertNode(node202a, node201a);
 
-        escenarios.get(10).setArbolDial(auxTree11);
+        escenariosMundo.get(10).setArbolDial(auxTree11);
 
     }
 
