@@ -212,7 +212,6 @@ public class Partida implements Serializable, Cloneable
     }
 
     public Jugador getJugador() {
-
         return jugador;
     }
 
@@ -1576,25 +1575,39 @@ public class Partida implements Serializable, Cloneable
         Dialogo m3 = new Dialogo("Umbra mortis me sequitur. ¿Era una contraseña? ¿Una advertencia? Vamos a probar suerte.", "Detective", detective, true);
         Dialogo m4 = new Dialogo("*Tecleas la frase completa. La pantalla parpadea y se desbloquea.*", "Detective", detective, true);
         Dialogo m5 = new Dialogo("(Bien. Veamos qué estabas investigando...)", "Detective", detective, true);
-
-
         Dialogo m6 = new Dialogo("*Abres una carpeta llamada 'Contabilidad Interna'. Dentro hay decenas de archivos Excel y PDFs.*", "Narrador", nada, true);
         Dialogo m7 = new Dialogo("(Registros de transferencias... pagos duplicados... contratos inflados. Todo meticulosamente organizado.)", "Detective", detective, true);
         Dialogo m8 = new Dialogo("(Aquí hay una empresa llamada 'ArteNova S.A.'... sin dirección real, sin empleados registrados. Una fachada.)", "Detective", detective, true);
-
         Dialogo m9 = new Dialogo("*Encuentras un documento titulado 'Análisis de flujo. Confidencial'.*", "Narrador", nada, true);
         Dialogo m10 = new Dialogo("(El Económico había rastreado los desvíos. Hay gráficos, fechas, nombres... y uno se repite más que los demás.)", "Detective", detective, true);
         Dialogo m11 = new Dialogo("(El director. Firmas, autorizaciones, correos reenviados. Todo hecho por él.)", "Detective", detective, true);
-
         Dialogo m12 = new Dialogo("*Abres un archivo de texto con fecha reciente. Parece una nota personal.*", "Narrador", nada, true);
         Dialogo m13 = new Dialogo("(“Si algo me pasa, no fue un accidente. Todo está aquí. No me van a callar.”)", "Detective", detective, true);
-
         Dialogo m14 = new Dialogo("(No estaba involucrado... estaba tratando de exponerlo. Y lo pagó con su vida.)", "Detective", detective, true);
         Dialogo m15 = new Dialogo("(Ahora todo encaja. El Económico descubrió la verdad. Y por eso lo asesinaron. Es hora de acabar con esto)", "Detective", detective, true);
 
 
-        // Confrontación final con el dueño
+        Dialogo pre = new Dialogo("Llamare al capitan.", "Detective", detective, true);
+        Dialogo pre1 = new Dialogo("Biip.)", "", nada, true);
+        Dialogo pre2 = new Dialogo("Oigo", "Capitan", nada, true);
+        Dialogo pre3 = new Dialogo("Soy yo de nuevo. Encontre el motivo. El economico se habia dado cuente de que el dueño del museo estaba en neogcios turbios.", "Detective", detective, true);
+        Dialogo pre4 = new Dialogo("Eso nos da un motivo solido, y si no suficiente evidencia para encerrar al dueño, el debe de saber algo. Te mandare refuerzos, incluido el oficial que tenias asignado.”)", "Capitan", nada, true);
+        Dialogo pre5 = new Dialogo("Esta bien, aqui los espero.", "Detective", detective, true);
+        Dialogo pre6 = new Dialogo("-20 minutos despues. -", "", nada, true);
+        Dialogo pre7 = new Dialogo("Buenas detective", "Policia", policia, true);
+        Dialogo pre8 = new Dialogo("Saludo oficial, espero que haya venido preparado)", "Detective", detective, true);
+        Dialogo pre9 = new Dialogo("-El oficial muestra varias armas y un escuadron armado. -", "", nada, true);
+        Dialogo pre10 = new Dialogo("Esto es suyo. ", "Policia", policia, true);
+        Dialogo pre11 = new Dialogo("-Estira la mano con un arma dentro.-”)", "", nada, true);
+        Dialogo pre12 = new Dialogo("Gracias, pero yo tengo la mia.", "Detective", detective, true);
+        Dialogo pre13 = new Dialogo("Ahora vamos, tenemos un criminal que arrestar.", "Detective", detective, true);
+        Dialogo pre14 = new Dialogo("El plan es simple, entramos y lo arrestamos, no debe de dar mucha pelea, es una persona mayor y nosotros 4 hombres armados.", "Detective", detective, true);
+        Dialogo pre15 = new Dialogo("-En conjunto asienten con la cabeza.-”)", "", nada, true);
+        Dialogo pre16 = new Dialogo("A la cuenta de 3. 1.....2.......3...Ahora.", "Detective", detective, true);
+        Dialogo pre17 = new Dialogo("-Slapp.-", "", nada, true);
 
+
+        // Confrontación final con el dueño
         Dialogo con1 = new Dialogo("¿Qué haces aquí? No tengo tiempo para tus teorías.", "Dueño", dueno, true);
         Dialogo con2 = new Dialogo("No vine a teorizar. Vine a mostrarte lo que encontré en la computadora del Económico.", "Detective", detective, true);
         Dialogo con3 = new Dialogo("¿Perdón? ¿Qué computadora?", "Dueño", dueno, true);
@@ -1604,7 +1617,7 @@ public class Partida implements Serializable, Cloneable
         Dialogo con6 = new Dialogo("También encontré un correo que él nunca envió. Decía: 'Si algo me pasa, no fue un accidente. Todo está aquí'.", "Detective", detective, true);
         Dialogo con7 = new Dialogo("¿Y eso qué prueba? ¿Un correo sin enviar?", "Dueño", dueno, true);
         Dialogo con8 = new Dialogo("Prueba que sabía lo que hacías. Y que tenía miedo. Como tú ahora..", "Detective", detective, true);
-        Dialogo con9 = new Dialogo("Además, encontramos la espada escondida en la armadura. Tiene tus huellas. Y rastros de sangre.", "Detective", detective, true);
+        Dialogo con9 = new Dialogo("Además, encontramos la espada escondida en la armadura. Tiene tus huellas. Y rastros de sangre.", "Policia", policia, true);
         Dialogo con9a = new Dialogo("¿Vas a seguir negándolo? Porque todo esto ya no es una sospecha. Es un caso cerrado.", "Detective", detective, true);
         Dialogo con9b = new Dialogo("No puedes seguir escondiéndote detrás de tu escritorio.", "Detective", detective, true);
         Dialogo con9c = new Dialogo("No tienes idea de lo que estás diciendo. ¿Sabes cuántas vidas dependen de este museo? ¿De mí?", "Dueño", dueno, true);
@@ -1619,7 +1632,7 @@ public class Partida implements Serializable, Cloneable
         Dialogo con12 = new Dialogo("¡No hagas una estupidez!", "Detective", detective, true);
 
         // Disparo
-        Dialogo con13 = new Dialogo("*El jefe saca un arma y dispara. El proyectil impacta en el hombro de tu compañero, que cae al suelo.*", "Narrador", nada, true);
+        Dialogo con13 = new Dialogo("*El jefe saca un arma y dispara. El proyectil impacta en el hombro de tu compañero, que cae al suelo.*", "", nada, true);
         Dialogo con14 = new Dialogo("¡Agh! ¡Estoy bien... solo el hombro!", "Policia", policia, true);
         Dialogo con15 = new Dialogo("¡Suelta el arma, ahora!", "Detective", detective, true);
 
@@ -1652,6 +1665,7 @@ public class Partida implements Serializable, Cloneable
         // Cierre
         Dialogo cierre9 = new Dialogo("*La policía llega. El jefe es arrestado. Tu compañero es trasladado al hospital. Afuera, las sirenas se mezclan con el murmullo de los curiosos.*", "Narrador", nada, true);
         Dialogo despedida9 = new Dialogo("Esto no termina aquí. Solo abrimos la primera puerta.", "Detective", detective, true);
+        Dialogo despedidaFinal = new Dialogo("Esto es solo el inicio.", "Detective", detective, true);
 
 
         BinaryTreeNode<Dialogo> node146 = new BinaryTreeNode<>(m1);
@@ -1669,6 +1683,25 @@ public class Partida implements Serializable, Cloneable
         BinaryTreeNode<Dialogo> node152f = new BinaryTreeNode<>(m13);
         BinaryTreeNode<Dialogo> node152g = new BinaryTreeNode<>(m14);
         BinaryTreeNode<Dialogo> node152h = new BinaryTreeNode<>(m15);
+
+        BinaryTreeNode<Dialogo> nodePre1 = new BinaryTreeNode<>(pre);
+        BinaryTreeNode<Dialogo> nodePre2 = new BinaryTreeNode<>(pre1);
+        BinaryTreeNode<Dialogo> nodePre3 = new BinaryTreeNode<>(pre2);
+        BinaryTreeNode<Dialogo> nodePre4 = new BinaryTreeNode<>(pre3);
+        BinaryTreeNode<Dialogo> nodePre5 = new BinaryTreeNode<>(pre4);
+        BinaryTreeNode<Dialogo> nodePre6 = new BinaryTreeNode<>(pre5);
+        BinaryTreeNode<Dialogo> nodePre7 = new BinaryTreeNode<>(pre6);
+        BinaryTreeNode<Dialogo> nodePre8 = new BinaryTreeNode<>(pre7);
+        BinaryTreeNode<Dialogo> nodePre9 = new BinaryTreeNode<>(pre8);
+        BinaryTreeNode<Dialogo> nodePre10 = new BinaryTreeNode<>(pre9);
+        BinaryTreeNode<Dialogo> nodePre11 = new BinaryTreeNode<>(pre10);
+        BinaryTreeNode<Dialogo> nodePre12 = new BinaryTreeNode<>(pre11);
+        BinaryTreeNode<Dialogo> nodePre13 = new BinaryTreeNode<>(pre12);
+        BinaryTreeNode<Dialogo> nodePre14 = new BinaryTreeNode<>(pre13);
+        BinaryTreeNode<Dialogo> nodePre15 = new BinaryTreeNode<>(pre14);
+        BinaryTreeNode<Dialogo> nodePre16 = new BinaryTreeNode<>(pre15);
+        BinaryTreeNode<Dialogo> nodePre17 = new BinaryTreeNode<>(pre16);
+        BinaryTreeNode<Dialogo> nodePre18 = new BinaryTreeNode<>(pre17);
 
 
         BinaryTreeNode<Dialogo> node174 = new BinaryTreeNode<>(con1);
@@ -1709,6 +1742,7 @@ public class Partida implements Serializable, Cloneable
         BinaryTreeNode<Dialogo> node201a = new BinaryTreeNode<>(cierre9);
         BinaryTreeNode<Dialogo> node202 = new BinaryTreeNode<>(despedida9);
         BinaryTreeNode<Dialogo> node202a = new BinaryTreeNode<>(despedida9);
+        BinaryTreeNode<Dialogo> node202b = new BinaryTreeNode<>(despedidaFinal);
 
         GeneralTree<Dialogo> auxTree11 = new GeneralTree<>();
 
@@ -1728,7 +1762,26 @@ public class Partida implements Serializable, Cloneable
         auxTree11.insertNode(node152g, node152f);
         auxTree11.insertNode(node152h, node152g);
 
-        auxTree11.insertNode(node174, node152h);
+        auxTree11.insertNode(nodePre1, node152h);
+        auxTree11.insertNode(nodePre2, nodePre1);
+        auxTree11.insertNode(nodePre3, nodePre2);
+        auxTree11.insertNode(nodePre4, nodePre3);
+        auxTree11.insertNode(nodePre5, nodePre4);
+        auxTree11.insertNode(nodePre6, nodePre5);
+        auxTree11.insertNode(nodePre7, nodePre6);
+        auxTree11.insertNode(nodePre8, nodePre7);
+        auxTree11.insertNode(nodePre9, nodePre8);
+        auxTree11.insertNode(nodePre10, nodePre9);
+        auxTree11.insertNode(nodePre11, nodePre10);
+        auxTree11.insertNode(nodePre12, nodePre11);
+        auxTree11.insertNode(nodePre13, nodePre12);
+        auxTree11.insertNode(nodePre14, nodePre13);
+        auxTree11.insertNode(nodePre15, nodePre14);
+        auxTree11.insertNode(nodePre16, nodePre15);
+        auxTree11.insertNode(nodePre17, nodePre16);
+        auxTree11.insertNode(nodePre18, nodePre17);
+
+        auxTree11.insertNode(node174, nodePre18);
         auxTree11.insertNode(node175, node174);
         auxTree11.insertNode(node176, node175);
         auxTree11.insertNode(node177, node176);
@@ -1756,6 +1809,7 @@ public class Partida implements Serializable, Cloneable
         auxTree11.insertNode(node191, node190);
         auxTree11.insertNode(node201, node190);
         auxTree11.insertNode(node202, node201);
+        auxTree11.insertNode(node202b, node202);
 
         auxTree11.insertNode(node192, decisionDet1);
         auxTree11.insertNode(node193, node192);
@@ -1768,6 +1822,7 @@ public class Partida implements Serializable, Cloneable
         auxTree11.insertNode(node200, node199);
         auxTree11.insertNode(node201a, node201);
         auxTree11.insertNode(node202a, node201a);
+        auxTree11.insertNode(node202b, node202a);
 
         escenariosMundo.get(10).setArbolDial(auxTree11);
 

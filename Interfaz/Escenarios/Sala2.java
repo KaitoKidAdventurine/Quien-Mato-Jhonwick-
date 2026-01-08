@@ -263,7 +263,7 @@ public class Sala2  extends ModeloEscenario {
     private void ponerDialogosEstatico(ArrayList<Dialogo> dialogos, int actual) {
         if(actual<dialogos.size()) {
             Dialogo aux = dialogos.get(actual);
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             actual++;
             int finalActual = actual;
@@ -325,7 +325,7 @@ public class Sala2  extends ModeloEscenario {
                 }
             }
             Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(4).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
@@ -354,7 +354,7 @@ public class Sala2  extends ModeloEscenario {
                 }
             }
             Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {

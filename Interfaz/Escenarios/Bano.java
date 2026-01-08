@@ -85,11 +85,13 @@ public class Bano extends ModeloEscenario {
             Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Banno Planta Baja");
 
             jLabel1 = new JLabel();
+
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setMinimumSize(tamPant);
             setUndecorated(true);
             setPreferredSize(tamPant);
             getContentPane().setLayout(null);
+
             ImageIcon icono = new ImageIcon(imagen.getScaledInstance(tamPant.width, tamPant.height, Image.SCALE_SMOOTH));
             jLabel1.setIcon(icono); // NOI18N
             jLabel1.setFocusable(false);
@@ -232,7 +234,7 @@ public class Bano extends ModeloEscenario {
     private void ponerDialogosConserjeEstatico(ArrayList<Dialogo> dialogos, int actual) {
         if(actual<dialogos.size()) {
             Dialogo aux = dialogos.get(actual);
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             actual++;
             int finalActual = actual;
@@ -289,7 +291,7 @@ public class Bano extends ModeloEscenario {
                 }
             }
             Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(2).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {

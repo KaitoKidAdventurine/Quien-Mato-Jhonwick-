@@ -182,7 +182,7 @@ public class OficinaEconomico extends ModeloEscenario {
 
     private void computadoraActionPerformed(ActionEvent evt) {
         if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==5){
-            if(Juego.getInstance().getPartidaActual().getJugador().revisarSiExisteObjetoEnMochila("Hoja de papel") /*&& Juego.getInstance().getPartidaActual().getJugador().revisarSiExisteObjetoEnMochila("Libro")*/){
+            if(Juego.getInstance().getPartidaActual().getJugador().revisarSiExisteObjetoEnMochila("Hoja de papel") && Juego.getInstance().getPartidaActual().getJugador().revisarSiExisteObjetoEnMochila("Nota")){
                     ponerFinal();
             }else {
                 ponerDialogosEstatico(crearDialogoComputadora(), 0);
@@ -227,7 +227,7 @@ public class OficinaEconomico extends ModeloEscenario {
     private void ponerDialogosEstatico(ArrayList<Dialogo> dialogos, int actual) {
         if(actual<dialogos.size()) {
             Dialogo aux = dialogos.get(actual);
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(), !aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             actual++;
             int finalActual = actual;

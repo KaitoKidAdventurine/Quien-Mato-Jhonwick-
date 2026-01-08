@@ -341,7 +341,7 @@ public class Recepcion extends ModeloEscenario{
     private void ponerDialogosEstatico(ArrayList<Dialogo> dialogos, int actual, boolean isSecretaria) {
         if(actual<dialogos.size()) {
             Dialogo aux = dialogos.get(actual);
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             actual++;
             int finalActual = actual;
@@ -367,7 +367,7 @@ public class Recepcion extends ModeloEscenario{
     private void ponerDialogosEstaticoLlevarsePolicia(ArrayList<Dialogo> dialogos, int actual) {
         if(actual<dialogos.size()) {
             Dialogo aux = dialogos.get(actual);
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             actual++;
             int finalActual = actual;
@@ -476,7 +476,7 @@ public class Recepcion extends ModeloEscenario{
                 }
             }
             Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
@@ -509,7 +509,7 @@ public class Recepcion extends ModeloEscenario{
                 }
             }
             Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {

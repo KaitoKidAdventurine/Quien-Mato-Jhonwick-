@@ -125,7 +125,8 @@ public class InicioJuego extends JFrame {
         setPreferredSize(tamPant);
         getContentPane().setLayout(null);
         setBackground(new Color(0, 0, 0, 0));
-        cajaTexto.setOpaque(false);
+
+        cajaTexto.setBackground(new Color(0, 0, 0, 0));
         cajaTexto.setBounds(0, 0, tamPant.width, tamPant.height);
         cajaTexto.setLayout(null);
 
@@ -185,7 +186,7 @@ public class InicioJuego extends JFrame {
             }
 
 
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(), !aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
@@ -247,7 +248,7 @@ public class InicioJuego extends JFrame {
             }
             Dialogo aux = tutorialParte2.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = tutorialParte2.getArbolDial().nodeLevel(tutorialParte2.getNodoDialActual());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(), !aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cT.addMouseListener(new MouseAdapter() {
@@ -286,7 +287,7 @@ public class InicioJuego extends JFrame {
             }
             Dialogo aux = tutorialParte3.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = tutorialParte3.getArbolDial().nodeLevel(tutorialParte3.getNodoDialActual());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono() ,!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cT.addMouseListener(new MouseAdapter() {
@@ -330,7 +331,7 @@ public class InicioJuego extends JFrame {
             }
             Dialogo aux = tutorialParte4.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = tutorialParte4.getArbolDial().nodeLevel(tutorialParte4.getNodoDialActual());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cT.addMouseListener(new MouseAdapter() {
@@ -370,7 +371,7 @@ public class InicioJuego extends JFrame {
             }
             Dialogo aux = tutorialParte5.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = tutorialParte5.getArbolDial().nodeLevel(tutorialParte5.getNodoDialActual());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cT.addMouseListener(new MouseAdapter() {
@@ -408,7 +409,7 @@ public class InicioJuego extends JFrame {
             }
             Dialogo aux = tutorialParte6.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = tutorialParte6.getArbolDial().nodeLevel(tutorialParte6.getNodoDialActual());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cT.addMouseListener(new MouseAdapter() {
@@ -446,7 +447,7 @@ public class InicioJuego extends JFrame {
             }
             Dialogo aux = tutorialParte7.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = tutorialParte7.getArbolDial().nodeLevel(tutorialParte7.getNodoDialActual());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cT.addMouseListener(new MouseAdapter() {
@@ -484,7 +485,7 @@ public class InicioJuego extends JFrame {
             }
             Dialogo aux = tutorialParte8.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = tutorialParte8.getArbolDial().nodeLevel(tutorialParte8.getNodoDialActual());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cT.addMouseListener(new MouseAdapter() {
@@ -521,7 +522,7 @@ public class InicioJuego extends JFrame {
             }
             Dialogo aux = tutorialParte9.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = tutorialParte9.getArbolDial().nodeLevel(tutorialParte9.getNodoDialActual());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
 
             cT.addMouseListener(new MouseAdapter() {
@@ -565,9 +566,9 @@ public class InicioJuego extends JFrame {
 
             Dialogo aux = tutorialParte10.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = tutorialParte10.getArbolDial().nodeLevel(tutorialParte10.getNodoDialActual());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
-
+            cT.setIgnoreRepaint(true);
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
                     cTParte10MouseClicked(evt);
@@ -595,7 +596,6 @@ public class InicioJuego extends JFrame {
                 e.efectoDeSusuros();
             }
 
-            // Agregar mas alante Efecto de Sonido de: NADIE SE MUEVE DEL MUSEO!!!!!
 
         }else {
             iniciarMundo();

@@ -318,7 +318,12 @@ public class MinijuegoInterfaz extends JPanel {
         for(int i =0; i< objEncontrados.size(); i++){
             ObjetoEscenario aux = objEncontrados.get(i);
             if(aux.getImportante()){
+                if(!aux.getNombre().equals("Libro"))
                 Juego.getInstance().getPartidaActual().getJugador().agregarAlMaletin(aux);
+                else{
+                    ObjetoEscenario aux2 = new ObjetoEscenario("Nota", true, new ImageIcon("DatosAuxiliares/Objetos/Nota.png"), (842-215)/1152f, 699f/896f, (900-842)/1152f, (730-699)/896f, true, "Contiene algunas palabras en latin.");
+                    Juego.getInstance().getPartidaActual().getJugador().agregarAlMaletin(aux2);
+                }
             }
         }
     }

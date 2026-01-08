@@ -4,6 +4,8 @@
  */
 package Interfaz.InterfazJugador;
 
+import DatosAuxiliaresLogica.UnionInterfaces;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -14,6 +16,8 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -21,21 +25,80 @@ import java.io.IOException;
  */
 public class CuadroTexto extends javax.swing.JPanel {
     private Dimension tamPant;
+    private Timer timer;
+    private TimerTask tarea;
+    private int valorPesta;
     /**
      * Creates new form CuadroTexto
      */
-    public CuadroTexto(String texto, String personaje, ImageIcon imagen) {
+    public CuadroTexto(String texto, String personaje, ImageIcon imagen, boolean dialogoImportante) {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
-        initComponents(texto, personaje, imagen);
+        valorPesta=0;
+        timer = new java.util.Timer();
+        tarea = new TimerTask() {
+            @Override
+            public void run() {
+                pestanear();
+               jLabel4.revalidate();
+               jLabel4.repaint();
+
+            }
+        };
+        initComponents(texto, personaje, imagen, dialogoImportante);
+    }
+
+    private void pestanear() {
+        switch (valorPesta){
+            case 0:
+                jLabel4.setForeground(new Color(220, 220, 220, 0));
+                break;
+            case 1:
+                jLabel4.setForeground(new Color(220, 220, 220, 30));
+                break;
+            case 2:
+                jLabel4.setForeground(new Color(220, 220, 220, 60));
+              break;
+            case 3:
+                jLabel4.setForeground(new Color(220, 220, 220, 90));
+                break;
+            case 4:
+                jLabel4.setForeground(new Color(220, 220, 220, 120));
+                break;
+            case 5:
+                jLabel4.setForeground(new Color(220, 220, 220, 150));
+                break;
+            case 6:
+                jLabel4.setForeground(new Color(220, 220, 220, 180));
+                break;
+            case 7:
+                jLabel4.setForeground(new Color(220, 220, 220, 210));
+                break;
+            case 8:
+                jLabel4.setForeground(new Color(220, 220, 220, 240));
+                break;
+
+            case 15:
+                jLabel4.setVisible(false);
+                revalidate();
+                repaint(jLabel4.getBounds());
+                timer.cancel();
+
+                break;
+            default:
+                break;
+        }
+            valorPesta++;
+
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents(String texto, String personaje, ImageIcon imagen) {
+    private void initComponents(String texto, String personaje, ImageIcon imagen, boolean importante) {
 
         jPanel1 = new JPanel();
         jLabel3 = new JLabel();
         jLabel2 = new JLabel();
+        jLabel4 = new JLabel();
         parrafo = new JLabel();
         capitanFondo = new JLabel();
 
@@ -47,6 +110,15 @@ public class CuadroTexto extends javax.swing.JPanel {
         jPanel1.setFocusable(true);
         jPanel1.setLayout(null);
 
+        jLabel4.setText("Información añadida al diario");
+        if(!importante) {
+            jLabel4.setVisible(false);
+
+        }else timer.scheduleAtFixedRate(tarea, 0, 160);
+        jLabel4.setBounds((int) (tamPant.width*0.65), (int) (tamPant.height*0.18), (int) (tamPant.width*0.28), (int) (tamPant.height*0.05));
+        jLabel4.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.017)));
+
+        add(jLabel4);
 
 
         jLabel3.setText(personaje);
@@ -136,7 +208,7 @@ public class CuadroTexto extends javax.swing.JPanel {
     }
 
 
-
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

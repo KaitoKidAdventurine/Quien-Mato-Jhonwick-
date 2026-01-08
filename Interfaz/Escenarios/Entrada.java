@@ -165,7 +165,7 @@ public class Entrada extends ModeloEscenario {
     private void llamadaCapitan(int actual) {
         if (actual < Juego.getInstance().getPartidaActual().getDialogosCapitan().get(0).size()) {
             Dialogo aux = Juego.getInstance().getPartidaActual().getDialogosCapitan().get(0).get(actual);
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             actual++;
             int finalActual = actual;

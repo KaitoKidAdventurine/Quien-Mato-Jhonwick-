@@ -404,7 +404,7 @@ public class Juego {
         ObjetoEscenario obGrafiti = new ObjetoEscenario("Grafiti", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (109-25)/1152f, 282f/765f, (178-109)/1152f, (340-282)/765f, false, "");
         ObjetoEscenario obNotas = new ObjetoEscenario("Notas Adhesivas", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (111-25)/1152f, 697f/765f, (192-111)/1152f, (742-697)/765f, false, "");
         ObjetoEscenario obLata2 = new ObjetoEscenario("Lata de refresco 2", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (465-118)/1152f, 607f/765f, (521-465)/1152f, (645-607)/765f, false, "");
-        ObjetoEscenario obHoja = new ObjetoEscenario("Hoja de papel", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (621-160)/1152f, 578f/765f, (688-621)/1152f, (607-578)/765f, true, "Contiene algunos escritos en latin.");
+        ObjetoEscenario obHoja = new ObjetoEscenario("Hoja de papel", true, new ImageIcon("DatosAuxiliares/Objetos/Hoja.png"), (621-160)/1152f, 578f/765f, (688-621)/1152f, (607-578)/765f, true, "Contiene algunos escritos en latin.");
         ObjetoEscenario obCepillo = new ObjetoEscenario("Cepillo de Dientes", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (555-125)/1152f, 322f/765f, (577-555)/1152f, (355-322)/765f, false, "");
         ObjetoEscenario obLata3 = new ObjetoEscenario("Lata de Refresco 3", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (569-145)/1152f, 574f/765f, (588-569)/1152f, (606-574)/765f, false, "");
         ObjetoEscenario obCaramelo = new ObjetoEscenario("Caramelo", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (305-75)/1152f, 691f/765f, (338-305)/1152f, (715-691)/765f, false, "");
@@ -449,7 +449,7 @@ public class Juego {
         ObjetoEscenario obPeriodico = new ObjetoEscenario("Periodico", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (394-100)/1152f, 831f/896f, (500-394-20)/1152f, (879-831)/896f, false, "");
         ObjetoEscenario obEscoba = new ObjetoEscenario("Escoba", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (970-250)/1152f, 647f/896f, (1022-970)/1152f, (744-272)*0.25f/896f, false, "");
         ObjetoEscenario obVasijaRota = new ObjetoEscenario("VasijaRota", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (937-238)/1152f, 778f/896f, (994-937)/1152f, (834-778)/896f, false, "");
-        ObjetoEscenario obLibros = new ObjetoEscenario("Libros", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (842-215)/1152f, 699f/896f, (900-842)/1152f, (730-699)/896f, true, "Contiene información confidencial.");
+        ObjetoEscenario obLibros = new ObjetoEscenario("Libro", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (842-215)/1152f, 699f/896f, (900-842)/1152f, (730-699)/896f, true, "");
         ObjetoEscenario obGuante = new ObjetoEscenario("Guante", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (355-95)/1152f, 875f/896f, (408-355)/1152f, (889-875+5)/896f, false, "");
 
         storageRoom.agregarObjetoCola(obLampara);

@@ -78,7 +78,7 @@ public class FinDelJuego extends JFrame {
             }
             Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getArbolDial().nodeLevel(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getNodoDialActual());
-            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
@@ -88,7 +88,8 @@ public class FinDelJuego extends JFrame {
 
             cajaTexto.removeAll();
             cajaTexto.add(cT);
-           if(nivelActualDial==100)
+           if(nivelActualDial==23 || nivelActualDial==31 || nivelActualDial==35 || nivelActualDial==53 || nivelActualDial==54 || nivelActualDial==55 ||
+                   nivelActualDial==57 )
                ponerFondo(nivelActualDial);
             if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
                 UnionInterfaces.getInstance().setOpcionDialogo(1);
@@ -110,6 +111,27 @@ public class FinDelJuego extends JFrame {
             BufferedImage imagen = null;
             switch (nivelActualDial) {
                 case 0:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                    break;
+                    case 23:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                    break;
+                    case 31:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                    break;
+                    case 35:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                    break;
+                    case 53:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                    break;
+                    case 54:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                    break;
+                    case 55:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                    break;
+                    case 57:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
                     break;
                 default:
