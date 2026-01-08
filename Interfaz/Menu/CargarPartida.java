@@ -5,7 +5,9 @@
 package Interfaz.Menu;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
+import Logica.Escenario;
 import Logica.Juego;
+import Logica.Partida;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -199,9 +201,106 @@ public class CargarPartida extends javax.swing.JFrame {
         boton1.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_boton1MouseExited
 
-    private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
-        Juego.getInstance().cargarPartida(1);
-    }//GEN-LAST:event_boton1ActionPerformed
+
+    private void abrirEscenarioCorrespondiente() {
+        // Obtener la partida actual después de cargar dicha partida
+        Partida partida = Juego.getInstance().getPartidaActual();
+
+        if (partida != null && partida.getJugador() != null) {
+            Escenario escenarioActual = partida.getJugador().getEscenarioActual();
+            String nombreEscenario = "Entrada";
+
+            if (escenarioActual != null) {
+                nombreEscenario = escenarioActual.getNombre();
+            }
+
+            // Cerrar esta ventana primero
+            dispose();
+
+            // Abrir el escenario correspondiente
+            abrirEscenarioPorNombre(nombreEscenario);
+        }
+    }
+
+    private void abrirEscenarioPorNombre(String nombreEscenario) {
+        // Asegúrate de importar todas las clases de escenario
+        try {
+            switch (nombreEscenario) {
+                case "Entrada":
+                    new Interfaz.Escenarios.Entrada().setVisible(true);
+                    break;
+                case "Recepcion":
+                    new Interfaz.Escenarios.Recepcion().setVisible(true);
+                    break;
+                case "Almacen":
+                    new Interfaz.Escenarios.Almacen().setVisible(true);
+                    break;
+                case "Banno Planta Baja":
+                    new Interfaz.Escenarios.Bano().setVisible(true);
+                    break;
+                case "Banno Planta Alta":
+                    new Interfaz.Escenarios.Bano2().setVisible(true);
+                    break;
+                case "Callejon":
+                    new Interfaz.Escenarios.Callejon().setVisible(true);
+                    break;
+                case "Oficina de la Victima":
+                    new Interfaz.Escenarios.OficinaEconomico().setVisible(true);
+                    break;
+                case "Oficina del Jefe":
+                    new Interfaz.Escenarios.OficinaJefe().setVisible(true);
+                    break;
+                case "Ala este":
+                    new Interfaz.Escenarios.Pasillo1().setVisible(true);
+                    break;
+                case "Ala norte":
+                    new Interfaz.Escenarios.Pasillo2().setVisible(true);
+                    break;
+                case "Ala Sur":
+                    new Interfaz.Escenarios.PasilloAlmacen().setVisible(true);
+                    break;
+                case "Oficinas Planta Baja":
+                    new Interfaz.Escenarios.Pasillo3().setVisible(true);
+                    break;
+                case "Sala Planta Alta":
+                    new Interfaz.Escenarios.Sala().setVisible(true);
+                    break;
+                case "Exposicion de Antiguedades":
+                    new Interfaz.Escenarios.Sala2().setVisible(true);
+                    break;
+                case "Sala de Vigilancia":
+                    new Interfaz.Escenarios.SalaDeCamaras().setVisible(true);
+                    break;
+                default:
+                    new Interfaz.Escenarios.Entrada().setVisible(true);
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // En caso de error, abrir la entrada por defecto
+            new Interfaz.Escenarios.Entrada().setVisible(true);
+        }
+    }
+
+    private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+
+        // Intentar cargar la partida
+        if (Juego.getInstance().cargarPartida(1)) {
+            // Cargada exitosamente, abrir escenario correspondiente
+            abrirEscenarioCorrespondiente();
+        } else {
+            // Mostrar mensaje de error
+            JOptionPane.showMessageDialog(this,
+                    "No se pudo cargar la partida 1.\n" +
+                            "Puede que no exista un archivo guardado o esté corrupto.",
+                    "Error al cargar",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
 
     private void boton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton2MouseEntered
         boton2.setForeground(Color.red);
@@ -215,8 +314,19 @@ public class CargarPartida extends javax.swing.JFrame {
         boton2.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_boton2MouseExited
 
-    private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
-        Juego.getInstance().cargarPartida(2);
+    private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+
+        if (Juego.getInstance().cargarPartida(2)) {
+            abrirEscenarioCorrespondiente();
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudo cargar la partida 2.\n" +
+                            "Puede que no exista un archivo guardado o esté corrupto.",
+                    "Error al cargar",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_boton2ActionPerformed
 
     private void boton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton3MouseEntered
@@ -227,8 +337,19 @@ public class CargarPartida extends javax.swing.JFrame {
         boton3.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_boton3MouseExited
 
-    private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
-        Juego.getInstance().cargarPartida(3);
+    private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {
+        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        e.efectoDeBoton();
+
+        if (Juego.getInstance().cargarPartida(3)) {
+            abrirEscenarioCorrespondiente();
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudo cargar la partida 3.\n" +
+                            "Puede que no exista un archivo guardado o esté corrupto.",
+                    "Error al cargar",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_boton3ActionPerformed
     public void arreglarBot(){
 

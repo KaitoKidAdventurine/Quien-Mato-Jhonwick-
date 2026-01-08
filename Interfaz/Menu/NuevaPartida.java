@@ -188,9 +188,12 @@ public class NuevaPartida extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean crearPartidaDirecta(String id, String nombreJugador) {
 
+
+    private boolean crearPartidaDirecta(String id, String nombreJugador)
+    {
         try {
+            /*
             // Crear partida manualmente
             Partida partida = new Partida();
             partida.setIdPartida(id);
@@ -200,6 +203,8 @@ public class NuevaPartida extends javax.swing.JFrame {
             // Guardar en Juego
             Juego.getInstance().getPartidas().add(partida);
             Juego.getInstance().setPartidaActual(partida);
+            */
+            Juego.getInstance().crearNuevaPartida(id,nombreJugador);
 
 
 
@@ -210,64 +215,83 @@ public class NuevaPartida extends javax.swing.JFrame {
     }
 
 
-    private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
+    private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {
         if (!UnionInterfaces.getInstance().getAbriendoPartida()) {
             UnionInterfaces.getInstance().setAbriendoPartida(true);
             EfectosEspeciales e = EfectosEspeciales.getInstancia();
             e.efectoDeBoton();
 
-            if (!Juego.getInstance().existePartida("3")) {
-                if (crearPartidaDirecta("3", "Jugador 3")) {
-                    InicioJuego tuto1 = new InicioJuego();
-                    timer.schedule(tarea, 1000);
-                    tuto1.setVisible(true);
-                } else {
-                    // Manejo de error
-                    UnionInterfaces.getInstance().setAbriendoPartida(false);
-                }
-            } else {
+            // Verificar si existe archivo
+            if ( Juego.getInstance().existeArchivoGuardado("3") || Juego.getInstance().existePartida("3")) {
+                // Mostrar mensaje para eliminar
                 if (comprobacionActionPerformed()) {
-                    Juego.getInstance().eliminarPartida("3");
+                    // Elimina el File si existe ( asumo que no se confundira esto )
+                    Juego.getInstance().eliminarArchivoGuardado("3");
+                    // Eliminar de memoria si existe
+                    if (Juego.getInstance().existePartida("3")) {
+                        Juego.getInstance().eliminarPartida("3");
+                    }
+                    // Crear nueva partida
                     if (crearPartidaDirecta("3", "Jugador 3")) {
                         InicioJuego tuto1 = new InicioJuego();
                         timer.schedule(tarea, 1000);
                         tuto1.setVisible(true);
                     } else {
-                        // Manejo de error
                         UnionInterfaces.getInstance().setAbriendoPartida(false);
                     }
+                } else {
+                    // Usuario cancelo y pos no pada nada.
+                    UnionInterfaces.getInstance().setAbriendoPartida(false);
+                }
+            } else {
+                if (crearPartidaDirecta("3", "Jugador 3")) {
+                    InicioJuego tuto1 = new InicioJuego();
+                    timer.schedule(tarea, 1000);
+                    tuto1.setVisible(true);
+                } else {
+                    UnionInterfaces.getInstance().setAbriendoPartida(false);
                 }
             }
         }
-
     }//GEN-LAST:event_boton3ActionPerformed
 
-    private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void boton2ActionPerformed(java.awt.event.ActionEvent evt)
+    {
         if (!UnionInterfaces.getInstance().getAbriendoPartida()) {
             UnionInterfaces.getInstance().setAbriendoPartida(true);
             EfectosEspeciales e = EfectosEspeciales.getInstancia();
             e.efectoDeBoton();
 
-            if (!Juego.getInstance().existePartida("2")) {
-                if (crearPartidaDirecta("1", "Jugador 2")) {
-                    InicioJuego tuto1 = new InicioJuego();
-                    timer.schedule(tarea, 1000);
-                    tuto1.setVisible(true);
-                } else {
-                    // Manejo de error
-                    UnionInterfaces.getInstance().setAbriendoPartida(false);
-                }
-            } else {
+            // Verificar si existe archivo
+            if ( Juego.getInstance().existeArchivoGuardado("2") || Juego.getInstance().existePartida("2")) {
+                // Mostrar diálogo de confirmación para eliminar
+
                 if (comprobacionActionPerformed()) {
-                    Juego.getInstance().eliminarPartida("2");
+                    // Elimina el File si existe ( asumo que no se confundira esto )
+                    Juego.getInstance().eliminarArchivoGuardado("2");
+                    // Eliminar de memoria si existiese una partida
+                    if (Juego.getInstance().existePartida("2")) {
+                        Juego.getInstance().eliminarPartida("2");
+                    }
+                    // Crear nueva partida
                     if (crearPartidaDirecta("2", "Jugador 2")) {
                         InicioJuego tuto1 = new InicioJuego();
                         timer.schedule(tarea, 1000);
                         tuto1.setVisible(true);
                     } else {
-                        // Manejo de error
                         UnionInterfaces.getInstance().setAbriendoPartida(false);
                     }
+                } else {
+                    // Usuario canceló
+                    UnionInterfaces.getInstance().setAbriendoPartida(false);
+                }
+            } else {
+                if (crearPartidaDirecta("2", "Jugador 2")) {
+                    InicioJuego tuto1 = new InicioJuego();
+                    timer.schedule(tarea, 1000);
+                    tuto1.setVisible(true);
+                } else {
+                    UnionInterfaces.getInstance().setAbriendoPartida(false);
                 }
             }
         }
@@ -279,30 +303,42 @@ public class NuevaPartida extends javax.swing.JFrame {
             EfectosEspeciales e = EfectosEspeciales.getInstancia();
             e.efectoDeBoton();
 
-            if (!Juego.getInstance().existePartida("1")) {
-                if (crearPartidaDirecta("1", "Jugador 1")) {
-                    InicioJuego tuto1 = new InicioJuego();
-                    timer.schedule(tarea, 1000);
-                    tuto1.setVisible(true);
-                } else {
-                    // Manejo de error
-                    UnionInterfaces.getInstance().setAbriendoPartida(false);
-                }
-            } else {
+            // Verificar si existe archivo
+            if ( Juego.getInstance().existeArchivoGuardado("1") || Juego.getInstance().existePartida("1")) {
+                // Mostrar diálogo de confirmación para eliminar
+
                 if (comprobacionActionPerformed()) {
-                    Juego.getInstance().eliminarPartida("1");
+                    // Elimina el File si existe ( asumo que no se confundira esto )
+                    Juego.getInstance().eliminarArchivoGuardado("1");
+                    // Eliminar de memoria si existe
+                    if (Juego.getInstance().existePartida("1")) {
+                        Juego.getInstance().eliminarPartida("1");
+                    }
+                    // Crear nueva partida
                     if (crearPartidaDirecta("1", "Jugador 1")) {
                         InicioJuego tuto1 = new InicioJuego();
                         timer.schedule(tarea, 1000);
                         tuto1.setVisible(true);
                     } else {
-                        // Manejo de error
                         UnionInterfaces.getInstance().setAbriendoPartida(false);
                     }
+                } else {
+                    // Usuario canceló
+                    UnionInterfaces.getInstance().setAbriendoPartida(false);
+                }
+            } else {
+                if (crearPartidaDirecta("1", "Jugador 1")) {
+                    InicioJuego tuto1 = new InicioJuego();
+                    timer.schedule(tarea, 1000);
+                    tuto1.setVisible(true);
+                } else {
+                    UnionInterfaces.getInstance().setAbriendoPartida(false);
                 }
             }
         }
     }
+
+
     private boolean comprobacionActionPerformed() {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();

@@ -3,12 +3,13 @@ package Logica;
 import DatosAuxiliaresLogica.Datos;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Dialogo
+public class Dialogo implements Serializable
 {
     private String texto;
     private String personaje;
