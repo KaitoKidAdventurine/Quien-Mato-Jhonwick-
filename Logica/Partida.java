@@ -1475,42 +1475,42 @@ public class Partida implements Serializable, Cloneable
         BinaryTreeNode<Dialogo> node166d = new BinaryTreeNode<>(despedida8);
         BinaryTreeNode<Dialogo> node166e = new BinaryTreeNode<>(despedida8);
 
-        GeneralTree<Dialogo> auxTree9 = new GeneralTree<>();
+        GeneralTree<Dialogo> auxTree8 = new GeneralTree<>();
 
-        auxTree9.insertNode(node153, null);
-        auxTree9.insertNode(node154, node153);
-        auxTree9.insertNode(decisionPol1, node154);
-        auxTree9.insertNode(node155, decisionPol1);
-        auxTree9.insertNode(node156, node155);
-        auxTree9.insertNode(decisionPol2, node156);
-        auxTree9.insertNode(node159, decisionPol2);
-        auxTree9.insertNode(node165, node159);
-        auxTree9.insertNode(node166, node165);
+        auxTree8.insertNode(node153, null);
+        auxTree8.insertNode(node154, node153);
+        auxTree8.insertNode(decisionPol1, node154);
+        auxTree8.insertNode(node155, decisionPol1);
+        auxTree8.insertNode(node156, node155);
+        auxTree8.insertNode(decisionPol2, node156);
+        auxTree8.insertNode(node159, decisionPol2);
+        auxTree8.insertNode(node165, node159);
+        auxTree8.insertNode(node166, node165);
 
-        auxTree9.insertNode(node160, decisionPol2);
-        auxTree9.insertNode(node165a, node160);
-        auxTree9.insertNode(node166a, node165a);
+        auxTree8.insertNode(node160, decisionPol2);
+        auxTree8.insertNode(node165a, node160);
+        auxTree8.insertNode(node166a, node165a);
 
-        auxTree9.insertNode(node161, decisionPol2);
-        auxTree9.insertNode(node165b, node160);
-        auxTree9.insertNode(node166b, node165b);
+        auxTree8.insertNode(node161, decisionPol2);
+        auxTree8.insertNode(node165b, node160);
+        auxTree8.insertNode(node166b, node165b);
 
-        auxTree9.insertNode(node157, decisionPol1);
-        auxTree9.insertNode(node158, node157);
-        auxTree9.insertNode(decisionPol3, node158);
-        auxTree9.insertNode(node162, decisionPol3);
-        auxTree9.insertNode(node165c, node162);
-        auxTree9.insertNode(node166c, node165c);
+        auxTree8.insertNode(node157, decisionPol1);
+        auxTree8.insertNode(node158, node157);
+        auxTree8.insertNode(decisionPol3, node158);
+        auxTree8.insertNode(node162, decisionPol3);
+        auxTree8.insertNode(node165c, node162);
+        auxTree8.insertNode(node166c, node165c);
 
-        auxTree9.insertNode(node163, decisionPol3);
-        auxTree9.insertNode(node165d, node163);
-        auxTree9.insertNode(node166d, node165d);
+        auxTree8.insertNode(node163, decisionPol3);
+        auxTree8.insertNode(node165d, node163);
+        auxTree8.insertNode(node166d, node165d);
 
-        auxTree9.insertNode(node164, decisionPol3);
-        auxTree9.insertNode(node165e, node164);
-        auxTree9.insertNode(node166e, node165e);
+        auxTree8.insertNode(node164, decisionPol3);
+        auxTree8.insertNode(node165e, node164);
+        auxTree8.insertNode(node166e, node165e);
 
-        escenariosMundo.get(8).setArbolDial(auxTree9);
+        escenariosMundo.get(7).setArbolDial(auxTree8);
 
         //Guia2
         Dialogo conv1 = new Dialogo("¿Y ahora qué? ¿Van a interrogar a todos los que respiramos?", "Guia2", guia2, true);
@@ -1529,17 +1529,27 @@ public class Partida implements Serializable, Cloneable
         BinaryTreeNode<Dialogo> node172 = new BinaryTreeNode<>(conv6);
         BinaryTreeNode<Dialogo> node173 = new BinaryTreeNode<>(conv7);
 
-        GeneralTree<Dialogo> auxTree10 = new GeneralTree<>();
+        GeneralTree<Dialogo> auxTree9 = new GeneralTree<>();
 
-        auxTree10.insertNode(node167, null);
-        auxTree10.insertNode(node168, node167);
-        auxTree10.insertNode(node169, node168);
-        auxTree10.insertNode(node170, node169);
-        auxTree10.insertNode(node171, node170);
-        auxTree10.insertNode(node172, node171);
-        auxTree10.insertNode(node173, node172);
+        auxTree9.insertNode(node167, null);
+        auxTree9.insertNode(node168, node167);
+        auxTree9.insertNode(node169, node168);
+        auxTree9.insertNode(node170, node169);
+        auxTree9.insertNode(node171, node170);
+        auxTree9.insertNode(node172, node171);
+        auxTree9.insertNode(node173, node172);
 
-        escenariosMundo.get(9).setArbolDial(auxTree10);
+        escenariosMundo.get(8).setArbolDial(auxTree9);
+
+        // Monólogo del detective para el final
+
+        Dialogo m1 = new Dialogo("(No me lo puedo creer... Todo me lleva a él...)", "Detective", detective, true);
+        Dialogo m2 = new Dialogo("(La espada estaba en su oficina, donde solo él tiene acceso. Su esposa la mostró sin saberlo )", "Detective", detective, true);
+        Dialogo m3 = new Dialogo("(Las cámaras fallaron justo cuando no debían. El guardia no vio nada. Pero el vagabundo sí. Cuando el supuestamente no estaba en el museo)", "Detective", detective, true);
+        Dialogo m4 = new Dialogo("(CLARO! Los fondos malversados que descubrió víctima! Esa es la causa del asesinato.)", "Detective", detective, true);
+        Dialogo m5 = new Dialogo("(El jefe tenía acceso. Tenía el arma. Mintió sobre dónde estaba. Ya no tengo dudas.)", "Detective", detective, true);
+        Dialogo m6 = new Dialogo("(Es hora de terminar con esto.)", "Detective", detective, true);
+
 
         // Confrontación final con el dueño
 
@@ -1594,6 +1604,13 @@ public class Partida implements Serializable, Cloneable
         Dialogo despedida9 = new Dialogo("Esto no termina aquí. Solo abrimos la primera puerta.", "Detective", detective, true);
 
 
+        BinaryTreeNode<Dialogo> node134 = new BinaryTreeNode<>(m1);
+        BinaryTreeNode<Dialogo> node135 = new BinaryTreeNode<>(m2);
+        BinaryTreeNode<Dialogo> node136 = new BinaryTreeNode<>(m3);
+        BinaryTreeNode<Dialogo> node137 = new BinaryTreeNode<>(m4);
+        BinaryTreeNode<Dialogo> node138 = new BinaryTreeNode<>(m5);
+        BinaryTreeNode<Dialogo> node139 = new BinaryTreeNode<>(m6);
+
         BinaryTreeNode<Dialogo> node174 = new BinaryTreeNode<>(con1);
         BinaryTreeNode<Dialogo> node175 = new BinaryTreeNode<>(con2);
         BinaryTreeNode<Dialogo> node176 = new BinaryTreeNode<>(con3);
@@ -1627,42 +1644,50 @@ public class Partida implements Serializable, Cloneable
         BinaryTreeNode<Dialogo> node202 = new BinaryTreeNode<>(despedida9);
         BinaryTreeNode<Dialogo> node202a = new BinaryTreeNode<>(despedida9);
 
-        GeneralTree<Dialogo> auxTree11 = new GeneralTree<>();
+        GeneralTree<Dialogo> auxTree10 = new GeneralTree<>();
 
-        auxTree11.insertNode(node174, null);
-        auxTree11.insertNode(node175, node174);
-        auxTree11.insertNode(node176, node175);
-        auxTree11.insertNode(node177, node176);
-        auxTree11.insertNode(node178, node177);
-        auxTree11.insertNode(node179, node178);
-        auxTree11.insertNode(node180, node179);
-        auxTree11.insertNode(node181, node180);
-        auxTree11.insertNode(node182, node181);
-        auxTree11.insertNode(node183, node182);
-        auxTree11.insertNode(node184, node183);
-        auxTree11.insertNode(node185, node184);
-        auxTree11.insertNode(node186, node185);
-        auxTree11.insertNode(node187, node186);
-        auxTree11.insertNode(node188, node187);
-        auxTree11.insertNode(decisionDet1, node188);
-        auxTree11.insertNode(node189, decisionDet1);
-        auxTree11.insertNode(node190, node189);
-        auxTree11.insertNode(node191, node190);
-        auxTree11.insertNode(node201, node190);
-        auxTree11.insertNode(node202, node201);
+        auxTree10.insertNode(node134, null);
+        auxTree10.insertNode(node135, node134);
+        auxTree10.insertNode(node136, node135);
+        auxTree10.insertNode(node137, node136);
+        auxTree10.insertNode(node138, node137);
+        auxTree10.insertNode(node139, node138);
 
-        auxTree11.insertNode(node192, decisionDet1);
-        auxTree11.insertNode(node193, node192);
-        auxTree11.insertNode(node194, node193);
-        auxTree11.insertNode(node195, node194);
-        auxTree11.insertNode(node196, node195);
-        auxTree11.insertNode(node197, node196);
-        auxTree11.insertNode(node198, node197);
-        auxTree11.insertNode(node199, node198);
-        auxTree11.insertNode(node200, node199);
-        auxTree11.insertNode(node201a, node201);
-        auxTree11.insertNode(node202a, node201a);
+        auxTree10.insertNode(node174, node139);
+        auxTree10.insertNode(node175, node174);
+        auxTree10.insertNode(node176, node175);
+        auxTree10.insertNode(node177, node176);
+        auxTree10.insertNode(node178, node177);
+        auxTree10.insertNode(node179, node178);
+        auxTree10.insertNode(node180, node179);
+        auxTree10.insertNode(node181, node180);
+        auxTree10.insertNode(node182, node181);
+        auxTree10.insertNode(node183, node182);
+        auxTree10.insertNode(node184, node183);
+        auxTree10.insertNode(node185, node184);
+        auxTree10.insertNode(node186, node185);
+        auxTree10.insertNode(node187, node186);
+        auxTree10.insertNode(node188, node187);
+        auxTree10.insertNode(decisionDet1, node188);
+        auxTree10.insertNode(node189, decisionDet1);
+        auxTree10.insertNode(node190, node189);
+        auxTree10.insertNode(node191, node190);
+        auxTree10.insertNode(node201, node190);
+        auxTree10.insertNode(node202, node201);
 
+        auxTree10.insertNode(node192, decisionDet1);
+        auxTree10.insertNode(node193, node192);
+        auxTree10.insertNode(node194, node193);
+        auxTree10.insertNode(node195, node194);
+        auxTree10.insertNode(node196, node195);
+        auxTree10.insertNode(node197, node196);
+        auxTree10.insertNode(node198, node197);
+        auxTree10.insertNode(node199, node198);
+        auxTree10.insertNode(node200, node199);
+        auxTree10.insertNode(node201a, node201);
+        auxTree10.insertNode(node202a, node201a);
+
+        escenarios.get(9).setArbolDial(auxTree10);
 
     }
 
