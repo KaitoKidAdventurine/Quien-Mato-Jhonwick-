@@ -452,8 +452,8 @@ public class Partida implements Serializable, Cloneable
         ImageIcon seguridad = new ImageIcon("DatosAuxiliares/Personajes/Seguridad.png");
         ImageIcon limpieza = new ImageIcon("DatosAuxiliares/Personajes/Conserje.png");
         ImageIcon dueno = new ImageIcon("DatosAuxiliares/Personajes/Dueño.png");
-        ImageIcon guia = new ImageIcon("DatosAuxiliares/Personajes/Guia 1.png");
-        ImageIcon guia2 = new ImageIcon("DatosAuxiliares/Personajes/Guia 2.png");
+        ImageIcon guiaPrincipal = new ImageIcon("DatosAuxiliares/Personajes/Guia 1.png");
+        ImageIcon guia = new ImageIcon("DatosAuxiliares/Personajes/Guia 2.png");
         ImageIcon vagabundo = new ImageIcon("DatosAuxiliares/Personajes/Vagabundo.png");
         ImageIcon nada = new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png");
         ImageIcon esposa = new ImageIcon("DatosAuxiliares/Personajes/Esposa.png");
@@ -732,7 +732,7 @@ public class Partida implements Serializable, Cloneable
 
         escenariosMundo.get(1).setArbolDial(auxTree2);
 
-        // Dialogo limpiador baño inferior
+        // Dialogo con el Conserje en el baño inferior
         Dialogo b1 = new Dialogo("Buenas noches Conserje, ¿Tiene un momento? Necesito hacerle unas preguntas.", "Detective", detective, true);
         Dialogo b2 = new Dialogo("Claro jefe. Aunque no sé si puedo ayudar mucho... yo solo limpio por aquí abajo.", "Conserje", limpieza, true);
         Dialogo b3 = new Dialogo("A veces los que limpian ven más de lo que creen. ¿Ha notado algo fuera de lugar últimamente?", "Detective", detective, true);
@@ -998,9 +998,9 @@ public class Partida implements Serializable, Cloneable
 
         //Dialogo guias sala antiguedades
         Dialogo guia1 = new Dialogo("Vaya vaya, esta sala siempre me ha parecido la más silenciosa del museo.", "Detective", detective, true);
-        Dialogo guia3 = new Dialogo("Es especial, ¿verdad? Tiene una energía distinta. A veces siento que las piezas me observan a mí.", "Guia1", guia, true);
+        Dialogo guia3 = new Dialogo("Es especial, ¿verdad? Tiene una energía distinta. A veces siento que las piezas me observan a mí.", "Guia Principal", guiaPrincipal, true);
         Dialogo guia4 = new Dialogo("¿Cuánto tiempo lleva trabajando aquí señor Guia?", "Detective", detective, true);
-        Dialogo guia5 = new Dialogo("Ocho años. He guiado a miles de personas por cada rincón de este lugar. Me lo conozco como si fuese la palma de mi mano.", "Guia1", guia, true);
+        Dialogo guia5 = new Dialogo("Ocho años. He guiado a miles de personas por cada rincón de este lugar. Me lo conozco como si fuese la palma de mi mano.", "Guia Principal", guiaPrincipal, true);
 
         // Primera decisión
         Dialogo desc1G1 = new Dialogo("Pues muy bien ahora quiero saber..", "Detective", detective, true);
@@ -1013,18 +1013,18 @@ public class Partida implements Serializable, Cloneable
 
         // Camino vacío: pieza favorita
         Dialogo resp1aG1 = new Dialogo("Sería muy difícil elegir. Pero si me apura, diría el reloj solar romano. Es simple, pero preciso" +
-                ". Como deberían ser las cosas.", "Guia1", guia, true);
-        Dialogo resp1bG1 = new Dialogo("Aunque claro, la mayoría prefiere las armaduras. Supongo que tienen más... presencia.", "Guia1", guia, true);
+                ". Como deberían ser las cosas.", "Guia Principal", guiaPrincipal, true);
+        Dialogo resp1bG1 = new Dialogo("Aunque claro, la mayoría prefiere las armaduras. Supongo que tienen más... presencia.", "Guia Principal", guiaPrincipal, true);
 
         // Camino principal: percepción del entorno
-        Dialogo resp2aG1 = new Dialogo("¿Fuera de lugar? Claro. Cuando uno ve lo mismo todos los días, cualquier mínimo cambio salta a la vista.", "Guia1", guia, true);
-        Dialogo resp2bG1 = new Dialogo("De hecho, ahora que lo menciona, hay algo que me pareció raro esta mañana.", "Guia1", guia, true);
+        Dialogo resp2aG1 = new Dialogo("¿Fuera de lugar? Claro. Cuando uno ve lo mismo todos los días, cualquier mínimo cambio salta a la vista.", "Guia Principal", guiaPrincipal, true);
+        Dialogo resp2bG1 = new Dialogo("De hecho, ahora que lo menciona, hay algo que me pareció raro esta mañana.", "Guia Principal", guiaPrincipal, true);
 
         // Camino vacío: cosas extrañas
         Dialogo resp3aG1 = new Dialogo("Algunas sombras, ruidos, puertas que se cierran solas... pero nada que no tenga explicación lógica. " +
-                "O al menos eso me digo para poder dormir tranquilo.", "Guia1", guia, true);
+                "O al menos eso me digo para poder dormir tranquilo.", "Guia Principal", guiaPrincipal, true);
         Dialogo resp3bG1 = new Dialogo("Aunque una vez juraría que vi una figura moverse entre las vitrinas. Pero era tarde, y estaba cansado " +
-                "así que decidí culpar al cansancio.", "Guia1", guia, true);
+                "así que decidí culpar al cansancio.", "Guia Principal", guiaPrincipal, true);
 
         // Segunda decisión
         Dialogo desc2G1 = new Dialogo("Usted responda mientras yo deduzco si debo seguir preguntandole o no..", "Detective", detective, true);
@@ -1035,41 +1035,41 @@ public class Partida implements Serializable, Cloneable
         )));
 
         // Camino vacío: pregunta ambigua
-        Dialogo resp4aG1 = new Dialogo("No, no vi a nadie moverse. Solo noté una sensación rara, como si algo no encajara. Pero no sabría decir qué.", "Guia1", guia, true);
-        Dialogo resp4bG1 = new Dialogo("Quizás solo estaba cansado. A veces la mente juega con uno cuando está solo entre estas cosas antiguas.", "Guia1", guia, true);
+        Dialogo resp4aG1 = new Dialogo("No, no vi a nadie moverse. Solo noté una sensación rara, como si algo no encajara. Pero no sabría decir qué.", "Guia Principal", guiaPrincipal, true);
+        Dialogo resp4bG1 = new Dialogo("Quizás solo estaba cansado. A veces la mente juega con uno cuando está solo entre estas cosas antiguas.", "Guia Principal", guiaPrincipal, true);
 
         // Camino principal: detalle observado
-        Dialogo detalle1 = new Dialogo("Ahora que lo pienso una de las armaduras... de la otra sala. Siempre ha estado girada hacia la entrada, como si saludara a los visitantes.", "Guia1", guia, true);
-        Dialogo detalle2 = new Dialogo("Pero esta mañana la encontré girada hacia la pared. No es algo que se mueva solo, créame. Pesa como un camión.", "Guia1", guia, true);
+        Dialogo detalle1 = new Dialogo("Ahora que lo pienso una de las armaduras... de la otra sala. Siempre ha estado girada hacia la entrada, como si saludara a los visitantes.", "Guia Principal", guiaPrincipal, true);
+        Dialogo detalle2 = new Dialogo("Pero esta mañana la encontré girada hacia la pared. No es algo que se mueva solo, créame. Pesa como un camión.", "Guia Principal", guiaPrincipal, true);
         Dialogo detalle3 = new Dialogo("¿Y no hay forma de que alguien la haya movido por accidente?", "Detective", detective, true);
-        Dialogo detalle4 = new Dialogo("No sin ayuda. Y no hay registro de que se haya autorizado moverla. Por eso me pareció raro.", "Guia1", guia, true);
+        Dialogo detalle4 = new Dialogo("No sin ayuda. Y no hay registro de que se haya autorizado moverla. Por eso me pareció raro.", "Guia Principal", guiaPrincipal, true);
 
-        Dialogo salida3 = new Dialogo("Como usted diga Sr.Detective, quedo a su disposición", "Guia1", guia, true);
+        Dialogo salida3 = new Dialogo("Como usted diga Sr.Detective, quedo a su disposición", "Guia Principal", guiaPrincipal, true);
 
         // Dato clave 1 y 2
-        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guía 1", "Una de las armaduras fue encontrada en una posición inusual.");
-        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guía 1", "La armadura no pudo ser movida por una sola persona.");
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guía Principal", "Una de las armaduras fue encontrada en una posición inusual.");
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guía Principal", "La armadura no pudo ser movida por una sola persona.");
 
-        // Intervención de Guía 2
+        // Intervención del Guía
         Dialogo inter1 = new Dialogo("(Parece que el guía 2 viene hacia aquí... con la intención de interrumpir)", "Detective", detective, true);
-        Dialogo inter2 = new Dialogo("¿Están hablando de la armadura? Por favor, eso no es nada. Seguro alguien la empujó sin querer limpiando.", "Guia2", guia2, true);
-        Dialogo inter3 = new Dialogo("No creo que valga la pena perder tiempo con eso, detective. Hay cosas más importantes, ¿no cree?", "Guia2", guia2, true);
+        Dialogo inter2 = new Dialogo("¿Están hablando de la armadura? Por favor, eso no es nada. Seguro alguien la empujó sin querer limpiando.", "Guia", guia, true);
+        Dialogo inter3 = new Dialogo("No creo que valga la pena perder tiempo con eso, detective. Hay cosas más importantes, ¿no cree?", "Guia", guia, true);
 
         // Confrontación
         Dialogo det1 = new Dialogo("¿Le molesta que investigue detalles menores? A veces son esos los que resuelven un caso.", "Detective", detective, true);
-        Dialogo det2 = new Dialogo("No, claro que no. Solo digo que no deberíamos sacar conclusiones apresuradas por una estatua torcida.", "Guia2", guia2, true);
+        Dialogo det2 = new Dialogo("No, claro que no. Solo digo que no deberíamos sacar conclusiones apresuradas por una estatua torcida.", "Guia", guia, true);
         Dialogo det3 = new Dialogo("No he sacado ninguna conclusión. Pero usted parece muy interesado en que no la saque.", "Detective", detective, true);
-        Dialogo det4 = new Dialogo("Yo solo intento ayudar. Si me necesita, estaré en la sala de esculturas.", "Guia2", guia2, true);
+        Dialogo det4 = new Dialogo("Yo solo intento ayudar. Si me necesita, estaré en la sala de esculturas.", "Guia", guia, true);
 
         Dialogo cierre5 = new Dialogo("Gracias por su tiempo. Seguiré observando por aquí.", "Detective", detective, true);
-        Dialogo despedida5 = new Dialogo("Cuando quiera, detective. Espero que encuentre lo que busca.", "Guia1", guia, true);
+        Dialogo despedida5 = new Dialogo("Cuando quiera, detective. Espero que encuentre lo que busca.", "Guia Principal", guiaPrincipal, true);
 
         // Reacción del detective (después del cierre)
         Dialogo reflexion1 = new Dialogo("(Demasiado interés en desviar la atención. Ese guía sabe más de lo que aparenta...)", "Detective", detective, true);
         Dialogo reflexion2 = new Dialogo("(Siento que me voy acercando... en el fondo lo siento, y estas sensaciones no engañan...)", "Detective", detective, true);
 
         // Dato clave 2
-        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guía 2", "La Guía 2 intentó restarle importancia al detalle de la armadura. Parece que tiene algo que ocultar.");
+        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Guía ", El Guía intentó restarle importancia al detalle de la armadura. Parece que tiene algo que ocultar.");
 
         BinaryTreeNode<Dialogo> node73 = new BinaryTreeNode<>(guia1);
         BinaryTreeNode<Dialogo> node74 = new BinaryTreeNode<>(guia3);
@@ -1490,13 +1490,13 @@ public class Partida implements Serializable, Cloneable
 
         escenariosMundo.get(7).setArbolDial(auxTree8);
 
-        //Guia2
-        Dialogo conv1 = new Dialogo("¿Y ahora qué? ¿Van a interrogar a todos los que respiramos?", "Guia2", guia2, true);
-        Dialogo conv2 = new Dialogo("Solo estoy haciendo mi trabajo. Necesito hablar con todos, esto no se resolvera por arte de magia Sr.Guia2.", "Detective", detective, true);
-        Dialogo conv3 = new Dialogo("Pues qué suerte la mía. Dispare, algunos si tenemos que trabajar de verdad.", "Guia2", guia2, true);
+        //Guia
+        Dialogo conv1 = new Dialogo("¿Y ahora qué? ¿Van a interrogar a todos los que respiramos?", "Guia", guia, true);
+        Dialogo conv2 = new Dialogo("Solo estoy haciendo mi trabajo. Necesito hablar con todos, esto no se resolvera por arte de magia Sr.Guia.", "Detective", detective, true);
+        Dialogo conv3 = new Dialogo("Pues qué suerte la mía. Dispare, algunos si tenemos que trabajar de verdad.", "Guia", guia, true);
         Dialogo conv4 = new Dialogo("¿Vio algo fuera de lo común?", "Detective", detective, true);
-        Dialogo conv5 = new Dialogo("Solo a un montón de turistas maleducados y a mis colegas fingiendo que hacen algo. Como siempre.", "Guia2", guia2, true);
-        Dialogo conv6 = new Dialogo("Si no tiene más preguntas, tengo que seguir fingiendo que sonrío por el bien del museo.", "Guia2", guia2, true);
+        Dialogo conv5 = new Dialogo("Solo a un montón de turistas maleducados y a mis colegas fingiendo que hacen algo. Como siempre.", "Guia", guia, true);
+        Dialogo conv6 = new Dialogo("Si no tiene más preguntas, tengo que seguir fingiendo que sonrío por el bien del museo.", "Guia", guia, true);
         Dialogo conv7 = new Dialogo("Con semejante reaccion claro que me retiro. Permiso...", "Detective", detective, true);
 
         BinaryTreeNode<Dialogo> node167 = new BinaryTreeNode<>(conv1);
