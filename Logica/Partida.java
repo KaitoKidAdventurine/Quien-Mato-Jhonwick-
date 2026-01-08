@@ -443,8 +443,6 @@ public class Partida implements Serializable, Cloneable
         dialogos7.add(d96);
         dialogosCapitan.add(dialogos7);
 
-
-
     }
 
     public void crearDialogosActo1() {
@@ -1792,6 +1790,7 @@ public class Partida implements Serializable, Cloneable
         escenarios.get(11).setArbolDial(auxTree12);
 
         // Dialogos para la nota arrugada en la caja de archivos
+
         Dialogo n5 = new Dialogo("(Otra nota. Y esta vez en el fondo de una caja de archivos viejos.)", "Detective", detective, true);
         Dialogo n6 = new Dialogo("Dice 'me sequitur'. También en latín... 'me sigue'.", "Detective", detective, true);
         Dialogo n7 = new Dialogo("¿Contraseña o advertencia? Sea lo que sea, esto conduce directo al económico.", "Detective", detective, true);
@@ -1810,7 +1809,7 @@ public class Partida implements Serializable, Cloneable
         auxTree12.insertNode(node210, node209);
 
         escenarios.get(12).setArbolDial(auxTree13);
-        
+
     }
 
 }
