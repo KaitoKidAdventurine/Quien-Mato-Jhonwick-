@@ -156,10 +156,12 @@ public class Diario implements Serializable
                 break;
 
             case "policia":
+            case "Policia":
             case "Oficial":
             case "ofi":
             case "oficial":
             case "policía":
+            case "Policía":
                 nombre = "Max Turner";
                 break;
 
@@ -167,6 +169,7 @@ public class Diario implements Serializable
             case "dueno":
             case "duenno":
             case "Dueno":
+            case "Dueño":
             case "propietario":
                 nombre = "Theodore Winslow";
                 break;
@@ -174,6 +177,7 @@ public class Diario implements Serializable
             case "esposa":
             case "esp":
             case "esposa del dueño":
+            case "Esposa":
                 nombre = "Cate Sinclair";
                 break;
 
@@ -189,6 +193,7 @@ public class Diario implements Serializable
             case "Guia 1":
             case "Guía 1":
             case "guia 1":
+            case "Guía":
             case "guía":
             case "guía 1":
                 nombre = "William Harrington";
@@ -221,6 +226,7 @@ public class Diario implements Serializable
             case "Don Limpio":
             case "Victor":
             case "victor":
+            case "Limpieza":
                     nombre = "Victor Langley";
                 break;
 
@@ -260,6 +266,7 @@ public class Diario implements Serializable
         }
 
     }
+
 
     public void agregarInformacion(Informacion informacion){
         dialogosImportantes.add(informacion);
