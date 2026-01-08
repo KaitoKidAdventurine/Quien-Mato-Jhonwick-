@@ -147,7 +147,7 @@ public class Partida implements Serializable, Cloneable
         Escenario acto1Parte7= new Escenario("Acto 1-Esposa", "Primera interaccion con la esposa", true);
         Escenario acto1Parte8= new Escenario("Acto 1-Policia", "Primera interaccion policia", true);
         Escenario acto1Parte9 = new Escenario("Acto 1-Guia 2", "Interaccion con segundo guia ", true);
-        Escenario acto1Parte10 = new Escenario("Acto 1-Encontrar espada", "encontrar espada", true);
+        Escenario acto1Parte10 = new Escenario("Acto 1-Encontrar espada", "Encontrar espada", true);
         Escenario acto1Parte11 = new Escenario("Fin", "Fin", true);
 
         this.escenariosMundo.add(acto1Parte1);
@@ -524,7 +524,7 @@ public class Partida implements Serializable, Cloneable
         // Camino principal: contraseña
         Dialogo d8 = new Dialogo("¿Su contraseña? No la sé completa. Pero recuerdo que usaba frases en latín. Una vez me pidió que anotara " +
                 "algo para él...", "Secretaria", secretaria, true);
-        Dialogo d9 = new Dialogo("Decía: 'Umbra mortis... algo'. No lo terminé de leer. Pero esas palabras estaban al principio.",
+        Dialogo d9 = new Dialogo("Decía: 'Umbra y algunas palabras más'. No lo terminé de leer. Pero esa palabra estaba al principio.",
                 "Secretaria", secretaria, true);
         Dialogo d9a = new Dialogo("Vale como prefiera usted, aquí estoy para dialogar y no solo de este tema... usted entiende",
                 "Secretaria", secretaria, true);
@@ -1748,6 +1748,7 @@ public class Partida implements Serializable, Cloneable
         auxTree11.insertNode(node186, node185);
         auxTree11.insertNode(node187, node186);
         auxTree11.insertNode(node188, node187);
+
         auxTree11.insertNode(decisionDet1, node188);
         auxTree11.insertNode(node189, decisionDet1);
         auxTree11.insertNode(node190, node189);
@@ -1769,6 +1770,47 @@ public class Partida implements Serializable, Cloneable
 
         escenarios.get(10).setArbolDial(auxTree11);
 
+        // Dialogos para la nota arrugada en el baño
+
+        Dialogo n1 = new Dialogo("(¿Qué es esto...? Una nota arrugada.)", "Detective", detective, true);
+        Dialogo n2 = new Dialogo("Solo una palabra: 'mortis'.", "Detective", detective, true);
+        Dialogo n3 = new Dialogo("En latín... significa 'muerte'. Qué reconfortante.", "Detective", detective, true);
+        Dialogo n4 = new Dialogo("¿Quién deja algo así escondido en un baño? Esto no es casualidad.", "Detective", detective, true);
+
+        BinaryTreeNode<Dialogo> node203 = new BinaryTreeNode<>(n1);
+        BinaryTreeNode<Dialogo> node204 = new BinaryTreeNode<>(n2);
+        BinaryTreeNode<Dialogo> node205 = new BinaryTreeNode<>(n3);
+        BinaryTreeNode<Dialogo> node206 = new BinaryTreeNode<>(n4);
+
+        GeneralTree<Dialogo> auxTree12 = new GeneralTree<>();
+
+        auxTree12.insertNode(node203, null);
+        auxTree12.insertNode(node204, node203);
+        auxTree12.insertNode(node205, node204);
+        auxTree12.insertNode(node206, node205);
+
+        escenarios.get(11).setArbolDial(auxTree12);
+
+        // Dialogos para la nota arrugada en la caja de archivos
+        Dialogo n5 = new Dialogo("(Otra nota. Y esta vez en el fondo de una caja de archivos viejos.)", "Detective", detective, true);
+        Dialogo n6 = new Dialogo("Dice 'me sequitur'. También en latín... 'me sigue'.", "Detective", detective, true);
+        Dialogo n7 = new Dialogo("¿Contraseña o advertencia? Sea lo que sea, esto conduce directo al económico.", "Detective", detective, true);
+        Dialogo n8 = new Dialogo("¿Qué tanto esconde esta víctima?.", "Detective", detective, true);
+
+        BinaryTreeNode<Dialogo> node207 = new BinaryTreeNode<>(n5);
+        BinaryTreeNode<Dialogo> node208 = new BinaryTreeNode<>(n6);
+        BinaryTreeNode<Dialogo> node209 = new BinaryTreeNode<>(n7);
+        BinaryTreeNode<Dialogo> node210 = new BinaryTreeNode<>(n8);
+
+        GeneralTree<Dialogo> auxTree13 = new GeneralTree<>();
+
+        auxTree12.insertNode(node207, null);
+        auxTree12.insertNode(node208, node207);
+        auxTree12.insertNode(node209, node208);
+        auxTree12.insertNode(node210, node209);
+
+        escenarios.get(12).setArbolDial(auxTree13);
+        
     }
 
 }
