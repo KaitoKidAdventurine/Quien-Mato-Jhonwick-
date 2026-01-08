@@ -26,13 +26,13 @@ import java.util.TimerTask;
 public class Sala extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Sala.class.getName());
     private Dimension tamPant;
-    private int dialogoActual;
     private Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
     private Timer timer2;
     private TimerTask tarea2;
     private JButton esposa;
+    private JButton estatua;
     /**
      * Creates new form Entrada
      */
@@ -62,7 +62,7 @@ public class Sala extends ModeloEscenario {
         tarea = new TimerTask() {
             @Override
             public void run() {
-                dispose();
+                dispose(); UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
     }
@@ -77,8 +77,10 @@ public class Sala extends ModeloEscenario {
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
         esposa = new JButton();
+        estatua = new JButton();
+
         try {
-            BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/sala.jpg"));
+            BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Sala.png"));
 
 
             // Actualizacion de donde esta el Jugador
@@ -223,6 +225,20 @@ public class Sala extends ModeloEscenario {
         esposa.setFocusPainted(false);
         getContentPane().add(esposa);
 
+
+        estatua.setBounds((int) (tamPant.width*0.87), (int) (tamPant.height*0.34), (int) (tamPant.width*0.075), (int) (tamPant.height*0.475));
+        estatua.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                estatuaActionPerformed(evt);
+            }
+
+        });
+        estatua.setContentAreaFilled(false);
+        estatua.setBorderPainted(false);
+        estatua.setFocusPainted(false);
+        getContentPane().add(estatua);
+
+
         lugar.setText("Sala Planta Alta");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
@@ -237,6 +253,15 @@ public class Sala extends ModeloEscenario {
         getContentPane().add(jLabel1);
         pack();
         timer2.scheduleAtFixedRate(tarea2, 0, 10);
+    }
+
+    private void estatuaActionPerformed(ActionEvent evt) {
+        if(Juego.getInstance().getPartidaActual().getEventos().isPoliciaSiguiendo()){
+            esposa.setVisible(false);
+            ponerDialogoEstatua();
+        }
+
+
     }
 
     private void esposaMouseExited(MouseEvent evt) {
@@ -269,7 +294,7 @@ public class Sala extends ModeloEscenario {
                 break;
             case 3:
                 if(!Juego.getInstance().getPartidaActual().getEventos().isEsposaYa()) {
-                    ponerDialogo();
+                    ponerDialogoEsposa();
                     esposa.setVisible(false);
                 }else ponerDialogosEstatico(crearDialogoYa(), 0);
                 break;
@@ -324,7 +349,7 @@ public class Sala extends ModeloEscenario {
         ponerDialogosEstatico(dialogos, actual);
 
     }
-    public void ponerDialogo() {
+    public void ponerDialogoEsposa() {
         if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(6).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(6).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(6).getNodoDialActual()))) {
             if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(6).getNodoDialActual()==null)){
                 Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(6).getDialogoActual();
@@ -356,39 +381,83 @@ public class Sala extends ModeloEscenario {
         }
 
     }
+    public void ponerDialogoEstatua() {
+        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getNodoDialActual()))) {
+            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getNodoDialActual()==null)){
+                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    estatuaMouseClicked(evt);
+                }
+            });
+
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
+            cajaTexto.removeAll();
+            Juego.getInstance().getPartidaActual().getEventos().cambiarRonda5();
+            esposa.setVisible(true);
+        }
+
+    }
+
+    private void estatuaMouseClicked(MouseEvent evt) {
+        ponerDialogoEstatua();
+    }
 
     private void esposaMouseClicked(MouseEvent evt) {
-        ponerDialogo();
+        ponerDialogoEsposa();
         getContentPane().revalidate();
         getContentPane().repaint();
     }
 
     private void flechaEntradaActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Recepcion entradaD = new Recepcion();
-        entradaD.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Recepcion entradaD = new Recepcion();
+            entradaD.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void flechaPasillo2ActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Pasillo2 p2 = new Pasillo2();
-        p2.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Pasillo2 p2 = new Pasillo2();
+            p2.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void flechaSala2ActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDePasos();
 
         Sala2 sala2 = new Sala2();
         sala2.setVisible(true);
         tarea2.cancel();
-        timer.schedule(tarea, 1000);
+        timer.schedule(tarea, 500);
+        }
     }
     private void flechaEntradaMouseExited(MouseEvent evt) {
         BufferedImage imagen = null;

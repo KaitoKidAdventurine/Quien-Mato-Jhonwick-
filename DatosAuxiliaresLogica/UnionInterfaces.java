@@ -10,6 +10,7 @@ public class UnionInterfaces {
     private boolean abriendoPartida;
     private boolean hablandoCapitan;
     private boolean molestandoTarde;
+    private boolean usandoFlecha;
     public UnionInterfaces(){
         this.opcionDialogo = 1;
         this.cerrarVentana= false;
@@ -18,6 +19,7 @@ public class UnionInterfaces {
         this.abriendoPartida=false;
         this.hablandoCapitan=false;
         this.molestandoTarde=false;
+        this.usandoFlecha=false;
     }
 
     public int getOpcionDialogo() {
@@ -79,5 +81,13 @@ public class UnionInterfaces {
 
     public void setMolestandoTarde(boolean molestandoTarde) {
         this.molestandoTarde = molestandoTarde;
+    }
+
+    public boolean getUsandoFlecha() {
+        return usandoFlecha;
+    }
+
+    public void setUsandoFlecha(boolean usandoFlecha) {
+        this.usandoFlecha = usandoFlecha;
     }
 }

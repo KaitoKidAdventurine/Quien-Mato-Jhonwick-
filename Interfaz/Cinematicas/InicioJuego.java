@@ -1,4 +1,4 @@
-package Interfaz;
+package Interfaz.Cinematicas;
 
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.Escenarios.Entrada;
@@ -24,8 +24,8 @@ import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Tutorial extends JFrame {
-    private static final Logger logger = Logger.getLogger(Tutorial.class.getName());
+public class InicioJuego extends JFrame {
+    private static final Logger logger = Logger.getLogger(InicioJuego.class.getName());
     private final Dimension tamPant;
     private Escenario tutorialParte1;
     private Escenario tutorialParte2;
@@ -48,7 +48,7 @@ public class Tutorial extends JFrame {
 
 
 
-    public Tutorial() {
+    public InicioJuego() {
         Reproductor reproductor = Reproductor.getInstancia();
         reproductor.cambiarMusicaNombre("Galeria Silenciosa");
 
@@ -611,7 +611,7 @@ public class Tutorial extends JFrame {
                     imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Escena 1.jpg"));
                     break;
                 case 1:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/1763958158881.jpg"));
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Escena casa.jpg"));
                     break;
                 case 3:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Escena 3.jpg"));
@@ -694,7 +694,7 @@ public class Tutorial extends JFrame {
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por dentro.jpg"));
                     break;
                 case 9:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/sala.jpg"));
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Sala.png"));
                     break;
 
             }
@@ -1988,7 +1988,7 @@ public class Tutorial extends JFrame {
 
 
         /* Create and display the form */
-        EventQueue.invokeLater(() -> new Tutorial().setVisible(true));
+        EventQueue.invokeLater(() -> new InicioJuego().setVisible(true));
 
     }
 
@@ -1997,6 +1997,9 @@ public class Tutorial extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
 
     // End of variables declaration//GEN-END:variables
+
+
+
 }
 
 

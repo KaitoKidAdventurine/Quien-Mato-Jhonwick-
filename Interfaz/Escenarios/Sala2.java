@@ -26,7 +26,6 @@ import java.util.TimerTask;
 public class Sala2  extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Sala2.class.getName());
     private Dimension tamPant;
-    private int dialogoActual;
     private java.util.Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
@@ -62,7 +61,7 @@ public class Sala2  extends ModeloEscenario {
         tarea = new TimerTask() {
             @Override
             public void run() {
-                dispose();
+                dispose();  UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
 
@@ -345,16 +344,16 @@ public class Sala2  extends ModeloEscenario {
         }
     }
     public void ponerDialogoGuia2() {
-        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getNodoDialActual()))) {
-            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getNodoDialActual()==null)){
-                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getDialogoActual();
+        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getNodoDialActual()))) {
+            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getNodoDialActual()==null)){
+                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
-            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
@@ -379,13 +378,16 @@ public class Sala2  extends ModeloEscenario {
         ponerDialogoGuia1();
     }
     private void flechaSalidaActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Sala sala = new Sala();
-        sala.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Sala sala = new Sala();
+            sala.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void flechaSalaMouseExited(MouseEvent evt) {
         BufferedImage imagen = null;

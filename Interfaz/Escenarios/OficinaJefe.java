@@ -27,7 +27,6 @@ import java.util.TimerTask;
 public class OficinaJefe extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OficinaJefe.class.getName());
     private Dimension tamPant;
-    private int dialogoActual;
     private Timer timer;
     private TimerTask tarea;
     private Timer timer2;
@@ -62,7 +61,7 @@ public class OficinaJefe extends ModeloEscenario {
         tarea = new TimerTask() {
             @Override
             public void run() {
-                dispose();
+                dispose(); UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
 
@@ -270,13 +269,16 @@ public class OficinaJefe extends ModeloEscenario {
     }
 
     private void flechaPasillo2ActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Pasillo2 p2 = new Pasillo2();
-        p2.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Pasillo2 p2 = new Pasillo2();
+            p2.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void duennoMouseClicked(MouseEvent evt) {
         ponerDialogo();

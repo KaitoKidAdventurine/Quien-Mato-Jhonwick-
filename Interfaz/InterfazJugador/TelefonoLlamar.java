@@ -35,7 +35,7 @@ public class TelefonoLlamar extends JPanel {
         contactos = new JLabel();
         llamarOtro = new JButton();
         apagar = new JButton();
-        setBackground(new Color(0, 0, 0, 0));
+        setBackground(new Color(0, 0, 0, 1));
         setLayout(null);
 
         llamarJefe.setBorderPainted(false);
@@ -47,7 +47,6 @@ public class TelefonoLlamar extends JPanel {
             }
         });
         llamarJefe.setBounds((int) (tamPant.width * 0.017), (int) (tamPant.height * 0.13), (int) (tamPant.width * 0.23), (int) (tamPant.height * 0.07));
-        llamarJefe.setBackground(Color.blue);
         add(llamarJefe);
 
 
@@ -60,7 +59,6 @@ public class TelefonoLlamar extends JPanel {
             }
         });
         llamarOtro.setBounds((int) (tamPant.width * 0.017), (int) (tamPant.height * 0.21), (int) (tamPant.width * 0.23), (int) (tamPant.height * 0.4));
-        llamarOtro.setBackground(Color.blue);
         add(llamarOtro);
 
 

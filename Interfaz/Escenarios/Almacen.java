@@ -2,11 +2,14 @@ package Interfaz.Escenarios;
 
 import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
+import Interfaz.InterfazJugador.CuadroTexto;
 import Interfaz.InterfazJugador.InterfazUsuario;
+import Interfaz.InterfazJugador.OpcionesDialogos;
 import Interfaz.Menu.MenuPrincipal;
+import Interfaz.MiniJuego.MinijuegoInterfaz;
+import Logica.Dialogo;
 import Logica.Juego;
-import Logica.Jugador;
-import Logica.Partida;
+import Logica.MiniJuego;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -30,7 +33,9 @@ public class Almacen extends ModeloEscenario {
     private Timer timer2;
     private TimerTask tarea2;
     private InterfazUsuario interfazUsuario;
-
+    private JButton revisarAlmacen;
+    private Timer timer3;
+    private TimerTask tarea3;
     /**
      * Creates new form Entrada
      */
@@ -40,13 +45,27 @@ public class Almacen extends ModeloEscenario {
         tarea2 = new TimerTask() {
             @Override
             public void run() {
-
                 if(UnionInterfaces.getInstance().getCerrarVentana()){
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     cerrarEscenario();
                     tarea2.cancel();
+                }else{
+                    revalidate();
+                    repaint();
+                }
+            }
+        };
+        timer3 = new Timer();
+        tarea3 = new TimerTask() {
+            @Override
+            public void run() {
+                if(Juego.getInstance().getPartidaActual().getEventos().isAlmacenRevisado()){
+                    cajaTexto.removeAll();
+                    revisarAlmacen.setVisible(false);
+                    ponerDialogo();
+                    tarea3.cancel();
                 }
             }
         };
@@ -56,6 +75,7 @@ public class Almacen extends ModeloEscenario {
             @Override
             public void run() {
                 dispose();
+                UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
 
@@ -68,7 +88,7 @@ public class Almacen extends ModeloEscenario {
         flechaPasilloAlmacen = new JButton();
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
-
+        revisarAlmacen = new JButton();
 
 
         try {
@@ -99,6 +119,10 @@ public class Almacen extends ModeloEscenario {
             ImageIcon icono2 = new ImageIcon(imagen2.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
             flechaPasilloAlmacen.setIcon(icono2);
 
+            BufferedImage imagen3 = ImageIO.read(new File("DatosAuxiliares/Minijuego/Buscar.png"));
+            ImageIcon icono3 = new ImageIcon(imagen3.getScaledInstance((int) (tamPant.width*0.08), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+            revisarAlmacen.setIcon(icono3);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -123,9 +147,36 @@ public class Almacen extends ModeloEscenario {
                 flechaMouseExited(evt);
             }
         });
+        getContentPane().add(cajaTexto);
 
         getContentPane().add(flechaPasilloAlmacen);
-        getContentPane().add(cajaTexto);
+
+        revisarAlmacen.setBounds((int) (tamPant.width*0.82), (int) (tamPant.height*0.53), (int) (tamPant.width*0.08), (int) (tamPant.height*0.11));
+        revisarAlmacen.setContentAreaFilled(false);
+        revisarAlmacen.setBorderPainted(false);
+        revisarAlmacen.setFocusPainted(false);
+        revisarAlmacen.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                revisarAlmacenActionPerformed(evt);
+            }
+
+        });
+        revisarAlmacen.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                revisarAlmaceMouseEntered(evt);
+            }
+            public void mouseExited(MouseEvent evt) {
+                revisarAlmaceMouseExited(evt);
+            }
+        });
+        if(!(Juego.getInstance().getPartidaActual().getEventos().getRonda()==5)) {
+            revisarAlmacen.setVisible(false);
+        }
+        if(Juego.getInstance().getPartidaActual().getEventos().isAlmacenRevisado()){
+            revisarAlmacen.setVisible(false);
+        }
+        getContentPane().add(revisarAlmacen);
+
 
         lugar.setText("Almacen");
         lugar.setOpaque(false);
@@ -139,25 +190,56 @@ public class Almacen extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 20);
+        timer2.scheduleAtFixedRate(tarea2, 0, 10);
     }
     public void ponerDialogo() {
+        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getNodoDialActual()))) {
+            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getNodoDialActual()==null)){
+                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getDialogoActual();
+                if(!actual.getOpciones().isEmpty()){
+                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setVisible(true);
+                }
+            }
+            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+            CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
+            cT.setBounds(0, 0, tamPant.width, tamPant.height);
+            cT.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt) {
+                    almacenMouseClicked(evt);
+                }
+            });
+
+            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+                UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            cajaTexto.removeAll();
+            cajaTexto.add(cT);
+        }else {
+            cajaTexto.removeAll();
+        }
+
     }
+
+    private void almacenMouseClicked(MouseEvent evt) {
+        ponerDialogo();
+    }
+
 
     private void flechaPasilloAlmacenActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+       if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+           UnionInterfaces.getInstance().setUsandoFlecha(true);
+           EfectosEspeciales e = EfectosEspeciales.getInstancia();
+           e.efectoDePasos();
 
-        PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
-        pasilloAlmacen.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+           PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
+           pasilloAlmacen.setVisible(true);
+           tarea2.cancel();
+           timer.schedule(tarea, 500);
+       }
     }
-    private void cTMouseClicked(MouseEvent evt) {
-        ponerDialogo();
-        getContentPane().revalidate();
-        getContentPane().repaint();
-    }
+
     private void flechaMouseExited(MouseEvent evt) {
         BufferedImage imagen = null;
 
@@ -183,7 +265,37 @@ public class Almacen extends ModeloEscenario {
         ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.04), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
         flechaPasilloAlmacen.setIcon(icono);
     }
+    private void revisarAlmaceMouseExited(MouseEvent evt) {
+        BufferedImage imagen =null;
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/Minijuego/Buscar.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.08), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        revisarAlmacen.setIcon(icono);
 
+    }
+
+    private void revisarAlmaceMouseEntered(MouseEvent evt) {
+        BufferedImage imagen =null;
+        try {
+            imagen = ImageIO.read(new File("DatosAuxiliares/Minijuego/Buscar BR.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono = new ImageIcon(imagen.getScaledInstance((int) (tamPant.width*0.08), (int) (tamPant.height*0.11), Image.SCALE_SMOOTH));
+        revisarAlmacen.setIcon(icono);
+    }
+
+    private void revisarAlmacenActionPerformed(ActionEvent evt) {
+        MiniJuego miniJuego = Juego.getInstance().getMinijuego(3);
+
+        MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(miniJuego, 3);
+        minijuegoInterfaz.setBounds(0, 0, tamPant.width, tamPant.height);
+        cajaTexto.add(minijuegoInterfaz);
+        timer3.scheduleAtFixedRate(tarea3, 0 ,20);
+    }
     /**
      * @param args the command line arguments
      */

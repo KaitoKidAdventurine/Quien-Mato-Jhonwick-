@@ -4,8 +4,7 @@ import Interfaz.MiniJuego.MinijuegoInterfaz;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 
-import java.io.File;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.util.*;
 import javax.swing.*;
 
@@ -166,15 +165,107 @@ public class Juego {
     }
     public void cargarPartida()
     {
-
+        // Método legacy sin parámetros. No hace nada por ahora.
     }
-    /*public void guardarPartida()
+
+    /**
+     * Guarda la `partidaActual` en disco usando su `idPartida` como slot.
+     * Se crea/usa la carpeta `partidas_guardadas/` y el archivo `partida<ID>.sav`.
+     * Devuelve true si se guardó correctamente.
+     */
+    public boolean guardarPartida()
     {
+        if (partidaActual == null) {
+            System.err.println("No hay partida cargada para guardar.");
+            return false;
+        }
 
-    }*/
+        String id = partidaActual.getIdPartida();
+        if (id == null || id.trim().isEmpty()) {
+            System.err.println("La partida no tiene ID. No se puede guardar.");
+            return false;
+        }
 
-    public ArrayList<MiniJuego> getMiniJuegos() {
-        return miniJuegos;
+        try {
+            File dir = new File("partidas_guardadas");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            File file = new File(dir, "partida" + id + ".sav");
+
+            // Serializamos una copia (clone) para evitar inconsistencias durante el guardado
+            Partida copia = partidaActual.clone();
+
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+                oos.writeObject(copia);
+                oos.flush();
+            }
+
+            // Actualizar lista en memoria: reemplazar o agregar la partida guardada
+            Iterator<Partida> it = partidas.iterator();
+            while (it.hasNext()) {
+                Partida p = it.next();
+                if (p.getIdPartida().equals(id)) {
+                    it.remove();
+                    break;
+                }
+            }
+            partidas.add(copia);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Carga la partida del slot indicado (1,2,3...) leyendo `partidas_guardadas/partida<slot>.sav`.
+     * Si se carga correctamente, se añade/actualiza en `partidas` y se establece como `partidaActual` (clonada).
+     * Devuelve true si la carga fue exitosa.
+     */
+    public boolean cargarPartida(int slot)
+    {
+        try {
+            File file = new File("partidas_guardadas", "partida" + slot + ".sav");
+            if (!file.exists()) {
+                System.err.println("Archivo de partida no encontrado: " + file.getPath());
+                return false;
+            }
+
+            Partida cargada;
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+                cargada = (Partida) ois.readObject();
+            }
+
+            if (cargada == null) {
+                return false;
+            }
+
+            // Reemplazar o agregar en la lista de partidas
+            Iterator<Partida> it = partidas.iterator();
+            while (it.hasNext()) {
+                Partida p = it.next();
+                if (p.getIdPartida().equals(cargada.getIdPartida())) {
+                    it.remove();
+                    break;
+                }
+            }
+            partidas.add(cargada);
+
+            // Cargar como partida actual (clon para evitar referencias compartidas)
+            setPartidaActual(cargada.clone());
+
+            System.out.println("Partida cargada correctamente desde slot " + slot + ": " + cargada.getIdPartida());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public ArrayList<MiniJuego> getMiniJuegos() {        return miniJuegos;
     }
 
     public void setMiniJuegos(ArrayList<MiniJuego> miniJuegos) {
@@ -247,34 +338,6 @@ public class Juego {
         miniJuegos.add(escenaDelCrimen);
 
 
-        ImageIcon bathImage = new ImageIcon("DatosAuxiliares/Minijuego/Escena del Baño.png");
-        MiniJuego bathSecondFloor = new MiniJuego("Baño Segundo Piso", bathImage);
-
-        ObjetoEscenario obBilletera = new ObjetoEscenario("Billetera", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (622-175)/1152f, 667f/765f, (725-622)/1152f, (719-667)/765f, false, "");
-        ObjetoEscenario obJabon = new ObjetoEscenario("Jabón", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (342-100)/1152f, 363f/765f, (398-342)/1152f, (396-363)/765f, false, "");
-        ObjetoEscenario obGel = new ObjetoEscenario("Gel de Manos", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (211-50)/1152f, 318f/765f, (255-211)/1152f, (395-318)/765f, false, "");
-        ObjetoEscenario obLata = new ObjetoEscenario("Lata de Refresco", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (314-75)/1152f, 594f/765f, (351-314)/1152f, (647-594)/765f, false, "");
-        ObjetoEscenario obPalo = new ObjetoEscenario("Palo de Trapear", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (102-25)/1152f, 427f/765f, (148-102)/1152f, (530-427)/765f, false, "");
-        ObjetoEscenario obGrafiti = new ObjetoEscenario("Grafiti", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (109-25)/1152f, 282f/765f, (178-109)/1152f, (340-282)/765f, false, "");
-        ObjetoEscenario obNotas = new ObjetoEscenario("Notas Adhesivas", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (111-25)/1152f, 697f/765f, (192-111)/1152f, (742-697)/765f, false, "");
-        ObjetoEscenario obLata2 = new ObjetoEscenario("Lata de refresco 2", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (465-118)/1152f, 607f/765f, (521-465)/1152f, (645-607)/765f, false, "");
-        ObjetoEscenario obHoja = new ObjetoEscenario("Hoja de papel", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (621-160)/1152f, 578f/765f, (688-621)/1152f, (607-578)/765f, true, "Contiene la contraseña de la computadora.");
-        ObjetoEscenario obCepillo = new ObjetoEscenario("Cepillo de Dientes", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (555-125)/1152f, 322f/765f, (577-555)/1152f, (355-322)/765f, false, "");
-
-        bathSecondFloor.agregarObjetoCola(obBilletera);
-        bathSecondFloor.agregarObjetoCola(obJabon);
-        bathSecondFloor.agregarObjetoCola(obGel);
-        bathSecondFloor.agregarObjetoCola(obLata);
-        bathSecondFloor.agregarObjetoCola(obPalo);
-        bathSecondFloor.agregarObjetoCola(obGrafiti);
-        bathSecondFloor.agregarObjetoCola(obNotas);
-        bathSecondFloor.agregarObjetoCola(obLata2);
-        bathSecondFloor.agregarObjetoCola(obHoja);
-        bathSecondFloor.agregarObjetoCola(obCepillo);
-
-        miniJuegos.add(bathSecondFloor);
-
-
         ImageIcon camerasImage = new ImageIcon("DatosAuxiliares/Minijuego/Sala de Cámaras.png");
         MiniJuego camerasRoom = new MiniJuego("Sala de Cámaras", camerasImage);
 
@@ -288,6 +351,11 @@ public class Juego {
         ObjetoEscenario obObraArte = new ObjetoEscenario("Obra de Arte", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (810-270)/1152f, (437-15)/765f, (845-810)/1152f, (505-437)/765f, false, "");
         ObjetoEscenario obGafas = new ObjetoEscenario("Gafas", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (373-120)/1152f, (561-25)/765f, (415-373)/1152f, (577-561)/765f, false, "");
         ObjetoEscenario obAuriculares = new ObjetoEscenario("Auriculares", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (613-205)/1152f, (543-25)/765f, (676-613)/1152f, (613-543)/765f, false, "");
+        ObjetoEscenario obGafas2 = new ObjetoEscenario("Gafas 2", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (122-32)/1280f, (569-3)/800f, (175-122)/1280f, (580-569+3)/800f, false, "");
+        ObjetoEscenario obVasos = new ObjetoEscenario("Vasos", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (277-70)/1280f, 664f/800f, (322-277)/1280f, (717-664)/800f, false, "");
+        ObjetoEscenario obMapa = new ObjetoEscenario("Mapa", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (119-75)/1280f, 732f/800f, (317-119)/1280f, (785-732)/800f, false, "");
+        ObjetoEscenario obExtintor = new ObjetoEscenario("Extintor", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (77-20)/1280f, 410f/800f, (92-77)/1280f, (464-410)/800f, false, "");
+        ObjetoEscenario obMochila = new ObjetoEscenario("Mochila", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (1025-262)/1280f, 611f/800f, (1116-1025)/1280f, (715-611)/800f, false, "");
 
         camerasRoom.agregarObjetoCola(obLibro);
         camerasRoom.agregarObjetoCola(obCigarrillos);
@@ -299,296 +367,95 @@ public class Juego {
         camerasRoom.agregarObjetoCola(obObraArte);
         camerasRoom.agregarObjetoCola(obGafas);
         camerasRoom.agregarObjetoCola(obAuriculares);
+        camerasRoom.agregarObjetoCola(obGafas2);
+        camerasRoom.agregarObjetoCola(obVasos);
+        camerasRoom.agregarObjetoCola(obMapa);
+        camerasRoom.agregarObjetoCola(obExtintor);
+        camerasRoom.agregarObjetoCola(obMochila);
 
         miniJuegos.add(camerasRoom);
+
+
+        ImageIcon bathImage = new ImageIcon("DatosAuxiliares/Minijuego/Escena del Baño.png");
+        MiniJuego bathSecondFloor = new MiniJuego("Baño Segundo Piso", bathImage);
+
+        ObjetoEscenario obBilletera = new ObjetoEscenario("Billetera", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (622-175)/1152f, 667f/765f, (725-622)/1152f, (719-667)/765f, false, "");
+        ObjetoEscenario obJabon = new ObjetoEscenario("Jabón", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (342-100)/1152f, 363f/765f, (398-342)/1152f, (396-363)/765f, false, "");
+        ObjetoEscenario obGel = new ObjetoEscenario("Gel de Manos", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (211-50)/1152f, 318f/765f, (255-211)/1152f, (395-318)/765f, false, "");
+        ObjetoEscenario obLata = new ObjetoEscenario("Lata de Refresco", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (314-75)/1152f, 594f/765f, (351-314)/1152f, (647-594)/765f, false, "");
+        ObjetoEscenario obPalo = new ObjetoEscenario("Palo de Trapear", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (102-25)/1152f, 427f/765f, (148-102)/1152f, (530-427)/765f, false, "");
+        ObjetoEscenario obGrafiti = new ObjetoEscenario("Grafiti", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (109-25)/1152f, 282f/765f, (178-109)/1152f, (340-282)/765f, false, "");
+        ObjetoEscenario obNotas = new ObjetoEscenario("Notas Adhesivas", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (111-25)/1152f, 697f/765f, (192-111)/1152f, (742-697)/765f, false, "");
+        ObjetoEscenario obLata2 = new ObjetoEscenario("Lata de refresco 2", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (465-118)/1152f, 607f/765f, (521-465)/1152f, (645-607)/765f, false, "");
+        ObjetoEscenario obHoja = new ObjetoEscenario("Hoja de papel", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (621-160)/1152f, 578f/765f, (688-621)/1152f, (607-578)/765f, true, "Contiene algunos escritos en latin.");
+        ObjetoEscenario obCepillo = new ObjetoEscenario("Cepillo de Dientes", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (555-125)/1152f, 322f/765f, (577-555)/1152f, (355-322)/765f, false, "");
+        ObjetoEscenario obLata3 = new ObjetoEscenario("Lata de Refresco 3", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (569-145)/1152f, 574f/765f, (588-569)/1152f, (606-574)/765f, false, "");
+        ObjetoEscenario obCaramelo = new ObjetoEscenario("Caramelo", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (305-75)/1152f, 691f/765f, (338-305)/1152f, (715-691)/765f, false, "");
+        ObjetoEscenario obMochilaVerde = new ObjetoEscenario("Mochila Verde", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (91-42)/1152f, 527f/765f, (181-91)/1152f, (656-527)/765f, false, "");
+        ObjetoEscenario obToallaRoja = new ObjetoEscenario("Toalla Roja", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (307-80)/1152f, 389f/765f, (356-307)/1152f, (454-389)/765f, false, "");
+        ObjetoEscenario obToallaBlanca = new ObjetoEscenario("Toalla Blanca", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (800-205)/1152f, 112f/765f, (836-800)/1152f, (239-112)/765f, false, "");
+
+        bathSecondFloor.agregarObjetoCola(obBilletera);
+        bathSecondFloor.agregarObjetoCola(obJabon);
+        bathSecondFloor.agregarObjetoCola(obGel);
+        bathSecondFloor.agregarObjetoCola(obLata);
+        bathSecondFloor.agregarObjetoCola(obPalo);
+        bathSecondFloor.agregarObjetoCola(obGrafiti);
+        bathSecondFloor.agregarObjetoCola(obNotas);
+        bathSecondFloor.agregarObjetoCola(obLata2);
+        bathSecondFloor.agregarObjetoCola(obHoja);
+        bathSecondFloor.agregarObjetoCola(obCepillo);
+        bathSecondFloor.agregarObjetoCola(obLata3);
+        bathSecondFloor.agregarObjetoCola(obCaramelo);
+        bathSecondFloor.agregarObjetoCola(obMochilaVerde);
+        bathSecondFloor.agregarObjetoCola(obToallaRoja);
+        bathSecondFloor.agregarObjetoCola(obToallaBlanca);
+
+        miniJuegos.add(bathSecondFloor);
 
 
         ImageIcon storageImage = new ImageIcon("DatosAuxiliares/Minijuego/Almacén.png");
         MiniJuego storageRoom = new MiniJuego("Almacén", storageImage);
 
-        ObjetoEscenario obLampara = new ObjetoEscenario("Lampara", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (95-30)/1152f, 699f/896f, (140-95)/1152f, (802-699)/896f, false, "");
+        ObjetoEscenario obLampara = new ObjetoEscenario("Lámpara", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (95-30)/1152f, 699f/896f, (140-95)/1152f, (802-699)/896f, false, "");
         ObjetoEscenario obSpray = new ObjetoEscenario("Spray", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (882-227)/1152f, 809f/896f, (916-882)/1152f, (879-809)/896f, false, "");
         ObjetoEscenario obBotella = new ObjetoEscenario("Botella", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (356-90)/1152f, 697f/896f, (382-356)/1152f, (791-697)/896f, false, "");
         ObjetoEscenario obEsfera = new ObjetoEscenario("Esfera del Mundo", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (248-73)/1152f, 592f/896f, (317-248)/1152f, (660-592)/896f, false, "");
         ObjetoEscenario obTelescopio = new ObjetoEscenario("Telescopio", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (366-103)/1152f, 548f/896f, (478-366)/1152f, (602-548)/896f, false, "");
-        ObjetoEscenario obBuho = new ObjetoEscenario("Buho de Madera", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (385-100)/1152f, 222f/896f, (422-385)/1152f, (270-222)/896f, false, "");
+        ObjetoEscenario obBuho = new ObjetoEscenario("Búho de Madera", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (385-100)/1152f, 222f/896f, (422-385)/1152f, (270-222)/896f, false, "");
         ObjetoEscenario obPergamino = new ObjetoEscenario("Pergamino", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (625-170)/1152f, 779f/896f, (742-625)/1152f, (823-779)/896f, false, "");
         ObjetoEscenario obLupa = new ObjetoEscenario("Lupa", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (707-186)/1152f, 839f/896f, (806-707)/1152f, (872-839)/896f, false, "");
         ObjetoEscenario obCopaRota = new ObjetoEscenario("Copa Rota", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (761-195)/1152f, 549f/896f, (791-761)/1152f, (607-549)/896f, false, "");
         ObjetoEscenario obEstatua2 = new ObjetoEscenario("Estatua", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (826-213)/1152f, 499f/896f, (867-826)/1152f, (639-499)/896f, false, "");
+        ObjetoEscenario obMaleta = new ObjetoEscenario("Maleta", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (504-125)/1152f, 549f/896f, (619-504-25)/1152f, (600-549)/896f, false, "");
+        ObjetoEscenario obMaceta = new ObjetoEscenario("Maceta", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (477-122)/1152f, 454f/896f, (508-477)/1152f, (495-454)/896f, false, "");
+        ObjetoEscenario obPeriodico = new ObjetoEscenario("Periodico", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (394-100)/1152f, 831f/896f, (500-394-20)/1152f, (879-831)/896f, false, "");
+        ObjetoEscenario obEscoba = new ObjetoEscenario("Escoba", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (970-250)/1152f, 647f/896f, (1022-970)/1152f, (744-272)*0.25f/896f, false, "");
+        ObjetoEscenario obVasijaRota = new ObjetoEscenario("VasijaRota", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (937-238)/1152f, 778f/896f, (994-937)/1152f, (834-778)/896f, false, "");
+        ObjetoEscenario obLibros = new ObjetoEscenario("Libros", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (842-215)/1152f, 699f/896f, (900-842)/1152f, (730-699)/896f, true, "Contiene información confidencial.");
+        ObjetoEscenario obGuante = new ObjetoEscenario("Guante", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (355-95)/1152f, 875f/896f, (408-355)/1152f, (889-875+5)/896f, false, "");
 
         storageRoom.agregarObjetoCola(obLampara);
         storageRoom.agregarObjetoCola(obSpray);
-        storageRoom.agregarObjetoCola(obTelescopio);
         storageRoom.agregarObjetoCola(obBotella);
-        storageRoom.agregarObjetoCola(obCopaRota);
         storageRoom.agregarObjetoCola(obEsfera);
+        storageRoom.agregarObjetoCola(obTelescopio);
         storageRoom.agregarObjetoCola(obBuho);
-        storageRoom.agregarObjetoCola(obEstatua2);
         storageRoom.agregarObjetoCola(obPergamino);
         storageRoom.agregarObjetoCola(obLupa);
+        storageRoom.agregarObjetoCola(obCopaRota);
+        storageRoom.agregarObjetoCola(obEstatua2);
+        storageRoom.agregarObjetoCola(obMaleta);
+        storageRoom.agregarObjetoCola(obMaceta);
+        storageRoom.agregarObjetoCola(obPeriodico);
+        storageRoom.agregarObjetoCola(obEscoba);
+        storageRoom.agregarObjetoCola(obVasijaRota);
+        storageRoom.agregarObjetoCola(obLibros);
+        storageRoom.agregarObjetoCola(obGuante);
 
         miniJuegos.add(storageRoom);
     }
-
-
-
-
-
-
-    //METODOS PARA CREAR, GUARDAR Y CARGAR PARTIDA
     
-    private static final String CARPETA_GUARDADOS = "partidas_guardadas/";
-    private static final String PREFIJO_ARCHIVO = "partida_";
-    private static final String EXTENSION = ".dat";
-
-    /**
-     * MÉTODO 1: GUARDAR LA PARTIDA ACTUAL
-     * Este método guarda TODO el estado del juego en un archivo.
-     * Se llamará cuando el jugador presione "Guardar Partida".
-     */
-    public boolean guardarPartida() {
-        // 1. Verificar que haya una partida para guardar
-        if (partidaActual == null) {
-            System.out.println("Error: No hay partida activa para guardar.");
-            return false; // No se pudo guardar
-        }
-        
-        // 2. Obtener el ID de la partida (será 1, 2 o 3)
-        String idPartida = partidaActual.getIdPartida();
-        
-        // 3. Determinar en qué slot guardar (1, 2 o 3)
-        int numeroSlot = 1; // Por defecto slot 1
-        try {
-            numeroSlot = Integer.parseInt(idPartida);
-        } catch (NumberFormatException e) {
-            // Si el ID no es número, usamos slot 1
-            numeroSlot = 1;
-        }
-        
-        // 4. Crear la carpeta si no existe
-        File carpeta = new File(CARPETA_GUARDADOS);
-        if (!carpeta.exists()) {
-            boolean carpetaCreada = carpeta.mkdirs();
-            if (!carpetaCreada) {
-                System.out.println("Error: No se pudo crear la carpeta de guardados.");
-                return false;
-            }
-        }
-        
-        // 5. Crear el nombre del archivo (ej: "partidas_guardadas/partida_1.dat")
-        String rutaArchivo = CARPETA_GUARDADOS + PREFIJO_ARCHIVO + numeroSlot + EXTENSION;
-        
-        try {
-            // 6. Abrir el archivo para escritura ("rw" = lectura y escritura)
-            RandomAccessFile archivo = new RandomAccessFile(rutaArchivo, "rw");
-            
-            // 7. Convertir la partida completa a bytes
-            //    ¡Esto guarda AUTOMÁTICAMENTE todo: jugador, diario, maletín, escenarios!
-            byte[] bytesPartida = Convert.toBytes(partidaActual);
-            
-            // 8. Escribir PRIMERO el tamaño (cuántos bytes ocupa la partida)
-            archivo.writeInt(bytesPartida.length);
-            
-            // 9. Escribir los bytes de la partida
-            archivo.write(bytesPartida);
-            
-            // 10. Cerrar el archivo
-            archivo.close();
-            
-            System.out.println("Partida guardada exitosamente en: " + rutaArchivo);
-            return true; // ¡Éxito!
-            
-        } catch (Exception error) {
-            System.out.println("Error al guardar la partida: " + error.getMessage());
-            return false; // Falló
-        }
-    }
     
-    /**
-     * MÉTODO 2: CARGAR UNA PARTIDA DESDE UN SLOT
-     * Este método recupera TODO el estado guardado.
-     * Se llamará cuando el jugador seleccione "Cargar Partida" y elija un slot.
-     */
-    public Partida cargarPartida(int numeroSlot) {
-        // 1. Verificar que el slot sea válido (1, 2 o 3)
-        if (numeroSlot < 1 || numeroSlot > 3) {
-            System.out.println("Error: El número de slot debe ser 1, 2 o 3.");
-            return null;
-        }
-        
-        // 2. Crear el nombre del archivo a cargar
-        String rutaArchivo = CARPETA_GUARDADOS + PREFIJO_ARCHIVO + numeroSlot + EXTENSION;
-        
-        // 3. Verificar si el archivo existe
-        File archivo = new File(rutaArchivo);
-        if (!archivo.exists()) {
-            System.out.println("No hay partida guardada en el slot " + numeroSlot);
-            return null;
-        }
-        
-        try {
-            // 4. Abrir el archivo para lectura ("r" = solo lectura)
-            RandomAccessFile archivoAcceso = new RandomAccessFile(rutaArchivo, "r");
-            
-            // 5. Leer PRIMERO el tamaño (cuántos bytes debemos leer)
-            int tamañoDatos = archivoAcceso.readInt();
-            
-            // 6. Crear un array de bytes del tamaño correcto
-            byte[] datosPartida = new byte[tamañoDatos];
-            
-            // 7. Leer TODOS los bytes del archivo
-            archivoAcceso.readFully(datosPartida);
-            
-            // 8. Cerrar el archivo
-            archivoAcceso.close();
-            
-            // 9. Convertir los bytes de vuelta a un objeto Partida
-            //    ¡Esto recupera AUTOMÁTICAMENTE todo: jugador, diario, maletín, escenarios!
-            Partida partidaCargada = (Partida) Convert.toObject(datosPartida);
-            
-            System.out.println("Partida cargada exitosamente del slot " + numeroSlot);
-            
-            // 10. IMPORTANTE: Reparar las referencias después de cargar
-            repararReferenciasDespuesDeCargar(partidaCargada);
-            
-            return partidaCargada; // ¡Devolvemos la partida cargada!
-            
-        } catch (Exception error) {
-            System.out.println("Error al cargar la partida: " + error.getMessage());
-            return null; // Falló
-        }
-    }
-    
-    /**
-     * MÉTODO 3: REPARAR REFERENCIAS DESPUÉS DE CARGAR
-     * Cuando cargamos una partida, algunos objetos necesitan "reconectarse".
-     * Esto soluciona problemas comunes después de cargar.
-     */
-    private void repararReferenciasDespuesDeCargar(Partida partida) {
-        if (partida == null) return;
-        
-        // Obtener el jugador de la partida cargada
-        Jugador jugador = partida.getJugador();
-        
-        // Si el jugador tiene un escenario actual...
-        if (jugador.getEscenarioActual() != null) {
-            // Obtener el nombre de ese escenario
-            String nombreEscenarioActual = jugador.getEscenarioActual().getNombre();
-            
-            // Buscar ese escenario en la lista de escenarios de la partida
-            for (Escenario escenario : partida.getEscenarios()) {
-                if (escenario.getNombre().equals(nombreEscenarioActual)) {
-                    // ¡Encontrado! Actualizar la referencia
-                    jugador.setEscenarioActual(escenario);
-                    break; // Salir del bucle
-                }
-            }
-        }
-    }
-    
-    /**
-     * MÉTODO 4: VER SI HAY PARTIDA GUARDADA
-     * Para saber si un botón de "Cargar" debe estar activo o no.
-     */
-    public boolean existePartidaGuardada(int numeroSlot) {
-        if (numeroSlot < 1 || numeroSlot > 3) {
-            return false;
-        }
-        
-        String rutaArchivo = CARPETA_GUARDADOS + PREFIJO_ARCHIVO + numeroSlot + EXTENSION;
-        File archivo = new File(rutaArchivo);
-        
-        // Devuelve true si el archivo existe y no está vacío
-        return archivo.exists() && archivo.length() > 0;
-    }
-    
-    /**
-     * MÉTODO 5: OBTENER INFORMACIÓN PARA MOSTRAR
-     * Para poner texto descriptivo en los botones de "Cargar Partida".
-     */
-    public String obtenerInfoPartida(int numeroSlot) {
-        // Si no hay partida guardada
-        if (!existePartidaGuardada(numeroSlot)) {
-            return "Slot " + numeroSlot + ": Libre";
-        }
-        
-        try {
-            // Cargar la partida temporalmente para ver su información
-            Partida partida = cargarPartida(numeroSlot);
-            
-            if (partida == null) {
-                return "Slot " + numeroSlot + ": Error";
-            }
-            
-            Jugador jugador = partida.getJugador();
-            String nombreJugador = jugador.getNombre();
-            
-            // Si no tiene nombre, poner uno por defecto
-            if (nombreJugador == null || nombreJugador.isEmpty()) {
-                nombreJugador = "Jugador";
-            }
-            
-            // Contar objetos en el maletín
-            int cantidadObjetos = jugador.getMaletin().size();
-            
-            // Formatear la información
-            String informacion = "Slot " + numeroSlot + ": " + nombreJugador + 
-                               " - " + cantidadObjetos + " objetos";
-            
-            return informacion;
-            
-        } catch (Exception e) {
-            return "Slot " + numeroSlot + ": Error";
-        }
-    }
-    /**
- * MÉTODO 6: PREPARAR Y GUARDAR NUEVA PARTIDA
- * Se llama JUSTO DESPUÉS de crearNuevaPartida() y ANTES de empezar a jugar.
- * Guarda el estado inicial vacío de la partida.
- */
-public boolean prepararNuevaPartida(String idPartida, String nombreJugador) {
-    // 1. Crear la partida nueva (ya lo haces en NuevaPartida.java)
-    boolean creada = crearNuevaPartida(idPartida, nombreJugador);
-    
-    if (!creada) {
-        System.out.println("Error: No se pudo crear la nueva partida");
-        return false;
-    }
-    
-    // 2. Configurar estado inicial IMPORTANTE para tu juego
-    // Esto depende de cómo inicie tu juego:
-    
-    // Ejemplo 1: Establecer escenario inicial
-    if (partidaActual != null && partidaActual.getJugador() != null) {
-        // Buscar el escenario "Entrada" o el inicial
-        for (Escenario escenario : partidaActual.getEscenarios()) {
-            if (escenario.getNombre().equals("Entrada")) {
-                partidaActual.getJugador().setEscenarioActual(escenario);
-                break;
-            }
-        }
-    }
-    
-    // Ejemplo 2: Inicializar el diario con primera entrada
-    if (partidaActual != null && partidaActual.getJugador() != null) {
-        partidaActual.getJugador().getDiario().agregarDialogoImportante(
-            "Sistema", 
-            "Caso iniciado: " + java.time.LocalDate.now()
-        );
-    }
-    
-    // 3. Guardar el estado inicial
-    boolean guardado = guardarPartida();
-    
-    if (guardado) {
-        System.out.println("Nueva partida preparada y guardada: " + idPartida);
-    } else {
-        System.out.println("Error: Nueva partida creada pero no se pudo guardar");
-    }
-    
-    return guardado;
-}
-
 }
 

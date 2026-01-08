@@ -23,7 +23,6 @@ import java.util.TimerTask;
 public class PasilloAlmacen extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PasilloAlmacen.class.getName());
     private Dimension tamPant;
-    private int dialogoActual;
     private java.util.Timer timer;
     private TimerTask tarea;
     private InterfazUsuario interfazUsuario;
@@ -46,6 +45,9 @@ public class PasilloAlmacen extends ModeloEscenario {
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     cerrarEscenario();
                     tarea2.cancel();
+                }else{
+                    revalidate();
+                    repaint();
                 }
             }
         };
@@ -54,7 +56,7 @@ public class PasilloAlmacen extends ModeloEscenario {
         tarea = new TimerTask() {
             @Override
             public void run() {
-                dispose();
+                dispose(); UnionInterfaces.getInstance().setUsandoFlecha(false);
             }
         };
     }
@@ -198,43 +200,44 @@ public class PasilloAlmacen extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 20);
-    }
-    public void ponerDialogo() {
-    }
-
-    private void cTMouseClicked(MouseEvent evt) {
-        ponerDialogo();
-        getContentPane().revalidate();
-        getContentPane().repaint();
+        timer2.scheduleAtFixedRate(tarea2, 0, 10);
     }
 
     private void flechaPasillo3ActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Pasillo3 pasillo3 = new Pasillo3();
-        pasillo3.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Pasillo3 pasillo3 = new Pasillo3();
+            pasillo3.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void flechaAlmacenActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Almacen almacen= new Almacen();
-        almacen.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Almacen almacen = new Almacen();
+            almacen.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void flechaCallejonActionPerformed(ActionEvent evt) {
-        EfectosEspeciales e = EfectosEspeciales.getInstancia();
-        e.efectoDePasos();
+        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
+            UnionInterfaces.getInstance().setUsandoFlecha(true);
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.efectoDePasos();
 
-        Callejon callejon = new Callejon();
-        callejon.setVisible(true);
-        tarea2.cancel();
-        timer.schedule(tarea, 1000);
+            Callejon callejon = new Callejon();
+            callejon.setVisible(true);
+            tarea2.cancel();
+            timer.schedule(tarea, 500);
+        }
     }
     private void flechaPasillo3MouseExited(MouseEvent evt) {
         BufferedImage imagen = null;
