@@ -181,7 +181,7 @@ public class OficinaEconomico extends ModeloEscenario {
     }
 
     private void computadoraActionPerformed(ActionEvent evt) {
-        if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==0){
+        if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==5){
             if(Juego.getInstance().getPartidaActual().getJugador().revisarSiExisteObjetoEnMochila("Hoja de papel") /*&& Juego.getInstance().getPartidaActual().getJugador().revisarSiExisteObjetoEnMochila("Libro")*/){
                     ponerFinal();
             }else {

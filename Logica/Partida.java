@@ -1827,5 +1827,14 @@ public class Partida implements Serializable, Cloneable
 
     }
 
+   /* public boolean tieneTodaLaInfo(LinkedList<String> infoImportante){
+        boolean tiene = false;
+        if(this.jugador.getCont()== infoImportante.size()){
+            tiene = true;
+        }
+        return tiene;
+    }
+   */
+
 }
 

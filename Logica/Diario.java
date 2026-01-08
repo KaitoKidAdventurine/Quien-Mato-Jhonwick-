@@ -267,6 +267,7 @@ public class Diario implements Serializable
 
     }
 
+
     public void agregarInformacion(Informacion informacion){
         dialogosImportantes.add(informacion);
     }
