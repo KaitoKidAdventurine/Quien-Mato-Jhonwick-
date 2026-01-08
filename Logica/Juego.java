@@ -80,6 +80,23 @@ public class Juego {
         this.partidaActual = partidaActual;
     }
 
+
+    public boolean existeArchivoGuardado(String id) {
+        File archivo = new File("partidas_guardadas", "partida" + id + ".sav");
+        return archivo.exists();
+    }
+
+    public boolean eliminarArchivoGuardado(String id) {
+        boolean resultado = false;
+        try {
+            File archivo = new File("partidas_guardadas", "partida" + id + ".sav");
+            resultado = archivo.exists() && archivo.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultado;
+    }
+
     public Partida obtenerPartida(String id) {
         Iterator<Partida> IP = partidas.iterator();
         boolean salida = false;
