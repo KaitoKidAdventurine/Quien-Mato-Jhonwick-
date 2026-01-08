@@ -1803,10 +1803,10 @@ public class Partida implements Serializable, Cloneable
 
         GeneralTree<Dialogo> auxTree13 = new GeneralTree<>();
 
-        auxTree12.insertNode(node207, null);
-        auxTree12.insertNode(node208, node207);
-        auxTree12.insertNode(node209, node208);
-        auxTree12.insertNode(node210, node209);
+        auxTree13.insertNode(node207, null);
+        auxTree13.insertNode(node208, node207);
+        auxTree13.insertNode(node209, node208);
+        auxTree13.insertNode(node210, node209);
 
         escenarios.get(12).setArbolDial(auxTree13);
 
