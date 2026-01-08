@@ -4,8 +4,7 @@ import Interfaz.MiniJuego.MinijuegoInterfaz;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 
-import java.io.File;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.util.*;
 import javax.swing.*;
 
@@ -166,15 +165,107 @@ public class Juego {
     }
     public void cargarPartida()
     {
-
+        // Método legacy sin parámetros. No hace nada por ahora.
     }
-    /*public void guardarPartida()
+
+    /**
+     * Guarda la `partidaActual` en disco usando su `idPartida` como slot.
+     * Se crea/usa la carpeta `partidas_guardadas/` y el archivo `partida<ID>.sav`.
+     * Devuelve true si se guardó correctamente.
+     */
+    public boolean guardarPartida()
     {
+        if (partidaActual == null) {
+            System.err.println("No hay partida cargada para guardar.");
+            return false;
+        }
 
-    }*/
+        String id = partidaActual.getIdPartida();
+        if (id == null || id.trim().isEmpty()) {
+            System.err.println("La partida no tiene ID. No se puede guardar.");
+            return false;
+        }
 
-    public ArrayList<MiniJuego> getMiniJuegos() {
-        return miniJuegos;
+        try {
+            File dir = new File("partidas_guardadas");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            File file = new File(dir, "partida" + id + ".sav");
+
+            // Serializamos una copia (clone) para evitar inconsistencias durante el guardado
+            Partida copia = partidaActual.clone();
+
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+                oos.writeObject(copia);
+                oos.flush();
+            }
+
+            // Actualizar lista en memoria: reemplazar o agregar la partida guardada
+            Iterator<Partida> it = partidas.iterator();
+            while (it.hasNext()) {
+                Partida p = it.next();
+                if (p.getIdPartida().equals(id)) {
+                    it.remove();
+                    break;
+                }
+            }
+            partidas.add(copia);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Carga la partida del slot indicado (1,2,3...) leyendo `partidas_guardadas/partida<slot>.sav`.
+     * Si se carga correctamente, se añade/actualiza en `partidas` y se establece como `partidaActual` (clonada).
+     * Devuelve true si la carga fue exitosa.
+     */
+    public boolean cargarPartida(int slot)
+    {
+        try {
+            File file = new File("partidas_guardadas", "partida" + slot + ".sav");
+            if (!file.exists()) {
+                System.err.println("Archivo de partida no encontrado: " + file.getPath());
+                return false;
+            }
+
+            Partida cargada;
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+                cargada = (Partida) ois.readObject();
+            }
+
+            if (cargada == null) {
+                return false;
+            }
+
+            // Reemplazar o agregar en la lista de partidas
+            Iterator<Partida> it = partidas.iterator();
+            while (it.hasNext()) {
+                Partida p = it.next();
+                if (p.getIdPartida().equals(cargada.getIdPartida())) {
+                    it.remove();
+                    break;
+                }
+            }
+            partidas.add(cargada);
+
+            // Cargar como partida actual (clon para evitar referencias compartidas)
+            setPartidaActual(cargada.clone());
+
+            System.out.println("Partida cargada correctamente desde slot " + slot + ": " + cargada.getIdPartida());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public ArrayList<MiniJuego> getMiniJuegos() {        return miniJuegos;
     }
 
     public void setMiniJuegos(ArrayList<MiniJuego> miniJuegos) {
@@ -350,265 +441,7 @@ public class Juego {
 
         miniJuegos.add(storageRoom);
     }
-
-
-
-
-
-
-    //METODOS PARA CREAR, GUARDAR Y CARGAR PARTIDA
     
-    private static final String CARPETA_GUARDADOS = "partidas_guardadas/";
-    private static final String PREFIJO_ARCHIVO = "partida_";
-    private static final String EXTENSION = ".dat";
-
-    /**
-     * MÉTODO 1: GUARDAR LA PARTIDA ACTUAL
-     * Este método guarda TODO el estado del juego en un archivo.
-     * Se llamará cuando el jugador presione "Guardar Partida".
-     */
-    public boolean guardarPartida() {
-        // 1. Verificar que haya una partida para guardar
-        if (partidaActual == null) {
-            System.out.println("Error: No hay partida activa para guardar.");
-            return false; // No se pudo guardar
-        }
-        
-        // 2. Obtener el ID de la partida (será 1, 2 o 3)
-        String idPartida = partidaActual.getIdPartida();
-        
-        // 3. Determinar en qué slot guardar (1, 2 o 3)
-        int numeroSlot = 1; // Por defecto slot 1
-        try {
-            numeroSlot = Integer.parseInt(idPartida);
-        } catch (NumberFormatException e) {
-            // Si el ID no es número, usamos slot 1
-            numeroSlot = 1;
-        }
-        
-        // 4. Crear la carpeta si no existe
-        File carpeta = new File(CARPETA_GUARDADOS);
-        if (!carpeta.exists()) {
-            boolean carpetaCreada = carpeta.mkdirs();
-            if (!carpetaCreada) {
-                System.out.println("Error: No se pudo crear la carpeta de guardados.");
-                return false;
-            }
-        }
-        
-        // 5. Crear el nombre del archivo (ej: "partidas_guardadas/partida_1.dat")
-        String rutaArchivo = CARPETA_GUARDADOS + PREFIJO_ARCHIVO + numeroSlot + EXTENSION;
-        
-        try {
-            // 6. Abrir el archivo para escritura ("rw" = lectura y escritura)
-            RandomAccessFile archivo = new RandomAccessFile(rutaArchivo, "rw");
-            
-            // 7. Convertir la partida completa a bytes
-            //    ¡Esto guarda AUTOMÁTICAMENTE todo: jugador, diario, maletín, escenarios!
-            byte[] bytesPartida = Convert.toBytes(partidaActual);
-            
-            // 8. Escribir PRIMERO el tamaño (cuántos bytes ocupa la partida)
-            archivo.writeInt(bytesPartida.length);
-            
-            // 9. Escribir los bytes de la partida
-            archivo.write(bytesPartida);
-            
-            // 10. Cerrar el archivo
-            archivo.close();
-            
-            System.out.println("Partida guardada exitosamente en: " + rutaArchivo);
-            return true; // ¡Éxito!
-            
-        } catch (Exception error) {
-            System.out.println("Error al guardar la partida: " + error.getMessage());
-            return false; // Falló
-        }
-    }
     
-    /**
-     * MÉTODO 2: CARGAR UNA PARTIDA DESDE UN SLOT
-     * Este método recupera TODO el estado guardado.
-     * Se llamará cuando el jugador seleccione "Cargar Partida" y elija un slot.
-     */
-    public Partida cargarPartida(int numeroSlot) {
-        // 1. Verificar que el slot sea válido (1, 2 o 3)
-        if (numeroSlot < 1 || numeroSlot > 3) {
-            System.out.println("Error: El número de slot debe ser 1, 2 o 3.");
-            return null;
-        }
-        
-        // 2. Crear el nombre del archivo a cargar
-        String rutaArchivo = CARPETA_GUARDADOS + PREFIJO_ARCHIVO + numeroSlot + EXTENSION;
-        
-        // 3. Verificar si el archivo existe
-        File archivo = new File(rutaArchivo);
-        if (!archivo.exists()) {
-            System.out.println("No hay partida guardada en el slot " + numeroSlot);
-            return null;
-        }
-        
-        try {
-            // 4. Abrir el archivo para lectura ("r" = solo lectura)
-            RandomAccessFile archivoAcceso = new RandomAccessFile(rutaArchivo, "r");
-            
-            // 5. Leer PRIMERO el tamaño (cuántos bytes debemos leer)
-            int tamañoDatos = archivoAcceso.readInt();
-            
-            // 6. Crear un array de bytes del tamaño correcto
-            byte[] datosPartida = new byte[tamañoDatos];
-            
-            // 7. Leer TODOS los bytes del archivo
-            archivoAcceso.readFully(datosPartida);
-            
-            // 8. Cerrar el archivo
-            archivoAcceso.close();
-            
-            // 9. Convertir los bytes de vuelta a un objeto Partida
-            //    ¡Esto recupera AUTOMÁTICAMENTE todo: jugador, diario, maletín, escenarios!
-            Partida partidaCargada = (Partida) Convert.toObject(datosPartida);
-            
-            System.out.println("Partida cargada exitosamente del slot " + numeroSlot);
-            
-            // 10. IMPORTANTE: Reparar las referencias después de cargar
-            repararReferenciasDespuesDeCargar(partidaCargada);
-            
-            return partidaCargada; // ¡Devolvemos la partida cargada!
-            
-        } catch (Exception error) {
-            System.out.println("Error al cargar la partida: " + error.getMessage());
-            return null; // Falló
-        }
-    }
-    
-    /**
-     * MÉTODO 3: REPARAR REFERENCIAS DESPUÉS DE CARGAR
-     * Cuando cargamos una partida, algunos objetos necesitan "reconectarse".
-     * Esto soluciona problemas comunes después de cargar.
-     */
-    private void repararReferenciasDespuesDeCargar(Partida partida) {
-        if (partida == null) return;
-        
-        // Obtener el jugador de la partida cargada
-        Jugador jugador = partida.getJugador();
-        
-        // Si el jugador tiene un escenario actual...
-        if (jugador.getEscenarioActual() != null) {
-            // Obtener el nombre de ese escenario
-            String nombreEscenarioActual = jugador.getEscenarioActual().getNombre();
-            
-            // Buscar ese escenario en la lista de escenarios de la partida
-            for (Escenario escenario : partida.getEscenarios()) {
-                if (escenario.getNombre().equals(nombreEscenarioActual)) {
-                    // ¡Encontrado! Actualizar la referencia
-                    jugador.setEscenarioActual(escenario);
-                    break; // Salir del bucle
-                }
-            }
-        }
-    }
-    
-    /**
-     * MÉTODO 4: VER SI HAY PARTIDA GUARDADA
-     * Para saber si un botón de "Cargar" debe estar activo o no.
-     */
-    public boolean existePartidaGuardada(int numeroSlot) {
-        if (numeroSlot < 1 || numeroSlot > 3) {
-            return false;
-        }
-        
-        String rutaArchivo = CARPETA_GUARDADOS + PREFIJO_ARCHIVO + numeroSlot + EXTENSION;
-        File archivo = new File(rutaArchivo);
-        
-        // Devuelve true si el archivo existe y no está vacío
-        return archivo.exists() && archivo.length() > 0;
-    }
-    
-    /**
-     * MÉTODO 5: OBTENER INFORMACIÓN PARA MOSTRAR
-     * Para poner texto descriptivo en los botones de "Cargar Partida".
-     */
-    public String obtenerInfoPartida(int numeroSlot) {
-        // Si no hay partida guardada
-        if (!existePartidaGuardada(numeroSlot)) {
-            return "Slot " + numeroSlot + ": Libre";
-        }
-        
-        try {
-            // Cargar la partida temporalmente para ver su información
-            Partida partida = cargarPartida(numeroSlot);
-            
-            if (partida == null) {
-                return "Slot " + numeroSlot + ": Error";
-            }
-            
-            Jugador jugador = partida.getJugador();
-            String nombreJugador = jugador.getNombre();
-            
-            // Si no tiene nombre, poner uno por defecto
-            if (nombreJugador == null || nombreJugador.isEmpty()) {
-                nombreJugador = "Jugador";
-            }
-            
-            // Contar objetos en el maletín
-            int cantidadObjetos = jugador.getMaletin().size();
-            
-            // Formatear la información
-            String informacion = "Slot " + numeroSlot + ": " + nombreJugador + 
-                               " - " + cantidadObjetos + " objetos";
-            
-            return informacion;
-            
-        } catch (Exception e) {
-            return "Slot " + numeroSlot + ": Error";
-        }
-    }
-    /**
- * MÉTODO 6: PREPARAR Y GUARDAR NUEVA PARTIDA
- * Se llama JUSTO DESPUÉS de crearNuevaPartida() y ANTES de empezar a jugar.
- * Guarda el estado inicial vacío de la partida.
- */
-public boolean prepararNuevaPartida(String idPartida, String nombreJugador) {
-    // 1. Crear la partida nueva (ya lo haces en NuevaPartida.java)
-    boolean creada = crearNuevaPartida(idPartida, nombreJugador);
-    
-    if (!creada) {
-        System.out.println("Error: No se pudo crear la nueva partida");
-        return false;
-    }
-    
-    // 2. Configurar estado inicial IMPORTANTE para tu juego
-    // Esto depende de cómo inicie tu juego:
-    
-    // Ejemplo 1: Establecer escenario inicial
-    if (partidaActual != null && partidaActual.getJugador() != null) {
-        // Buscar el escenario "Entrada" o el inicial
-        for (Escenario escenario : partidaActual.getEscenarios()) {
-            if (escenario.getNombre().equals("Entrada")) {
-                partidaActual.getJugador().setEscenarioActual(escenario);
-                break;
-            }
-        }
-    }
-    
-    // Ejemplo 2: Inicializar el diario con primera entrada
-    if (partidaActual != null && partidaActual.getJugador() != null) {
-        partidaActual.getJugador().getDiario().agregarDialogoImportante(
-            "Sistema", 
-            "Caso iniciado: " + java.time.LocalDate.now()
-        );
-    }
-    
-    // 3. Guardar el estado inicial
-    boolean guardado = guardarPartida();
-    
-    if (guardado) {
-        System.out.println("Nueva partida preparada y guardada: " + idPartida);
-    } else {
-        System.out.println("Error: Nueva partida creada pero no se pudo guardar");
-    }
-    
-    return guardado;
-}
-
 }
 
