@@ -1570,24 +1570,47 @@ public class Partida implements Serializable, Cloneable
         // Monólogo del detective para el final
 
         Dialogo m1 = new Dialogo("(No me lo puedo creer... Todo me lleva a él...)", "Detective", detective, true);
-        Dialogo m2 = new Dialogo("(La espada estaba en su oficina, donde solo él tiene acceso. Su esposa la mostró sin saberlo )", "Detective", detective, true);
-        Dialogo m3 = new Dialogo("(Las cámaras fallaron justo cuando no debían. El guardia no vio nada. Pero el vagabundo sí. Cuando el supuestamente no estaba en el museo)", "Detective", detective, true);
-        Dialogo m4 = new Dialogo("(CLARO! Los fondos malversados que descubrió víctima! Esa es la causa del asesinato.)", "Detective", detective, true);
-        Dialogo m5 = new Dialogo("(El jefe tenía acceso. Tenía el arma. Mintió sobre dónde estaba. Ya no tengo dudas.)", "Detective", detective, true);
-        Dialogo m6 = new Dialogo("(Es hora de terminar con esto.)", "Detective", detective, true);
+        Dialogo m1a = new Dialogo("(Los dos papeles... encajan perfectamente. Las fibras están rasgadas en el mismo ángulo. )", "Detective", detective, true);
+        Dialogo m2 = new Dialogo("Uno dice 'mortis', el otro 'me sequitur'... y la secretaria mencionó algo sobre 'umbra'.", "Detective", detective, true);
+        Dialogo m3 = new Dialogo("Umbra mortis me sequitur. ¿Era una contraseña? ¿Una advertencia? Vamos a probar suerte.", "Detective", detective, true);
+        Dialogo m4 = new Dialogo("*Tecleas la frase completa. La pantalla parpadea y se desbloquea.*", "Detective", detective, true);
+        Dialogo m5 = new Dialogo("(Bien. Veamos qué estabas investigando...)", "Detective", detective, true);
+
+
+        Dialogo m6 = new Dialogo("*Abres una carpeta llamada 'Contabilidad Interna'. Dentro hay decenas de archivos Excel y PDFs.*", "Narrador", nada, true);
+        Dialogo m7 = new Dialogo("(Registros de transferencias... pagos duplicados... contratos inflados. Todo meticulosamente organizado.)", "Detective", detective, true);
+        Dialogo m8 = new Dialogo("(Aquí hay una empresa llamada 'ArteNova S.A.'... sin dirección real, sin empleados registrados. Una fachada.)", "Detective", detective, true);
+
+        Dialogo m9 = new Dialogo("*Encuentras un documento titulado 'Análisis de flujo. Confidencial'.*", "Narrador", nada, true);
+        Dialogo m10 = new Dialogo("(El Económico había rastreado los desvíos. Hay gráficos, fechas, nombres... y uno se repite más que los demás.)", "Detective", detective, true);
+        Dialogo m11 = new Dialogo("(El director. Firmas, autorizaciones, correos reenviados. Todo hecho por él.)", "Detective", detective, true);
+
+        Dialogo m12 = new Dialogo("*Abres un archivo de texto con fecha reciente. Parece una nota personal.*", "Narrador", nada, true);
+        Dialogo m13 = new Dialogo("(“Si algo me pasa, no fue un accidente. Todo está aquí. No me van a callar.”)", "Detective", detective, true);
+
+        Dialogo m14 = new Dialogo("(No estaba involucrado... estaba tratando de exponerlo. Y lo pagó con su vida.)", "Detective", detective, true);
+        Dialogo m15 = new Dialogo("(Ahora todo encaja. El Económico descubrió la verdad. Y por eso lo asesinaron. Es hora de acabar con esto)", "Detective", detective, true);
 
 
         // Confrontación final con el dueño
 
-        Dialogo con1 = new Dialogo("¿Qué haces aquí? No tengo citas contigo. Estoy ocupado.", "Dueño", dueno, true);
-        Dialogo con2 = new Dialogo("No vine por cortesía. Vine porque ya no puedes seguir escondiéndote detrás de tu escritorio.", "Detective", detective, true);
-        Dialogo con3 = new Dialogo("¿Perdón?", "Dueño", dueno, true);
-        Dialogo con4 = new Dialogo("Encontramos la en la armadura. Y las cuentas... están podridas. Contratos falsos, transferencias a empresas fantasma. Todo apunta a ti.", "Detective", detective, true);
+        Dialogo con1 = new Dialogo("¿Qué haces aquí? No tengo tiempo para tus teorías.", "Dueño", dueno, true);
+        Dialogo con2 = new Dialogo("No vine a teorizar. Vine a mostrarte lo que encontré en la computadora del Económico.", "Detective", detective, true);
+        Dialogo con3 = new Dialogo("¿Perdón? ¿Qué computadora?", "Dueño", dueno, true);
+        Dialogo con4 = new Dialogo("La que tenía protegida con una contraseña en latín. Dentro había documentos contables, transferencias a empresas fantasma como " +
+                "'ArteNova S.A.', y todas firmadas por ti.", "Detective", detective, true);
         Dialogo con5 = new Dialogo("*El jefe se queda en silencio unos segundos. Luego se levanta lentamente.*", "Narrador", nada, true);
-        Dialogo con6 = new Dialogo("No tienes idea de lo que estás diciendo. ¿Sabes cuántas vidas dependen de este museo? ¿De mí?", "Dueño", dueno, true);
-        Dialogo con7 = new Dialogo("¿Y eso justifica un asesinato? ¿Desviar fondos públicos? ¿Mentirle a todos?", "Detective", detective, true);
-        Dialogo con8 = new Dialogo("¡No lo maté! ¡Yo no...! Solo quería ganar tiempo. Tapar el hueco. Él iba a hablar, y todo se iba a venir abajo.", "Dueño", dueno, true);
-        Dialogo con9 = new Dialogo("Entonces habla. Dime quién más está metido en esto. Tal vez aún puedas salvarte.", "Detective", detective, true);
+        Dialogo con6 = new Dialogo("También encontré un correo que él nunca envió. Decía: 'Si algo me pasa, no fue un accidente. Todo está aquí'.", "Detective", detective, true);
+        Dialogo con7 = new Dialogo("¿Y eso qué prueba? ¿Un correo sin enviar?", "Dueño", dueno, true);
+        Dialogo con8 = new Dialogo("Prueba que sabía lo que hacías. Y que tenía miedo. Como tú ahora..", "Detective", detective, true);
+        Dialogo con9 = new Dialogo("Además, encontramos la espada escondida en la armadura. Tiene tus huellas. Y rastros de sangre.", "Detective", detective, true);
+        Dialogo con9a = new Dialogo("¿Vas a seguir negándolo? Porque todo esto ya no es una sospecha. Es un caso cerrado.", "Detective", detective, true);
+        Dialogo con9b = new Dialogo("No puedes seguir escondiéndote detrás de tu escritorio.", "Detective", detective, true);
+        Dialogo con9c = new Dialogo("No tienes idea de lo que estás diciendo. ¿Sabes cuántas vidas dependen de este museo? ¿De mí?", "Dueño", dueno, true);
+        Dialogo con9d = new Dialogo("¿Y eso justifica un asesinato? ¿Desviar fondos públicos? ¿Mentirle a todos?", "DetectiveFinal", detective, true);
+        Dialogo con9e = new Dialogo("¡No lo maté! ¡Yo no...! Solo quería ganar tiempo. Tapar el hueco. Él iba a hablar, y todo se iba a venir abajo.", "Dueño", dueno, true);
+        Dialogo con9f = new Dialogo("Entonces habla. Dime quién más está metido en esto. Tal vez aún puedas salvarte.", "Detective", detective, true);
+
 
         // El jefe se altera
         Dialogo con10 = new Dialogo("*El jefe comienza a respirar con dificultad. Se lleva la mano al cajón.*", "Narrador", nada, true);
@@ -1636,6 +1659,16 @@ public class Partida implements Serializable, Cloneable
         BinaryTreeNode<Dialogo> node149 = new BinaryTreeNode<>(m4);
         BinaryTreeNode<Dialogo> node150 = new BinaryTreeNode<>(m5);
         BinaryTreeNode<Dialogo> node151 = new BinaryTreeNode<>(m6);
+        BinaryTreeNode<Dialogo> node152 = new BinaryTreeNode<>(m7);
+        BinaryTreeNode<Dialogo> node152a = new BinaryTreeNode<>(m8);
+        BinaryTreeNode<Dialogo> node152b = new BinaryTreeNode<>(m9);
+        BinaryTreeNode<Dialogo> node152c = new BinaryTreeNode<>(m10);
+        BinaryTreeNode<Dialogo> node152d = new BinaryTreeNode<>(m11);
+        BinaryTreeNode<Dialogo> node152e = new BinaryTreeNode<>(m12);
+        BinaryTreeNode<Dialogo> node152f = new BinaryTreeNode<>(m13);
+        BinaryTreeNode<Dialogo> node152g = new BinaryTreeNode<>(m14);
+        BinaryTreeNode<Dialogo> node152h = new BinaryTreeNode<>(m15);
+
 
         BinaryTreeNode<Dialogo> node174 = new BinaryTreeNode<>(con1);
         BinaryTreeNode<Dialogo> node175 = new BinaryTreeNode<>(con2);
@@ -1646,6 +1679,12 @@ public class Partida implements Serializable, Cloneable
         BinaryTreeNode<Dialogo> node180 = new BinaryTreeNode<>(con7);
         BinaryTreeNode<Dialogo> node181 = new BinaryTreeNode<>(con8);
         BinaryTreeNode<Dialogo> node182 = new BinaryTreeNode<>(con9);
+        BinaryTreeNode<Dialogo> node182a = new BinaryTreeNode<>(con9a);
+        BinaryTreeNode<Dialogo> node182b = new BinaryTreeNode<>(con9b);
+        BinaryTreeNode<Dialogo> node182c = new BinaryTreeNode<>(con9c);
+        BinaryTreeNode<Dialogo> node182d = new BinaryTreeNode<>(con9d);
+        BinaryTreeNode<Dialogo> node182e = new BinaryTreeNode<>(con9e);
+        BinaryTreeNode<Dialogo> node182f = new BinaryTreeNode<>(con9f);
         BinaryTreeNode<Dialogo> node183 = new BinaryTreeNode<>(con10);
         BinaryTreeNode<Dialogo> node184 = new BinaryTreeNode<>(con11);
         BinaryTreeNode<Dialogo> node185 = new BinaryTreeNode<>(con12);
@@ -1678,8 +1717,17 @@ public class Partida implements Serializable, Cloneable
         auxTree11.insertNode(node149, node148);
         auxTree11.insertNode(node150, node149);
         auxTree11.insertNode(node151, node150);
+        auxTree11.insertNode(node152, node151);
+        auxTree11.insertNode(node152a, node152);
+        auxTree11.insertNode(node152b, node152a);
+        auxTree11.insertNode(node152c, node152b);
+        auxTree11.insertNode(node152d, node152c);
+        auxTree11.insertNode(node152e, node152d);
+        auxTree11.insertNode(node152f, node152e);
+        auxTree11.insertNode(node152g, node152f);
+        auxTree11.insertNode(node152h, node152g);
 
-        auxTree11.insertNode(node174, node151);
+        auxTree11.insertNode(node174, node152h);
         auxTree11.insertNode(node175, node174);
         auxTree11.insertNode(node176, node175);
         auxTree11.insertNode(node177, node176);
@@ -1688,7 +1736,13 @@ public class Partida implements Serializable, Cloneable
         auxTree11.insertNode(node180, node179);
         auxTree11.insertNode(node181, node180);
         auxTree11.insertNode(node182, node181);
-        auxTree11.insertNode(node183, node182);
+        auxTree11.insertNode(node182a, node182);
+        auxTree11.insertNode(node182b, node182a);
+        auxTree11.insertNode(node182c, node182b);
+        auxTree11.insertNode(node182d, node182c);
+        auxTree11.insertNode(node182e, node182d);
+        auxTree11.insertNode(node182f, node182e);
+        auxTree11.insertNode(node183, node182f);
         auxTree11.insertNode(node184, node183);
         auxTree11.insertNode(node185, node184);
         auxTree11.insertNode(node186, node185);
