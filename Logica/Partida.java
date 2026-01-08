@@ -24,13 +24,13 @@ public class Partida implements Serializable, Cloneable
     private Jugador jugador;
     private Eventos eventos;
     private ArrayList<ArrayList<Dialogo>> dialogosCapitan;
+    private boolean dialogosInicializados = false;
 
     public Partida() {
         // Para darle un valor al ID sera la partida que escoja el usuario.
         // O sea que cuando toque Nueva Partida 1, ese 1 sera el ID.
         // Modificar cuando se implemente.
         try {
-
             this.idPartida = "";
             this.fechaInicio = LocalDate.now();
             this.estado = "";
@@ -43,12 +43,16 @@ public class Partida implements Serializable, Cloneable
             addEscenario();
             crearDialogosActo1();
             crearDialogosCapitan();
+
+
         } catch (Exception e) {
             System.out.println("ERROR en constructor de Partida: " + e.getMessage());
             e.printStackTrace();
             throw e;
         }
     }
+
+
 
 
     @Override
@@ -64,8 +68,16 @@ public class Partida implements Serializable, Cloneable
             ObjectInputStream ois = new ObjectInputStream(bais);
             copia = (Partida) ois.readObject();
 
+
+            for (Escenario escenario : copia.getEscenariosMundo()) {
+                if (escenario != null && escenario.getArbolDial() == null) {
+                    escenario.setArbolDial(new GeneralTree<>());
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
+            copia = new Partida();
         }
 
         return copia;

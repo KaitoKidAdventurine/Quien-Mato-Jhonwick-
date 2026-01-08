@@ -33,19 +33,18 @@ public class Jugador implements Serializable, Cloneable
     // Razon por la que se usa el patron Clone: Se necesita poder hacer que el usaurio mientras juegue
     // pueda decidir si guardar o no. Por lo que CLone le permitira esto a la perfeccion porque como son
     // clones no se modificaran entre ellos cuando se desee mantener la inforamcion antes de guardar.
+
     @Override
-    public Jugador clone()
-    {
+    public Jugador clone() {
         Jugador copia = null;
+
         try {
             // Ver el codigo como una maquina de creacion de objetos
 
             // Primero se guarda el objeto en bytes ( O sea que se consigue el plano del objeto)
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
             // Despues se crea la maquina de creacion de objeto
             ObjectOutputStream oos = new ObjectOutputStream(baos);
-
             // Se le manda la informacion a la maquina o sea para que la guarde en un plano aparte
             oos.writeObject(this);
             oos.close();
@@ -54,13 +53,13 @@ public class Jugador implements Serializable, Cloneable
             ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
             // Clonamos la informacion ( se le manda a la maquina )
             ObjectInputStream ois = new ObjectInputStream(bais);
-
             // La maquina saca el clon
-            copia =  (Jugador) ois.readObject();
+            copia = (Jugador) ois.readObject();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return copia;
     }
 

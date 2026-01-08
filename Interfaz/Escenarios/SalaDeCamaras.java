@@ -71,6 +71,7 @@ public class SalaDeCamaras extends ModeloEscenario {
             }
         };
         initComponents();
+        verificarEstadoDialogos();
         timer = new Timer();
         tarea = new TimerTask() {
             @Override
@@ -355,16 +356,33 @@ public class SalaDeCamaras extends ModeloEscenario {
     }
 
     public void ponerDialogo() {
-        if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(1).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(1).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(1).getNodoDialActual()))) {
-            if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(1).getNodoDialActual()==null)){
-                Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(1).getDialogoActual();
-                if(!actual.getOpciones().isEmpty()){
+        Escenario escenario = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(1);
+
+        // VERIFICAR SI YA SE COMPLETÓ
+        if (escenario.isDialogoCompletado()) {
+            // Mostrar directamente los botones finales
+            cajaTexto.removeAll();
+            revisarCamaras.setVisible(true);
+            Juego.getInstance().getPartidaActual().getEventos().setSeguridadYa(true);
+            Juego.getInstance().getPartidaActual().getEventos().setPuertaCerrada(true);
+            seguridad.setVisible(true);
+            getContentPane().revalidate();
+            getContentPane().repaint();
+            return;
+        }
+
+        // CÓDIGO NORMAL (igual que antes)
+        if (escenario.getNodoDialActual() == null || !(escenario.getArbolDial().nodeIsLeaf(escenario.getNodoDialActual()))) {
+            if (escenario.getNodoDialActual() != null) {
+                Dialogo actual = escenario.getDialogoActual();
+                if (actual != null && !actual.getOpciones().isEmpty()) {
                     OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
-                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setBounds((int) (tamPant.width * 0.28), (int) (tamPant.getHeight() * 0.37), (int) (tamPant.width * 0.48), (int) (tamPant.getHeight() * 0.5));
                     oD.setVisible(true);
                 }
             }
-            Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(1).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
+
+            Dialogo aux = escenario.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
@@ -373,21 +391,43 @@ public class SalaDeCamaras extends ModeloEscenario {
                 }
             });
 
-            if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
+            if (UnionInterfaces.getInstance().getOpcionDialogo() != 1) {
                 UnionInterfaces.getInstance().setOpcionDialogo(1);
+            }
 
             cajaTexto.removeAll();
             cajaTexto.add(cT);
-        }else {
+
+            // VERIFICAR SI ACABAMOS DE COMPLETAR EL DIÁLOGO
+            escenario.verificarSiCompletado();
+        } else {
+            // MARCAR COMO COMPLETADO
+            escenario.setDialogoCompletado(true);
             cajaTexto.removeAll();
             revisarCamaras.setVisible(true);
             Juego.getInstance().getPartidaActual().getEventos().setSeguridadYa(true);
-            //Juego.getInstance().getPartidaActual().getEventos().cambiarARonda1();
             Juego.getInstance().getPartidaActual().getEventos().setPuertaCerrada(true);
             seguridad.setVisible(true);
         }
         getContentPane().revalidate();
         getContentPane().repaint();
+    }
+
+    private void verificarEstadoDialogos() {
+        Partida partida = Juego.getInstance().getPartidaActual();
+        if (partida != null) {
+            System.out.println("=== DIAGNÓSTICO DE DIÁLOGOS ===");
+            System.out.println("Número de escenarios mundo: " + partida.getEscenariosMundo().size());
+
+            for (int i = 0; i < Math.min(partida.getEscenariosMundo().size(), 5); i++) {
+                Escenario esc = partida.getEscenariosMundo().get(i);
+                System.out.println("Escenario " + i + " (" + esc.getNombre() + "):");
+                System.out.println("  - Árbol: " + (esc.getArbolDial() != null ? "Presente" : "NULL"));
+                System.out.println("  - Raíz: " + (esc.getArbolDial() != null && esc.getArbolDial().getRoot() != null ? "Presente" : "NULL"));
+                System.out.println("  - Nodo actual: " + esc.getNodoDialActual());
+            }
+            System.out.println("===============================");
+        }
     }
 
     private void seguridadMouseClicked(MouseEvent evt) {
