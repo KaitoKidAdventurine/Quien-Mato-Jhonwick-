@@ -19,6 +19,7 @@ public class Escenario implements Serializable {
     private BinaryTreeNode<Dialogo> nodoDialActual;
     private int posList;
     private boolean dialogoCompletado = false;
+    private String progresoDialogo = "";
 
     public Escenario(String nombre, String descripcion, boolean investigado) {
         this.nombre = nombre;
@@ -68,16 +69,23 @@ public class Escenario implements Serializable {
         this.nodoDialActual = nodoDialActual;
     }
 
+
     public Dialogo getDialogoSiguiente(int opcionElegida) {
+        // GUARDAR ANTES DE MOVERSE
+        if (nodoDialActual != null) {
+            progresoDialogo = nodoDialActual.getInfo().getTexto();
+        }
+
         int cantOpciones;
 
         if (nodoDialActual != null && !(arbolDial.nodeIsLeaf(nodoDialActual))) {
             cantOpciones = arbolDial.nodeDegree(nodoDialActual);
             nodoDialActual = nodoDialActual.getLeft();
 
+
             // opcionElegida también es representado como la cantidad de llamadas getRight() para hallar el diálogo que debe mostrarse.
             if (opcionElegida >= 2 && opcionElegida > cantOpciones) {
-                throw new IllegalArgumentException("La opción (pregunta elegida) sobrepsasa la cantidad de opciones disponibles.");
+                throw new IllegalArgumentException("La opción (pregunta elegida) sobrepsasa la cantidad de opciones disponibles (posibles dialogos a mostrar).");
             }
 
             /*
@@ -94,12 +102,37 @@ public class Escenario implements Serializable {
         }
         else if (nodoDialActual == null) {
             nodoDialActual = (BinaryTreeNode<Dialogo>)arbolDial.getRoot();
+            progresoDialogo = nodoDialActual.getInfo().getTexto();
         }
 
+        // MARCAR SI SE COMPLETÓ
+        if (arbolDial.nodeIsLeaf(nodoDialActual)) {
+            dialogoCompletado = true;
+        }
         // Si nodoDialActual no es null y es hoja, no se hace nada - se queda en el mismo diálogo
         return nodoDialActual.getInfo();
     }
 
+    public void restaurarDialogo() {
+        if (dialogoCompletado) {
+            nodoDialActual = null;  // Si ya se completó, no hay diálogo activo
+        } else if (progresoDialogo != null && !progresoDialogo.isEmpty()) {
+            // Buscar el último diálogo visto
+            nodoDialActual = buscarNodo(progresoDialogo);
+            if (nodoDialActual == null) {
+                // Si no se encuentra, empezar desde el principio
+                nodoDialActual = (BinaryTreeNode<Dialogo>)arbolDial.getRoot();
+            }
+        }
+    }
+
+    public String getProgresoDialogo() {
+        return progresoDialogo;
+    }
+
+    public void setProgresoDialogo(String progresoDialogo) {
+        this.progresoDialogo = progresoDialogo;
+    }
 
     public boolean isDialogoCompletado() {
         return dialogoCompletado;
@@ -108,7 +141,6 @@ public class Escenario implements Serializable {
     public void setDialogoCompletado(boolean completado) {
         this.dialogoCompletado = completado;
     }
-
 
     public void verificarSiCompletado() {
         if (nodoDialActual != null && arbolDial != null) {

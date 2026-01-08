@@ -68,19 +68,25 @@ public class Partida implements Serializable, Cloneable
             ObjectInputStream ois = new ObjectInputStream(bais);
             copia = (Partida) ois.readObject();
 
-
-            for (Escenario escenario : copia.getEscenariosMundo()) {
-                if (escenario != null && escenario.getArbolDial() == null) {
-                    escenario.setArbolDial(new GeneralTree<>());
-                }
-            }
+            copia.restaurarTodosLosDialogos();
 
         } catch (Exception e) {
             e.printStackTrace();
-            copia = new Partida();
         }
 
         return copia;
+    }
+
+    // AÑADE ESTE MÉTODO NUEVO en Partida.java:
+    public void restaurarTodosLosDialogos() {
+        // Reconstruir estructura de árboles
+        crearDialogosActo1();
+        crearDialogosCapitan();
+
+        // Restaurar estado de cada escenario
+        for (Escenario escenario : escenariosMundo) {
+            escenario.restaurarDialogo();
+        }
     }
 
 
