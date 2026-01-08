@@ -432,6 +432,8 @@ public class Juego {
         ObjetoEscenario obPeriodico = new ObjetoEscenario("Periodico", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (394-100)/1152f, 831f/896f, (500-394-20)/1152f, (879-831)/896f, false, "");
         ObjetoEscenario obEscoba = new ObjetoEscenario("Escoba", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (970-250)/1152f, 647f/896f, (1022-970)/1152f, (744-272)*0.25f/896f, false, "");
         ObjetoEscenario obVasijaRota = new ObjetoEscenario("VasijaRota", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (937-238)/1152f, 778f/896f, (994-937)/1152f, (834-778)/896f, false, "");
+        ObjetoEscenario obLibros = new ObjetoEscenario("Libros", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (842-215)/1152f, 699f/896f, (900-842)/1152f, (730-699)/896f, true, "Contiene información confidencial.");
+        ObjetoEscenario obGuante = new ObjetoEscenario("Guante", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (355-95)/1152f, 875f/896f, (408-355)/1152f, (889-875+5)/896f, false, "");
 
         storageRoom.agregarObjetoCola(obLampara);
         storageRoom.agregarObjetoCola(obSpray);
@@ -448,6 +450,8 @@ public class Juego {
         storageRoom.agregarObjetoCola(obPeriodico);
         storageRoom.agregarObjetoCola(obEscoba);
         storageRoom.agregarObjetoCola(obVasijaRota);
+        storageRoom.agregarObjetoCola(obLibros);
+        storageRoom.agregarObjetoCola(obGuante);
 
         miniJuegos.add(storageRoom);
     }
