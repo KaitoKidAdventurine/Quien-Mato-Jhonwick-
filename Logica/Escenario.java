@@ -18,6 +18,7 @@ public class Escenario implements Serializable {
     private GeneralTree<Dialogo> arbolDial;
     private BinaryTreeNode<Dialogo> nodoDialActual;
     private int posList;
+    private boolean dialogoCompletado = false;
 
     public Escenario(String nombre, String descripcion, boolean investigado) {
         this.nombre = nombre;
@@ -63,6 +64,10 @@ public class Escenario implements Serializable {
     public Dialogo getDialogoActual() { return nodoDialActual.getInfo(); }
     public BinaryTreeNode<Dialogo> getNodoDialActual() { return nodoDialActual; }
 
+    public void setNodoDialActual(BinaryTreeNode<Dialogo> nodoDialActual) {
+        this.nodoDialActual = nodoDialActual;
+    }
+
     public Dialogo getDialogoSiguiente(int opcionElegida) {
         int cantOpciones;
 
@@ -70,19 +75,19 @@ public class Escenario implements Serializable {
             cantOpciones = arbolDial.nodeDegree(nodoDialActual);
             nodoDialActual = nodoDialActual.getLeft();
 
+            // opcionElegida también es representado como la cantidad de llamadas getRight() para hallar el diálogo que debe mostrarse.
             if (opcionElegida >= 2 && opcionElegida > cantOpciones) {
-                throw new IllegalArgumentException("La opción (pregunta elegida) sobrepsasa la cantidad de opciones disponibles (posibles dialogos a mostrar).");
-            }
-
-            //opcionElegida también es representado como la cantidad de llamadas getRight() para hallar el diálogoo que debe mostrarse.
-            for ( ; opcionElegida >= 2; opcionElegida--) {
-                nodoDialActual = nodoDialActual.getRight();
+                throw new IllegalArgumentException("La opción (pregunta elegida) sobrepsasa la cantidad de opciones disponibles.");
             }
 
             /*
              * La opcion elegida intenta escoger un diálogo que, por ahora, no puede mostrarse. Rebobinar al último diálogo.
              * Es posible mostrar un diálogo o mensaje de error antes de volver a mostrar el último diálogo para permitir otra oportunidad.
              */
+            for ( ; opcionElegida >= 2; opcionElegida--) {
+                nodoDialActual = nodoDialActual.getRight();
+            }
+
             if (!(nodoDialActual.getInfo().isRevelable())) {
                 nodoDialActual = arbolDial.getFather(nodoDialActual);
             }
@@ -91,8 +96,26 @@ public class Escenario implements Serializable {
             nodoDialActual = (BinaryTreeNode<Dialogo>)arbolDial.getRoot();
         }
 
+        // Si nodoDialActual no es null y es hoja, no se hace nada - se queda en el mismo diálogo
         return nodoDialActual.getInfo();
     }
+
+
+    public boolean isDialogoCompletado() {
+        return dialogoCompletado;
+    }
+
+    public void setDialogoCompletado(boolean completado) {
+        this.dialogoCompletado = completado;
+    }
+
+
+    public void verificarSiCompletado() {
+        if (nodoDialActual != null && arbolDial != null) {
+            dialogoCompletado = arbolDial.nodeIsLeaf(nodoDialActual);
+        }
+    }
+
 
     public Dialogo getAnteriorDialogo() {
         if (arbolDial.getFather(nodoDialActual) == null) {
@@ -121,3 +144,4 @@ public class Escenario implements Serializable {
         return nodoDialActual.getInfo().getOpciones();
     }
 }
+
