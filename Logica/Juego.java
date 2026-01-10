@@ -1,5 +1,7 @@
 package Logica;
 
+import DatosAuxiliaresLogica.Informacion;
+
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
@@ -11,7 +13,9 @@ public class Juego {
     private LinkedList<Partida> partidas;
     private Partida partidaActual;
     private ArrayList<MiniJuego> miniJuegos;
-
+    /*
+    private LinkedList <Informacion> infoPersinajesActo1;
+    */
 
 
 
@@ -25,7 +29,10 @@ public class Juego {
         hacerMinijuegos();
     }
 
-
+    /*
+    public LinkedList<Informacion> getInfoPersinajesActo1() {
+        return infoPersinajesActo1;
+    }*/
 
     public static Juego getInstance() {
         if (instance == null) {

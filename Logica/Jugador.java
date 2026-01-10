@@ -18,10 +18,6 @@ public class Jugador implements Serializable, Cloneable
     public Diario diario;
     public LinkedList<ObjetoEscenario> maletin;
     public Escenario escenarioActual;
-    /* public int cont;
-    public LinkedList<String> infoImportante;
-    */
-
 
     public Jugador()
     {
@@ -31,9 +27,7 @@ public class Jugador implements Serializable, Cloneable
         this.telefono = new Telefono();
         this.diario = new Diario();
         this.maletin = new LinkedList<ObjetoEscenario>();
-        /*this.cont = 0;
-        this.infoImportante = new LinkedList<>();
-        */
+
     }
 
 
@@ -115,18 +109,6 @@ public class Jugador implements Serializable, Cloneable
     public void setEscenarioActual(Escenario escenarioActual) {
         this.escenarioActual = escenarioActual;
     }
-
-    /*
-    public int getCont() {return cont;}
-
-    public void setCont(int cont) {this.cont = cont;}
-
-    public LinkedList<String> getInfoImportante() {return infoImportante;}
-
-    public void setInfoImportante(LinkedList<String> infoImportante) {
-        this.infoImportante = infoImportante;
-    }
-     */
 
 
     public void usarObjeto(String nombre){

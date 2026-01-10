@@ -56,8 +56,6 @@ public class Partida implements Serializable, Cloneable
     }
 
 
-
-
     @Override
     public Partida clone() {
         Partida copia = null;
@@ -160,13 +158,13 @@ public class Partida implements Serializable, Cloneable
     public void addEscenario() {
 
         Escenario acto1Parte1 = new Escenario("Acto 1-Secretaria", "Primera interaccion con la secretaria", true);
-        Escenario acto1Parte2= new Escenario("Acto 1-Seguridad", "Primera interaccion con el de seguridad", true);
-        Escenario acto1Parte3= new Escenario("Acto 1-Conserje", "Primera interaccion con el conserje", true);
-        Escenario acto1Parte4= new Escenario("Acto 1-Dueño", "Primera interaccion con el dueño", true);
-        Escenario acto1Parte5= new Escenario("Acto 1-Guias, ", "Primera interaccion con los guias", true);
-        Escenario acto1Parte6= new Escenario("Acto 1-Vagabundo", "Primera interaccion con el vagabundo", true);
-        Escenario acto1Parte7= new Escenario("Acto 1-Esposa", "Primera interaccion con la esposa", true);
-        Escenario acto1Parte8= new Escenario("Acto 1-Policia", "Primera interaccion policia", true);
+        Escenario acto1Parte2 = new Escenario("Acto 1-Seguridad", "Primera interaccion con el de seguridad", true);
+        Escenario acto1Parte3 = new Escenario("Acto 1-Conserje", "Primera interaccion con el conserje", true);
+        Escenario acto1Parte4 = new Escenario("Acto 1-Dueño", "Primera interaccion con el dueño", true);
+        Escenario acto1Parte5 = new Escenario("Acto 1-Guias, ", "Primera interaccion con los guias", true);
+        Escenario acto1Parte6 = new Escenario("Acto 1-Vagabundo", "Primera interaccion con el vagabundo", true);
+        Escenario acto1Parte7 = new Escenario("Acto 1-Esposa", "Primera interaccion con la esposa", true);
+        Escenario acto1Parte8 = new Escenario("Acto 1-Policia", "Primera interaccion policia", true);
         Escenario acto1Parte9 = new Escenario("Acto 1-Guia 2", "Interaccion con segundo guia ", true);
         Escenario acto1Parte10 = new Escenario("Acto 1-Encontrar espada", "Encontrar espada", true);
         Escenario acto1Parte11 = new Escenario("Fin", "Fin", true);
@@ -197,23 +195,22 @@ public class Partida implements Serializable, Cloneable
         this.escenariosMundo = escenarios;
     }
 
-    public void agregarEscenariosAutomaticamente()
-    {
-        Escenario almacen = new Escenario("Almacen", "Lugar Donde se almacen obras de arte" , false);
-        Escenario bannoPlantaBaja = new Escenario("Banno Planta Baja", "Banno de la Planta baja" , false);
-        Escenario bannoPlantaAlta = new Escenario("Banno Planta Alta ", "Banno de la Planta alta" , false);
-        Escenario callejon = new Escenario("Callejon", "Callejon de fuera del Museo" , false);
-        Escenario entrada = new Escenario("Entrada", "Entrada Principal del Museo" , false);
-        Escenario oficinaVictima = new Escenario("Oficina de la Victima", "Lugar donde fue encontrado el cuerpo" , false);
-        Escenario oficinaDelJefe = new Escenario("Oficina del Jefe", "Lugar Donde trabaja el jefe de la victima" , false);
-        Escenario alaEste = new Escenario("Ala este", "Ala este del museo" , false);
-        Escenario alaNorte = new Escenario("Ala norte", "Ala norte del museo" , false);
-        Escenario alaSur = new Escenario("Ala Sur", "Ala norte del museo" , false);
-        Escenario oficinasPlantaBaja = new Escenario("Oficinas Planta Baja", "Lugar Donde se almacen obras de arte" , false);
-        Escenario recepcion = new Escenario("Recepcion", "Recepcion del museo" , false);
-        Escenario salaPlantaAlta = new Escenario("Sala Planta Alta", "Sala de la Planta Alta del museo" , false);
-        Escenario exposicionDeAntiguedades= new Escenario("Exposicion de Antiguedades", "Lugar donde se exponen antiguedades del museo" , false);
-        Escenario salaDeVigilancia = new Escenario("Sala de Vigilancia", "Lugar donde se encuentran las grabaciones del museo" , false);
+    public void agregarEscenariosAutomaticamente() {
+        Escenario almacen = new Escenario("Almacen", "Lugar Donde se almacen obras de arte", false);
+        Escenario bannoPlantaBaja = new Escenario("Banno Planta Baja", "Banno de la Planta baja", false);
+        Escenario bannoPlantaAlta = new Escenario("Banno Planta Alta ", "Banno de la Planta alta", false);
+        Escenario callejon = new Escenario("Callejon", "Callejon de fuera del Museo", false);
+        Escenario entrada = new Escenario("Entrada", "Entrada Principal del Museo", false);
+        Escenario oficinaVictima = new Escenario("Oficina de la Victima", "Lugar donde fue encontrado el cuerpo", false);
+        Escenario oficinaDelJefe = new Escenario("Oficina del Jefe", "Lugar Donde trabaja el jefe de la victima", false);
+        Escenario alaEste = new Escenario("Ala este", "Ala este del museo", false);
+        Escenario alaNorte = new Escenario("Ala norte", "Ala norte del museo", false);
+        Escenario alaSur = new Escenario("Ala Sur", "Ala norte del museo", false);
+        Escenario oficinasPlantaBaja = new Escenario("Oficinas Planta Baja", "Lugar Donde se almacen obras de arte", false);
+        Escenario recepcion = new Escenario("Recepcion", "Recepcion del museo", false);
+        Escenario salaPlantaAlta = new Escenario("Sala Planta Alta", "Sala de la Planta Alta del museo", false);
+        Escenario exposicionDeAntiguedades = new Escenario("Exposicion de Antiguedades", "Lugar donde se exponen antiguedades del museo", false);
+        Escenario salaDeVigilancia = new Escenario("Sala de Vigilancia", "Lugar donde se encuentran las grabaciones del museo", false);
 
         escenarios.add(almacen);
         escenarios.add(bannoPlantaBaja);
@@ -245,7 +242,7 @@ public class Partida implements Serializable, Cloneable
         ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
         ImageIcon nada = new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png");
 
-        ArrayList<Dialogo> dialogo1= new ArrayList<>();
+        ArrayList<Dialogo> dialogo1 = new ArrayList<>();
         Dialogo d1 = new Dialogo("- Ring - Ring - Ring -.", "", nada, true);
         Dialogo d2 = new Dialogo("¿Quién será a esta hora?", "Detective", detective, true);
         Dialogo d3 = new Dialogo("Oigo", "Detective", detective, true);
@@ -271,13 +268,12 @@ public class Partida implements Serializable, Cloneable
                 " la música que escucho, y principalmente para llamarte a ti en caso" +
                 " de quedarme estancado, de igual forma también puedes manipular el aspecto" +
                 " del mismo, se encuentra como segundo de izquierda a derecha.", "Detective", detective, true);
-        d15.agregar("Capitan","El teléfono es para cambiar \n la música, el fondo del mismo y para \n llamar al capitán cuando me encuentre \n perdido o con dudas de la investigación");
+        d15.agregar("Capitan", "El teléfono es para cambiar \n la música, el fondo del mismo y para \n llamar al capitán cuando me encuentre \n perdido o con dudas de la investigación");
 
 
         Dialogo d16 = new Dialogo("No está mal. ¿Qué harías si te encuentras un objeto que te pueda ayudar a resolver el crimen?", "Capitan", nada, true);
         Dialogo d17 = new Dialogo("Entonces lo pondría en mi maleta para usarlo en el futuro, con la cual puedo verificarlo cuando quiera y se encuentra como el tercer objeto de izquierda a derecha en la esquina derecha de la pantalla.", "Detective", detective, true);
         d17.agregar("Capitan", "La maleta sirve para guardar \n objetos del crimen");
-
 
 
         Dialogo d18 = new Dialogo("Veo que no has perdido el toque. Por último, explícame el último objeto de la interfaz.", "Capitan", nada, true);
@@ -571,7 +567,7 @@ public class Partida implements Serializable, Cloneable
                 "algo para él...", "Secretaria", secretaria, true);
         Dialogo d9 = new Dialogo("Decía: 'Umbra y algunas palabras más'. No lo terminé de leer. Pero esa palabra estaba al principio.",
                 "Secretaria", secretaria, true);
-        d9.agregar("Victima", "La contraseña se encuentra \nescrita en Latín. Por lo que dijo \n la secretaria es algo de:'Umbra' ");
+        d9.agregar("Victima", "La contraseña se encuentra \n escrita en Latín. Por lo que dijo \n la secretaria es algo de:'Umbra' ");
 
 
         Dialogo d9a = new Dialogo("Vale, como prefiera usted. Aquí estoy para dialogar, y no solo de este tema... usted entiende.",
@@ -693,12 +689,12 @@ public class Partida implements Serializable, Cloneable
         Dialogo respSeg3b = new Dialogo("De todos modos, siempre reviso los registros al final del turno. No me gusta dejar cabos sueltos.", "Seguridad", seguridad, true);
 
         // Camino principal: cámaras específicas
-        Dialogo c9 = new Dialogo("La del callejón trasero se cayó entre la 1 y las 3 de la mañana. Pensé que era un corte de señal temporal.", "Seguridad", seguridad, true);
+        Dialogo c9 = new Dialogo("La del callejón trasero se cayó entre las 9:00 y las 10:00 de la noche. Pensé que era un corte de señal temporal.", "Seguridad", seguridad, true);
         Dialogo c10 = new Dialogo("Y la de la sala donde encontraron al economista... se congeló por unos segundos justo a la hora estimada del deceso.", "Seguridad", seguridad, true);
         Dialogo c11 = new Dialogo("No hay grabación de ese momento. Solo un salto en el tiempo. Como si alguien hubiese querido borrar algo.", "Seguridad", seguridad, true);
 
 
-        c11.agregar("Guardia", "La cámara del callejón dejó de funcionar \n entre la 1:00 y las 3:00 a.m.");
+        c11.agregar("Guardia", "La cámara del callejón dejó de funcionar \n entre las 9:00 y las 10:00 p.m.");
         c11.agregar("Guardia", "La cámara de la escena del crimen se \n congeló brevemente durante el \n momento del asesinato.");
 
         Dialogo d12 = new Dialogo("¿Y no le pareció sospechoso?", "Detective", detective, true);
@@ -915,9 +911,9 @@ public class Partida implements Serializable, Cloneable
         // Dueño en la oficina
         Dialogo j1 = new Dialogo("Hola, señor... Disculpe no pude evitar distraerme con todos esos trofeos. Necesito hacerle unas preguntas," +
                 " si no le molesta.", "Detective", detective, true);
-        Dialogo j2 = new Dialogo("¿Otra ronda de interrogatorios, detective? ¿No se cansa de buscar fantasmas?", "Dueno", dueno, true);
+        Dialogo j2 = new Dialogo("¿Otra ronda de interrogatorios, detective? ¿No se cansa de buscar fantasmas?", "Dueño", dueno, true);
         Dialogo j3 = new Dialogo("Solo intento entender lo que pasó. Cualquier detalle puede ser de suma importancia.", "Detective", detective, true);
-        Dialogo j4 = new Dialogo("Claro, claro... aunque si me pregunta a mí, esto ya está más que resuelto. Pero adelante, Dispare.", "Dueno", dueno, true);
+        Dialogo j4 = new Dialogo("Claro, claro... aunque si me pregunta a mí, esto ya está más que resuelto. Pero adelante, Dispare.", "Dueño", dueno, true);
 
         // Primera decisión
         Dialogo desc1Due = new Dialogo("Qué interesante su afirmación, pero ahora dígame...", "Detective", detective, true);
@@ -929,23 +925,26 @@ public class Partida implements Serializable, Cloneable
 
         // Camino vacío: relación con el economista
         Dialogo respDue1a = new Dialogo("Lo conocía lo justo. Buen tipo, algo aburrido. Siempre hablando de números y teorías. " +
-                "Yo prefiero el arte, ya sabe.", "Dueno", dueno, true);
+                "Yo prefiero el arte, ya sabe.", "Dueño", dueno, true);
         Dialogo respDue1b = new Dialogo("Aunque debo admitir que tenía una forma muy... muy peculiar de ver el mundo. Como si siempre" +
-                " supiera algo que los demás no.", "Dueno", dueno, true);
+                " supiera algo que los demás no.", "Dueño", dueno, true);
 
         // Camino vacío: coartada
-        Dialogo respDue2a = new Dialogo("Como ya le dije antes, me encontraba en mi oficina terminando unos papeles.", "Dueno", dueno, true);
+        Dialogo respDue2a = new Dialogo("Como ya le dije antes, me encontraba en mi oficina terminando unos papeles.", "Dueño", dueno, true);
         Dialogo respDue2b = new Dialogo("Además, si yo hubiera querido matar a alguien, créame que no dejaría pistas. Pero no se lo " +
-                "tome a mal, detective.", "Dueno", dueno, true);
+                "tome a mal, detective.", "Dueño", dueno, true);
 
         // Camino que desbloquea segunda decisión
         Dialogo desbloquear1 = new Dialogo("¿Preguntando cosas personales? Vaya, detective... pensé que esto era una investigación, " +
-                "no una cita.", "Dueno", dueno, true);
-        Dialogo desbloquear2 = new Dialogo("Pero adelante, pregunte. Aunque no prometo responder con seriedad.", "Dueno", dueno, true);
+                "no una cita.", "Dueño", dueno, true);
+        Dialogo desbloquear2 = new Dialogo("Pero adelante, pregunte. Aunque no prometo responder con seriedad.", "Dueño", dueno, true);
 
         // Segunda decisión (solo aparece si se elige la opción correcta)
         Dialogo desc2Due = new Dialogo("Usted responda, ya yo veré...", "Detective", detective, true);
-        desc2Due.setOpciones(new LinkedList<>(Arrays.asList("No quiero saber nada más", "¿Qué son todos esos trofeos en su estantería?")));
+        desc2Due.setOpciones(new LinkedList<>(Arrays.asList(
+                "No quiero saber nada más",
+                "¿Qué son todos esos trofeos en su estantería?"
+        )));
 
         // Camino principal: trofeos
         Dialogo respDue3a = new Dialogo("¿Los trofeos? Ah, veo que tiene buen ojo. Son de cuando practicaba esgrima. Era bastante" +
@@ -971,12 +970,12 @@ public class Partida implements Serializable, Cloneable
 
         // Camino vacío: práctica actual
         Dialogo respDue4 = new Dialogo("Ya no. Las rodillas no perdonan, detective. Ahora solo practico con el control remoto y el" +
-                " sillón reclinable.", "Dueno", dueno, true);
+                " sillón reclinable.", "Dueño", dueno, true);
 
-        Dialogo salida2 = new Dialogo("Si quiere saber algo más, ya sabe, aquí estoy.", "Dueno", dueno, true);
+        Dialogo salida2 = new Dialogo("Si quiere saber algo más, ya sabe, aquí estoy.", "Dueño", dueno, true);
 
-        Dialogo cierre4 = new Dialogo("Gracias por su tiempo. Si recuerda algo más, estaré cerca.", "Detective", detective, true);
-        Dialogo despedida4 = new Dialogo("Cuando quiera, detective. Aunque si me pregunta, esto es una pérdida de tiempo con corbata.", "Dueno", dueno, true);
+        Dialogo cierre4 = new Dialogo("Gracias por su tiempo. Si quierp saber algo más me acercaré nuevamente.", "Detective", detective, true);
+        Dialogo despedida4 = new Dialogo("Cuando quiera, detective. Aunque si me pregunta, esto es una pérdida de tiempo con corbata.", "Dueño", dueno, true);
 
         BinaryTreeNode<Dialogo> node57 = new BinaryTreeNode<>(j1);
         BinaryTreeNode<Dialogo> node58 = new BinaryTreeNode<>(j2);
@@ -1118,7 +1117,7 @@ public class Partida implements Serializable, Cloneable
 
         // Reacción del detective (después del cierre)
         Dialogo reflexion1 = new Dialogo("(Demasiado interés en desviar la atención. Ese guía sabe más de lo que aparenta...)", "Detective", detective, true);
-        reflexion1.agregar("aman ", "El Guía intentó restarle importancia \n al detalle de la armadura. \n Parece que tiene algo que \n ocultar.");
+        reflexion1.agregar("aman", "El Guía intentó restarle importancia \n al detalle de la armadura. \n Parece que tiene algo que \n ocultar.");
 
 
         Dialogo reflexion2 = new Dialogo("(Siento que me voy acercando... en el fondo lo siento, y estas sensaciones no engañan...)", "Detective", detective, true);
@@ -1232,19 +1231,15 @@ public class Partida implements Serializable, Cloneable
         Dialogo raras2 = new Dialogo("¿Qué quiere saber exactamente?", "Vagabundo", vagabundo, true);
 
 
-
-
-
-         // Areglar hora
+        // Areglar hora
 
         // Segunda decisión
         Dialogo descVag2 = new Dialogo("Mmm, me parece que quizás deba seguir investigando o quizás no...", "Detective", detective, true);
         descVag2.setOpciones(new LinkedList<>(Arrays.asList(
                 "¿Escuchó algún ruido fuerte esta noche?",
-                "¿Vio a alguien salir del museo entre la 1 y las 3 a.m.?",
+                "¿Vio a alguien salir del museo entre las 9:00 y las 10:00 p.m.?",
                 "No quiero saber nada más"
         )));
-
 
 
         // Camino vacío: ruidos
@@ -1252,7 +1247,7 @@ public class Partida implements Serializable, Cloneable
 
         // Camino principal: pregunta clave
 
-        Dialogo v1 = new Dialogo("¿Entre la 1 y las 3? Mmm... la memoria me falla cuando tengo el estómago vacío.", "Vagabundo", vagabundo, true);
+        Dialogo v1 = new Dialogo("¿Entre las 9 y las 10? Mmm... la memoria me falla cuando tengo el estómago vacío.", "Vagabundo", vagabundo, true);
         Dialogo v2 = new Dialogo("Pero quién sabe... tal vez si tuviera algo caliente en las manos, recordaría mejor.", "Vagabundo", vagabundo, true);
         Dialogo v3 = new Dialogo("Algo rico de comer, por ejemplo. No pido mucho. Solo un gesto.", "Vagabundo", vagabundo, true);
 
@@ -1260,11 +1255,11 @@ public class Partida implements Serializable, Cloneable
         Dialogo despedida6a = new Dialogo("Aquí estaré. No tengo a dónde ir.", "Vagabundo", vagabundo, true);
 
         Dialogo v4 = new Dialogo("Tome, aquí le traigo lo que pude conseguir, buen provecho.", "Detective", detective, true);
-        Dialogo v5 = new Dialogo("¿Entre la 1 y las 3? Sí... vi a alguien. No saliendo, no. Subiendo.", "Vagabundo", vagabundo, true);
+        Dialogo v5 = new Dialogo("¿Entre las 9 y las 10? Sí... vi a alguien. No saliendo, no. Subiendo.", "Vagabundo", vagabundo, true);
         Dialogo v6 = new Dialogo("Ocurrió por la escalera de incendios. Alguien más la bajó, cosa rara. Esa chatarra siempre está recogida.", "Vagabundo", vagabundo, true);
         Dialogo v7 = new Dialogo("No les vi la cara. Solo siluetas. Pero no eran de los míos, eso seguro.", "Vagabundo", vagabundo, true);
-       v7.agregar("Vagabundo", "Alguien subió por la escalera de incendios entre la 1 y las 3 a.m la cual estaba ya bajada.");
-       v7.agregar("Vagabundo", "La escalera de incendios fue desplegada por una segunda persona.");
+        v7.agregar("Vagabundo", "Alguien subió por la escalera de incendios entre la 9:00 y las 10:00 PM la cual estaba ya bajada.");
+        v7.agregar("Vagabundo", "La escalera de incendios fue desplegada por una segunda persona.");
 
 
         Dialogo v8 = new Dialogo("Y gracias por el pan. El jamón estaba... casi fresco.", "Vagabundo", vagabundo, true);
@@ -1736,6 +1731,7 @@ public class Partida implements Serializable, Cloneable
 
 
         BinaryTreeNode<Dialogo> node146 = new BinaryTreeNode<>(m1);
+        BinaryTreeNode<Dialogo> node146a = new BinaryTreeNode<>(m1a);
         BinaryTreeNode<Dialogo> node147 = new BinaryTreeNode<>(m2);
         BinaryTreeNode<Dialogo> node148 = new BinaryTreeNode<>(m3);
         BinaryTreeNode<Dialogo> node149 = new BinaryTreeNode<>(m4);
@@ -1814,7 +1810,8 @@ public class Partida implements Serializable, Cloneable
         GeneralTree<Dialogo> auxTree11 = new GeneralTree<>();
 
         auxTree11.insertNode(node146, null);
-        auxTree11.insertNode(node147, node146);
+        auxTree11.insertNode(node146a, node146);
+        auxTree11.insertNode(node147, node146a);
         auxTree11.insertNode(node148, node147);
         auxTree11.insertNode(node149, node148);
         auxTree11.insertNode(node150, node149);
@@ -1968,6 +1965,31 @@ public class Partida implements Serializable, Cloneable
        }
        return salida;
    }
+/*
+    public boolean tieneTodaLaInfo(Jugador jugador) {
+        boolean tiene = false;
+        boolean enc = false;
+        if (Juego.getInstance().getPartidaActual().getJugador().equals(jugador)) {
+            LinkedList<Informacion> infoPersonajes = Juego.getInstance().getInfoPersinajesActo1();
+            LinkedList<Informacion> dialogosImpor = Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes();
+            Iterator<Informacion> ite = dialogosImpor.iterator();
+            Iterator<Informacion> it = infoPersonajes.iterator();
+            while (it.hasNext()) {
+                Informacion infoP = it.next();
+                while (ite.hasNext() && !enc) {
+                    Informacion infoD = ite.next();
+                    if (infoP.equals(infoD)) {
+                        enc = true;
+                    }
+
+                }
+            }
+
+        }
+        return tiene;
+    }*/
+
+
 
 
    // Metodo para buscar la info y despues comparar con el otro metodo
@@ -2090,4 +2112,5 @@ public class Partida implements Serializable, Cloneable
        }
    }
 }
+
 

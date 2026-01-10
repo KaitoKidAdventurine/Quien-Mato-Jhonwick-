@@ -94,7 +94,10 @@ public class CargarPartida extends javax.swing.JFrame {
 
         boton1.setFont(new java.awt.Font("Segoe UI", 0, (int)(tamPant.width*0.025)));
         boton1.setForeground(new java.awt.Color(255, 255, 255));
-        boton1.setText("Cargar Partida 1");
+
+        if(Juego.getInstance().existeArchivoGuardado("1") || Juego.getInstance().existePartida("1"))
+            boton1.setText("Cargar Partida");
+        else boton1.setText(("No existe archivo de guardado"));
         boton1.setContentAreaFilled(false);
         boton1.setFocusPainted(false);
         boton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,7 +118,10 @@ public class CargarPartida extends javax.swing.JFrame {
 
         boton2.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.025)));
         boton2.setForeground(new java.awt.Color(255, 255, 255));
-        boton2.setText("Cargar Partida 2");
+
+        if(Juego.getInstance().existeArchivoGuardado("2") || Juego.getInstance().existePartida("2"))
+            boton2.setText("Cargar Partida");
+        else boton2.setText(("No existe archivo de guardado"));
         boton2.setContentAreaFilled(false);
         boton2.setFocusPainted(false);
         boton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -137,7 +143,10 @@ public class CargarPartida extends javax.swing.JFrame {
 
         boton3.setFont(new java.awt.Font("Segoe UI", 0, (int) (tamPant.width*0.025)));
         boton3.setForeground(new java.awt.Color(255, 255, 255));
-        boton3.setText("Cargar Partida 3");
+
+        if(Juego.getInstance().existeArchivoGuardado("3") || Juego.getInstance().existePartida("3"))
+            boton3.setText("Cargar Partida");
+        else boton3.setText(("No existe archivo de guardado"));
         boton3.setContentAreaFilled(false);
         boton3.setFocusPainted(false);
         boton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -215,7 +224,7 @@ public class CargarPartida extends javax.swing.JFrame {
             }
 
             // Cerrar esta ventana primero
-            dispose();
+            timer.schedule(tarea, 500);
 
             // Abrir el escenario correspondiente
             abrirEscenarioPorNombre(nombreEscenario);

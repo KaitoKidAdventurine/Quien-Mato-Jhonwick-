@@ -47,7 +47,6 @@ public class MenuInterno extends javax.swing.JDialog {
         tarea = new TimerTask() {
             @Override
             public void run() {
-                UnionInterfaces.getInstance().setCerrarVentana(true);
                 dispose();
             }
         };
