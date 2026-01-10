@@ -17,7 +17,7 @@ public class Dialogo implements Serializable
     private ImageIcon icono;
     private boolean revelable;
     private LinkedList<Datos> textoImport;
-
+    private boolean entro = false;
 
     public Dialogo(String texto, String personaje, ImageIcon imagenPersonaje, boolean revelable)
     {
@@ -81,11 +81,15 @@ public class Dialogo implements Serializable
     {
         if (!textoImport.isEmpty())
         {
-            Iterator<Datos> ID = textoImport.iterator();
-            while (ID.hasNext())
+            if (!entro)
             {
-                Datos D = ID.next();
-                Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante(D.getNomNPC(), D.getTextoImportante());
+                Iterator<Datos> ID = textoImport.iterator();
+                while (ID.hasNext())
+                {
+                    entro = true;
+                    Datos D = ID.next();
+                    Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante(D.getNomNPC(), D.getTextoImportante());
+                }
             }
         }
     }

@@ -1,6 +1,8 @@
 package DatosAuxiliaresLogica;
 
-public class Datos
+import java.io.Serializable;
+
+public class Datos implements Serializable
 {
     private String nomNPC;
     private String textoImportante;

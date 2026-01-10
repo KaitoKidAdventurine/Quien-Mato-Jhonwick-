@@ -175,6 +175,24 @@ public class Entrada extends ModeloEscenario {
                     llamaCapMouseClicked(finalActual);
                 }
             });
+
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.detenerSiEsNecesario();
+
+            if (aux.getTextoImport().isEmpty() == false)
+            {
+                aux.guardarEnDiario();
+            }
+
+            if (aux.getTexto().equals("- Ring - Ring - Ring -."))
+            {
+                 e.efectoDeTelefonoResiviendoLlamda();
+            }
+
+            else if (aux.getTexto().equals("-Biiiip-"))
+            {
+                e.efectoColgarTelefono();
+            }
             cajaTexto.removeAll();
             cajaTexto.add(cT, 0);
             switch (actual) {
