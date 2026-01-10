@@ -35,6 +35,7 @@ public class UnionInterfaces {
     public void setCerrarVentana(boolean cerrarVentana){
         this.cerrarVentana=cerrarVentana;
     }
+
     public static UnionInterfaces getInstance(){
         if(instancia == null)
         {

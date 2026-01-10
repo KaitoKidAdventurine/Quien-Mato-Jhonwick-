@@ -1,9 +1,9 @@
 package Interfaz.Cinematicas;
 
-import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.CuadroTexto;
 import Interfaz.InterfazJugador.OpcionesDialogos;
+import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
 import Logica.Juego;
 
@@ -15,8 +15,12 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class FinDelJuego extends JFrame {
+    private Timer timer;
+    private TimerTask tarea;
     private JLabel fondo;
     private JPanel cajaTexto;
     private Dimension tamPant;
@@ -25,6 +29,23 @@ public class FinDelJuego extends JFrame {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         fondo = new JLabel();
         cajaTexto = new JPanel();
+        timer = new Timer();
+        tarea = new TimerTask() {
+            @Override
+            public void run() {
+                if(UnionInterfaces.getInstance().getCerrarVentana()){
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.setVisible(true);
+                    UnionInterfaces.getInstance().setCerrarVentana(false);
+                    dispose();
+                    tarea.cancel();
+                }else{
+                    revalidate();
+                    repaint();
+                }
+            }
+        };
+
         initComponents();
     }
 
@@ -41,11 +62,13 @@ public class FinDelJuego extends JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        setLayout(null);
         setMinimumSize(tamPant);
         setUndecorated(true);
         setPreferredSize(tamPant);
         getContentPane().setLayout(null);
         setBackground(new Color(0, 0, 0, 0));
+
         cajaTexto.setOpaque(false);
         cajaTexto.setBounds(0, 0, tamPant.width, tamPant.height);
         cajaTexto.setLayout(null);
@@ -60,9 +83,9 @@ public class FinDelJuego extends JFrame {
         getContentPane().add(cajaTexto);
         getContentPane().add(fondo);
 
-        ponerFondo(0);
+        ponerFondo(0, UnionInterfaces.getInstance().getOpcionDialogo());
         ponerDialogo();
-
+timer.scheduleAtFixedRate(tarea, 0, 10);
         pack();
     }
 
@@ -77,7 +100,7 @@ public class FinDelJuego extends JFrame {
                 }
             }
             Dialogo aux = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
-            int nivelActualDial = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getArbolDial().nodeLevel(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getNodoDialActual());
+            int nivelActualDial = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getArbolDial().nodeLevel(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getNodoDialActual());
             CuadroTexto cT = new CuadroTexto(aux.getTexto(), aux.getPersonaje(), aux.getIcono(),!aux.getTextoImport().isEmpty());
             cT.setBounds(0, 0, tamPant.width, tamPant.height);
             cT.addMouseListener(new MouseAdapter() {
@@ -88,14 +111,21 @@ public class FinDelJuego extends JFrame {
 
             cajaTexto.removeAll();
             cajaTexto.add(cT);
-           if(nivelActualDial==23 || nivelActualDial==31 || nivelActualDial==35 || nivelActualDial==53 || nivelActualDial==54 || nivelActualDial==55 ||
-                   nivelActualDial==57 )
-               ponerFondo(nivelActualDial);
+           if(nivelActualDial==22 ||nivelActualDial==16 || nivelActualDial==30 || nivelActualDial==34 || nivelActualDial==52 ||
+                   nivelActualDial==53 || nivelActualDial==54 || nivelActualDial==56 )
+               ponerFondo(nivelActualDial, UnionInterfaces.getInstance().getOpcionDialogo());
             if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
                 UnionInterfaces.getInstance().setOpcionDialogo(1);
         }else {
             cajaTexto.removeAll();
+            ponerCreditos();
         }
+
+    }
+
+    private void ponerCreditos() {
+        CreditosFinales creditos = new CreditosFinales();
+        cajaTexto.add(creditos);
         revalidate();
         repaint();
     }
@@ -106,33 +136,39 @@ public class FinDelJuego extends JFrame {
         repaint();
     }
 
-    private void ponerFondo(int nivelActualDial) {
+    private void ponerFondo(int nivelActualDial, int opcionDialogo) {
         try {
             BufferedImage imagen = null;
             switch (nivelActualDial) {
                 case 0:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Final 1.png"));
+                    break;
+                case 16:
                     imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
                     break;
-                    case 23:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                case 22:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Entrada.jpg"));
                     break;
-                    case 31:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                case 30:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Final 2.png"));
                     break;
-                    case 35:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                case 34:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Final 3.png"));
                     break;
-                    case 53:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                case 52:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Final 4.png"));
                     break;
-                    case 54:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                case 53:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Final 5.png"));
                     break;
-                    case 55:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                case 54:
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Final 6 .png"));
                     break;
-                    case 57:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Oficina Victima.png"));
+                case 56:
+                    if(opcionDialogo==1) {
+                        imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Final asesinado.png"));
+                    }else
+                        imagen = ImageIO.read(new File("DatosAuxiliares/Cinematica/Final arrestado.png"));
                     break;
                 default:
                     break;
@@ -144,6 +180,8 @@ public class FinDelJuego extends JFrame {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
 
     }
 }

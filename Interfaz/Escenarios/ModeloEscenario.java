@@ -32,11 +32,5 @@ public class ModeloEscenario extends JFrame {
 
     }
 
-    public void cerrarEscenario(){
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        temporizador.schedule(task, 1000);
-
-
-    }
 
 }

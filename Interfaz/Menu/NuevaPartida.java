@@ -79,7 +79,11 @@ public class NuevaPartida extends javax.swing.JFrame {
 
         boton3.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.04)));
         boton3.setForeground(new java.awt.Color(255, 255, 255));
-        boton3.setText("Nueva Partida 3");
+
+        if(Juego.getInstance().existeArchivoGuardado("3") || Juego.getInstance().existePartida("3"))
+        boton3.setText("Ya existe una partida guardada");
+        else boton3.setText(("Nueva Partida"));
+
         boton3.setContentAreaFilled(false);
         boton3.setFocusPainted(false);
         boton3.setRolloverEnabled(false);
@@ -101,7 +105,11 @@ public class NuevaPartida extends javax.swing.JFrame {
 
         boton2.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.04)));
         boton2.setForeground(new java.awt.Color(255, 255, 255));
-        boton2.setText("Nueva Partida 2");
+
+        if(Juego.getInstance().existeArchivoGuardado("2") || Juego.getInstance().existePartida("2"))
+            boton2.setText("Ya existe una partida guardada");
+        else boton2.setText(("Nueva Partida"));
+
         boton2.setContentAreaFilled(false);
         boton2.setFocusPainted(false);
         boton2.setRolloverEnabled(false);
@@ -124,7 +132,12 @@ public class NuevaPartida extends javax.swing.JFrame {
 
         boton1.setFont(new java.awt.Font("Segoe UI", 0, (int)(largoBot*0.04)));
         boton1.setForeground(new java.awt.Color(255, 255, 255));
-        boton1.setText("Nueva Partida 1");
+
+        if(Juego.getInstance().existeArchivoGuardado("1") || Juego.getInstance().existePartida("1"))
+            boton1.setText("Ya existe una partida guardada");
+        else boton1.setText(("Nueva Partida"));
+
+
         boton1.setContentAreaFilled(false);
         boton1.setFocusPainted(false);
         boton1.setRolloverEnabled(false);

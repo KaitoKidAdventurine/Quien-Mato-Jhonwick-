@@ -39,8 +39,6 @@ public class CuadroTexto extends javax.swing.JPanel {
             @Override
             public void run() {
                 pestanear();
-               jLabel4.revalidate();
-               jLabel4.repaint();
 
             }
         };
@@ -52,36 +50,35 @@ public class CuadroTexto extends javax.swing.JPanel {
             case 0:
                 jLabel4.setForeground(new Color(220, 220, 220, 0));
                 break;
-            case 1:
-                jLabel4.setForeground(new Color(220, 220, 220, 30));
-                break;
-            case 2:
-                jLabel4.setForeground(new Color(220, 220, 220, 60));
-              break;
             case 3:
-                jLabel4.setForeground(new Color(220, 220, 220, 90));
-                break;
-            case 4:
-                jLabel4.setForeground(new Color(220, 220, 220, 120));
-                break;
-            case 5:
-                jLabel4.setForeground(new Color(220, 220, 220, 150));
-                break;
-            case 6:
-                jLabel4.setForeground(new Color(220, 220, 220, 180));
-                break;
-            case 7:
-                jLabel4.setForeground(new Color(220, 220, 220, 210));
-                break;
-            case 8:
-                jLabel4.setForeground(new Color(220, 220, 220, 240));
+            case 33:
+                jLabel4.setForeground(new Color(220, 220, 220, 40));
                 break;
 
+            case 6:
+            case 30:
+                jLabel4.setForeground(new Color(220, 220, 220, 80));
+                break;
+
+            case 9:
+            case 27:
+                jLabel4.setForeground(new Color(220, 220, 220, 120));
+                break;
+
+            case 12:
+            case 24:
+                jLabel4.setForeground(new Color(220, 220, 220, 160));
+                break;
             case 15:
-                jLabel4.setVisible(false);
-                revalidate();
-                repaint(jLabel4.getBounds());
-                timer.cancel();
+            case 21:
+                jLabel4.setForeground(new Color(220, 220, 220, 180));
+                break;
+            case 18:
+                jLabel4.setForeground(new Color(220, 220, 220, 220));
+                break;
+
+            case 36:
+               valorPesta=0;
 
                 break;
             default:
@@ -114,7 +111,7 @@ public class CuadroTexto extends javax.swing.JPanel {
         if(!importante) {
             jLabel4.setVisible(false);
 
-        }else timer.scheduleAtFixedRate(tarea, 0, 160);
+        }else timer.scheduleAtFixedRate(tarea, 0, 20);
         jLabel4.setBounds((int) (tamPant.width*0.65), (int) (tamPant.height*0.18), (int) (tamPant.width*0.28), (int) (tamPant.height*0.05));
         jLabel4.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.017)));
 

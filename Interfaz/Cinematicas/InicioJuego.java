@@ -92,6 +92,9 @@ public class InicioJuego extends JFrame {
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     dispose();
                     tarea2.cancel();
+                }else{
+                    revalidate();
+                    repaint();
                 }
             }
         };
@@ -630,7 +633,7 @@ public class InicioJuego extends JFrame {
                     e.efectoDeLluvia();
                     break;
                 case 43:
-                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por afuera.jpg"));
+                    imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Entrada.jpg"));
                     if (e.getHiloReproduccion().isAlive() && e.getIndiceActual() == 0)
                     {
                         e.detenerEfecto();
@@ -1967,6 +1970,7 @@ public class InicioJuego extends JFrame {
     private void saltarAlJuego() {
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoDeBoton();
+        salida.cancel();
         iniciarMundo();
     }
 

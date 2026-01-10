@@ -48,8 +48,8 @@ public class Almacen extends ModeloEscenario {
                 if(UnionInterfaces.getInstance().getCerrarVentana()){
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
+                    dispose();
                     UnionInterfaces.getInstance().setCerrarVentana(false);
-                    cerrarEscenario();
                     tarea2.cancel();
                 }else{
                     revalidate();

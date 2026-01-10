@@ -1736,6 +1736,7 @@ public class Partida implements Serializable, Cloneable
 
 
         BinaryTreeNode<Dialogo> node146 = new BinaryTreeNode<>(m1);
+        BinaryTreeNode<Dialogo> node146a = new BinaryTreeNode<>(m1a);
         BinaryTreeNode<Dialogo> node147 = new BinaryTreeNode<>(m2);
         BinaryTreeNode<Dialogo> node148 = new BinaryTreeNode<>(m3);
         BinaryTreeNode<Dialogo> node149 = new BinaryTreeNode<>(m4);
@@ -1814,7 +1815,8 @@ public class Partida implements Serializable, Cloneable
         GeneralTree<Dialogo> auxTree11 = new GeneralTree<>();
 
         auxTree11.insertNode(node146, null);
-        auxTree11.insertNode(node147, node146);
+        auxTree11.insertNode(node146a, node146);
+        auxTree11.insertNode(node147, node146a);
         auxTree11.insertNode(node148, node147);
         auxTree11.insertNode(node149, node148);
         auxTree11.insertNode(node150, node149);
