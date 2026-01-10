@@ -1,14 +1,8 @@
 package Logica;
 
-import Interfaz.MiniJuego.MinijuegoInterfaz;
-import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
-import cu.edu.cujae.ceis.tree.general.GeneralTree;
-
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
-
-import Lib.Convert;
 
 public class Juego {
     private static Juego instance;
@@ -358,26 +352,30 @@ public class Juego {
         ImageIcon camerasImage = new ImageIcon("DatosAuxiliares/Minijuego/Sala de Cámaras.png");
         MiniJuego camerasRoom = new MiniJuego("Sala de Cámaras", camerasImage);
 
-        ObjetoEscenario obLibro = new ObjetoEscenario("Libro", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (65-30)/1152f, (532-25)/765f, (166-65)/1152f, (561-532)/765f, false, "");
+        ObjetoEscenario obLibro = new ObjetoEscenario("Libro", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (65-30+5)/1152f, (532-25)/765f, (166-65-5-25)/1152f, (561-532)/765f, false, "");
         ObjetoEscenario obCigarrillos = new ObjetoEscenario("Cigarrillos", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (943-305)/1152f, (748-32)/765f, (982-943)/1152f, (766-748)/765f, false, "");
-        ObjetoEscenario obLlave = new ObjetoEscenario("Llave", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (893-305)/1152f, (620-25)/765f, (933-893)/1152f, (629-620)/765f, false, "");
-        ObjetoEscenario obPluma = new ObjetoEscenario("Pluma", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (469-160)/1152f, (620-25)/765f, (512-469)/1152f, (627-620)/765f, false, "");
+        ObjetoEscenario obLlave = new ObjetoEscenario("Llave", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (893-305-2)/1152f, (620-25-2)/765f, (933-893+4)/1152f, (629-620+4)/765f, false, "");
+        ObjetoEscenario obBoligrafo = new ObjetoEscenario("Bolígrafo", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (469-160-3)/1152f, (620-25-3)/765f, (512-469+6)/1152f, (627-620+6)/765f, false, "");
         ObjetoEscenario obCuadro = new ObjetoEscenario("Cuadro", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (46-25)/1152f, (106-25)/765f, (117-46)/1152f, (243-106)/765f, false, "");
-        ObjetoEscenario obGrabador = new ObjetoEscenario("Grabador de Audio", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (861-280)/1152f, (571-25)/765f, (883-861)/1152f, (582-571)/765f, false, "");
+        ObjetoEscenario obGrabador = new ObjetoEscenario("Grabador de Audio", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (861-280-2)/1152f, (571-25-2)/765f, (883-861+4)/1152f, (582-571+4)/765f, false, "");
         ObjetoEscenario obEstatua = new ObjetoEscenario("Estatua", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (640-210)/1152f, (171-5)/765f, (667-640)/1152f, (244-171)/765f, false, "");
         ObjetoEscenario obObraArte = new ObjetoEscenario("Obra de Arte", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (810-270)/1152f, (437-15)/765f, (845-810)/1152f, (505-437)/765f, false, "");
         ObjetoEscenario obGafas = new ObjetoEscenario("Gafas", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (373-120)/1152f, (561-25)/765f, (415-373)/1152f, (577-561)/765f, false, "");
         ObjetoEscenario obAuriculares = new ObjetoEscenario("Auriculares", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (613-205)/1152f, (543-25)/765f, (676-613)/1152f, (613-543)/765f, false, "");
         ObjetoEscenario obGafas2 = new ObjetoEscenario("Gafas 2", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (122-32)/1280f, (569-3)/800f, (175-122)/1280f, (580-569+3)/800f, false, "");
         ObjetoEscenario obVasos = new ObjetoEscenario("Vasos", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (277-70)/1280f, 664f/800f, (322-277)/1280f, (717-664)/800f, false, "");
-        ObjetoEscenario obMapa = new ObjetoEscenario("Mapa", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (119-75)/1280f, 732f/800f, (317-119)/1280f, (785-732)/800f, false, "");
-        ObjetoEscenario obExtintor = new ObjetoEscenario("Extintor", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (77-20)/1280f, 410f/800f, (92-77)/1280f, (464-410)/800f, false, "");
+        ObjetoEscenario obPlano = new ObjetoEscenario("Plano", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (119-75)/1280f, 732f/800f, (317-119)/1280f, (785-732)/800f, false, "");
+        ObjetoEscenario obExtintor = new ObjetoEscenario("Extintor", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (77-20-2)/1280f, (410-2)/800f, (92-77+4)/1280f, (464-410+4)/800f, false, "");
         ObjetoEscenario obMochila = new ObjetoEscenario("Mochila", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (1025-262)/1280f, 611f/800f, (1116-1025)/1280f, (715-611)/800f, false, "");
+        ObjetoEscenario obRetrato = new ObjetoEscenario("Retrato", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (14-7)/1280f, 548f/800f, (50-14)/1280f, (594-548)/800f, false, "");
+        ObjetoEscenario obZapato = new ObjetoEscenario("Zapato", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (523-135)/1280f, 751f/800f, (585-523)/1280f, (775-751)/800f, false, "");
+        ObjetoEscenario obZapato2 = new ObjetoEscenario("Zapato 2", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (684-175)/1280f, 744f/800f, (738-684)/1280f, (768-744)/800f, false, "");
+        ObjetoEscenario obHuellas = new ObjetoEscenario("Huellas", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (330-90)/1280f, 196f/800f, (380-330)/1280f, (233-196)/800f, false, "");
 
         camerasRoom.agregarObjetoCola(obLibro);
         camerasRoom.agregarObjetoCola(obCigarrillos);
         camerasRoom.agregarObjetoCola(obLlave);
-        camerasRoom.agregarObjetoCola(obPluma);
+        camerasRoom.agregarObjetoCola(obBoligrafo);
         camerasRoom.agregarObjetoCola(obCuadro);
         camerasRoom.agregarObjetoCola(obGrabador);
         camerasRoom.agregarObjetoCola(obEstatua);
@@ -386,9 +384,13 @@ public class Juego {
         camerasRoom.agregarObjetoCola(obAuriculares);
         camerasRoom.agregarObjetoCola(obGafas2);
         camerasRoom.agregarObjetoCola(obVasos);
-        camerasRoom.agregarObjetoCola(obMapa);
+        camerasRoom.agregarObjetoCola(obPlano);
         camerasRoom.agregarObjetoCola(obExtintor);
         camerasRoom.agregarObjetoCola(obMochila);
+        camerasRoom.agregarObjetoCola(obRetrato);
+        camerasRoom.agregarObjetoCola(obZapato);
+        camerasRoom.agregarObjetoCola(obZapato2);
+        camerasRoom.agregarObjetoCola(obHuellas);
 
         miniJuegos.add(camerasRoom);
 
