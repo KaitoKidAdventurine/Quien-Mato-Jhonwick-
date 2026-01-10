@@ -138,6 +138,7 @@ public class Diario implements Serializable
         String nombre = "";
 
         switch(profesion.toLowerCase()) {
+
             case "Caso":
             case "vic":
             case "Vic":
@@ -209,6 +210,7 @@ public class Diario implements Serializable
             case "amante":
             case "Amante":
             case "aman":
+            case "Aman":
                 nombre = "Alex Valle";
                 break;
 
