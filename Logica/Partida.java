@@ -1,9 +1,12 @@
 package Logica;
 
+import DatosAuxiliaresLogica.Datos;
 import DatosAuxiliaresLogica.Eventos;
+import DatosAuxiliaresLogica.Informacion;
 import Interfaz.Escenarios.Almacen;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
+import cu.edu.cujae.ceis.tree.iterators.general.InBreadthIterator;
 
 import java.io.*;
 import java.io.Serializable;
@@ -1934,14 +1937,157 @@ public class Partida implements Serializable, Cloneable
 
     }
 
-   /* public boolean tieneTodaLaInfo(LinkedList<String> infoImportante){
-        boolean tiene = false;
-        if(this.jugador.getCont()== infoImportante.size()){
-            tiene = true;
-        }
-        return tiene;
-    }
-   */
 
+
+
+    // metodo para ver si se puede o no reprtir el dialogo
+   public boolean verificarSiFaltaDialogosImportantes(GeneralTree<Dialogo> arbol)
+   {
+       boolean salida = true;
+
+       InBreadthIterator<Dialogo> IA = arbol.inBreadthIterator();
+       while (IA.hasNext() && salida)
+       {
+           BinaryTreeNode<Dialogo> N = IA.nextNode();
+           Dialogo d = N.getInfo();
+
+           salida = enviarDatoRevisarDato(d);
+       }
+       return salida;
+   }
+
+   // Enviar los datos a revisar Datos, es la unica funcion que cumple
+   private boolean enviarDatoRevisarDato(Dialogo d)
+   {
+       boolean salida = true;
+       Iterator<Datos> ID = d.getTextoImport().iterator();
+       while (salida && ID.hasNext())
+       {
+           Datos datos = ID.next();
+           salida = revisarDato(datos);
+       }
+       return salida;
+   }
+
+
+   // Metodo para buscar la info y despues comparar con el otro metodo
+   private boolean revisarDato(Datos d)
+   {
+       boolean salida = true;
+       Iterator<Informacion> IF = Juego.getInstance().getPartidaActual().getJugador().
+               getDiario().getDialogosImportantes().iterator();
+        boolean verificar = true;
+
+       while (IF.hasNext() && salida && verificar)
+       {
+           Informacion inf = IF.next();
+           String nom = Juego.getInstance().getPartidaActual().getJugador().getDiario().buscarNombre(d.getNomNPC());
+            if (nom.equals(inf.getNombreNPC()))
+            {
+                verificar = false;
+                salida = informacionEstaEnElDiario(d, inf);
+            }
+       }
+       return salida;
+   }
+
+    // Metodo para verificar si la informacion existe en el diario
+   private boolean informacionEstaEnElDiario(Datos d, Informacion inf)
+   {
+       boolean salida = false;
+        Iterator<String> IS = inf.getListaDeDialogos().iterator();
+        while (!salida && IS.hasNext())
+        {
+            String dialogo = IS.next();
+            if (dialogo.equals(d.getTextoImportante()))
+            {
+                salida = true;
+            }
+        }
+       return salida;
+   }
+
+   public void cambiarEvento(String profesion, GeneralTree<Dialogo> arbol)
+   {
+       switch(profesion.toLowerCase())
+       {
+           case "policia":
+           case "Policia":
+           case "Oficial":
+           case "ofi":
+           case "oficial":
+           case "policía":
+           case "Policía":
+               eventos.setPoliciaYa(verificarSiFaltaDialogosImportantes(arbol));
+               break;
+
+           case "dueño":
+           case "dueno":
+           case "duenno":
+           case "Dueno":
+           case "Dueño":
+           case "propietario":
+               eventos.setDuenoYA(verificarSiFaltaDialogosImportantes(arbol));
+               break;
+
+           case "esposa":
+           case "esp":
+           case "esposa del dueño":
+           case "Esposa":
+               eventos.setEsposaYa(verificarSiFaltaDialogosImportantes(arbol));
+               break;
+
+           case "Relacion de la Victima":
+           case "Sec":
+           case "sec" :
+           case "Secretaria":
+           case "secretaria":
+               eventos.setSecretariaYa(verificarSiFaltaDialogosImportantes(arbol));
+               break;
+
+           case "guia":
+           case "Guia 1":
+           case "Guía 1":
+           case "guia 1":
+           case "Guía":
+           case "guía":
+           case "guía 1":
+           case "Guia Principal":
+               eventos.setGuia1Ya(verificarSiFaltaDialogosImportantes(arbol));
+               break;
+
+           case "guia 2":
+           case "guía 2":
+           case "amante":
+           case "Amante":
+           case "aman":
+               eventos.setGuia2Ya(verificarSiFaltaDialogosImportantes(arbol));
+               break;
+
+           case "Guardia":
+           case "Seguridad":
+           case "seguridad":
+           case "guardia":
+               eventos.setSeguridadYa(verificarSiFaltaDialogosImportantes(arbol));
+               break;
+
+           case "vagabundo":
+           case "mendigo":
+               eventos.setVagabundoYa(verificarSiFaltaDialogosImportantes(arbol));
+               break;
+
+           case "Limpiador":
+           case "limpiador":
+           case "limp":
+           case "Limp":
+           case "Don Limpio":
+           case "Victor":
+           case "victor":
+           case "Limpieza":
+               eventos.setConserjeYa(verificarSiFaltaDialogosImportantes(arbol));
+               break;
+
+       }
+   }
 }
 
