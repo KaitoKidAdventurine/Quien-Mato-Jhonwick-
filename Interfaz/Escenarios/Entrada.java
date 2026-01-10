@@ -12,9 +12,6 @@ import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
 import Logica.Escenario;
 import Logica.Juego;
-import Logica.Partida;
-import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
-import cu.edu.cujae.ceis.tree.general.GeneralTree;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -66,7 +63,7 @@ public class Entrada extends ModeloEscenario {
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
-                    cerrarEscenario();
+                     dispose();
                     tarea2.cancel();
                 } else {
                     revalidate();
@@ -88,7 +85,7 @@ public class Entrada extends ModeloEscenario {
 
 
         try {
-            BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/entrada por afuera.jpg"));
+            BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/Entrada.jpg"));
 
             // Actualizacion de donde esta el Jugador
             Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Entrada");

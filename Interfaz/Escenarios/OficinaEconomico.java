@@ -44,12 +44,11 @@ public class OficinaEconomico extends ModeloEscenario {
         tarea2 = new TimerTask() {
             @Override
             public void run() {
-
                 if(UnionInterfaces.getInstance().getCerrarVentana()){
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
-                    cerrarEscenario();
+                    dispose();
                     tarea2.cancel();
                 }else{
                     revalidate();
@@ -188,6 +187,7 @@ public class OficinaEconomico extends ModeloEscenario {
                 ponerDialogosEstatico(crearDialogoComputadora(), 0);
             }
         }
+        ponerFinal();
     }
 
 
@@ -251,6 +251,7 @@ public class OficinaEconomico extends ModeloEscenario {
     private void ponerFinal() {
         FinDelJuego fin = new FinDelJuego();
         timer.schedule(tarea, 500);
+        tarea2.cancel();
         fin.setVisible(true );
     }
 

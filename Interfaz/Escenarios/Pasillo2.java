@@ -42,8 +42,9 @@ public class Pasillo2 extends ModeloEscenario {
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
-                    cerrarEscenario();
+                    dispose();
                     tarea2.cancel();
+
                 }else{
                     revalidate();
                     repaint();
