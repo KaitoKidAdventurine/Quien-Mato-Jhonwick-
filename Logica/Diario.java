@@ -152,6 +152,10 @@ public class Diario implements Serializable
 
             case "jefe":
             case "capitan":
+            case "Capitan":
+            case "Jefe":
+            case "cap":
+            case "Cap":
                 nombre = "Capitan";
                 break;
 
@@ -196,6 +200,7 @@ public class Diario implements Serializable
             case "Guía":
             case "guía":
             case "guía 1":
+            case "Guia Principal":
                 nombre = "William Harrington";
                 break;
 

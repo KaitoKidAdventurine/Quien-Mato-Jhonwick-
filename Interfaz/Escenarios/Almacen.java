@@ -214,6 +214,10 @@ public class Almacen extends ModeloEscenario {
             if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
                 UnionInterfaces.getInstance().setOpcionDialogo(1);
 
+            if (aux.getTextoImport().isEmpty() == false)
+            {
+                aux.guardarEnDiario();
+            }
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {

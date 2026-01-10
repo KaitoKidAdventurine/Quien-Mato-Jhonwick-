@@ -274,6 +274,15 @@ public class Sala2  extends ModeloEscenario {
                     EstatiMouseClicked2(dialogos, finalActual);
                 }
             });
+
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.detenerSiEsNecesario();
+
+            if (aux.getTextoImport().isEmpty() == false)
+            {
+                aux.guardarEnDiario();
+            }
+
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {
@@ -335,6 +344,14 @@ public class Sala2  extends ModeloEscenario {
             });
             if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
                 UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.detenerSiEsNecesario();
+
+            if (aux.getTextoImport().isEmpty() == false)
+            {
+                aux.guardarEnDiario();
+            }
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {
@@ -364,6 +381,15 @@ public class Sala2  extends ModeloEscenario {
             });
             if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
                 UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.detenerSiEsNecesario();
+
+            if (aux.getTextoImport().isEmpty() == false)
+            {
+                aux.guardarEnDiario();
+            }
+
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {

@@ -244,6 +244,16 @@ public class Bano extends ModeloEscenario {
                     conserjeEstatiMouseClicked(dialogos, finalActual);
                 }
             });
+
+
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.detenerSiEsNecesario();
+
+            if (aux.getTextoImport().isEmpty() == false)
+            {
+                aux.guardarEnDiario();
+            }
+
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {

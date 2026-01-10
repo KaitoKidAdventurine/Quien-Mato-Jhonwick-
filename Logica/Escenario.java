@@ -59,7 +59,7 @@ public class Escenario implements Serializable {
 
     public void setArbolDial(GeneralTree<Dialogo> arbolDial) {
         this.arbolDial = arbolDial;
-        this.nodoDialActual = null;    //Para restaurar arbol original o tomar otro arbol para un escenario, evitando complejidad de la estructura jerárquica.
+        this.nodoDialActual = null;
     }
 
     public Dialogo getDialogoActual() { return nodoDialActual.getInfo(); }
@@ -105,7 +105,7 @@ public class Escenario implements Serializable {
             progresoDialogo = nodoDialActual.getInfo().getTexto();
         }
 
-        // MARCAR SI SE COMPLETÓ
+
         if (arbolDial.nodeIsLeaf(nodoDialActual)) {
             dialogoCompletado = true;
         }
@@ -115,9 +115,9 @@ public class Escenario implements Serializable {
 
     public void restaurarDialogo() {
         if (dialogoCompletado) {
-            nodoDialActual = null;  // Si ya se completó, no hay diálogo activo
+            nodoDialActual = null;
         } else if (progresoDialogo != null && !progresoDialogo.isEmpty()) {
-            // Buscar el último diálogo visto
+            // Buscar el ultimo dialogo visto
             nodoDialActual = buscarNodo(progresoDialogo);
             if (nodoDialActual == null) {
                 // Si no se encuentra, empezar desde el principio

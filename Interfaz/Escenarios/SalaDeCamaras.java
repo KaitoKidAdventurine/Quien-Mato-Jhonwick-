@@ -312,6 +312,15 @@ public class SalaDeCamaras extends ModeloEscenario {
                         estatiMouseClickedPuerta(dialogos, finalActual);
                 }
             });
+
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.detenerSiEsNecesario();
+
+            if (aux.getTextoImport().isEmpty() == false)
+            {
+                aux.guardarEnDiario();
+            }
+
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {
@@ -332,6 +341,14 @@ public class SalaDeCamaras extends ModeloEscenario {
                     estatiMouseClickedSegu2(dialogos, finalActual);
                 }
             });
+
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.detenerSiEsNecesario();
+
+            if (aux.getTextoImport().isEmpty() == false)
+            {
+                aux.guardarEnDiario();
+            }
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {

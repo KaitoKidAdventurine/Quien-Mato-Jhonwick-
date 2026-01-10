@@ -461,11 +461,27 @@ public class TelefonoInterfaz  extends javax.swing.JDialog {
             actual++;
             int finalActual = actual;
 
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.detenerSiEsNecesario();
+
             cT.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
                     llamaCapMouseClicked(finalActual);
                 }
             });
+
+            if (aux.getTexto().equals("Beeeppp"))
+            {
+                e.efectoLlamadaTelefono();
+            }
+
+            else if(aux.getTexto().equals("-Biiiip-"))
+            {
+                e.efectoColgarTelefono();
+            }
+
+
+
             cajaTexto.removeAll();
             cajaTexto.add(cT, 0);
 

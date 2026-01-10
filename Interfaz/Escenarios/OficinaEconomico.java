@@ -237,6 +237,21 @@ public class OficinaEconomico extends ModeloEscenario {
                     EstatiMouseClicked(dialogos, finalActual);
                 }
             });
+
+
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.detenerSiEsNecesario();
+
+            if (aux.getTextoImport().isEmpty() == false)
+            {
+                aux.guardarEnDiario();
+            }
+
+            else if (aux.getTexto().equals("-Error.- "))
+            {
+                e.efectoError();
+            }
+
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {
