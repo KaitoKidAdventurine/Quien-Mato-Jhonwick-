@@ -346,6 +346,12 @@ public class SalaDeCamaras extends ModeloEscenario {
             {
                 aux.guardarEnDiario();
             }
+
+            if (aux.getTexto().equals("Tenias razon, las camaras no revelan nada extraño. Todo parece extrañamente normal a excepcion de la camara que misteriosamente se desconecto a la hora del crimen."))
+            {
+                Reproductor reproductor = Reproductor.getInstancia();
+                reproductor.cambiarMusicaNombre("Sombras en el Viento");
+            }
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {

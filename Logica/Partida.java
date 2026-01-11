@@ -1098,8 +1098,8 @@ public class Partida implements Serializable, Cloneable
         Dialogo salida3 = new Dialogo("Como usted diga, Sr. Detective, quedo a su disposición.", "Guia Principal", guiaPrincipal, true);
 
         // Dato clave 1 y 2
-        detalle4.agregar("Guía Principal", "Una de las armaduras fue encontrada \n en una posición inusual.");
-        detalle4.agregar("Guía Principal", "La armadura no pudo ser \n movida por una sola persona.");
+        detalle4.agregar("Guía 2", "Una de las armaduras fue encontrada \n en una posición inusual.");
+        detalle4.agregar("Guía 2", "La armadura no pudo ser \n movida por una sola persona.");
 
         // Intervención del Guía
         Dialogo inter1 = new Dialogo("(Parece que el guía 2 viene hacia aquí... con la intención de interrumpir)", "Detective", detective, true);
@@ -1117,7 +1117,7 @@ public class Partida implements Serializable, Cloneable
 
         // Reacción del detective (después del cierre)
         Dialogo reflexion1 = new Dialogo("(Demasiado interés en desviar la atención. Ese guía sabe más de lo que aparenta...)", "Detective", detective, true);
-        reflexion1.agregar("aman", "El Guía intentó restarle importancia \n al detalle de la armadura. \n Parece que tiene algo que \n ocultar.");
+        reflexion1.agregar("guia 1", "El Guía intentó restarle importancia \n al detalle de la armadura. \n Parece que tiene algo que \n ocultar.");
 
 
         Dialogo reflexion2 = new Dialogo("(Siento que me voy acercando... en el fondo lo siento, y estas sensaciones no engañan...)", "Detective", detective, true);
@@ -1231,7 +1231,6 @@ public class Partida implements Serializable, Cloneable
         Dialogo raras2 = new Dialogo("¿Qué quiere saber exactamente?", "Vagabundo", vagabundo, true);
 
 
-        // Areglar hora
 
         // Segunda decisión
         Dialogo descVag2 = new Dialogo("Mmm, me parece que quizás deba seguir investigando o quizás no...", "Detective", detective, true);
