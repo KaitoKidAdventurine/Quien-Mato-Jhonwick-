@@ -46,7 +46,7 @@ public class Recepcion extends ModeloEscenario{
                 if(UnionInterfaces.getInstance().getCerrarVentana()){
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
-                    dispose();
+                    timer.schedule(tarea, 700);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     tarea2.cancel();
                 }else{
@@ -281,7 +281,7 @@ public class Recepcion extends ModeloEscenario{
 
         getContentPane().add(fondo);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+        timer2.scheduleAtFixedRate(tarea2, 0, 5);
 
     }
 
@@ -520,9 +520,26 @@ public class Recepcion extends ModeloEscenario{
             cajaTexto.removeAll();
             Juego.getInstance().getPartidaActual().cambiarEvento("Sec", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().cambiarRonda2();
+            if(!Juego.getInstance().getPartidaActual().getEventos().isSecretariaYa())
+                ponerDialogoInconcluso();
             secretaria.setVisible(true);
         }
+    }
 
+    private void ponerDialogoInconcluso() {
+        ponerDialogosEstatico(crearDialogoTodavia(), 0, true);
+    }
+
+    private ArrayList<Dialogo> crearDialogoTodavia(){
+        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(No esta contanto todo lo que sabe, o por lo menos no lo que queria excuchar)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Deberia de volver a hablar con ella y preguntarle otras cosas)", "Detective", detective, true);
+
+        dialogosConserje.add(d1);
+        dialogosConserje.add(d2);
+        return dialogosConserje;
     }
 
     public void ponerDialogoPolicia() {

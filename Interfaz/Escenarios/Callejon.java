@@ -47,7 +47,7 @@ public class Callejon extends ModeloEscenario {
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
-                    dispose();
+                    timer.schedule(tarea, 700);
                     tarea2.cancel();
                 }else {
                     revalidate();
@@ -173,7 +173,7 @@ public class Callejon extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+        timer2.scheduleAtFixedRate(tarea2, 0, 5);
     }
 
     private void vagabundoMouseExited(MouseEvent evt) {
@@ -304,9 +304,26 @@ public class Callejon extends ModeloEscenario {
             Juego.getInstance().getPartidaActual().cambiarEvento("vagabundo", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(5).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().cambiarRonda3();
             Juego.getInstance().getPartidaActual().getJugador().usarObjeto("Pan con jamon");
+            if(!Juego.getInstance().getPartidaActual().getEventos().isVagabundoYa())
+                ponerDialogoInconcluso();
             vagabundo.setVisible(true);
         }
+    }
 
+    private void ponerDialogoInconcluso() {
+        ponerDialogosEstatico(crearDialogoVagaTodavia(), 0);
+    }
+
+    private ArrayList<Dialogo> crearDialogoVagaTodavia(){
+        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(No esta contanto todo lo que sabe, o por lo menos no lo que queria excuchar)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Deberia de volver a hablar con el y preguntarle otras cosas)", "Detective", detective, true);
+
+        dialogosConserje.add(d1);
+        dialogosConserje.add(d2);
+        return dialogosConserje;
     }
     private void flechaMouseExited(MouseEvent evt) {
         BufferedImage imagen = null;

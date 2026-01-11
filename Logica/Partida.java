@@ -1189,11 +1189,7 @@ public class Partida implements Serializable, Cloneable
         auxTree5.insertNode(node86, node85);
         auxTree5.insertNode(node87, node86);
         auxTree5.insertNode(node88, node87);
-        auxTree5.insertNode(node96c, node88);
-        auxTree5.insertNode(node97c, node96c);
-
-        auxTree5.insertNode(nodeSal3, decision2G1);
-        auxTree5.insertNode(node89, nodeSal3);
+        auxTree5.insertNode(node89, node88);
         auxTree5.insertNode(node90, node89);
         auxTree5.insertNode(node91, node90);
         auxTree5.insertNode(node92, node91);
@@ -1202,6 +1198,12 @@ public class Partida implements Serializable, Cloneable
         auxTree5.insertNode(node95, node94);
         auxTree5.insertNode(node98, node95);
         auxTree5.insertNode(node99, node98);
+
+        auxTree5.insertNode(node96c, node99);
+        auxTree5.insertNode(node97c, node96c);
+
+        auxTree5.insertNode(nodeSal3, decision2G1);
+
 
         escenariosMundo.get(4).setArbolDial(auxTree5);
 

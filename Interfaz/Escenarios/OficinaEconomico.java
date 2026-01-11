@@ -48,7 +48,7 @@ public class OficinaEconomico extends ModeloEscenario {
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
-                    dispose();
+                    timer.schedule(tarea, 700);
                     tarea2.cancel();
                 }else{
                     revalidate();
@@ -176,7 +176,7 @@ public class OficinaEconomico extends ModeloEscenario {
         getContentPane().add(jLabel1);
 
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+        timer2.scheduleAtFixedRate(tarea2, 0, 5);
     }
 
     private void computadoraActionPerformed(ActionEvent evt) {
@@ -187,7 +187,6 @@ public class OficinaEconomico extends ModeloEscenario {
                 ponerDialogosEstatico(crearDialogoComputadora(), 0);
             }
         }
-        ponerFinal();
     }
 
 

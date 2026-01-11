@@ -49,7 +49,7 @@ public class SalaDeCamaras extends ModeloEscenario {
                 if(UnionInterfaces.getInstance().getCerrarVentana()){
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
-                    dispose();
+                    timer.schedule(tarea, 700);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     tarea2.cancel();
                 }else{
@@ -216,7 +216,7 @@ public class SalaDeCamaras extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+        timer2.scheduleAtFixedRate(tarea2, 0, 5);
     }
 
     private void revisarCamarasMouseExited(MouseEvent evt) {

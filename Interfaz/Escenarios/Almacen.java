@@ -48,7 +48,7 @@ public class Almacen extends ModeloEscenario {
                 if(UnionInterfaces.getInstance().getCerrarVentana()){
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
-                    dispose();
+                    timer.schedule(tarea, 700);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     tarea2.cancel();
                 }else{
@@ -191,7 +191,7 @@ public class Almacen extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+        timer2.scheduleAtFixedRate(tarea2, 0, 5);
     }
     public void ponerDialogo() {
         if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(12).getNodoDialActual()))) {

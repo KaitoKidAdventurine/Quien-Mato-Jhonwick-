@@ -8,7 +8,6 @@ import Interfaz.InterfazJugador.OpcionesDialogos;
 import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
 import Logica.Juego;
-import Logica.Partida;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -48,8 +47,7 @@ public class OficinaJefe extends ModeloEscenario {
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
-                    dispose();
-
+                    timer.schedule(tarea, 700);
                     tarea2.cancel();
 
                 }else {
@@ -171,7 +169,7 @@ public class OficinaJefe extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+        timer2.scheduleAtFixedRate(tarea2, 0, 5);
     }
 
     private void duennoMouseExited(MouseEvent evt) {
@@ -285,10 +283,27 @@ public class OficinaJefe extends ModeloEscenario {
             cajaTexto.removeAll();
             Juego.getInstance().getPartidaActual().cambiarEvento("dueno", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(3).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().cambiarARonda1();
+            if(!Juego.getInstance().getPartidaActual().getEventos().isDuenoYA())
+                ponerDialogoInconcluso();
             duenno.setVisible(true);
         }
     }
 
+    private void ponerDialogoInconcluso() {
+        ponerDialogosEstatico(crearDialogoDuenoTodavia(), 0);
+    }
+
+    private ArrayList<Dialogo> crearDialogoDuenoTodavia(){
+        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(No esta contanto todo lo que sabe, o por lo menos no lo que queria excuchar)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Deberia de volver a hablar con el y preguntarle otras cosas)", "Detective", detective, true);
+
+        dialogosConserje.add(d1);
+        dialogosConserje.add(d2);
+        return dialogosConserje;
+    }
     private void flechaPasillo2ActionPerformed(ActionEvent evt) {
         if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
             UnionInterfaces.getInstance().setUsandoFlecha(true);

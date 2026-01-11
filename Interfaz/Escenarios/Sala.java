@@ -43,11 +43,10 @@ public class Sala extends ModeloEscenario {
         tarea2 = new TimerTask() {
             @Override
             public void run() {
-
                 if(UnionInterfaces.getInstance().getCerrarVentana()){
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
-                    dispose();
+                    timer.schedule(tarea, 700);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     tarea2.cancel();
                 }else{
@@ -253,7 +252,7 @@ public class Sala extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+        timer2.scheduleAtFixedRate(tarea2, 0, 5);
     }
 
     private void estatuaActionPerformed(ActionEvent evt) {
@@ -396,9 +395,26 @@ public class Sala extends ModeloEscenario {
             cajaTexto.removeAll();
             Juego.getInstance().getPartidaActual().cambiarEvento("esposa", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(6).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().cambiarRonda4();
+            if(!Juego.getInstance().getPartidaActual().getEventos().isEsposaYa())
+                ponerDialogoInconcluso();
             esposa.setVisible(true);
         }
+    }
 
+    private void ponerDialogoInconcluso() {
+        ponerDialogosEstatico(crearDialogoEsposaTodavia(), 0);
+    }
+
+    private ArrayList<Dialogo> crearDialogoEsposaTodavia(){
+        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(No esta contanto todo lo que sabe, o por lo menos no lo que queria excuchar)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Deberia de volver a hablar con ella y preguntarle otras cosas)", "Detective", detective, true);
+
+        dialogosConserje.add(d1);
+        dialogosConserje.add(d2);
+        return dialogosConserje;
     }
     public void ponerDialogoEstatua() {
         if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(9).getNodoDialActual()))) {

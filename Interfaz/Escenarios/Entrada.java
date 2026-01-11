@@ -63,7 +63,7 @@ public class Entrada extends ModeloEscenario {
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
-                     dispose();
+                    timer.schedule(tarea, 700);
                     tarea2.cancel();
                 } else {
                     revalidate();
@@ -153,7 +153,7 @@ public class Entrada extends ModeloEscenario {
         getContentPane().add(fondo);
 
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+        timer2.scheduleAtFixedRate(tarea2, 0, 5);
         if (Juego.getInstance().getPartidaActual().getEventos().getDialogoCapitanActual() == 0) {
             llamadaCapitan(0);
         }

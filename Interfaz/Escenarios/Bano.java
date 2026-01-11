@@ -48,7 +48,7 @@ public class Bano extends ModeloEscenario {
                 if(UnionInterfaces.getInstance().getCerrarVentana()){
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
-                    dispose();
+                    timer.schedule(tarea, 700);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
                     tarea2.cancel();
                 }else{
@@ -175,7 +175,7 @@ public class Bano extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+        timer2.scheduleAtFixedRate(tarea2, 0, 5);
     }
 
     private void conserjeMouseExited(MouseEvent evt) {
@@ -227,6 +227,17 @@ public class Bano extends ModeloEscenario {
         ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
         Dialogo d1= new Dialogo("(Ya hable con el)", "Detective", detective, true);
         Dialogo d2= new Dialogo("(Deberia de enfocarme en recorrer el museo y buscar otras pistas.)", "Detective", detective, true);
+
+        dialogosConserje.add(d1);
+        dialogosConserje.add(d2);
+        return dialogosConserje;
+    }
+    private ArrayList<Dialogo> crearDialogoConserjeTodavia(){
+        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(No esta contanto todo lo que sabe, o por lo menos no lo que queria excuchar)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Deberia de volver a hablar con el y preguntarle otras cosas)", "Detective", detective, true);
 
         dialogosConserje.add(d1);
         dialogosConserje.add(d2);
@@ -321,9 +332,15 @@ public class Bano extends ModeloEscenario {
             cajaTexto.removeAll();
             Juego.getInstance().getPartidaActual().cambiarEvento("victor", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(2).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().cambiarRonda2();
+            if(!Juego.getInstance().getPartidaActual().getEventos().isConserjeYa())
+                ponerDialogoInconcluso();
             conserje.setVisible(true);
         }
 
+    }
+
+    private void ponerDialogoInconcluso() {
+        ponerDialogosConserjeEstatico(crearDialogoConserjeTodavia(), 0);
     }
 
     private void conserjeMouseClicked(MouseEvent evt) {

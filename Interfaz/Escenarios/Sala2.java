@@ -47,8 +47,7 @@ public class Sala2  extends ModeloEscenario {
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
-                    dispose();
-
+                    timer.schedule(tarea, 700);
                     tarea2.cancel();
                 }else {
                     revalidate();
@@ -200,7 +199,7 @@ public class Sala2  extends ModeloEscenario {
         getContentPane().add(jLabel1);
 
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+        timer2.scheduleAtFixedRate(tarea2, 0, 5);
     }
 
     private void guia2MouseExited(MouseEvent evt) {
@@ -359,8 +358,26 @@ public class Sala2  extends ModeloEscenario {
             cajaTexto.removeAll();
             Juego.getInstance().getPartidaActual().cambiarEvento("guia 1", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(4).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().cambiarARonda1();
+            if(!Juego.getInstance().getPartidaActual().getEventos().isGuia1Ya())
+                ponerDialogoInconcluso();
             guia1.setVisible(true);
         }
+    }
+
+    private void ponerDialogoInconcluso() {
+        ponerDialogosEstatico(crearDialogoGuia1Todavia(), 0);
+    }
+
+    private ArrayList<Dialogo> crearDialogoGuia1Todavia(){
+        ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
+
+        ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
+        Dialogo d1= new Dialogo("(No esta contanto todo lo que sabe, o por lo menos no lo que queria excuchar)", "Detective", detective, true);
+        Dialogo d2= new Dialogo("(Deberia de volver a hablar con el y preguntarle otras cosas)", "Detective", detective, true);
+
+        dialogosConserje.add(d1);
+        dialogosConserje.add(d2);
+        return dialogosConserje;
     }
     public void ponerDialogoGuia2() {
         if(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getNodoDialActual() == null || !(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getArbolDial().nodeIsLeaf(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getNodoDialActual()))) {

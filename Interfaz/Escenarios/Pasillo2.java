@@ -42,7 +42,7 @@ public class Pasillo2 extends ModeloEscenario {
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
-                    dispose();
+                    timer.schedule(tarea, 700);
                     tarea2.cancel();
 
                 }else{
@@ -198,7 +198,7 @@ public class Pasillo2 extends ModeloEscenario {
 
         getContentPane().add(jLabel1);
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 10);
+        timer2.scheduleAtFixedRate(tarea2, 0, 5);
     }
 
     private void flechaSalaActionPerformed(ActionEvent evt) {
