@@ -53,8 +53,10 @@ public class FinDelJuego extends JFrame {
 
     public void initComponents(){
 
-        BufferedImage imagenCursor =null;
-        try {
+        BufferedImage imagenCursor = null;
+
+        try
+        {
             imagenCursor =  ImageIO.read(new File("DatosAuxiliares/OjetosInterfaz/Cursor.png"));
         } catch (IOException te) {
             throw new RuntimeException(te);

@@ -233,16 +233,16 @@ private boolean fin;
     }
     private ArrayList<String> crearCuerpos(){
         ArrayList<String> cuerpos= new ArrayList<>();
-        cuerpos.add("Eriet Dario de Armas Gonzales");
+        cuerpos.add("Eriet Dario Armas Gonzales");
         cuerpos.add("Kevin Ronquillo Perez");
         cuerpos.add("Alberto Ramon Nogueira");
         cuerpos.add("Favio Hernandez Leal");
-        cuerpos.add("Eriet Dario de Armas Gonzales");
+        cuerpos.add("Eriet Dario Armas Gonzales");
         cuerpos.add("Edel Lazaro Mejias Rodriguez");
         cuerpos.add("Yeilin Dignora de la Cruz Noriega");
         cuerpos.add("Kely Gonzales Baez");
         cuerpos.add("Kevin Ronquillo Perez");
-        cuerpos.add("Eriet Dario de Armas Gonzales");
+        cuerpos.add("Eriet Dario Armas Gonzales");
         cuerpos.add(" por jugar");
         return cuerpos;
     }

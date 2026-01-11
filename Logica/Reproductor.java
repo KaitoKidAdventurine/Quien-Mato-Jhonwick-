@@ -23,8 +23,7 @@ public class Reproductor {
     //private long tiempoInicioReproduccion = 0;
 
 
-    private Reproductor()
-    {
+    private Reproductor() {
         this.canciones = new ArrayList<Cancion>();
         this.indiceActual = 0;
         this.enReproduccion = true;
@@ -78,32 +77,22 @@ public class Reproductor {
     }
 
 
-
-
-    public static boolean existeInstancia()
-    {
+    public static boolean existeInstancia() {
         return instancia != null;
     }
 
 
     public void cambiarVolumen(float vol) {
-        int porcentaje = (int)(vol * 100);
-        if(porcentaje == 0)
-        {
+        int porcentaje = (int) (vol * 100);
+        if (porcentaje == 0) {
             this.volumenSistema = Math.max(0, Math.min(100, 20));
             ControlVolumen.setVolumenSistema(volumenSistema);
             detenerCancion();
-        }
-
-        else if (porcentaje != 0)
-        {
-            if (enReproduccion)
-            {
+        } else if (porcentaje != 0) {
+            if (enReproduccion) {
                 this.volumenSistema = Math.max(0, Math.min(100, porcentaje));
                 ControlVolumen.setVolumenSistema(volumenSistema);
-            }
-            else
-            {
+            } else {
                 activarMusica();
                 this.volumenSistema = Math.max(0, Math.min(100, porcentaje));
                 ControlVolumen.setVolumenSistema(volumenSistema);
@@ -136,9 +125,6 @@ public class Reproductor {
     public float getVolumen() {
         return volumenSistema / 100.0f;
     }
-
-
-
 
 
     // Getters
@@ -194,7 +180,7 @@ public class Reproductor {
     // Metodos
 
     public void iniciarMusica() {
-        if(enReproduccion) {
+        if (enReproduccion) {
             try {
                 // Detener hilo anterior si existe
                 if (hiloReproduccion != null && hiloReproduccion.isAlive()) {
@@ -241,7 +227,7 @@ public class Reproductor {
                 reproductorMP3.close();
             }
 
-            if(enReproduccion) {
+            if (enReproduccion) {
                 indiceActual = i;
 
                 // Reiniciar la reproduccion
@@ -270,16 +256,13 @@ public class Reproductor {
 
             if (encontrado) {
                 cambiarMusicaIndice(indiceActual);
-            }
-
-            else {
+            } else {
                 throw new IllegalArgumentException("La canción '" + nombre + "' no fue encontrada");
             }
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
 
 
     public void cambiarMusicaSiguiente() {
@@ -320,17 +303,25 @@ public class Reproductor {
         hiloReproduccion = null;
     }
 
-    public void activarMusica()
-    {
+    public void activarMusica() {
         enReproduccion = true;
         iniciarMusica();
     }
 
-    public void desactivarMusica()
-    {
+    public void desactivarMusica() {
         reproductorMP3.close();
         enReproduccion = false;
     }
+
+    public void agregarReproucirCancionDelFinal()
+    {
+        File f = new File("Musica/Canciones/GraciasPorJugar.mp3");
+        Cancion c = new Cancion("Creditos", f);
+        canciones.add(c);
+        cambiarMusicaNombre("Creditos");
+        activarMusica();
+    }
+
 
     // prueba para ver si funciona: Lo dejare para futuras comprobaciones.
     public void diagnosticar() {
