@@ -2023,7 +2023,7 @@ public class Partida implements Serializable, Cloneable
 
    public void cambiarEvento(String profesion, GeneralTree<Dialogo> arbol)
    {
-       switch(profesion.toLowerCase())
+       switch(profesion)
        {
            case "policia":
            case "Policia":

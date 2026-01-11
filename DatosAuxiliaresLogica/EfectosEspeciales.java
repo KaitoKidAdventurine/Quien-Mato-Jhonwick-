@@ -50,7 +50,6 @@ public class EfectosEspeciales
             File efecto = new File("Musica/Efectos de Sonido/susuros.mp3");
             File llam = new File("Musica/Efectos de Sonido/llamadaTelefono.mp3");
             File error = new File("Musica/Efectos de Sonido/error.mp3");
-
             File puerta = new File("Musica/Efectos de Sonido/AbrirYCerarPuerta.mp3");
             File romPuerta = new File("Musica/Efectos de Sonido/rompiendoPuerta.mp3");
             File ambu = new File("Musica/Efectos de Sonido/ambulancia.mp3");
@@ -58,6 +57,7 @@ public class EfectosEspeciales
             File gun = new File("Musica/Efectos de Sonido/Pistola.mp3");
             File teclado = new File("Musica/Efectos de Sonido/Teclado.mp3");
             File tec = new File("Musica/Efectos de Sonido/TecladoPequeno.mp3");
+            File arm = new File("Musica/Efectos de Sonido/ArmaCallendo.mp3");
 
             if (archivoMusica.exists())
             {
@@ -83,6 +83,7 @@ public class EfectosEspeciales
                 Cancion cancion19 = new Cancion("Pistola", gun);
                 Cancion cancion20 = new Cancion("Teclado", teclado);
                 Cancion cancion21 = new Cancion("TecladoPequeno", tec);
+                Cancion cancion22 = new Cancion("ArmaCallendo", arm);
 
                 efectosSonido.add(cancion);
                 efectosSonido.add(cancion1);
@@ -106,6 +107,7 @@ public class EfectosEspeciales
                 efectosSonido.add(cancion19);
                 efectosSonido.add(cancion20);
                 efectosSonido.add(cancion21);
+                efectosSonido.add(cancion22);
 
             }
 
@@ -467,6 +469,11 @@ public class EfectosEspeciales
     public void efectoTecladoPequeno()
     {
         cambiarEfectoNombreUsarSoloUnaVez("TecladoPequeno");
+    }
+
+    public void efectoArmaCallendo()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("ArmaCallendo");
     }
 
 

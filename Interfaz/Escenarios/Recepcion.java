@@ -269,7 +269,7 @@ public class Recepcion extends ModeloEscenario{
         add(flechaPasillo1);
         add(policia);
         add(secretaria);
-        lugar.setText("Recepcion");
+        lugar.setText("Recepción");
         lugar.setOpaque(false);
         lugar.setForeground(Color.white);
         lugar.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.035)));
@@ -558,7 +558,7 @@ public class Recepcion extends ModeloEscenario{
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            Juego.getInstance().getPartidaActual().cambiarEvento("esposa", Juego.getInstance().getPartidaActual().getEscenarios().get(7).getArbolDial());
+            Juego.getInstance().getPartidaActual().cambiarEvento("policia", Juego.getInstance().getPartidaActual().getEscenarios().get(7).getArbolDial());
             policia.setVisible(true);
         }
 

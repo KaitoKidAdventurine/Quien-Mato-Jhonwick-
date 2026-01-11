@@ -1,11 +1,13 @@
 package Interfaz.Cinematicas;
 
+import DatosAuxiliaresLogica.EfectosEspeciales;
 import DatosAuxiliaresLogica.UnionInterfaces;
 import Interfaz.InterfazJugador.CuadroTexto;
 import Interfaz.InterfazJugador.OpcionesDialogos;
 import Interfaz.Menu.MenuPrincipal;
 import Logica.Dialogo;
 import Logica.Juego;
+import Logica.Reproductor;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -109,6 +111,9 @@ timer.scheduleAtFixedRate(tarea, 0, 10);
                 }
             });
 
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.detenerSiEsNecesario();
+
             cajaTexto.removeAll();
             cajaTexto.add(cT);
            if(nivelActualDial==22 ||nivelActualDial==16 || nivelActualDial==30 || nivelActualDial==34 || nivelActualDial==52 ||
@@ -116,6 +121,29 @@ timer.scheduleAtFixedRate(tarea, 0, 10);
                ponerFondo(nivelActualDial, UnionInterfaces.getInstance().getOpcionDialogo());
             if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
                 UnionInterfaces.getInstance().setOpcionDialogo(1);
+
+            Reproductor reproductor = Reproductor.getInstancia();
+
+            if (aux.getTexto().equals("-Slapp.-"))
+               e.efectoRomperPuerta();
+
+           if (aux.getTexto().equals("(Bip.)"))
+               e.efectoLlamadaTelefono();
+
+           if (aux.getTexto().equals("¿Qué haces aquí? No tengo tiempo para tus teorías."))
+                reproductor.musicaTension();
+           if (aux.getTexto().equals("*El jefe saca un arma y dispara. El proyectil impacta en el hombro de tu compañero, que cae al suelo.*"))
+               e.efectoRevolver();
+
+           if (aux.getTexto().equals("*Disparas. El jefe cae al suelo, sin vida. El museo queda en silencio.*"))
+                e.efectoPistola();
+
+           if (aux.getTexto().equals("*El jefe, temblando, deja caer el arma. Se sienta, derrotado, con la mirada perdida.*"))
+               e.efectoArmaCallendo();
+
+           if (aux.getTexto().equals("*La policía llega. El jefe es arrestado. Tu compañero es trasladado al hospital. Afuera, las sirenas se mezclan con el murmullo de los curiosos.*"))
+                e.efectoAmbulancia();
+
         }else {
             cajaTexto.removeAll();
             ponerCreditos();

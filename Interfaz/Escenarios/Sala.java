@@ -393,7 +393,7 @@ public class Sala extends ModeloEscenario {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            Juego.getInstance().getPartidaActual().cambiarEvento("victor", Juego.getInstance().getPartidaActual().getEscenarios().get(6).getArbolDial());
+            Juego.getInstance().getPartidaActual().cambiarEvento("esposa", Juego.getInstance().getPartidaActual().getEscenarios().get(6).getArbolDial());
 
             Juego.getInstance().getPartidaActual().getEventos().cambiarRonda4();
             esposa.setVisible(true);
