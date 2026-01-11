@@ -518,7 +518,7 @@ public class Recepcion extends ModeloEscenario{
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            Juego.getInstance().getPartidaActual().getEventos().setSecretariaYa(true);
+            Juego.getInstance().getPartidaActual().cambiarEvento("Sec", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().cambiarRonda2();
             secretaria.setVisible(true);
         }

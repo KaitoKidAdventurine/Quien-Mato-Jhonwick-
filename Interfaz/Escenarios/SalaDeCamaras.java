@@ -372,9 +372,6 @@ public class SalaDeCamaras extends ModeloEscenario {
     public void ponerDialogo() {
         Escenario escenario = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(1);
 
-        boolean dialogoYaTerminado = escenario.isDialogoCompletado();
-
-        if (!dialogoYaTerminado) {
             if (escenario.getNodoDialActual() == null || !(escenario.getArbolDial().nodeIsLeaf(escenario.getNodoDialActual()))) {
                 if (!(escenario.getNodoDialActual() == null)) {
                     Dialogo actual = escenario.getDialogoActual();
@@ -400,27 +397,12 @@ public class SalaDeCamaras extends ModeloEscenario {
                 cajaTexto.removeAll();
                 cajaTexto.add(cT);
             } else {
-                dialogoYaTerminado = true;
-                escenario.setDialogoCompletado(true);
                 cajaTexto.removeAll();
                 revisarCamaras.setVisible(true);
-                Juego.getInstance().getPartidaActual().cambiarEvento("Guardia", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(1).getArbolDial());
                 Juego.getInstance().getPartidaActual().getEventos().setPuertaCerrada(true);
+                Juego.getInstance().getPartidaActual().getEventos().setSeguridadYa(true);
                 seguridad.setVisible(true);
             }
-        }
-
-        if (dialogoYaTerminado) {
-            cajaTexto.removeAll();
-            revisarCamaras.setVisible(true);
-            Juego.getInstance().getPartidaActual().cambiarEvento("Guardia", Juego.getInstance()
-                    .getPartidaActual().getEscenariosMundo().get(1).getArbolDial());
-            Juego.getInstance().getPartidaActual().getEventos().setPuertaCerrada(true);
-            seguridad.setVisible(true);
-        }
-
-        getContentPane().revalidate();
-        getContentPane().repaint();
     }
 
     private void verificarEstadoDialogos() {

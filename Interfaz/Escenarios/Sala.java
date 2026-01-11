@@ -385,7 +385,7 @@ public class Sala extends ModeloEscenario {
             EfectosEspeciales e = EfectosEspeciales.getInstancia();
             e.detenerSiEsNecesario();
 
-            if (aux.getTextoImport().isEmpty() == false)
+            if (!aux.getTextoImport().isEmpty())
             {
                 aux.guardarEnDiario();
             }
@@ -395,7 +395,6 @@ public class Sala extends ModeloEscenario {
         }else {
             cajaTexto.removeAll();
             Juego.getInstance().getPartidaActual().cambiarEvento("esposa", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(6).getArbolDial());
-
             Juego.getInstance().getPartidaActual().getEventos().cambiarRonda4();
             esposa.setVisible(true);
         }

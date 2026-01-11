@@ -294,6 +294,11 @@ public class Callejon extends ModeloEscenario {
                 UnionInterfaces.getInstance().setOpcionDialogo(1);
             cajaTexto.removeAll();
             cajaTexto.add(cT);
+
+            if (!aux.getTextoImport().isEmpty())
+            {
+                aux.guardarEnDiario();
+            }
         }else {
             cajaTexto.removeAll();
             Juego.getInstance().getPartidaActual().cambiarEvento("vagabundo", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(5).getArbolDial());
