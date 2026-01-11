@@ -210,7 +210,7 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         mochila.setIcon(icono);
     }
     private void DiarioActionPerformed(ActionEvent evt) {
-        DiarioInterfaz diarioInterfaz = new DiarioInterfaz(new JFrame(), true);
+        DiarioInterfaz diarioInterfaz = new DiarioInterfaz(null, false);
         diarioInterfaz.setBounds(0, 0,tamPant.width, tamPant.height);
         diarioInterfaz.setVisible(true);
     }

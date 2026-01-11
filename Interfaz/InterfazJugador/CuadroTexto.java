@@ -202,6 +202,20 @@ public class CuadroTexto extends javax.swing.JPanel {
             capitanFondo.setBounds(0, 0, tamPant.width, tamPant.height);
             add(capitanFondo);
         }
+        if(personaje.equals("Foto que poner")){
+            BufferedImage image = null;
+            try {
+                image = ImageIO.read(new File(("DatosAuxiliares/Cinematica/Foto Oficina.png")));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            ImageIcon imageIcon = new ImageIcon(image.getScaledInstance(tamPant.width, tamPant.height , Image.SCALE_SMOOTH));
+            capitanFondo.setIcon(imageIcon);
+            capitanFondo.setBounds(0, 0, tamPant.width, tamPant.height);
+            add(capitanFondo);
+            jLabel3.setText("");
+        }
+
     }
 
 

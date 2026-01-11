@@ -27,7 +27,6 @@ import java.util.TimerTask;
 public class Bano2  extends ModeloEscenario {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Bano2.class.getName());
     private Dimension tamPant;
-    private int dialogoActual;
     private java.util.Timer timer;
     private TimerTask tarea;
     private Timer timer2;
@@ -36,9 +35,8 @@ public class Bano2  extends ModeloEscenario {
     private JButton revisarBano;
     private Timer timer3;
     private TimerTask tarea3;
-    /**
-     * Creates new form Entrada
-     */
+
+
     public Bano2() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         timer2 = new Timer();
@@ -66,7 +64,6 @@ public class Bano2  extends ModeloEscenario {
                     cajaTexto.removeAll();
                     revisarBano.setVisible(false);
                     ponerDialogo();
-                    UnionInterfaces.getInstance().setUsandoFlecha(false);
                     tarea3.cancel();
                 }
             }
@@ -224,8 +221,6 @@ public class Bano2  extends ModeloEscenario {
                 {
                     aux.guardarEnDiario();
                 }
-
-
                 cajaTexto.removeAll();
                 cajaTexto.add(cT);
             }else {
@@ -235,7 +230,7 @@ public class Bano2  extends ModeloEscenario {
         }
 
         private void banoMouseClicked(MouseEvent evt) {
-            Juego.getInstance().getPartidaActual().getEscenariosMundo().get(11).restaurarDialogo();
+
             ponerDialogo();
 
         }

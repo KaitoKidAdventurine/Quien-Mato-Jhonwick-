@@ -1369,7 +1369,7 @@ public class Partida implements Serializable, Cloneable
         Dialogo e3 = new Dialogo("Mi esposo es brillante. Este museo no sería nada sin él. ¿Quiere ver algo?", "Esposa", esposa, true);
 
 
-        Dialogo e4 = new Dialogo("*Saca su teléfono y muestra la pantalla bloqueada.*", "Foto en espera", nada, true);
+        Dialogo e4 = new Dialogo("*Saca su teléfono y muestra la pantalla bloqueada.*", "", nada, true);
 
 
         Dialogo e5 = new Dialogo("Mire, esta es mi pantalla. Es de hace unas semanas. " +
