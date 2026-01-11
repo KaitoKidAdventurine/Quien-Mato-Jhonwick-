@@ -382,7 +382,7 @@ public class SalaDeCamaras extends ModeloEscenario {
                 if (!(escenario.getNodoDialActual() == null)) {
                     Dialogo actual = escenario.getDialogoActual();
                     if (!actual.getOpciones().isEmpty()) {
-                        OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                        OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
                         oD.setBounds((int) (tamPant.width * 0.28), (int) (tamPant.getHeight() * 0.37), (int) (tamPant.width * 0.48), (int) (tamPant.getHeight() * 0.5));
                         oD.setVisible(true);
                     }

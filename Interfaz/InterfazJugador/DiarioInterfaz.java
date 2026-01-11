@@ -41,7 +41,6 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         super(parent, modal);
 
         informacion= Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes();
-
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         timer = new Timer();
         tarea = new TimerTask() {

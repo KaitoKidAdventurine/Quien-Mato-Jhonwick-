@@ -1,5 +1,7 @@
 package DatosAuxiliaresLogica;
 
+import javax.swing.*;
+
 public class UnionInterfaces {
 
     private int opcionDialogo;
@@ -11,6 +13,7 @@ public class UnionInterfaces {
     private boolean hablandoCapitan;
     private boolean molestandoTarde;
     private boolean usandoFlecha;
+    private JFrame frameActual;
     public UnionInterfaces(){
         this.opcionDialogo = 1;
         this.cerrarVentana= false;
@@ -20,6 +23,7 @@ public class UnionInterfaces {
         this.hablandoCapitan=false;
         this.molestandoTarde=false;
         this.usandoFlecha=false;
+        frameActual = null;
     }
 
     public int getOpcionDialogo() {
@@ -90,5 +94,13 @@ public class UnionInterfaces {
 
     public void setUsandoFlecha(boolean usandoFlecha) {
         this.usandoFlecha = usandoFlecha;
+    }
+
+    public JFrame getFrameActual() {
+        return frameActual;
+    }
+
+    public void setFrameActual(JFrame frameActual) {
+        this.frameActual = frameActual;
     }
 }

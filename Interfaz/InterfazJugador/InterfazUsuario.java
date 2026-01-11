@@ -178,7 +178,8 @@ public class InterfazUsuario  extends javax.swing.JPanel {
 
         EfectosEspeciales e = EfectosEspeciales.getInstancia();
         e.efectoAbrirMochila();
-        Maletin maletin = new Maletin(new JFrame(), true);
+
+        Maletin maletin = new Maletin(UnionInterfaces.getInstance().getFrameActual(), true);
         maletin.setBounds(0, 0,tamPant.width, tamPant.height);
         maletin.setVisible(true);
     }
@@ -210,7 +211,7 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         mochila.setIcon(icono);
     }
     private void DiarioActionPerformed(ActionEvent evt) {
-        DiarioInterfaz diarioInterfaz = new DiarioInterfaz(new JFrame(), true);
+        DiarioInterfaz diarioInterfaz = new DiarioInterfaz(UnionInterfaces.getInstance().getFrameActual(), false);
         diarioInterfaz.setBounds(0, 0,tamPant.width, tamPant.height);
         diarioInterfaz.setVisible(true);
     }
@@ -242,7 +243,7 @@ public class InterfazUsuario  extends javax.swing.JPanel {
         diario.setIcon(icono);
     }
     private void TelefonoActionPerformed(ActionEvent evt) {
-        TelefonoInterfaz telefono = new TelefonoInterfaz(new JFrame(), true);
+        TelefonoInterfaz telefono = new TelefonoInterfaz(UnionInterfaces.getInstance().getFrameActual(), true);
         telefono.setBounds(0, 0,tamPant.width, tamPant.height);
         telefono.setVisible(true);
     }
@@ -275,7 +276,7 @@ public class InterfazUsuario  extends javax.swing.JPanel {
     }
     private void MenuActionPerformed(ActionEvent evt) {
 
-        MenuInterno menuInterno = new MenuInterno(new JFrame(), true);
+        MenuInterno menuInterno = new MenuInterno(UnionInterfaces.getInstance().getFrameActual(), true);
         menuInterno.setBounds(0, 0,tamPant.width, tamPant.height);
         menuInterno.setVisible(true);
 

@@ -41,7 +41,6 @@ public class InicioJuego extends JFrame {
     private TimerTask tarea;
     private Timer timer2;
     private TimerTask tarea2;
-    private JButton botonSaltar;
     private Timer salida;
     private  TimerTask salidaTarea;
     private static boolean entro = false;
@@ -98,7 +97,9 @@ public class InicioJuego extends JFrame {
                 }
             }
         };
+        UnionInterfaces.getInstance().setFrameActual((JFrame) this);
         initComponents();
+
     }
 
 
@@ -112,7 +113,6 @@ public class InicioJuego extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         fondo = new JLabel();
         cajaTexto = new JPanel();
-        botonSaltar = new JButton("Saltar al Juego");
 
         BufferedImage imagenCursor =null;
         try {
@@ -133,14 +133,6 @@ public class InicioJuego extends JFrame {
         cajaTexto.setBounds(0, 0, tamPant.width, tamPant.height);
         cajaTexto.setLayout(null);
 
-        // Configurar botón saltar
-        botonSaltar.setBounds((int)(tamPant.width*0.85), (int)(tamPant.height*0.05), (int)(tamPant.width*0.12), (int)(tamPant.height*0.06));
-        botonSaltar.setFont(new Font("Segoe UI", Font.BOLD, (int)(tamPant.width*0.012)));
-        botonSaltar.setBackground(new Color(200, 50, 50));
-        botonSaltar.setForeground(Color.WHITE);
-        botonSaltar.setBorderPainted(false);
-        botonSaltar.setFocusPainted(false);
-        botonSaltar.addActionListener(event -> saltarAlJuego());
 
         fondo.setFocusable(false);
         fondo.setMaximumSize(tamPant);
@@ -148,7 +140,6 @@ public class InicioJuego extends JFrame {
         fondo.setPreferredSize(tamPant);
         fondo.setBounds(0, 0, tamPant.width, tamPant.height);
 
-        getContentPane().add(botonSaltar);
         getContentPane().add(cajaTexto);
         getContentPane().add(fondo);
 
@@ -241,7 +232,7 @@ public class InicioJuego extends JFrame {
 
                 Dialogo actual = tutorialParte2.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
-                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
@@ -283,7 +274,7 @@ public class InicioJuego extends JFrame {
             if(!(tutorialParte3.getNodoDialActual()==null)){
                 Dialogo actual = tutorialParte3.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
-                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
@@ -327,7 +318,7 @@ public class InicioJuego extends JFrame {
             if(!(tutorialParte4.getNodoDialActual()==null)){
                 Dialogo actual = tutorialParte4.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
-                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
@@ -367,7 +358,7 @@ public class InicioJuego extends JFrame {
             if(!(tutorialParte5.getNodoDialActual()==null)){
                 Dialogo actual = tutorialParte5.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
-                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
@@ -405,7 +396,7 @@ public class InicioJuego extends JFrame {
             if(!(tutorialParte6.getNodoDialActual()==null)){
                 Dialogo actual = tutorialParte6.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
-                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
@@ -443,7 +434,7 @@ public class InicioJuego extends JFrame {
             if(!(tutorialParte7.getNodoDialActual()==null)){
                 Dialogo actual = tutorialParte7.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
-                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
@@ -481,7 +472,7 @@ public class InicioJuego extends JFrame {
             if(!(tutorialParte8.getNodoDialActual()==null)){
                 Dialogo actual = tutorialParte8.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
-                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
@@ -518,7 +509,7 @@ public class InicioJuego extends JFrame {
             if(!(tutorialParte9.getNodoDialActual()==null)){
                 Dialogo actual = tutorialParte9.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
-                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
@@ -558,7 +549,7 @@ public class InicioJuego extends JFrame {
             if(!(tutorialParte10.getNodoDialActual()==null)){
                 Dialogo actual = tutorialParte10.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
-                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
@@ -1898,8 +1889,6 @@ public class InicioJuego extends JFrame {
 
     public void crearMinijuego(){
         // Ocultar botón saltar cuando comience el minijuego
-        botonSaltar.setVisible(false);
-
         MiniJuego miniJuego = Juego.getInstance().getMinijuego(0);
 
         MinijuegoInterfaz minijuegoInterfaz = new MinijuegoInterfaz(miniJuego, 0);
