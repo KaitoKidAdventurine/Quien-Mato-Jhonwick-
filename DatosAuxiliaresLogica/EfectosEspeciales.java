@@ -1,6 +1,7 @@
 package DatosAuxiliaresLogica;
 
 import java.io.File;
+import java.lang.foreign.PaddingLayout;
 import java.util.ArrayList;
 import java.io.FileInputStream;
 import java.util.Timer;
@@ -50,6 +51,14 @@ public class EfectosEspeciales
             File llam = new File("Musica/Efectos de Sonido/llamadaTelefono.mp3");
             File error = new File("Musica/Efectos de Sonido/error.mp3");
 
+            File puerta = new File("Musica/Efectos de Sonido/AbrirYCerarPuerta.mp3");
+            File romPuerta = new File("Musica/Efectos de Sonido/rompiendoPuerta.mp3");
+            File ambu = new File("Musica/Efectos de Sonido/ambulancia.mp3");
+            File revo = new File("Musica/Efectos de Sonido/Revolver.mp3");
+            File gun = new File("Musica/Efectos de Sonido/Pistola.mp3");
+            File teclado = new File("Musica/Efectos de Sonido/Teclado.mp3");
+            File tec = new File("Musica/Efectos de Sonido/TecladoPequeno.mp3");
+
             if (archivoMusica.exists())
             {
                 Cancion cancion = new Cancion("Lluvia", archivoMusica);
@@ -67,6 +76,13 @@ public class EfectosEspeciales
                 Cancion cancion12 = new Cancion("susuros", efecto);
                 Cancion cancion13 = new Cancion("llamada", llam);
                 Cancion cancion14 = new Cancion("Error", error);
+                Cancion cancion15 = new Cancion("AbrirYCerrarPuerta", puerta);
+                Cancion cancion16 = new Cancion("rompiendoPuerta", romPuerta);
+                Cancion cancion17 = new Cancion("ambulancia", ambu);
+                Cancion cancion18 = new Cancion("Revolver", revo);
+                Cancion cancion19 = new Cancion("Pistola", gun);
+                Cancion cancion20 = new Cancion("Teclado", teclado);
+                Cancion cancion21 = new Cancion("TecladoPequeno", tec);
 
                 efectosSonido.add(cancion);
                 efectosSonido.add(cancion1);
@@ -83,6 +99,14 @@ public class EfectosEspeciales
                 efectosSonido.add(cancion12);
                 efectosSonido.add(cancion13);
                 efectosSonido.add(cancion14);
+                efectosSonido.add(cancion15);
+                efectosSonido.add(cancion16);
+                efectosSonido.add(cancion17);
+                efectosSonido.add(cancion18);
+                efectosSonido.add(cancion19);
+                efectosSonido.add(cancion20);
+                efectosSonido.add(cancion21);
+
             }
 
             else {
@@ -408,6 +432,41 @@ public class EfectosEspeciales
     public void efectoError()
     {
         cambiarEfectoNombreUsarSoloUnaVez("Error");
+    }
+
+    public void efectoTeclado()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("Teclado");
+    }
+
+    public void efectoAbrirYCerrarPuerta()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("AbrirYCerrarPuerta");
+    }
+
+    public void efectoRomperPuerta()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("rompiendoPuerta");
+    }
+
+    public void efectoAmbulancia()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("ambulancia");
+    }
+
+    public void efectoRevolver()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("Revolver");
+    }
+
+    public void efectoPistola()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("Pistola");
+    }
+
+    public void efectoTecladoPequeno()
+    {
+        cambiarEfectoNombreUsarSoloUnaVez("TecladoPequeno");
     }
 
 

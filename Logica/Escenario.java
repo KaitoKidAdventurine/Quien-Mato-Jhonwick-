@@ -55,7 +55,10 @@ public class Escenario implements Serializable {
         interactuables.add(i);
     }
 
-    public GeneralTree<Dialogo> getArbolDial() { return arbolDial; }
+    public GeneralTree<Dialogo> getArbolDial()
+    {
+        return arbolDial;
+    }
 
     public void setArbolDial(GeneralTree<Dialogo> arbolDial) {
         this.arbolDial = arbolDial;

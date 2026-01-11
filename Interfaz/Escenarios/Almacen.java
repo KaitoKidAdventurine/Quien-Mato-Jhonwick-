@@ -218,6 +218,7 @@ public class Almacen extends ModeloEscenario {
             {
                 aux.guardarEnDiario();
             }
+
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {
@@ -235,12 +236,12 @@ public class Almacen extends ModeloEscenario {
        if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
            UnionInterfaces.getInstance().setUsandoFlecha(true);
            EfectosEspeciales e = EfectosEspeciales.getInstancia();
-           e.efectoDePasos();
+           e.efectoAbrirYCerrarPuerta();
 
            PasilloAlmacen pasilloAlmacen = new PasilloAlmacen();
            pasilloAlmacen.setVisible(true);
            tarea2.cancel();
-           timer.schedule(tarea, 500);
+           timer.schedule(tarea, 700);
        }
     }
 

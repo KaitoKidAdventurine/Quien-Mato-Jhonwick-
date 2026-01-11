@@ -282,7 +282,7 @@ public class OficinaJefe extends ModeloEscenario {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            Juego.getInstance().getPartidaActual().getEventos().setDuenoYA(true);
+            Juego.getInstance().getPartidaActual().cambiarEvento("dueno", Juego.getInstance().getPartidaActual().getEscenarios().get(3).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().cambiarARonda1();
             duenno.setVisible(true);
         }

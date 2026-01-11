@@ -314,7 +314,7 @@ public class Bano extends ModeloEscenario {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            Juego.getInstance().getPartidaActual().getEventos().setConserjeYa(true);
+            Juego.getInstance().getPartidaActual().cambiarEvento("victor", Juego.getInstance().getPartidaActual().getEscenarios().get(2).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().cambiarRonda2();
             conserje.setVisible(true);
         }

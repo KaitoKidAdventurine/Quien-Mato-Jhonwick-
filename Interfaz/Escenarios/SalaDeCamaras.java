@@ -95,14 +95,8 @@ public class SalaDeCamaras extends ModeloEscenario {
 
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/sala de camaras.jpg"));
-
-
-
-
             // Actualizacion de donde esta el Jugador
             Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Sala de Vigilancia");
-
-
 
             jLabel1 = new JLabel();
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -407,7 +401,7 @@ public class SalaDeCamaras extends ModeloEscenario {
                 escenario.setDialogoCompletado(true);
                 cajaTexto.removeAll();
                 revisarCamaras.setVisible(true);
-                Juego.getInstance().getPartidaActual().getEventos().setSeguridadYa(true);
+                Juego.getInstance().getPartidaActual().cambiarEvento("Guardia", Juego.getInstance().getPartidaActual().getEscenarios().get(1).getArbolDial());
                 Juego.getInstance().getPartidaActual().getEventos().setPuertaCerrada(true);
                 seguridad.setVisible(true);
             }
@@ -416,7 +410,8 @@ public class SalaDeCamaras extends ModeloEscenario {
         if (dialogoYaTerminado) {
             cajaTexto.removeAll();
             revisarCamaras.setVisible(true);
-            Juego.getInstance().getPartidaActual().getEventos().setSeguridadYa(true);
+            Juego.getInstance().getPartidaActual().cambiarEvento("Guardia", Juego.getInstance()
+                    .getPartidaActual().getEscenarios().get(1).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().setPuertaCerrada(true);
             seguridad.setVisible(true);
         }
@@ -452,12 +447,12 @@ public class SalaDeCamaras extends ModeloEscenario {
             if(!UnionInterfaces.getInstance().getUsandoFlecha()) {
                 UnionInterfaces.getInstance().setUsandoFlecha(true);
                 EfectosEspeciales e = EfectosEspeciales.getInstancia();
-                e.efectoDePasos();
+                e.efectoAbrirYCerrarPuerta();
 
                 Pasillo1 pasillo1 = new Pasillo1();
                 pasillo1.setVisible(true);
                 tarea2.cancel();
-                timer.schedule(tarea, 500);
+                timer.schedule(tarea, 750);
             }
         }else{
             ponerDialogoPuertaCerrada();
@@ -494,7 +489,7 @@ public class SalaDeCamaras extends ModeloEscenario {
         Dialogo d12 = new Dialogo("No no, yo insisto." , "Seguridad", seguri, true);
         Dialogo d13 = new Dialogo("Aghh bueno, no pienso perder mas tiempo en esto, simplemente lo aceptare.", "Detective", detective, true);
         Dialogo d14 = new Dialogo("Perfecto, disfrutelo que esta bastante bueno.", "Seguridad", seguri, true);
-        Dialogo d15 = new Dialogo("(Supongo que no tengo mas remedio que simplemente ponerlo en la mochila con las demas cosas. )", "Detective", detective, true);
+        Dialogo d15 = new Dialogo("(Supongo que no tengo mas remedio que simplemente ponerlo en la mochila con las demas cosas.)", "Detective", detective, true);
 
         dialogos.add(d1);
         dialogos.add(d2);

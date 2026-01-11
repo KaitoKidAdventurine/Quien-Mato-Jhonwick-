@@ -1934,9 +1934,6 @@ public class Partida implements Serializable, Cloneable
 
     }
 
-
-
-
     // metodo para ver si se puede o no reprtir el dialogo
    public boolean verificarSiFaltaDialogosImportantes(GeneralTree<Dialogo> arbol)
    {
@@ -1965,44 +1962,39 @@ public class Partida implements Serializable, Cloneable
        }
        return salida;
    }
-/*
-    public boolean tieneTodaLaInfo(Jugador jugador) {
-        boolean tiene = false;
-        boolean enc = false;
-        if (Juego.getInstance().getPartidaActual().getJugador().equals(jugador)) {
-            LinkedList<Informacion> infoPersonajes = Juego.getInstance().getInfoPersinajesActo1();
-            LinkedList<Informacion> dialogosImpor = Juego.getInstance().getPartidaActual().getJugador().getDiario().getDialogosImportantes();
-            Iterator<Informacion> ite = dialogosImpor.iterator();
-            Iterator<Informacion> it = infoPersonajes.iterator();
-            while (it.hasNext()) {
-                Informacion infoP = it.next();
-                while (ite.hasNext() && !enc) {
-                    Informacion infoD = ite.next();
-                    if (infoP.equals(infoD)) {
-                        enc = true;
-                    }
-
-                }
-            }
-
-        }
-        return tiene;
-    }*/
-
-
-
 
    // Metodo para buscar la info y despues comparar con el otro metodo
    private boolean revisarDato(Datos d)
    {
+       boolean verificar = true;
        boolean salida = true;
-       Iterator<Informacion> IF = Juego.getInstance().getPartidaActual().getJugador().
-               getDiario().getDialogosImportantes().iterator();
-        boolean verificar = true;
+       System.out.println("=== REVISAR DATO ===");
+       System.out.println("NPC del dato: " + d.getNomNPC());
 
-       while (IF.hasNext() && salida && verificar)
-       {
+       Diario diario = Juego.getInstance().getPartidaActual().getJugador().getDiario();
+       System.out.println("Diario tiene " + diario.getDialogosImportantes().size() + " entradas");
+
+       Iterator<Informacion> IF = diario.getDialogosImportantes().iterator();
+
+
+       while (IF.hasNext() && salida && verificar) {
            Informacion inf = IF.next();
+           System.out.println("Info en diario - NPC: " + inf.getNombreNPC());
+           System.out.println("Diálogos en esta info: " + inf.getListaDeDialogos().size());
+
+           String nom = diario.buscarNombre(d.getNomNPC());
+           System.out.println("Nombre buscado: " + nom);
+           System.out.println("¿Coincide? " + nom.equals(inf.getNombreNPC()));
+       }
+
+
+       Iterator<Informacion> IG = Juego.getInstance().getPartidaActual().getJugador().
+               getDiario().getDialogosImportantes().iterator();
+
+
+       while (IG.hasNext() && salida && verificar)
+       {
+           Informacion inf = IG.next();
            String nom = Juego.getInstance().getPartidaActual().getJugador().getDiario().buscarNombre(d.getNomNPC());
             if (nom.equals(inf.getNombreNPC()))
             {

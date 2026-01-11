@@ -558,7 +558,7 @@ public class Recepcion extends ModeloEscenario{
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            Juego.getInstance().getPartidaActual().getEventos().setPoliciaYa(true);
+            Juego.getInstance().getPartidaActual().cambiarEvento("esposa", Juego.getInstance().getPartidaActual().getEscenarios().get(7).getArbolDial());
             policia.setVisible(true);
         }
 

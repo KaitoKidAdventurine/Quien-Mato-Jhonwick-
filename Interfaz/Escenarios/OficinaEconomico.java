@@ -252,6 +252,11 @@ public class OficinaEconomico extends ModeloEscenario {
                 e.efectoError();
             }
 
+            else if(aux.getTexto().equals("No tengo la mas remota idea de cual es la cotraseña. Probare 1234."))
+            {
+                e.efectoTecladoPequeno();
+            }
+
             cajaTexto.removeAll();
             cajaTexto.add(cT);
         }else {

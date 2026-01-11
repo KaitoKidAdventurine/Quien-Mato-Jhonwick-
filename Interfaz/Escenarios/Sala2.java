@@ -394,7 +394,8 @@ public class Sala2  extends ModeloEscenario {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            Juego.getInstance().getPartidaActual().getEventos().setGuia2Ya(true);
+            Juego.getInstance().getPartidaActual().cambiarEvento("aman", Juego.getInstance().getPartidaActual().getEscenarios().get(8).getArbolDial());
+
             Juego.getInstance().getPartidaActual().getEventos().cambiarRonda2();
             guia2.setVisible(true);
         }
