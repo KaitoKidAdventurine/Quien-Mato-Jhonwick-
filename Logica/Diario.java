@@ -202,7 +202,7 @@ public class Diario implements Serializable
             case "guía":
             case "guía 1":
             case "Guia Principal":
-                nombre = "William Harrington";
+                nombre = "Alex Valle";
                 break;
 
             case "guia 2":
@@ -211,7 +211,8 @@ public class Diario implements Serializable
             case "Amante":
             case "aman":
             case "Aman":
-                nombre = "Alex Valle";
+                nombre = "William Harrington";
+
                 break;
 
             case "Guardia":
