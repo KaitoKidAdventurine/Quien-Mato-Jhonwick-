@@ -25,6 +25,7 @@ public class Juego {
         this.partidas = new LinkedList<Partida>();
         this.miniJuegos = new ArrayList<>();
 
+        limpiarPartidasNull();
         this.partidaActual = null;
         hacerMinijuegos();
     }
@@ -174,17 +175,11 @@ public class Juego {
         }
         return salida;
     }
-
-    public void iniciarJuego()
-    {
-        // Se necesita que se invoque el metodo obtenerPartida para poder obtener en que partida esta el usuario.
-        // y pasarle el Id de la partida como parametro
-
+    public void limpiarPartidasNull() {
+        partidas.removeIf(Objects::isNull);
+        System.out.println("Partidas null eliminadas. Total partidas: " + partidas.size());
     }
-    public void cargarPartida()
-    {
-        // Método legacy sin parámetros. No hace nada por ahora.
-    }
+
 
     /**
      * Guarda la `partidaActual` en disco usando su `idPartida` como slot.
@@ -243,8 +238,7 @@ public class Juego {
      * Si se carga correctamente, se añade/actualiza en `partidas` y se establece como `partidaActual` (clonada).
      * Devuelve true si la carga fue exitosa.
      */
-    public boolean cargarPartida(int slot)
-    {
+    public boolean cargarPartida(int slot) {
         try {
             File file = new File("partidas_guardadas", "partida" + slot + ".sav");
             if (!file.exists()) {
@@ -261,15 +255,7 @@ public class Juego {
                 return false;
             }
 
-            // Reemplazar o agregar en la lista de partidas
-            Iterator<Partida> it = partidas.iterator();
-            while (it.hasNext()) {
-                Partida p = it.next();
-                if (p.getIdPartida().equals(cargada.getIdPartida())) {
-                    it.remove();
-                    break;
-                }
-            }
+            // Agregar directamente a la lista sin verificar duplicados
             partidas.add(cargada);
 
             // Cargar como partida actual (clon para evitar referencias compartidas)
