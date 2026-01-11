@@ -1945,7 +1945,8 @@ public class Partida implements Serializable, Cloneable
            BinaryTreeNode<Dialogo> N = IA.nextNode();
            Dialogo d = N.getInfo();
 
-           salida = enviarDatoRevisarDato(d);
+           if (!d.getTextoImport().isEmpty())
+            salida = enviarDatoRevisarDato(d);
        }
        return salida;
    }
@@ -1957,6 +1958,7 @@ public class Partida implements Serializable, Cloneable
        Iterator<Datos> ID = d.getTextoImport().iterator();
        while (salida && ID.hasNext())
        {
+           System.out.println("=== REVISAR DATO ===");
            Datos datos = ID.next();
            salida = revisarDato(datos);
        }

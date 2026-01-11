@@ -235,6 +235,7 @@ public class Bano2  extends ModeloEscenario {
         }
 
         private void banoMouseClicked(MouseEvent evt) {
+            Juego.getInstance().getPartidaActual().getEscenariosMundo().get(11).restaurarDialogo();
             ponerDialogo();
 
         }

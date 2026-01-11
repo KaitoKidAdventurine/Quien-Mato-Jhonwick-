@@ -140,6 +140,8 @@ public class SalaDeCamaras extends ModeloEscenario {
         revisarCamaras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 revisarCamarasActionPerformed(evt);
+                Reproductor reproductor = Reproductor.getInstancia();
+                reproductor.getIndiceDeAntesDeCambio();
             }
 
         });
@@ -273,6 +275,7 @@ public class SalaDeCamaras extends ModeloEscenario {
 
     private void seguridadActionPerformed(ActionEvent evt) {
         if((Juego.getInstance().getPartidaActual().getEventos().getRonda()==0 &&!Juego.getInstance().getPartidaActual().getEventos().isSeguridadYa())){
+            Juego.getInstance().getPartidaActual().getEscenariosMundo().get(1).restaurarDialogo();
             ponerDialogo();
             seguridad.setVisible(false);
         }else
@@ -401,7 +404,7 @@ public class SalaDeCamaras extends ModeloEscenario {
                 escenario.setDialogoCompletado(true);
                 cajaTexto.removeAll();
                 revisarCamaras.setVisible(true);
-                Juego.getInstance().getPartidaActual().cambiarEvento("Guardia", Juego.getInstance().getPartidaActual().getEscenarios().get(1).getArbolDial());
+                Juego.getInstance().getPartidaActual().cambiarEvento("Guardia", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(1).getArbolDial());
                 Juego.getInstance().getPartidaActual().getEventos().setPuertaCerrada(true);
                 seguridad.setVisible(true);
             }
@@ -411,7 +414,7 @@ public class SalaDeCamaras extends ModeloEscenario {
             cajaTexto.removeAll();
             revisarCamaras.setVisible(true);
             Juego.getInstance().getPartidaActual().cambiarEvento("Guardia", Juego.getInstance()
-                    .getPartidaActual().getEscenarios().get(1).getArbolDial());
+                    .getPartidaActual().getEscenariosMundo().get(1).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().setPuertaCerrada(true);
             seguridad.setVisible(true);
         }

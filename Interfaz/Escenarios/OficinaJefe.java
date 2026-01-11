@@ -198,6 +198,7 @@ public class OficinaJefe extends ModeloEscenario {
 
     private void duennoActionPerformed(ActionEvent evt) {
         if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==0 && !Juego.getInstance().getPartidaActual().getEventos().isDuenoYA()){
+            Juego.getInstance().getPartidaActual().getEscenariosMundo().get(3).restaurarDialogo();
             ponerDialogo();
             duenno.setVisible(false);
         }else
@@ -282,7 +283,7 @@ public class OficinaJefe extends ModeloEscenario {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            Juego.getInstance().getPartidaActual().cambiarEvento("dueno", Juego.getInstance().getPartidaActual().getEscenarios().get(3).getArbolDial());
+            Juego.getInstance().getPartidaActual().cambiarEvento("dueno", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(3).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().cambiarARonda1();
             duenno.setVisible(true);
         }

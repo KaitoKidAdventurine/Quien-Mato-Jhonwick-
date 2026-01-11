@@ -204,6 +204,7 @@ public class Bano extends ModeloEscenario {
        if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==0){
            ponerDialogosConserjeEstatico(crearDialogoConserjeNoDisponible(), 0);
        }else if (Juego.getInstance().getPartidaActual().getEventos().getRonda()==1 && !Juego.getInstance().getPartidaActual().getEventos().isConserjeYa()){
+           Juego.getInstance().getPartidaActual().getEscenariosMundo().get(2).restaurarDialogo();
            ponerDialogo();
            conserje.setVisible(false);
        }else
@@ -314,7 +315,7 @@ public class Bano extends ModeloEscenario {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            Juego.getInstance().getPartidaActual().cambiarEvento("victor", Juego.getInstance().getPartidaActual().getEscenarios().get(2).getArbolDial());
+            Juego.getInstance().getPartidaActual().cambiarEvento("victor", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(2).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().cambiarRonda2();
             conserje.setVisible(true);
         }

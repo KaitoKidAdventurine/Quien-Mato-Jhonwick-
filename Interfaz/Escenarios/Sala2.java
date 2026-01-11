@@ -229,6 +229,7 @@ public class Sala2  extends ModeloEscenario {
         if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==0){
             ponerDialogosEstatico(crearDialogoNoDisponible(), 0);
         }else if (Juego.getInstance().getPartidaActual().getEventos().getRonda()==1 && !Juego.getInstance().getPartidaActual().getEventos().isGuia2Ya()){
+            Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).restaurarDialogo();
             ponerDialogoGuia2();
             guia2.setVisible(false);
         }else
@@ -318,6 +319,7 @@ public class Sala2  extends ModeloEscenario {
 
     private void guia1ActionPerformed(ActionEvent evt) {
         if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==0 && !Juego.getInstance().getPartidaActual().getEventos().isGuia1Ya()){
+            Juego.getInstance().getPartidaActual().getEscenariosMundo().get(4).restaurarDialogo();
             ponerDialogoGuia1();
             guia1.setVisible(false);
         }else ponerDialogosEstatico(crearDialogoYa(), 0);
@@ -394,7 +396,7 @@ public class Sala2  extends ModeloEscenario {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            Juego.getInstance().getPartidaActual().cambiarEvento("aman", Juego.getInstance().getPartidaActual().getEscenarios().get(8).getArbolDial());
+            Juego.getInstance().getPartidaActual().cambiarEvento("aman", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(8).getArbolDial());
 
             Juego.getInstance().getPartidaActual().getEventos().cambiarRonda2();
             guia2.setVisible(true);

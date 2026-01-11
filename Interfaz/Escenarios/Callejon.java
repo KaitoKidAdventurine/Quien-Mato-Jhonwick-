@@ -206,6 +206,7 @@ public class Callejon extends ModeloEscenario {
                 break;
             case 2:
                 if(!Juego.getInstance().getPartidaActual().getEventos().isVagabundoYa()) {
+                    Juego.getInstance().getPartidaActual().getEscenariosMundo().get(5).restaurarDialogo();
                     ponerDialogo();
                     vagabundo.setVisible(false);
                 }else ponerDialogosEstatico(crearDialogoYa(), 0);
@@ -295,7 +296,7 @@ public class Callejon extends ModeloEscenario {
             cajaTexto.add(cT);
         }else {
             cajaTexto.removeAll();
-            Juego.getInstance().getPartidaActual().cambiarEvento("vagabundo", Juego.getInstance().getPartidaActual().getEscenarios().get(5).getArbolDial());
+            Juego.getInstance().getPartidaActual().cambiarEvento("vagabundo", Juego.getInstance().getPartidaActual().getEscenariosMundo().get(5).getArbolDial());
             Juego.getInstance().getPartidaActual().getEventos().cambiarRonda3();
             Juego.getInstance().getPartidaActual().getJugador().usarObjeto("Pan con jamon");
             vagabundo.setVisible(true);

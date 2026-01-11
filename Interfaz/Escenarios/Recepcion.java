@@ -311,6 +311,7 @@ public class Recepcion extends ModeloEscenario{
         if(Juego.getInstance().getPartidaActual().getEventos().getRonda()==0){
             ponerDialogosEstatico(crearDialogoNoDisponible(), 0, true);
         }else if (Juego.getInstance().getPartidaActual().getEventos().getRonda()==1 && !Juego.getInstance().getPartidaActual().getEventos().isSecretariaYa()){
+            Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).restaurarDialogo();
             ponerDialogoSecretaria();
             secretaria.setVisible(false);
         }else
