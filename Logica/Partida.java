@@ -1231,7 +1231,6 @@ public class Partida implements Serializable, Cloneable
         Dialogo raras2 = new Dialogo("¿Qué quiere saber exactamente?", "Vagabundo", vagabundo, true);
 
 
-
         // Segunda decisión
         Dialogo descVag2 = new Dialogo("Mmm, me parece que quizás deba seguir investigando o quizás no...", "Detective", detective, true);
         descVag2.setOpciones(new LinkedList<>(Arrays.asList(

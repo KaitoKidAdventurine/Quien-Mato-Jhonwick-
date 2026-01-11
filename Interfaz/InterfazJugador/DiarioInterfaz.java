@@ -706,7 +706,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         BufferedImage imagen13 = null;
 
         try {
-            imagen13 = ImageIO.read(new File("DatosAuxiliares/Personajes/Guia 1 Reducido.png"));
+            imagen13 = ImageIO.read(new File("DatosAuxiliares/Personajes/Guia 2 Reducido.png"));
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen: " + e.getMessage());
         }
@@ -795,7 +795,7 @@ public class DiarioInterfaz extends javax.swing.JDialog {
         BufferedImage imagen15 = null;
 
         try {
-            imagen15 = ImageIO.read(new File("DatosAuxiliares/Personajes/Guia 2 Reducido.png"));
+            imagen15 = ImageIO.read(new File("DatosAuxiliares/Personajes/Guia 1 Reducido.png"));
         } catch (IOException e) {
             System.err.println("No se pudo cargar la imagen: " + e.getMessage());
         }
