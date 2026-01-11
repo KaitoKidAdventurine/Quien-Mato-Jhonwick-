@@ -1582,10 +1582,10 @@ public class Partida implements Serializable, Cloneable
         // Dialogo para cuando tocas la armadura entre el Detective, la Esposa y el Policia
 
         Dialogo a1 = new Dialogo("Espera... esta armadura está mal colocada. La base está girada.", "Detective", detective, true);
-        Dialogo a2 = new Dialogo("*El detective se agacha, examina la parte trasera de la armadura y abre una compuerta oculta.*", "Narrador", nada, true);
+        Dialogo a2 = new Dialogo("*El detective se agacha, examina la parte trasera de la armadura y abre una compuerta oculta.*", "", nada, true);
         Dialogo a3 = new Dialogo("Aquí hay algo... ¡Una espada!", "Detective", detective, true);
         Dialogo a4 = new Dialogo("¿Una espada? ¿Dentro de una armadura? ¡Eso no estaba en ninguna ficha de inventario!", "Esposa", esposa, true);
-        Dialogo a5 = new Dialogo("*El detective saca la espada con cuidado. Tiene manchas oscuras en la hoja.*", "Narrador", nada, true);
+        Dialogo a5 = new Dialogo("*El detective saca la espada con cuidado. Tiene manchas oscuras en la hoja.*", "", nada, true);
         Dialogo a6 = new Dialogo("Esto no es parte de la exposición. Y estas manchas... podrían ser sangre.", "Detective", detective, true);
         Dialogo a7 = new Dialogo("¡Dios mío! ¿Estás diciendo que esa cosa fue usada para... para matar?", "Esposa", esposa, true);
         Dialogo a8 = new Dialogo("Todavía no lo sé. Pero alguien se tomó muchas molestias para esconderla aquí.", "Detective", detective, true);
@@ -1636,13 +1636,13 @@ public class Partida implements Serializable, Cloneable
         Dialogo m3 = new Dialogo("Umbra mortis me sequitur. ¿Era una contraseña? ¿Una advertencia? Vamos a probar suerte.", "Detective", detective, true);
         Dialogo m4 = new Dialogo("*Tecleas la frase completa. La pantalla parpadea y se desbloquea.*", "Detective", detective, true);
         Dialogo m5 = new Dialogo("(Bien. Veamos qué estabas investigando...)", "Detective", detective, true);
-        Dialogo m6 = new Dialogo("*Abres una carpeta llamada 'Contabilidad Interna'. Dentro hay decenas de archivos Excel y PDFs.*", "Narrador", nada, true);
+        Dialogo m6 = new Dialogo("*Abres una carpeta llamada 'Contabilidad Interna'. Dentro hay decenas de archivos Excel y PDFs.*", "", nada, true);
         Dialogo m7 = new Dialogo("(Registros de transferencias... pagos duplicados... contratos inflados. Todo meticulosamente organizado.)", "Detective", detective, true);
         Dialogo m8 = new Dialogo("(Aquí hay una empresa llamada 'ArteNova S.A.'... sin dirección real, sin empleados registrados. Una fachada.)", "Detective", detective, true);
-        Dialogo m9 = new Dialogo("*Encuentras un documento titulado 'Análisis de flujo. Confidencial'.*", "Narrador", nada, true);
+        Dialogo m9 = new Dialogo("*Encuentras un documento titulado 'Análisis de flujo. Confidencial'.*", "", nada, true);
         Dialogo m10 = new Dialogo("(El Económico había rastreado los desvíos. Hay gráficos, fechas, nombres... y uno se repite más que los demás.)", "Detective", detective, true);
         Dialogo m11 = new Dialogo("(El director. Firmas, autorizaciones, correos reenviados. Todo hecho por él.)", "Detective", detective, true);
-        Dialogo m12 = new Dialogo("*Abres un archivo de texto con fecha reciente. Parece una nota personal.*", "Narrador", nada, true);
+        Dialogo m12 = new Dialogo("*Abres un archivo de texto con fecha reciente. Parece una nota personal.*", "", nada, true);
         Dialogo m13 = new Dialogo("(“Si algo me pasa, no fue un accidente. Todo está aquí. No me van a callar.”)", "Detective", detective, true);
         Dialogo m14 = new Dialogo("(No estaba involucrado... estaba tratando de exponerlo. Y lo pagó con su vida.)", "Detective", detective, true);
         Dialogo m15 = new Dialogo("(Ahora todo encaja. El Económico descubrió la verdad. Y por eso lo asesinaron. Es hora de acabar con esto)", "Detective", detective, true);
@@ -1674,7 +1674,7 @@ public class Partida implements Serializable, Cloneable
         Dialogo con3 = new Dialogo("¿Perdón? ¿Qué computadora?", "Dueño", dueno, true);
         Dialogo con4 = new Dialogo("La que tenía protegida con una contraseña en latín. Dentro había documentos contables, transferencias a empresas fantasma como " +
                 "'ArteNova S.A.', y todas firmadas por ti.", "Detective", detective, true);
-        Dialogo con5 = new Dialogo("*El jefe se queda en silencio unos segundos. Luego se levanta lentamente.*", "Narrador", nada, true);
+        Dialogo con5 = new Dialogo("*El jefe se queda en silencio unos segundos. Luego se levanta lentamente.*", "", nada, true);
         Dialogo con6 = new Dialogo("También encontré un correo que él nunca envió. Decía: 'Si algo me pasa, no fue un accidente. Todo está aquí'.", "Detective", detective, true);
         Dialogo con7 = new Dialogo("¿Y eso qué prueba? ¿Un correo sin enviar?", "Dueño", dueno, true);
         Dialogo con8 = new Dialogo("Prueba que sabía lo que hacías. Y que tenía miedo. Como tú ahora...", "Detective", detective, true);
@@ -1688,7 +1688,7 @@ public class Partida implements Serializable, Cloneable
 
 
         // El jefe se altera
-        Dialogo con10 = new Dialogo("*El jefe comienza a respirar con dificultad. Se lleva la mano al cajón.*", "Narrador", nada, true);
+        Dialogo con10 = new Dialogo("*El jefe comienza a respirar con dificultad. Se lleva la mano al cajón.*", "", nada, true);
         Dialogo con11 = new Dialogo("No entiendes... No puedo. No puedo traicionarlos. Si hablo, estoy muerto.", "Dueño", dueno, true);
         Dialogo con12 = new Dialogo("¡No hagas una estupidez!", "Detective", detective, true);
 
@@ -1705,13 +1705,13 @@ public class Partida implements Serializable, Cloneable
         )));
 
         // Rama 1: Disparar
-        Dialogo reaccion1 = new Dialogo("*Disparas. El jefe cae al suelo, sin vida. El museo queda en silencio.*", "Narrador", nada, true);
+        Dialogo reaccion1 = new Dialogo("*Disparas. El jefe cae al suelo, sin vida. El museo queda en silencio.*", "", nada, true);
         Dialogo reaccion1a = new Dialogo("No quería que terminara así... pero eligió su camino.", "Detective", detective, true);
         Dialogo reaccion1b = new Dialogo("Todo indica que el jefe no estaba solo. Supongo que tendremos que seguir investigando.", "Detective", detective, true);
 
         // Rama 2: Dialogar
         Dialogo reaccion2 = new Dialogo("¡No tienes salida! Mira lo que hiciste. Coopera y tal vez esto no termine peor para ti.", "Detective", detective, true);
-        Dialogo reaccion2a = new Dialogo("*El jefe, temblando, deja caer el arma. Se sienta, derrotado, con la mirada perdida.*", "Narrador", nada, true);
+        Dialogo reaccion2a = new Dialogo("*El jefe, temblando, deja caer el arma. Se sienta, derrotado, con la mirada perdida.*", "", nada, true);
         Dialogo reaccion2b = new Dialogo("No estaba solo... Hay otros. Gente con poder. Yo solo era el rostro visible.", "Dueño", dueno, true);
         Dialogo reaccion2c = new Dialogo("¿Quiénes?", "Detective", detective, true);
         Dialogo reaccion2d = new Dialogo("Empresarios. Políticos. Usaban el museo como fachada. Lavaban dinero a través de las exposiciones, las donaciones... Yo solo seguía órdenes.", "Dueño", dueno, true);
@@ -1725,7 +1725,7 @@ public class Partida implements Serializable, Cloneable
 
         // Cierre
         // COlocar sonido de sirenas
-        Dialogo cierre9 = new Dialogo("*La policía llega. El jefe es arrestado. Tu compañero es trasladado al hospital. Afuera, las sirenas se mezclan con el murmullo de los curiosos.*", "Narrador", nada, true);
+        Dialogo cierre9 = new Dialogo("*La policía llega. El jefe es arrestado. Tu compañero es trasladado al hospital. Afuera, las sirenas se mezclan con el murmullo de los curiosos.*", "", nada, true);
         Dialogo despedida9 = new Dialogo("Esto no termina aquí. Solo abrimos la primera puerta.", "Detective", detective, true);
         Dialogo despedidaFinal = new Dialogo("Esto es solo el inicio.", "Detective", detective, true);
 
