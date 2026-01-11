@@ -1,5 +1,7 @@
 package Interfaz.Escenarios;
 
+import DatosAuxiliaresLogica.UnionInterfaces;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -29,8 +31,9 @@ public class ModeloEscenario extends JFrame {
         }
         Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
         setCursor(cursor);
-
+        UnionInterfaces.getInstance().setFrameActual((JFrame) this);
     }
+
 
 
 }

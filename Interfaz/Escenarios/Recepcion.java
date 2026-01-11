@@ -489,7 +489,7 @@ public class Recepcion extends ModeloEscenario{
             if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getNodoDialActual()==null)){
                 Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(0).getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
-                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
@@ -547,7 +547,7 @@ public class Recepcion extends ModeloEscenario{
             if(!(Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getNodoDialActual()==null)){
                 Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(7).getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
-                    OpcionesDialogos oD = new OpcionesDialogos(new JFrame(), true, actual.getOpciones());
+                    OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
                     oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }

@@ -274,7 +274,7 @@ public class MinijuegoInterfaz extends JPanel {
                         switch (momentoUsado) {
                             case 0:
                                 getParent().getComponent(0).setVisible(false);
-                                getParent().getComponent(2).setVisible(true);
+                                getParent().getComponent(1).setVisible(true);
                                 getParent().revalidate();
                                 getParent().repaint();
                                 ponerObjetosEnMochila();
