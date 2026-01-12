@@ -541,6 +541,8 @@ public class Partida implements Serializable, Cloneable
                 "No quiero saber nada más"
         )));
 
+
+        
         Dialogo d6 = new Dialogo("Tuvimos algo. Fue breve. Él decía que no quería complicaciones y, bueno, yo... yo me ilusioné más de la cuenta.", "Secretaria",
                 secretaria, true);
         d6.agregar("Secretaria", "La secretaria tuvo una relación \n amorosa con el economista.");
