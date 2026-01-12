@@ -521,16 +521,16 @@ public class Partida implements Serializable, Cloneable
         // Camino vacío: acceso a computadora
         Dialogo respS2 = new Dialogo("No, su computadora era personal. Siempre la tenía bloqueada. Nunca compartía su contraseña con nadie.",
                 "Secretaria", secretaria, true);
-        respS2.agregar("victima", "Necesito conseguir la contraseña \n de la victima");
+        respS2.agregar("victima", "Necesito conseguir la contraseña \n de la víctima");
 
         // Camino principal: relación
         Dialogo d3 = new Dialogo("Ahora que lo pienso, dijo que su relación con el economista era solo laboral, pero su lenguaje corporal decía otra cosa. ¿Está segura de que no había nada más?",
                 "Detective", detective, true);
 
-        Dialogo d4 = new Dialogo("No me gusta hablar de mi vida privada, detective. Pero sí insiste...", "Secretaria",
+        Dialogo d4 = new Dialogo("No me gusta hablar de mi vida privada, detective. Pero si insiste...", "Secretaria",
                 secretaria, true);
 
-        Dialogo d5 = new Dialogo("No es curiosidad, es relevante para la investigación. Sí hay algo que pueda ayudarnos a entender su estado emocional," +
+        Dialogo d5 = new Dialogo("No es curiosidad, es relevante para la investigación. Si hay algo que pueda ayudarnos a entender su estado emocional," +
                 " necesito saberlo.", "Detective", detective, true);
 
         // Segunda decisión
@@ -572,8 +572,6 @@ public class Partida implements Serializable, Cloneable
         Dialogo d9a = new Dialogo("Vale, como prefiera usted. Aquí estoy para dialogar, y no solo de este tema... usted entiende.",
                 "Secretaria", secretaria, true);
 
-        // Dato clave 2
-        //Juego.getInstance().getPartidaActual().getJugador().getDiario().agregarDialogoImportante("Secretaria", "Fragmento de contraseña: comienza con .");
 
         Dialogo cierre = new Dialogo("Gracias. Eso será todo por ahora.", "Detective", detective, true);
         Dialogo despedida = new Dialogo("Espero que le sirva de algo. No me gusta recordar ciertas cosas.", "Secretaria", secretaria, true);

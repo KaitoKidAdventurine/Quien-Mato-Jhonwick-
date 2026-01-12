@@ -547,8 +547,7 @@ public class InicioJuego extends JFrame {
                 }
             }
 
-            EfectosEspeciales e = EfectosEspeciales.getInstancia();
-            e.detenerSiEsNecesario();
+
 
             Dialogo aux = tutorialParte10.getDialogoSiguiente(UnionInterfaces.getInstance().getOpcionDialogo());
             int nivelActualDial = tutorialParte10.getArbolDial().nodeLevel(tutorialParte10.getNodoDialActual());
@@ -563,9 +562,12 @@ public class InicioJuego extends JFrame {
             if(UnionInterfaces.getInstance().getOpcionDialogo()!=1)
                 UnionInterfaces.getInstance().setOpcionDialogo(1);
 
+
             cajaTexto.removeAll();
             cajaTexto.add(cT);
 
+            EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.detenerSiEsNecesario();
 
             if (aux.getTexto().equals("*Riiing... Riiing...*"))
             {
@@ -1422,28 +1424,29 @@ public class InicioJuego extends JFrame {
         Dialogo dect = new Dialogo("Buenas noches. Estoy interrogando al personal del museo. ¿Podría decirme quién es usted y " +
                 "qué función cumple aquí?", "Detective", detective, true);
         Dialogo guia1 = new Dialogo("Claro, detective.  Soy el guía principal del museo, mi nombre es Willian Harrington. Me encargo de recibir a los visitantes," +
-                " explicarles las exposiciones y resolver cualquier duda que tengan.", "Guía", guia, true);
+                " explicarles las exposiciones y resolver cualquier duda que tengan.", "Guía Principal", guia, true);
 
         // Primera decisión: preguntar o terminar
-        Dialogo decision1 = new Dialogo("¿Desea saber algo más?", "Guía", guia, true);
+        Dialogo decision1 = new Dialogo("¿Desea saber algo más?", "Guía Principal", guia, true);
         decision1.setOpciones(new LinkedList<>(Arrays.asList("¿Cómo era su trato con el economista?", "Eso es todo por ahora." +
                 " Gracias por su tiempo.")));
 
         Dialogo respuesta1 = new Dialogo("La verdad, muy escaso. Era reservado, siempre metido en sus asuntos. " +
-                "Apenas cruzábamos palabras.", "Guía", guia, true);
-        Dialogo despedida1 = new Dialogo("A usted, detective. Si necesita algo más, estaré por aquí.", "Guía", guia, true);
+                "Apenas cruzábamos palabras.", "Guía Principal", guia, true);
+        Dialogo despedida1 = new Dialogo("A usted, detective. Si necesita algo más, estaré por aquí.", "Guía Principal", guia, true);
 
         // Segunda decisión: preguntar ubicación o terminar
-        Dialogo decision2 = new Dialogo("¿Desea saber algo más?", "Guía", guia, true);
+        Dialogo decision2 = new Dialogo("¿Desea saber algo más?", "Guía Principal", guia, true);
         decision2.setOpciones(new LinkedList<>(Arrays.asList("¿Dónde se encontraba usted durante el incidente?", "Gracias. " +
                 "Eso es todo por ahora.")));
 
         Dialogo respuesta2 = new Dialogo("Estaba en la sala de arte moderno, preparando la presentación de mañana. " +
-                "Conozco el museo como la palma de mi mano, y no noté nada fuera de lo común.", "Guía", guia, true);
+                "Conozco el museo como la palma de mi mano, y no noté nada fuera de lo común.", "Guía Principal", guia, true);
+
         respuesta2.agregar("guia 1", "Dijo que se encontraba en la \n sala de arte en el momento del \n asesinato");
         respuesta2.agregar("guia 1", "Se conoce el museo de memoria");
 
-        Dialogo despedida2 = new Dialogo("A usted, detective. Que tenga buena noche.", "Guía", guia, true);
+        Dialogo despedida2 = new Dialogo("A usted, detective. Que tenga buena noche.", "Guía Principal", guia, true);
         Dialogo despeDetectiveGuia = new Dialogo("Gracias, eso seria todo por ahora", "Detective", detective, true);
 
         BinaryTreeNode<Dialogo> node114 = new BinaryTreeNode<>(dect);
@@ -1502,6 +1505,7 @@ public class InicioJuego extends JFrame {
         resp2.agregar("sec", "Dijo que se encontraba en su oficina \n archivando papeles");
         Dialogo desp2 = new Dialogo("A usted, detective. Que tenga una noche... intrigante.", "Secretaria", secretaria, true);
         Dialogo despDetSecret = new Dialogo("Eso sería todo, puede regresar. Gracias por su cooperación.", "Detective", detective, true);
+
         BinaryTreeNode<Dialogo> node116 = new BinaryTreeNode<>(s1);
         BinaryTreeNode<Dialogo> node117 = new BinaryTreeNode<>(s2);
 
@@ -1532,20 +1536,20 @@ public class InicioJuego extends JFrame {
         Dialogo guiaM1 = new Dialogo("Buenas noches, soy el detective Mason Carter, estoy hablando con el personal del museo. ¿Podría decirme su nombre y su función " +
                 "aquí?", "Detective", detective, true);
         Dialogo guiaM2 = new Dialogo("Buenas noches Detective, mi nombre es Alex Valle, soy el segundo guía del museo. Me encargo de apoyar en las visitas... y de resolver los problemas " +
-                "que otros prefieren ignorar.", "Guía 2", guia2, true);
+                "que otros prefieren ignorar.", "Guía", guia2, true);
 
         // Primera decisión
-        Dialogo decis1 = new Dialogo("¿Algo más que quiera saber, o ya tiene suficiente para su informe?", "Guía 2", guia2, true);
+        Dialogo decis1 = new Dialogo("¿Algo más que quiera saber, o ya tiene suficiente para su informe?", "Guía", guia2, true);
         decis1.setOpciones(new LinkedList<>(Arrays.asList("¿Conocía bien al economista?", "Por ahora es suficiente. Gracias.")));
 
         Dialogo respt1 = new Dialogo("Lo justo. No era alguien con quien uno quisiera compartir un café. Siempre tan correcto," +
-                " tan... aburrido.", "Guía 2", guia2, true);
-        Dialogo relleno1 = new Dialogo("Aunque, claro, en este lugar todos llevamos máscaras. Algunas más pesadas que otras.", "Guía 2", guia2, true);
+                " tan... aburrido.", "Guía", guia2, true);
+        Dialogo relleno1 = new Dialogo("Aunque, claro, en este lugar todos llevamos máscaras. Algunas más pesadas que otras.", "Guía", guia2, true);
         relleno1.agregar("aman", "El guía presenta una actitud \n extraña como si tuviera que \n esconder algo");
 
 
         Dialogo despd1 = new Dialogo("Como desee. Aunque si cambia de opinión, estaré por aquí... observando cómo se desenvuelven " +
-                "las piezas.", "Guía 2", guia2, true);
+                "las piezas.", "Guía", guia2, true);
 
         // Segunda decisión
         Dialogo decis2 = new Dialogo("¿Le interesa saber dónde estaba o ya tiene lo que vino a buscar?", "Guía 2", guia2, true);
@@ -1553,13 +1557,13 @@ public class InicioJuego extends JFrame {
                 "Eso sería todo." )));
 
         Dialogo respt2 = new Dialogo("En la sala de esculturas. Estaba revisando unos textos para la próxima muestra. Me gusta trabajar" +
-                " solo... menos distracciones, menos tonterías.", "Guía 2", guia2, true);
+                " solo... menos distracciones, menos tonterías.", "Guía", guia2, true);
         respt2.agregar("aman", "Dijo que se encontraba solo \n en la sala de esculturas");
-        Dialogo relleno2 = new Dialogo("Pero bueno, en este museo el silencio nunca es garantía de tranquilidad.", "Guía 2", guia2, true);
+        Dialogo relleno2 = new Dialogo("Pero bueno, en este museo el silencio nunca es garantía de tranquilidad.", "Guía", guia2, true);
 
         Dialogo despdDete = new Dialogo("Gracias eso seria todo por ahora", "Detective", detective, true);
 
-        Dialogo despd2 = new Dialogo("A usted, detective. Que tenga una noche... tranquila. O lo más cerca que pueda estar de eso.", "Guía 2", guia2, true);
+        Dialogo despd2 = new Dialogo("A usted, detective. Que tenga una noche... tranquila. O lo más cerca que pueda estar de eso.", "Guía", guia2, true);
 
         BinaryTreeNode<Dialogo> node118 = new BinaryTreeNode<>(guiaM1);
         BinaryTreeNode<Dialogo> node119 = new BinaryTreeNode<>(guiaM2);
