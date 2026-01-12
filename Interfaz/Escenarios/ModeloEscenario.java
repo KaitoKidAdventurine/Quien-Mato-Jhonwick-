@@ -31,7 +31,7 @@ public class ModeloEscenario extends JFrame {
         }
         Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
         setCursor(cursor);
-      //  UnionInterfaces.getInstance().setFrameActual((JFrame) this);
+        UnionInterfaces.getInstance().setFrameActual((JFrame) this);
     }
 
 

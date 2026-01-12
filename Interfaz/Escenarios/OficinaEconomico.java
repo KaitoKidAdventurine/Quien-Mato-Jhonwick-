@@ -188,6 +188,7 @@ public class OficinaEconomico extends ModeloEscenario {
             }else {
                 ponerDialogosEstatico(crearDialogoComputadora(), 0);
             }
+
         }
     }
 

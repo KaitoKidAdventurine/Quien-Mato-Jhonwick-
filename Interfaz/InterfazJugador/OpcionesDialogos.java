@@ -48,7 +48,7 @@ public class OpcionesDialogos extends JDialog {
         setCursor(cursor);
 
         boton1 = new JButton();
-        boton1.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.015)));
+        boton1.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.017)));
         boton1.setForeground(new Color(255, 255, 255));
         boton1.setHorizontalAlignment(SwingConstants.CENTER);
         boton1.setText(opciones.getFirst());
@@ -69,11 +69,11 @@ public class OpcionesDialogos extends JDialog {
             }
         });
 
-        boton1.setBounds((int) (tamPant.width*0.01),(int) (tamPant.getHeight()*0.03), (int) (tamPant.width*0.43),(int) (tamPant.getHeight()*0.05));
+        boton1.setBounds((int) (tamPant.width*0.01),(int) (tamPant.getHeight()*0.03), (int) (tamPant.width*0.5),(int) (tamPant.getHeight()*0.05));
         add(boton1);
 
         boton2 = new JButton();
-        boton2.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.015)));
+        boton2.setFont(new Font("Segoe UI", 0, (int) (tamPant.width*0.017)));
         boton2.setForeground(new Color(255, 255, 255));
         boton2.setHorizontalAlignment(SwingConstants.CENTER);
         boton2.setText(opciones.get(1));
@@ -94,12 +94,12 @@ public class OpcionesDialogos extends JDialog {
             }
         });
 
-        boton2.setBounds((int) (tamPant.width*0.01),(int) (tamPant.getHeight()*0.1), (int) (tamPant.width*0.43),(int) (tamPant.getHeight()*0.05));
+        boton2.setBounds((int) (tamPant.width*0.01),(int) (tamPant.getHeight()*0.1), (int) (tamPant.width*0.5),(int) (tamPant.getHeight()*0.05));
         add(boton2);
 
         if(opciones.size()>2) {
             boton3 = new JButton();
-            boton3.setFont(new Font("Segoe UI", 0, (int) (tamPant.width * 0.015)));
+            boton3.setFont(new Font("Segoe UI", 0, (int) (tamPant.width * 0.017)));
             boton3.setForeground(new Color(255, 255, 255));
             boton3.setHorizontalAlignment(SwingConstants.CENTER);
             boton3.setText(opciones.get(2));
@@ -121,7 +121,7 @@ public class OpcionesDialogos extends JDialog {
                 }
             });
 
-            boton3.setBounds((int) (tamPant.width * 0.01), (int) (tamPant.getHeight() * 0.17), (int) (tamPant.width * 0.43), (int) (tamPant.getHeight() * 0.05));
+            boton3.setBounds((int) (tamPant.width * 0.01), (int) (tamPant.getHeight() * 0.17), (int) (tamPant.width * 0.5), (int) (tamPant.getHeight() * 0.05));
             add(boton3);
         }
 

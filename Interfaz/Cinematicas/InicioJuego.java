@@ -225,7 +225,7 @@ public class InicioJuego extends JFrame {
                 Dialogo actual = tutorialParte2.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
-                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setBounds((int) (tamPant.width*0.23),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.54),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
 
@@ -267,7 +267,7 @@ public class InicioJuego extends JFrame {
                 Dialogo actual = tutorialParte3.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
-                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setBounds((int) (tamPant.width*0.23),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.54),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
@@ -311,7 +311,7 @@ public class InicioJuego extends JFrame {
                 Dialogo actual = tutorialParte4.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
-                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setBounds((int) (tamPant.width*0.23),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.54),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
@@ -351,7 +351,7 @@ public class InicioJuego extends JFrame {
                 Dialogo actual = tutorialParte5.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
-                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setBounds((int) (tamPant.width*0.23),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.54),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
@@ -389,7 +389,7 @@ public class InicioJuego extends JFrame {
                 Dialogo actual = tutorialParte6.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
-                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setBounds((int) (tamPant.width*0.23),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.54),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
@@ -427,7 +427,7 @@ public class InicioJuego extends JFrame {
                 Dialogo actual = tutorialParte7.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
-                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setBounds((int) (tamPant.width*0.23),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.54),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
@@ -465,7 +465,7 @@ public class InicioJuego extends JFrame {
                 Dialogo actual = tutorialParte8.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
-                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setBounds((int) (tamPant.width*0.23),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.54),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
@@ -502,7 +502,7 @@ public class InicioJuego extends JFrame {
                 Dialogo actual = tutorialParte9.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
-                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setBounds((int) (tamPant.width*0.23),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.54),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
@@ -542,7 +542,7 @@ public class InicioJuego extends JFrame {
                 Dialogo actual = tutorialParte10.getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
-                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setBounds((int) (tamPant.width*0.23),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.54),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }
