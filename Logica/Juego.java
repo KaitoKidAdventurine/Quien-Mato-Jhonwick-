@@ -180,57 +180,66 @@ public class Juego {
         System.out.println("Partidas null eliminadas. Total partidas: " + partidas.size());
     }
 
-
     /**
      * Guarda la `partidaActual` en disco usando su `idPartida` como slot.
      * Se crea/usa la carpeta `partidas_guardadas/` y el archivo `partida<ID>.sav`.
      * Devuelve true si se guardó correctamente.
      */
-    public boolean guardarPartida()
-    {
-        if (partidaActual == null) {
-            System.err.println("No hay partida cargada para guardar.");
-            return false;
-        }
+    public boolean guardarPartida() {
+        boolean resultado = false;
+        boolean salidaBucle = false;
 
-        String id = partidaActual.getIdPartida();
-        if (id == null || id.trim().isEmpty()) {
-            System.err.println("La partida no tiene ID. No se puede guardar.");
-            return false;
-        }
+        if (partidaActual != null) {
+            String id = partidaActual.getIdPartida();
+            if (id != null && !id.trim().isEmpty()) {
+                try {
+                    File dir = new File("partidas_guardadas");
+                    if (!dir.exists()) {
+                        dir.mkdirs();
+                    }
 
-        try {
-            File dir = new File("partidas_guardadas");
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
+                    File file = new File(dir, "partida" + id + ".sav");
 
-            File file = new File(dir, "partida" + id + ".sav");
+                    // Serializamos una copia (clone) para evitar inconsistencias durante el guardado
+                    Partida copia = partidaActual.clone();
 
-            // Serializamos una copia (clone) para evitar inconsistencias durante el guardado
-            Partida copia = partidaActual.clone();
+                    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+                        oos.writeObject(copia);
+                        oos.flush();
+                    }
 
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
-                oos.writeObject(copia);
-                oos.flush();
-            }
+                    // Actualizar lista en memoria: reemplazar o agregar la partida guardada
+                    Iterator<Partida> it = partidas.iterator();
+                    while (it.hasNext() && !salidaBucle) {
+                        Partida p = it.next();
+                        if (p.getIdPartida().equals(id)) {
+                            it.remove();
+                            salidaBucle = true;
+                        }
+                    }
 
-            // Actualizar lista en memoria: reemplazar o agregar la partida guardada
-            Iterator<Partida> it = partidas.iterator();
-            while (it.hasNext()) {
-                Partida p = it.next();
-                if (p.getIdPartida().equals(id)) {
-                    it.remove();
-                    break;
+                    if (!salidaBucle) {
+                        // Si no se encontró la partida, se eliminó en el bucle anterior
+                        salidaBucle = false;
+                    }
+
+                    partidas.add(copia);
+                    resultado = true;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    resultado = false;
                 }
+            } else {
+                System.err.println("La partida no tiene ID. No se puede guardar.");
+                resultado = false;
             }
-            partidas.add(copia);
-
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+        } else {
+            System.err.println("No hay partida cargada para guardar.");
+            resultado = false;
         }
+
+        return resultado;
     }
 
     /**
@@ -239,34 +248,38 @@ public class Juego {
      * Devuelve true si la carga fue exitosa.
      */
     public boolean cargarPartida(int slot) {
+        boolean resultado = false;
+
         try {
             File file = new File("partidas_guardadas", "partida" + slot + ".sav");
-            if (!file.exists()) {
+            if (file.exists()) {
+                Partida cargada;
+                try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+                    cargada = (Partida) ois.readObject();
+                }
+
+                if (cargada != null) {
+                    // Agregar directamente a la lista sin verificar duplicados
+                    partidas.add(cargada);
+
+                    // Cargar como partida actual (clon para evitar referencias compartidas)
+                    setPartidaActual(cargada.clone());
+
+                    System.out.println("Partida cargada correctamente desde slot " + slot + ": " + cargada.getIdPartida());
+                    resultado = true;
+                } else {
+                    resultado = false;
+                }
+            } else {
                 System.err.println("Archivo de partida no encontrado: " + file.getPath());
-                return false;
+                resultado = false;
             }
-
-            Partida cargada;
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-                cargada = (Partida) ois.readObject();
-            }
-
-            if (cargada == null) {
-                return false;
-            }
-
-            // Agregar directamente a la lista sin verificar duplicados
-            partidas.add(cargada);
-
-            // Cargar como partida actual (clon para evitar referencias compartidas)
-            setPartidaActual(cargada.clone());
-
-            System.out.println("Partida cargada correctamente desde slot " + slot + ": " + cargada.getIdPartida());
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            resultado = false;
         }
+
+        return resultado;
     }
 
     public ArrayList<MiniJuego> getMiniJuegos() {        return miniJuegos;
@@ -404,7 +417,7 @@ public class Juego {
         ObjetoEscenario obLata3 = new ObjetoEscenario("Lata de Refresco 3", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (569-145)/1152f, 574f/765f, (588-569)/1152f, (606-574)/765f, false, "");
         ObjetoEscenario obCaramelo = new ObjetoEscenario("Caramelo", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (305-75)/1152f, 691f/765f, (338-305)/1152f, (715-691)/765f, false, "");
         ObjetoEscenario obMochilaVerde = new ObjetoEscenario("Mochila Verde", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (91-42)/1152f, 527f/765f, (181-91)/1152f, (656-527)/765f, false, "");
-        ObjetoEscenario obToallaRoja = new ObjetoEscenario("Toalla Roja", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (307-80)/1152f, 389f/765f, (356-307)/1152f, (454-389)/765f, false, "");
+        ObjetoEscenario obToallaRoja = new ObjetoEscenario("Toalla con Suciedad", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (307-80)/1152f, 389f/765f, (356-307)/1152f, (454-389)/765f, false, "");
         ObjetoEscenario obToallaBlanca = new ObjetoEscenario("Toalla Blanca", true, new ImageIcon("DatosAuxiliares/InterfazUsuario/Nada.png"), (800-205)/1152f, 112f/765f, (836-800)/1152f, (239-112)/765f, false, "");
 
         bathSecondFloor.agregarObjetoCola(obBilletera);

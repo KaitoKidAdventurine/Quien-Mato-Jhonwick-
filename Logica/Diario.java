@@ -95,11 +95,11 @@ public class Diario implements Serializable
 
         // 8. GUÍA 2
         Informacion guia2 = new Informacion("Alex Valle", "27", Sexo.MASCULINO, "Guia");
-        guia2.agregarCualidad("Energico");
-        guia2.agregarCualidad("entusiasta");
-        guia2.agregarCualidad("extrovertido");
-        guia2.agregarCualidad("carismático");
-        guia2.agregarCualidad("alegre");
+        guia2.agregarCualidad("Antipático");
+        guia2.agregarCualidad("Prepotente");
+        guia2.agregarCualidad("Avaricioso");
+        guia2.agregarCualidad("Hipócrita");
+        guia2.agregarCualidad("Deshonesto");
         dialogosImportantes.add(guia2);
 
         // 9. SEGURIDAD

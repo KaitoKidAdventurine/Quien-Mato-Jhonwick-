@@ -10,6 +10,7 @@ import Interfaz.MiniJuego.MinijuegoInterfaz;
 import Logica.Dialogo;
 import Logica.Juego;
 import Logica.MiniJuego;
+import Logica.Reproductor;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -218,6 +219,14 @@ public class Bano2  extends ModeloEscenario {
                 {
                     aux.guardarEnDiario();
                 }
+
+                if (aux.getTexto().equals("(¿Qué es esto...? Una nota arrugada.)"))
+                {
+                    // Cambiar en caso de ser necesario
+                    Reproductor reproductor = Reproductor.getInstancia();
+                    reproductor.cambiarMusicaNombre("Sombras en el Umbral");
+                }
+
                 cajaTexto.removeAll();
                 cajaTexto.add(cT);
             }else {

@@ -77,7 +77,7 @@ public class Partida implements Serializable, Cloneable
         return copia;
     }
 
-    // AÑADE ESTE MÉTODO NUEVO en Partida.java:
+
     public void restaurarTodosLosDialogos() {
         // Reconstruir estructura de árboles
         crearDialogosActo1();
@@ -788,14 +788,18 @@ public class Partida implements Serializable, Cloneable
         // Primera decisión
         Dialogo desc1Limp = new Dialogo("Bueno, vamos directo al grano...", "Detective", detective, true);
         desc1Limp.setOpciones(new LinkedList<>(Arrays.asList(
-                "¿Notó algo raro en los baños esta semana?",
+                "¿Notó algo raro en los baños esta semana y me pudiera decir que baño usaba la víctima?",
                 "¿Ha visto a alguien bajar aquí cuando no debería?",
                 "¿Encontró algún objeto que no debería estar ahí?"
         )));
 
         // Camino vacío: baños
         Dialogo respLimp1 = new Dialogo("Los baños estaban limpios. Bueno, dentro de lo que cabe. Nada fuera de lo común.", "Conserje", limpieza, true);
-        Dialogo respLimp1b = new Dialogo("Aunque alguien dejó una taza de café en el lavamanos... pero eso pasa más de lo que imagina.", "Conserje", limpieza, true);
+        Dialogo respLimp1b = new Dialogo("Aunque alguien dejó una taza de café en el lavamanos... " +
+                "pero eso pasa más de lo que imagina. " +
+                "El baño que usaba el difunto económico era el del segundo piso.", "Conserje", limpieza, true);
+        respLimp1b.agregar("victor", "La victima usaba el baño \n del segundo piso, hay que \n investigarlo.\n");
+
 
         // Camino vacío: gente bajando
         Dialogo respLimp2 = new Dialogo("A veces escucho pasos, pero no sé quién baja. Yo no me meto con nadie, solo barro y subo.", "Conserje", limpieza, true);
@@ -826,6 +830,8 @@ public class Partida implements Serializable, Cloneable
 
 
         u8.agregar("Limpiador", "El limpiador encontró las llaves \n del almacén y las llevó por \n accidente a su casa.");
+        u8.agregar("victor", "\n Debo de investigar el Almacen \n, que mi instinto me dice  \n que encontrare algo interesante. \n");
+
 
         Dialogo u11 = new Dialogo("Hágalo. Pero por ahora, no le diga a nadie que las encontró. ¿De acuerdo?", "Detective", detective, true);
         Dialogo u12 = new Dialogo("¿En secreto? Bueno... si usted lo dice. No quiero meterme en líos.", "Conserje", limpieza, true);
@@ -1417,8 +1423,10 @@ public class Partida implements Serializable, Cloneable
         Dialogo v5 = new Dialogo("¿Entre las 9 y las 10? Sí... vi a alguien. No saliendo, no. Subiendo.", "Vagabundo", vagabundo, true);
         Dialogo v6 = new Dialogo("Ocurrió por la escalera de incendios. Alguien más la bajó, cosa rara. Esa chatarra siempre está recogida.", "Vagabundo", vagabundo, true);
         Dialogo v7 = new Dialogo("No les vi la cara. Solo siluetas. Pero no eran de los míos, eso seguro.", "Vagabundo", vagabundo, true);
-        v7.agregar("Vagabundo", "Alguien subió por la escalera de incendios entre la 9:00 y las 10:00 PM la cual estaba ya bajada.");
-        v7.agregar("Vagabundo", "La escalera de incendios fue desplegada por una segunda persona.");
+
+
+        v7.agregar("Vagabundo", "Alguien subió por la escalera de \n incendios entre la 9:00 y \n las 10:00 PM la cual estaba \n ya bajada.\n");
+        v7.agregar("Vagabundo", "La escalera de incendios fue \n desplegada por una segunda \n persona.");
 
 
         Dialogo v8 = new Dialogo("Y gracias por el pan. El jamón estaba... casi fresco.", "Vagabundo", vagabundo, true);
@@ -1749,6 +1757,11 @@ public class Partida implements Serializable, Cloneable
         Dialogo a7 = new Dialogo("¡Dios mío! ¿Estás diciendo que esa cosa fue usada para... para matar?", "Esposa", esposa, true);
         Dialogo a8 = new Dialogo("Todavía no lo sé. Pero alguien se tomó muchas molestias para esconderla aquí.", "Detective", detective, true);
         Dialogo a9 = new Dialogo("¿Y si es de mi esposo? ¿Y si él sabía? ¡No puede ser! ¡Él amaba este museo!", "Esposa", esposa, true);
+
+
+        a9.agregar("esposa", "\n La esposa del dueño \n cree que la espada \n encontrada es de él");
+
+
         Dialogo a10 = new Dialogo("Tranquila. No vamos a sacar conclusiones todavía.", "Detective", detective, true);
         Dialogo a11 = new Dialogo("Voy a llevar esto al laboratorio. Que analicen todo: huellas, sangre, cualquier rastro.", "Policia", policia, true);
         Dialogo a12 = new Dialogo("Hazlo. Esta espada podría ser la pieza que faltaba.", "Detective", detective, true);
@@ -1785,8 +1798,6 @@ public class Partida implements Serializable, Cloneable
 
         //Final del Acto1
         // Monólogo del detective para el final
-
-
         // Agrregarle los sonidos pertinentes en la escena para uqe quede mucho mas relaista
 
         Dialogo m1 = new Dialogo("(No me lo puedo creer... Todo me lleva a él...)", "Detective", nada, true);
@@ -2056,6 +2067,10 @@ public class Partida implements Serializable, Cloneable
         Dialogo n3 = new Dialogo("En latín... significa 'muerte'. Qué reconfortante.", "Detective", detective, true);
         Dialogo n4 = new Dialogo("¿Quién deja algo así escondido en un baño? Esto no es casualidad.", "Detective", detective, true);
 
+
+        n4.agregar("victima", "\nEncontré en el baño del \n segundo piso una nota \n que decía: Muerte en latín, \n debe ser parte de la contraseña \n de la víctima");
+
+
         BinaryTreeNode<Dialogo> node203 = new BinaryTreeNode<>(n1);
         BinaryTreeNode<Dialogo> node204 = new BinaryTreeNode<>(n2);
         BinaryTreeNode<Dialogo> node205 = new BinaryTreeNode<>(n3);
@@ -2076,6 +2091,10 @@ public class Partida implements Serializable, Cloneable
         Dialogo n6 = new Dialogo("Dice 'me sequitur'. También en latín... 'me sigue'.", "Detective", detective, true);
         Dialogo n7 = new Dialogo("¿Contraseña o advertencia? Sea lo que sea, apuesto a que esto conduce directo al económico.", "Detective", detective, true);
         Dialogo n8 = new Dialogo("¿Qué tanto esconde esta víctima?.", "Detective", detective, true);
+
+
+        n8.agregar("victima", "Encontré el resto de la \n contraseña de la computadora \n de la víctima");
+
 
         BinaryTreeNode<Dialogo> node207 = new BinaryTreeNode<>(n5);
         BinaryTreeNode<Dialogo> node208 = new BinaryTreeNode<>(n6);
