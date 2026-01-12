@@ -12,8 +12,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ModeloEscenario extends JFrame {
-    private Timer temporizador;
-    private TimerTask task;
+    public Timer temporizador;
+    public TimerTask task;
     public ModeloEscenario(){
         temporizador = new Timer();
         task = new TimerTask() {
@@ -31,7 +31,7 @@ public class ModeloEscenario extends JFrame {
         }
         Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(imagenCursor, new Point(20, 0), "Cursor detective");
         setCursor(cursor);
-        UnionInterfaces.getInstance().setFrameActual((JFrame) this);
+      //  UnionInterfaces.getInstance().setFrameActual((JFrame) this);
     }
 
 

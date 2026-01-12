@@ -1,6 +1,5 @@
 package Interfaz.MiniJuego;
 
-import Interfaz.InterfazJugador.InterfazMenuMinijuego;
 import Logica.*;
 import DatosAuxiliaresLogica.*;
 
@@ -38,7 +37,6 @@ public class MinijuegoInterfaz extends JPanel {
     private TimerTask tarea3;
     private TimerTask tarea4;
     private boolean pistaLista;
-    private InterfazMenuMinijuego menu;
     private int momentoUsado;
 
 
@@ -99,7 +97,6 @@ public class MinijuegoInterfaz extends JPanel {
         canPistasMostrable = new JLabel(Integer.toString(cantiDePistas));
         pistaLista = true;
         panelMinijuego = new JPanel();
-        menu = new InterfazMenuMinijuego();
         initComponents();
     }
 
@@ -120,7 +117,6 @@ public class MinijuegoInterfaz extends JPanel {
         panelMinijuego.setBounds((int) (tamPant.width * 0.25), 0, (int) (tamPant.width * 0.75), tamPant.height);
         panelMinijuego.setLayout(null);
         add(panelMinijuego, 0);
-        panelMinijuego.add(menu);
         panelMinijuego.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
             Toolkit.getDefaultToolkit().beep();

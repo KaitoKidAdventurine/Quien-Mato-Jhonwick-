@@ -39,14 +39,13 @@ public class Entrada extends ModeloEscenario {
     private TimerTask tarea;
     private TimerTask tarea2;
     private InterfazUsuario interfazUsuario;
-    private Escenario escenario;
 
     /**
      * Creates new form Entrada
      */
     public Entrada() {
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
-        escenario = new Escenario("Entrada", "Punto inicial de partida", true);
+
         timer = new Timer();
         tarea = new TimerTask() {
             @Override
@@ -58,12 +57,11 @@ public class Entrada extends ModeloEscenario {
         tarea2 = new TimerTask() {
             @Override
             public void run() {
-
                 if (UnionInterfaces.getInstance().getCerrarVentana()) {
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     UnionInterfaces.getInstance().setCerrarVentana(false);
-                    timer.schedule(tarea, 700);
+                    temporizador.schedule(task, 300);
                     tarea2.cancel();
                 } else {
                     revalidate();
@@ -153,10 +151,11 @@ public class Entrada extends ModeloEscenario {
         getContentPane().add(fondo);
 
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 5);
+
         if (Juego.getInstance().getPartidaActual().getEventos().getDialogoCapitanActual() == 0) {
             llamadaCapitan(0);
         }
+        timer2.scheduleAtFixedRate(tarea2, 0, 10);
     }// </editor-fold>//GEN-END:initComponents
 
     private void llamadaCapitan(int actual) {
@@ -186,7 +185,7 @@ public class Entrada extends ModeloEscenario {
                  e.efectoDeTelefonoResiviendoLlamda();
             }
 
-            else if (aux.getTexto().equals("-Biiiip-"))
+           else if (aux.getTexto().equals("-Biiiip-"))
             {
                 e.efectoColgarTelefono();
             }

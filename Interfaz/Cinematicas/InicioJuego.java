@@ -85,21 +85,13 @@ public class InicioJuego extends JFrame {
         salidaTarea = new TimerTask() {
             @Override
             public void run() {
-                if(UnionInterfaces.getInstance().getCerrarVentana()){
-                    MenuPrincipal menu = new MenuPrincipal();
-                    menu.setVisible(true);
-                    UnionInterfaces.getInstance().setCerrarVentana(false);
-                    dispose();
-                    tarea2.cancel();
-                }else{
                     revalidate();
                     repaint();
                 }
-            }
+
         };
         UnionInterfaces.getInstance().setFrameActual((JFrame) this);
         initComponents();
-
     }
 
 
@@ -592,7 +584,10 @@ public class InicioJuego extends JFrame {
 
 
         }else {
-            iniciarMundo();
+            if(!Juego.getInstance().getPartidaActual().isTutorialTerminado()) {
+                iniciarMundo();
+                Juego.getInstance().getPartidaActual().setTutorialTerminado(true);
+            }
         }
     }
 
@@ -1901,7 +1896,7 @@ public class InicioJuego extends JFrame {
     private void iniciarMundo(){
         Entrada entrada =  new Entrada();
         entrada.setVisible(true);
-        timer2.schedule(tarea2, 2000);
+        timer2.schedule(tarea2, 300);
 
     }
     private void cTParte1MouseClicked(MouseEvent evt) {

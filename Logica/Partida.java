@@ -3,7 +3,6 @@ package Logica;
 import DatosAuxiliaresLogica.Datos;
 import DatosAuxiliaresLogica.Eventos;
 import DatosAuxiliaresLogica.Informacion;
-import Interfaz.Escenarios.Almacen;
 import cu.edu.cujae.ceis.tree.binary.BinaryTreeNode;
 import cu.edu.cujae.ceis.tree.general.GeneralTree;
 import cu.edu.cujae.ceis.tree.iterators.general.InBreadthIterator;
@@ -27,7 +26,7 @@ public class Partida implements Serializable, Cloneable
     private Jugador jugador;
     private Eventos eventos;
     private ArrayList<ArrayList<Dialogo>> dialogosCapitan;
-    private boolean dialogosInicializados = false;
+    private boolean tutorialTerminado = false;
 
     public Partida() {
         // Para darle un valor al ID sera la partida que escoja el usuario.
@@ -1932,6 +1931,14 @@ public class Partida implements Serializable, Cloneable
 
         escenariosMundo.get(12).setArbolDial(auxTree13);
 
+    }
+
+    public boolean isTutorialTerminado() {
+        return tutorialTerminado;
+    }
+
+    public void setTutorialTerminado(boolean tutorialTerminado) {
+        this.tutorialTerminado = tutorialTerminado;
     }
 
     // metodo para ver si se puede o no reprtir el dialogo
