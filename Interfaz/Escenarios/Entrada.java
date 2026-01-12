@@ -153,7 +153,7 @@ public class Entrada extends ModeloEscenario {
         getContentPane().add(fondo);
 
         pack();
-        timer2.scheduleAtFixedRate(tarea2, 0, 5);
+        timer2.scheduleAtFixedRate(tarea2, 100, 5);
         if (Juego.getInstance().getPartidaActual().getEventos().getDialogoCapitanActual() == 0) {
             llamadaCapitan(0);
         }
@@ -181,10 +181,13 @@ public class Entrada extends ModeloEscenario {
                 aux.guardarEnDiario();
             }
 
+            /*
             if (aux.getTexto().equals("- Ring - Ring - Ring -."))
             {
                  e.efectoDeTelefonoResiviendoLlamda();
             }
+
+             */
 
             else if (aux.getTexto().equals("-Biiiip-"))
             {

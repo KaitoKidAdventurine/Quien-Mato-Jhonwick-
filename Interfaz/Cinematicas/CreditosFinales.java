@@ -87,7 +87,7 @@ private boolean fin;
         fondo.setIcon(icono);
         fondo.setBounds(0, 0, tamPant.width, tamPant.height);
         add(fondo);
-        timer.scheduleAtFixedRate(tarea, 0, 17);
+        timer.scheduleAtFixedRate(tarea, 0, 21);
     }
 
     private void salirAlMenu() {
@@ -178,7 +178,7 @@ private boolean fin;
                     timer.cancel();
                 }
                 break;
-            case 240:
+            case 310:
                 ponerSiguienteString();
                 desfile=0;
                 break;

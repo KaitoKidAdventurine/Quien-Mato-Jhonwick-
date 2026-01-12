@@ -88,15 +88,11 @@ public class Bano2  extends ModeloEscenario {
         lugar = new JLabel();
         interfazUsuario= new InterfazUsuario();
         revisarBano = new JButton();
-
+        // Actualizacion de donde esta el Jugador
+        Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Banno Planta Alta");
 
         try {
             BufferedImage imagen = ImageIO.read(new File("DatosAuxiliares/Escenarios/baño 2.jpg"));
-
-            // Actualizacion de donde esta el Jugador
-            Juego.getInstance().getPartidaActual().buscarEscenarioNombre("Banno Planta Alta");
-
-
             jLabel1 = new JLabel();
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setMinimumSize(tamPant);
