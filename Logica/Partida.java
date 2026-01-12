@@ -542,7 +542,7 @@ public class Partida implements Serializable, Cloneable
         )));
 
 
-        
+
         Dialogo d6 = new Dialogo("Tuvimos algo. Fue breve. Él decía que no quería complicaciones y, bueno, yo... yo me ilusioné más de la cuenta.", "Secretaria",
                 secretaria, true);
         d6.agregar("Secretaria", "La secretaria tuvo una relación \n amorosa con el economista.");
@@ -788,7 +788,7 @@ public class Partida implements Serializable, Cloneable
         // Primera decisión
         Dialogo desc1Limp = new Dialogo("Bueno, vamos directo al grano...", "Detective", detective, true);
         desc1Limp.setOpciones(new LinkedList<>(Arrays.asList(
-                "¿Notó algo raro en los baños esta semana y me pudiera decir que baño usaba la víctima?",
+                "¿Notó algo raro en los baños?",
                 "¿Ha visto a alguien bajar aquí cuando no debería?",
                 "¿Encontró algún objeto que no debería estar ahí?"
         )));
@@ -797,7 +797,7 @@ public class Partida implements Serializable, Cloneable
         Dialogo respLimp1 = new Dialogo("Los baños estaban limpios. Bueno, dentro de lo que cabe. Nada fuera de lo común.", "Conserje", limpieza, true);
         Dialogo respLimp1b = new Dialogo("Aunque alguien dejó una taza de café en el lavamanos... " +
                 "pero eso pasa más de lo que imagina. " +
-                "El baño que usaba el difunto económico era el del segundo piso.", "Conserje", limpieza, true);
+                " Ah por cierto el baño que usaba el difunto económico era el del segundo piso, no se la razón pero parece que le gustaba ir arriba.", "Conserje", limpieza, true);
         respLimp1b.agregar("victor", "La victima usaba el baño \n del segundo piso, hay que \n investigarlo.\n");
 
 
