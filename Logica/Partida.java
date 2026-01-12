@@ -1067,9 +1067,7 @@ public class Partida implements Serializable, Cloneable
         BinaryTreeNode<Dialogo> node70Aux1 = new BinaryTreeNode<>(respDue4);
         BinaryTreeNode<Dialogo> nodeSal2 = new BinaryTreeNode<>(salida2);
         BinaryTreeNode<Dialogo> nodeSal2Aux = new BinaryTreeNode<>(salida2);
-        BinaryTreeNode<Dialogo> nodeSal2Aux1 = new BinaryTreeNode<>(salida2);
         BinaryTreeNode<Dialogo> nodeSal2Aux2 = new BinaryTreeNode<>(salida2);
-        BinaryTreeNode<Dialogo> node71 = new BinaryTreeNode<>(cierre4);
         BinaryTreeNode<Dialogo> node71Aux = new BinaryTreeNode<>(cierre4);
         BinaryTreeNode<Dialogo> node71Aux1 = new BinaryTreeNode<>(cierre4);
         BinaryTreeNode<Dialogo> node71Aux2 = new BinaryTreeNode<>(cierre4);
