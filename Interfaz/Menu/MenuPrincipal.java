@@ -27,9 +27,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private Dimension tamPant;
     private Timer timer;
     private TimerTask tarea;
-    int largoBot;
-    int anchoBot;
-    int xBot;
+    private int largoBot;
+    private int anchoBot;
+    private int xBot;
+    private JLabel titulo;
     private static boolean  evitarRepetir = false;
     /**
      * Creates new form Menu1
@@ -75,6 +76,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonOpc = new javax.swing.JButton();
         botonCreditos = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
+
+        titulo= new JLabel();
+
+
+        BufferedImage imagen1 = null;
+        try {
+            imagen1 = ImageIO.read(new File("DatosAuxiliares/InterfazUsuario/Titulo 2.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon icono1 = new ImageIcon(imagen1.getScaledInstance((int) (tamPant.width*0.58), (int) (tamPant.height*0.58), Image.SCALE_SMOOTH));
+        titulo.setIcon(icono1);
+        titulo.setBounds((int) (tamPant.width*0.01), (int) (tamPant.height*0.02), (int) (tamPant.width*0.58), (int) (tamPant.height*0.58));
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(tamPant));
@@ -201,6 +216,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         ImageIcon icono = new ImageIcon(imagen.getScaledInstance(tamPant.width, tamPant.height , Image.SCALE_SMOOTH));
 
+        getContentPane().add(titulo);
 
         fondo.setIcon(icono); // NOI18N
         fondo.setText("jLabel1");
@@ -306,11 +322,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

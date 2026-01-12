@@ -69,7 +69,7 @@ public class CargarPartida extends javax.swing.JFrame {
         setPreferredSize(tamPant);
         getContentPane().setLayout(null);
 
-        botonAtras.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        botonAtras.setFont(new java.awt.Font("Segoe UI", 0, 28)); // NOI18N
         botonAtras.setForeground(new java.awt.Color(255, 255, 255));
         botonAtras.setText("Atras");
         botonAtras.setBorder(null);
