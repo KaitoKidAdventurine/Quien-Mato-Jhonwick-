@@ -63,6 +63,7 @@ public class Bano2  extends ModeloEscenario {
                 if(Juego.getInstance().getPartidaActual().getEventos().isBanoRevisado()){
                     cajaTexto.removeAll();
                     revisarBano.setVisible(false);
+                    UnionInterfaces.getInstance().setUsandoFlecha(false);
                     ponerDialogo();
                     tarea3.cancel();
                 }

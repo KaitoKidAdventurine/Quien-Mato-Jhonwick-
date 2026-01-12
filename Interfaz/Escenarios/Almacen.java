@@ -64,6 +64,7 @@ public class Almacen extends ModeloEscenario {
                 if(Juego.getInstance().getPartidaActual().getEventos().isAlmacenRevisado()){
                     cajaTexto.removeAll();
                     revisarAlmacen.setVisible(false);
+                    UnionInterfaces.getInstance().setCerrarVentana(false);
                     ponerDialogo();
                     tarea3.cancel();
                 }
