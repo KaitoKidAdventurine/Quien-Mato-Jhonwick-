@@ -1,6 +1,9 @@
 package Logica;
 
-public abstract class Interactuable {
+import java.io.Serializable;
+
+public abstract class Interactuable implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     protected String nombre;
     protected boolean clikleable;

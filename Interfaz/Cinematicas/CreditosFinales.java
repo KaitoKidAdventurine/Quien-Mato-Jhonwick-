@@ -1,6 +1,7 @@
 package Interfaz.Cinematicas;
 
 import DatosAuxiliaresLogica.UnionInterfaces;
+import Logica.Reproductor;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -29,6 +30,8 @@ private boolean fin;
     private int desfile;
 
     public CreditosFinales (){
+        Reproductor reproductor = Reproductor.getInstancia();
+        reproductor.agregarReproucirCancionDelFinal();
         tamPant = Toolkit.getDefaultToolkit().getScreenSize();
         cabezaActual=0;
         fin = false;
@@ -84,7 +87,7 @@ private boolean fin;
         fondo.setIcon(icono);
         fondo.setBounds(0, 0, tamPant.width, tamPant.height);
         add(fondo);
-        timer.scheduleAtFixedRate(tarea, 0, 20);
+        timer.scheduleAtFixedRate(tarea, 0, 21);
     }
 
     private void salirAlMenu() {
@@ -233,16 +236,16 @@ private boolean fin;
     }
     private ArrayList<String> crearCuerpos(){
         ArrayList<String> cuerpos= new ArrayList<>();
-        cuerpos.add("Eriet Dario de Armas Gonzales");
+        cuerpos.add("Eriet Dario Armas Gonzales");
         cuerpos.add("Kevin Ronquillo Perez");
         cuerpos.add("Alberto Ramon Nogueira");
         cuerpos.add("Favio Hernandez Leal");
-        cuerpos.add("Eriet Dario de Armas Gonzales");
+        cuerpos.add("Eriet Dario Armas Gonzales");
         cuerpos.add("Edel Lazaro Mejias Rodriguez");
         cuerpos.add("Yeilin Dignora de la Cruz Noriega");
         cuerpos.add("Kely Gonzales Baez");
         cuerpos.add("Kevin Ronquillo Perez");
-        cuerpos.add("Eriet Dario de Armas Gonzales");
+        cuerpos.add("Eriet Dario Armas Gonzales");
         cuerpos.add(" por jugar");
         return cuerpos;
     }

@@ -11,6 +11,8 @@ import java.util.Queue;
 
 public class Dialogo implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+
     private String texto;
     private String personaje;
     private LinkedList<String> opciones;

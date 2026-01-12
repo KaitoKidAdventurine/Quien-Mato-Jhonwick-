@@ -1,8 +1,10 @@
 package Logica;
 
 import javax.swing.*;
+import java.io.Serializable;
 
-public class ObjetoEscenario extends Interactuable {
+public class ObjetoEscenario extends Interactuable implements Serializable {
+    private static final long serialVersionUID = 1L;
     private ImageIcon imagen;
     private float posX;
     private float posY;
