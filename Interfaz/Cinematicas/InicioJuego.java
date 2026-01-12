@@ -146,11 +146,11 @@ public class InicioJuego extends JFrame {
     public void ponerDialogoParte1() {
         if(tutorialParte1.getNodoDialActual() == null || !(tutorialParte1.getArbolDial().nodeIsLeaf(tutorialParte1.getNodoDialActual()))) {
             EfectosEspeciales e = EfectosEspeciales.getInstancia();
+            e.detenerSiEsNecesario();
 
             Dialogo aux = tutorialParte1.getDialogoSiguiente(1);
             int nivelActualDial = tutorialParte1.getArbolDial().nodeLevel(tutorialParte1.getNodoDialActual());
 
-            e.detenerSiEsNecesario();
 
             if (aux.getTexto().contains("- Ring ring ring ring ring.-")) {
                 e.efectoDeTelefonoResiviendoLlamda();

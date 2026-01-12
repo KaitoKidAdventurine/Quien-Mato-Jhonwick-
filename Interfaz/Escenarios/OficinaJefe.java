@@ -297,9 +297,8 @@ public class OficinaJefe extends ModeloEscenario {
         ArrayList<Dialogo> dialogosConserje = new ArrayList<>();
 
         ImageIcon detective = new ImageIcon("DatosAuxiliares/Personajes/Detective.png");
-        Dialogo d1= new Dialogo("(No esta contanto todo lo que sabe, o por lo menos no lo que queria excuchar)", "Detective", detective, true);
-        Dialogo d2= new Dialogo("(Deberia de volver a hablar con el y preguntarle otras cosas)", "Detective", detective, true);
-
+        Dialogo d1 = new Dialogo("(No está contando todo lo que sabe, o por lo menos no lo que quería escuchar)", "Detective", detective, true);
+        Dialogo d2 = new Dialogo("(Debería volver a hablar con él y preguntarle otras cosas)", "Detective", detective, true);
         dialogosConserje.add(d1);
         dialogosConserje.add(d2);
         return dialogosConserje;

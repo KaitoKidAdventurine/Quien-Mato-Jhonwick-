@@ -10,6 +10,7 @@ import Interfaz.MiniJuego.MinijuegoInterfaz;
 import Logica.Dialogo;
 import Logica.Juego;
 import Logica.MiniJuego;
+import Logica.Reproductor;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -218,6 +219,12 @@ public class Almacen extends ModeloEscenario {
             if (aux.getTextoImport().isEmpty() == false)
             {
                 aux.guardarEnDiario();
+            }
+            if (aux.getTexto().equals("(Una nota extraña. Esta vez dentro del libro en el almacén.)"))
+            {
+                // Cambiar si hace falta
+                Reproductor reproductor = Reproductor.getInstancia();
+                reproductor.cambiarMusicaNombre("Casi Puedo Verlo(1)");
             }
 
             cajaTexto.removeAll();

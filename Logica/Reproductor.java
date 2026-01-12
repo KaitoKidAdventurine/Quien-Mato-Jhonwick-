@@ -36,6 +36,8 @@ public class Reproductor {
         File musicaTension = new File("Musica/Canciones/Tension.mp3");
         File musicaBusqueda = new File("Musica/Canciones/Busqueda.mp3");
         File musica = new File("Musica/Canciones/Sombras en el Umbral.mp3");
+        File mu = new File("Musica/Canciones/Casi Puedo Verlo(1).mp3");
+        File m = new File("Musica/Canciones/Cerca De La Verdad.mp3");
 
 
         if (archivoMusica.exists()) {
@@ -46,6 +48,8 @@ public class Reproductor {
             Cancion cancionTension = new Cancion("Tension", musicaTension);
             Cancion cancion1 = new Cancion("Busqueda", musicaBusqueda);
             Cancion cancion2 = new Cancion("Sombras en el Umbral", musica);
+            Cancion cancion3 = new Cancion("Casi Puedo Verlo(1)", mu);
+            Cancion cancion4 = new Cancion("Cerca De La Verdad", m);
 
             canciones.add(cancion);
             canciones.add(cancionUno);
@@ -54,6 +58,9 @@ public class Reproductor {
             canciones.add(cancionTension);
             canciones.add(cancion1);
             canciones.add(cancion2);
+            canciones.add(cancion3);
+            canciones.add(cancion4);
+
 
         } else {
             System.err.println("No se encontró el archivo de música: " + archivoMusica.getAbsolutePath());

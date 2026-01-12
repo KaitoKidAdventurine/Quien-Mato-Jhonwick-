@@ -132,7 +132,6 @@ public class SalaDeCamaras extends ModeloEscenario {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         revisarCamaras.setBounds((int) (tamPant.width*0.47), (int) (tamPant.height*0.53), (int) (tamPant.width*0.08), (int) (tamPant.height*0.11));
         revisarCamaras.setContentAreaFilled(false);
         revisarCamaras.setBorderPainted(false);
@@ -140,8 +139,6 @@ public class SalaDeCamaras extends ModeloEscenario {
         revisarCamaras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 revisarCamarasActionPerformed(evt);
-                Reproductor reproductor = Reproductor.getInstancia();
-                reproductor.getIndiceDeAntesDeCambio();
             }
 
         });
