@@ -100,7 +100,7 @@ timer.scheduleAtFixedRate(tarea, 0, 10);
                 Dialogo actual = Juego.getInstance().getPartidaActual().getEscenariosMundo().get(10).getDialogoActual();
                 if(!actual.getOpciones().isEmpty()){
                     OpcionesDialogos oD = new OpcionesDialogos(UnionInterfaces.getInstance().getFrameActual(), true, actual.getOpciones());
-                    oD.setBounds((int) (tamPant.width*0.28),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.48),(int) (tamPant.getHeight()*0.5));
+                    oD.setBounds((int) (tamPant.width*0.23),(int) (tamPant.getHeight()*0.37), (int) (tamPant.width*0.54),(int) (tamPant.getHeight()*0.5));
                     oD.setVisible(true);
                 }
             }

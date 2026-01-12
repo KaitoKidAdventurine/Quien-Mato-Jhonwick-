@@ -69,7 +69,7 @@ public class OpcionesDialogos extends JDialog {
             }
         });
 
-        boton1.setBounds((int) (tamPant.width*0.01),(int) (tamPant.getHeight()*0.03), (int) (tamPant.width*0.43),(int) (tamPant.getHeight()*0.05));
+        boton1.setBounds((int) (tamPant.width*0.01),(int) (tamPant.getHeight()*0.03), (int) (tamPant.width*0.5),(int) (tamPant.getHeight()*0.05));
         add(boton1);
 
         boton2 = new JButton();
@@ -94,7 +94,7 @@ public class OpcionesDialogos extends JDialog {
             }
         });
 
-        boton2.setBounds((int) (tamPant.width*0.01),(int) (tamPant.getHeight()*0.1), (int) (tamPant.width*0.43),(int) (tamPant.getHeight()*0.05));
+        boton2.setBounds((int) (tamPant.width*0.01),(int) (tamPant.getHeight()*0.1), (int) (tamPant.width*0.5),(int) (tamPant.getHeight()*0.05));
         add(boton2);
 
         if(opciones.size()>2) {
@@ -121,7 +121,7 @@ public class OpcionesDialogos extends JDialog {
                 }
             });
 
-            boton3.setBounds((int) (tamPant.width * 0.01), (int) (tamPant.getHeight() * 0.17), (int) (tamPant.width * 0.43), (int) (tamPant.getHeight() * 0.05));
+            boton3.setBounds((int) (tamPant.width * 0.01), (int) (tamPant.getHeight() * 0.17), (int) (tamPant.width * 0.5), (int) (tamPant.getHeight() * 0.05));
             add(boton3);
         }
 
